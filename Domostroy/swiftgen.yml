@@ -1,0 +1,8 @@
+input_dir: ${PROJECT_DIR}/Domostroy/Resources/
+output_dir: ${PROJECT_DIR}/Domostroy/Resources/
+
+strings:
+  inputs: Strings/en.lproj
+  outputs:
+    templateName: structured-swift5
+    output: Strings.swift
