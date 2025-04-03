@@ -49,6 +49,7 @@
 		559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610B12D9C8E1B00746358 /* DeepLinkOption.swift */; };
 		559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559610B32D9D8C3000746358 /* InfoPlist.strings */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
+		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
 		6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */; };
 		7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */; };
@@ -122,6 +123,7 @@
 		559610B62D9D8C4100746358 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
 		5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinatorOutput.swift; sourceTree = "<group>"; };
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 		D6676D5EB2A904B945F91427 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				55B4962B2D9E88D300C6AB57 /* MainTab.swift */,
 				F4EC6185D6D266C164D37889 /* MainTabBarCoordinator.swift */,
 				5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */,
 				55B496252D9E83BD00C6AB57 /* MainTabBar */,
@@ -784,6 +787,7 @@
 				559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */,
 				55631AD12D95FB3900FD6856 /* Coordinator.swift in Sources */,
 				55631AD52D95FB3900FD6856 /* Router.swift in Sources */,
+				55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */,
 				55631ACF2D95FB3900FD6856 /* UIApplication.swift in Sources */,
 				55631ACC2D95FB3900FD6856 /* BaseCoordinator.swift in Sources */,
 				559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */,
