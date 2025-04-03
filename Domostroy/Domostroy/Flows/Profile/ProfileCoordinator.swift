@@ -23,6 +23,7 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
     }
 
     override func start() {
+        showProfile()
     }
 
 }
@@ -30,5 +31,10 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 // MARK: - Private methods
 
 private extension ProfileCoordinator {
+
+    func showProfile() {
+        let (view, output) = ProfileModuleConfigurator().configure()
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
 
 }

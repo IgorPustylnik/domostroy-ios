@@ -23,6 +23,7 @@ final class HomeCoordinator: BaseCoordinator, HomeCoordinatorOutput {
     }
 
     override func start() {
+        showHome()
     }
 
 }
@@ -30,5 +31,10 @@ final class HomeCoordinator: BaseCoordinator, HomeCoordinatorOutput {
 // MARK: - Private methods
 
 private extension HomeCoordinator {
+
+    func showHome() {
+        let (view, output) = HomeModuleConfigurator().configure()
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
 
 }

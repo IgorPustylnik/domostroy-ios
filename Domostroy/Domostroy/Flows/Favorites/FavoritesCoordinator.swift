@@ -23,6 +23,7 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
     }
 
     override func start() {
+        showFavorites()
     }
 
 }
@@ -30,5 +31,10 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
 // MARK: - Private methods
 
 private extension FavoritesCoordinator {
+
+    func showFavorites() {
+        let (view, output) = FavoritesModuleConfigurator().configure()
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
 
 }

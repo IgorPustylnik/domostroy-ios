@@ -23,6 +23,7 @@ final class RequestsCoordinator: BaseCoordinator, RequestsCoordinatorOutput {
     }
 
     override func start() {
+        showRequests()
     }
 
 }
@@ -30,5 +31,10 @@ final class RequestsCoordinator: BaseCoordinator, RequestsCoordinatorOutput {
 // MARK: - Private methods
 
 private extension RequestsCoordinator {
+
+    func showRequests() {
+        let (view, output) = RequestsModuleConfigurator().configure()
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
 
 }

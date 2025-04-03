@@ -23,6 +23,7 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
     }
 
     override func start() {
+        showMyOffers()
     }
 
 }
@@ -30,5 +31,10 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
 // MARK: - Private methods
 
 private extension MyOffersCoordinator {
+
+    func showMyOffers() {
+        let (view, output) = MyOffersModuleConfigurator().configure()
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
 
 }
