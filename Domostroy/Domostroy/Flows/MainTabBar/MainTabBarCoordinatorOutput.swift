@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias EmptyClosure = () -> Void
+
 protocol MainTabBarCoordinatorOutput: AnyObject {
 
 }

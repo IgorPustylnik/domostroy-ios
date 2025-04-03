@@ -12,4 +12,5 @@ protocol MainTabBarViewOutput {
     /// - Parameter tab: which tab user did select
     /// - Parameter isInitial: flag, indicating that controller was created before
     func selectTab(with tab: MainTab, isInitial: Bool)
+    func add()
 }

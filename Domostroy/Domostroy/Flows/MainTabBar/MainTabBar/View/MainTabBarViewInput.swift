@@ -6,7 +6,10 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import UIKit
+
 protocol MainTabBarViewInput: AnyObject {
     /// Method for setup initial state of view
-    func setupInitialState()
+    func configure(controllers: [UIViewController])
+    func setAdd(enabled: Bool)
 }

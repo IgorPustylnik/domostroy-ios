@@ -32,6 +32,8 @@
 		42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */; };
 		43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */; };
 		4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersView.swift */; };
+		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
+		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
 		55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55631AB32D95FB3900FD6856 /* Images.xcassets */; };
 		55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AB52D95FB3900FD6856 /* AppDelegate.swift */; };
@@ -49,6 +51,7 @@
 		559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559610B32D9D8C3000746358 /* InfoPlist.strings */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
+		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
 		6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */; };
 		7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */; };
@@ -102,6 +105,7 @@
 		46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleConfigurator.swift; sourceTree = "<group>"; };
 		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
+		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55631A852D95FB3900FD6856 /* Domostroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domostroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55631AB32D95FB3900FD6856 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
+		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
 		5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinatorOutput.swift; sourceTree = "<group>"; };
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
@@ -173,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */,
+				55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */,
+				550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */,
 				C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */,
 				A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */,
 			);
@@ -681,6 +689,9 @@
 			dependencies = (
 			);
 			name = Domostroy;
+			packageProductDependencies = (
+				550D4F242D9F29FB00B460CA /* SnapKit */,
+			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
 			productType = "com.apple.product-type.application";
@@ -710,6 +721,9 @@
 				Base,
 			);
 			mainGroup = 55631A7A2D95FB3800FD6856;
+			packageReferences = (
+				550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -828,6 +842,7 @@
 				BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */,
 				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
+				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
@@ -847,6 +862,7 @@
 				6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */,
 				CDFEF63FE62A6D53E6FC4681 /* ProfileModuleInput.swift in Sources */,
 				141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */,
+				55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */,
 				379DF77E15805F0655A71FBA /* ProfileViewController.swift in Sources */,
 				0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */,
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
@@ -1081,6 +1097,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		550D4F242D9F29FB00B460CA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55631A7B2D95FB3800FD6856 /* Project object */;
 }

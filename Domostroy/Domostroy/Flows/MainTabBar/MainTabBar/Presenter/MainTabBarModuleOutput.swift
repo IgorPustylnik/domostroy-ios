@@ -14,4 +14,5 @@ protocol MainTabBarModuleOutput: AnyObject {
     var onMyOffersFlowSelect: TabSelectClosure? { get set }
     var onRequestsFlowSelect: TabSelectClosure? { get set }
     var onProfileFlowSelect: TabSelectClosure? { get set }
+    var onAdd: EmptyClosure? { get set }
 }

@@ -11,13 +11,16 @@ import UIKit
 final class MainTabBarModuleConfigurator {
 
     func configure() -> (
-       MainTabBarViewController,
-       MainTabBarModuleOutput) {
+        MainTabBarViewController,
+        MainTabBarModuleOutput
+    ) {
         let view = MainTabBarViewController()
         let presenter = MainTabBarPresenter()
 
         presenter.view = view
         view.output = presenter
+
+        presenter.configureTabs()
 
         return (view, presenter)
     }

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainTabBarViewController: UITabBarController {
+
+    // MARK: - UI Elements
+
+    private lazy var tabBarView = MainTabBarView()
 
     // MARK: - Properties
 
@@ -19,8 +24,26 @@ final class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        configureAppearance()
-        configureControllers()
+        self.tabBar.isHidden = true
+        setupUI()
+    }
+
+    // MARK: - UI Setup
+
+    private func setupUI() {
+        view.addSubview(tabBarView)
+        tabBarView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(80)
+        }
+        tabBarView.didSelect = { [weak self] tag in
+            self?.didSelect(tag)
+        }
+        tabBarView.didTapCenter = { [weak self] in
+            self?.output.
+        }
     }
 }
 
@@ -28,8 +51,14 @@ final class MainTabBarViewController: UITabBarController {
 
 extension MainTabBarViewController: MainTabBarViewInput {
 
-    func setupInitialState() {
+    func configure(controllers: [UIViewController]) {
+        tabBarView.configure(with: controllers.map { $0.tabBarItem })
+        viewControllers = controllers
+        didSelect(0)
+    }
 
+    func setAdd(enabled: Bool) {
+        tabBarView.isCenterButtonEnabled = enabled
     }
 
 }
@@ -53,23 +82,12 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
 
 private extension MainTabBarViewController {
 
-    func configureAppearance() {
-        tabBar.barTintColor = UIColor.clear
-        tabBar.tintColor = .Domostroy.primary
-        tabBar.unselectedItemTintColor = .Domostroy.primary
-    }
-
-    func configureControllers() {
-        var controllers: [UIViewController] = []
-        for tab in MainTab.allCases {
-            let tabBarItem = UITabBarItem(title: nil, image: tab.image, selectedImage: tab.selectedImage)
-            tabBarItem.tag = tab.rawValue
-
-            let navigationController = UINavigationController()
-            navigationController.tabBarItem = tabBarItem
-            controllers.append(navigationController)
+    private func didSelect(_ tag: Int) {
+        tabBarView.setSelectedIndex(tag)
+        selectedViewController = viewControllers?[tag]
+        if let selectedViewController {
+            delegate?.tabBarController?(self, didSelect: selectedViewController)
         }
-        viewControllers = controllers
     }
 
 }

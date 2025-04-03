@@ -40,6 +40,9 @@ private extension MainTabBarCoordinator {
         output.onMyOffersFlowSelect = runMyOffersFlow
         output.onRequestsFlowSelect = runRequestsFlow
         output.onProfileFlowSelect = runProfileFlow
+        output.onAdd = {
+            print("on add")
+        }
 
         router.setRootModule(view)
         runHomeFlow(isInitial: true)

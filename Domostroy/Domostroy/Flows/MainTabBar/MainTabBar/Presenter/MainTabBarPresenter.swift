@@ -6,6 +6,8 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import UIKit
+
 final class MainTabBarPresenter: MainTabBarModuleOutput {
 
     // MARK: - MainTabBarModuleOutput
@@ -15,6 +17,7 @@ final class MainTabBarPresenter: MainTabBarModuleOutput {
     var onMyOffersFlowSelect: TabSelectClosure?
     var onRequestsFlowSelect: TabSelectClosure?
     var onProfileFlowSelect: TabSelectClosure?
+    var onAdd: EmptyClosure?
 
     // MARK: - Properties
 
@@ -44,5 +47,29 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
         case .profile:
             onProfileFlowSelect?(isInitial)
         }
+        // TODO: Implement decision whether to show center button
+        view?.setAdd(enabled: tab.rawValue == 2)
+    }
+
+    func add() {
+        onAdd?()
+    }
+}
+
+// MARK: ModuleConfigurator
+
+extension MainTabBarPresenter {
+
+    func configureTabs() {
+        var controllers: [UIViewController] = []
+        for tab in MainTab.allCases {
+            let tabBarItem = UITabBarItem(title: nil, image: tab.image, selectedImage: tab.selectedImage)
+            tabBarItem.tag = tab.rawValue
+
+            let navigationController = UINavigationController()
+            navigationController.tabBarItem = tabBarItem
+            controllers.append(navigationController)
+        }
+        view?.configure(controllers: controllers)
     }
 }
