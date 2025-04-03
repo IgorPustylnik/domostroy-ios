@@ -10,6 +10,12 @@ final class MainTabBarPresenter: MainTabBarModuleOutput {
 
     // MARK: - MainTabBarModuleOutput
 
+    var onHomeFlowSelect: TabSelectClosure?
+    var onFavoritesFlowSelect: TabSelectClosure?
+    var onMyOffersFlowSelect: TabSelectClosure?
+    var onRequestsFlowSelect: TabSelectClosure?
+    var onProfileFlowSelect: TabSelectClosure?
+
     // MARK: - Properties
 
     weak var view: MainTabBarViewInput?
@@ -25,8 +31,18 @@ extension MainTabBarPresenter: MainTabBarModuleInput {
 
 extension MainTabBarPresenter: MainTabBarViewOutput {
 
-    func viewLoaded() {
-        view?.setupInitialState()
+    func selectTab(with tab: MainTab, isInitial: Bool) {
+        switch tab {
+        case .home:
+            onHomeFlowSelect?(isInitial)
+        case .favorites:
+            onFavoritesFlowSelect?(isInitial)
+        case .myOffers:
+            onMyOffersFlowSelect?(isInitial)
+        case .requests:
+            onRequestsFlowSelect?(isInitial)
+        case .profile:
+            onProfileFlowSelect?(isInitial)
+        }
     }
-
 }

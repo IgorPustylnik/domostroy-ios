@@ -7,6 +7,9 @@
 //
 
 protocol MainTabBarViewOutput {
-    /// Notify presenter that view is ready
-    func viewLoaded()
+    /// Notify presenter that user selects some tab
+    ///
+    /// - Parameter tab: which tab user did select
+    /// - Parameter isInitial: flag, indicating that controller was created before
+    func selectTab(with tab: MainTab, isInitial: Bool)
 }

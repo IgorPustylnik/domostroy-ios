@@ -8,11 +8,9 @@
 
 import UIKit
 
-final class MainTabBarViewController: UIViewController {
+final class MainTabBarViewController: UITabBarController {
 
     // MARK: - Properties
-
-    private var maintabbarView = MainTabBarView()
 
     var output: MainTabBarViewOutput?
 
@@ -20,11 +18,9 @@ final class MainTabBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        output?.viewLoaded()
-    }
-
-    override func loadView() {
-        view = maintabbarView
+        self.delegate = self
+        configureAppearance()
+        configureControllers()
     }
 }
 
@@ -34,6 +30,46 @@ extension MainTabBarViewController: MainTabBarViewInput {
 
     func setupInitialState() {
 
+    }
+
+}
+
+// MARK: - UITabBarControllerDelegate
+
+extension MainTabBarViewController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let tab = MainTab(rawValue: viewController.tabBarItem.tag) else {
+            return
+        }
+        let navigationController = viewController as? UINavigationController
+        let isInitial = navigationController?.viewControllers.isEmpty ?? true
+        output?.selectTab(with: tab, isInitial: isInitial)
+    }
+
+}
+
+// MARK: - Configuration
+
+private extension MainTabBarViewController {
+
+    func configureAppearance() {
+        tabBar.barTintColor = UIColor.clear
+        tabBar.tintColor = .Domostroy.primary
+        tabBar.unselectedItemTintColor = .Domostroy.primary
+    }
+
+    func configureControllers() {
+        var controllers: [UIViewController] = []
+        for tab in MainTab.allCases {
+            let tabBarItem = UITabBarItem(title: nil, image: tab.image, selectedImage: tab.selectedImage)
+            tabBarItem.tag = tab.rawValue
+
+            let navigationController = UINavigationController()
+            navigationController.tabBarItem = tabBarItem
+            controllers.append(navigationController)
+        }
+        viewControllers = controllers
     }
 
 }

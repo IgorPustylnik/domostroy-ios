@@ -18,7 +18,6 @@
 		141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */; };
 		1C05DABC40ACBB635D460E4F /* FavoritesModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */; };
 		1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */; };
-		275F400E2903ABC83C8F4C0B /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */; };
 		287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */; };
 		28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE5AF8C2A7759BE73FCC7 /* MainTabBarModuleConfigurator.swift */; };
 		2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */; };
@@ -129,7 +128,6 @@
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewInput.swift; sourceTree = "<group>"; };
 		6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
 		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		77E01D2E0082660B874820B5 /* FavoritesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */,
-				6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */,
 				C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */,
 				A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */,
 			);
@@ -802,7 +799,6 @@
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
 				8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */,
 				07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */,
-				275F400E2903ABC83C8F4C0B /* MainTabBarView.swift in Sources */,
 				EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */,
 				0EABAB3E4B134067DE4A5892 /* MainTabBarViewOutput.swift in Sources */,
 				8FD2444E0A5217AD9EDEB3C1 /* HomeCoordinator.swift in Sources */,
