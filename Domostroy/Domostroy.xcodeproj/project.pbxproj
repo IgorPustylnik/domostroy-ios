@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */; };
+		062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DED2031025435C99F93656 /* FavoritesViewOutput.swift */; };
+		07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */; };
+		08ACB7F1AFF820B20B33C7BC /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EC6185D6D266C164D37889 /* MainTabBarCoordinator.swift */; };
+		0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFAD1F2B5A3F994AC1364C2 /* MainTabBarPresenter.swift */; };
+		0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */; };
+		0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0155AD45BE56948770D14 /* HomePresenter.swift */; };
+		0EABAB3E4B134067DE4A5892 /* MainTabBarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */; };
+		141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */; };
+		1C05DABC40ACBB635D460E4F /* FavoritesModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */; };
+		1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */; };
+		275F400E2903ABC83C8F4C0B /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */; };
+		287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */; };
+		28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE5AF8C2A7759BE73FCC7 /* MainTabBarModuleConfigurator.swift */; };
+		2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */; };
+		335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */; };
+		33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */; };
+		34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */; };
+		379DF77E15805F0655A71FBA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280E30E8C5BACC8E234B877 /* ProfileViewController.swift */; };
+		3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */; };
+		3B3C87E1E51A6FB26A3CAAF1 /* MyOffersModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */; };
+		3C9DCEBD1975F2E4142BC4A8 /* HomeModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A76496C439E8475E83E986 /* HomeModuleConfigurator.swift */; };
+		3CD284215C70C6587A45637D /* RequestsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45529C093C258F0E7738582C /* RequestsModuleOutput.swift */; };
+		42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */; };
+		43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */; };
+		4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersView.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
 		55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55631AB32D95FB3900FD6856 /* Images.xcassets */; };
 		55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AB52D95FB3900FD6856 /* AppDelegate.swift */; };
@@ -23,9 +49,59 @@
 		559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610B12D9C8E1B00746358 /* DeepLinkOption.swift */; };
 		559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559610B32D9D8C3000746358 /* InfoPlist.strings */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
+		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
+		6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */; };
+		7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */; };
+		7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC69D5EB598F4F4BB6169F /* ProfileViewOutput.swift */; };
+		7E4AEDF0E0295B1EA258EDF1 /* FavoritesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D32631967CB258EC96948EF /* FavoritesModuleInput.swift */; };
+		809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */; };
+		82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */; };
+		849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */; };
+		8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B9686D68E189A69701628 /* MainTabBarModuleOutput.swift */; };
+		8FD2444E0A5217AD9EDEB3C1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */; };
+		978044CD1EC5858D6F1DADF9 /* FavoritesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */; };
+		97BC45714C6DB4DB0C7D9A60 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE71417252E10B246BC6F98 /* FavoritesViewController.swift */; };
+		9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C32623404067045C4322BA /* RequestsViewController.swift */; };
+		AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C738FCA1F6C0427308D6E35 /* FavoritesCoordinator.swift */; };
+		AC19FC892DD4E1849AE9CED9 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */; };
+		ADD24F15362922A8901FD41A /* RequestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */; };
+		BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */; };
+		BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */; };
+		BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55F65B073FC94DFBF19ADE /* ProfileViewInput.swift */; };
+		BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */; };
+		C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */; };
+		C1F060D14EF1E5EB2E4FC671 /* ProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */; };
+		C315648158068D1BF7306C31 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */; };
+		C5FD29B6B59A01CD31A91E2F /* HomeViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */; };
+		CDFEF63FE62A6D53E6FC4681 /* ProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */; };
+		D408A8FC2166A59B35B0337D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E01D2E0082660B874820B5 /* FavoritesView.swift */; };
+		D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */; };
+		D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476181DD437DFE179F0AC5A /* FavoritesCoordinatorOutput.swift */; };
+		E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86855E73D0855B252D23451E /* ProfileCoordinator.swift */; };
+		EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */; };
+		EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */; };
+		F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9D67353BACE0AD858B9145 /* HomeViewController.swift */; };
+		F6EC78CA5392439479DA7911 /* MyOffersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089BA3AFE737737FB3EC7AAE /* MyOffersPresenter.swift */; };
+		FE44F5AEFB2A3FFF0589CB61 /* MyOffersCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0280E30E8C5BACC8E234B877 /* ProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinatorOutput.swift; sourceTree = "<group>"; };
+		089BA3AFE737737FB3EC7AAE /* MyOffersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersPresenter.swift; sourceTree = "<group>"; };
+		0D32631967CB258EC96948EF /* FavoritesModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleInput.swift; sourceTree = "<group>"; };
+		0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleOutput.swift; sourceTree = "<group>"; };
+		1ACC69D5EB598F4F4BB6169F /* ProfileViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
+		1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewInput.swift; sourceTree = "<group>"; };
+		2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewOutput.swift; sourceTree = "<group>"; };
+		32A76496C439E8475E83E986 /* HomeModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleConfigurator.swift; sourceTree = "<group>"; };
+		3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorOutput.swift; sourceTree = "<group>"; };
+		449B9686D68E189A69701628 /* MainTabBarModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleOutput.swift; sourceTree = "<group>"; };
+		45529C093C258F0E7738582C /* RequestsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleOutput.swift; sourceTree = "<group>"; };
+		45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleConfigurator.swift; sourceTree = "<group>"; };
+		46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleConfigurator.swift; sourceTree = "<group>"; };
+		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
+		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55631A852D95FB3900FD6856 /* Domostroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domostroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55631AB32D95FB3900FD6856 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -46,6 +122,50 @@
 		559610B62D9D8C4100746358 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
+		5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinatorOutput.swift; sourceTree = "<group>"; };
+		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewInput.swift; sourceTree = "<group>"; };
+		6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
+		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		77E01D2E0082660B874820B5 /* FavoritesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleInput.swift; sourceTree = "<group>"; };
+		7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7FE71417252E10B246BC6F98 /* FavoritesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		86855E73D0855B252D23451E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleConfigurator.swift; sourceTree = "<group>"; };
+		8C738FCA1F6C0427308D6E35 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
+		9B5BE5AF8C2A7759BE73FCC7 /* MainTabBarModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleConfigurator.swift; sourceTree = "<group>"; };
+		9C55F65B073FC94DFBF19ADE /* ProfileViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewInput.swift; sourceTree = "<group>"; };
+		9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinator.swift; sourceTree = "<group>"; };
+		9D9D67353BACE0AD858B9145 /* HomeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A476181DD437DFE179F0AC5A /* FavoritesCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorOutput.swift; sourceTree = "<group>"; };
+		A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewOutput.swift; sourceTree = "<group>"; };
+		ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		AEFAD1F2B5A3F994AC1364C2 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
+		B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleOutput.swift; sourceTree = "<group>"; };
+		B5C32623404067045C4322BA /* RequestsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
+		B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewInput.swift; sourceTree = "<group>"; };
+		B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInput.swift; sourceTree = "<group>"; };
+		C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleOutput.swift; sourceTree = "<group>"; };
+		C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewInput.swift; sourceTree = "<group>"; };
+		C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorOutput.swift; sourceTree = "<group>"; };
+		C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewOutput.swift; sourceTree = "<group>"; };
+		CC261E0698252AFBE37038FF /* MyOffersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersView.swift; sourceTree = "<group>"; };
+		D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinator.swift; sourceTree = "<group>"; };
+		D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleConfigurator.swift; sourceTree = "<group>"; };
+		DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewOutput.swift; sourceTree = "<group>"; };
+		E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleInput.swift; sourceTree = "<group>"; };
+		E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsPresenter.swift; sourceTree = "<group>"; };
+		EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorOutput.swift; sourceTree = "<group>"; };
+		F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewController.swift; sourceTree = "<group>"; };
+		F4EC6185D6D266C164D37889 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
+		F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleInput.swift; sourceTree = "<group>"; };
+		FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +179,100 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0380730FAA2E451108D13C35 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */,
+				5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */,
+				B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		149F42CA262655A5A2969037 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FE71417252E10B246BC6F98 /* FavoritesViewController.swift */,
+				77E01D2E0082660B874820B5 /* FavoritesView.swift */,
+				6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */,
+				51DED2031025435C99F93656 /* FavoritesViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1814D4FD2756AFA07E92312C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */,
+				E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */,
+				45529C093C258F0E7738582C /* RequestsModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B450CF213E37EA3F9DC5594 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */,
+				0D32631967CB258EC96948EF /* FavoritesModuleInput.swift */,
+				C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1D64C516AA1AD05442ED40AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5C32623404067045C4322BA /* RequestsViewController.swift */,
+				6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */,
+				FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */,
+				C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		27FD3D135A87479D929BEE9D /* MyOffers */ = {
+			isa = PBXGroup;
+			children = (
+				9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */,
+				EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */,
+				55B496282D9E84EF00C6AB57 /* MyOffers */,
+			);
+			path = MyOffers;
+			sourceTree = "<group>";
+		};
+		2A448A8FD397B72AA109FE43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */,
+				6E0ADE8079A6072BCA178093 /* MainTabBarView.swift */,
+				C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */,
+				A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		458D51E968EAEEA15A46CDAB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D9D67353BACE0AD858B9145 /* HomeViewController.swift */,
+				7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */,
+				B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */,
+				DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45E3BDD7D55CD627895DC6DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */,
+				3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */,
+				55B496262D9E83D400C6AB57 /* Home */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		55631A7A2D95FB3800FD6856 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +436,12 @@
 		55631AB72D95FB3900FD6856 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				D6676D5EB2A904B945F91427 /* MainTabBar */,
+				45E3BDD7D55CD627895DC6DC /* Home */,
+				AE8FB4CB75A3F666E12AE6DA /* Favorites */,
+				27FD3D135A87479D929BEE9D /* MyOffers */,
+				FD09829050BBFB5E9A175408 /* Requests */,
+				FCD9BAD32728EB1364A5F206 /* Profile */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -243,6 +463,206 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		55B496252D9E83BD00C6AB57 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BA3300F079AC3145FA2276A2 /* Configurator */,
+				8038973EC065AC2F48B443BF /* Presenter */,
+				2A448A8FD397B72AA109FE43 /* View */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		55B496262D9E83D400C6AB57 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AC4CABD350B7FBFD8A701360 /* Configurator */,
+				674D147BA98E64895871C9BB /* Presenter */,
+				458D51E968EAEEA15A46CDAB /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		55B496272D9E842B00C6AB57 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				85DB3BF0D5B50042B1FC050E /* Configurator */,
+				1B450CF213E37EA3F9DC5594 /* Presenter */,
+				149F42CA262655A5A2969037 /* View */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		55B496282D9E84EF00C6AB57 /* MyOffers */ = {
+			isa = PBXGroup;
+			children = (
+				95E81AD067F5C3F3E3904FEF /* Configurator */,
+				84A8EE02BFCBDA961287DE43 /* Presenter */,
+				7986C702BA60B2CBCB5A0724 /* View */,
+			);
+			path = MyOffers;
+			sourceTree = "<group>";
+		};
+		55B496292D9E869700C6AB57 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				EB61ABBB7B7343BC063D516B /* Configurator */,
+				1814D4FD2756AFA07E92312C /* Presenter */,
+				1D64C516AA1AD05442ED40AD /* View */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		55B4962A2D9E86B800C6AB57 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B625F22BC6512361375BDFED /* Configurator */,
+				0380730FAA2E451108D13C35 /* Presenter */,
+				B22DB2ABBBD155A9C0C6FB89 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		674D147BA98E64895871C9BB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				75A0155AD45BE56948770D14 /* HomePresenter.swift */,
+				7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */,
+				0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7986C702BA60B2CBCB5A0724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */,
+				CC261E0698252AFBE37038FF /* MyOffersView.swift */,
+				1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */,
+				2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8038973EC065AC2F48B443BF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				AEFAD1F2B5A3F994AC1364C2 /* MainTabBarPresenter.swift */,
+				BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */,
+				449B9686D68E189A69701628 /* MainTabBarModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		84A8EE02BFCBDA961287DE43 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				089BA3AFE737737FB3EC7AAE /* MyOffersPresenter.swift */,
+				F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */,
+				4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		85DB3BF0D5B50042B1FC050E /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		95E81AD067F5C3F3E3904FEF /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		AC4CABD350B7FBFD8A701360 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				32A76496C439E8475E83E986 /* HomeModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		AE8FB4CB75A3F666E12AE6DA /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				8C738FCA1F6C0427308D6E35 /* FavoritesCoordinator.swift */,
+				A476181DD437DFE179F0AC5A /* FavoritesCoordinatorOutput.swift */,
+				55B496272D9E842B00C6AB57 /* Favorites */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		B22DB2ABBBD155A9C0C6FB89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0280E30E8C5BACC8E234B877 /* ProfileViewController.swift */,
+				C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */,
+				9C55F65B073FC94DFBF19ADE /* ProfileViewInput.swift */,
+				1ACC69D5EB598F4F4BB6169F /* ProfileViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B625F22BC6512361375BDFED /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		BA3300F079AC3145FA2276A2 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				9B5BE5AF8C2A7759BE73FCC7 /* MainTabBarModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		D6676D5EB2A904B945F91427 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F4EC6185D6D266C164D37889 /* MainTabBarCoordinator.swift */,
+				5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */,
+				55B496252D9E83BD00C6AB57 /* MainTabBar */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		EB61ABBB7B7343BC063D516B /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FCD9BAD32728EB1364A5F206 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				86855E73D0855B252D23451E /* ProfileCoordinator.swift */,
+				C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */,
+				55B4962A2D9E86B800C6AB57 /* Profile */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		FD09829050BBFB5E9A175408 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */,
+				05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */,
+				55B496292D9E869700C6AB57 /* Requests */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,8 +681,6 @@
 			dependencies = (
 			);
 			name = Domostroy;
-			packageProductDependencies = (
-			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
 			productType = "com.apple.product-type.application";
@@ -292,8 +710,6 @@
 				Base,
 			);
 			mainGroup = 55631A7A2D95FB3800FD6856;
-			packageReferences = (
-			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -375,6 +791,66 @@
 				55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */,
 				55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */,
 				55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */,
+				08ACB7F1AFF820B20B33C7BC /* MainTabBarCoordinator.swift in Sources */,
+				33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */,
+				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
+				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
+				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
+				8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */,
+				07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */,
+				275F400E2903ABC83C8F4C0B /* MainTabBarView.swift in Sources */,
+				EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */,
+				0EABAB3E4B134067DE4A5892 /* MainTabBarViewOutput.swift in Sources */,
+				8FD2444E0A5217AD9EDEB3C1 /* HomeCoordinator.swift in Sources */,
+				34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */,
+				3C9DCEBD1975F2E4142BC4A8 /* HomeModuleConfigurator.swift in Sources */,
+				0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */,
+				6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */,
+				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
+				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
+				C315648158068D1BF7306C31 /* HomeView.swift in Sources */,
+				C5FD29B6B59A01CD31A91E2F /* HomeViewInput.swift in Sources */,
+				809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */,
+				AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */,
+				D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */,
+				1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */,
+				AC19FC892DD4E1849AE9CED9 /* FavoritesPresenter.swift in Sources */,
+				7E4AEDF0E0295B1EA258EDF1 /* FavoritesModuleInput.swift in Sources */,
+				1C05DABC40ACBB635D460E4F /* FavoritesModuleOutput.swift in Sources */,
+				97BC45714C6DB4DB0C7D9A60 /* FavoritesViewController.swift in Sources */,
+				D408A8FC2166A59B35B0337D /* FavoritesView.swift in Sources */,
+				978044CD1EC5858D6F1DADF9 /* FavoritesViewInput.swift in Sources */,
+				062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */,
+				BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */,
+				FE44F5AEFB2A3FFF0589CB61 /* MyOffersCoordinatorOutput.swift in Sources */,
+				3B3C87E1E51A6FB26A3CAAF1 /* MyOffersModuleConfigurator.swift in Sources */,
+				F6EC78CA5392439479DA7911 /* MyOffersPresenter.swift in Sources */,
+				BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */,
+				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
+				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
+				4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */,
+				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
+				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
+				849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */,
+				43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */,
+				42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */,
+				ADD24F15362922A8901FD41A /* RequestsPresenter.swift in Sources */,
+				7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */,
+				3CD284215C70C6587A45637D /* RequestsModuleOutput.swift in Sources */,
+				9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */,
+				82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */,
+				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
+				2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */,
+				E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */,
+				EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */,
+				C1F060D14EF1E5EB2E4FC671 /* ProfileModuleConfigurator.swift in Sources */,
+				6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */,
+				CDFEF63FE62A6D53E6FC4681 /* ProfileModuleInput.swift in Sources */,
+				141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */,
+				379DF77E15805F0655A71FBA /* ProfileViewController.swift in Sources */,
+				0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */,
+				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
+				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
