@@ -16,14 +16,14 @@ class MainRouter: Router {
     }
 
     private var navigationController: UINavigationController? {
-        if let tabBar = topViewController as? UITabBarController {
+        if let tabBar = window?.rootViewController as? UITabBarController {
             return tabBar.selectedViewController as? UINavigationController
         }
-        return topViewController as? UINavigationController
+        return window?.rootViewController as? UINavigationController
     }
 
     private var tabBarController: UITabBarController? {
-        return topViewController as? UITabBarController
+        return window?.rootViewController as? UITabBarController
     }
 
     private var topViewController: UIViewController? {
