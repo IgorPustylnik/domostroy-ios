@@ -42,7 +42,7 @@ final class MainTabBarViewController: UITabBarController {
             self?.didSelect(tag)
         }
         tabBarView.didTapCenter = { [weak self] in
-            self?.output.
+            self?.output?.add()
         }
     }
 }

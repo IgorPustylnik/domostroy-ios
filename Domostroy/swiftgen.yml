@@ -5,4 +5,4 @@ strings:
   inputs: Strings/en.lproj
   outputs:
     templateName: structured-swift5
-    output: Strings.swift
+    output: Strings/Strings.swift
