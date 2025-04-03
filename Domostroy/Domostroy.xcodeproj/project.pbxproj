@@ -37,7 +37,7 @@
 		55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AB52D95FB3900FD6856 /* AppDelegate.swift */; };
 		55631AC02D95FB3900FD6856 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631ABF2D95FB3900FD6856 /* Strings.swift */; };
 		55631ACC2D95FB3900FD6856 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631ACB2D95FB3900FD6856 /* BaseCoordinator.swift */; };
-		55631ACF2D95FB3900FD6856 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631ACE2D95FB3900FD6856 /* UIApplication.swift */; };
+		55631ACF2D95FB3900FD6856 /* UIApplication+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631ACE2D95FB3900FD6856 /* UIApplication+ext.swift */; };
 		55631AD12D95FB3900FD6856 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD02D95FB3900FD6856 /* Coordinator.swift */; };
 		55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD22D95FB3900FD6856 /* Presentable.swift */; };
 		55631AD52D95FB3900FD6856 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD42D95FB3900FD6856 /* Router.swift */; };
@@ -108,7 +108,7 @@
 		55631AB52D95FB3900FD6856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55631ABF2D95FB3900FD6856 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		55631ACB2D95FB3900FD6856 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
-		55631ACE2D95FB3900FD6856 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		55631ACE2D95FB3900FD6856 /* UIApplication+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ext.swift"; sourceTree = "<group>"; };
 		55631AD02D95FB3900FD6856 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		55631AD22D95FB3900FD6856 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		55631AD42D95FB3900FD6856 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -448,7 +448,7 @@
 		55631ACD2D95FB3900FD6856 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				55631ACE2D95FB3900FD6856 /* UIApplication.swift */,
+				55631ACE2D95FB3900FD6856 /* UIApplication+ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -785,7 +785,7 @@
 				55631AD12D95FB3900FD6856 /* Coordinator.swift in Sources */,
 				55631AD52D95FB3900FD6856 /* Router.swift in Sources */,
 				55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */,
-				55631ACF2D95FB3900FD6856 /* UIApplication.swift in Sources */,
+				55631ACF2D95FB3900FD6856 /* UIApplication+ext.swift in Sources */,
 				55631ACC2D95FB3900FD6856 /* BaseCoordinator.swift in Sources */,
 				559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */,
 				55631AC02D95FB3900FD6856 /* Strings.swift in Sources */,
