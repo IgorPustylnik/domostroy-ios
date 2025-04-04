@@ -37,6 +37,7 @@
 		4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersView.swift */; };
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
 		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
+		550D4F292D9FC20800B460CA /* DTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextFieldView.swift */; };
 		550D4F2C2D9FC2AB00B460CA /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2B2D9FC2AB00B460CA /* TextFieldValidator.swift */; };
 		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
@@ -120,6 +121,7 @@
 		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
+		550D4F282D9FC20800B460CA /* DTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextFieldView.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
 		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 		55631AAA2D95FB3900FD6856 /* Reusable Layer */ = {
 			isa = PBXGroup;
 			children = (
+				550D4F282D9FC20800B460CA /* DTextFieldView.swift */,
 				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 			);
 			path = "Reusable Layer";
@@ -900,6 +903,7 @@
 				55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */,
 				08ACB7F1AFF820B20B33C7BC /* MainTabBarCoordinator.swift in Sources */,
 				33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */,
+				550D4F292D9FC20800B460CA /* DTextFieldView.swift in Sources */,
 				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
 				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
