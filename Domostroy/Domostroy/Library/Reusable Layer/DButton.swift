@@ -8,12 +8,13 @@
 import UIKit
 import SnapKit
 
-final class DButton: UIView {
+final class DButton: UIControl {
 
     // MARK: - Constants
 
     private enum Constants {
         static let highlightedAlpha: CGFloat = 0.7
+        static let disabledAlpha: CGFloat = 0.5
         static let hStackViewHighlightedScale: CGFloat = 0.96
         static let animationDuration: CGFloat = 0.3
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
@@ -75,10 +76,9 @@ final class DButton: UIView {
     // MARK: - Properties
 
     private var actionHandler: (() -> Void)?
-    private var isHighlighted: Bool = false
     private var highlightAnimator: UIViewPropertyAnimator?
 
-    var cornerRadius: CGFloat = 0 {
+    var cornerRadius: CGFloat = Constants.defaultCornerRadius {
         didSet {
             backgroundView.layer.cornerRadius = cornerRadius
         }
@@ -117,6 +117,12 @@ final class DButton: UIView {
                 titleLabel.isHidden = true
             }
             titleLabel.text = title
+        }
+    }
+
+    override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1 : Constants.disabledAlpha
         }
     }
 
