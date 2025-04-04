@@ -1,1 +1,16 @@
+// MARK: - Auth
+
+"Auth.InputField.Error.empty" = "Field cannot be empty";
+"Auth.InputField.Error.invalid" = "Incorrect format";
+"Auth.InputField.Error.Password.mismatch" = "Passwords do not match";
+"Auth.InputField.Error.Username.short"="Must be at least 2 characters long";
+"Auth.InputField.Error.Username.long"="Mustn't be longer than 64 characters";
+"Auth.InputField.Error.Email"="Invalid email address";
+"Auth.InputField.Error.Phone"="Invalid phone number";
+"Auth.InputField.Error.Password.short"="Password must be at least 8 characters long";
+"Auth.InputField.Error.Password.long"="Password mustn't be longer than 64 characters";
+"Auth.InputField.Error.Password.nonlatin"="Password mustn't contain non-latin letters";
+"Auth.InputField.Error.Password.capitalletter"="Password must contain at least one capital letter";
+"Auth.InputField.Error.Password.nonumbers"="Password must contain at least one number";
+"Auth.InputField.Error.Password.mismatch"="Passwords must match";
 

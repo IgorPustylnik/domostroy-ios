@@ -17,7 +17,41 @@ internal enum L10n {
     internal static let cfBundleName = L10n.tr("InfoPlist", "CFBundleName", fallback: "Domostroy")
   }
   internal enum Localizable {
+    internal enum Auth {
+      internal enum InputField {
+        internal enum Error {
+          /// Invalid email address
+          internal static let email = L10n.tr("Localizable", "Auth.InputField.Error.Email", fallback: "Invalid email address")
+          /// Field cannot be empty
+          internal static let empty = L10n.tr("Localizable", "Auth.InputField.Error.empty", fallback: "Field cannot be empty")
+          /// Incorrect format
+          internal static let invalid = L10n.tr("Localizable", "Auth.InputField.Error.invalid", fallback: "Incorrect format")
+          /// Invalid phone number
+          internal static let phone = L10n.tr("Localizable", "Auth.InputField.Error.Phone", fallback: "Invalid phone number")
+          internal enum Password {
+            /// Password must contain at least one capital letter
+            internal static let capitalletter = L10n.tr("Localizable", "Auth.InputField.Error.Password.capitalletter", fallback: "Password must contain at least one capital letter")
+            /// Password mustn't be longer than 64 characters
+            internal static let long = L10n.tr("Localizable", "Auth.InputField.Error.Password.long", fallback: "Password mustn't be longer than 64 characters")
+            /// Passwords must match
+            internal static let mismatch = L10n.tr("Localizable", "Auth.InputField.Error.Password.mismatch", fallback: "Passwords must match")
+            /// Password mustn't contain non-latin letters
+            internal static let nonlatin = L10n.tr("Localizable", "Auth.InputField.Error.Password.nonlatin", fallback: "Password mustn't contain non-latin letters")
+            /// Password must contain at least one number
+            internal static let nonumbers = L10n.tr("Localizable", "Auth.InputField.Error.Password.nonumbers", fallback: "Password must contain at least one number")
+            /// Password must be at least 8 characters long
+            internal static let short = L10n.tr("Localizable", "Auth.InputField.Error.Password.short", fallback: "Password must be at least 8 characters long")
+          }
+          internal enum Username {
+            /// Mustn't be longer than 64 characters
+            internal static let long = L10n.tr("Localizable", "Auth.InputField.Error.Username.long", fallback: "Mustn't be longer than 64 characters")
+            /// Must be at least 2 characters long
+            internal static let short = L10n.tr("Localizable", "Auth.InputField.Error.Username.short", fallback: "Must be at least 2 characters long")
+          }
+        }
+      }
     }
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
