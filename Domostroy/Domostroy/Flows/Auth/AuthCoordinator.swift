@@ -40,6 +40,8 @@ private extension AuthCoordinator {
     }
 
     func showLogin() {
+        let (view, output) = LoginModuleConfigurator().configure()
+        router.push(view, animated: true)
     }
 
     func showRegister() {
