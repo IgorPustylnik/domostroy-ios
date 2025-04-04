@@ -35,6 +35,7 @@
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
 		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
 		550D4F2C2D9FC2AB00B460CA /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2B2D9FC2AB00B460CA /* TextFieldValidator.swift */; };
+		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
 		55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55631AB32D95FB3900FD6856 /* Images.xcassets */; };
 		55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AB52D95FB3900FD6856 /* AppDelegate.swift */; };
@@ -108,6 +109,7 @@
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
+		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55631A852D95FB3900FD6856 /* Domostroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domostroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55631AB32D95FB3900FD6856 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 		55631AAA2D95FB3900FD6856 /* Reusable Layer */ = {
 			isa = PBXGroup;
 			children = (
+				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 			);
 			path = "Reusable Layer";
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 				550D4F2C2D9FC2AB00B460CA /* TextFieldValidator.swift in Sources */,
 				0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */,
 				6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */,
+				550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */,
 				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
 				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
 				C315648158068D1BF7306C31 /* HomeView.swift in Sources */,
