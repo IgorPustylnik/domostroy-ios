@@ -7,9 +7,14 @@
 "Auth.InputField.Error.Username.long"="Mustn't be longer than 64 characters";
 "Auth.InputField.Error.Email"="Invalid email address";
 "Auth.InputField.Error.Phone"="Invalid phone number";
+
 "Auth.InputField.Error.Password.short"="Password must be at least 8 characters long";
-"Auth.InputField.Error.Password.long"="Password mustn't be longer than 64 characters";
-"Auth.InputField.Error.Password.nonlatin"="Password mustn't contain non-latin letters";
+"Auth.InputField.Error.Password.long"="Password mustn't be longer than 69 characters";
+"Auth.InputField.Error.Password.noSpecialChar" = "Password must contain at least one special character";
+"Auth.InputField.Error.Password.noDigit" = "Password must contain at least one digit";
+"Auth.InputField.Error.Password.noLetter" = "Password must contain at least one Latin letter";
+"Auth.InputField.Error.Password.invalidSymbols" = "Password contains invalid characters";
+
 "Auth.InputField.Error.Password.capitalletter"="Password must contain at least one capital letter";
 "Auth.InputField.Error.Password.nonumbers"="Password must contain at least one number";
 "Auth.InputField.Error.Password.mismatch"="Passwords must match";
