@@ -45,6 +45,8 @@ private extension AuthCoordinator {
     }
 
     func showRegister() {
+        let (view, output) = RegisterModuleConfigurator().configure()
+        router.push(view, animated: true)
     }
 
 }
