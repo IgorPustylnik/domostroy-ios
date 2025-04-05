@@ -118,6 +118,12 @@ final class LoginView: UIView {
         }
     }
 
+    // MARK: - Configuration
+
+    func setScrollViewDelegate(_ delegate: UIScrollViewDelegate) {
+        scrollView.delegate = delegate
+    }
+
 }
 
 private extension LoginView {

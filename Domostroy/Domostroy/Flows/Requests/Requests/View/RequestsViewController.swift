@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RequestsViewController: UIViewController {
+final class RequestsViewController: BaseViewController {
 
     // MARK: - Properties
 

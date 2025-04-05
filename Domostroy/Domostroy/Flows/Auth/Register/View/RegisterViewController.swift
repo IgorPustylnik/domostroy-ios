@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegisterViewController: UIViewController {
+final class RegisterViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -22,17 +22,8 @@ final class RegisterViewController: UIViewController {
         super.viewDidLoad()
         output?.viewLoaded()
         // TODO: Localize
-        navigationItem.title = "Register"
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        (tabBarController as? MainTabBarViewController)?.setTabBarHidden(true, animated: true)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        (tabBarController as? MainTabBarViewController)?.setTabBarHidden(false, animated: true)
+        navigationBar.title = "Register"
+        hidesTabBar = true
     }
 
     override func loadView() {
@@ -47,6 +38,7 @@ final class RegisterViewController: UIViewController {
                 repeatPassword: repeatPassword
             )
         }
+        registerView.setScrollViewDelegate(self)
     }
 }
 

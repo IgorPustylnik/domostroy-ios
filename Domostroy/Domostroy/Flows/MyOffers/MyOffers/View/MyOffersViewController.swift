@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyOffersViewController: UIViewController {
+final class MyOffersViewController: BaseViewController {
 
     // MARK: - Properties
 
