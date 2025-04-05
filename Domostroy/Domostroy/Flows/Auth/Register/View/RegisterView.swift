@@ -55,7 +55,6 @@ final class RegisterView: UIView {
         $0.validator = .required(.username)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.nameTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         return $0
     }(DTextFieldView())
@@ -67,7 +66,6 @@ final class RegisterView: UIView {
         $0.validator = .optional(.username)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.surnameTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         return $0
     }(DTextFieldView())
@@ -79,7 +77,6 @@ final class RegisterView: UIView {
         $0.validator = .optional(.phone(RussianPhoneNumberNormalizer()))
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.phoneNumberTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         return $0
     }(DTextFieldView())
@@ -91,7 +88,6 @@ final class RegisterView: UIView {
         $0.validator = .required(.email)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.emailTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         return $0
     }(DTextFieldView())
@@ -109,7 +105,6 @@ final class RegisterView: UIView {
         }
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.passwordTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         return $0
     }(DTextFieldView())
@@ -122,7 +117,6 @@ final class RegisterView: UIView {
         }
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.repeatPasswordTextField
-            self?.scrollToActiveView(Constants.animationDuration)
         }
         $0.validator = .required(.match(password: ""))
         return $0
@@ -142,7 +136,11 @@ final class RegisterView: UIView {
     var register: ((String, String, String, String, String, String) -> Void)?
 
     private var buttonBottomConstraint: Constraint?
-    private var activeView: UIView?
+    private var activeView: UIView? {
+        didSet {
+            scrollToActiveView(Constants.animationDuration)
+        }
+    }
     private var keyboardHeight: CGFloat?
 
     // MARK: - Init
@@ -245,7 +243,8 @@ private extension RegisterView {
             UIView.animate(withDuration: duration) {
                 self.scrollView.contentInset.bottom = keyboardHeight
                 self.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
-                self.scrollView.setContentOffset(CGPoint(x: 0, y: offsetY), animated: false)
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
+                self.scrollView.layoutIfNeeded()
             }
         }
     }
