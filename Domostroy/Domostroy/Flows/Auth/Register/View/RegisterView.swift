@@ -187,6 +187,12 @@ final class RegisterView: UIView {
         }
     }
 
+    // MARK: - Configuration
+
+    func setScrollViewDelegate(_ delegate: UIScrollViewDelegate) {
+        scrollView.delegate = delegate
+    }
+
 }
 
 // MARK: - Keyboard

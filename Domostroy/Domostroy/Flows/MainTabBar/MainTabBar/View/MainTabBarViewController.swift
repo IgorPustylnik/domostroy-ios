@@ -11,6 +11,13 @@ import SnapKit
 
 final class MainTabBarViewController: UITabBarController {
 
+    // MARK: - Constants
+
+    private enum Constants {
+        static let tabBarHeight: CGFloat = 80
+        static let animationDuration: Double = 0.3
+    }
+
     // MARK: - UI Elements
 
     private lazy var tabBarView = MainTabBarView()
@@ -33,10 +40,8 @@ final class MainTabBarViewController: UITabBarController {
     private func setupUI() {
         view.addSubview(tabBarView)
         tabBarView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(80)
+            make.horizontalEdges.bottom.equalToSuperview()
+            make.height.equalTo(Constants.tabBarHeight)
         }
         tabBarView.didSelect = { [weak self] tag in
             self?.didSelect(tag)
@@ -82,7 +87,7 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
 
 private extension MainTabBarViewController {
 
-    private func didSelect(_ tag: Int) {
+    func didSelect(_ tag: Int) {
         tabBarView.setSelectedIndex(tag)
         selectedViewController = viewControllers?[tag]
         if let selectedViewController {
@@ -97,8 +102,27 @@ extension MainTabBarViewController {
         let height = tabBarView.frame.height
         let offsetY = hidden ? height : 0
 
-        UIView.animate(withDuration: 0.3) {
-            self.tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+        if animated {
+            tabBarView.isUserInteractionEnabled = false
+
+            UIView.animate(
+                withDuration: Constants.animationDuration,
+                delay: 0,
+                usingSpringWithDamping: 0.85,
+                initialSpringVelocity: 0.6,
+                options: [.curveEaseInOut, .beginFromCurrentState],
+                animations: {
+                    self.tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+                    self.tabBarView.alpha = hidden ? 0 : 1
+                },
+                completion: { _ in
+                    self.tabBarView.isUserInteractionEnabled = !hidden
+                }
+            )
+        } else {
+            tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+            tabBarView.alpha = hidden ? 0 : 1
+            tabBarView.isUserInteractionEnabled = !hidden
         }
     }
 }

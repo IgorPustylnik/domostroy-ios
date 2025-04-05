@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -22,17 +22,8 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         output?.viewLoaded()
         // TODO: Localize
-        navigationItem.title = "Login"
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        (tabBarController as? MainTabBarViewController)?.setTabBarHidden(true, animated: true)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        (tabBarController as? MainTabBarViewController)?.setTabBarHidden(false, animated: true)
+        navigationBar.title = "Login"
+        hidesTabBar = true
     }
 
     override func loadView() {
@@ -40,6 +31,7 @@ final class LoginViewController: UIViewController {
         loginView.login = { [weak self] email, password in
             self?.output?.login(email: email, password: password)
         }
+        loginView.setScrollViewDelegate(self)
     }
 }
 

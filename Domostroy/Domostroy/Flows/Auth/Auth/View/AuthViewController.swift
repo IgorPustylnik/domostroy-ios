@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AuthViewController: UIViewController {
+final class AuthViewController: BaseViewController {
 
     // MARK: - Properties
 
