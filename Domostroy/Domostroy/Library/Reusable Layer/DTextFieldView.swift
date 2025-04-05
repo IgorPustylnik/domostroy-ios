@@ -14,6 +14,7 @@ final class DTextFieldView: UIView {
 
     enum Mode {
         case name
+        case surname
         case email
         case phoneNumber
         case password
@@ -22,6 +23,8 @@ final class DTextFieldView: UIView {
             switch self {
             case .name:
                 return .name
+            case .surname:
+                return .familyName
             case .email:
                 return .emailAddress
             case .phoneNumber:
@@ -271,6 +274,8 @@ private extension DTextFieldView {
 
     func validate() {
         guard let validator = validator else {
+            isErrorState = false
+            setError(text: "")
             return
         }
         let (isValid, errorMessage) = validator.validate(textField.text)

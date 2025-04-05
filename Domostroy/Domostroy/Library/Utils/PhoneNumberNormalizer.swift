@@ -6,11 +6,11 @@
 //
 
 protocol PhoneNumberNormalizer {
-    static func normalizePhone(_ text: String) -> String
+    func normalizePhone(_ text: String) -> String
 }
 
-enum RussianPhoneNumberNormalizer: PhoneNumberNormalizer {
-    static func normalizePhone(_ text: String) -> String {
+struct RussianPhoneNumberNormalizer: PhoneNumberNormalizer {
+    func normalizePhone(_ text: String) -> String {
         let digits = text.filter { $0.isNumber }
         if digits.hasPrefix("8") && digits.count == 11 {
             return "7" + digits.dropFirst()

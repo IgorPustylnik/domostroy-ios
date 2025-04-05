@@ -46,11 +46,13 @@ final class RegisterView: UIView {
         return $0
     }(UIStackView())
 
+    // MARK: - TextFields
+
     private lazy var nameTextField: DTextFieldView = {
         // TODO: Localize
         $0.configure(placeholder: "Name", correction: .yes, keyboardType: .default, mode: .name)
         $0.setNextResponder(surnameTextField.responder)
-        $0.validator = .username
+        $0.validator = .required(.username)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.nameTextField
             self?.scrollToActiveView(Constants.animationDuration)
@@ -60,9 +62,9 @@ final class RegisterView: UIView {
 
     private lazy var surnameTextField: DTextFieldView = {
         // TODO: Localize and make actually optional
-        $0.configure(placeholder: "Surname (optional)", correction: .yes, keyboardType: .default, mode: .name)
+        $0.configure(placeholder: "Surname (optional)", correction: .yes, keyboardType: .default, mode: .surname)
         $0.setNextResponder(phoneNumberTextField.responder)
-        $0.validator = .username
+        $0.validator = .optional(.username)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.surnameTextField
             self?.scrollToActiveView(Constants.animationDuration)
@@ -74,7 +76,7 @@ final class RegisterView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Phone number (optional)", correction: .no, keyboardType: .phonePad, mode: .phoneNumber)
         $0.setNextResponder(emailTextField.responder)
-        $0.validator = .phone
+        $0.validator = .optional(.phone(RussianPhoneNumberNormalizer()))
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.phoneNumberTextField
             self?.scrollToActiveView(Constants.animationDuration)
@@ -86,7 +88,7 @@ final class RegisterView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
         $0.setNextResponder(passwordTextField.responder)
-        $0.validator = .email
+        $0.validator = .required(.email)
         $0.onBeginEditing = { [weak self] _ in
             self?.activeView = self?.emailTextField
             self?.scrollToActiveView(Constants.animationDuration)
@@ -98,10 +100,11 @@ final class RegisterView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.setNextResponder(repeatPasswordTextField.responder)
-        $0.validator = .password
+        $0.validator = .required(.password)
         $0.onEndEditing = { [weak self] _ in
-            self?.repeatPasswordTextField.validator = .match(
+            self?.repeatPasswordTextField.validator = .required(.match(
                 password: self?.passwordTextField.currentText() ?? ""
+                )
             )
         }
         $0.onBeginEditing = { [weak self] _ in
@@ -121,6 +124,7 @@ final class RegisterView: UIView {
             self?.activeView = self?.repeatPasswordTextField
             self?.scrollToActiveView(Constants.animationDuration)
         }
+        $0.validator = .required(.match(password: ""))
         return $0
     }(DTextFieldView())
 

@@ -359,12 +359,12 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
-		550D4F2A2D9FC29D00B460CA /* TextFieldValidator */ = {
+		550D4F2A2D9FC29D00B460CA /* TextValidator */ = {
 			isa = PBXGroup;
 			children = (
 				550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */,
 			);
-			path = TextFieldValidator;
+			path = TextValidator;
 			sourceTree = "<group>";
 		};
 		55631A7A2D95FB3800FD6856 = {
@@ -471,7 +471,6 @@
 		55631AA42D95FB3900FD6856 /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
-				550D4F2A2D9FC29D00B460CA /* TextFieldValidator */,
 				55631ACB2D95FB3900FD6856 /* BaseCoordinator.swift */,
 			);
 			path = "Base Classes";
@@ -480,6 +479,7 @@
 		55631AA62D95FB3900FD6856 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				550D4F2A2D9FC29D00B460CA /* TextValidator */,
 				55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */,
 			);
 			path = Utils;

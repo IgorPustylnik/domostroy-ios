@@ -32,7 +32,7 @@ extension LoginPresenter: LoginViewOutput {
     func login(email: String, password: String) {
         guard
             TextValidator.email.validate(email).isValid,
-            TextValidator.required.validate(password).isValid
+            TextValidator.required(nil).validate(password).isValid
         else {
             return
         }

@@ -45,7 +45,7 @@ final class LoginView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
         $0.setNextResponder(passwordTextField.responder)
-        $0.validator = .email
+        $0.validator = .required(.email)
         return $0
     }(DTextFieldView())
 
@@ -55,7 +55,7 @@ final class LoginView: UIView {
         $0.onShouldReturn = { [weak self] _ in
             self?.onLogin()
         }
-        $0.validator = .required
+        $0.validator = .required(nil)
         return $0
     }(DTextFieldView())
 
