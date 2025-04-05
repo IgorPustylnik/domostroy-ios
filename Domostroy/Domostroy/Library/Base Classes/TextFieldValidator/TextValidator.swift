@@ -1,5 +1,5 @@
 //
-//  TextFieldValidator.swift
+//  TextValidator.swift
 //  Domostroy
 //
 //  Created by Игорь Пустыльник on 04.04.2025.
@@ -16,6 +16,7 @@ enum TextValidator {
     case phone
     case password
     case required
+    case match(password: String)
 
     func validate(_ text: String?) -> ValidationResult {
         guard let text else {
@@ -31,12 +32,19 @@ enum TextValidator {
             return validatePhone(text)
         case .password:
             return validatePassword(text)
+        case .match(let password):
+            return validateMatchPassword(text, password: password)
         case .required:
             return validateRequired(text)
         }
     }
+}
 
-    private func validateUsername(_ text: String) -> ValidationResult {
+// MARK: - Validation
+
+private extension TextValidator {
+
+    func validateUsername(_ text: String) -> ValidationResult {
         if text.count < 1 {
             return (false, L10n.Localizable.Auth.InputField.Error.empty)
         }
@@ -49,7 +57,7 @@ enum TextValidator {
         return (true, nil)
     }
 
-    private func validateEmail(_ text: String) -> ValidationResult {
+    func validateEmail(_ text: String) -> ValidationResult {
         if text.count < 1 {
             return (false, L10n.Localizable.Auth.InputField.Error.empty)
         }
@@ -61,17 +69,18 @@ enum TextValidator {
     }
 
     private func validatePhone(_ text: String) -> ValidationResult {
-        let pattern = "^(?:\\+7|8)\\d{10}$"
+        let cleaned = RussianPhoneNumberNormalizer.normalizePhone(text)
+        let pattern = "^7\\d{10}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
 
-        if !predicate.evaluate(with: text) {
+        if !predicate.evaluate(with: cleaned) {
             return (false, L10n.Localizable.Auth.InputField.Error.phone)
         }
 
         return (true, nil)
     }
 
-    private func validatePassword(_ text: String) -> ValidationResult {
+    func validatePassword(_ text: String) -> ValidationResult {
         // допустимые символы
         let allowedCharsRegex = "^[A-Za-z0-9.~!@#$%^&*()+-]+$"
         let allowedPredicate = NSPredicate(format: "SELF MATCHES %@", allowedCharsRegex)
@@ -108,7 +117,14 @@ enum TextValidator {
         return (true, nil)
     }
 
-    private func validateRequired(_ text: String) -> ValidationResult {
+    func validateMatchPassword(_ text: String, password: String) -> ValidationResult {
+        if text != password {
+            return (false, L10n.Localizable.Auth.InputField.Error.Password.mismatch)
+        }
+        return (true, nil)
+    }
+
+    func validateRequired(_ text: String) -> ValidationResult {
         if text.count < 1 {
             return (false, L10n.Localizable.Auth.InputField.Error.empty)
         }
