@@ -19,8 +19,10 @@ final class DButton: UIControl {
         static let animationDuration: CGFloat = 0.3
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
         static let touchesInset: UIEdgeInsets = .init(top: -30, left: -30, bottom: -30, right: -30)
+        static let hSpacing: CGFloat = 5
         static let defaultCornerRadius: CGFloat = 14
         static let defaultImageSize: CGSize = .init(width: 24, height: 24)
+        static let defaultInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
     }
 
     // MARK: - Enums
@@ -55,7 +57,7 @@ final class DButton: UIControl {
 
     private lazy var hStackView: UIStackView = {
         $0.axis = .horizontal
-        $0.spacing = 5
+        $0.spacing = Constants.hSpacing
         $0.alignment = .center
         $0.addArrangedSubview(titleLabel)
         return $0
@@ -120,10 +122,23 @@ final class DButton: UIControl {
         }
     }
 
+    var insets: UIEdgeInsets = Constants.defaultInsets
+
     override var isEnabled: Bool {
         didSet {
             alpha = isEnabled ? 1 : Constants.disabledAlpha
         }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        let height = max(
+            titleLabel.frame.height, imageView.frame.height
+        ) + insets.top + insets.bottom
+        let width = max(
+            backgroundView.frame.width,
+            titleLabel.frame.width + Constants.hSpacing + imageView.frame.width + insets.left + insets.right)
+        return CGSize(width: width, height: height)
     }
 
     // MARK: - Configuration
