@@ -8,11 +8,28 @@
 
 import UIKit
 
+enum AuthState {
+    case authorized, unauthorized
+}
+
 final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 
     // MARK: - ProfileCoordinatorOutput
 
     // MARK: - Private Properties
+
+    private enum LaunchInstructor {
+        case profile, auth
+
+        static func configure(authState: AuthState) -> LaunchInstructor {
+            switch authState {
+            case .authorized:
+                return .profile
+            case .unauthorized:
+                return .auth
+            }
+        }
+    }
 
     private let router: Router
 
@@ -22,10 +39,22 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
         self.router = router
     }
 
-    override func start() {
-        showProfile()
+    // MARK: - Private Properties
+
+    private var instructor: LaunchInstructor {
+        // TODO: Get from UserDefaults
+        let state = AuthState.unauthorized
+        return .configure(authState: state)
     }
 
+    override func start() {
+        switch instructor {
+        case .profile:
+            showProfile()
+        case .auth:
+            runAuthFlow()
+        }
+    }
 }
 
 // MARK: - Private methods
@@ -35,6 +64,12 @@ private extension ProfileCoordinator {
     func showProfile() {
         let (view, output) = ProfileModuleConfigurator().configure()
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func runAuthFlow() {
+        let coordinator = AuthCoordinator(router: router)
+        addDependency(coordinator)
+        coordinator.start()
     }
 
 }

@@ -91,3 +91,14 @@ private extension MainTabBarViewController {
     }
 
 }
+
+extension MainTabBarViewController {
+    func setTabBarHidden(_ hidden: Bool, animated: Bool) {
+        let height = tabBarView.frame.height
+        let offsetY = hidden ? height : 0
+
+        UIView.animate(withDuration: 0.3) {
+            self.tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
+        }
+    }
+}
