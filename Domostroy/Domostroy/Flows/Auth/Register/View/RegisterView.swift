@@ -177,7 +177,7 @@ final class RegisterView: UIView {
             make.size.equalTo(scrollView.safeAreaLayoutGuide)
         }
         contentView.addSubview(vStackView)
-        contentView.addSubview(registerButton)
+        addSubview(registerButton)
         vStackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(contentView).inset(Constants.vSpacing)
         }

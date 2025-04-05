@@ -106,7 +106,7 @@ final class LoginView: UIView {
             make.size.equalTo(scrollView.safeAreaLayoutGuide)
         }
         contentView.addSubview(vStackView)
-        contentView.addSubview(loginButton)
+        addSubview(loginButton)
         vStackView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(contentView).inset(Constants.vSpacing)
         }
