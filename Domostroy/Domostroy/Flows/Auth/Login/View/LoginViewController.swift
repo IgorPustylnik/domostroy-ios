@@ -27,7 +27,6 @@ final class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loginView.activateTopTextField()
         (tabBarController as? MainTabBarViewController)?.setTabBarHidden(true, animated: true)
     }
 
@@ -38,7 +37,9 @@ final class LoginViewController: UIViewController {
 
     override func loadView() {
         view = loginView
-        loginView.login = { [weak self] email, password in self?.output?.login(email: email, password: password) }
+        loginView.login = { [weak self] email, password in
+            self?.output?.login(email: email, password: password)
+        }
     }
 }
 

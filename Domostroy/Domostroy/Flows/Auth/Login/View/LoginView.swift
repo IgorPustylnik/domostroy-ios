@@ -53,7 +53,7 @@ final class LoginView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.onShouldReturn = { [weak self] _ in
-            self?.loginButton.sendActions(for: .touchUpInside)
+            self?.onLogin()
         }
         $0.validator = .required
         return $0
@@ -63,17 +63,14 @@ final class LoginView: UIView {
         // TODO: Localize
         $0.title = "Login"
         $0.setAction { [weak self] in
-            self?.login?(self?.emailTextField.currentText(), self?.passwordTextField.currentText())
-            self?.emailTextField.isValid()
-            self?.passwordTextField.isValid()
-            self?.endEditing(true)
+            self?.onLogin()
         }
         return $0
     }(DButton())
 
     // MARK: - Properties
 
-    var login: ((String?, String?) -> Void)?
+    var login: ((String, String) -> Void)?
 
     private var buttonBottomConstraint: Constraint?
 
@@ -93,10 +90,6 @@ final class LoginView: UIView {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    func activateTopTextField() {
-        emailTextField.responder.becomeFirstResponder()
     }
 
     // MARK: - UI Setup
@@ -161,4 +154,20 @@ private extension LoginView {
             }
         }
     }
+}
+
+// MARK: - Private methods
+
+private extension LoginView {
+
+    func onLogin() {
+        login?(
+            emailTextField.currentText(),
+            passwordTextField.currentText()
+        )
+        emailTextField.isValid()
+        passwordTextField.isValid()
+        endEditing(true)
+    }
+
 }

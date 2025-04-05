@@ -29,7 +29,7 @@ extension LoginPresenter: LoginViewOutput {
         view?.setupInitialState()
     }
 
-    func login(email: String?, password: String?) {
+    func login(email: String, password: String) {
         guard
             TextValidator.email.validate(email).isValid,
             TextValidator.required.validate(password).isValid

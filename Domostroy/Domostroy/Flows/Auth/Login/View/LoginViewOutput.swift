@@ -9,5 +9,5 @@
 protocol LoginViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
-    func login(email: String?, password: String?)
+    func login(email: String, password: String)
 }
