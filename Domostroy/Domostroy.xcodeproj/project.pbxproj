@@ -42,7 +42,7 @@
 		4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersView.swift */; };
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
 		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
-		550D4F292D9FC20800B460CA /* DTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextFieldView.swift */; };
+		550D4F292D9FC20800B460CA /* DTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextField.swift */; };
 		550D4F2C2D9FC2AB00B460CA /* TextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */; };
 		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
@@ -149,7 +149,7 @@
 		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
-		550D4F282D9FC20800B460CA /* DTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextFieldView.swift; sourceTree = "<group>"; };
+		550D4F282D9FC20800B460CA /* DTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextField.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValidator.swift; sourceTree = "<group>"; };
 		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +371,15 @@
 			path = TextValidator;
 			sourceTree = "<group>";
 		};
+		553EE9202DA1D7DC00304407 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				550D4F282D9FC20800B460CA /* DTextField.swift */,
+				556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		55631A7A2D95FB3800FD6856 = {
 			isa = PBXGroup;
 			children = (
@@ -501,8 +510,8 @@
 		55631AAA2D95FB3900FD6856 /* Reusable Layer */ = {
 			isa = PBXGroup;
 			children = (
+				553EE9202DA1D7DC00304407 /* TextField */,
 				55D17A382DA00E4700425A6B /* NavigationBar */,
-				550D4F282D9FC20800B460CA /* DTextFieldView.swift */,
 				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 			);
 			path = "Reusable Layer";
@@ -1024,7 +1033,7 @@
 				55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */,
 				08ACB7F1AFF820B20B33C7BC /* MainTabBarCoordinator.swift in Sources */,
 				33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */,
-				550D4F292D9FC20800B460CA /* DTextFieldView.swift in Sources */,
+				550D4F292D9FC20800B460CA /* DTextField.swift in Sources */,
 				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
 				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,

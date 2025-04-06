@@ -48,7 +48,7 @@ final class RegisterView: UIView {
 
     // MARK: - TextFields
 
-    private lazy var nameTextField: DTextFieldView = {
+    private lazy var nameTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Name", correction: .yes, keyboardType: .default, mode: .name)
         $0.setNextResponder(surnameTextField.responder)
@@ -57,9 +57,9 @@ final class RegisterView: UIView {
             self?.activeView = self?.nameTextField
         }
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var surnameTextField: DTextFieldView = {
+    private lazy var surnameTextField: DValidatableTextField = {
         // TODO: Localize and make actually optional
         $0.configure(placeholder: "Surname (optional)", correction: .yes, keyboardType: .default, mode: .surname)
         $0.setNextResponder(phoneNumberTextField.responder)
@@ -68,9 +68,9 @@ final class RegisterView: UIView {
             self?.activeView = self?.surnameTextField
         }
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var phoneNumberTextField: DTextFieldView = {
+    private lazy var phoneNumberTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Phone number (optional)", correction: .no, keyboardType: .phonePad, mode: .phoneNumber)
         $0.setNextResponder(emailTextField.responder)
@@ -79,9 +79,9 @@ final class RegisterView: UIView {
             self?.activeView = self?.phoneNumberTextField
         }
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var emailTextField: DTextFieldView = {
+    private lazy var emailTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
         $0.setNextResponder(passwordTextField.responder)
@@ -90,9 +90,9 @@ final class RegisterView: UIView {
             self?.activeView = self?.emailTextField
         }
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var passwordTextField: DTextFieldView = {
+    private lazy var passwordTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.setNextResponder(repeatPasswordTextField.responder)
@@ -107,9 +107,9 @@ final class RegisterView: UIView {
             self?.activeView = self?.passwordTextField
         }
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var repeatPasswordTextField: DTextFieldView = {
+    private lazy var repeatPasswordTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Repeat password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.onShouldReturn = { [weak self] _ in
@@ -120,7 +120,7 @@ final class RegisterView: UIView {
         }
         $0.validator = .required(.match(password: ""))
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
     private lazy var registerButton: DButton = {
         // TODO: Localize

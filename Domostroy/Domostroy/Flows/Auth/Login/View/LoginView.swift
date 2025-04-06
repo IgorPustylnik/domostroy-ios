@@ -41,15 +41,15 @@ final class LoginView: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var emailTextField: DTextFieldView = {
+    private lazy var emailTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
         $0.setNextResponder(passwordTextField.responder)
         $0.validator = .required(.email)
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
-    private lazy var passwordTextField: DTextFieldView = {
+    private lazy var passwordTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.onShouldReturn = { [weak self] _ in
@@ -57,7 +57,7 @@ final class LoginView: UIView {
         }
         $0.validator = .required(nil)
         return $0
-    }(DTextFieldView())
+    }(DValidatableTextField())
 
     private lazy var loginButton: DButton = {
         // TODO: Localize
