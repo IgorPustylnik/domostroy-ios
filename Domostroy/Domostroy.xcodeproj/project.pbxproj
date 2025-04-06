@@ -56,6 +56,7 @@
 		55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD22D95FB3900FD6856 /* Presentable.swift */; };
 		55631AD52D95FB3900FD6856 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD42D95FB3900FD6856 /* Router.swift */; };
 		55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD62D95FB3900FD6856 /* MainRouter.swift */; };
+		556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */; };
 		559610AC2D9C8CF900746358 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 559610AB2D9C8CF900746358 /* Colors.xcassets */; };
 		559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AD2D9C8D6600746358 /* SceneDelegate.swift */; };
 		559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AF2D9C8D7B00746358 /* AppCoordinator.swift */; };
@@ -165,6 +166,7 @@
 		55631AD42D95FB3900FD6856 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		55631AD62D95FB3900FD6856 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		55631ADC2D95FB3900FD6856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCodeField.swift; sourceTree = "<group>"; };
 		559610AB2D9C8CF900746358 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		559610AD2D9C8D6600746358 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		559610AF2D9C8D7B00746358 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -1099,6 +1101,7 @@
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
+				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
 				CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */,
