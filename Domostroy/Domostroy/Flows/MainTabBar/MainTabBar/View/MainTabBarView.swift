@@ -13,15 +13,15 @@ final class MainTabBarView: UIView {
 
     // MARK: - UI Elements
 
-    private lazy var centerButton: UIButton = {
-        let button = UIButton(configuration: .filled())
-        button.configuration?.baseBackgroundColor = .Domostroy.primary
-        button.configuration?.cornerStyle = .capsule
-        button.configuration?.image = .MainTabBar.plus
-        button.configuration?.baseForegroundColor = .white
-        button.addTarget(self, action: #selector(centerButtonAction), for: .touchUpInside)
-        return button
-    }()
+    private lazy var centerButton: DButton = {
+        $0.image = .MainTabBar.plus
+        $0.imageSize = .init(width: 32, height: 32)
+        $0.cornerRadius = 28
+        $0.setAction { [weak self] in
+            self?.didTapCenter?()
+        }
+        return $0
+    }(DButton())
 
     private var blurView: UIVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
 
@@ -93,7 +93,7 @@ final class MainTabBarView: UIView {
 
         buttonsHStackView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().offset(-14)
-            make.horizontalEdges.equalToSuperview().inset(24)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
         }
 
         blurView.snp.makeConstraints { make in
@@ -226,17 +226,6 @@ private extension MainTabBarView {
         path.close()
 
         return path.cgPath
-    }
-
-}
-
-// MARK: - Selectors
-
-private extension MainTabBarView {
-
-    @objc
-    func centerButtonAction(sender: UIButton) {
-        didTapCenter?()
     }
 
 }

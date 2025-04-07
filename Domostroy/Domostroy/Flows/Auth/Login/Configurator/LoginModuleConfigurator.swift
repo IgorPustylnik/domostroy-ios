@@ -11,8 +11,9 @@ import UIKit
 final class LoginModuleConfigurator {
 
     func configure() -> (
-       LoginViewController,
-       LoginModuleOutput) {
+        LoginViewController,
+        LoginModuleOutput
+    ) {
         let view = LoginViewController()
         let presenter = LoginPresenter()
 

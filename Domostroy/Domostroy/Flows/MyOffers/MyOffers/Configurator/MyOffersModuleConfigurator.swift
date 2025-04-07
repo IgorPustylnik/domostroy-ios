@@ -11,8 +11,9 @@ import UIKit
 final class MyOffersModuleConfigurator {
 
     func configure() -> (
-       MyOffersViewController,
-       MyOffersModuleOutput) {
+        MyOffersViewController,
+        MyOffersModuleOutput
+    ) {
         let view = MyOffersViewController()
         let presenter = MyOffersPresenter()
 

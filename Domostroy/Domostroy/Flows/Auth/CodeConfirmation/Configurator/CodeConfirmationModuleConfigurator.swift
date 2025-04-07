@@ -11,8 +11,9 @@ import UIKit
 final class CodeConfirmationModuleConfigurator {
 
     func configure() -> (
-       CodeConfirmationViewController,
-       CodeConfirmationModuleOutput) {
+        CodeConfirmationViewController,
+        CodeConfirmationModuleOutput
+    ) {
         let view = CodeConfirmationViewController()
         let presenter = CodeConfirmationPresenter()
 
@@ -21,5 +22,4 @@ final class CodeConfirmationModuleConfigurator {
 
         return (view, presenter)
     }
-
 }

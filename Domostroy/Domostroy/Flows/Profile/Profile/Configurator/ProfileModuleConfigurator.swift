@@ -11,8 +11,9 @@ import UIKit
 final class ProfileModuleConfigurator {
 
     func configure() -> (
-       ProfileViewController,
-       ProfileModuleOutput) {
+        ProfileViewController,
+        ProfileModuleOutput
+    ) {
         let view = ProfileViewController()
         let presenter = ProfilePresenter()
 

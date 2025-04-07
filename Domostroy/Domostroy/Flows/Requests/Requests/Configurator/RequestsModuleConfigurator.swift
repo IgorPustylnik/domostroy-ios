@@ -11,8 +11,9 @@ import UIKit
 final class RequestsModuleConfigurator {
 
     func configure() -> (
-       RequestsViewController,
-       RequestsModuleOutput) {
+        RequestsViewController,
+        RequestsModuleOutput
+    ) {
         let view = RequestsViewController()
         let presenter = RequestsPresenter()
 

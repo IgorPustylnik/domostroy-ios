@@ -11,8 +11,9 @@ import UIKit
 final class HomeModuleConfigurator {
 
     func configure() -> (
-       HomeViewController,
-       HomeModuleOutput) {
+        HomeViewController,
+        HomeModuleOutput
+    ) {
         let view = HomeViewController()
         let presenter = HomePresenter()
 

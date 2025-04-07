@@ -11,8 +11,9 @@ import UIKit
 final class RegisterModuleConfigurator {
 
     func configure() -> (
-       RegisterViewController,
-       RegisterModuleOutput) {
+        RegisterViewController,
+        RegisterModuleOutput
+    ) {
         let view = RegisterViewController()
         let presenter = RegisterPresenter()
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AuthViewController: ScrollViewController {
+final class AuthViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -20,13 +20,11 @@ final class AuthViewController: ScrollViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.alwaysBounceVertical = true
         output?.viewLoaded()
     }
 
     override func loadView() {
-        super.loadView()
-        contentView = authView
+        view = authView
         authView.login = { [weak self] in self?.output?.login() }
         authView.register = { [weak self] in self?.output?.register() }
     }

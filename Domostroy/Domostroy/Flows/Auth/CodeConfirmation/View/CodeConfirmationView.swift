@@ -71,7 +71,9 @@ final class CodeConfirmationView: UIView {
             make.height.equalTo(Constants.codeFieldHeight)
         }
 
-        codeField.focusFirstField()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            codeField.focusFirstField()
+        }
     }
 
     private func setupMessageLabel(_ email: String) {
