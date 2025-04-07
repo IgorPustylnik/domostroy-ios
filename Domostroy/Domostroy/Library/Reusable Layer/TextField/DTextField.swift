@@ -214,7 +214,7 @@ class DTextField: UIView {
 
         textFieldContainer.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.height.greaterThanOrEqualTo(Constants.containerHeight)
+            make.height.equalTo(Constants.containerHeight).priority(.medium)
         }
         textField.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(Constants.fieldMargin)
@@ -323,7 +323,7 @@ final class DValidatableTextField: DTextField {
 
         textFieldContainer.snp.remakeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.greaterThanOrEqualTo(Constants.containerHeight)
+            make.height.equalTo(Constants.containerHeight).priority(.medium)
         }
 
         errorLabel.snp.makeConstraints { make in
