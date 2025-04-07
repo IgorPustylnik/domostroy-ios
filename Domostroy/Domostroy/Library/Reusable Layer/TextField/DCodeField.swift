@@ -66,6 +66,7 @@ final class DCodeField: UIView {
 }
 
 // MARK: - Private methods
+
 private extension DCodeField {
 
     func createFields(amount: Int) -> [DSingleCharacterTextField] {
@@ -75,9 +76,6 @@ private extension DCodeField {
             field.configure(placeholder: nil, correction: .no, keyboardType: .numberPad, mode: .oneTimeCode)
 
             field.onBeginEditing = { $0.selectAll(nil) }
-            field.onEndEditing = { [weak self] _ in
-                self?.checkCodeCompletion()
-            }
             field.onBackspace = fieldIndex > 0 ? { _ in
                 fields[fieldIndex - 1].responder.becomeFirstResponder()
             } : nil
@@ -128,6 +126,8 @@ private extension DCodeField {
         if nextFieldIndex < codeFields.count {
             self.codeFields[nextFieldIndex].responder.becomeFirstResponder()
         }
+
+        checkCodeCompletion()
     }
 
     func checkCodeCompletion() {
