@@ -46,6 +46,14 @@ private extension AuthCoordinator {
 
     func showRegister() {
         let (view, output) = RegisterModuleConfigurator().configure()
+        output.onReceiveCode = { [weak self] registerDTO in
+            self?.showCodeConfirmation(registerDTO: registerDTO)
+        }
+        router.push(view, animated: true)
+    }
+
+    func showCodeConfirmation(registerDTO: RegisterDTO) {
+        let (view, output) = CodeConfirmationModuleConfigurator().configure(registerDTO: registerDTO)
         router.push(view, animated: true)
     }
 

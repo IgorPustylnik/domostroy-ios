@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
 
     private var shouldUpdateTopInset: Bool = true
 
-    private var shouldShowBackButton: Bool {
+    var shouldShowBackButton: Bool {
         guard let navigationController = navigationController else {
             return false
         }

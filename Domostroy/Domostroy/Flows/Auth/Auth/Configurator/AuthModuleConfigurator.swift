@@ -11,8 +11,9 @@ import UIKit
 final class AuthModuleConfigurator {
 
     func configure() -> (
-       AuthViewController,
-       AuthModuleOutput) {
+        AuthViewController,
+        AuthModuleOutput
+    ) {
         let view = AuthViewController()
         let presenter = AuthPresenter()
 

@@ -11,8 +11,9 @@ import UIKit
 final class FavoritesModuleConfigurator {
 
     func configure() -> (
-       FavoritesViewController,
-       FavoritesModuleOutput) {
+        FavoritesViewController,
+        FavoritesModuleOutput
+    ) {
         let view = FavoritesViewController()
         let presenter = FavoritesPresenter()
 

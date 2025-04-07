@@ -39,6 +39,7 @@ final class DButton: UIControl {
 
     private lazy var backgroundView: UIView = {
         $0.isUserInteractionEnabled = false
+        $0.layer.cornerRadius = cornerRadius
         return $0
     }(UIView())
 
@@ -58,7 +59,7 @@ final class DButton: UIControl {
     private lazy var hStackView: UIStackView = {
         $0.axis = .horizontal
         $0.spacing = Constants.hSpacing
-        $0.alignment = .center
+        $0.alignment = contentAlignment
         $0.addArrangedSubview(titleLabel)
         return $0
     }(UIStackView())
@@ -111,6 +112,12 @@ final class DButton: UIControl {
         }
     }
 
+    var contentAlignment: UIStackView.Alignment = .center {
+        didSet {
+            hStackView.alignment = contentAlignment
+        }
+    }
+
     var title: String? {
         didSet {
             if let title {
@@ -158,7 +165,6 @@ final class DButton: UIControl {
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .label
         }
-        cornerRadius = Constants.defaultCornerRadius
         insertSubview(backgroundView, at: 0)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

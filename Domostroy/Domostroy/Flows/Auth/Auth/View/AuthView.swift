@@ -11,11 +11,18 @@ import SnapKit
 
 final class AuthView: UIView {
 
+    // MARK: - Constants
+
+    private enum Constants {
+        static let vSpacing: CGFloat = 20
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+    }
+
     // MARK: - UI Elements
 
     private lazy var vStackView: UIStackView = {
         $0.axis = .vertical
-        $0.spacing = 20
+        $0.spacing = Constants.vSpacing
         $0.addArrangedSubview(messageLabel)
         $0.addArrangedSubview(loginButton)
         $0.addArrangedSubview(registerButton)
@@ -37,9 +44,6 @@ final class AuthView: UIView {
         $0.setAction { [weak self] in
             self?.login?()
         }
-        $0.snp.makeConstraints { make in
-            make.height.equalTo(54)
-        }
         return $0
     }(DButton(type: .filledPrimary))
 
@@ -48,9 +52,6 @@ final class AuthView: UIView {
         $0.title = "Register"
         $0.setAction { [weak self] in
             self?.register?()
-        }
-        $0.snp.makeConstraints { make in
-            make.height.equalTo(54)
         }
         return $0
     }(DButton(type: .plainPrimary))
@@ -78,7 +79,7 @@ final class AuthView: UIView {
         addSubview(vStackView)
         vStackView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(Constants.insets)
         }
     }
 

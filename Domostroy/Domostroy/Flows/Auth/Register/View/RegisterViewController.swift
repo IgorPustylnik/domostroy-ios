@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import SnapKit
 
-final class RegisterViewController: BaseViewController {
+final class RegisterViewController: ScrollViewController {
 
-    // MARK: - Properties
+    // MARK: - Constants
+
+    private enum Constants {
+        static let buttonInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+    }
+
+    // MARK: - UI Elements
 
     private var registerView = RegisterView()
+
+    private lazy var registerButton: DButton = {
+        // TODO: Localize
+        $0.title = "Register"
+        $0.setAction { [weak self] in
+            self?.registerView.register()
+        }
+        return $0
+    }(DButton())
+
+    private var buttonBottomConstraint: Constraint?
+
+    // MARK: - Properties
 
     var output: RegisterViewOutput?
 
@@ -21,25 +41,66 @@ final class RegisterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        // TODO: Localize
-        navigationBar.title = "Register"
         hidesTabBar = true
+        setupKeyboardObservers()
+        scrollView.alwaysBounceVertical = true
+        scrollView.keyboardDismissMode = .onDrag
+        addRegisterButton()
+        registerView.onScrollToActiveView = { [weak self] view
+            in
+            guard let self, let view else {
+                return
+            }
+            self.scrollToView(view, offsetY: self.registerButton.frame.height)
+        }
     }
 
     override func loadView() {
-        view = registerView
-        registerView.register = { [weak self] name, surname, phoneNumber, email, password, repeatPassword in
-            self?.output?.register(
-                name: name,
-                surname: surname,
-                phoneNumber: phoneNumber,
-                email: email,
-                password: password,
-                repeatPassword: repeatPassword
+        super.loadView()
+        contentView = registerView
+        registerView.onRegister = { [weak self] in
+            guard let self else {
+                return
+            }
+            self.output?.register(registerDTO: RegisterDTO(
+                name: self.registerView.name,
+                surname: self.registerView.surname,
+                phoneNumber: self.registerView.phoneNumber,
+                email: self.registerView.email,
+                password: self.registerView.password)
             )
         }
-        registerView.setScrollViewDelegate(self)
     }
+
+    override func keyboardWillShow(notification: Notification) {
+        super.keyboardWillShow(notification: notification)
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut) {
+            self.buttonBottomConstraint?.update(offset: -self.keyboardHeight + 16)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    override func keyboardWillHide(notification: Notification) {
+        super.keyboardWillHide(notification: notification)
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut) {
+            self.buttonBottomConstraint?.update(offset: -Constants.buttonInsets.bottom)
+        }
+    }
+}
+
+// MARK: - Private methods
+
+private extension RegisterViewController {
+
+    func addRegisterButton() {
+        view.addSubview(registerButton)
+        registerButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.buttonInsets)
+            buttonBottomConstraint = make.bottom
+                .equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Constants.buttonInsets.bottom).constraint
+        }
+    }
+
 }
 
 // MARK: - RegisterViewInput

@@ -14,7 +14,7 @@ class DNavigationBar: UIView {
 
     private enum Constants {
         static let vSpacing: CGFloat = 8
-        static let mainBarHeight: CGFloat = 52
+        static let mainBarHeight: CGFloat = 34
         static let buttonHSpacing: CGFloat = 5
     }
 
@@ -77,6 +77,7 @@ class DNavigationBar: UIView {
         let height = topInset + vStackView.frame.height + Constants.vSpacing
         return CGSize(width: UIView.noIntrinsicMetric, height: height)
     }
+
     var title: String? {
         get { titleView.text }
         set { titleView.text = newValue }
