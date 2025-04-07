@@ -43,6 +43,7 @@ class ScrollViewController: BaseViewController {
     override func viewDidLoad() {
         setupScrollView()
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
 
     private func setupScrollView() {

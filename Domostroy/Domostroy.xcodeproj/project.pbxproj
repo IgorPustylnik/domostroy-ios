@@ -16,6 +16,7 @@
 		0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A0155AD45BE56948770D14 /* HomePresenter.swift */; };
 		0EABAB3E4B134067DE4A5892 /* MainTabBarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */; };
 		10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918741DC398780E853DC52FF /* RegisterPresenter.swift */; };
+		1348F79D9DB83178C7ED1EA9 /* CodeConfirmationModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE413E1C587DAFD9750BC70 /* CodeConfirmationModuleConfigurator.swift */; };
 		141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */; };
 		1659E76B0E946C0025CF1E08 /* LoginModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFCEC81A2FC09CE901B7617 /* LoginModuleConfigurator.swift */; };
 		1B9F2608DB9E38CB44235E05 /* AuthModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7890D7AFE614A23462017 /* AuthModuleOutput.swift */; };
@@ -23,6 +24,7 @@
 		1D0E74636D07EEB53B406299 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D937E22121CF2C13008574A /* LoginViewController.swift */; };
 		1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */; };
 		201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011C7CAD98FBD607D53C82 /* AuthCoordinator.swift */; };
+		2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */; };
 		25644132567969AE8290743C /* LoginModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E611787D776BE2F4805AB8 /* LoginModuleOutput.swift */; };
 		287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */; };
 		28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE5AF8C2A7759BE73FCC7 /* MainTabBarModuleConfigurator.swift */; };
@@ -70,12 +72,16 @@
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
+		61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */; };
 		6F138DB8D6E4389872D83153 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175B6E8E87586D2F4A282D48 /* LoginView.swift */; };
 		6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */; };
+		765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394255A8A3DBFECEB051A11 /* CodeConfirmationModuleOutput.swift */; };
+		79CDE9291635E02BEE9E21AC /* CodeConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321EF9EDB1F9890908C2C32D /* CodeConfirmationView.swift */; };
 		7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */; };
 		7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC69D5EB598F4F4BB6169F /* ProfileViewOutput.swift */; };
 		7E4AEDF0E0295B1EA258EDF1 /* FavoritesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D32631967CB258EC96948EF /* FavoritesModuleInput.swift */; };
 		7EC5C825D2774B9A8368C387 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDB69703EF270C33736FF91 /* RegisterView.swift */; };
+		7ED559F766A68CA9C664DFAD /* CodeConfirmationViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490062771BE7CE2BC5E3DCC2 /* CodeConfirmationViewOutput.swift */; };
 		809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */; };
 		8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0476356BFFC33F827F9E1 /* RegisterModuleOutput.swift */; };
 		82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */; };
@@ -92,6 +98,7 @@
 		AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8C35375503902750A495E /* RegisterModuleConfigurator.swift */; };
 		AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686E2E628167A4950DE2D018 /* AuthViewController.swift */; };
 		ADD24F15362922A8901FD41A /* RequestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */; };
+		B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B094812316555C8C108F5CF /* CodeConfirmationPresenter.swift */; };
 		B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208886293679C418660D4AA6 /* RegisterViewOutput.swift */; };
 		BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */; };
 		BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */; };
@@ -119,6 +126,7 @@
 		F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9D67353BACE0AD858B9145 /* HomeViewController.swift */; };
 		F6EC78CA5392439479DA7911 /* MyOffersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089BA3AFE737737FB3EC7AAE /* MyOffersPresenter.swift */; };
 		F7200521E0364B5BB1C69C27 /* LoginViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB382F88696FD2BD34C8D48 /* LoginViewInput.swift */; };
+		FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5997A88142A5BAC2819A93 /* CodeConfirmationModuleInput.swift */; };
 		FE44F5AEFB2A3FFF0589CB61 /* MyOffersCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +139,7 @@
 		0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleOutput.swift; sourceTree = "<group>"; };
 		175B6E8E87586D2F4A282D48 /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1ACC69D5EB598F4F4BB6169F /* ProfileViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
+		1B094812316555C8C108F5CF /* CodeConfirmationPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationPresenter.swift; sourceTree = "<group>"; };
 		1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewInput.swift; sourceTree = "<group>"; };
 		1DC661849E682FEA4F98C41D /* RegisterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterModuleInput.swift; sourceTree = "<group>"; };
 		208886293679C418660D4AA6 /* RegisterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterViewOutput.swift; sourceTree = "<group>"; };
@@ -138,6 +147,7 @@
 		2A833554CE2AE52D6E4F582B /* RegisterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewOutput.swift; sourceTree = "<group>"; };
 		2FA0476356BFFC33F827F9E1 /* RegisterModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterModuleOutput.swift; sourceTree = "<group>"; };
+		321EF9EDB1F9890908C2C32D /* CodeConfirmationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationView.swift; sourceTree = "<group>"; };
 		32A76496C439E8475E83E986 /* HomeModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleConfigurator.swift; sourceTree = "<group>"; };
 		3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorOutput.swift; sourceTree = "<group>"; };
 		3D937E22121CF2C13008574A /* LoginViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 		45529C093C258F0E7738582C /* RequestsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleOutput.swift; sourceTree = "<group>"; };
 		45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleConfigurator.swift; sourceTree = "<group>"; };
 		46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleConfigurator.swift; sourceTree = "<group>"; };
+		490062771BE7CE2BC5E3DCC2 /* CodeConfirmationViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewOutput.swift; sourceTree = "<group>"; };
 		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
@@ -185,11 +196,13 @@
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
 		5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinatorOutput.swift; sourceTree = "<group>"; };
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewController.swift; sourceTree = "<group>"; };
 		686E2E628167A4950DE2D018 /* AuthViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewInput.swift; sourceTree = "<group>"; };
 		6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		6FDB69703EF270C33736FF91 /* RegisterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
+		7394255A8A3DBFECEB051A11 /* CodeConfirmationModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleOutput.swift; sourceTree = "<group>"; };
 		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		77E01D2E0082660B874820B5 /* FavoritesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleInput.swift; sourceTree = "<group>"; };
@@ -225,10 +238,12 @@
 		C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewInput.swift; sourceTree = "<group>"; };
 		C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewOutput.swift; sourceTree = "<group>"; };
+		CAE413E1C587DAFD9750BC70 /* CodeConfirmationModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleConfigurator.swift; sourceTree = "<group>"; };
 		CC261E0698252AFBE37038FF /* MyOffersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersView.swift; sourceTree = "<group>"; };
 		D13C6AB792CD79F24770CB95 /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
 		D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinator.swift; sourceTree = "<group>"; };
 		D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleConfigurator.swift; sourceTree = "<group>"; };
+		D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewInput.swift; sourceTree = "<group>"; };
 		DDF7890D7AFE614A23462017 /* AuthModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleOutput.swift; sourceTree = "<group>"; };
 		DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewOutput.swift; sourceTree = "<group>"; };
 		E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleInput.swift; sourceTree = "<group>"; };
@@ -239,6 +254,7 @@
 		F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleInput.swift; sourceTree = "<group>"; };
 		F8F96F662B07F1B4C4724559 /* AuthModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleInput.swift; sourceTree = "<group>"; };
 		FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewInput.swift; sourceTree = "<group>"; };
+		FF5997A88142A5BAC2819A93 /* CodeConfirmationModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +341,16 @@
 				A4DD8CD7A8D79EF9914D17DE /* MainTabBarViewOutput.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		31146B0931B8904A15EF25CD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B094812316555C8C108F5CF /* CodeConfirmationPresenter.swift */,
+				FF5997A88142A5BAC2819A93 /* CodeConfirmationModuleInput.swift */,
+				7394255A8A3DBFECEB051A11 /* CodeConfirmationModuleOutput.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		3DF804C4D2430BE0F916BEB7 /* View */ = {
@@ -728,6 +754,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7DAAB9FF43C2315A5B5ACF25 /* CodeConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E7C748DEC858CAED1AC54FD9 /* Configurator */,
+				31146B0931B8904A15EF25CD /* Presenter */,
+				A9543D1DCE3165BEF76BACF2 /* View */,
+			);
+			path = CodeConfirmation;
+			sourceTree = "<group>";
+		};
 		8038973EC065AC2F48B443BF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +798,17 @@
 				45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */,
 			);
 			path = Configurator;
+			sourceTree = "<group>";
+		};
+		A9543D1DCE3165BEF76BACF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */,
+				321EF9EDB1F9890908C2C32D /* CodeConfirmationView.swift */,
+				D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */,
+				490062771BE7CE2BC5E3DCC2 /* CodeConfirmationViewOutput.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		AC4CABD350B7FBFD8A701360 /* Configurator */ = {
@@ -869,6 +916,14 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
+		E7C748DEC858CAED1AC54FD9 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				CAE413E1C587DAFD9750BC70 /* CodeConfirmationModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		EB61ABBB7B7343BC063D516B /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -905,6 +960,7 @@
 				55D17A392DA0158F00425A6B /* Auth */,
 				6D7506360F3453F59F12DF93 /* Login */,
 				CB16E7082399BBD93D4A33AB /* Register */,
+				7DAAB9FF43C2315A5B5ACF25 /* CodeConfirmation */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1139,6 +1195,14 @@
 				7EC5C825D2774B9A8368C387 /* RegisterView.swift in Sources */,
 				BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */,
 				B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */,
+				1348F79D9DB83178C7ED1EA9 /* CodeConfirmationModuleConfigurator.swift in Sources */,
+				B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */,
+				FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */,
+				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,
+				2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */,
+				79CDE9291635E02BEE9E21AC /* CodeConfirmationView.swift in Sources */,
+				61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */,
+				7ED559F766A68CA9C664DFAD /* CodeConfirmationViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
