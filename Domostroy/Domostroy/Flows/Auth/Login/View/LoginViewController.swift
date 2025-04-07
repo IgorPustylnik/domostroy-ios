@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import SnapKit
 
-final class LoginViewController: BaseViewController {
+final class LoginViewController: ScrollViewController {
 
-    // MARK: - Properties
+    // MARK: - Constants
+
+    private enum Constants {
+        static let buttonInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+    }
+
+    // MARK: - UI Elements
 
     private var loginView = LoginView()
+
+    private lazy var loginButton: DButton = {
+        // TODO: Localize
+        $0.title = "Login"
+        $0.setAction { [weak self] in
+            self?.loginView.login()
+        }
+        return $0
+    }(DButton())
+
+    private var buttonBottomConstraint: Constraint?
+
+    // MARK: - Properties
 
     var output: LoginViewOutput?
 
@@ -21,18 +41,56 @@ final class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        // TODO: Localize
-        navigationBar.title = "Login"
         hidesTabBar = true
+        setupKeyboardObservers()
+        scrollView.alwaysBounceVertical = true
+        scrollView.keyboardDismissMode = .onDrag
+        addLoginButton()
     }
 
     override func loadView() {
-        view = loginView
-        loginView.login = { [weak self] email, password in
-            self?.output?.login(email: email, password: password)
+        super.loadView()
+        contentView = loginView
+        loginView.onLogin = { [weak self] in
+            guard let self else {
+                return
+            }
+            self.output?.login(
+                email: self.loginView.email,
+                password: self.loginView.password
+            )
         }
-        loginView.setScrollViewDelegate(self)
     }
+
+    override func keyboardWillShow(notification: Notification) {
+        super.keyboardWillShow(notification: notification)
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut) {
+            self.buttonBottomConstraint?.update(offset: -self.keyboardHeight + 16)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    override func keyboardWillHide(notification: Notification) {
+        super.keyboardWillHide(notification: notification)
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut) {
+            self.buttonBottomConstraint?.update(offset: -Constants.buttonInsets.bottom)
+        }
+    }
+}
+
+// MARK: - Private methods
+
+private extension LoginViewController {
+
+    func addLoginButton() {
+        view.addSubview(loginButton)
+        loginButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.buttonInsets)
+            buttonBottomConstraint = make.bottom
+                .equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Constants.buttonInsets.bottom).constraint
+        }
+    }
+
 }
 
 // MARK: - LoginViewInput

@@ -14,24 +14,18 @@ final class RegisterView: UIView {
     // MARK: - Constants
 
     private enum Constants {
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
         static let vSpacing: CGFloat = 16
-        static let hInset: CGFloat = 16
-        static let animationDuration: Double = 0.3
     }
 
     // MARK: - UI Elements
 
-    private lazy var scrollView: UIScrollView = {
-        $0.keyboardDismissMode = .onDrag
-        $0.showsVerticalScrollIndicator = false
-        $0.showsHorizontalScrollIndicator = false
-        $0.alwaysBounceVertical = true
+    private lazy var titleLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        // TODO: Localize
+        $0.text = "Register"
         return $0
-    }(UIScrollView())
-
-    private lazy var contentView: UIView = {
-        return $0
-    }(UIView())
+    }(UILabel())
 
     private lazy var vStackView: UIStackView = {
         $0.axis = .vertical
@@ -54,7 +48,7 @@ final class RegisterView: UIView {
         $0.setNextResponder(surnameTextField.responder)
         $0.validator = .required(.username)
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.nameTextField
+            self?.onScrollToActiveView?(self?.nameTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -65,7 +59,7 @@ final class RegisterView: UIView {
         $0.setNextResponder(phoneNumberTextField.responder)
         $0.validator = .optional(.username)
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.surnameTextField
+            self?.onScrollToActiveView?(self?.surnameTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -76,7 +70,7 @@ final class RegisterView: UIView {
         $0.setNextResponder(emailTextField.responder)
         $0.validator = .optional(.phone(RussianPhoneNumberNormalizer()))
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.phoneNumberTextField
+            self?.onScrollToActiveView?(self?.phoneNumberTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -87,7 +81,7 @@ final class RegisterView: UIView {
         $0.setNextResponder(passwordTextField.responder)
         $0.validator = .required(.email)
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.emailTextField
+            self?.onScrollToActiveView?(self?.emailTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -104,7 +98,7 @@ final class RegisterView: UIView {
             )
         }
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.passwordTextField
+            self?.onScrollToActiveView?(self?.passwordTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -113,169 +107,83 @@ final class RegisterView: UIView {
         // TODO: Localize
         $0.configure(placeholder: "Repeat password", correction: .no, keyboardType: .asciiCapable, mode: .password)
         $0.onShouldReturn = { [weak self] _ in
-            self?.onRegister()
+            self?.register()
         }
         $0.onBeginEditing = { [weak self] _ in
-            self?.activeView = self?.repeatPasswordTextField
+            self?.onScrollToActiveView?(self?.repeatPasswordTextField)
         }
         $0.validator = .required(.match(password: ""))
         return $0
     }(DValidatableTextField())
 
-    private lazy var registerButton: DButton = {
-        // TODO: Localize
-        $0.title = "Register"
-        $0.setAction { [weak self] in
-            self?.onRegister()
-        }
-        return $0
-    }(DButton())
-
     // MARK: - Properties
 
-    var register: ((String, String, String, String, String, String) -> Void)?
+    var onRegister: EmptyClosure?
 
-    private var buttonBottomConstraint: Constraint?
-    private var activeView: UIView? {
-        didSet {
-            scrollToActiveView(Constants.animationDuration)
-        }
+    var onScrollToActiveView: ((UIView?) -> Void)?
+
+    var name: String {
+        nameTextField.currentText()
     }
-    private var keyboardHeight: CGFloat?
+    var surname: String {
+        surnameTextField.currentText()
+    }
+    var phoneNumber: String {
+        phoneNumberTextField.currentText()
+    }
+    var email: String {
+        emailTextField.currentText()
+    }
+    var password: String {
+        passwordTextField.currentText()
+    }
+    var repeatPassword: String {
+        repeatPasswordTextField.currentText()
+    }
 
     // MARK: - Init
 
     init() {
         super.init(frame: .zero)
         setupUI()
-        setupKeyboardObservers()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
-        setupKeyboardObservers()
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - UI Setup
 
     private func setupUI() {
         backgroundColor = .systemBackground
-        addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        addSubview(titleLabel)
+        addSubview(vStackView)
+        titleLabel.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.insets)
         }
-        scrollView.addSubview(contentView)
-        contentView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(scrollView.safeAreaLayoutGuide)
-            make.size.equalTo(scrollView.safeAreaLayoutGuide)
-        }
-        contentView.addSubview(vStackView)
-        addSubview(registerButton)
         vStackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(contentView).inset(Constants.vSpacing)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Constants.vSpacing)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.vSpacing)
         }
-        registerButton.snp.makeConstraints { make in
-            make.height.equalTo(54)
-            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(Constants.hInset)
-            buttonBottomConstraint = make.bottom
-                .equalTo(safeAreaLayoutGuide.snp.bottom).offset(-Constants.vSpacing).constraint
-        }
-    }
-
-    // MARK: - Configuration
-
-    func setScrollViewDelegate(_ delegate: UIScrollViewDelegate) {
-        scrollView.delegate = delegate
     }
 
 }
 
-// MARK: - Keyboard
+// MARK: - Actions
 
-private extension RegisterView {
+extension RegisterView {
 
-    func setupKeyboardObservers() {
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil
-        )
-    }
-
-    @objc
-    func keyboardWillShow(notification: Notification) {
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
-              let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
-            return
-        }
-        let keyboardHeight = keyboardFrame.height
-        self.keyboardHeight = keyboardHeight
-
-        UIView.animate(withDuration: duration, delay: 0.1, options: .curveEaseInOut) {
-            self.buttonBottomConstraint?.update(offset: -keyboardHeight + Constants.vSpacing)
-            self.layoutIfNeeded()
-        }
-    }
-
-    @objc
-    func keyboardWillHide(notification: Notification) {
-        if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
-            UIView.animate(withDuration: duration, delay: 0.1, options: .curveEaseInOut) { [weak self] in
-                self?.scrollView.contentInset.bottom = .zero
-                self?.scrollView.verticalScrollIndicatorInsets.bottom = .zero
-                self?.buttonBottomConstraint?.update(offset: -Constants.vSpacing)
-                self?.layoutIfNeeded()
-            }
-        }
-    }
-
-    func scrollToActiveView(_ duration: Double) {
-        guard let keyboardHeight = self.keyboardHeight, let activeView = self.activeView else {
-            return
-        }
-
-        let convertedFrame = activeView.convert(activeView.bounds, to: self)
-        let visibleRectHeight = scrollView.bounds.height - keyboardHeight - 30
-        let activeBottom = convertedFrame.maxY
-
-        if activeBottom > visibleRectHeight - 100 {
-            let offsetY = activeBottom - visibleRectHeight + Constants.vSpacing
-            UIView.animate(withDuration: duration) {
-                self.scrollView.contentInset.bottom = keyboardHeight
-                self.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
-                self.scrollView.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
-                self.scrollView.layoutIfNeeded()
-            }
-        }
-    }
-}
-
-// MARK: - Private methods
-
-private extension RegisterView {
-
-    func onRegister() {
-        register?(
-            nameTextField.currentText(),
-            surnameTextField.currentText(),
-            phoneNumberTextField.currentText(),
-            emailTextField.currentText(),
-            passwordTextField.currentText(),
-            repeatPasswordTextField.currentText()
-        )
-        nameTextField.isValid()
-        surnameTextField.isValid()
-        phoneNumberTextField.isValid()
-        emailTextField.isValid()
-        passwordTextField.isValid()
-        repeatPasswordTextField.isValid()
+    func register() {
         endEditing(true)
+        let textFields = vStackView.arrangedSubviews.compactMap { $0 as? DValidatableTextField }
+        if textFields.allSatisfy({ $0.isValid() }) {
+            onRegister?()
+            return
+        } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+        }
+        textFields.forEach { $0.isValid() }
     }
 
 }
