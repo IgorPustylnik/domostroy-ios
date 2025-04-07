@@ -62,13 +62,12 @@ final class RegisterViewController: ScrollViewController {
             guard let self else {
                 return
             }
-            self.output?.register(
+            self.output?.register(registerDTO: RegisterDTO(
                 name: self.registerView.name,
                 surname: self.registerView.surname,
                 phoneNumber: self.registerView.phoneNumber,
                 email: self.registerView.email,
-                password: self.registerView.password,
-                repeatPassword: self.registerView.repeatPassword
+                password: self.registerView.password)
             )
         }
     }

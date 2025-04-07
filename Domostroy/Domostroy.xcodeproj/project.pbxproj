@@ -69,6 +69,8 @@
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
+		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
+		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
@@ -191,6 +193,8 @@
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
+		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -478,6 +482,7 @@
 		55631A9E2D95FB3900FD6856 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				55D9E6C32DA3EB1D0040846C /* DTO */,
 				55631A9F2D95FB3900FD6856 /* Entity */,
 				55631AA12D95FB3900FD6856 /* Entry */,
 			);
@@ -692,6 +697,15 @@
 				55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		55D9E6C32DA3EB1D0040846C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */,
+				55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		5C30B7FA0FB33E975B7D107B /* View */ = {
@@ -1104,6 +1118,7 @@
 				33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */,
 				550D4F292D9FC20800B460CA /* DTextField.swift in Sources */,
 				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
+				55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */,
 				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
 				8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */,
@@ -1196,6 +1211,7 @@
 				BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */,
 				B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */,
 				1348F79D9DB83178C7ED1EA9 /* CodeConfirmationModuleConfigurator.swift in Sources */,
+				55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */,
 				B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */,
 				FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */,
 				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,

@@ -14,8 +14,13 @@ final class CodeConfirmationPresenter: CodeConfirmationModuleOutput {
 
     weak var view: CodeConfirmationViewInput?
 
-    // TODO: Inject
-    private var email: String = "igorpustylnik@domostroy.ru"
+    private var registerDTO: RegisterDTO
+
+    // MARK: - Init
+
+    init(registerDTO: RegisterDTO) {
+        self.registerDTO = registerDTO
+    }
 }
 
 // MARK: - CodeConfirmationModuleInput
@@ -29,7 +34,7 @@ extension CodeConfirmationPresenter: CodeConfirmationModuleInput {
 extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
 
     func viewLoaded() {
-        view?.setupInitialState(length: 6, email: email)
+        view?.setupInitialState(length: 6, email: registerDTO.email)
     }
 
 }

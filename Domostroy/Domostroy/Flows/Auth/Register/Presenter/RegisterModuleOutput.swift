@@ -7,4 +7,5 @@
 //
 
 protocol RegisterModuleOutput: AnyObject {
+    var onReceiveCode: ((RegisterDTO) -> Void)? { get set }
 }

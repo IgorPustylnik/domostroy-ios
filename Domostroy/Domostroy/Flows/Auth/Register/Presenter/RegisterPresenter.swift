@@ -10,6 +10,8 @@ final class RegisterPresenter: RegisterModuleOutput {
 
     // MARK: - RegisterModuleOutput
 
+    var onReceiveCode: ((RegisterDTO) -> Void)?
+
     // MARK: - Properties
 
     weak var view: RegisterViewInput?
@@ -29,15 +31,8 @@ extension RegisterPresenter: RegisterViewOutput {
         view?.setupInitialState()
     }
 
-    func register(
-        name: String,
-        surname: String,
-        phoneNumber: String,
-        email: String,
-        password: String,
-        repeatPassword: String
-    ) {
-
+    func register(registerDTO: RegisterDTO) {
+        onReceiveCode?(registerDTO)
     }
 
 }

@@ -10,12 +10,12 @@ import UIKit
 
 final class CodeConfirmationModuleConfigurator {
 
-    func configure() -> (
+    func configure(registerDTO: RegisterDTO) -> (
         CodeConfirmationViewController,
         CodeConfirmationModuleOutput
     ) {
         let view = CodeConfirmationViewController()
-        let presenter = CodeConfirmationPresenter()
+        let presenter = CodeConfirmationPresenter(registerDTO: registerDTO)
 
         presenter.view = view
         view.output = presenter
