@@ -19,6 +19,8 @@ class BaseViewController: UIViewController {
 
     private var shouldUpdateTopInset: Bool = true
 
+    private var contentOffsetObservation: NSKeyValueObservation?
+
     var shouldShowBackButton: Bool {
         guard let navigationController = navigationController else {
             return false
@@ -37,6 +39,19 @@ class BaseViewController: UIViewController {
             setupInteractivePopGesture()
             setBackButtonIfNeeded()
         }
+    }
+
+    func observeScrollOffset(_ scrollView: UIScrollView) {
+        contentOffsetObservation = scrollView.observe(\.contentOffset, options: [.new]) { [weak self] scrollView, change in
+            guard let offsetY = change.newValue?.y, let self else { return }
+            self.handleScroll(offsetY: offsetY + self.navigationBar.frame.height)
+        }
+    }
+
+    func handleScroll(offsetY: CGFloat) {
+        let threshold: Double = 2
+        let progress = min(max(offsetY / threshold, 0), 1)
+        navigationBar.setScrollEdgeAppearance(progress: progress)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -114,19 +129,6 @@ private extension BaseViewController {
                 self?.navigationController?.popViewController(animated: true)
             }
         }
-    }
-
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension BaseViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollContentOffset = scrollView.contentOffset.y + navigationBar.frame.height
-        let threshold: Double = 20
-        let progress = min(max(scrollContentOffset / threshold, 0), 1)
-        navigationBar.setScrollEdgeAppearance(progress: progress)
     }
 
 }

@@ -27,7 +27,7 @@ class ScrollViewController: BaseViewController {
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        _scrollView.delegate = self
+        observeScrollOffset(scrollView)
     }
 
     required init?(coder: NSCoder) {
@@ -85,8 +85,7 @@ class ScrollViewController: BaseViewController {
 
     @objc
     func keyboardWillShow(notification: Notification) {
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
-              let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
         let keyboardHeight = keyboardFrame.height
