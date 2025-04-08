@@ -31,8 +31,8 @@ final class RegisterView: UIView {
         $0.axis = .vertical
         $0.spacing = Constants.vSpacing
         $0.alignment = .fill
-        $0.addArrangedSubview(nameTextField)
-        $0.addArrangedSubview(surnameTextField)
+        $0.addArrangedSubview(firstNameTextField)
+        $0.addArrangedSubview(lastNameTextField)
         $0.addArrangedSubview(phoneNumberTextField)
         $0.addArrangedSubview(emailTextField)
         $0.addArrangedSubview(passwordTextField)
@@ -42,24 +42,24 @@ final class RegisterView: UIView {
 
     // MARK: - TextFields
 
-    private lazy var nameTextField: DValidatableTextField = {
+    private lazy var firstNameTextField: DValidatableTextField = {
         // TODO: Localize
-        $0.configure(placeholder: "Name", correction: .yes, keyboardType: .default, mode: .name)
-        $0.setNextResponder(surnameTextField.responder)
+        $0.configure(placeholder: "First name", correction: .yes, keyboardType: .default, mode: .firstName)
+        $0.setNextResponder(lastNameTextField.responder)
         $0.validator = .required(.username)
         $0.onBeginEditing = { [weak self] _ in
-            self?.onScrollToActiveView?(self?.nameTextField)
+            self?.onScrollToActiveView?(self?.firstNameTextField)
         }
         return $0
     }(DValidatableTextField())
 
-    private lazy var surnameTextField: DValidatableTextField = {
+    private lazy var lastNameTextField: DValidatableTextField = {
         // TODO: Localize and make actually optional
-        $0.configure(placeholder: "Surname (optional)", correction: .yes, keyboardType: .default, mode: .surname)
+        $0.configure(placeholder: "Last name (optional)", correction: .yes, keyboardType: .default, mode: .lastName)
         $0.setNextResponder(phoneNumberTextField.responder)
         $0.validator = .optional(.username)
         $0.onBeginEditing = { [weak self] _ in
-            self?.onScrollToActiveView?(self?.surnameTextField)
+            self?.onScrollToActiveView?(self?.lastNameTextField)
         }
         return $0
     }(DValidatableTextField())
@@ -122,11 +122,11 @@ final class RegisterView: UIView {
 
     var onScrollToActiveView: ((UIView?) -> Void)?
 
-    var name: String {
-        nameTextField.currentText()
+    var firstName: String {
+        firstNameTextField.currentText()
     }
-    var surname: String {
-        surnameTextField.currentText()
+    var lastName: String {
+        lastNameTextField.currentText()
     }
     var phoneNumber: String {
         phoneNumberTextField.currentText()

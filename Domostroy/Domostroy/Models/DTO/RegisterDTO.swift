@@ -8,8 +8,8 @@
 import Foundation
 
 struct RegisterDTO: Encodable {
-    var name: String
-    var surname: String
+    var firstName: String
+    var lastName: String
     var phoneNumber: String
     var email: String
     var password: String
