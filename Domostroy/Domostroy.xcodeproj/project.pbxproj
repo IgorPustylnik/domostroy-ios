@@ -499,6 +499,7 @@
 		55631AA12D95FB3900FD6856 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				55DD9EF82DA416BD003F0CB3 /* Offer.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -1206,6 +1207,7 @@
 				10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */,
 				990F65C7E2F656B0E78056CD /* RegisterModuleInput.swift in Sources */,
 				8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */,
+				55DD9EF92DA416BD003F0CB3 /* Offer.swift in Sources */,
 				E8684EEC04479C82DF0B664D /* RegisterViewController.swift in Sources */,
 				7EC5C825D2774B9A8368C387 /* RegisterView.swift in Sources */,
 				BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */,
