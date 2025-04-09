@@ -32,6 +32,7 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         self.tabBar.isHidden = true
+        additionalSafeAreaInsets.bottom = Constants.tabBarHeight
         setupUI()
     }
 
@@ -112,6 +113,7 @@ extension MainTabBarViewController {
                 initialSpringVelocity: 0.6,
                 options: [.curveEaseInOut, .beginFromCurrentState],
                 animations: {
+                    self.additionalSafeAreaInsets.bottom = hidden ? 0 : height
                     self.tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
                     self.tabBarView.alpha = hidden ? 0 : 1
                 },
@@ -120,6 +122,7 @@ extension MainTabBarViewController {
                 }
             )
         } else {
+            additionalSafeAreaInsets.bottom = hidden ? 0 : height
             tabBarView.transform = CGAffineTransform(translationX: 0, y: offsetY)
             tabBarView.alpha = hidden ? 0 : 1
             tabBarView.isUserInteractionEnabled = !hidden

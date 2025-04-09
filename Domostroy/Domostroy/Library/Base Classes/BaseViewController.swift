@@ -41,19 +41,6 @@ class BaseViewController: UIViewController {
         }
     }
 
-    func observeScrollOffset(_ scrollView: UIScrollView) {
-        contentOffsetObservation = scrollView.observe(\.contentOffset, options: [.new]) { [weak self] scrollView, change in
-            guard let offsetY = change.newValue?.y, let self else { return }
-            self.handleScroll(offsetY: offsetY + self.navigationBar.frame.height)
-        }
-    }
-
-    func handleScroll(offsetY: CGFloat) {
-        let threshold: Double = 2
-        let progress = min(max(offsetY / threshold, 0), 1)
-        navigationBar.setScrollEdgeAppearance(progress: progress)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let tabBarController = tabBarController as? MainTabBarViewController else {
@@ -66,6 +53,23 @@ class BaseViewController: UIViewController {
             }, completion: nil)
         } else {
             tabBarController.setTabBarHidden(hidesTabBar, animated: true)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let coordinator = transitionCoordinator,
+              let tabBarController = tabBarController as? MainTabBarViewController else {
+            return
+        }
+
+        coordinator.notifyWhenInteractionChanges { [weak self] context in
+            guard let self else {
+                return
+            }
+            if context.isCancelled {
+                tabBarController.setTabBarHidden(self.hidesTabBar, animated: true)
+            }
         }
     }
 
@@ -90,6 +94,29 @@ class BaseViewController: UIViewController {
             self?.view.setNeedsLayout()
             self?.view.layoutIfNeeded()
         }
+    }
+
+}
+
+// MARK: - Scroll handling
+
+extension BaseViewController {
+
+    func observeScrollOffset(_ scrollView: UIScrollView) {
+        contentOffsetObservation = scrollView.observe(
+            \.contentOffset, options: [.new]
+        ) { [weak self] scrollView, change in
+            guard let offsetY = change.newValue?.y, let self else {
+                return
+            }
+            self.handleScroll(offsetY: offsetY + self.navigationBar.frame.height)
+        }
+    }
+
+    func handleScroll(offsetY: CGFloat) {
+        let threshold: Double = 2
+        let progress = min(max(offsetY / threshold, 0), 1)
+        navigationBar.setScrollEdgeAppearance(progress: progress)
     }
 
 }
