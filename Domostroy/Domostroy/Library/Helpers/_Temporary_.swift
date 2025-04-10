@@ -23,6 +23,7 @@ enum _Temporary_EndpointConstructor {
 
 struct _Temporary_Mock_NetworkService {
     func fetchOffers(page: Int, pageSize: Int) async -> OffersPage {
+        let url = URL.applicationDirectory
         try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
         return OffersPage(
             pagination: .init(
@@ -40,12 +41,30 @@ struct _Temporary_Mock_NetworkService {
                         currency: .rub,
                         price: 500,
                         isFavorite: true,
-                        images: [],
+                        images: [url, url, url, url],
                         city: .init(id: 1, name: "Воронеж"),
                         userId: 0,
                         calendarId: 0
                     )
             }
+        )
+    }
+
+    func fetchOffer(id: Int) async -> Offer {
+        let url = URL.applicationDirectory
+        try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+        return Offer(
+            id: 0,
+            name: "test",
+            description: "description",
+            category: .init(id: 0, name: "category"),
+            currency: .rub,
+            price: 100,
+            isFavorite: true,
+            images: [url, url, url, url],
+            city: .init(id: 0, name: "VRN"),
+            userId: 0,
+            calendarId: 0
         )
     }
 }
