@@ -56,8 +56,7 @@ class ScrollViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         contentView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(_scrollView.safeAreaLayoutGuide)
-            make.size.equalTo(_scrollView.safeAreaLayoutGuide)
+            make.edges.width.equalToSuperview()
         }
     }
 
