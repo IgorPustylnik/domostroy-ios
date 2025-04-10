@@ -234,14 +234,6 @@ extension OfferCollectionViewCell: HighlightableItem {
     func applyHighlightedStyle() {
         backgroundColor = .secondarySystemBackground
     }
-
-    func applySelectedStyle() {
-        backgroundColor = .secondarySystemBackground
-    }
-
-    func applyDeselectedStyle() {
-        backgroundColor = .systemBackground
-    }
 }
 
 // MARK: - Equatable ViewModel
