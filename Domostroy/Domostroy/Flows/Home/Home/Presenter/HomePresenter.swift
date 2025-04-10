@@ -233,6 +233,8 @@ private extension HomePresenter {
     }
 
     func loadFirstPage() {
+        // TODO: Localize
+        adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "Recommended"))
         view?.showLoader()
 
         paginatableInput?.updatePagination(canIterate: false)

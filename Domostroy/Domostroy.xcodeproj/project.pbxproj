@@ -80,6 +80,7 @@
 		55DD9F082DA52A12003F0CB3 /* _Temporary_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */; };
 		55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */; };
 		55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */; };
+		55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
@@ -210,6 +211,7 @@
 		55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
 		55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Temporary_.swift; sourceTree = "<group>"; };
 		55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DToggleButton.swift; sourceTree = "<group>"; };
+		55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionReusableView.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 		55DD9F0E2DA6C1E3003F0CB3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */,
 				55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */,
 			);
 			path = Views;
@@ -768,6 +771,14 @@
 				55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */,
+			);
+			path = CollectionReusableView;
 			sourceTree = "<group>";
 		};
 		5C30B7FA0FB33E975B7D107B /* View */ = {
@@ -1288,6 +1299,7 @@
 				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,
 				2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */,
 				79CDE9291635E02BEE9E21AC /* CodeConfirmationView.swift in Sources */,
+				55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */,
 				61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */,
 				55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */,
 				7ED559F766A68CA9C664DFAD /* CodeConfirmationViewOutput.swift in Sources */,

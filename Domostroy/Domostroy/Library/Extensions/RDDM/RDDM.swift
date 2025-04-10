@@ -10,10 +10,7 @@
 import UIKit
 import ReactiveDataDisplayManager
 
-/// Protocol wrapper for object contains `id` property
-public protocol IdOwner {
-    var id: AnyHashable { get }
-}
+// MARK: - DiffableCollectionCellGenerator
 
 open class DiffableCollectionCellGenerator<Cell: ConfigurableItem & UICollectionViewCell>:
     BaseCollectionCellGenerator<Cell>,
@@ -31,6 +28,13 @@ open class DiffableCollectionCellGenerator<Cell: ConfigurableItem & UICollection
     }
 
 }
+
+/// Protocol wrapper for object contains `id` property
+public protocol IdOwner {
+    var id: AnyHashable { get }
+}
+
+// MARK: - StaticDataDisplayWrapper
 
 extension StaticDataDisplayWrapper where Base: UICollectionViewCell & ConfigurableItem, Base.Model: Equatable {
 
@@ -51,6 +55,65 @@ extension StaticDataDisplayWrapper where Base: UICollectionViewCell & Configurab
         and registerType: CellRegisterType = .nib
     ) -> DiffableCollectionCellGenerator<Base> {
         .init(uniqueId: model.id, with: model, registerType: registerType)
+    }
+
+}
+
+public extension CollectionHeaderGenerator where Self: ViewBuilder {
+
+    func registerHeader(in collectionView: UICollectionView) {
+        collectionView.register(
+            self.identifier,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: String(describing: self.identifier)
+        )
+    }
+
+}
+
+// MARK: - TitleCollectionHeaderGenerator
+
+final class TitleCollectionHeaderGenerator {
+
+    // MARK: - Private Properties
+
+    private let title: String
+
+    // MARK: - Initialization
+
+    init(title: String) {
+        self.title = title
+    }
+}
+
+extension TitleCollectionHeaderGenerator: CollectionHeaderGenerator {
+
+    var identifier: UICollectionReusableView.Type {
+        TitleCollectionReusableView.self
+    }
+
+    func size(_ collectionView: UICollectionView, forSection section: Int) -> CGSize {
+        let width = collectionView.bounds.width
+        let height = TitleCollectionReusableView.getHeight(forWidth: width, with: title)
+        return CGSize(width: width, height: height)
+    }
+
+}
+
+// MARK: - ViewBuilder
+
+extension TitleCollectionHeaderGenerator: ViewBuilder {
+
+    func build(view: TitleCollectionReusableView) {
+        view.configure(with: title)
+    }
+
+}
+
+extension TitleCollectionHeaderGenerator: DiffableItemSource {
+
+    var diffableItem: ReactiveDataDisplayManager.DiffableItem {
+        DiffableItem(id: "title", state: .init(title))
     }
 
 }

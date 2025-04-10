@@ -18,6 +18,13 @@ final class HomeViewController: BaseViewController {
         static let cellSpacing: CGFloat = 8
         static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
+        static let boundaryItemSize: NSCollectionLayoutSize = {
+            let estimatedHeight = TitleCollectionReusableView.getHeight(forWidth: UIScreen.main.bounds.width,
+                                                                        with: "Some section")
+            return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                   heightDimension: .estimated(estimatedHeight))
+        }()
+        static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
     }
 
     // MARK: - UI Elements
@@ -37,7 +44,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         setupCollectionView()
         super.viewDidLoad()
-        configureLayoutFlow()
+        configureLayout()
         navigationBar.showsMainBar = false
         output?.viewLoaded()
     }
@@ -63,11 +70,50 @@ final class HomeViewController: BaseViewController {
         observeScrollOffset(collectionView)
     }
 
-    func configureLayoutFlow() {
-        let layout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width - Constants.cellSpacing * 2
-        layout.itemSize = .init(width: width, height: Constants.cellHeight)
+    private func configureLayout() {
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self?.createOffersSection()
+            default:
+                return self?.createOffersSection()
+            }
+        }
         collectionView.setCollectionViewLayout(layout, animated: false)
+    }
+
+    private func createOffersSection() -> NSCollectionLayoutSection {
+        let header = makeSectionHeader()
+
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(Constants.cellHeight)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(Constants.cellHeight)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = Constants.sectionInsets
+        section.interGroupSpacing = Constants.cellSpacing
+        section.boundarySupplementaryItems = [header]
+
+        return section
+    }
+
+    private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: Constants.boundaryItemSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
     }
 }
 
