@@ -22,6 +22,7 @@ final class HomePresenter: HomeModuleOutput {
     // MARK: - HomeModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
+    var onSearch: ((String) -> Void)?
 
     // MARK: - Properties
 
@@ -53,6 +54,17 @@ extension HomePresenter: HomeViewOutput {
     func viewLoaded() {
         view?.setupInitialState()
         loadFirstPage()
+    }
+
+    func setSearch(active: Bool) {
+        view?.setSearchOverlay(active: active)
+    }
+
+    func search(query: String?) {
+        guard let query else {
+            return
+        }
+        onSearch?(query)
     }
 
 }

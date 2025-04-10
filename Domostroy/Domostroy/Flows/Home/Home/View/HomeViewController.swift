@@ -25,16 +25,33 @@ final class HomeViewController: BaseViewController {
                                    heightDimension: .estimated(estimatedHeight))
         }()
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        static let animationDuration: Double = 0.3
     }
 
     // MARK: - UI Elements
 
-    private var searchTextField = {
+    private lazy var searchTextField: DSearchTextField = {
+        $0.onBeginEditing = { [weak self] _ in
+            self?.output?.setSearch(active: true)
+        }
+        $0.onEndEditing = { [weak self] _ in
+            self?.output?.setSearch(active: false)
+        }
+        $0.onShouldReturn = { [weak self] textField in
+            self?.output?.setSearch(active: false)
+            self?.output?.search(query: textField.text)
+            textField.text = ""
+        }
+        $0.onCancel = { [weak self] textField in
+            textField.text = ""
+        }
         return $0
     }(DSearchTextField())
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+    private lazy var overlayView = UIView()
 
     // MARK: - Private Properties
 
@@ -47,6 +64,7 @@ final class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         setupCollectionView()
+        setupSearchOverlayView()
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
@@ -77,6 +95,15 @@ final class HomeViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
         collectionView.alwaysBounceVertical = true
         observeScrollOffset(collectionView)
+    }
+
+    func setupSearchOverlayView() {
+        view.addSubview(overlayView)
+        overlayView.backgroundColor = .systemBackground
+        overlayView.alpha = 0
+        overlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
     private func configureLayout() {
@@ -142,6 +169,16 @@ extension HomeViewController: HomeViewInput {
 
     func hideLoader() {
         activityIndicator.stopAnimating()
+    }
+
+    func setSearchOverlay(active: Bool) {
+        UIView.animate(withDuration: Constants.animationDuration) {
+            if active {
+                self.overlayView.alpha = 1
+            } else {
+                self.overlayView.alpha = 0
+            }
+        }
     }
 
 }

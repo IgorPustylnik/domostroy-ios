@@ -37,6 +37,9 @@ private extension HomeCoordinator {
         output.onOpenOffer = { [weak self] id in
             self?.showOfferDetails(id)
         }
+        output.onSearch = { [weak self] query in
+            print(query)
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 

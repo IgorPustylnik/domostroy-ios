@@ -11,4 +11,5 @@ protocol HomeViewInput: AnyObject {
     func setupInitialState()
     func showLoader()
     func hideLoader()
+    func setSearchOverlay(active: Bool)
 }
