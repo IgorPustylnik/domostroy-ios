@@ -69,6 +69,7 @@ final class CodeConfirmationView: UIView {
             make.top.equalTo(titleLabel.snp.bottom).offset(Constants.vSpacing)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.insets)
             make.height.equalTo(Constants.codeFieldHeight)
+            make.bottom.equalToSuperview()
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

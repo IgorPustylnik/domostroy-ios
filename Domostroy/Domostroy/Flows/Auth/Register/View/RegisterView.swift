@@ -165,6 +165,7 @@ final class RegisterView: UIView {
         vStackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Constants.vSpacing)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.vSpacing)
+            make.bottom.equalToSuperview()
         }
     }
 
