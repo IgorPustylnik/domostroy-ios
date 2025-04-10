@@ -48,6 +48,7 @@ final class DSearchTextField: UIView {
     var onTextChange: ((UITextField) -> Void)?
     var onEndEditing: ((UITextField) -> Void)?
     var onShouldReturn: ((UITextField) -> Void)?
+    var onCancel: ((UITextField) -> Void)?
     var responder: UIResponder {
         return self.textField
     }
@@ -113,7 +114,10 @@ final class DSearchTextField: UIView {
         $0.title = "Cancel"
         $0.insets = .zero
         $0.setAction { [weak self] in
-            self?.textField.resignFirstResponder()
+            guard let self else {
+                return
+            }
+            self.textFieldCancelled(self.textField)
         }
         $0.isHidden = !isActive
         $0.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -263,6 +267,11 @@ extension DSearchTextField: UITextFieldDelegate {
     func textFieldEditingChanged(_ textField: UITextField) {
         clearButton.isHidden = currentText().isEmpty
         onTextChange?(textField)
+    }
+
+    func textFieldCancelled(_ textField: UITextField) {
+        textField.resignFirstResponder()
+        onCancel?(textField)
     }
 
 }
