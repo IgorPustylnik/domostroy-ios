@@ -27,8 +27,8 @@ class DTextField: UIView {
     // MARK: - Mode
 
     enum Mode {
-        case name
-        case surname
+        case firstName
+        case lastName
         case email
         case phoneNumber
         case password
@@ -36,9 +36,9 @@ class DTextField: UIView {
 
         var contentType: UITextContentType {
             switch self {
-            case .name:
+            case .firstName:
                 return .name
-            case .surname:
+            case .lastName:
                 return .familyName
             case .email:
                 return .emailAddress

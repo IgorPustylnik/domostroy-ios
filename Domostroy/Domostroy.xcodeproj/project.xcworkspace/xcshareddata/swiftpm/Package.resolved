@@ -1,6 +1,24 @@
 {
-  "originHash" : "4cdad746817ac9ed37e44dbe90a2ff25fc018954899b7d513e41a4bfc70f065a",
+  "originHash" : "7b88beff76c9de6c2c21b69dfb2a09a9d14ee7701c465ae950c68f3c20d93230",
   "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "4c6b067f96953ee19526e49e4189403a2be21fb3",
+        "version" : "8.3.1"
+      }
+    },
+    {
+      "identity" : "reactivedatadisplaymanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/surfstudio/ReactiveDataDisplayManager",
+      "state" : {
+        "revision" : "a74ff3aa3c505a6b05fbc920b798a33ad97c4d14",
+        "version" : "7.4.0"
+      }
+    },
     {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",

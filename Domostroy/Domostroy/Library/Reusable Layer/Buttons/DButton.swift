@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DButton: UIControl {
+class DButton: UIControl {
 
     // MARK: - Constants
 
@@ -28,7 +28,7 @@ final class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, plainPrimary, plain
+        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary
     }
 
     enum ImagePlacement {
@@ -78,7 +78,7 @@ final class DButton: UIControl {
 
     // MARK: - Properties
 
-    private var actionHandler: (() -> Void)?
+    var actionHandler: (() -> Void)?
     private var highlightAnimator: UIViewPropertyAnimator?
 
     var cornerRadius: CGFloat = Constants.defaultCornerRadius {
@@ -163,6 +163,9 @@ final class DButton: UIControl {
             titleLabel.textColor = .Domostroy.primary
         case .plain:
             backgroundView.backgroundColor = .clear
+            titleLabel.textColor = .label
+        case .filledSecondary:
+            backgroundView.backgroundColor = .secondarySystemBackground
             titleLabel.textColor = .label
         }
         insertSubview(backgroundView, at: 0)

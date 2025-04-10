@@ -63,8 +63,8 @@ final class RegisterViewController: ScrollViewController {
                 return
             }
             self.output?.register(registerDTO: RegisterDTO(
-                name: self.registerView.name,
-                surname: self.registerView.surname,
+                firstName: self.registerView.firstName,
+                lastName: self.registerView.lastName,
                 phoneNumber: self.registerView.phoneNumber,
                 email: self.registerView.email,
                 password: self.registerView.password)

@@ -59,6 +59,7 @@
 		55631AD52D95FB3900FD6856 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD42D95FB3900FD6856 /* Router.swift */; };
 		55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD62D95FB3900FD6856 /* MainRouter.swift */; };
 		556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */; };
+		558285F12DA6F57B003C1861 /* RDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558285F02DA6F57B003C1861 /* RDDM.swift */; };
 		559610AC2D9C8CF900746358 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 559610AB2D9C8CF900746358 /* Colors.xcassets */; };
 		559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AD2D9C8D6600746358 /* SceneDelegate.swift */; };
 		559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AF2D9C8D7B00746358 /* AppCoordinator.swift */; };
@@ -71,6 +72,15 @@
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
 		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
 		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
+		55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */; };
+		55DD9EF92DA416BD003F0CB3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EF82DA416BD003F0CB3 /* Offer.swift */; };
+		55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */; };
+		55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F012DA5090A003F0CB3 /* Kingfisher */; };
+		55DD9F052DA529B2003F0CB3 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */; };
+		55DD9F082DA52A12003F0CB3 /* _Temporary_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */; };
+		55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */; };
+		55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */; };
+		55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
@@ -109,7 +119,6 @@
 		BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */; };
 		C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */; };
 		C1F060D14EF1E5EB2E4FC671 /* ProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */; };
-		C315648158068D1BF7306C31 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */; };
 		C5FD29B6B59A01CD31A91E2F /* HomeViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */; };
 		C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */; };
 		CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E15C34F62AA93C14AE441 /* AuthPresenter.swift */; };
@@ -181,6 +190,7 @@
 		55631AD62D95FB3900FD6856 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		55631ADC2D95FB3900FD6856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCodeField.swift; sourceTree = "<group>"; };
+		558285F02DA6F57B003C1861 /* RDDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDDM.swift; sourceTree = "<group>"; };
 		559610AB2D9C8CF900746358 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		559610AD2D9C8D6600746358 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		559610AF2D9C8D7B00746358 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -195,6 +205,13 @@
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
 		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
+		55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		55DD9EF82DA416BD003F0CB3 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorView.swift; sourceTree = "<group>"; };
+		55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
+		55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Temporary_.swift; sourceTree = "<group>"; };
+		55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DToggleButton.swift; sourceTree = "<group>"; };
+		55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionReusableView.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -210,7 +227,6 @@
 		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		77E01D2E0082660B874820B5 /* FavoritesView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleInput.swift; sourceTree = "<group>"; };
-		7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7FE71417252E10B246BC6F98 /* FavoritesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		86855E73D0855B252D23451E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -266,7 +282,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */,
 				550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */,
+				55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				9D9D67353BACE0AD858B9145 /* HomeViewController.swift */,
-				7FA6B47DF4FC952A9E0EB34E /* HomeView.swift */,
 				B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */,
 				DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */,
 			);
@@ -457,6 +474,7 @@
 				55631A962D95FB3900FD6856 /* Strings */,
 				55631A9A2D95FB3900FD6856 /* Constants */,
 				555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */,
+				55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */,
 				55631ADC2D95FB3900FD6856 /* Info.plist */,
 			);
 			path = Resources;
@@ -499,6 +517,7 @@
 		55631AA12D95FB3900FD6856 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				55DD9EF82DA416BD003F0CB3 /* Offer.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -508,6 +527,7 @@
 			children = (
 				55631AA42D95FB3900FD6856 /* Base Classes */,
 				55631AA62D95FB3900FD6856 /* Utils */,
+				55DD9F062DA529EC003F0CB3 /* Helpers */,
 				55631AA82D95FB3900FD6856 /* Extensions */,
 				55631AAA2D95FB3900FD6856 /* Reusable Layer */,
 				55631AAC2D95FB3900FD6856 /* Protocols */,
@@ -537,6 +557,7 @@
 		55631AA82D95FB3900FD6856 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				558285EF2DA6F573003C1861 /* RDDM */,
 				55631ACD2D95FB3900FD6856 /* UIKit */,
 			);
 			path = Extensions;
@@ -545,10 +566,12 @@
 		55631AAA2D95FB3900FD6856 /* Reusable Layer */ = {
 			isa = PBXGroup;
 			children = (
+				55DD9F0F2DA6CBD3003F0CB3 /* Buttons */,
+				55DD9EF52DA413A8003F0CB3 /* Cells */,
+				55DD9F0E2DA6C1E3003F0CB3 /* Views */,
 				553EE9202DA1D7DC00304407 /* TextField */,
 				55D17A382DA00E4700425A6B /* NavigationBar */,
 				55D9E6C02DA324430040846C /* ViewController */,
-				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 			);
 			path = "Reusable Layer";
 			sourceTree = "<group>";
@@ -602,6 +625,14 @@
 				55631ACE2D95FB3900FD6856 /* UIApplication+ext.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		558285EF2DA6F573003C1861 /* RDDM */ = {
+			isa = PBXGroup;
+			children = (
+				558285F02DA6F57B003C1861 /* RDDM.swift */,
+			);
+			path = RDDM;
 			sourceTree = "<group>";
 		};
 		559610A52D9C750C00746358 /* Assets */ = {
@@ -706,6 +737,48 @@
 				55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		55DD9EF52DA413A8003F0CB3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		55DD9F062DA529EC003F0CB3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		55DD9F0E2DA6C1E3003F0CB3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */,
+				55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		55DD9F0F2DA6CBD3003F0CB3 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
+				55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */,
+			);
+			path = CollectionReusableView;
 			sourceTree = "<group>";
 		};
 		5C30B7FA0FB33E975B7D107B /* View */ = {
@@ -999,6 +1072,8 @@
 			name = Domostroy;
 			packageProductDependencies = (
 				550D4F242D9F29FB00B460CA /* SnapKit */,
+				55DD9F012DA5090A003F0CB3 /* Kingfisher */,
+				55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */,
 			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
@@ -1031,6 +1106,8 @@
 			mainGroup = 55631A7A2D95FB3800FD6856;
 			packageReferences = (
 				550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */,
 			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
@@ -1111,6 +1188,7 @@
 				55631ACC2D95FB3900FD6856 /* BaseCoordinator.swift in Sources */,
 				559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */,
 				55631AC02D95FB3900FD6856 /* Strings.swift in Sources */,
+				55DD9F082DA52A12003F0CB3 /* _Temporary_.swift in Sources */,
 				55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */,
 				55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */,
 				55631AD32D95FB3900FD6856 /* Presentable.swift in Sources */,
@@ -1135,7 +1213,6 @@
 				550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */,
 				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
 				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
-				C315648158068D1BF7306C31 /* HomeView.swift in Sources */,
 				C5FD29B6B59A01CD31A91E2F /* HomeViewInput.swift in Sources */,
 				809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */,
 				AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */,
@@ -1156,6 +1233,7 @@
 				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
+				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
@@ -1171,6 +1249,7 @@
 				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
 				55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */,
 				2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */,
+				55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */,
 				E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */,
 				55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */,
 				EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */,
@@ -1188,6 +1267,7 @@
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
 				CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */,
+				55DD9F052DA529B2003F0CB3 /* InfoPlist.swift in Sources */,
 				46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */,
 				1B9F2608DB9E38CB44235E05 /* AuthModuleOutput.swift in Sources */,
 				AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */,
@@ -1206,6 +1286,8 @@
 				10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */,
 				990F65C7E2F656B0E78056CD /* RegisterModuleInput.swift in Sources */,
 				8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */,
+				55DD9EF92DA416BD003F0CB3 /* Offer.swift in Sources */,
+				558285F12DA6F57B003C1861 /* RDDM.swift in Sources */,
 				E8684EEC04479C82DF0B664D /* RegisterViewController.swift in Sources */,
 				7EC5C825D2774B9A8368C387 /* RegisterView.swift in Sources */,
 				BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */,
@@ -1217,7 +1299,9 @@
 				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,
 				2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */,
 				79CDE9291635E02BEE9E21AC /* CodeConfirmationView.swift in Sources */,
+				55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */,
 				61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */,
+				55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */,
 				7ED559F766A68CA9C664DFAD /* CodeConfirmationViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1459,6 +1543,22 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.1;
+			};
+		};
+		55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/surfstudio/ReactiveDataDisplayManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1466,6 +1566,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		55DD9F012DA5090A003F0CB3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */;
+			productName = ReactiveDataDisplayManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

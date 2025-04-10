@@ -7,4 +7,5 @@
 //
 
 protocol HomeModuleOutput: AnyObject {
+    var onOpenOffer: ((Int) -> Void)? { get set }
 }
