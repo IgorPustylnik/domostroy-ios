@@ -81,6 +81,7 @@
 		55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */; };
 		55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */; };
 		55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */; };
+		55ED67792DA7BCB300A3CA52 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
@@ -212,6 +213,7 @@
 		55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Temporary_.swift; sourceTree = "<group>"; };
 		55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DToggleButton.swift; sourceTree = "<group>"; };
 		55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionReusableView.swift; sourceTree = "<group>"; };
+		55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
 		5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
+				55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */,
 				E436F1F9DA6CF02AD75BF11B /* AuthView.swift in Sources */,
 				581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */,
+				55ED67792DA7BCB300A3CA52 /* ImageCollectionViewCell.swift in Sources */,
 				CD8B8D07E84B499AB98B08E4 /* AuthViewOutput.swift in Sources */,
 				1659E76B0E946C0025CF1E08 /* LoginModuleConfigurator.swift in Sources */,
 				878026C1C4230791368A13ED /* LoginPresenter.swift in Sources */,
