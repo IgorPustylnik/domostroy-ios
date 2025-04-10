@@ -48,6 +48,30 @@ private extension OfferDetailsPresenter {
                         }
                     }
                 )
+                self?.view?.setupInitialState()
+                self?.view?.configureOffer(
+                    viewModel: .init(
+                        // TODO: Localize
+                        price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+                        title: offer.name,
+                        // TODO: Localize
+                        city: "г. \(offer.city.name)",
+                        specs: [
+                            ("Состояние", "новое"),
+                            ("Производитель", "Makita")
+                        ],
+                        description: offer.description,
+                        user: .init(
+                            url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
+                            loadUser: { [weak self] url, userView in
+                                self?.fetchUser(url: url, userView: userView)
+                            },
+                            openProfile: { [weak self] in
+                                self?.openUser(url: _Temporary_EndpointConstructor.user(id: offer.userId).url)
+                            }
+                        )
+                    )
+                )
                 self?.fillPictures(for: offer)
             }
         }
@@ -57,6 +81,18 @@ private extension OfferDetailsPresenter {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             completion?(false)
         }
+    }
+
+    func fetchUser(url: URL?, userView: OfferDetailsView.UserView) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            userView.name.text = "Test user"
+            userView.offerAmount.text = "4 оффера"
+            userView.avatar.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+        }
+    }
+
+    func openUser(url: URL?) {
+        print(url)
     }
 
     func fillPictures(for offer: Offer) {
@@ -100,9 +136,7 @@ extension OfferDetailsPresenter: OfferDetailsModuleInput {
 extension OfferDetailsPresenter: OfferDetailsViewOutput {
 
     func viewLoaded() {
-        view?.setupInitialState()
         fetchOffer()
     }
 
 }
-

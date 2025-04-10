@@ -18,7 +18,7 @@ final class OfferDetailsViewController: ScrollViewController {
         static let sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         static let imageHorizontalItemSpace: CGFloat = 0
         static let pictureCollectionViewHeight: CGFloat = 300
-        static let vSpacing: CGFloat = 20
+        static let detailsInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
     }
 
     // MARK: - Properties
@@ -34,6 +34,7 @@ final class OfferDetailsViewController: ScrollViewController {
         setupUI()
         super.viewDidLoad()
         configureCollectionView()
+        hidesTabBar = true
         output?.viewLoaded()
     }
 
@@ -47,8 +48,9 @@ final class OfferDetailsViewController: ScrollViewController {
             make.height.equalTo(Constants.pictureCollectionViewHeight)
         }
         offerDetailsView.snp.makeConstraints { make in
-            make.top.equalTo(picturesCollectionView.snp.bottom).offset(Constants.vSpacing)
-            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(picturesCollectionView.snp.bottom).offset(Constants.detailsInsets.top)
+            make.bottom.equalToSuperview().inset(Constants.detailsInsets)
+            make.horizontalEdges.equalToSuperview().inset(Constants.detailsInsets)
         }
         scrollView.alwaysBounceVertical = true
     }
@@ -77,7 +79,7 @@ final class OfferDetailsViewController: ScrollViewController {
 extension OfferDetailsViewController: OfferDetailsViewInput {
 
     func setupInitialState() {
-
+        offerDetailsView.setupInitialState()
     }
 
     func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleAction?) {
@@ -87,6 +89,10 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
             offImage: .Buttons.favorite,
             toggleAction: toggleAction
         )
+    }
+
+    func configureOffer(viewModel: OfferDetailsView.ViewModel) {
+        offerDetailsView.configure(with: viewModel)
     }
 
 }

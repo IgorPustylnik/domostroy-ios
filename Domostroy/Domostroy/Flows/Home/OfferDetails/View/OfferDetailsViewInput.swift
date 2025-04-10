@@ -11,4 +11,5 @@ protocol OfferDetailsViewInput: AnyObject {
     func setupInitialState()
     func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleAction?)
     func setLoading(_ isLoading: Bool)
+    func configureOffer(viewModel: OfferDetailsView.ViewModel)
 }
