@@ -29,6 +29,10 @@ final class HomeViewController: BaseViewController {
 
     // MARK: - UI Elements
 
+    private var searchTextField = {
+        return $0
+    }(DSearchTextField())
+
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
@@ -45,7 +49,7 @@ final class HomeViewController: BaseViewController {
         setupCollectionView()
         super.viewDidLoad()
         configureLayout()
-        navigationBar.showsMainBar = false
+        setupNavigationBar()
         output?.viewLoaded()
     }
 
@@ -57,6 +61,11 @@ final class HomeViewController: BaseViewController {
             width: collectionView.frame.width,
             height: Constants.progressViewHeight
         )
+    }
+
+    private func setupNavigationBar() {
+        navigationBar.showsMainBar = false
+        navigationBar.addArrangedSubview(searchTextField)
     }
 
     private func setupCollectionView() {

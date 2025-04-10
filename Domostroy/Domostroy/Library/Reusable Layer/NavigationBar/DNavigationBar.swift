@@ -26,7 +26,6 @@ class DNavigationBar: UIView {
     private var vStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.vSpacing
-        $0.alignment = .center
         return $0
     }(UIStackView())
 
