@@ -142,9 +142,9 @@ class DButton: UIControl {
         let height = max(
             titleLabel.frame.height, imageView.frame.height
         ) + insets.top + insets.bottom
-        let width = max(
-            backgroundView.frame.width,
-            titleLabel.frame.width + Constants.hSpacing + imageView.frame.width + insets.left + insets.right)
+        let width = titleLabel.frame.width + (
+            imageView.image != nil ? imageView.frame.width + hStackView.spacing : 0
+        ) + insets.left + insets.right
         return CGSize(width: width, height: height)
     }
 
