@@ -228,11 +228,27 @@ private extension OfferCollectionViewCell {
 
 extension OfferCollectionViewCell: HighlightableItem {
     func applyUnhighlightedStyle() {
-        backgroundColor = .systemBackground
+        UIView.animate(withDuration: 0.1) {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
     }
 
     func applyHighlightedStyle() {
-        backgroundColor = .secondarySystemBackground
+        UIView.animate(withDuration: 0.1) {
+            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+        }
+    }
+
+    func applyDeselectedStyle() {
+        UIView.animate(withDuration: 0.1) {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+    }
+
+    func applySelectedStyle() {
+        UIView.animate(withDuration: 0.1) {
+            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+        }
     }
 }
 
