@@ -213,8 +213,8 @@ private extension OfferCollectionViewCell {
         let button = DToggleButton(type: .plainPrimary)
         button.configure(
             initialState: toggle.initialState,
-            onIcon: toggle.onImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            offIcon: toggle.offImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+            onImage: toggle.onImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+            offImage: toggle.offImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
             toggleAction: toggle.toggleAction
         )
         button.insets = .zero
@@ -233,14 +233,6 @@ extension OfferCollectionViewCell: HighlightableItem {
 
     func applyHighlightedStyle() {
         backgroundColor = .secondarySystemBackground
-    }
-
-    func applySelectedStyle() {
-        backgroundColor = .secondarySystemBackground
-    }
-
-    func applyDeselectedStyle() {
-        backgroundColor = .systemBackground
     }
 }
 

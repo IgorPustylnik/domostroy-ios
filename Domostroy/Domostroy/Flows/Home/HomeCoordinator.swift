@@ -35,9 +35,14 @@ private extension HomeCoordinator {
     func showHome() {
         let (view, output) = HomeModuleConfigurator().configure()
         output.onOpenOffer = { [weak self] id in
-            print(id)
+            self?.showOfferDetails(id)
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func showOfferDetails(_ id: Int) {
+        let (view, output) = OfferDetailsModuleConfigurator().configure(offerId: id)
+        router.push(view, animated: true)
     }
 
 }

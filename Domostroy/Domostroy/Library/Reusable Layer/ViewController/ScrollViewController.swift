@@ -21,6 +21,8 @@ class ScrollViewController: BaseViewController {
     }
     private var _scrollView = UIScrollView()
 
+    private var activityIndicator = UIActivityIndicatorView(style: .medium)
+
     var contentView = UIView()
 
     // MARK: - Init
@@ -42,6 +44,7 @@ class ScrollViewController: BaseViewController {
 
     override func viewDidLoad() {
         setupScrollView()
+        setupIndicatorView()
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
     }
@@ -53,9 +56,13 @@ class ScrollViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         contentView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(_scrollView.safeAreaLayoutGuide)
-            make.size.equalTo(_scrollView.safeAreaLayoutGuide)
+            make.edges.width.equalToSuperview()
         }
+    }
+
+    func setupIndicatorView() {
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
     }
 
     func scrollToView(_ target: UIView, offsetY: CGFloat = 0) {
@@ -100,6 +107,21 @@ class ScrollViewController: BaseViewController {
                 self?.scrollView.verticalScrollIndicatorInsets.bottom = .zero
                 self?.view.layoutIfNeeded()
             }
+        }
+    }
+
+}
+
+extension ScrollViewController: Loadable {
+
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+
         }
     }
 
