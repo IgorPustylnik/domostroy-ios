@@ -20,9 +20,9 @@ final class DToggleButton: DButton {
 
     // MARK: - Configuration
 
-    func configure(initialState: Bool, onIcon: UIImage?, offIcon: UIImage?, toggleAction: ToggleAction?) {
-        self.onImage = onIcon
-        self.offImage = offIcon
+    func configure(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
+        self.onImage = onImage
+        self.offImage = offImage
         self.toggleAction = toggleAction
         self.actionHandler = { [weak self] in self?.performToggleAction() }
         updateIcon()
