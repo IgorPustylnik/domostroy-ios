@@ -19,7 +19,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         let imageUrl: URL?
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
-        let price: Double
+        let price: String
         let description: String
         let user: UserViewModel
         let actions: [ActionButtonModel]

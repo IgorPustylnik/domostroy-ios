@@ -138,7 +138,7 @@ private extension HomePresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            price: offer.price,
+            price: offer.price.stringDroppingTrailingZero,
             description: offer.description,
             user: OfferCollectionViewCell.ViewModel.UserViewModel(
                 url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
