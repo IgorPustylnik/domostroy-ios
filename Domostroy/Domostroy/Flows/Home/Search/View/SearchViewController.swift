@@ -24,6 +24,7 @@ final class SearchViewController: BaseViewController {
         }()
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         static let searchHStackSpacing: CGFloat = 10
+        static let searchSupplementaryViewHeight: CGFloat = 36
         static let animationDuration: Double = 0.3
     }
 
@@ -53,6 +54,19 @@ final class SearchViewController: BaseViewController {
         }
         return $0
     }(DSearchTextField())
+
+    private lazy var searchSupplementaryView = {
+        $0.onOpenLocation = { [weak self] in
+            self?.output?.openLocation()
+        }
+        $0.onOpenSort = { [weak self] in
+            self?.output?.openSort()
+        }
+        $0.onOpenFilters = { [weak self] in
+            self?.output?.openFilters()
+        }
+        return $0
+    }(SearchSupplementaryView())
 
     private lazy var backButton = {
         $0.snp.makeConstraints { make in
@@ -85,6 +99,7 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
+        setupSearchSupplementaryView()
         output?.viewLoaded()
     }
 
@@ -107,6 +122,13 @@ final class SearchViewController: BaseViewController {
     private func addBackButtonIfNeeded() {
         if shouldShowBackButton {
             searchHStackView.insertArrangedSubview(backButton, at: 0)
+        }
+    }
+
+    private func setupSearchSupplementaryView() {
+        navigationBar.addArrangedSubview(searchSupplementaryView)
+        searchSupplementaryView.snp.makeConstraints { make in
+            make.height.equalTo(Constants.searchSupplementaryViewHeight)
         }
     }
 
@@ -181,8 +203,20 @@ final class SearchViewController: BaseViewController {
 
 extension SearchViewController: SearchViewInput {
 
-    func setQuery(_ query: String?) {
+    func set(query: String?) {
         searchTextField.setText(query)
+    }
+
+    func set(location: String) {
+        searchSupplementaryView.set(location: location)
+    }
+
+    func set(sort: String) {
+        searchSupplementaryView.set(sort: sort)
+    }
+
+    func set(filters: String) {
+        searchSupplementaryView.set(filters: filters)
     }
 
     func showLoader() {
@@ -196,6 +230,14 @@ extension SearchViewController: SearchViewInput {
     }
 
     func setSearchOverlay(active: Bool) {
+        if active {
+            searchSupplementaryView.removeFromSuperview()
+        } else {
+            self.navigationBar.addArrangedSubview(searchSupplementaryView)
+        }
+        navigationBar.setNeedsLayout()
+        navigationBar.layoutIfNeeded()
+        navigationBar.invalidateIntrinsicContentSize()
         UIView.animate(withDuration: Constants.animationDuration) {
             if active {
                 self.overlayView.alpha = 1

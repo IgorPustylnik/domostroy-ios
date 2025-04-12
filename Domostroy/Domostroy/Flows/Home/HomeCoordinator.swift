@@ -50,7 +50,31 @@ private extension HomeCoordinator {
 
     func showSearch(query: String?) {
         let (view, output) = SearchModuleConfigurator().configure(query: query)
+        output.onOpenOffer = { [weak self] id in
+            self?.showOfferDetails(id)
+        }
+        output.onOpenLocation = { [weak self] in
+            self?.showLocation()
+        }
+        output.onOpenSort = { [weak self] in
+            self?.showSort()
+        }
+        output.onOpenFilters = { [weak self] in
+            self?.showFilters()
+        }
         router.push(view, animated: true)
+    }
+
+    func showLocation() {
+
+    }
+
+    func showSort() {
+
+    }
+
+    func showFilters() {
+
     }
 
 }

@@ -8,7 +8,10 @@
 
 protocol SearchViewInput: AnyObject {
     /// Method for setup initial state of view
-    func setQuery(_ query: String?)
+    func set(query: String?)
+    func set(location: String)
+    func set(sort: String)
+    func set(filters: String)
     func showLoader()
     func hideLoader()
     func setSearchOverlay(active: Bool)

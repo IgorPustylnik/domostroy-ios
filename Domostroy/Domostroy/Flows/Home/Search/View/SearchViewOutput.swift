@@ -12,4 +12,7 @@ protocol SearchViewOutput {
     func setSearch(active: Bool)
     func search(query: String?)
     func cancelSearch()
+    func openLocation()
+    func openSort()
+    func openFilters()
 }

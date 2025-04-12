@@ -21,6 +21,9 @@ final class SearchPresenter: SearchModuleOutput {
     // MARK: - SearchModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
+    var onOpenLocation: (() -> Void)?
+    var onOpenSort: (() -> Void)?
+    var onOpenFilters: (() -> Void)?
 
     // MARK: - Properties
 
@@ -46,18 +49,18 @@ final class SearchPresenter: SearchModuleOutput {
 
 }
 
-// MARK: - HomeModuleInput
+// MARK: - SearchModuleInput
 
 extension SearchPresenter: SearchModuleInput {
 
 }
 
-// MARK: - HomeViewOutput
+// MARK: - SearchViewOutput
 
 extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
-        view?.setQuery(self.query)
+        view?.set(query: self.query)
         loadFirstPage()
     }
 
@@ -72,7 +75,19 @@ extension SearchPresenter: SearchViewOutput {
     }
 
     func cancelSearch() {
-        view?.setQuery(self.query)
+        view?.set(query: self.query)
+    }
+
+    func openLocation() {
+        onOpenLocation?()
+    }
+
+    func openSort() {
+        onOpenSort?()
+    }
+
+    func openFilters() {
+        onOpenFilters?()
     }
 
 }
