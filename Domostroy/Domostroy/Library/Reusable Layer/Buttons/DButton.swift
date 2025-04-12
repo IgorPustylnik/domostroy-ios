@@ -20,6 +20,7 @@ class DButton: UIControl {
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
         static let touchesInset: UIEdgeInsets = .init(top: -30, left: -30, bottom: -30, right: -30)
         static let hSpacing: CGFloat = 5
+        static let borderWidth: CGFloat = 1
         static let defaultCornerRadius: CGFloat = 14
         static let defaultImageSize: CGSize = .init(width: 24, height: 24)
         static let defaultInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
@@ -28,7 +29,7 @@ class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary
+        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary, navbar
     }
 
     enum ImagePlacement {
@@ -67,9 +68,11 @@ class DButton: UIControl {
     // MARK: - Init
 
     init(type: DButton.ButtonType = .filledPrimary) {
+        self.type = type
         super.init(frame: .zero)
         configure(type)
         updateImagePlacement()
+        trackTraitChanges()
     }
 
     required init?(coder: NSCoder) {
@@ -80,6 +83,8 @@ class DButton: UIControl {
 
     var actionHandler: (() -> Void)?
     private var highlightAnimator: UIViewPropertyAnimator?
+
+    var type: ButtonType
 
     var cornerRadius: CGFloat = Constants.defaultCornerRadius {
         didSet {
@@ -115,6 +120,12 @@ class DButton: UIControl {
     var contentAlignment: UIStackView.Alignment = .center {
         didSet {
             hStackView.alignment = contentAlignment
+        }
+    }
+
+    var borderColor: UIColor = .clear {
+        didSet {
+            backgroundView.layer.borderColor = borderColor.cgColor
         }
     }
 
@@ -167,8 +178,15 @@ class DButton: UIControl {
         case .filledSecondary:
             backgroundView.backgroundColor = .secondarySystemBackground
             titleLabel.textColor = .label
+        case .navbar:
+            titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
+            backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
+            titleLabel.textColor = .label
+            borderColor = .separator
         }
         insertSubview(backgroundView, at: 0)
+        backgroundView.layer.borderWidth = Constants.borderWidth
+        backgroundView.layer.borderColor = borderColor.cgColor
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -264,6 +282,23 @@ private extension DButton {
             )
         }
         highlightAnimator?.startAnimation()
+    }
+
+    private func trackTraitChanges() {
+        registerForTraitChanges(
+            [UITraitUserInterfaceStyle.self]
+        ) { [weak self] (_: Self, _: UITraitCollection) in
+            self?.updateCGColors()
+        }
+    }
+
+    private func updateCGColors() {
+        switch type {
+        case .navbar:
+            backgroundView.layer.borderColor = borderColor.cgColor
+        default:
+            break
+        }
     }
 
 }
