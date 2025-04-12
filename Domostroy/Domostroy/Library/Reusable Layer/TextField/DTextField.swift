@@ -61,7 +61,7 @@ class DTextField: UIView {
         static let fieldStrokeWidth: CGFloat = 1.0
         static let fieldMargin = UIEdgeInsets(top: 20, left: 14.0, bottom: 20, right: 14)
 
-        static let borderColor: UIColor = .systemGray3
+        static let borderColor: UIColor = .separator
         static let hightlightedBorderColor: UIColor = .label
 
         static let eyeLeftPadding: CGFloat = 6

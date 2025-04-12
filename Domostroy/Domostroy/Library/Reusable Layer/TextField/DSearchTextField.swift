@@ -15,6 +15,7 @@ final class DSearchTextField: UIView {
     private enum Constants {
         static let containerHeight: CGFloat = 48
         static let defaultCornerRadius: CGFloat = 18
+        static let backgroundColor: UIColor = .systemBackground.withAlphaComponent(0.5)
 
         static let fieldStrokeWidth: CGFloat = 1.0
         static let fieldMargin = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
@@ -66,7 +67,7 @@ final class DSearchTextField: UIView {
     // MARK: - UI Elements
 
     private lazy var textFieldContainer = {
-        $0.backgroundColor = .systemBackground
+        $0.backgroundColor = Constants.backgroundColor
         $0.layer.borderColor = Constants.borderColor.cgColor
         $0.layer.borderWidth = Constants.fieldStrokeWidth
         $0.clipsToBounds = true
