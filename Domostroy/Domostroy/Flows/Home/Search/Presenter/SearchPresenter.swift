@@ -1,17 +1,16 @@
 //
-//  HomePresenter.swift
+//  SearchPresenter.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 11/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import ReactiveDataDisplayManager
-import Kingfisher
 
-final class HomePresenter: HomeModuleOutput {
+final class SearchPresenter: SearchModuleOutput {
 
     // MARK: - Constants
 
@@ -19,40 +18,46 @@ final class HomePresenter: HomeModuleOutput {
         static let pageSize = 10
     }
 
-    // MARK: - HomeModuleOutput
+    // MARK: - SearchModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onSearch: ((String?) -> Void)?
 
     // MARK: - Properties
 
     typealias DiffableOfferGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
 
-    weak var view: HomeViewInput?
+    weak var view: SearchViewInput?
     private weak var paginatableInput: PaginatableInput?
 
     var adapter: BaseCollectionManager?
 
+    private var query: String?
     private var isFirstPageLoading = true
     private var pagesCount = 0
     private var currentPage = 0
 
     private var offers: [Offer] = []
 
+    // MARK: - Init
+
+    init(query: String?) {
+        self.query = query
+    }
+
 }
 
 // MARK: - HomeModuleInput
 
-extension HomePresenter: HomeModuleInput {
+extension SearchPresenter: SearchModuleInput {
 
 }
 
 // MARK: - HomeViewOutput
 
-extension HomePresenter: HomeViewOutput {
+extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
-        view?.setupInitialState()
+        view?.setQuery(self.query)
         loadFirstPage()
     }
 
@@ -61,14 +66,20 @@ extension HomePresenter: HomeViewOutput {
     }
 
     func search(query: String?) {
-        onSearch?(query)
+        self.query = query
+        isFirstPageLoading = false
+        loadFirstPage()
+    }
+
+    func cancelSearch() {
+        view?.setQuery(self.query)
     }
 
 }
 
 // MARK: - RefreshableOutput
 
-extension HomePresenter: RefreshableOutput {
+extension SearchPresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
         Task {
@@ -94,7 +105,7 @@ extension HomePresenter: RefreshableOutput {
 
 // MARK: - PaginatableOutput
 
-extension HomePresenter: PaginatableOutput {
+extension SearchPresenter: PaginatableOutput {
 
     func onPaginationInitialized(with input: PaginatableInput) {
         paginatableInput = input
@@ -126,7 +137,7 @@ extension HomePresenter: PaginatableOutput {
 
 // MARK: - Generators
 
-private extension HomePresenter {
+private extension SearchPresenter {
 
     func makeGenerator(from offer: Offer) -> DiffableOfferGenerator {
         let viewModel = OfferCollectionViewCell.ViewModel(
@@ -168,7 +179,7 @@ private extension HomePresenter {
 
 // MARK: - Network requests
 
-private extension HomePresenter {
+private extension SearchPresenter {
 
     func loadImage(url: URL?, imageView: UIImageView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -242,8 +253,10 @@ private extension HomePresenter {
     }
 
     func loadFirstPage() {
+        adapter?.clearCellGenerators()
+        adapter?.forceRefill()
         // TODO: Localize
-        adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "Recommended"))
+//        adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "Recommended"))
         view?.showLoader()
 
         paginatableInput?.updatePagination(canIterate: false)
@@ -251,7 +264,7 @@ private extension HomePresenter {
 
         Task {
             do {
-                let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: 10)
+                let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: 10) // + query
 
                 DispatchQueue.main.async {
                     self.offers = page.offers

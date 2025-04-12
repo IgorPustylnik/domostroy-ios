@@ -145,7 +145,7 @@ final class DSearchTextField: UIView {
 
     // MARK: - Public Methods
 
-    func setText(_ text: String) {
+    func setText(_ text: String?) {
         textField.text = text
     }
 

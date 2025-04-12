@@ -38,13 +38,18 @@ private extension HomeCoordinator {
             self?.showOfferDetails(id)
         }
         output.onSearch = { [weak self] query in
-            print(query)
+            self?.showSearch(query: query)
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
     func showOfferDetails(_ id: Int) {
         let (view, output) = OfferDetailsModuleConfigurator().configure(offerId: id)
+        router.push(view, animated: true)
+    }
+
+    func showSearch(query: String?) {
+        let (view, output) = SearchModuleConfigurator().configure(query: query)
         router.push(view, animated: true)
     }
 
