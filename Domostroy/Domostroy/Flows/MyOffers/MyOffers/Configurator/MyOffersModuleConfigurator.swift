@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveDataDisplayManager
 
 final class MyOffersModuleConfigurator {
 
@@ -17,8 +18,17 @@ final class MyOffersModuleConfigurator {
     ) {
         let view = MyOffersViewController()
         let presenter = MyOffersPresenter()
+        let adapter = view.collectionView.rddm.baseBuilder
+            .set(dataSource: { DiffableCollectionDataSource(provider: $0) })
+            .add(plugin: .paginatable(progressView: view.progressView, output: presenter))
+            .add(plugin: .refreshable(refreshControl: view.refreshControl, output: presenter))
+            .add(plugin: .accessibility())
+            .add(plugin: .highlightable())
+            .add(plugin: .selectable())
+            .build()
 
         presenter.view = view
+        presenter.adapter = adapter
         view.output = presenter
 
         return (view, presenter, presenter)
