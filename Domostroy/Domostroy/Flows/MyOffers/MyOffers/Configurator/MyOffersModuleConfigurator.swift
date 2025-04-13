@@ -12,7 +12,8 @@ final class MyOffersModuleConfigurator {
 
     func configure() -> (
         MyOffersViewController,
-        MyOffersModuleOutput
+        MyOffersModuleOutput,
+        MyOffersModuleInput
     ) {
         let view = MyOffersViewController()
         let presenter = MyOffersPresenter()
@@ -20,7 +21,7 @@ final class MyOffersModuleConfigurator {
         presenter.view = view
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

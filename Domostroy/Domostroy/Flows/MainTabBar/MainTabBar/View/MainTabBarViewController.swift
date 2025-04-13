@@ -48,7 +48,7 @@ final class MainTabBarViewController: UITabBarController {
             self?.didSelect(tag)
         }
         tabBarView.didTapCenter = { [weak self] in
-            self?.output?.add()
+            self?.output?.didTapCenter()
         }
     }
 }
@@ -60,11 +60,12 @@ extension MainTabBarViewController: MainTabBarViewInput {
     func configure(controllers: [UIViewController]) {
         tabBarView.configure(with: controllers.map { $0.tabBarItem })
         viewControllers = controllers
+        output?.selectTab(with: .home, isInitial: true)
         didSelect(0)
     }
 
-    func setAdd(enabled: Bool) {
-        tabBarView.isCenterButtonEnabled = enabled
+    func setCenterControl(enabled: Bool) {
+        tabBarView.isCenterControlEnabled = enabled
     }
 
 }

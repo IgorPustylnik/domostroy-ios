@@ -12,7 +12,8 @@ final class MainTabBarModuleConfigurator {
 
     func configure() -> (
         MainTabBarViewController,
-        MainTabBarModuleOutput
+        MainTabBarModuleOutput,
+        MainTabBarModuleInput
     ) {
         let view = MainTabBarViewController()
         let presenter = MainTabBarPresenter()
@@ -22,7 +23,7 @@ final class MainTabBarModuleConfigurator {
 
         presenter.configureTabs()
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

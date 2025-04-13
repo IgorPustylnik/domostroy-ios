@@ -7,4 +7,5 @@
 //
 
 protocol MyOffersModuleOutput: AnyObject {
+    var onSetCenterControlEnabled: ((Bool) -> Void)? { get set }
 }

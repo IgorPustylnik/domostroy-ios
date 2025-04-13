@@ -37,7 +37,7 @@ final class MainTabBarView: UIView {
     var didSelect: ((Int) -> Void)?
     var didTapCenter: (() -> Void)?
 
-    var isCenterButtonEnabled: Bool = false {
+    var isCenterControlEnabled: Bool = false {
         didSet {
             updateState()
         }
@@ -134,11 +134,11 @@ private extension MainTabBarView {
     func updateState() {
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = UIColor.systemBackground.cgColor
-        shapeLayer.path = isCenterButtonEnabled ? pathWithCutout() : pathWithoutCutout()
+        shapeLayer.path = isCenterControlEnabled ? pathWithCutout() : pathWithoutCutout()
         blurView.layer.mask = shapeLayer
-        centerButton.isHidden = !isCenterButtonEnabled
-        centerButton.isUserInteractionEnabled = isCenterButtonEnabled
-        tabViews[tabViews.count / 2].isEnabled = !isCenterButtonEnabled
+        centerButton.isHidden = !isCenterControlEnabled
+        centerButton.isUserInteractionEnabled = isCenterControlEnabled
+        tabViews[tabViews.count / 2].isEnabled = !isCenterControlEnabled
     }
 
     func pathWithCutout() -> CGPath {

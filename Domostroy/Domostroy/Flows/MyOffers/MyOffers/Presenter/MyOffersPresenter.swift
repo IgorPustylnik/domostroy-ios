@@ -10,14 +10,31 @@ final class MyOffersPresenter: MyOffersModuleOutput {
 
     // MARK: - MyOffersModuleOutput
 
+    var onSetCenterControlEnabled: ((Bool) -> Void)? {
+        didSet {
+            onSetCenterControlEnabled?(isCenterControlEnabled)
+        }
+    }
+
     // MARK: - Properties
 
     weak var view: MyOffersViewInput?
+
+    private var isCenterControlEnabled: Bool = true {
+        didSet {
+            onSetCenterControlEnabled?(isCenterControlEnabled)
+        }
+    }
+
 }
 
 // MARK: - MyOffersModuleInput
 
 extension MyOffersPresenter: MyOffersModuleInput {
+
+    func didTapCenterControl() {
+        print("Tapped and caught in MyOffersPresenter")
+    }
 
 }
 

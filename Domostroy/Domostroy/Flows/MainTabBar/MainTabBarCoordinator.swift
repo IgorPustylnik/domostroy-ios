@@ -16,6 +16,8 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
     private let router: Router
 
+    private var onTapCenterControl: EmptyClosure?
+
     // MARK: - Initialization
 
     init(router: Router) {
@@ -33,15 +35,21 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 private extension MainTabBarCoordinator {
 
     func showTabBar() {
-        let (view, output) = MainTabBarModuleConfigurator().configure()
+        let (view, output, input) = MainTabBarModuleConfigurator().configure()
 
-        output.onHomeFlowSelect = runHomeFlow
-        output.onFavoritesFlowSelect = runFavoritesFlow
-        output.onMyOffersFlowSelect = runMyOffersFlow
+        output.onHomeFlowSelect = { [weak self] isInitial in
+            self?.runHomeFlow(isInitial: isInitial)
+        }
+        output.onFavoritesFlowSelect = { [weak self] isInitial in
+            self?.runFavoritesFlow(isInitial: isInitial)
+        }
+        output.onMyOffersFlowSelect = { [weak self, weak input] isInitial in
+            self?.runMyOffersFlow(isInitial: isInitial, mainTabBarModuleInput: input)
+        }
         output.onRequestsFlowSelect = runRequestsFlow
         output.onProfileFlowSelect = runProfileFlow
-        output.onAdd = {
-            print("on add")
+        output.onTapCenterControl = { [weak self] in
+            self?.onTapCenterControl?()
         }
 
         router.setRootModule(view)
@@ -66,11 +74,17 @@ private extension MainTabBarCoordinator {
         coordinator.start()
     }
 
-    func runMyOffersFlow(isInitial: Bool) {
+    func runMyOffersFlow(isInitial: Bool, mainTabBarModuleInput: MainTabBarModuleInput?) {
         guard isInitial else {
             return
         }
         let coordinator = MyOffersCoordinator(router: router)
+        coordinator.onSetTabBarCenterControlEnabled = { [weak mainTabBarModuleInput] enabled in
+            mainTabBarModuleInput?.setCenterControl(enabled: enabled)
+        }
+        onTapCenterControl = { [weak coordinator] in
+            coordinator?.didTapCenterControl()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

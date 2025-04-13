@@ -7,4 +7,5 @@
 //
 
 protocol MyOffersModuleInput: AnyObject {
+    func didTapCenterControl()
 }

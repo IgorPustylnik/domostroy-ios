@@ -79,6 +79,7 @@
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */; };
+		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
 		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
 		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
@@ -227,6 +228,7 @@
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSupplementaryView.swift; sourceTree = "<group>"; };
+		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
 		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */,
+				55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */,
 				EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */,
 				55B496282D9E84EF00C6AB57 /* MyOffers */,
 			);
@@ -1341,6 +1344,7 @@
 				809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */,
 				55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */,
 				AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */,
+				55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */,
 				D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */,
 				1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */,
 				AC19FC892DD4E1849AE9CED9 /* FavoritesPresenter.swift in Sources */,

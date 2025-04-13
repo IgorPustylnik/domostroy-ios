@@ -11,5 +11,5 @@ import UIKit
 protocol MainTabBarViewInput: AnyObject {
     /// Method for setup initial state of view
     func configure(controllers: [UIViewController])
-    func setAdd(enabled: Bool)
+    func setCenterControl(enabled: Bool)
 }
