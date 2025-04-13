@@ -13,28 +13,48 @@ final class SearchSupplementaryView: UIView {
     // MARK: - Constants
 
     private enum Constants {
-        static let sortFiltersSpacing: CGFloat = 15
+        static let mainHStackSpacing: CGFloat = 10
+        static let rightHStackSpacing: CGFloat = 10
         static let imageSize: CGSize = .init(width: 18, height: 18)
     }
 
     // MARK: - UI Elements
 
-    private lazy var locationButton = {
+    private lazy var mainHStackView = {
+        $0.axis = .horizontal
+        $0.addArrangedSubview(cityButton)
+        $0.addArrangedSubview(spacer)
+        $0.addArrangedSubview(rightHStackView)
+        return $0
+    }(UIStackView())
+
+    private lazy var cityButton = {
         $0.image = .Search.location.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imageSize = Constants.imageSize
-        // TODO: Remove
-        $0.title = "Воронеж"
         $0.setAction { [weak self] in
-            self?.onOpenLocation?()
+            self?.onOpenCity?()
         }
         return $0
     }(DButton(type: .navbar))
 
+    private lazy var spacer = {
+        $0.snp.makeConstraints { make in
+            make.width.greaterThanOrEqualTo(Constants.mainHStackSpacing)
+        }
+        return $0
+    }(UIView())
+
+    private lazy var rightHStackView = {
+        $0.axis = .horizontal
+        $0.spacing = Constants.rightHStackSpacing
+        $0.addArrangedSubview(sortButton)
+        $0.addArrangedSubview(filtersButton)
+        return $0
+    }(UIStackView())
+
     private lazy var sortButton = {
         $0.image = .Search.sort.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imageSize = Constants.imageSize
-        // TODO: Remove
-        $0.title = "По умолчанию"
         $0.setAction { [weak self] in
             self?.onOpenSort?()
         }
@@ -44,8 +64,6 @@ final class SearchSupplementaryView: UIView {
     private lazy var filtersButton = {
         $0.image = .Search.filter.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imageSize = Constants.imageSize
-        // TODO: Remove
-        $0.title = "??"
         $0.setAction { [weak self] in
             self?.onOpenFilters?()
         }
@@ -54,7 +72,7 @@ final class SearchSupplementaryView: UIView {
 
     // MARK: - Properties
 
-    var onOpenLocation: EmptyClosure?
+    var onOpenCity: EmptyClosure?
     var onOpenSort: EmptyClosure?
     var onOpenFilters: EmptyClosure?
 
@@ -72,19 +90,9 @@ final class SearchSupplementaryView: UIView {
     // MARK: - UI Setup
 
     private func setupUI() {
-        addSubview(locationButton)
-        addSubview(sortButton)
-        addSubview(filtersButton)
-
-        locationButton.snp.makeConstraints { make in
-            make.leading.verticalEdges.equalToSuperview()
-        }
-        filtersButton.snp.makeConstraints { make in
-            make.trailing.verticalEdges.equalToSuperview()
-        }
-        sortButton.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.trailing.equalTo(filtersButton.snp.leading).offset(-Constants.sortFiltersSpacing)
+        addSubview(mainHStackView)
+        mainHStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 
@@ -94,17 +102,16 @@ final class SearchSupplementaryView: UIView {
 
 extension SearchSupplementaryView {
 
-    func set(location: String) {
-        locationButton.title = location
+    func set(city: String) {
+        cityButton.title = city
     }
 
     func set(sort: String) {
         sortButton.title = sort
     }
 
-    // TODO: Implement a badge
-    func set(filters: String) {
-        filtersButton.title = filters
+    func set(hasFilters: Bool) {
+        filtersButton.image = hasFilters ? .Search.filterEnabled : .Search.filter
     }
 
 }

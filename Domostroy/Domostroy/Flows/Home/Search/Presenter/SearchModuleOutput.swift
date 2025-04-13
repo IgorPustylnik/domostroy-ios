@@ -8,7 +8,7 @@
 
 protocol SearchModuleOutput: AnyObject {
     var onOpenOffer: ((Int) -> Void)? { get set }
-    var onOpenLocation: (() -> Void)? { get set }
-    var onOpenSort: (() -> Void)? { get set }
-    var onOpenFilters: (() -> Void)? { get set }
+    var onOpenCity: ((City?) -> Void)? { get set }
+    var onOpenSort: ((Sort) -> Void)? { get set }
+    var onOpenFilters: ((Filter?) -> Void)? { get set }
 }

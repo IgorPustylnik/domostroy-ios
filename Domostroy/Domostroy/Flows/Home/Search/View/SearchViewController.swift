@@ -56,8 +56,8 @@ final class SearchViewController: BaseViewController {
     }(DSearchTextField())
 
     private lazy var searchSupplementaryView = {
-        $0.onOpenLocation = { [weak self] in
-            self?.output?.openLocation()
+        $0.onOpenCity = { [weak self] in
+            self?.output?.openCity()
         }
         $0.onOpenSort = { [weak self] in
             self?.output?.openSort()
@@ -207,16 +207,16 @@ extension SearchViewController: SearchViewInput {
         searchTextField.setText(query)
     }
 
-    func set(location: String) {
-        searchSupplementaryView.set(location: location)
+    func set(city: String) {
+        searchSupplementaryView.set(city: city)
     }
 
     func set(sort: String) {
         searchSupplementaryView.set(sort: sort)
     }
 
-    func set(filters: String) {
-        searchSupplementaryView.set(filters: filters)
+    func set(hasFilters: Bool) {
+        searchSupplementaryView.set(hasFilters: hasFilters)
     }
 
     func showLoader() {

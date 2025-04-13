@@ -11,12 +11,13 @@ import ReactiveDataDisplayManager
 
 final class SearchModuleConfigurator {
 
-    func configure(query: String?) -> (
+    func configure() -> (
        SearchViewController,
-       SearchModuleOutput
+       SearchModuleOutput,
+       SearchModuleInput
     ) {
         let view = SearchViewController()
-        let presenter = SearchPresenter(query: query)
+        let presenter = SearchPresenter()
         let adapter = view.collectionView.rddm.baseBuilder
             .set(dataSource: { DiffableCollectionDataSource(provider: $0) })
             .add(plugin: .paginatable(progressView: view.progressView, output: presenter))
@@ -30,7 +31,7 @@ final class SearchModuleConfigurator {
         presenter.adapter = adapter
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

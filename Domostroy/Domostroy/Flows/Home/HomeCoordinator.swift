@@ -49,31 +49,32 @@ private extension HomeCoordinator {
     }
 
     func showSearch(query: String?) {
-        let (view, output) = SearchModuleConfigurator().configure(query: query)
+        let (view, output, input) = SearchModuleConfigurator().configure()
+        input.set(query: query)
         output.onOpenOffer = { [weak self] id in
             self?.showOfferDetails(id)
         }
-        output.onOpenLocation = { [weak self] in
-            self?.showLocation()
+        output.onOpenCity = { [weak self, weak input] city in
+            self?.showCity(city: city, input: input)
         }
-        output.onOpenSort = { [weak self] in
-            self?.showSort()
+        output.onOpenSort = { [weak self, weak input] sort in
+            self?.showSort(sort: sort, input: input)
         }
-        output.onOpenFilters = { [weak self] in
-            self?.showFilters()
+        output.onOpenFilters = { [weak self, weak input] filter in
+            self?.showFilters(filter: filter, input: input)
         }
         router.push(view, animated: true)
     }
 
-    func showLocation() {
+    func showCity(city: City?, input: SearchModuleInput?) {
 
     }
 
-    func showSort() {
+    func showSort(sort: Sort, input: SearchModuleInput?) {
 
     }
 
-    func showFilters() {
+    func showFilters(filter: Filter?, input: SearchModuleInput?) {
 
     }
 

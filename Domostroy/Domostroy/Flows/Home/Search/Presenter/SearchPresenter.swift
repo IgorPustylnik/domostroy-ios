@@ -10,6 +10,26 @@ import Foundation
 import UIKit
 import ReactiveDataDisplayManager
 
+enum Sort {
+    case `default`
+    case priceAscending
+    case priceDescending
+    case recent
+
+    var description: String {
+        switch self {
+        case .default:
+            return "Default"
+        case .priceAscending:
+            return "Price ascending"
+        case .priceDescending:
+            return "Price descending"
+        case .recent:
+            return "Most recent"
+        }
+    }
+}
+
 final class SearchPresenter: SearchModuleOutput {
 
     // MARK: - Constants
@@ -21,9 +41,9 @@ final class SearchPresenter: SearchModuleOutput {
     // MARK: - SearchModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onOpenLocation: (() -> Void)?
-    var onOpenSort: (() -> Void)?
-    var onOpenFilters: (() -> Void)?
+    var onOpenCity: ((City?) -> Void)?
+    var onOpenSort: ((Sort) -> Void)?
+    var onOpenFilters: ((Filter?) -> Void)?
 
     // MARK: - Properties
 
@@ -40,12 +60,9 @@ final class SearchPresenter: SearchModuleOutput {
     private var currentPage = 0
 
     private var offers: [Offer] = []
-
-    // MARK: - Init
-
-    init(query: String?) {
-        self.query = query
-    }
+    private var city: City?
+    private var sort: Sort = .default
+    private var filter: Filter = .init()
 
 }
 
@@ -53,6 +70,34 @@ final class SearchPresenter: SearchModuleOutput {
 
 extension SearchPresenter: SearchModuleInput {
 
+    func set(query: String?) {
+        self.query = query
+        view?.set(query: self.query)
+        isFirstPageLoading = false
+        loadFirstPage()
+    }
+
+    func set(city: City) {
+        self.city = city
+        view?.set(city: city.name)
+        isFirstPageLoading = false
+        loadFirstPage()
+    }
+
+    func set(sort: Sort) {
+        self.sort = sort
+        view?.set(sort: sort.description)
+        isFirstPageLoading = false
+        loadFirstPage()
+    }
+
+    func set(filter: Filter) {
+        self.filter = filter
+        // TODO: Check if empty
+        view?.set(hasFilters: true)
+        isFirstPageLoading = false
+        loadFirstPage()
+    }
 }
 
 // MARK: - SearchViewOutput
@@ -60,7 +105,8 @@ extension SearchPresenter: SearchModuleInput {
 extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
-        view?.set(query: self.query)
+        city = .init(id: 0, name: "Воронеж")
+        filter = .init()
         loadFirstPage()
     }
 
@@ -78,16 +124,16 @@ extension SearchPresenter: SearchViewOutput {
         view?.set(query: self.query)
     }
 
-    func openLocation() {
-        onOpenLocation?()
+    func openCity() {
+        onOpenCity?(city)
     }
 
     func openSort() {
-        onOpenSort?()
+        onOpenSort?(sort)
     }
 
     func openFilters() {
-        onOpenFilters?()
+        onOpenFilters?(filter)
     }
 
 }
