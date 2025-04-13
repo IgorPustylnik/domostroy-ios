@@ -102,7 +102,7 @@ final class SearchSupplementaryView: UIView {
 
 extension SearchSupplementaryView {
 
-    func set(city: String) {
+    func set(city: String?) {
         cityButton.title = city
     }
 

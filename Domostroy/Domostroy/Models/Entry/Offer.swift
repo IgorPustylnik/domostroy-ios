@@ -57,3 +57,7 @@ struct User: Codable {
 struct Calendar: Codable {
 
 }
+
+struct Filter {
+
+}

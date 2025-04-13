@@ -94,7 +94,7 @@ extension SearchPresenter: SearchModuleInput {
     func set(filter: Filter) {
         self.filter = filter
         // TODO: Check if empty
-        view?.set(hasFilters: true)
+        view?.set(hasFilters: false)
         isFirstPageLoading = false
         loadFirstPage()
     }
@@ -106,7 +106,10 @@ extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
         city = .init(id: 0, name: "Воронеж")
+        view?.set(city: city?.name)
+        view?.set(sort: sort.description)
         filter = .init()
+        view?.set(hasFilters: false)
         loadFirstPage()
     }
 

@@ -9,7 +9,7 @@
 protocol SearchViewInput: AnyObject {
     /// Method for setup initial state of view
     func set(query: String?)
-    func set(city: String)
+    func set(city: String?)
     func set(sort: String)
     func set(hasFilters: Bool)
     func showLoader()

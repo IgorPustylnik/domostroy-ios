@@ -165,8 +165,6 @@ final class SearchViewController: BaseViewController {
     }
 
     private func createOffersSection() -> NSCollectionLayoutSection {
-//        let header = makeSectionHeader()
-
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(Constants.cellHeight)
@@ -185,18 +183,9 @@ final class SearchViewController: BaseViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = Constants.sectionInsets
         section.interGroupSpacing = Constants.cellSpacing
-//        section.boundarySupplementaryItems = [header]
 
         return section
     }
-
-//    private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-//        NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: Constants.boundaryItemSize,
-//            elementKind: UICollectionView.elementKindSectionHeader,
-//            alignment: .top
-//        )
-//    }
 }
 
 // MARK: - SearchViewInput
@@ -207,7 +196,7 @@ extension SearchViewController: SearchViewInput {
         searchTextField.setText(query)
     }
 
-    func set(city: String) {
+    func set(city: String?) {
         searchSupplementaryView.set(city: city)
     }
 
