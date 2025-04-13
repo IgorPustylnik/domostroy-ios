@@ -1,14 +1,18 @@
 //
-//  HomeViewOutput.swift
+//  SearchViewOutput.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 11/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol HomeViewOutput {
+protocol SearchViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
     func setSearch(active: Bool)
     func search(query: String?)
+    func cancelSearch()
+    func openCity()
+    func openSort()
+    func openFilters()
 }

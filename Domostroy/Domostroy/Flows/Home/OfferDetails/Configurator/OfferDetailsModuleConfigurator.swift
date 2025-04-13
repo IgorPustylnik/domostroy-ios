@@ -10,12 +10,13 @@ import UIKit
 
 final class OfferDetailsModuleConfigurator {
 
-    func configure(offerId: Int) -> (
+    func configure() -> (
        OfferDetailsViewController,
-       OfferDetailsModuleOutput
+       OfferDetailsModuleOutput,
+       OfferDetailsModuleInput
     ) {
         let view = OfferDetailsViewController()
-        let presenter = OfferDetailsPresenter(id: offerId)
+        let presenter = OfferDetailsPresenter()
         let picturesAdapter = view.picturesCollectionView.rddm.baseBuilder
             .add(plugin: .accessibility())
             .add(plugin: .selectable())
@@ -25,7 +26,7 @@ final class OfferDetailsModuleConfigurator {
         presenter.picturesAdapter = picturesAdapter
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

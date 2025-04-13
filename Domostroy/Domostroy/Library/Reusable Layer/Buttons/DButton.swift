@@ -20,6 +20,7 @@ class DButton: UIControl {
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
         static let touchesInset: UIEdgeInsets = .init(top: -30, left: -30, bottom: -30, right: -30)
         static let hSpacing: CGFloat = 5
+        static let borderWidth: CGFloat = 1
         static let defaultCornerRadius: CGFloat = 14
         static let defaultImageSize: CGSize = .init(width: 24, height: 24)
         static let defaultInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
@@ -28,7 +29,7 @@ class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary
+        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary, navbar
     }
 
     enum ImagePlacement {
@@ -67,9 +68,11 @@ class DButton: UIControl {
     // MARK: - Init
 
     init(type: DButton.ButtonType = .filledPrimary) {
+        self.type = type
         super.init(frame: .zero)
         configure(type)
         updateImagePlacement()
+        trackTraitChanges()
     }
 
     required init?(coder: NSCoder) {
@@ -80,6 +83,8 @@ class DButton: UIControl {
 
     var actionHandler: (() -> Void)?
     private var highlightAnimator: UIViewPropertyAnimator?
+
+    var type: ButtonType
 
     var cornerRadius: CGFloat = Constants.defaultCornerRadius {
         didSet {
@@ -102,7 +107,7 @@ class DButton: UIControl {
             imageView.snp.remakeConstraints { make in
                 make.size.equalTo(newValue)
             }
-            hStackView.spacing = newValue.width / 5
+            //            hStackView.spacing = newValue.width / 5
         }
     }
 
@@ -115,6 +120,12 @@ class DButton: UIControl {
     var contentAlignment: UIStackView.Alignment = .center {
         didSet {
             hStackView.alignment = contentAlignment
+        }
+    }
+
+    var borderColor: UIColor = .clear {
+        didSet {
+            backgroundView.layer.borderColor = borderColor.cgColor
         }
     }
 
@@ -142,15 +153,16 @@ class DButton: UIControl {
         let height = max(
             titleLabel.frame.height, imageView.frame.height
         ) + insets.top + insets.bottom
-        let width = max(
-            backgroundView.frame.width,
-            titleLabel.frame.width + Constants.hSpacing + imageView.frame.width + insets.left + insets.right)
+        let width = titleLabel.frame.width + (
+            imageView.image != nil ? imageView.frame.width + hStackView.spacing : 0
+        ) + insets.left + insets.right
         return CGSize(width: width, height: height)
     }
 
     // MARK: - Configuration
 
     private func configure(_ type: DButton.ButtonType) {
+        setupConstraints()
         switch type {
         case .filledPrimary:
             backgroundView.backgroundColor = .Domostroy.primary
@@ -167,8 +179,20 @@ class DButton: UIControl {
         case .filledSecondary:
             backgroundView.backgroundColor = .secondarySystemBackground
             titleLabel.textColor = .label
+        case .navbar:
+            titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
+            backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
+            titleLabel.textColor = .label
+            hStackView.spacing = 12
+            insets = .init(top: 8, left: 10, bottom: 8, right: 10)
+            borderColor = .separator
         }
+    }
+
+    private func setupConstraints() {
         insertSubview(backgroundView, at: 0)
+        backgroundView.layer.borderWidth = Constants.borderWidth
+        backgroundView.layer.borderColor = borderColor.cgColor
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -264,6 +288,23 @@ private extension DButton {
             )
         }
         highlightAnimator?.startAnimation()
+    }
+
+    private func trackTraitChanges() {
+        registerForTraitChanges(
+            [UITraitUserInterfaceStyle.self]
+        ) { [weak self] (_: Self, _: UITraitCollection) in
+            self?.updateCGColors()
+        }
+    }
+
+    private func updateCGColors() {
+        switch type {
+        case .navbar:
+            backgroundView.layer.borderColor = borderColor.cgColor
+        default:
+            break
+        }
     }
 
 }

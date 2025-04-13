@@ -15,25 +15,24 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
     // MARK: - OfferDetailsModuleOutput
 
+    var onOpenUser: ((Int) -> Void)?
+
     // MARK: - Properties
 
     weak var view: OfferDetailsViewInput?
 
-    private var offerId: Int
+    private var offerId: Int?
 
     var picturesAdapter: BaseCollectionManager?
-
-    // MARK: - Init
-
-    init(id: Int) {
-        self.offerId = id
-    }
 
 }
 
 private extension OfferDetailsPresenter {
 
     func fetchOffer() {
+        guard let offerId else {
+            return
+        }
         view?.setLoading(true)
         Task {
             let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: offerId)
@@ -67,7 +66,7 @@ private extension OfferDetailsPresenter {
                                 self?.fetchUser(url: url, userView: userView)
                             },
                             openProfile: { [weak self] in
-                                self?.openUser(url: _Temporary_EndpointConstructor.user(id: offer.userId).url)
+                                self?.openUser(id: offer.userId)
                             }
                         )
                     )
@@ -91,8 +90,8 @@ private extension OfferDetailsPresenter {
         }
     }
 
-    func openUser(url: URL?) {
-        print(url)
+    func openUser(id: Int) {
+        onOpenUser?(id)
     }
 
     func fillPictures(for offer: Offer) {
@@ -128,6 +127,10 @@ private extension OfferDetailsPresenter {
 // MARK: - OfferDetailsModuleInput
 
 extension OfferDetailsPresenter: OfferDetailsModuleInput {
+
+    func set(offerId: Int?) {
+        self.offerId = offerId
+    }
 
 }
 

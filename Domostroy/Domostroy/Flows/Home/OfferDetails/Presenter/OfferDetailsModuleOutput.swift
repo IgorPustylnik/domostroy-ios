@@ -7,4 +7,5 @@
 //
 
 protocol OfferDetailsModuleOutput: AnyObject {
+    var onOpenUser: ((Int) -> Void)? { get set }
 }

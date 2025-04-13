@@ -1,16 +1,14 @@
 //
-//  HomeViewController.swift
+//  SearchViewController.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 11/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import UIKit
-import SnapKit
-import ReactiveDataDisplayManager
 
-final class HomeViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
 
     // MARK: - Constants
 
@@ -25,10 +23,19 @@ final class HomeViewController: BaseViewController {
                                    heightDimension: .estimated(estimatedHeight))
         }()
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        static let searchHStackSpacing: CGFloat = 10
+        static let searchSupplementaryViewHeight: CGFloat = 36
         static let animationDuration: Double = 0.3
     }
 
     // MARK: - UI Elements
+
+    private lazy var searchHStackView = {
+        $0.axis = .horizontal
+        $0.spacing = Constants.searchHStackSpacing
+        $0.addArrangedSubview(searchTextField)
+        return $0
+    }(UIStackView())
 
     private lazy var searchTextField: DSearchTextField = {
         $0.onBeginEditing = { [weak self] _ in
@@ -43,10 +50,34 @@ final class HomeViewController: BaseViewController {
             textField.text = ""
         }
         $0.onCancel = { [weak self] textField in
-            textField.text = ""
+            self?.output?.cancelSearch()
         }
         return $0
     }(DSearchTextField())
+
+    private lazy var searchSupplementaryView = {
+        $0.onOpenCity = { [weak self] in
+            self?.output?.openCity()
+        }
+        $0.onOpenSort = { [weak self] in
+            self?.output?.openSort()
+        }
+        $0.onOpenFilters = { [weak self] in
+            self?.output?.openFilters()
+        }
+        return $0
+    }(SearchSupplementaryView())
+
+    private lazy var backButton = {
+        $0.snp.makeConstraints { make in
+            make.width.equalTo(24)
+        }
+        $0.setAction { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        $0.image = .NavigationBar.chevronLeft.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        return $0
+    }(DButton(type: .plainPrimary))
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -58,7 +89,7 @@ final class HomeViewController: BaseViewController {
     lazy var progressView = PaginatorView()
     lazy var refreshControl = UIRefreshControl()
 
-    var output: HomeViewOutput?
+    var output: SearchViewOutput?
 
     // MARK: - UIViewController
 
@@ -68,6 +99,7 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
+        setupSearchSupplementaryView()
         output?.viewLoaded()
     }
 
@@ -83,7 +115,21 @@ final class HomeViewController: BaseViewController {
 
     private func setupNavigationBar() {
         navigationBar.showsMainBar = false
-        navigationBar.addArrangedSubview(searchTextField)
+        navigationBar.addArrangedSubview(searchHStackView)
+        addBackButtonIfNeeded()
+    }
+
+    private func addBackButtonIfNeeded() {
+        if shouldShowBackButton {
+            searchHStackView.insertArrangedSubview(backButton, at: 0)
+        }
+    }
+
+    private func setupSearchSupplementaryView() {
+        navigationBar.addArrangedSubview(searchSupplementaryView)
+        searchSupplementaryView.snp.makeConstraints { make in
+            make.height.equalTo(Constants.searchSupplementaryViewHeight)
+        }
     }
 
     private func setupCollectionView() {
@@ -97,7 +143,7 @@ final class HomeViewController: BaseViewController {
         observeScrollOffset(collectionView)
     }
 
-    func setupSearchOverlayView() {
+    private func setupSearchOverlayView() {
         view.addSubview(overlayView)
         overlayView.backgroundColor = .systemBackground
         overlayView.alpha = 0
@@ -119,8 +165,6 @@ final class HomeViewController: BaseViewController {
     }
 
     private func createOffersSection() -> NSCollectionLayoutSection {
-        let header = makeSectionHeader()
-
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(Constants.cellHeight)
@@ -139,26 +183,29 @@ final class HomeViewController: BaseViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = Constants.sectionInsets
         section.interGroupSpacing = Constants.cellSpacing
-        section.boundarySupplementaryItems = [header]
 
         return section
     }
-
-    private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: Constants.boundaryItemSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-    }
 }
 
-// MARK: - HomeViewInput
+// MARK: - SearchViewInput
 
-extension HomeViewController: HomeViewInput {
+extension SearchViewController: SearchViewInput {
 
-    func setupInitialState() {
+    func set(query: String?) {
+        searchTextField.setText(query)
+    }
 
+    func set(city: String?) {
+        searchSupplementaryView.set(city: city)
+    }
+
+    func set(sort: String) {
+        searchSupplementaryView.set(sort: sort)
+    }
+
+    func set(hasFilters: Bool) {
+        searchSupplementaryView.set(hasFilters: hasFilters)
     }
 
     func showLoader() {
@@ -172,6 +219,14 @@ extension HomeViewController: HomeViewInput {
     }
 
     func setSearchOverlay(active: Bool) {
+        if active {
+            searchSupplementaryView.removeFromSuperview()
+        } else {
+            self.navigationBar.addArrangedSubview(searchSupplementaryView)
+        }
+        navigationBar.setNeedsLayout()
+        navigationBar.layoutIfNeeded()
+        navigationBar.invalidateIntrinsicContentSize()
         UIView.animate(withDuration: Constants.animationDuration) {
             if active {
                 self.overlayView.alpha = 1
