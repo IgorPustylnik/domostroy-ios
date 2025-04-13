@@ -8,6 +8,20 @@
 
 import UIKit
 
+private enum LaunchInstructor {
+    case auth
+    case offers
+
+    static func configure(userState: UserState) -> LaunchInstructor {
+        switch userState {
+        case .authorized:
+            return .offers
+        case .unauthorized:
+            return .auth
+        }
+    }
+}
+
 final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
 
     // MARK: - MyOffersCoordinatorOutput
@@ -20,14 +34,27 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
 
     private var onTapCenterControl: EmptyClosure?
 
+    private var instructor: LaunchInstructor {
+        // TODO: Get from UserDefaults
+        let state = UserState.authorized
+        return .configure(userState: state)
+    }
+
     // MARK: - Initialization
 
     init(router: Router) {
         self.router = router
     }
 
+    // MARK: - Coordinator
+
     override func start() {
-        showMyOffers()
+        switch instructor {
+        case .auth:
+            runAuthFlow()
+        case .offers:
+            showMyOffers()
+        }
     }
 
 }
@@ -44,6 +71,12 @@ extension MyOffersCoordinator: MyOffersCoordinatorInput {
 
 private extension MyOffersCoordinator {
 
+    func runAuthFlow() {
+        let coordinator = AuthCoordinator(router: router)
+        addDependency(coordinator)
+        coordinator.start()
+    }
+
     func showMyOffers() {
         let (view, output, input) = MyOffersModuleConfigurator().configure()
         self.onTapCenterControl = { [weak input] in
@@ -52,7 +85,28 @@ private extension MyOffersCoordinator {
         output.onSetCenterControlEnabled = { [weak self] enabled in
             self?.onSetTabBarCenterControlEnabled?(enabled)
         }
+        output.onAdd = { [weak self] in
+            self?.addOffer()
+        }
+        output.onOpenOffer = { [weak self] id in
+            self?.showOffer(id: id)
+        }
+        output.onEditOffer = { [weak self] id in
+            self?.editOffer(id: id)
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func addOffer() {
+        print("add offer")
+    }
+
+    func showOffer(id: Int) {
+        print("show offer id: \(id)")
+    }
+
+    func editOffer(id: Int) {
+        print("edit offer id: \(id)")
     }
 
 }
