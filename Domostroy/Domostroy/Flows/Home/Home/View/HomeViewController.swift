@@ -161,14 +161,14 @@ extension HomeViewController: HomeViewInput {
 
     }
 
-    func showLoader() {
-        activityIndicator.isHidden = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-    }
-
-    func hideLoader() {
-        activityIndicator.stopAnimating()
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 
     func setSearchOverlay(active: Bool) {

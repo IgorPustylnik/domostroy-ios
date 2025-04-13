@@ -321,7 +321,7 @@ private extension SearchPresenter {
         adapter?.forceRefill()
         // TODO: Localize
 //        adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "Recommended"))
-        view?.showLoader()
+        view?.setLoading(true)
 
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
@@ -340,13 +340,13 @@ private extension SearchPresenter {
                     self.adapter?.addCellGenerators(self.offers.map { self.makeGenerator(from: $0) })
                     self.adapter?.forceRefill()
 
-                    self.view?.hideLoader()
+                    self.view?.setLoading(false)
                     self.paginatableInput?.updatePagination(canIterate: true)
                     self.paginatableInput?.updateProgress(isLoading: false)
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.view?.hideLoader()
+                    self.view?.setLoading(false)
                     self.paginatableInput?.updateProgress(isLoading: false)
                     self.paginatableInput?.updateError(error)
                 }

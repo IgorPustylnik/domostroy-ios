@@ -36,4 +36,14 @@ extension MyOffersViewController: MyOffersViewInput {
 
     }
 
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+
 }

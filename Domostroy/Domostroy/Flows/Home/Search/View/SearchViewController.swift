@@ -16,12 +16,6 @@ final class SearchViewController: BaseViewController {
         static let cellSpacing: CGFloat = 8
         static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
-        static let boundaryItemSize: NSCollectionLayoutSize = {
-            let estimatedHeight = TitleCollectionReusableView.getHeight(forWidth: UIScreen.main.bounds.width,
-                                                                        with: "Some section")
-            return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                   heightDimension: .estimated(estimatedHeight))
-        }()
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         static let searchHStackSpacing: CGFloat = 10
         static let searchSupplementaryViewHeight: CGFloat = 36
@@ -208,14 +202,14 @@ extension SearchViewController: SearchViewInput {
         searchSupplementaryView.set(hasFilters: hasFilters)
     }
 
-    func showLoader() {
-        activityIndicator.isHidden = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-    }
-
-    func hideLoader() {
-        activityIndicator.stopAnimating()
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 
     func setSearchOverlay(active: Bool) {

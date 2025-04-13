@@ -6,7 +6,7 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol MyOffersViewInput: AnyObject {
+protocol MyOffersViewInput: AnyObject, Loadable {
     /// Method for setup initial state of view
     func setupInitialState()
 }
