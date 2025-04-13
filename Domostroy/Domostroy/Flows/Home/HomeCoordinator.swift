@@ -44,7 +44,11 @@ private extension HomeCoordinator {
     }
 
     func showOfferDetails(_ id: Int) {
-        let (view, output) = OfferDetailsModuleConfigurator().configure(offerId: id)
+        let (view, output, input) = OfferDetailsModuleConfigurator().configure()
+        input.set(offerId: id)
+        output.onOpenUser = { [weak self] id in
+
+        }
         router.push(view, animated: true)
     }
 
