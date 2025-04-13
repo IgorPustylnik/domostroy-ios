@@ -62,7 +62,7 @@ final class SearchSupplementaryView: UIView {
     }(DButton(type: .navbar))
 
     private lazy var filtersButton = {
-        $0.image = .Search.filter.withTintColor(.label, renderingMode: .alwaysOriginal)
+        $0.image = .Search.filter
         $0.imageSize = Constants.imageSize
         $0.setAction { [weak self] in
             self?.onOpenFilters?()

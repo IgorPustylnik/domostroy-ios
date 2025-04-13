@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "filter_search.pdf",
+      "filename" : "filter_search_enabled.pdf",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "filter_search_dark.pdf",
+      "filename" : "filter_search_enabled_dark.pdf",
       "idiom" : "universal"
     }
   ],
