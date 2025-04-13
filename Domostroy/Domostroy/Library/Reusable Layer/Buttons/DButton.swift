@@ -107,7 +107,7 @@ class DButton: UIControl {
             imageView.snp.remakeConstraints { make in
                 make.size.equalTo(newValue)
             }
-            hStackView.spacing = newValue.width / 5
+            //            hStackView.spacing = newValue.width / 5
         }
     }
 
@@ -162,6 +162,7 @@ class DButton: UIControl {
     // MARK: - Configuration
 
     private func configure(_ type: DButton.ButtonType) {
+        setupConstraints()
         switch type {
         case .filledPrimary:
             backgroundView.backgroundColor = .Domostroy.primary
@@ -182,8 +183,13 @@ class DButton: UIControl {
             titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
             backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
             titleLabel.textColor = .label
+            hStackView.spacing = 12
+            insets = .init(top: 8, left: 10, bottom: 8, right: 10)
             borderColor = .separator
         }
+    }
+
+    private func setupConstraints() {
         insertSubview(backgroundView, at: 0)
         backgroundView.layer.borderWidth = Constants.borderWidth
         backgroundView.layer.borderColor = borderColor.cgColor
