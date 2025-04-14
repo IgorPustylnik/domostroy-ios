@@ -42,8 +42,6 @@ final class MyOffersPresenter: MyOffersModuleOutput {
     private var pagesCount = 0
     private var currentPage = 0
 
-    private var offers: [Offer] = []
-
     private var isCenterControlEnabled: Bool = true {
         didSet {
             onSetCenterControlEnabled?(isCenterControlEnabled)
@@ -84,19 +82,18 @@ extension MyOffersPresenter: RefreshableOutput {
                 guard let self else {
                     return
                 }
-                self.offers = page.offers
                 self.currentPage = page.pagination.currentPage
                 self.pagesCount = page.pagination.totalPages
 
+                self.view?.setEmptyState(page.offers.isEmpty)
                 self.adapter?.clearCellGenerators()
-                self.adapter?.addCellGenerators(self.offers.map { self.makeGenerator(from: $0) })
+                self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
                 self.adapter?.forceRefill()
 
                 input.endRefreshing()
             }
         }
     }
-
 }
 
 // MARK: - PaginatableOutput
@@ -211,14 +208,13 @@ private extension MyOffersPresenter {
                 }
 
                 var newGenerators = [CollectionCellGenerator]()
-                let newOffers = page.offers
-                self.offers = newOffers
                 self.currentPage = page.pagination.currentPage
                 self.pagesCount = page.pagination.totalPages
                 self.isFirstPageLoading = false
 
-                newGenerators = newOffers.map { self.makeGenerator(from: $0) }
+                newGenerators = page.offers.map { self.makeGenerator(from: $0) }
 
+                self.view?.setEmptyState(page.offers.isEmpty)
                 self.paginatableInput?.updateProgress(isLoading: false)
                 self.paginatableInput?.updatePagination(canIterate: true)
 
@@ -250,15 +246,15 @@ private extension MyOffersPresenter {
                 let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
 
                 DispatchQueue.main.async {
-                    self.offers = page.offers
                     self.currentPage = page.pagination.currentPage
                     self.pagesCount = page.pagination.totalPages
                     self.isFirstPageLoading = false
 
                     self.adapter?.clearCellGenerators()
-                    self.adapter?.addCellGenerators(self.offers.map { self.makeGenerator(from: $0) })
+                    self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
                     self.adapter?.forceRefill()
 
+                    self.view?.setEmptyState(page.offers.isEmpty)
                     self.view?.setLoading(false)
                     self.paginatableInput?.updatePagination(canIterate: true)
                     self.paginatableInput?.updateProgress(isLoading: false)

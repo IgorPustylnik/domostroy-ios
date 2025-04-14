@@ -48,7 +48,7 @@
 		43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */; };
 		46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F96F662B07F1B4C4724559 /* AuthModuleInput.swift */; };
 		487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */; };
-		4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersView.swift */; };
+		4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */; };
 		5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2D0FFBF84EB88DC41044F /* OfferDetailsPresenter.swift */; };
 		52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */; };
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
@@ -80,6 +80,7 @@
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
+		55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294D2DAD198900E09764 /* EmptyStateable.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
 		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
 		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
@@ -229,6 +230,7 @@
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSupplementaryView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
+		55D6294D2DAD198900E09764 /* EmptyStateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateable.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
 		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
@@ -298,7 +300,7 @@
 		C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsViewOutput.swift; sourceTree = "<group>"; };
 		CAE413E1C587DAFD9750BC70 /* CodeConfirmationModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleConfigurator.swift; sourceTree = "<group>"; };
-		CC261E0698252AFBE37038FF /* MyOffersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersView.swift; sourceTree = "<group>"; };
+		CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersEmptyView.swift; sourceTree = "<group>"; };
 		CF267EE7C0DA7BE112DC96E1 /* SearchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		D13C6AB792CD79F24770CB95 /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
 		D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinator.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				55631AD22D95FB3900FD6856 /* Presentable.swift */,
 				55631AD42D95FB3900FD6856 /* Router.swift */,
 				55ED677A2DA7D33F00A3CA52 /* Loadable.swift */,
+				55D6294D2DAD198900E09764 /* EmptyStateable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -925,7 +928,7 @@
 			isa = PBXGroup;
 			children = (
 				F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */,
-				CC261E0698252AFBE37038FF /* MyOffersView.swift */,
+				CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */,
 				1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */,
 				2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */,
 			);
@@ -1363,7 +1366,7 @@
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
-				4B36364F2A0167A41333AB66 /* MyOffersView.swift in Sources */,
+				4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
 				849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */,
@@ -1413,6 +1416,7 @@
 				6F138DB8D6E4389872D83153 /* LoginView.swift in Sources */,
 				F7200521E0364B5BB1C69C27 /* LoginViewInput.swift in Sources */,
 				55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */,
+				55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */,
 				CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */,
 				AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */,
 				55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */,

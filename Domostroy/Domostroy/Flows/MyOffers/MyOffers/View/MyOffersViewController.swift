@@ -28,6 +28,8 @@ final class MyOffersViewController: BaseViewController {
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 
+    private var emptyView = MyOffersEmptyView()
+
     lazy var progressView = PaginatorView()
     lazy var refreshControl = UIRefreshControl()
 
@@ -38,6 +40,7 @@ final class MyOffersViewController: BaseViewController {
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
+        setupEmptyState()
         output?.viewLoaded()
     }
 
@@ -52,6 +55,7 @@ final class MyOffersViewController: BaseViewController {
     }
 
     private func setupNavigationBar() {
+        // TODO: Localize
         navigationBar.title = "My offers"
     }
 
@@ -100,6 +104,15 @@ final class MyOffersViewController: BaseViewController {
 
         return section
     }
+
+    private func setupEmptyState() {
+        collectionView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-Constants.progressViewHeight)
+            make.centerX.equalToSuperview()
+        }
+        emptyView.alpha = 0
+    }
 }
 
 // MARK: - MyOffersViewInput
@@ -118,6 +131,10 @@ extension MyOffersViewController: MyOffersViewInput {
         } else {
             activityIndicator.stopAnimating()
         }
+    }
+
+    func setEmptyState(_ isEmpty: Bool) {
+        emptyView.alpha = isEmpty ? 1 : 0
     }
 
 }
