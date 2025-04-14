@@ -252,7 +252,7 @@ private extension HomePresenter {
                 return
             }
 
-            // self.view?.setEmptyState(page.offers.isEmpty)
+             self.view?.setEmptyState(page.offers.isEmpty)
             self.adapter?.clearCellGenerators()
             self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
             self.adapter?.forceRefill()

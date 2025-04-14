@@ -6,7 +6,7 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol HomeViewInput: AnyObject, Loadable {
+protocol HomeViewInput: AnyObject, Loadable, EmptyStateable {
     /// Method for setup initial state of view
     func setupInitialState()
     func setSearchOverlay(active: Bool)

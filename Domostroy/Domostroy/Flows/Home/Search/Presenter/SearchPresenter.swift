@@ -115,6 +115,7 @@ extension SearchPresenter: SearchViewOutput {
 
     func search(query: String?) {
         self.query = query
+        view?.setEmptyState(false)
         loadFirstPage()
     }
 
@@ -257,6 +258,8 @@ private extension SearchPresenter {
 
     func loadFirstPage() {
         view?.setLoading(true)
+        adapter?.clearCellGenerators()
+        adapter?.forceRefill()
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
@@ -321,7 +324,7 @@ private extension SearchPresenter {
                 return
             }
 
-//            self.view?.setEmptyState(page.offers.isEmpty)
+            self.view?.setEmptyState(page.offers.isEmpty)
             self.adapter?.clearCellGenerators()
             self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
             self.adapter?.forceRefill()

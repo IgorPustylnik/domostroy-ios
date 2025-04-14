@@ -76,6 +76,8 @@ final class SearchViewController: BaseViewController {
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+    private var emptyView = SearchEmptyView()
+
     private lazy var overlayView = UIView()
 
     // MARK: - Private Properties
@@ -90,6 +92,7 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         setupCollectionView()
         setupSearchOverlayView()
+        setupEmptyView()
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
@@ -180,11 +183,28 @@ final class SearchViewController: BaseViewController {
 
         return section
     }
+
+    private func setupEmptyView() {
+        collectionView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+                .offset(-Constants.progressViewHeight - Constants.searchSupplementaryViewHeight)
+            make.centerX.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        emptyView.alpha = 0
+    }
 }
 
 // MARK: - SearchViewInput
 
 extension SearchViewController: SearchViewInput {
+
+    func setEmptyState(_ isEmpty: Bool) {
+        UIView.animate(withDuration: Constants.animationDuration) {
+            self.emptyView.alpha = isEmpty ? 1 : 0
+        }
+    }
 
     func set(query: String?) {
         searchTextField.setText(query)

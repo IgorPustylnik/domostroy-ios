@@ -6,7 +6,7 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol SearchViewInput: AnyObject, Loadable {
+protocol SearchViewInput: AnyObject, Loadable, EmptyStateable {
     /// Method for setup initial state of view
     func set(query: String?)
     func set(city: String?)

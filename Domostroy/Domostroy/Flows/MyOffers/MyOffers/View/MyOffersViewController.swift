@@ -17,6 +17,7 @@ final class MyOffersViewController: BaseViewController {
         static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        static let animationDuration: Double = 0.3
     }
 
     // MARK: - Properties
@@ -37,10 +38,10 @@ final class MyOffersViewController: BaseViewController {
 
     override func viewDidLoad() {
         setupCollectionView()
+        setupEmptyView()
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
-        setupEmptyState()
         output?.viewLoaded()
     }
 
@@ -105,11 +106,12 @@ final class MyOffersViewController: BaseViewController {
         return section
     }
 
-    private func setupEmptyState() {
+    private func setupEmptyView() {
         collectionView.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(-Constants.progressViewHeight)
             make.centerX.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
         }
         emptyView.alpha = 0
     }
@@ -134,7 +136,9 @@ extension MyOffersViewController: MyOffersViewInput {
     }
 
     func setEmptyState(_ isEmpty: Bool) {
-        emptyView.alpha = isEmpty ? 1 : 0
+        UIView.animate(withDuration: Constants.animationDuration) {
+            self.emptyView.alpha = isEmpty ? 1 : 0
+        }
     }
 
 }

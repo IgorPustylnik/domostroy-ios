@@ -25,7 +25,7 @@ final class DSearchTextField: UIView {
         static let leftImageSize: CGSize = .init(width: 24, height: 24)
         static let clearButtonSize: CGSize = .init(width: 24, height: 24)
         static let clearButtonImageSize: CGSize = .init(width: 10, height: 10)
-        static let clearButtonPadding: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 9)
+        static let clearButtonPadding: UIEdgeInsets = .init(top: 16, left: 9, bottom: 16, right: 9)
 
         static let animationDuration: TimeInterval = 0.3
     }

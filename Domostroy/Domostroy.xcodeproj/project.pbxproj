@@ -81,6 +81,8 @@
 		55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
 		55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294D2DAD198900E09764 /* EmptyStateable.swift */; };
+		55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */; };
+		55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D629512DAD755900E09764 /* HomeEmptyView.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
 		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
 		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
@@ -231,6 +233,8 @@
 		55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSupplementaryView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
 		55D6294D2DAD198900E09764 /* EmptyStateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateable.swift; sourceTree = "<group>"; };
+		55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
+		55D629512DAD755900E09764 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
 		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				9D9D67353BACE0AD858B9145 /* HomeViewController.swift */,
+				55D629512DAD755900E09764 /* HomeEmptyView.swift */,
 				B663603110F1B42CB6CFBC21 /* HomeViewInput.swift */,
 				DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */,
 			);
@@ -869,6 +874,7 @@
 			children = (
 				899F0314E1FEB36AB9A92F5C /* SearchViewController.swift */,
 				55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */,
+				55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */,
 				7C8152BD3AD0B9078F2922EA /* SearchViewInput.swift */,
 				200F5CF2F2BE8575E819E6C1 /* SearchViewOutput.swift */,
 			);
@@ -1366,6 +1372,7 @@
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
+				55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
@@ -1410,6 +1417,7 @@
 				CD8B8D07E84B499AB98B08E4 /* AuthViewOutput.swift in Sources */,
 				1659E76B0E946C0025CF1E08 /* LoginModuleConfigurator.swift in Sources */,
 				878026C1C4230791368A13ED /* LoginPresenter.swift in Sources */,
+				55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */,
 				2F69917961E28819CC7968A3 /* LoginModuleInput.swift in Sources */,
 				25644132567969AE8290743C /* LoginModuleOutput.swift in Sources */,
 				1D0E74636D07EEB53B406299 /* LoginViewController.swift in Sources */,

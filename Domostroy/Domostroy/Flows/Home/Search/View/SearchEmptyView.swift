@@ -1,15 +1,14 @@
 //
-//  MyOffersEmptyView.swift
+//  SearchEmptyView.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
-//  Copyright © 2025 Domostroy. All rights reserved.
+//  Created by Игорь Пустыльник on 14.04.2025.
 //
 
 import UIKit
 import SnapKit
 
-final class MyOffersEmptyView: UIView {
+final class SearchEmptyView: UIView {
 
     // MARK: - Constants
 
@@ -22,7 +21,6 @@ final class MyOffersEmptyView: UIView {
 
     private lazy var mainVStackView = {
         $0.axis = .vertical
-        $0.alignment = .center
         $0.spacing = Constants.mainVStackSpacing
         $0.addArrangedSubview(imageView)
         $0.addArrangedSubview(messageLabel)
@@ -30,14 +28,14 @@ final class MyOffersEmptyView: UIView {
     }(UIStackView())
 
     private lazy var imageView = {
-        $0.image = .EmptyStates.toolbox
+        $0.image = .EmptyStates.emptyBox
         $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
 
     private lazy var messageLabel = {
         // TODO: - Localize
-        $0.text = "You have not posted any offers yet"
+        $0.text = "Nothing found"
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textAlignment = .center
         $0.numberOfLines = 0
