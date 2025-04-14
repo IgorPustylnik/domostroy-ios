@@ -17,6 +17,7 @@ final class MainTabBarView: UIView {
         $0.image = .MainTabBar.plus
         $0.imageSize = .init(width: 32, height: 32)
         $0.cornerRadius = 28
+        $0.insets = .zero
         $0.setAction { [weak self] in
             self?.didTapCenter?()
         }

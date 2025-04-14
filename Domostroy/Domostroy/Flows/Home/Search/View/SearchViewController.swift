@@ -66,6 +66,7 @@ final class SearchViewController: BaseViewController {
         $0.snp.makeConstraints { make in
             make.width.equalTo(24)
         }
+        $0.insets = .zero
         $0.setAction { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

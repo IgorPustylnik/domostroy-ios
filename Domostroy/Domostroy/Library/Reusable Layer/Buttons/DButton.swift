@@ -47,6 +47,9 @@ class DButton: UIControl {
     private lazy var imageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.isHidden = true
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(imageSize)
+        }
         return $0
     }(UIImageView())
 
@@ -99,15 +102,11 @@ class DButton: UIControl {
         }
     }
 
-    var imageSize: CGSize {
-        get {
-            imageView.frame.size
-        }
-        set {
+    var imageSize: CGSize = Constants.defaultImageSize {
+        didSet {
             imageView.snp.remakeConstraints { make in
-                make.size.equalTo(newValue)
+                make.size.equalTo(imageSize)
             }
-            //            hStackView.spacing = newValue.width / 5
         }
     }
 
@@ -140,23 +139,19 @@ class DButton: UIControl {
         }
     }
 
-    var insets: UIEdgeInsets = Constants.defaultInsets
+    var insets: UIEdgeInsets = Constants.defaultInsets {
+        didSet {
+            hStackView.snp.remakeConstraints { make in
+                make.center.equalToSuperview()
+                make.edges.equalToSuperview().inset(insets).priority(.medium)
+            }
+        }
+    }
 
     override var isEnabled: Bool {
         didSet {
             alpha = isEnabled ? 1 : Constants.disabledAlpha
         }
-    }
-
-    override var intrinsicContentSize: CGSize {
-        layoutIfNeeded()
-        let height = max(
-            titleLabel.frame.height, imageView.frame.height
-        ) + insets.top + insets.bottom
-        let width = titleLabel.frame.width + (
-            imageView.image != nil ? imageView.frame.width + hStackView.spacing : 0
-        ) + insets.left + insets.right
-        return CGSize(width: width, height: height)
     }
 
     // MARK: - Configuration
@@ -199,9 +194,7 @@ class DButton: UIControl {
         backgroundView.addSubview(hStackView)
         hStackView.snp.makeConstraints { make in
             make.center.equalTo(snp.center)
-        }
-        imageView.snp.makeConstraints { make in
-            make.size.equalTo(Constants.defaultImageSize)
+            make.edges.equalToSuperview().inset(insets).priority(.medium)
         }
     }
 
