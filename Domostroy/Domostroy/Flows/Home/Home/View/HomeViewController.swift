@@ -51,6 +51,8 @@ final class HomeViewController: BaseViewController {
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+    private lazy var emptyView = HomeEmptyView()
+
     private lazy var overlayView = UIView()
 
     // MARK: - Private Properties
@@ -65,6 +67,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         setupCollectionView()
         setupSearchOverlayView()
+        setupEmptyView()
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
@@ -151,6 +154,16 @@ final class HomeViewController: BaseViewController {
             alignment: .top
         )
     }
+
+    private func setupEmptyView() {
+        collectionView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-Constants.progressViewHeight)
+            make.centerX.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        emptyView.alpha = 0
+    }
 }
 
 // MARK: - HomeViewInput
@@ -161,14 +174,20 @@ extension HomeViewController: HomeViewInput {
 
     }
 
-    func showLoader() {
-        activityIndicator.isHidden = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
+    func setEmptyState(_ isEmpty: Bool) {
+        UIView.animate(withDuration: Constants.animationDuration) {
+            self.emptyView.alpha = isEmpty ? 1 : 0
+        }
     }
 
-    func hideLoader() {
-        activityIndicator.stopAnimating()
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 
     func setSearchOverlay(active: Bool) {

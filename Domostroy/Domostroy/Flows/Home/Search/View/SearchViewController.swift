@@ -16,12 +16,6 @@ final class SearchViewController: BaseViewController {
         static let cellSpacing: CGFloat = 8
         static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
-        static let boundaryItemSize: NSCollectionLayoutSize = {
-            let estimatedHeight = TitleCollectionReusableView.getHeight(forWidth: UIScreen.main.bounds.width,
-                                                                        with: "Some section")
-            return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                   heightDimension: .estimated(estimatedHeight))
-        }()
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         static let searchHStackSpacing: CGFloat = 10
         static let searchSupplementaryViewHeight: CGFloat = 36
@@ -47,10 +41,9 @@ final class SearchViewController: BaseViewController {
         $0.onShouldReturn = { [weak self] textField in
             self?.output?.setSearch(active: false)
             self?.output?.search(query: textField.text)
-            textField.text = ""
         }
         $0.onCancel = { [weak self] textField in
-            self?.output?.cancelSearch()
+            self?.output?.cancelSearchFieldInput()
         }
         return $0
     }(DSearchTextField())
@@ -72,6 +65,7 @@ final class SearchViewController: BaseViewController {
         $0.snp.makeConstraints { make in
             make.width.equalTo(24)
         }
+        $0.insets = .zero
         $0.setAction { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -81,6 +75,8 @@ final class SearchViewController: BaseViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+    private var emptyView = SearchEmptyView()
 
     private lazy var overlayView = UIView()
 
@@ -96,6 +92,7 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         setupCollectionView()
         setupSearchOverlayView()
+        setupEmptyView()
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
@@ -186,11 +183,28 @@ final class SearchViewController: BaseViewController {
 
         return section
     }
+
+    private func setupEmptyView() {
+        collectionView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+                .offset(-Constants.progressViewHeight - Constants.searchSupplementaryViewHeight)
+            make.centerX.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        emptyView.alpha = 0
+    }
 }
 
 // MARK: - SearchViewInput
 
 extension SearchViewController: SearchViewInput {
+
+    func setEmptyState(_ isEmpty: Bool) {
+        UIView.animate(withDuration: Constants.animationDuration) {
+            self.emptyView.alpha = isEmpty ? 1 : 0
+        }
+    }
 
     func set(query: String?) {
         searchTextField.setText(query)
@@ -208,14 +222,14 @@ extension SearchViewController: SearchViewInput {
         searchSupplementaryView.set(hasFilters: hasFilters)
     }
 
-    func showLoader() {
-        activityIndicator.isHidden = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-    }
-
-    func hideLoader() {
-        activityIndicator.stopAnimating()
+    func setLoading(_ isLoading: Bool) {
+        if isLoading {
+            activityIndicator.isHidden = false
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 
     func setSearchOverlay(active: Bool) {

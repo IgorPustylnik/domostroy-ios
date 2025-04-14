@@ -17,16 +17,22 @@ final class MainTabBarPresenter: MainTabBarModuleOutput {
     var onMyOffersFlowSelect: TabSelectClosure?
     var onRequestsFlowSelect: TabSelectClosure?
     var onProfileFlowSelect: TabSelectClosure?
-    var onAdd: EmptyClosure?
+    var onTapCenterControl: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: MainTabBarViewInput?
+
+    private var isCenterControlEnabled: Bool = false
 }
 
 // MARK: - MainTabBarModuleInput
 
 extension MainTabBarPresenter: MainTabBarModuleInput {
+
+    func setCenterControl(enabled: Bool) {
+        self.isCenterControlEnabled = enabled
+    }
 
 }
 
@@ -47,12 +53,11 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
         case .profile:
             onProfileFlowSelect?(isInitial)
         }
-        // TODO: Implement decision whether to show center button
-        view?.setAdd(enabled: tab.rawValue == 2)
+        view?.setCenterControl(enabled: tab == .myOffers && isCenterControlEnabled)
     }
 
-    func add() {
-        onAdd?()
+    func didTapCenter() {
+        onTapCenterControl?()
     }
 }
 

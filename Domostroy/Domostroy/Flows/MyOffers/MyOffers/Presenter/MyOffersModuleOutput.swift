@@ -7,4 +7,8 @@
 //
 
 protocol MyOffersModuleOutput: AnyObject {
+    var onSetCenterControlEnabled: ((Bool) -> Void)? { get set }
+    var onAdd: EmptyClosure? { get set }
+    var onOpenOffer: ((Int) -> Void)? { get set }
+    var onEditOffer: ((Int) -> Void)? { get set }
 }

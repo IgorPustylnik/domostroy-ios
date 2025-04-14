@@ -182,16 +182,7 @@ extension OfferCollectionViewCell: ConfigurableItem {
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.user.loadUser(viewModel.user.url, userImageView, userNameLabel)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
-        viewModel.toggleActions.map {
-            createToggleButton(
-                with: .init(
-                    initialState: $0.initialState,
-                    onImage: $0.onImage,
-                    offImage: $0.offImage,
-                    toggleAction: $0.toggleAction
-                )
-            )
-        }.forEach { actionsVStack.addArrangedSubview($0) }
+        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
     }
 
 }
@@ -202,10 +193,11 @@ private extension OfferCollectionViewCell {
 
     func createActionButton(with action: ViewModel.ActionButtonModel) -> DButton {
         let button = DButton(type: .plainPrimary)
-        button.image = action.image
+        button.image = action.image.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
         button.setAction {
             action.action?()
         }
+        button.insets = .zero
         return button
     }
 

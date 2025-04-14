@@ -12,6 +12,11 @@ enum OnboardingState {
     case passed
 }
 
+enum UserState {
+    case authorized
+    case unauthorized
+}
+
 private enum LaunchInstructor {
     case onboarding
     case main
