@@ -11,7 +11,7 @@ protocol SearchViewOutput {
     func viewLoaded()
     func setSearch(active: Bool)
     func search(query: String?)
-    func cancelSearch()
+    func cancelSearchFieldInput()
     func openCity()
     func openSort()
     func openFilters()

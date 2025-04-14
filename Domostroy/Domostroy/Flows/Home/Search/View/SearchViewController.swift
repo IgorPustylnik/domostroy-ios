@@ -44,7 +44,7 @@ final class SearchViewController: BaseViewController {
             textField.text = ""
         }
         $0.onCancel = { [weak self] textField in
-            self?.output?.cancelSearch()
+            self?.output?.cancelSearchFieldInput()
         }
         return $0
     }(DSearchTextField())

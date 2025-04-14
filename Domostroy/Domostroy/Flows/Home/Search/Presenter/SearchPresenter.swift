@@ -55,11 +55,10 @@ final class SearchPresenter: SearchModuleOutput {
     var adapter: BaseCollectionManager?
 
     private var query: String?
-    private var isFirstPageLoading = true
+    private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
 
-    private var offers: [Offer] = []
     private var city: City?
     private var sort: Sort = .default
     private var filter: Filter = .init()
@@ -73,21 +72,18 @@ extension SearchPresenter: SearchModuleInput {
     func set(query: String?) {
         self.query = query
         view?.set(query: self.query)
-        isFirstPageLoading = false
         loadFirstPage()
     }
 
     func set(city: City) {
         self.city = city
         view?.set(city: city.name)
-        isFirstPageLoading = false
         loadFirstPage()
     }
 
     func set(sort: Sort) {
         self.sort = sort
         view?.set(sort: sort.description)
-        isFirstPageLoading = false
         loadFirstPage()
     }
 
@@ -95,7 +91,6 @@ extension SearchPresenter: SearchModuleInput {
         self.filter = filter
         // TODO: Check if empty
         view?.set(hasFilters: false)
-        isFirstPageLoading = false
         loadFirstPage()
     }
 }
@@ -110,6 +105,7 @@ extension SearchPresenter: SearchViewOutput {
         view?.set(sort: sort.description)
         filter = .init()
         view?.set(hasFilters: false)
+
         loadFirstPage()
     }
 
@@ -119,11 +115,10 @@ extension SearchPresenter: SearchViewOutput {
 
     func search(query: String?) {
         self.query = query
-        isFirstPageLoading = false
         loadFirstPage()
     }
 
-    func cancelSearch() {
+    func cancelSearchFieldInput() {
         view?.set(query: self.query)
     }
 
@@ -146,21 +141,16 @@ extension SearchPresenter: SearchViewOutput {
 extension SearchPresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
+        paginatableInput?.updatePagination(canIterate: false)
+        paginatableInput?.updateProgress(isLoading: false)
+
         Task {
-            let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
+            let canIterate = await fillFirst()
+
             DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
-                self.offers = page.offers
-                self.currentPage = page.pagination.currentPage
-                self.pagesCount = page.pagination.totalPages
-
-                self.adapter?.clearCellGenerators()
-                self.adapter?.addCellGenerators(self.offers.map { self.makeGenerator(from: $0) })
-                self.adapter?.forceRefill()
-
                 input.endRefreshing()
+                self?.paginatableInput?.updatePagination(canIterate: canIterate)
+                self?.paginatableInput?.updateProgress(isLoading: false)
             }
         }
     }
@@ -265,6 +255,22 @@ private extension SearchPresenter {
         }
     }
 
+    func loadFirstPage() {
+        view?.setLoading(true)
+        paginatableInput?.updatePagination(canIterate: false)
+        paginatableInput?.updateProgress(isLoading: false)
+
+        Task {
+            let canIterate = await fillFirst()
+
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.setLoading(false)
+                self?.paginatableInput?.updatePagination(canIterate: canIterate)
+                self?.paginatableInput?.updateProgress(isLoading: false)
+            }
+        }
+    }
+
     func canFillNext() -> Bool {
         guard !isFirstPageLoading else {
             isFirstPageLoading.toggle()
@@ -279,79 +285,49 @@ private extension SearchPresenter {
     func fillNext() async -> Bool {
         currentPage += 1
 
-        do {
-            let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
+        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
 
-            DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
+        currentPage = page.pagination.currentPage
+        pagesCount = page.pagination.totalPages
 
-                var newGenerators = [CollectionCellGenerator]()
-                let newOffers = page.offers
-                self.offers = newOffers
-                self.currentPage = page.pagination.currentPage
-                self.pagesCount = page.pagination.totalPages
-                self.isFirstPageLoading = false
-
-                newGenerators = newOffers.map { self.makeGenerator(from: $0) }
-
-                self.paginatableInput?.updateProgress(isLoading: false)
-                self.paginatableInput?.updatePagination(canIterate: true)
-
-                if let lastGenerator = self.adapter?.generators.last?.last {
-                    self.adapter?.insert(after: lastGenerator, new: newGenerators)
-                } else {
-                    self.adapter?.addCellGenerators(newGenerators)
-                    self.adapter?.forceRefill()
-                }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
             }
-        } catch {
-            DispatchQueue.main.async {
-                self.paginatableInput?.updateProgress(isLoading: false)
-                self.paginatableInput?.updateError(error)
+
+            let newGenerators = page.offers.map { self.makeGenerator(from: $0) }
+            if let lastGenerator = self.adapter?.generators.last?.last {
+                self.adapter?.insert(after: lastGenerator, new: newGenerators)
+            } else {
+                self.adapter?.addCellGenerators(newGenerators)
+                self.adapter?.forceRefill()
             }
         }
 
         return currentPage < pagesCount
     }
 
-    func loadFirstPage() {
-        adapter?.clearCellGenerators()
-        adapter?.forceRefill()
-        // TODO: Localize
-//        adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "Recommended"))
-        view?.setLoading(true)
+    func fillFirst() async -> Bool {
+        isFirstPageLoading = true
 
-        paginatableInput?.updatePagination(canIterate: false)
-        paginatableInput?.updateProgress(isLoading: false)
+        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
 
-        Task {
-            do {
-                let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: 10) // + query
+        currentPage = page.pagination.currentPage
+        pagesCount = page.pagination.totalPages
+        isFirstPageLoading = false
 
-                DispatchQueue.main.async {
-                    self.offers = page.offers
-                    self.currentPage = page.pagination.currentPage
-                    self.pagesCount = page.pagination.totalPages
-                    self.isFirstPageLoading = false
-
-                    self.adapter?.clearCellGenerators()
-                    self.adapter?.addCellGenerators(self.offers.map { self.makeGenerator(from: $0) })
-                    self.adapter?.forceRefill()
-
-                    self.view?.setLoading(false)
-                    self.paginatableInput?.updatePagination(canIterate: true)
-                    self.paginatableInput?.updateProgress(isLoading: false)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.view?.setLoading(false)
-                    self.paginatableInput?.updateProgress(isLoading: false)
-                    self.paginatableInput?.updateError(error)
-                }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
             }
+
+//            self.view?.setEmptyState(page.offers.isEmpty)
+            self.adapter?.clearCellGenerators()
+            self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
+            self.adapter?.forceRefill()
         }
+
+        return currentPage < pagesCount
     }
 
 }

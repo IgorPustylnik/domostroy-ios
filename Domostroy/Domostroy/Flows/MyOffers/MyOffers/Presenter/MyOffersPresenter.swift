@@ -38,7 +38,7 @@ final class MyOffersPresenter: MyOffersModuleOutput {
 
     var adapter: BaseCollectionManager?
 
-    private var isFirstPageLoading = true
+    private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
 
@@ -76,21 +76,16 @@ extension MyOffersPresenter: MyOffersModuleInput {
 extension MyOffersPresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
+        paginatableInput?.updatePagination(canIterate: false)
+        paginatableInput?.updateProgress(isLoading: false)
+
         Task {
-            let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
+            let canIterate = await fillFirst()
+
             DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
-                self.currentPage = page.pagination.currentPage
-                self.pagesCount = page.pagination.totalPages
-
-                self.view?.setEmptyState(page.offers.isEmpty)
-                self.adapter?.clearCellGenerators()
-                self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
-                self.adapter?.forceRefill()
-
                 input.endRefreshing()
+                self?.paginatableInput?.updatePagination(canIterate: canIterate)
+                self?.paginatableInput?.updateProgress(isLoading: false)
             }
         }
     }
@@ -149,7 +144,7 @@ private extension MyOffersPresenter {
             ),
             actions: [
                 .init(image: .Buttons.edit, action: { [weak self] in
-                    self?.edit(id: offer.id)
+                    self?.onEditOffer?(offer.id)
                 })
             ],
             toggleActions: []
@@ -181,8 +176,20 @@ private extension MyOffersPresenter {
         }
     }
 
-    func edit(id: Int) {
-        onEditOffer?(id)
+    func loadFirstPage() {
+        view?.setLoading(true)
+        paginatableInput?.updatePagination(canIterate: false)
+        paginatableInput?.updateProgress(isLoading: false)
+
+        Task {
+            let canIterate = await fillFirst()
+
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.setLoading(false)
+                self?.paginatableInput?.updatePagination(canIterate: canIterate)
+                self?.paginatableInput?.updateProgress(isLoading: false)
+            }
+        }
     }
 
     func canFillNext() -> Bool {
@@ -199,74 +206,49 @@ private extension MyOffersPresenter {
     func fillNext() async -> Bool {
         currentPage += 1
 
-        do {
-            let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
+        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
 
-            DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
+        currentPage = page.pagination.currentPage
+        pagesCount = page.pagination.totalPages
 
-                var newGenerators = [CollectionCellGenerator]()
-                self.currentPage = page.pagination.currentPage
-                self.pagesCount = page.pagination.totalPages
-                self.isFirstPageLoading = false
-
-                newGenerators = page.offers.map { self.makeGenerator(from: $0) }
-
-                self.view?.setEmptyState(page.offers.isEmpty)
-                self.paginatableInput?.updateProgress(isLoading: false)
-                self.paginatableInput?.updatePagination(canIterate: true)
-
-                if let lastGenerator = self.adapter?.generators.last?.last {
-                    self.adapter?.insert(after: lastGenerator, new: newGenerators)
-                } else {
-                    self.adapter?.addCellGenerators(newGenerators)
-                    self.adapter?.forceRefill()
-                }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
             }
-        } catch {
-            DispatchQueue.main.async {
-                self.paginatableInput?.updateProgress(isLoading: false)
-                self.paginatableInput?.updateError(error)
+
+            let newGenerators = page.offers.map { self.makeGenerator(from: $0) }
+            if let lastGenerator = self.adapter?.generators.last?.last {
+                self.adapter?.insert(after: lastGenerator, new: newGenerators)
+            } else {
+                self.adapter?.addCellGenerators(newGenerators)
+                self.adapter?.forceRefill()
             }
         }
 
         return currentPage < pagesCount
     }
 
-    func loadFirstPage() {
-        view?.setLoading(true)
+    func fillFirst() async -> Bool {
+        isFirstPageLoading = true
 
-        paginatableInput?.updatePagination(canIterate: false)
-        paginatableInput?.updateProgress(isLoading: false)
+        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
 
-        Task {
-            do {
-                let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
+        currentPage = page.pagination.currentPage
+        pagesCount = page.pagination.totalPages
+        isFirstPageLoading = false
 
-                DispatchQueue.main.async {
-                    self.currentPage = page.pagination.currentPage
-                    self.pagesCount = page.pagination.totalPages
-                    self.isFirstPageLoading = false
-
-                    self.adapter?.clearCellGenerators()
-                    self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
-                    self.adapter?.forceRefill()
-
-                    self.view?.setEmptyState(page.offers.isEmpty)
-                    self.view?.setLoading(false)
-                    self.paginatableInput?.updatePagination(canIterate: true)
-                    self.paginatableInput?.updateProgress(isLoading: false)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.view?.setLoading(false)
-                    self.paginatableInput?.updateProgress(isLoading: false)
-                    self.paginatableInput?.updateError(error)
-                }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
             }
+
+            self.view?.setEmptyState(page.offers.isEmpty)
+            self.adapter?.clearCellGenerators()
+            self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
+            self.adapter?.forceRefill()
         }
+
+        return currentPage < pagesCount
     }
 
 }
