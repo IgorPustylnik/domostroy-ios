@@ -23,9 +23,9 @@ final class DSearchTextField: UIView {
         static let borderColor: UIColor = .systemGray3
         static let cancelButtonPadding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         static let leftImageSize: CGSize = .init(width: 24, height: 24)
-        static let clearButtonSize: CGSize = .init(width: 20, height: 20)
+        static let clearButtonSize: CGSize = .init(width: 24, height: 24)
         static let clearButtonImageSize: CGSize = .init(width: 10, height: 10)
-        static let clearButtonPadding: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+        static let clearButtonPadding: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 9)
 
         static let animationDuration: TimeInterval = 0.3
     }
@@ -62,7 +62,7 @@ final class DSearchTextField: UIView {
         }
     }
 
-    private var containerTrailingConstraint: Constraint?
+    private var containerWidthConstraint: Constraint?
 
     // MARK: - UI Elements
 
@@ -121,7 +121,6 @@ final class DSearchTextField: UIView {
             self.textFieldCancelled(self.textField)
         }
         $0.isHidden = !isActive
-        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         return $0
     }(DButton(type: .plainPrimary))
 
@@ -168,7 +167,7 @@ final class DSearchTextField: UIView {
         textFieldContainer.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
             make.height.equalTo(Constants.containerHeight).priority(.medium)
-            self.containerTrailingConstraint = make.trailing.equalToSuperview().constraint
+            containerWidthConstraint = make.width.equalToSuperview().constraint
         }
         leftImageView.snp.makeConstraints { make in
             make.leading.verticalEdges.equalToSuperview().inset(Constants.fieldMargin)
@@ -176,7 +175,7 @@ final class DSearchTextField: UIView {
         }
         textField.snp.makeConstraints { make in
             make.leading.equalTo(leftImageView.snp.trailing).offset(Constants.fieldMargin.left)
-            make.trailing.equalTo(clearButton.snp.leading).inset(-Constants.cancelButtonPadding.left)
+            make.trailing.equalTo(clearButton.snp.leading).inset(-Constants.clearButtonPadding.left)
             make.verticalEdges.equalToSuperview()
         }
         clearButton.snp.makeConstraints { make in
@@ -185,7 +184,7 @@ final class DSearchTextField: UIView {
             make.size.equalTo(Constants.clearButtonSize)
         }
         cancelButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
+            make.leading.equalTo(textFieldContainer.snp.trailing).offset(Constants.cancelButtonPadding.left)
             make.centerY.equalToSuperview()
         }
     }
@@ -209,24 +208,11 @@ final class DSearchTextField: UIView {
     }
 
     private func updateContainerTrailingConstraint() {
-        containerTrailingConstraint?.deactivate()
-
         UIView.animate(withDuration: Constants.animationDuration) {
             if self.isActive {
-                self.textFieldContainer.snp.remakeConstraints { make in
-                    make.leading.top.bottom.equalToSuperview()
-                    make.height.equalTo(Constants.containerHeight).priority(.medium)
-                    self.containerTrailingConstraint = make.trailing
-                        .equalTo(self.cancelButton.snp.leading)
-                        .offset(-Constants.cancelButtonPadding.left)
-                        .constraint
-                }
+                self.containerWidthConstraint?.update(offset: -self.cancelButton.frame.width - Constants.cancelButtonPadding.left)
             } else {
-                self.textFieldContainer.snp.remakeConstraints { make in
-                    make.leading.top.bottom.equalToSuperview()
-                    make.height.equalTo(Constants.containerHeight).priority(.medium)
-                    self.containerTrailingConstraint = make.trailing.equalToSuperview().constraint
-                }
+                self.containerWidthConstraint?.update(offset: 0)
             }
             self.setNeedsLayout()
             self.layoutIfNeeded()

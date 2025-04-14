@@ -41,7 +41,6 @@ final class SearchViewController: BaseViewController {
         $0.onShouldReturn = { [weak self] textField in
             self?.output?.setSearch(active: false)
             self?.output?.search(query: textField.text)
-            textField.text = ""
         }
         $0.onCancel = { [weak self] textField in
             self?.output?.cancelSearchFieldInput()
