@@ -174,7 +174,7 @@ class DTextField: UIView {
         placeholder: String?,
         correction: UITextAutocorrectionType,
         keyboardType: UIKeyboardType,
-        mode: Mode
+        mode: Mode? = nil
     ) {
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder ?? "",
@@ -186,6 +186,9 @@ class DTextField: UIView {
         cornerRadius = Constants.defaultCornerRadius
         textField.autocorrectionType = correction
         textField.keyboardType = keyboardType
+        guard let mode else {
+            return
+        }
         textField.textContentType = mode.contentType
         textField.isSecureTextEntry = mode == .password
         isHideable = mode == .password
@@ -406,7 +409,7 @@ final class DSingleCharacterTextField: DTextField {
         placeholder: String?,
         correction: UITextAutocorrectionType,
         keyboardType: UIKeyboardType,
-        mode: Mode
+        mode: Mode?
     ) {
         super.configure(placeholder: placeholder, correction: correction, keyboardType: keyboardType, mode: mode)
         textField.font = .systemFont(ofSize: 48, weight: .thin)
