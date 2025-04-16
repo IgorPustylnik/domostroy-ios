@@ -14,11 +14,11 @@ class DMultiLineTextField: UIView {
 
     fileprivate enum Constants {
         static let defaultCornerRadius: CGFloat = 14
-        static let defaultContainerHeight: CGFloat = 57
+        static let defaultContainerHeight: CGFloat = 52
         static let defaultMaxContainerHeight: CGFloat = 200
         static let toolbarHeight: CGFloat = 44
         static let fieldStrokeWidth: CGFloat = 1.0
-        static let fieldMargin = UIEdgeInsets(top: 20, left: 14.0, bottom: 20, right: 14)
+        static let fieldMargin = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
         static let borderColor: UIColor = .separator
         static let hightlightedBorderColor: UIColor = .label
 
@@ -87,7 +87,7 @@ class DMultiLineTextField: UIView {
     fileprivate lazy var placeholderLabel = {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .placeholderText
-        $0.isUserInteractionEnabled = true
+        $0.isUserInteractionEnabled = false
         return $0
     }(UILabel())
 
@@ -167,6 +167,22 @@ class DMultiLineTextField: UIView {
             }
         }
     }
+
+    fileprivate func updateContainerSize() {
+        let fittingSize = CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude)
+        var expectedHeight = textView.sizeThatFits(
+            fittingSize
+        ).height + Constants.fieldMargin.top
+        expectedHeight = max(expectedHeight, Constants.defaultContainerHeight)
+
+        let clampedHeight = min(expectedHeight, maxHeight)
+        if clampedHeight == maxHeight {
+            textView.textContainerInset.bottom = Constants.fieldMargin.bottom
+        } else {
+            textView.textContainerInset.bottom = 0
+        }
+        containerHeightConstraint?.update(offset: clampedHeight)
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -188,21 +204,8 @@ extension DMultiLineTextField: UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        placeholderLabel.alpha = textView.text.isEmpty ? 1 : 0
         onTextChange?(textView)
-
-        let fittingSize = CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude)
-        let expectedHeight = textView.sizeThatFits(
-            fittingSize
-        ).height + Constants.fieldMargin.top
-
-        var clampedHeight = min(expectedHeight, maxHeight)
-        if clampedHeight == maxHeight {
-            textView.textContainerInset.bottom = Constants.fieldMargin.bottom
-        } else {
-            textView.textContainerInset.bottom = 0
-        }
-        containerHeightConstraint?.update(offset: clampedHeight)
+        updateContainerSize()
     }
 
 }
