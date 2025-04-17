@@ -66,16 +66,30 @@ class ScrollViewController: BaseViewController {
     }
 
     func scrollToView(_ target: UIView, offsetY: CGFloat = 0) {
-        let convertedFrame = target.convert(target.bounds, to: view)
-        let visibleRectHeight = scrollView.bounds.height - keyboardHeight - offsetY
-        let activeBottom = convertedFrame.maxY
+        let targetFrame = target.convert(target.bounds, to: scrollView)
+        let blockedAreaHeight = keyboardHeight + offsetY
 
-        if activeBottom > visibleRectHeight {
-            let offsetY = activeBottom - visibleRectHeight
+        let visibleY = scrollView.contentOffset.y
+        let visibleHeight = scrollView.bounds.height - blockedAreaHeight
+        let visibleBottomY = visibleY + visibleHeight
+
+        if targetFrame.minY < visibleY {
+            let newOffsetY = max(targetFrame.minY - 16, 0)
             UIView.animate(withDuration: 0.3) {
-                self.scrollView.contentInset.bottom = self.keyboardHeight
-                self.scrollView.verticalScrollIndicatorInsets.bottom = self.keyboardHeight
-                self.scrollView.setContentOffset(CGPoint(x: 0, y: offsetY), animated: false)
+                self.scrollView.contentInset.bottom = blockedAreaHeight
+                self.scrollView.verticalScrollIndicatorInsets.bottom = blockedAreaHeight
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: false)
+                self.scrollView.layoutIfNeeded()
+            }
+        } else if targetFrame.maxY > visibleBottomY {
+            let newOffsetY = min(
+                targetFrame.maxY - visibleHeight + 16,
+                scrollView.contentSize.height - scrollView.bounds.height
+            )
+            UIView.animate(withDuration: 0.3) {
+                self.scrollView.contentInset.bottom = blockedAreaHeight
+                self.scrollView.verticalScrollIndicatorInsets.bottom = blockedAreaHeight
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: false)
                 self.scrollView.layoutIfNeeded()
             }
         }

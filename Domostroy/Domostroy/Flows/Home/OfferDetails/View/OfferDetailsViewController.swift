@@ -14,7 +14,6 @@ final class OfferDetailsViewController: ScrollViewController {
     // MARK: - Constants
 
     private enum Constants {
-        static let pictureSize = CGSize(width: 120, height: 120)
         static let sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         static let imageHorizontalItemSpace: CGFloat = 0
         static let pictureCollectionViewHeight: CGFloat = 300

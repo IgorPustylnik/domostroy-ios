@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 private enum LaunchInstructor {
     case auth
@@ -86,7 +87,7 @@ private extension MyOffersCoordinator {
             self?.onSetTabBarCenterControlEnabled?(enabled)
         }
         output.onAdd = { [weak self] in
-            self?.addOffer()
+            self?.createOffer()
         }
         output.onOpenOffer = { [weak self] id in
             self?.showOffer(id: id)
@@ -97,8 +98,25 @@ private extension MyOffersCoordinator {
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
-    func addOffer() {
-        print("add offer")
+    func createOffer() {
+        let (view, output) = CreateOfferModuleConfigurator().configure()
+        output.onAddImages = { [weak self] delegate, limit in
+            self?.showImagePicker(delegate: delegate, limit: limit)
+        }
+        output.onClose = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationController = UINavigationController(rootViewController: view)
+        router.presentFullScreen(navigationController)
+    }
+
+    func showImagePicker(delegate: PHPickerViewControllerDelegate, limit: Int) {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = limit
+        config.filter = .images
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = delegate
+        router.present(picker, animated: true, completion: nil)
     }
 
     func showOffer(id: Int) {

@@ -34,7 +34,7 @@ class DTextField: UIView {
         case password
         case oneTimeCode
 
-        var contentType: UITextContentType {
+        var contentType: UITextContentType? {
             switch self {
             case .firstName:
                 return .name
@@ -144,6 +144,12 @@ class DTextField: UIView {
         return $0
     }(DButton(type: .plainPrimary))
 
+    fileprivate lazy var unitLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.textColor = .placeholderText
+        return $0
+    }(UILabel())
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -174,7 +180,7 @@ class DTextField: UIView {
         placeholder: String?,
         correction: UITextAutocorrectionType,
         keyboardType: UIKeyboardType,
-        mode: Mode
+        mode: Mode? = nil
     ) {
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder ?? "",
@@ -186,6 +192,9 @@ class DTextField: UIView {
         cornerRadius = Constants.defaultCornerRadius
         textField.autocorrectionType = correction
         textField.keyboardType = keyboardType
+        guard let mode else {
+            return
+        }
         textField.textContentType = mode.contentType
         textField.isSecureTextEntry = mode == .password
         isHideable = mode == .password
@@ -201,6 +210,11 @@ class DTextField: UIView {
         textField.text = text
     }
 
+    func setUnit(_ unit: String?) {
+        unitLabel.text = unit
+        textField.rightViewMode = unit == nil ? .never : .always
+    }
+
     func currentText() -> String {
         return textField.text ?? ""
     }
@@ -211,6 +225,7 @@ class DTextField: UIView {
         addSubview(textFieldContainer)
         textFieldContainer.addSubview(textField)
         textFieldContainer.addSubview(eyeButton)
+        textField.rightView = unitLabel
 
         textFieldContainer.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -406,7 +421,7 @@ final class DSingleCharacterTextField: DTextField {
         placeholder: String?,
         correction: UITextAutocorrectionType,
         keyboardType: UIKeyboardType,
-        mode: Mode
+        mode: Mode?
     ) {
         super.configure(placeholder: placeholder, correction: correction, keyboardType: keyboardType, mode: mode)
         textField.font = .systemFont(ofSize: 48, weight: .thin)
