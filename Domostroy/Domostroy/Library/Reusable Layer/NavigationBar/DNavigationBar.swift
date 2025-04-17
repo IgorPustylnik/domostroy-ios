@@ -168,15 +168,15 @@ class DNavigationBar: UIView {
         bottomLine.alpha = progress
     }
 
-    func addButtonToRight(image: UIImage, action: @escaping EmptyClosure) {
+    func addButtonToRight(image: UIImage?, action: @escaping EmptyClosure) {
         rightItems.insert(createButton(image: image, action: action), at: 0)
     }
 
-    func addButtonToLeft(image: UIImage, action: @escaping EmptyClosure) {
+    func addButtonToLeft(image: UIImage?, action: @escaping EmptyClosure) {
         leftItems.append(createButton(image: image, action: action))
     }
 
-    func addToggleToRight(initialState: Bool, onImage: UIImage, offImage: UIImage, toggleAction: ToggleAction?) {
+    func addToggleToRight(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
         rightItems.insert(
             createToggleButton(
                 initialState: initialState,
@@ -188,7 +188,7 @@ class DNavigationBar: UIView {
         )
     }
 
-    func addToggleToLeft(initialState: Bool, onImage: UIImage, offImage: UIImage, toggleAction: ToggleAction?) {
+    func addToggleToLeft(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
         leftItems.append(
             createToggleButton(
                 initialState: initialState,
@@ -204,28 +204,28 @@ class DNavigationBar: UIView {
 
 private extension DNavigationBar {
 
-    func createButton(image: UIImage, action: @escaping EmptyClosure) -> DButton {
+    func createButton(image: UIImage?, action: @escaping EmptyClosure) -> DButton {
         let button = DButton(type: .plainPrimary)
         button.insets = .zero
         button.setAction {
             action()
         }
-        button.image = image.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        button.image = image?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
         return button
     }
 
     func createToggleButton(
         initialState: Bool,
-        onImage: UIImage,
-        offImage: UIImage,
+        onImage: UIImage?,
+        offImage: UIImage?,
         toggleAction: ToggleAction?
     ) -> DToggleButton {
         let button = DToggleButton(type: .plainPrimary)
         button.insets = .zero
         button.configure(
             initialState: initialState,
-            onImage: onImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            offImage: offImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+            onImage: onImage?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+            offImage: offImage?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
             toggleAction: toggleAction
         )
         return button
