@@ -7,5 +7,5 @@
 //
 
 protocol OfferDetailsModuleInput: AnyObject {
-    func set(offerId: Int?)
+    func set(offerId: Int)
 }

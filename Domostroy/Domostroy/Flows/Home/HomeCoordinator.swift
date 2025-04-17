@@ -49,6 +49,8 @@ private extension HomeCoordinator {
         output.onOpenUser = { [weak self] id in
 
         }
+        output.onRent = { [weak self] in
+        }
         router.push(view, animated: true)
     }
 

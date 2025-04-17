@@ -8,4 +8,5 @@
 
 protocol OfferDetailsModuleOutput: AnyObject {
     var onOpenUser: ((Int) -> Void)? { get set }
+    var onRent: EmptyClosure? { get set }
 }
