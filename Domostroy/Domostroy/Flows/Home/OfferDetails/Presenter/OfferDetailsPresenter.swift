@@ -16,6 +16,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     // MARK: - OfferDetailsModuleOutput
 
     var onOpenUser: ((Int) -> Void)?
+    var onRent: EmptyClosure?
 
     // MARK: - Properties
 
@@ -65,10 +66,13 @@ private extension OfferDetailsPresenter {
                             loadUser: { [weak self] url, userView in
                                 self?.fetchUser(url: url, userView: userView)
                             },
-                            openProfile: { [weak self] in
+                            onOpenProfile: { [weak self] in
                                 self?.openUser(id: offer.userId)
                             }
-                        )
+                        ),
+                        onRent: { [weak self] in
+                            self?.rent()
+                        }
                     )
                 )
                 self?.fillPictures(for: offer)
@@ -128,7 +132,7 @@ private extension OfferDetailsPresenter {
 
 extension OfferDetailsPresenter: OfferDetailsModuleInput {
 
-    func set(offerId: Int?) {
+    func set(offerId: Int) {
         self.offerId = offerId
     }
 
@@ -140,6 +144,10 @@ extension OfferDetailsPresenter: OfferDetailsViewOutput {
 
     func viewLoaded() {
         fetchOffer()
+    }
+
+    func rent() {
+        onRent?()
     }
 
 }

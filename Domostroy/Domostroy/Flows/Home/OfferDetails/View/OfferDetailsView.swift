@@ -22,11 +22,12 @@ final class OfferDetailsView: UIView {
         let specs: [(String, String)]
         let description: String
         let user: UserViewModel
+        let onRent: EmptyClosure?
 
         struct UserViewModel {
             let url: URL?
             let loadUser: (URL?, UserView) -> Void
-            let openProfile: EmptyClosure
+            let onOpenProfile: EmptyClosure
         }
     }
 
@@ -44,6 +45,7 @@ final class OfferDetailsView: UIView {
     // MARK: - Properties
 
     private var onOpenProfile: EmptyClosure?
+    private var onRent: EmptyClosure?
 
     // MARK: - UI Elements
 
@@ -64,7 +66,7 @@ final class OfferDetailsView: UIView {
         $0.spacing = Constants.topVStackSpacing
         $0.addArrangedSubview(titleVStackView)
         $0.addArrangedSubview(cityLabel)
-        $0.addArrangedSubview(respondButton)
+        $0.addArrangedSubview(rentButton)
         return $0
     }(UIStackView())
 
@@ -93,9 +95,12 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    private lazy var respondButton = {
+    private lazy var rentButton = {
         // TODO: Localize
-        $0.title = "Respond"
+        $0.title = "Rent"
+        $0.setAction { [weak self] in
+            self?.onRent?()
+        }
         return $0
     }(DButton())
 
@@ -204,7 +209,8 @@ final class OfferDetailsView: UIView {
         viewModel.specs.forEach { specsDetailsVStack.addArrangedSubview(createSpecLabel(title: $0.0, value: $0.1)) }
         descriptionLabel.text = viewModel.description
         viewModel.user.loadUser(viewModel.user.url, (userNameLabel, userOffersAmountLabel, userAvatarImageView))
-        onOpenProfile = viewModel.user.openProfile
+        onOpenProfile = viewModel.user.onOpenProfile
+        onRent = viewModel.onRent
     }
 
 }

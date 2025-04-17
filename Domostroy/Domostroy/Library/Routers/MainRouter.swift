@@ -40,17 +40,6 @@ class MainRouter: Router {
         }
     }
 
-    func presentFullScreen(_ module: Presentable?) {
-        self.presentFullScreen(module, animated: true, completion: nil)
-    }
-
-    func presentFullScreen(_ module: Presentable?, animated: Bool, completion: (() -> Void)?) {
-        if let controller = module?.toPresent() {
-            controller.modalPresentationStyle = .fullScreen
-            self.topViewController?.present(controller, animated: animated, completion: completion)
-        }
-    }
-
     func push(_ module: Presentable?) {
         self.push(module, animated: true)
     }

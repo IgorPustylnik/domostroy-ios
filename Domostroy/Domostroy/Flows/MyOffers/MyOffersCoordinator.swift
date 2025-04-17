@@ -107,7 +107,8 @@ private extension MyOffersCoordinator {
             self?.router.dismissModule()
         }
         let navigationController = UINavigationController(rootViewController: view)
-        router.presentFullScreen(navigationController)
+        navigationController.modalPresentationStyle = .fullScreen
+        router.present(navigationController)
     }
 
     func showImagePicker(delegate: PHPickerViewControllerDelegate, limit: Int) {
