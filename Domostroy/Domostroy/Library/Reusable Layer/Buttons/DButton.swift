@@ -29,7 +29,7 @@ class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, plainPrimary, plain, filledSecondary, navbar
+        case filledPrimary, filledWhite, plainPrimary, plain, calendar, navbar
     }
 
     enum ImagePlacement {
@@ -63,7 +63,6 @@ class DButton: UIControl {
     private lazy var hStackView: UIStackView = {
         $0.axis = .horizontal
         $0.spacing = Constants.hSpacing
-        $0.alignment = contentAlignment
         $0.addArrangedSubview(titleLabel)
         return $0
     }(UIStackView())
@@ -116,12 +115,6 @@ class DButton: UIControl {
         }
     }
 
-    var contentAlignment: UIStackView.Alignment = .center {
-        didSet {
-            hStackView.alignment = contentAlignment
-        }
-    }
-
     var borderColor: UIColor = .clear {
         didSet {
             backgroundView.layer.borderColor = borderColor.cgColor
@@ -171,9 +164,12 @@ class DButton: UIControl {
         case .plain:
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .label
-        case .filledSecondary:
+        case .calendar:
             backgroundView.backgroundColor = .secondarySystemBackground
+            titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
             titleLabel.textColor = .label
+            titleLabel.textAlignment = .left
+            borderColor = .separator
         case .navbar:
             titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
             backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
