@@ -9,56 +9,15 @@ import Foundation
 
 typealias ValidationResult = (isValid: Bool, errorMessage: String?)
 
-enum TextValidator {
-
-    case username
-    case email
-    case phone(PhoneNumberNormalizer)
-    case password
-    case offerName
-    case offerDescription
-    case price
-    case match(password: String)
-
-    indirect case required(TextValidator?)
-    indirect case optional(TextValidator?)
-
-    func validate(_ text: String?) -> ValidationResult {
-        guard var text else {
-            return (false, "Validation failed")
-        }
-        text = text.trimmingCharacters(in: .whitespaces)
-
-        switch self {
-        case .username:
-            return validateUsername(text)
-        case .email:
-            return validateEmail(text)
-        case .phone(let normalizer):
-            return validatePhone(text, normalizer: normalizer)
-        case .password:
-            return validatePassword(text)
-        case .offerName:
-            return validateOfferName(text)
-        case .offerDescription:
-            return validateOfferDescription(text)
-        case .price:
-            return validatePrice(text)
-        case .match(let password):
-            return validateMatchPassword(text, password: password)
-        case .required(let validator):
-            return validateRequired(text, validator: validator)
-        case .optional(let validator):
-            return validateOptional(text, validator: validator)
-        }
-    }
+protocol TextValidator {
+    func validate(_ text: String?) -> ValidationResult
 }
 
-// MARK: - Validation
-
-private extension TextValidator {
-
-    func validateUsername(_ text: String) -> ValidationResult {
+struct UsernameValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
         if text.count < 2 {
             return (false, L10n.Localizable.Auth.InputField.Error.Username.short)
         }
@@ -67,16 +26,28 @@ private extension TextValidator {
         }
         return (true, nil)
     }
+}
 
-    func validateEmail(_ text: String) -> ValidationResult {
+struct EmailValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         if !NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text) {
             return (false, L10n.Localizable.Auth.InputField.Error.email)
         }
         return (true, nil)
     }
+}
 
-    private func validatePhone(_ text: String, normalizer: PhoneNumberNormalizer) -> ValidationResult {
+struct PhoneValidator: TextValidator {
+    let normalizer: PhoneNumberNormalizer
+
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
         let cleaned = normalizer.normalizePhone(text)
         let pattern = "^7\\d{10}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
@@ -84,37 +55,33 @@ private extension TextValidator {
         if !predicate.evaluate(with: cleaned) {
             return (false, L10n.Localizable.Auth.InputField.Error.phone)
         }
-
         return (true, nil)
     }
+}
 
-    func validatePassword(_ text: String) -> ValidationResult {
-        // допустимые символы
+struct PasswordValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text else {
+            return (false, "Validation failed")
+        }
+
         let allowedCharsRegex = "^[A-Za-z0-9.~!@#$%^&*()+-]+$"
-        let allowedPredicate = NSPredicate(format: "SELF MATCHES %@", allowedCharsRegex)
-        if !allowedPredicate.evaluate(with: text) {
+        if !NSPredicate(format: "SELF MATCHES %@", allowedCharsRegex).evaluate(with: text) {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.invalidSymbols)
         }
 
-        // хотя бы одна латинская буква
-        let letterPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[A-Za-z]+.*")
-        if !letterPredicate.evaluate(with: text) {
+        if !NSPredicate(format: "SELF MATCHES %@", ".*[A-Za-z]+.*").evaluate(with: text) {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.noLetter)
         }
 
-        // хотя бы одна цифра
-        let digitPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*")
-        if !digitPredicate.evaluate(with: text) {
+        if !NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*").evaluate(with: text) {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.noDigit)
         }
 
-        // хотя бы один спецсимвол из набора
-        let specialPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[.~!@#$%^&*()+-]+.*")
-        if !specialPredicate.evaluate(with: text) {
+        if !NSPredicate(format: "SELF MATCHES %@", ".*[.~!@#$%^&*()+-]+.*").evaluate(with: text) {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.noSpecialChar)
         }
 
-        // длина
         if text.count < 8 {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.short)
         }
@@ -124,28 +91,40 @@ private extension TextValidator {
 
         return (true, nil)
     }
+}
 
-    func validateOfferName(_ text: String) -> ValidationResult {
-        if text.isEmpty {
-            // TODO: Localize
+struct OfferNameValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
+        guard !text.isEmpty else {
             return (false, "Offer name can't be empty")
         }
-        // TODO: Localize
         if text.count > 100 {
             return (false, "Offer name is too long")
         }
         return (true, nil)
     }
+}
 
-    func validateOfferDescription(_ text: String) -> ValidationResult {
+struct OfferDescriptionValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (true, nil)
+        }
         if text.count > 3000 {
-            // TODO: Localize
             return (false, "Description is too long")
         }
         return (true, nil)
     }
+}
 
-    func validatePrice(_ text: String) -> ValidationResult {
+struct PriceValidator: TextValidator {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.numberStyle = .decimal
@@ -154,35 +133,63 @@ private extension TextValidator {
             return (false, "Invalid price format")
         }
 
-        if number.doubleValue <= 0 {
-            return (false, "Price must be greater than 0")
+        if number.doubleValue < 0 {
+            return (false, "Price must be a positive value")
+        }
+        if number.doubleValue > 1000000 {
+            return (false, "Price must be less than 1000000")
         }
 
         return (true, nil)
     }
+}
 
-    func validateMatchPassword(_ text: String, password: String) -> ValidationResult {
+struct MatchPasswordValidator: TextValidator {
+    let password: String
+
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text else {
+            return (false, "Validation failed")
+        }
         if text != password {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.mismatch)
         }
         return (true, nil)
     }
+}
 
-    func validateRequired(_ text: String, validator: TextValidator?) -> ValidationResult {
-        if text.count < 1 {
+struct RequiredValidator: TextValidator {
+    let wrapped: TextValidator?
+
+    init(_ wrapped: TextValidator? = nil) {
+        self.wrapped = wrapped
+    }
+
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
+        guard !text.isEmpty, let wrapped else {
             return (false, L10n.Localizable.Auth.InputField.Error.empty)
         }
-        guard let validator else {
-            return (true, nil)
-        }
-        return validator.validate(text)
+        return wrapped.validate(text)
+    }
+}
+
+struct OptionalValidator: TextValidator {
+    let wrapped: TextValidator?
+
+    init(_ wrapped: TextValidator? = nil) {
+        self.wrapped = wrapped
     }
 
-    func validateOptional(_ text: String, validator: TextValidator?) -> ValidationResult {
-        guard !text.isEmpty, let validator else {
+    func validate(_ text: String?) -> ValidationResult {
+        guard let text = text?.trimmingCharacters(in: .whitespaces) else {
+            return (false, "Validation failed")
+        }
+        guard !text.isEmpty, let wrapped else {
             return (true, nil)
         }
-        return validator.validate(text)
+        return wrapped.validate(text)
     }
-
 }

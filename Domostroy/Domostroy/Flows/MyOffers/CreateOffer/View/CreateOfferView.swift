@@ -47,7 +47,7 @@ final class CreateOfferView: UIView {
     private lazy var nameTextField: DValidatableTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Name", correction: .no, keyboardType: .default)
-        $0.validator = .offerName
+        $0.validator = RequiredValidator(OfferNameValidator())
         $0.setNextResponder(descriptionTextField.responder)
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.nameTextField)
@@ -61,7 +61,7 @@ final class CreateOfferView: UIView {
     private lazy var descriptionTextField: DValidatableMultilineTextField = {
         // TODO: Localize
         $0.configure(placeholder: "Description", correction: .no, keyboardType: .default)
-        $0.validator = .optional(.offerDescription)
+        $0.validator = OptionalValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.descriptionTextField)
         }
@@ -96,7 +96,7 @@ final class CreateOfferView: UIView {
 
     private lazy var priceTextField: DValidatableTextField = {
         $0.configure(placeholder: "Price", correction: .no, keyboardType: .numberPad)
-        $0.validator = .required(.price)
+        $0.validator = RequiredValidator(PriceValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.priceTextField)
         }
