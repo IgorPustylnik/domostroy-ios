@@ -15,6 +15,9 @@ enum TextValidator {
     case email
     case phone(PhoneNumberNormalizer)
     case password
+    case offerName
+    case offerDescription
+    case price
     case match(password: String)
 
     indirect case required(TextValidator?)
@@ -35,6 +38,12 @@ enum TextValidator {
             return validatePhone(text, normalizer: normalizer)
         case .password:
             return validatePassword(text)
+        case .offerName:
+            return validateOfferName(text)
+        case .offerDescription:
+            return validateOfferDescription(text)
+        case .price:
+            return validatePrice(text)
         case .match(let password):
             return validateMatchPassword(text, password: password)
         case .required(let validator):
@@ -111,6 +120,42 @@ private extension TextValidator {
         }
         if text.count > 69 {
             return (false, L10n.Localizable.Auth.InputField.Error.Password.long)
+        }
+
+        return (true, nil)
+    }
+
+    func validateOfferName(_ text: String) -> ValidationResult {
+        if text.isEmpty {
+            // TODO: Localize
+            return (false, "Offer name can't be empty")
+        }
+        // TODO: Localize
+        if text.count > 100 {
+            return (false, "Offer name is too long")
+        }
+        return (true, nil)
+    }
+
+    func validateOfferDescription(_ text: String) -> ValidationResult {
+        if text.count > 3000 {
+            // TODO: Localize
+            return (false, "Description is too long")
+        }
+        return (true, nil)
+    }
+
+    func validatePrice(_ text: String) -> ValidationResult {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.numberStyle = .decimal
+
+        guard let number = formatter.number(from: text) else {
+            return (false, "Invalid price format")
+        }
+
+        if number.doubleValue <= 0 {
+            return (false, "Price must be greater than 0")
         }
 
         return (true, nil)
