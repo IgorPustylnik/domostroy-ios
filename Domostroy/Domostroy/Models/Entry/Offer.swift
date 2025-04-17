@@ -61,3 +61,18 @@ struct Calendar: Codable {
 struct Filter {
 
 }
+
+enum Condition: CaseIterable {
+    case used
+    case new
+
+    // TODO: Localize
+    var description: String {
+        switch self {
+        case .used:
+            return "Used"
+        case .new:
+            return "Brand new"
+        }
+    }
+}
