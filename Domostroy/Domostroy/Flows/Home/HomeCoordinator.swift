@@ -50,8 +50,16 @@ private extension HomeCoordinator {
 
         }
         output.onRent = { [weak self] in
+            self?.createRequest(offerId: id)
         }
         router.push(view, animated: true)
+    }
+
+    func createRequest(offerId: Int) {
+        let (view, output, input) = CreateRequestModuleConfigurator().configure()
+        input.set(offerId: offerId)
+
+        router.push(view)
     }
 
     func showSearch(query: String?) {
