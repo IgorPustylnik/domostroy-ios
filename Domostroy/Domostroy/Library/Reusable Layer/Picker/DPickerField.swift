@@ -127,6 +127,7 @@ class DPickerField: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        trackTraitChanges()
     }
 
     required init?(coder: NSCoder) {
@@ -233,6 +234,14 @@ class DPickerField: UIView {
             self.textFieldContainer.layer.borderColor = Constants.hightlightedBorderColor.cgColor
         } else {
             self.textFieldContainer.layer.borderColor = Constants.borderColor.cgColor
+        }
+    }
+
+    private func trackTraitChanges() {
+        registerForTraitChanges(
+            [UITraitUserInterfaceStyle.self]
+        ) { [weak self] (_: Self, _: UITraitCollection) in
+            self?.updateCGColors()
         }
     }
 
