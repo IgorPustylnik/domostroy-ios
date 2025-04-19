@@ -54,8 +54,10 @@ struct User: Codable {
     let email: String
 }
 
-struct Calendar: Codable {
-
+struct OfferCalendar: Codable {
+    let startDate: Date
+    let endDate: Date
+    let forbiddenDates: [Date]
 }
 
 struct Filter {
