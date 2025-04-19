@@ -18,7 +18,9 @@ final class CreateRequestView: UIView {
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
         let price: String
-        let onCalendar: EmptyClosure?
+        let calendarId: Int
+        let loadCalendar: (Int) -> Void
+        let onCalendar: EmptyClosure
     }
 
     // MARK: - Constants
@@ -170,6 +172,7 @@ private extension CreateRequestView {
 extension CreateRequestView {
     func configure(with viewModel: ViewModel) {
         viewModel.loadImage(viewModel.imageUrl, offerImageView)
+        viewModel.loadCalendar(viewModel.calendarId)
         offerTitleLabel.text = viewModel.title
         priceLabel.text = viewModel.price
         onCalendar = viewModel.onCalendar
