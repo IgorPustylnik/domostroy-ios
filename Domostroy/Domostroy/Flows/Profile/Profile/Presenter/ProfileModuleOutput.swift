@@ -7,4 +7,7 @@
 //
 
 protocol ProfileModuleOutput: AnyObject {
+    var onEdit: EmptyClosure? { get set }
+    var onAdminPanel: EmptyClosure? { get set }
+    var onLogout: EmptyClosure? { get set }
 }

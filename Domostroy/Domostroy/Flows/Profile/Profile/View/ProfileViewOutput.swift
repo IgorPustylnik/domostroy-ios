@@ -9,4 +9,8 @@
 protocol ProfileViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func refresh()
+    func edit()
+    func adminPanel()
+    func logout()
 }
