@@ -13,6 +13,7 @@ protocol RequestCalendarViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
     func dismiss()
+    func apply()
     func handleDaySelection(_ day: DayComponents)
     func handleDragDaySelection(_ day: DayComponents, _ gestureState: UIGestureRecognizer.State)
 }

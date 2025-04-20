@@ -15,6 +15,7 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
     // MARK: - RequestCalendarModuleOutput
 
     var onDismiss: EmptyClosure?
+    var onApply: ((DayComponentsRange?) -> Void)?
 
     // MARK: - Properties
 
@@ -22,6 +23,7 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
     private var dates: ClosedRange<Date>?
     private var forbiddenDates: [Date] = []
+    private var price: Double?
 
     private lazy var calendar = Calendar.current
     private var selectedDayRange: DayComponentsRange?
@@ -44,8 +46,13 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 extension RequestCalendarPresenter: RequestCalendarModuleInput {
     func configure(with viewModel: RequestCalendarConfig) {
         dates = viewModel.dates
+        price = viewModel.price
         forbiddenDates = viewModel.forbiddenDates
         selectedDayRange = viewModel.selectedDates
+    }
+
+    func setSelectedDates(_ selectedDates: DayComponentsRange?) {
+        self.selectedDayRange = selectedDates
     }
 }
 
@@ -58,6 +65,11 @@ extension RequestCalendarPresenter: RequestCalendarViewOutput {
     }
 
     func dismiss() {
+        onDismiss?()
+    }
+
+    func apply() {
+        onApply?(selectedDayRange)
         onDismiss?()
     }
 
@@ -121,18 +133,48 @@ private extension RequestCalendarPresenter {
         guard let dates else {
             return
         }
-        view?.setupCalendar(
-            config: .init(
-                calendar: calendar,
-                selectedDayRange: selectedDayRange,
-                dates: dates,
-                dayDateFormatter: dayDateFormatter,
-                forbiddenDates: forbiddenDates,
-                overlaidItemLocations: Set(forbiddenDates.map {
-                     OverlaidItemLocation.day(containingDate: $0)
-                })
-            )
+        let config = RequestCalendarViewConfig(
+            calendar: calendar,
+            selectedDayRange: selectedDayRange,
+            dates: dates,
+            dayDateFormatter: dayDateFormatter,
+            forbiddenDates: forbiddenDates,
+            overlaidItemLocations: Set(forbiddenDates.map {
+                OverlaidItemLocation.day(containingDate: $0)
+            }),
+            info: {
+                if let cost = calculateCost(for: selectedDayRange, price: price) {
+                    // TODO: Localize
+                    return "Стоимость аренды: \(cost)₽"
+                } else {
+                    return nil
+                }
+            }()
         )
+        view?.setupCalendar(config: config)
+    }
+}
+
+// MARK: - Utilities
+
+private extension RequestCalendarPresenter {
+     func numberOfDays(in range: DayComponentsRange?) -> Int? {
+        guard
+            let range,
+            let start = calendar.date(from: range.lowerBound.components),
+            let end = calendar.date(from: range.upperBound.components)
+        else {
+            return nil
+        }
+
+        let diff = calendar.dateComponents([.day], from: start, to: end).day ?? 0
+        return diff + 1
     }
 
+    func calculateCost(for range: DayComponentsRange?, price: Double?) -> Double? {
+        guard let days = numberOfDays(in: range), let price else {
+            return nil
+        }
+        return Double(days) * price
+    }
 }

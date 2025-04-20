@@ -19,11 +19,38 @@ final class RequestCalendarViewController: UIViewController {
         static let interMonthSpacing: CGFloat = 24
         static let verticalDayMargin: CGFloat = 8
         static let horizontalDayMargin: CGFloat = 8
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+        static let infoLabelPadding: UIEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 0)
     }
+
+    // MARK: - UI Elements
+
+    private var calendarView: CalendarView?
+
+    private lazy var bottomLineView = {
+        $0.backgroundColor = .separator
+        return $0
+    }(UIView())
+
+    private lazy var bottomView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+
+    private lazy var infoLabel = {
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
+        $0.textAlignment = .center
+        return $0
+    }(UILabel())
+
+    private lazy var applyButton = {
+        // TODO: Localize
+        $0.title = "Apply"
+        $0.setAction { [weak self] in
+            self?.output?.apply()
+        }
+        return $0
+    }(DButton())
 
     // MARK: - Properties
 
-    private var calendarView: CalendarView?
     var output: RequestCalendarViewOutput?
 
     // MARK: - UIViewController
@@ -31,26 +58,43 @@ final class RequestCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        setupCloseButton()
         // TODO: Localize
         title = "Dates"
     }
 
-    private func addCalendarView() {
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
         guard let calendarView else {
             return
         }
         view.addSubview(calendarView)
+        view.addSubview(bottomLineView)
+        view.addSubview(bottomView)
+        bottomView.contentView.addSubview(infoLabel)
+        bottomView.contentView.addSubview(applyButton)
+
         calendarView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top)
         }
 
-        calendarView.daySelectionHandler = { [weak self] day in
-            self?.output?.handleDaySelection(day)
+        bottomLineView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top)
+            make.height.equalTo(1 / (view.window?.windowScene?.screen.scale ?? 2))
         }
-
-        calendarView.multiDaySelectionDragHandler = { [weak self] day, state in
-            self?.output?.handleDragDaySelection(day, state)
+        bottomView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        infoLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(applyButton.snp.top).offset(-Constants.infoLabelPadding.bottom)
+            make.top.equalToSuperview().inset(Constants.infoLabelPadding)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
+        }
+        applyButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
         }
     }
 
@@ -67,9 +111,26 @@ final class RequestCalendarViewController: UIViewController {
 
 extension RequestCalendarViewController: RequestCalendarViewInput {
     func setupCalendar(config: RequestCalendarViewConfig) {
+        infoLabel.text = config.info
         guard let calendarView else {
             calendarView = CalendarView(initialContent: makeContent(config: config))
-            addCalendarView()
+
+            calendarView?.daySelectionHandler = { [weak self] day in
+                self?.output?.handleDaySelection(day)
+            }
+
+            calendarView?.multiDaySelectionDragHandler = { [weak self] day, state in
+                self?.output?.handleDragDaySelection(day, state)
+            }
+
+            setupUI()
+            setupCloseButton()
+
+            guard let components = config.selectedDayRange?.lowerBound.components,
+                  let startDate = config.calendar.date(from: components) else {
+                return
+            }
+            calendarView?.scroll(toDayContaining: startDate, scrollPosition: .centered, animated: false)
             return
         }
         calendarView.setContent(makeContent(config: config))

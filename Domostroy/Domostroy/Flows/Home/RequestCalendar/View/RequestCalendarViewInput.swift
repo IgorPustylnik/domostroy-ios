@@ -16,6 +16,7 @@ struct RequestCalendarViewConfig {
     let dayDateFormatter: DateFormatter
     let forbiddenDates: any Collection<Date>
     let overlaidItemLocations: Set<OverlaidItemLocation>
+    let info: String?
 }
 
 protocol RequestCalendarViewInput: AnyObject {

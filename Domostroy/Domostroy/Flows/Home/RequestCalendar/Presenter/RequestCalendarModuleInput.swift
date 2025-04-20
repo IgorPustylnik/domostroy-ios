@@ -13,8 +13,10 @@ struct RequestCalendarConfig {
     let dates: ClosedRange<Date>
     let forbiddenDates: [Date]
     let selectedDates: DayComponentsRange?
+    let price: Double
 }
 
 protocol RequestCalendarModuleInput: AnyObject {
     func configure(with viewModel: RequestCalendarConfig)
+    func setSelectedDates(_ selectedDates: DayComponentsRange?)
 }

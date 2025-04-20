@@ -57,23 +57,27 @@ private extension HomeCoordinator {
 
     func showCreateRequest(offerId: Int) {
         let (view, output, input) = CreateRequestModuleConfigurator().configure()
-        input.set(offerId: offerId)
-        output.onShowCalendar = { [weak self] config in
+        input.setOfferId(offerId)
+        output.onShowCalendar = { [weak self, weak input] config in
             guard let config else {
                 return
             }
-            self?.showRequestCalendar(config: config)
+            self?.showRequestCalendar(config: config, createRequestInput: input)
         }
 
         router.push(view)
     }
 
-    func showRequestCalendar(config: RequestCalendarConfig) {
+    func showRequestCalendar(config: RequestCalendarConfig, createRequestInput: CreateRequestModuleInput?) {
         let (view, output, input) = RequestCalendarModuleConfigurator().configure()
         input.configure(with: config)
         output.onDismiss = { [weak self] in
             self?.router.dismissModule()
         }
+        output.onApply = { dayComponentsRange in
+            createRequestInput?.setSelectedDates(dayComponentsRange)
+        }
+
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
         if let sheet = navigationControllerWrapper.sheetPresentationController {
             sheet.detents = [.large()]

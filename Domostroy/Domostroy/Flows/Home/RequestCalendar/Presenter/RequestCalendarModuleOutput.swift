@@ -6,6 +6,9 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import HorizonCalendar
+
 protocol RequestCalendarModuleOutput: AnyObject {
     var onDismiss: EmptyClosure? { get set }
+    var onApply: ((DayComponentsRange?) -> Void)? { get set }
 }
