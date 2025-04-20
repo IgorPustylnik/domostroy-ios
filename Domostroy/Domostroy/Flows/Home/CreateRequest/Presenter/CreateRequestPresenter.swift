@@ -8,23 +8,55 @@
 
 import UIKit
 import Kingfisher
+import HorizonCalendar
 
 final class CreateRequestPresenter: CreateRequestModuleOutput {
 
     // MARK: - CreateRequestModuleOutput
 
+    var onShowCalendar: ((RequestCalendarConfig?) -> Void)?
+
     // MARK: - Properties
 
     weak var view: CreateRequestViewInput?
 
-    private var offerId: Int?
+    private var offer: Offer?
+    private var offerCalendar: OfferCalendar?
+    private var selectedDates: DayComponentsRange?
 }
 
 // MARK: - CreateRequestModuleInput
 
 extension CreateRequestPresenter: CreateRequestModuleInput {
-    func set(offerId: Int) {
-        self.offerId = offerId
+    func setOfferId(_ id: Int) {
+        fetchOffer(id: id)
+    }
+
+    func setSelectedDates(_ dates: DayComponentsRange?) {
+        self.selectedDates = dates
+        guard let startDateComponents = dates?.lowerBound.components,
+              let startDate = Calendar.current.date(from: startDateComponents),
+              let endDateComponents = dates?.upperBound.components,
+              let endDate = Calendar.current.date(from: endDateComponents),
+              let offer
+        else {
+            return
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(
+            fromTemplate: "d MMMM",
+            options: 0,
+            locale: Locale.current)
+        if startDate == endDate {
+            view?.configureCalendar(
+                with: "\(dateFormatter.string(from: endDate))"
+            )
+        } else {
+            view?.configureCalendar(
+                with: "\(dateFormatter.string(from: startDate)) — \(dateFormatter.string(from: endDate))"
+            )
+        }
+        view?.configureTotalCost(with: calculateTotalCostText(for: offer.price))
     }
 }
 
@@ -34,19 +66,6 @@ extension CreateRequestPresenter: CreateRequestViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-        view?.configure(
-            with: .init(
-                imageUrl: nil,
-                loadImage: { [weak self] url, imageView in
-                    self?.loadImage(url: url, imageView: imageView)
-                },
-                title: "Шуруповёрт Makita",
-                price: "500₽/день",
-                onCalendar: { [weak self] in
-                    self?.openCalendar()
-                }
-            )
-        )
     }
 
     func submit() {
@@ -63,31 +82,72 @@ private extension CreateRequestPresenter {
         }
     }
 
-    func fetchOffer() {
-        guard let offerId else {
-            return
-        }
+    func loadCalendar(id: Int) {
         Task {
-            let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: offerId)
+            let offerCalendar = await _Temporary_Mock_NetworkService().fetchCalendar(id: id)
+            self.offerCalendar = offerCalendar
             DispatchQueue.main.async { [weak self] in
-                self?.view?.configure(
-                    with: .init(
-                        imageUrl: offer.images.first,
-                        loadImage: { [weak self] url, imageView in
-                            self?.loadImage(url: url, imageView: imageView)
-                        },
-                        title: offer.name,
-                        price: "\(offer.price.stringDroppingTrailingZero)₽/день",
-                        onCalendar: { [weak self] in
-                            self?.openCalendar()
-                        }
-                    )
-                )
+                self?.view?.configureCalendar(with: "Select dates")
             }
         }
     }
 
-    func openCalendar() {
+    func fetchOffer(id: Int) {
+        Task {
+            let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: id)
+            self.offer = offer
+            DispatchQueue.main.async { [weak self] in
+                self?.updateView(with: offer)
+            }
+        }
+    }
 
+    private func updateView(with offer: Offer) {
+        let viewModel = self.makeViewModel(from: offer)
+        view?.configure(with: viewModel)
+    }
+
+    private func makeViewModel(from offer: Offer) -> CreateRequestView.ViewModel {
+        .init(
+            imageUrl: offer.images.first,
+            loadImage: { [weak self] url, imageView in
+                self?.loadImage(url: url, imageView: imageView)
+            },
+            title: offer.name,
+            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            calendarId: offer.calendarId,
+            loadCalendar: { [weak self] id in
+                self?.loadCalendar(id: id)
+            },
+            onCalendar: { [weak self] in
+                self?.presentCalendar(for: offer)
+            }
+        )
+    }
+
+    private func calculateTotalCostText(for price: Double) -> String? {
+        guard
+            let selectedDates,
+            let days = CalendarHelper.numberOfDays(in: selectedDates),
+            let totalCost = CalendarHelper.calculateCost(for: selectedDates, price: price)
+        else { return nil }
+
+        let dayPrice = price.stringDroppingTrailingZero
+        let total = totalCost.stringDroppingTrailingZero
+        return "\(dayPrice)₽ × \(days) \("дней"/*Localized*/) = \(total)₽"
+    }
+
+    private func presentCalendar(for offer: Offer) {
+        guard let offerCalendar else {
+            return
+        }
+        onShowCalendar?(
+            .init(
+                dates: offerCalendar.startDate...offerCalendar.endDate,
+                forbiddenDates: offerCalendar.forbiddenDates,
+                selectedDates: selectedDates,
+                price: offer.price
+            )
+        )
     }
 }

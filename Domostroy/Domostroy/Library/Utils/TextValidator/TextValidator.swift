@@ -169,8 +169,11 @@ struct RequiredValidator: TextValidator {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
             return (false, "Validation failed")
         }
-        guard !text.isEmpty, let wrapped else {
+        guard !text.isEmpty else {
             return (false, L10n.Localizable.Auth.InputField.Error.empty)
+        }
+        guard let wrapped else {
+            return (true, nil)
         }
         return wrapped.validate(text)
     }

@@ -23,7 +23,7 @@ enum _Temporary_EndpointConstructor {
 
 struct _Temporary_Mock_NetworkService {
     func fetchOffers(page: Int, pageSize: Int) async -> OffersPage {
-        let url = URL.applicationDirectory
+        let url = URL(string: "https://www.superiorwallpapers.com/landscapes/blue-lake-in-the-mountains_5120x2880.jpg")!
         try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
         return OffersPage(
             pagination: .init(
@@ -74,6 +74,50 @@ struct _Temporary_Mock_NetworkService {
             city: .init(id: 0, name: "Воронеж"),
             userId: 0,
             calendarId: 0
+        )
+    }
+
+    func fetchCalendar(id: Int) async -> OfferCalendar {
+        let url = URL.applicationDirectory
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        return OfferCalendar(
+            startDate: Calendar.current.date(
+                from: .init(
+                    year: 2025,
+                    month: 4,
+                    day: 1
+                )
+            )!,
+            endDate: Calendar.current.date(
+                from: .init(
+                    year: 2026,
+                    month: 4,
+                    day: 1
+                )
+            )!,
+            forbiddenDates: [
+                Calendar.current.date(
+                    from: .init(
+                        year: 2025,
+                        month: 4,
+                        day: 13
+                    )
+                )!,
+                Calendar.current.date(
+                    from: .init(
+                        year: 2025,
+                        month: 4,
+                        day: 15
+                    )
+                )!,
+                Calendar.current.date(
+                    from: .init(
+                        year: 2025,
+                        month: 4,
+                        day: 26
+                    )
+                )!
+            ]
         )
     }
 }

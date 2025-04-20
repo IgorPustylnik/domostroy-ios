@@ -83,4 +83,8 @@ extension CreateRequestViewController: CreateRequestViewInput {
         createRequestView.configureCalendar(with: description)
     }
 
+    func configureTotalCost(with totalCost: String?) {
+        createRequestView.configureTotalCost(with: totalCost)
+    }
+
 }

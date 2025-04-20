@@ -7,4 +7,5 @@
 //
 
 protocol CreateRequestModuleOutput: AnyObject {
+    var onShowCalendar: ((RequestCalendarConfig?) -> Void)? { get set }
 }

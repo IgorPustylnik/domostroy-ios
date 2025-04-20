@@ -6,6 +6,9 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import HorizonCalendar
+
 protocol CreateRequestModuleInput: AnyObject {
-    func set(offerId: Int)
+    func setOfferId(_ id: Int)
+    func setSelectedDates(_ dates: DayComponentsRange?)
 }
