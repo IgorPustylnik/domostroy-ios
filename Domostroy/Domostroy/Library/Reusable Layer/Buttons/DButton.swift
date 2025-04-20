@@ -29,7 +29,7 @@ class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, plainPrimary, plain, calendar, navbar
+        case filledPrimary, filledWhite, filledSecondary, plainPrimary, plain, calendar, navbar, destructive
     }
 
     enum ImagePlacement {
@@ -158,6 +158,9 @@ class DButton: UIControl {
         case .filledWhite:
             backgroundView.backgroundColor = .white
             titleLabel.textColor = .Domostroy.primary
+        case .filledSecondary:
+            backgroundView.backgroundColor = .secondarySystemBackground
+            borderColor = .separator
         case .plainPrimary:
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .Domostroy.primary
@@ -177,6 +180,9 @@ class DButton: UIControl {
             hStackView.spacing = 12
             insets = .init(top: 8, left: 10, bottom: 8, right: 10)
             borderColor = .separator
+        case .destructive:
+            backgroundView.backgroundColor = .systemRed
+            titleLabel.textColor = .white
         }
     }
 
