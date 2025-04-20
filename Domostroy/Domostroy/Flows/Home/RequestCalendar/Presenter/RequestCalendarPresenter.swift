@@ -143,38 +143,14 @@ private extension RequestCalendarPresenter {
                 OverlaidItemLocation.day(containingDate: $0)
             }),
             info: {
-                if let cost = calculateCost(for: selectedDayRange, price: price) {
+                if let cost = CalendarHelper.calculateCost(for: selectedDayRange, price: price) {
                     // TODO: Localize
-                    return "Стоимость аренды: \(cost)₽"
+                    return "Стоимость аренды: \(cost.stringDroppingTrailingZero)₽"
                 } else {
                     return nil
                 }
             }()
         )
         view?.setupCalendar(config: config)
-    }
-}
-
-// MARK: - Utilities
-
-private extension RequestCalendarPresenter {
-     func numberOfDays(in range: DayComponentsRange?) -> Int? {
-        guard
-            let range,
-            let start = calendar.date(from: range.lowerBound.components),
-            let end = calendar.date(from: range.upperBound.components)
-        else {
-            return nil
-        }
-
-        let diff = calendar.dateComponents([.day], from: start, to: end).day ?? 0
-        return diff + 1
-    }
-
-    func calculateCost(for range: DayComponentsRange?, price: Double?) -> Double? {
-        guard let days = numberOfDays(in: range), let price else {
-            return nil
-        }
-        return Double(days) * price
     }
 }
