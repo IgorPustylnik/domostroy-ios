@@ -31,6 +31,7 @@ final class CreateRequestView: UIView {
         static let offerHStackSpacing: CGFloat = 16
         static let detailsVStackSpacing: CGFloat = 10
         static let infoVStackSpacing: CGFloat = 10
+        static let costVStackSpacing: CGFloat = 10
     }
 
     // MARK: - UI Elements
@@ -41,6 +42,7 @@ final class CreateRequestView: UIView {
         $0.addArrangedSubview(offerHStackView)
         $0.addArrangedSubview(detailsVStackView)
         $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(totalCostVStackView)
         return $0
     }(UIStackView())
 
@@ -94,8 +96,7 @@ final class CreateRequestView: UIView {
     private lazy var calendarButton = {
         $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
-        // TODO: Localize
-        $0.title = "Select dates"
+        $0.title = " "
         $0.setAction { [weak self] in
             self?.onCalendar?()
         }
@@ -126,6 +127,33 @@ final class CreateRequestView: UIView {
         $0.numberOfLines = 0
         // TODO: Localize
         $0.text = "Арендодатель получит контактные данные, указанные в вашем профиле."
+        return $0
+    }(UILabel())
+
+    private lazy var totalCostVStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.costVStackSpacing
+        $0.addArrangedSubview(totalCostHeaderLabel)
+        $0.addArrangedSubview(totalCostLabel)
+        $0.addArrangedSubview(totalCostInfoLabel)
+        $0.isHidden = true
+        return $0
+    }(UIStackView())
+
+    // TODO: Localize
+    private lazy var totalCostHeaderLabel = makeHeaderLabel("Стоимость аренды")
+
+    private lazy var totalCostLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.numberOfLines = 0
+        return $0
+    }(UILabel())
+
+    private lazy var totalCostInfoLabel = {
+        $0.font = .systemFont(ofSize: 12, weight: .light)
+        $0.numberOfLines = 0
+        // TODO: Localize
+        $0.text = "Сумма указана для справки. Оплата — по договорённости с арендодателем."
         return $0
     }(UILabel())
 
@@ -180,5 +208,10 @@ extension CreateRequestView {
 
     func configureCalendar(with description: String) {
         calendarButton.title = description
+    }
+
+    func configureTotalCost(with totalCost: String?) {
+        totalCostVStackView.isHidden = totalCost == nil
+        totalCostLabel.text = totalCost
     }
 }

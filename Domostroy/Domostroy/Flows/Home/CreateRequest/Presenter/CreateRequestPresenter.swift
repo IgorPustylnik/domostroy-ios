@@ -37,7 +37,8 @@ extension CreateRequestPresenter: CreateRequestModuleInput {
         guard let startDateComponents = dates?.lowerBound.components,
               let startDate = Calendar.current.date(from: startDateComponents),
               let endDateComponents = dates?.upperBound.components,
-              let endDate = Calendar.current.date(from: endDateComponents)
+              let endDate = Calendar.current.date(from: endDateComponents),
+              let offer
         else {
             return
         }
@@ -55,6 +56,7 @@ extension CreateRequestPresenter: CreateRequestModuleInput {
                 with: "\(dateFormatter.string(from: startDate)) — \(dateFormatter.string(from: endDate))"
             )
         }
+        view?.configureTotalCost(with: calculateTotalCostText(for: offer.price))
     }
 }
 
@@ -84,8 +86,8 @@ private extension CreateRequestPresenter {
         Task {
             let offerCalendar = await _Temporary_Mock_NetworkService().fetchCalendar(id: id)
             self.offerCalendar = offerCalendar
-            DispatchQueue.main.async {
-                self.view?.configureCalendar(with: "You can open calendar now")
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.configureCalendar(with: "Select dates")
             }
         }
     }
@@ -95,34 +97,57 @@ private extension CreateRequestPresenter {
             let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: id)
             self.offer = offer
             DispatchQueue.main.async { [weak self] in
-                self?.view?.configure(
-                    with: .init(
-                        imageUrl: offer.images.first,
-                        loadImage: { [weak self] url, imageView in
-                            self?.loadImage(url: url, imageView: imageView)
-                        },
-                        title: offer.name,
-                        price: "\(offer.price.stringDroppingTrailingZero)₽/день",
-                        calendarId: offer.calendarId,
-                        loadCalendar: { [weak self] calendarId in
-                            self?.loadCalendar(id: calendarId)
-                        },
-                        onCalendar: { [weak self] in
-                            guard let offerCalendar = self?.offerCalendar else {
-                                return
-                            }
-                            self?.onShowCalendar?(
-                                .init(
-                                    dates: offerCalendar.startDate...offerCalendar.endDate,
-                                    forbiddenDates: offerCalendar.forbiddenDates,
-                                    selectedDates: self?.selectedDates,
-                                    price: offer.price
-                                )
-                            )
-                        }
-                    )
-                )
+                self?.updateView(with: offer)
             }
         }
+    }
+
+    private func updateView(with offer: Offer) {
+        let viewModel = self.makeViewModel(from: offer)
+        view?.configure(with: viewModel)
+    }
+
+    private func makeViewModel(from offer: Offer) -> CreateRequestView.ViewModel {
+        .init(
+            imageUrl: offer.images.first,
+            loadImage: { [weak self] url, imageView in
+                self?.loadImage(url: url, imageView: imageView)
+            },
+            title: offer.name,
+            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            calendarId: offer.calendarId,
+            loadCalendar: { [weak self] id in
+                self?.loadCalendar(id: id)
+            },
+            onCalendar: { [weak self] in
+                self?.presentCalendar(for: offer)
+            }
+        )
+    }
+
+    private func calculateTotalCostText(for price: Double) -> String? {
+        guard
+            let selectedDates,
+            let days = CalendarHelper.numberOfDays(in: selectedDates),
+            let totalCost = CalendarHelper.calculateCost(for: selectedDates, price: price)
+        else { return nil }
+
+        let dayPrice = price.stringDroppingTrailingZero
+        let total = totalCost.stringDroppingTrailingZero
+        return "\(dayPrice)₽ × \(days) \("дней"/*Localized*/) = \(total)₽"
+    }
+
+    private func presentCalendar(for offer: Offer) {
+        guard let offerCalendar else {
+            return
+        }
+        onShowCalendar?(
+            .init(
+                dates: offerCalendar.startDate...offerCalendar.endDate,
+                forbiddenDates: offerCalendar.forbiddenDates,
+                selectedDates: selectedDates,
+                price: offer.price
+            )
+        )
     }
 }
