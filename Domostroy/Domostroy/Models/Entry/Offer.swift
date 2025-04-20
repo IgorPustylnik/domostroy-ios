@@ -52,6 +52,16 @@ struct User: Codable {
     let firstName: String
     let lastName: String
     let email: String
+    let phoneNumber: String
+}
+
+struct MyProfile: Codable {
+    let id: Int
+    let firstName: String
+    let lastName: String?
+    let email: String
+    let phoneNumber: String
+    let isAdmin: Bool
 }
 
 struct OfferCalendar: Codable {

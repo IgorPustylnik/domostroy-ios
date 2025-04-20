@@ -120,4 +120,16 @@ struct _Temporary_Mock_NetworkService {
             ]
         )
     }
+
+    func fetchMyProfile() async -> MyProfile {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        return MyProfile(
+            id: 0,
+            firstName: "Виктор",
+            lastName: "Корнеплод",
+            email: "test@mail.ru",
+            phoneNumber: "+78005553535",
+            isAdmin: true
+        )
+    }
 }
