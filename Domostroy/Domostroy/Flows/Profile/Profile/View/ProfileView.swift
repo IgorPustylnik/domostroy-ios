@@ -7,24 +7,143 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileView: UIView {
 
+    // MARK: - ViewModel
+
+    struct ViewModel {
+        let imageUrl: URL?
+        let loadImage: (URL?, UIImageView) -> Void
+        let name: String
+        let phoneNumber: String
+        let email: String
+        let isAdmin: Bool
+    }
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+        static let avatarSize: CGSize = .init(width: 100, height: 100)
+        static let mainVStackSpacing: CGFloat = 16
+        static let nameHStackSpacing: CGFloat = 10
+        static let infoVStackSpacing: CGFloat = 10
+    }
+
     // MARK: - UI Elements
 
-    init() {
-        super.init(frame: .zero)
-        setupUI()
+    private lazy var mainVStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.mainVStackSpacing
+        $0.addArrangedSubview(avatarContainerView)
+        $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(adminButton)
+        $0.addArrangedSubview(logoutButton)
+        return $0
+    }(UIStackView())
+
+    private lazy var avatarContainerView = {
+        $0.addSubview(avatarImageView)
+        avatarImageView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        return $0
+    }(UIView())
+
+    private lazy var avatarImageView = {
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = Constants.avatarSize.width / 2
+        $0.layer.masksToBounds = true
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(Constants.avatarSize)
+        }
+        return $0
+    }(UIImageView())
+
+    private lazy var infoVStackView = {
+        $0.axis = .vertical
+        $0.alignment = .center
+        $0.spacing = Constants.infoVStackSpacing
+        $0.addArrangedSubview(nameHStackView)
+        $0.addArrangedSubview(phoneNumberLabel)
+        $0.addArrangedSubview(emailLabel)
+        return $0
+    }(UIStackView())
+
+    private lazy var nameHStackView = {
+        $0.axis = .horizontal
+        $0.spacing = Constants.nameHStackSpacing
+        $0.addArrangedSubview(nameLabel)
+        $0.addArrangedSubview(editButton)
+        return $0
+    }(UIStackView())
+
+    private lazy var nameLabel = {
+        $0.font = .systemFont(ofSize: 24, weight: .semibold)
+        return $0
+    }(UILabel())
+
+    private lazy var editButton = {
+        $0.image = .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        $0.insets = .zero
+        $0.setAction { [weak self] in
+            self?.onEdit?()
+        }
+        return $0
+    }(DButton(type: .plainPrimary))
+
+    private lazy var phoneNumberLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .light)
+        return $0
+    }(UILabel())
+
+    private lazy var emailLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .light)
+        return $0
+    }(UILabel())
+
+    private lazy var adminButton = {
+        // TODO: Localize
+        $0.title = "Admin panel"
+        $0.setAction { [weak self] in
+            self?.onAdminPanel?()
+        }
+        return $0
+    }(DButton(type: .filledSecondary))
+
+    private lazy var logoutButton = {
+        // TODO: Localize
+        $0.title = "Logout"
+        $0.setAction { [weak self] in
+            self?.onLogout?()
+        }
+        return $0
+    }(DButton(type: .destructive))
+
+    // MARK: - Properties
+
+    var onEdit: EmptyClosure?
+    var onAdminPanel: EmptyClosure?
+    var onLogout: EmptyClosure?
+
+    // MARK: - Configuration
+
+    func setupInitialState() {
+        addSubview(mainVStackView)
+        mainVStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(Constants.insets)
+        }
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
-    // MARK: - UI Setup
-
-    private func setupUI() {
-        backgroundColor = .systemYellow
+    func configure(with viewModel: ViewModel) {
+        viewModel.loadImage(viewModel.imageUrl, avatarImageView)
+        nameLabel.text = viewModel.name
+        phoneNumberLabel.text = viewModel.phoneNumber
+        emailLabel.text = viewModel.email
+        adminButton.isHidden = !viewModel.isAdmin
     }
 
 }

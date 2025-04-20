@@ -63,6 +63,15 @@ private extension ProfileCoordinator {
 
     func showProfile() {
         let (view, output) = ProfileModuleConfigurator().configure()
+        output.onEdit = { [weak self] in
+
+        }
+        output.onAdminPanel = { [weak self] in
+
+        }
+        output.onLogout = { [weak self] in
+
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
