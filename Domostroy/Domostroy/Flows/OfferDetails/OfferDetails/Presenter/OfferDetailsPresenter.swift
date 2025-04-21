@@ -26,6 +26,10 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
     var picturesAdapter: BaseCollectionManager?
 
+    deinit {
+        print("☠️ OfferDetailsPresenter умер")
+    }
+
 }
 
 private extension OfferDetailsPresenter {

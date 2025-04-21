@@ -87,10 +87,10 @@ private extension MyOffersCoordinator {
             self?.onSetTabBarCenterControlEnabled?(enabled)
         }
         output.onAdd = { [weak self] in
-            self?.createOffer()
+            self?.showCreateOffer()
         }
         output.onOpenOffer = { [weak self] id in
-            self?.showOffer(id: id)
+            self?.runOfferDetailsFlow(id: id)
         }
         output.onEditOffer = { [weak self] id in
             self?.editOffer(id: id)
@@ -98,7 +98,7 @@ private extension MyOffersCoordinator {
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
-    func createOffer() {
+    func showCreateOffer() {
         let (view, output) = CreateOfferModuleConfigurator().configure()
         output.onAddImages = { [weak self] delegate, limit in
             self?.showImagePicker(delegate: delegate, limit: limit)
@@ -120,8 +120,10 @@ private extension MyOffersCoordinator {
         router.present(picker, animated: true, completion: nil)
     }
 
-    func showOffer(id: Int) {
-        print("show offer id: \(id)")
+    func runOfferDetailsFlow(id: Int) {
+        let coordinator = OfferDetailsCoordinator(router: router)
+        addDependency(coordinator)
+        coordinator.start(with: id)
     }
 
     func editOffer(id: Int) {

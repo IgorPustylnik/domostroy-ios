@@ -61,6 +61,8 @@
 		550D4F292D9FC20800B460CA /* DTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextField.swift */; };
 		550D4F2C2D9FC2AB00B460CA /* TextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */; };
 		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
+		55189C562DB69B770079481A /* OfferDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */; };
+		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
 		55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55631AB32D95FB3900FD6856 /* Images.xcassets */; };
@@ -253,6 +255,8 @@
 		550D4F282D9FC20800B460CA /* DTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextField.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValidator.swift; sourceTree = "<group>"; };
 		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
+		55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinator.swift; sourceTree = "<group>"; };
+		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55631A852D95FB3900FD6856 /* Domostroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domostroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -599,9 +603,6 @@
 				6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */,
 				3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */,
 				55B496262D9E83D400C6AB57 /* Home */,
-				7F8B2000D052D228CF1813DF /* OfferDetails */,
-				54920804046B7D722F5E96D8 /* CreateRequest */,
-				AC504D6499795733FD6C7F8C /* RequestCalendar */,
 				42ADB419757D41987C7B5386 /* Search */,
 			);
 			path = Home;
@@ -865,6 +866,7 @@
 			children = (
 				D6676D5EB2A904B945F91427 /* MainTabBar */,
 				45E3BDD7D55CD627895DC6DC /* Home */,
+				7F8B2000D052D228CF1813DF /* OfferDetails */,
 				AE8FB4CB75A3F666E12AE6DA /* Favorites */,
 				27FD3D135A87479D929BEE9D /* MyOffers */,
 				FD09829050BBFB5E9A175408 /* Requests */,
@@ -965,6 +967,16 @@
 				B22DB2ABBBD155A9C0C6FB89 /* View */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		55BA92FE2DB69968007F4240 /* OfferDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F0E9C8DCB540BEE752D69DD0 /* Configurator */,
+				530BBD5507E78AB6909A4EF0 /* Presenter */,
+				1B22FC96C407A08696AD6FAC /* View */,
+			);
+			path = OfferDetails;
 			sourceTree = "<group>";
 		};
 		55D17A382DA00E4700425A6B /* NavigationBar */ = {
@@ -1151,9 +1163,11 @@
 		7F8B2000D052D228CF1813DF /* OfferDetails */ = {
 			isa = PBXGroup;
 			children = (
-				F0E9C8DCB540BEE752D69DD0 /* Configurator */,
-				530BBD5507E78AB6909A4EF0 /* Presenter */,
-				1B22FC96C407A08696AD6FAC /* View */,
+				55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */,
+				55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */,
+				55BA92FE2DB69968007F4240 /* OfferDetails */,
+				54920804046B7D722F5E96D8 /* CreateRequest */,
+				AC504D6499795733FD6C7F8C /* RequestCalendar */,
 			);
 			path = OfferDetails;
 			sourceTree = "<group>";
@@ -1629,6 +1643,7 @@
 				BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */,
 				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
+				55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */,
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
 				55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */,
@@ -1746,6 +1761,7 @@
 				AF1BDB73F808A624415C2689 /* CreateRequestViewInput.swift in Sources */,
 				3FC726130A1BD0E82ACCE454 /* CreateRequestViewOutput.swift in Sources */,
 				0B3D0B9043ECF50DCFD919BB /* RequestCalendarModuleConfigurator.swift in Sources */,
+				55189C562DB69B770079481A /* OfferDetailsCoordinator.swift in Sources */,
 				2BC9D19665BFCE38687EA581 /* RequestCalendarPresenter.swift in Sources */,
 				A128CE6DD314BF7CCF51B8E0 /* RequestCalendarModuleInput.swift in Sources */,
 				C90202D001A6900E4B9A3229 /* RequestCalendarModuleOutput.swift in Sources */,
