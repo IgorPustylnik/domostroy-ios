@@ -35,7 +35,7 @@ private extension HomeCoordinator {
     func showHome() {
         let (view, output) = HomeModuleConfigurator().configure()
         output.onOpenOffer = { [weak self] id in
-            self?.showOfferDetails(id)
+            self?.runOfferDetailsFlow(id)
         }
         output.onSearch = { [weak self] query in
             self?.showSearch(query: query)
@@ -43,55 +43,20 @@ private extension HomeCoordinator {
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
-    func showOfferDetails(_ id: Int) {
-        let (view, output, input) = OfferDetailsModuleConfigurator().configure()
-        input.set(offerId: id)
-        output.onOpenUser = { [weak self] id in
-
+    func runOfferDetailsFlow(_ id: Int) {
+        let coordinator = OfferDetailsCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
         }
-        output.onRent = { [weak self] in
-            self?.showCreateRequest(offerId: id)
-        }
-        router.push(view, animated: true)
-    }
-
-    func showCreateRequest(offerId: Int) {
-        let (view, output, input) = CreateRequestModuleConfigurator().configure()
-        input.setOfferId(offerId)
-        output.onShowCalendar = { [weak self, weak input] config in
-            guard let config else {
-                return
-            }
-            self?.showRequestCalendar(config: config, createRequestInput: input)
-        }
-
-        router.push(view)
-    }
-
-    func showRequestCalendar(config: RequestCalendarConfig, createRequestInput: CreateRequestModuleInput?) {
-        let (view, output, input) = RequestCalendarModuleConfigurator().configure()
-        input.configure(with: config)
-        output.onDismiss = { [weak self] in
-            self?.router.dismissModule()
-        }
-        output.onApply = { dayComponentsRange in
-            createRequestInput?.setSelectedDates(dayComponentsRange)
-        }
-
-        let navigationControllerWrapper = UINavigationController(rootViewController: view)
-        if let sheet = navigationControllerWrapper.sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.preferredCornerRadius = 10
-            sheet.prefersGrabberVisible = true
-        }
-        router.present(navigationControllerWrapper)
+        addDependency(coordinator)
+        coordinator.start(with: id)
     }
 
     func showSearch(query: String?) {
         let (view, output, input) = SearchModuleConfigurator().configure()
-        input.set(query: query)
+        input.setQuery(query)
         output.onOpenOffer = { [weak self] id in
-            self?.showOfferDetails(id)
+            self?.runOfferDetailsFlow(id)
         }
         output.onOpenCity = { [weak self, weak input] city in
             self?.showCity(city: city, input: input)

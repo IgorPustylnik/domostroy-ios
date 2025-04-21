@@ -7,6 +7,15 @@
 
 import UIKit
 
+private final class TouchesCancellableScrollView: UIScrollView {
+    override func touchesShouldCancel(in view: UIView) -> Bool {
+        if view is DButton {
+            return true
+        }
+        return super.touchesShouldCancel(in: view)
+    }
+}
+
 class ScrollViewController: BaseViewController {
 
     // MARK: - Properties
@@ -19,7 +28,7 @@ class ScrollViewController: BaseViewController {
     var scrollView: UIScrollView {
         _scrollView
     }
-    private var _scrollView = UIScrollView()
+    private var _scrollView = TouchesCancellableScrollView()
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
 
@@ -58,6 +67,7 @@ class ScrollViewController: BaseViewController {
         contentView.snp.makeConstraints { make in
             make.edges.width.equalToSuperview()
         }
+        _scrollView.delaysContentTouches = false
     }
 
     func setupIndicatorView() {

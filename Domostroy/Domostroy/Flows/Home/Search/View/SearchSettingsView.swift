@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchSupplementaryView: UIView {
+final class SearchSettingsView: UIView {
 
     // MARK: - Constants
 
@@ -100,7 +100,7 @@ final class SearchSupplementaryView: UIView {
 
 // MARK: - Configuration
 
-extension SearchSupplementaryView {
+extension SearchSettingsView {
 
     func set(city: String?) {
         cityButton.title = city

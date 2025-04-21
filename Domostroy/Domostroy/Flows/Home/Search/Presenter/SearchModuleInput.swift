@@ -7,8 +7,8 @@
 //
 
 protocol SearchModuleInput: AnyObject {
-    func set(query: String?)
-    func set(city: City)
-    func set(sort: Sort)
-    func set(filter: Filter)
+    func setQuery(_ query: String?)
+    func setCity(_ city: City)
+    func setSort(_ sort: Sort)
+    func setFilter(_ filter: Filter)
 }

@@ -34,7 +34,19 @@ private extension FavoritesCoordinator {
 
     func showFavorites() {
         let (view, output) = FavoritesModuleConfigurator().configure()
+        output.onOpenOffer = { [weak self] id in
+            self?.runOfferDetailsFlow(id: id)
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func runOfferDetailsFlow(id: Int) {
+        let coordinator = OfferDetailsCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
+        addDependency(coordinator)
+        coordinator.start(with: id)
     }
 
 }

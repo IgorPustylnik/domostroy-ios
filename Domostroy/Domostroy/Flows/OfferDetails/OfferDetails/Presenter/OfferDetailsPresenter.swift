@@ -17,6 +17,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
     var onOpenUser: ((Int) -> Void)?
     var onRent: EmptyClosure?
+    var onDeinit: EmptyClosure?
 
     // MARK: - Properties
 
@@ -25,6 +26,10 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     private var offerId: Int?
 
     var picturesAdapter: BaseCollectionManager?
+
+    deinit {
+        onDeinit?()
+    }
 
 }
 

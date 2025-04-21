@@ -9,4 +9,5 @@
 protocol AuthModuleOutput: AnyObject {
     var onLogin: EmptyClosure? { get set }
     var onRegister: EmptyClosure? { get set }
+    var onDeinit: EmptyClosure? { get set }
 }

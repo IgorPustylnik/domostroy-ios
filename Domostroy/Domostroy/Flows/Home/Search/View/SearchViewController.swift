@@ -18,7 +18,7 @@ final class SearchViewController: BaseViewController {
         static let progressViewHeight: CGFloat = 80
         static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         static let searchHStackSpacing: CGFloat = 10
-        static let searchSupplementaryViewHeight: CGFloat = 36
+        static let searchSettingsViewHeight: CGFloat = 36
         static let animationDuration: Double = 0.3
     }
 
@@ -48,7 +48,7 @@ final class SearchViewController: BaseViewController {
         return $0
     }(DSearchTextField())
 
-    private lazy var searchSupplementaryView = {
+    private lazy var searchSettingsView = {
         $0.onOpenCity = { [weak self] in
             self?.output?.openCity()
         }
@@ -59,7 +59,7 @@ final class SearchViewController: BaseViewController {
             self?.output?.openFilters()
         }
         return $0
-    }(SearchSupplementaryView())
+    }(SearchSettingsView())
 
     private lazy var backButton = {
         $0.snp.makeConstraints { make in
@@ -96,7 +96,7 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         configureLayout()
         setupNavigationBar()
-        setupSearchSupplementaryView()
+        setupSearchSettingsView()
         output?.viewLoaded()
     }
 
@@ -122,10 +122,10 @@ final class SearchViewController: BaseViewController {
         }
     }
 
-    private func setupSearchSupplementaryView() {
-        navigationBar.addArrangedSubview(searchSupplementaryView)
-        searchSupplementaryView.snp.makeConstraints { make in
-            make.height.equalTo(Constants.searchSupplementaryViewHeight)
+    private func setupSearchSettingsView() {
+        navigationBar.addArrangedSubview(searchSettingsView)
+        searchSettingsView.snp.makeConstraints { make in
+            make.height.equalTo(Constants.searchSettingsViewHeight)
         }
     }
 
@@ -188,7 +188,7 @@ final class SearchViewController: BaseViewController {
         collectionView.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-                .offset(-Constants.progressViewHeight - Constants.searchSupplementaryViewHeight)
+                .offset(-Constants.progressViewHeight - Constants.searchSettingsViewHeight)
             make.centerX.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
         }
@@ -206,20 +206,20 @@ extension SearchViewController: SearchViewInput {
         }
     }
 
-    func set(query: String?) {
+    func setQuery(_ query: String?) {
         searchTextField.setText(query)
     }
 
-    func set(city: String?) {
-        searchSupplementaryView.set(city: city)
+    func setCity(_ city: String?) {
+        searchSettingsView.set(city: city)
     }
 
-    func set(sort: String) {
-        searchSupplementaryView.set(sort: sort)
+    func setSort(_ sort: String) {
+        searchSettingsView.set(sort: sort)
     }
 
-    func set(hasFilters: Bool) {
-        searchSupplementaryView.set(hasFilters: hasFilters)
+    func setHasFilters(_ hasFilters: Bool) {
+        searchSettingsView.set(hasFilters: hasFilters)
     }
 
     func setLoading(_ isLoading: Bool) {
@@ -234,9 +234,9 @@ extension SearchViewController: SearchViewInput {
 
     func setSearchOverlay(active: Bool) {
         if active {
-            searchSupplementaryView.removeFromSuperview()
+            searchSettingsView.removeFromSuperview()
         } else {
-            self.navigationBar.addArrangedSubview(searchSupplementaryView)
+            self.navigationBar.addArrangedSubview(searchSettingsView)
         }
         navigationBar.setNeedsLayout()
         navigationBar.layoutIfNeeded()
