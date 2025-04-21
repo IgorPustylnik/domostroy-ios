@@ -160,6 +160,7 @@
 		AF1BDB73F808A624415C2689 /* CreateRequestViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F42B3AC43AD46854B8930F /* CreateRequestViewInput.swift */; };
 		B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B094812316555C8C108F5CF /* CodeConfirmationPresenter.swift */; };
 		B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208886293679C418660D4AA6 /* RegisterViewOutput.swift */; };
+		B751BC5C5BB17408186D1C92 /* ProfileUnauthorizedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08E012C530C4197342AF10 /* ProfileUnauthorizedPresenter.swift */; };
 		BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */; };
 		BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */; };
 		BD79D41D26D9E4DBA8969C46 /* CreateOfferViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA8146B0BA9630BF6F9CBD /* CreateOfferViewOutput.swift */; };
@@ -337,7 +338,6 @@
 		A83265E917C7E935069288C7 /* OfferDetailsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewOutput.swift; sourceTree = "<group>"; };
 		A9D8C35375503902750A495E /* RegisterModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterModuleConfigurator.swift; sourceTree = "<group>"; };
 		ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		AD2A5191C80091F0896A3374 /* AuthView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		AE42A6BBC7A2245357ADE569 /* CreateOfferModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferModuleConfigurator.swift; sourceTree = "<group>"; };
 		AE518C0077C6C56BA73D6C7B /* CreateRequestModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestModuleInput.swift; sourceTree = "<group>"; };
 		AEFAD1F2B5A3F994AC1364C2 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
@@ -531,7 +531,6 @@
 			isa = PBXGroup;
 			children = (
 				686E2E628167A4950DE2D018 /* AuthViewController.swift */,
-				AD2A5191C80091F0896A3374 /* AuthView.swift */,
 				93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */,
 				42CC6DB4F68BDFF5E659FB8B /* AuthViewOutput.swift */,
 			);
@@ -1619,7 +1618,6 @@
 				46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */,
 				1B9F2608DB9E38CB44235E05 /* AuthModuleOutput.swift in Sources */,
 				AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */,
-				E436F1F9DA6CF02AD75BF11B /* AuthView.swift in Sources */,
 				581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */,
 				55ED67792DA7BCB300A3CA52 /* ImageCollectionViewCell.swift in Sources */,
 				CD8B8D07E84B499AB98B08E4 /* AuthViewOutput.swift in Sources */,

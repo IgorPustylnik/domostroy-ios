@@ -7,12 +7,47 @@
 //
 
 import UIKit
+import SnapKit
 
-final class AuthViewController: BaseViewController {
+final class AuthViewController: UIViewController {
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let vSpacing: CGFloat = 20
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+        static let totalHeight: CGFloat = 180
+    }
+
+    // MARK: - UI Elements
+
+    private lazy var vStackView: UIStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.vSpacing
+        $0.addArrangedSubview(loginButton)
+        $0.addArrangedSubview(registerButton)
+        return $0
+    }(UIStackView())
+
+    private lazy var loginButton: DButton = {
+        // TODO: Localize
+        $0.title = "Login"
+        $0.setAction { [weak self] in
+            self?.output?.login()
+        }
+        return $0
+    }(DButton(type: .filledPrimary))
+
+    private lazy var registerButton: DButton = {
+        // TODO: Localize
+        $0.title = "Register"
+        $0.setAction { [weak self] in
+            self?.output?.register()
+        }
+        return $0
+    }(DButton(type: .plainPrimary))
 
     // MARK: - Properties
-
-    private var authView = AuthView()
 
     var output: AuthViewOutput?
 
@@ -22,12 +57,6 @@ final class AuthViewController: BaseViewController {
         super.viewDidLoad()
         output?.viewLoaded()
     }
-
-    override func loadView() {
-        view = authView
-        authView.login = { [weak self] in self?.output?.login() }
-        authView.register = { [weak self] in self?.output?.register() }
-    }
 }
 
 // MARK: - AuthViewInput
@@ -35,7 +64,21 @@ final class AuthViewController: BaseViewController {
 extension AuthViewController: AuthViewInput {
 
     func setupInitialState() {
+        view.backgroundColor = .systemBackground
+        view.addSubview(vStackView)
+        vStackView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
+        }
 
+        if let sheet = sheetPresentationController {
+            sheet.detents = [
+                .custom(resolver: { _ in
+                    Constants.totalHeight
+                })
+            ]
+            sheet.prefersGrabberVisible = true
+        }
     }
 
 }
