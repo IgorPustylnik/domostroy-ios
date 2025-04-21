@@ -8,9 +8,9 @@
 
 protocol SearchViewInput: AnyObject, Loadable, EmptyStateable {
     /// Method for setup initial state of view
-    func set(query: String?)
-    func set(city: String?)
-    func set(sort: String)
-    func set(hasFilters: Bool)
+    func setQuery(_ query: String?)
+    func setCity(_ city: String?)
+    func setSort(_ sort: String)
+    func setHasFilters(_ hasFilters: Bool)
     func setSearchOverlay(active: Bool)
 }

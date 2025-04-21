@@ -89,7 +89,7 @@ private extension HomeCoordinator {
 
     func showSearch(query: String?) {
         let (view, output, input) = SearchModuleConfigurator().configure()
-        input.set(query: query)
+        input.setQuery(query)
         output.onOpenOffer = { [weak self] id in
             self?.showOfferDetails(id)
         }

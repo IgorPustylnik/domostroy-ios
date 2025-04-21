@@ -69,28 +69,28 @@ final class SearchPresenter: SearchModuleOutput {
 
 extension SearchPresenter: SearchModuleInput {
 
-    func set(query: String?) {
+    func setQuery(_ query: String?) {
         self.query = query
-        view?.set(query: self.query)
+        view?.setQuery(self.query)
         loadFirstPage()
     }
 
-    func set(city: City) {
+    func setCity(_ city: City) {
         self.city = city
-        view?.set(city: city.name)
+        view?.setCity(city.name)
         loadFirstPage()
     }
 
-    func set(sort: Sort) {
+    func setSort(_ sort: Sort) {
         self.sort = sort
-        view?.set(sort: sort.description)
+        view?.setSort(sort.description)
         loadFirstPage()
     }
 
-    func set(filter: Filter) {
+    func setFilter(_ filter: Filter) {
         self.filter = filter
         // TODO: Check if empty
-        view?.set(hasFilters: false)
+        view?.setHasFilters(false)
         loadFirstPage()
     }
 }
@@ -101,10 +101,10 @@ extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
         city = .init(id: 0, name: "Воронеж")
-        view?.set(city: city?.name)
-        view?.set(sort: sort.description)
+        view?.setCity(city?.name)
+        view?.setSort(sort.description)
         filter = .init()
-        view?.set(hasFilters: false)
+        view?.setHasFilters(false)
 
         loadFirstPage()
     }
@@ -120,7 +120,7 @@ extension SearchPresenter: SearchViewOutput {
     }
 
     func cancelSearchFieldInput() {
-        view?.set(query: self.query)
+        view?.setQuery(self.query)
     }
 
     func openCity() {

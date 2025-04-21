@@ -90,7 +90,7 @@
 		55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */; };
 		55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
-		55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */; };
+		55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
 		55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294D2DAD198900E09764 /* EmptyStateable.swift */; };
 		55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */; };
@@ -286,7 +286,7 @@
 		55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyView.swift; sourceTree = "<group>"; };
 		55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsView.swift; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
-		55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSupplementaryView.swift; sourceTree = "<group>"; };
+		55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
 		55D6294D2DAD198900E09764 /* EmptyStateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateable.swift; sourceTree = "<group>"; };
 		55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
@@ -429,7 +429,8 @@
 			isa = PBXGroup;
 			children = (
 				7FE71417252E10B246BC6F98 /* FavoritesViewController.swift */,
-				77E01D2E0082660B874820B5 /* FavoritesView.swift */,
+				55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */,
+				55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */,
 				6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */,
 				51DED2031025435C99F93656 /* FavoritesViewOutput.swift */,
 			);
@@ -1061,7 +1062,7 @@
 			isa = PBXGroup;
 			children = (
 				899F0314E1FEB36AB9A92F5C /* SearchViewController.swift */,
-				55D267522DAAB23B0092EF8F /* SearchSupplementaryView.swift */,
+				55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */,
 				55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */,
 				7C8152BD3AD0B9078F2922EA /* SearchViewInput.swift */,
 				200F5CF2F2BE8575E819E6C1 /* SearchViewOutput.swift */,
@@ -1690,7 +1691,7 @@
 				CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */,
 				5587AEB52DB3EFDB00669865 /* DayRangeSelectionHelper.swift in Sources */,
 				AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */,
-				55D267532DAAB23B0092EF8F /* SearchSupplementaryView.swift in Sources */,
+				55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */,
 				10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */,
 				990F65C7E2F656B0E78056CD /* RegisterModuleInput.swift in Sources */,
 				8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */,
