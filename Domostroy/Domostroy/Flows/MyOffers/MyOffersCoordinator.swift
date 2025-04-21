@@ -122,6 +122,9 @@ private extension MyOffersCoordinator {
 
     func runOfferDetailsFlow(id: Int) {
         let coordinator = OfferDetailsCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
         addDependency(coordinator)
         coordinator.start(with: id)
     }

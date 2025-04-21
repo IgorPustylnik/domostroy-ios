@@ -45,6 +45,9 @@ private extension HomeCoordinator {
 
     func runOfferDetailsFlow(_ id: Int) {
         let coordinator = OfferDetailsCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
         addDependency(coordinator)
         coordinator.start(with: id)
     }

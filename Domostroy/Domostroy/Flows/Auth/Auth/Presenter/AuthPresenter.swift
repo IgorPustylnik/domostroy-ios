@@ -12,10 +12,15 @@ final class AuthPresenter: AuthModuleOutput {
 
     var onLogin: EmptyClosure?
     var onRegister: EmptyClosure?
+    var onDeinit: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: AuthViewInput?
+
+    deinit {
+        onDeinit?()
+    }
 }
 
 // MARK: - AuthModuleInput

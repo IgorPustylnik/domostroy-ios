@@ -17,6 +17,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
     var onOpenUser: ((Int) -> Void)?
     var onRent: EmptyClosure?
+    var onDeinit: EmptyClosure?
 
     // MARK: - Properties
 
@@ -27,7 +28,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     var picturesAdapter: BaseCollectionManager?
 
     deinit {
-        print("☠️ OfferDetailsPresenter умер")
+        onDeinit?()
     }
 
 }

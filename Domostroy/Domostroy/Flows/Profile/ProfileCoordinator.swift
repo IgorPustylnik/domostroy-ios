@@ -85,6 +85,9 @@ private extension ProfileCoordinator {
 
     func runAuthFlow() {
         let coordinator = AuthCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
         addDependency(coordinator)
         coordinator.start()
     }

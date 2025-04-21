@@ -9,5 +9,5 @@
 import UIKit
 
 protocol AuthCoordinatorOutput: AnyObject {
-
+    var onComplete: EmptyClosure? { get set }
 }

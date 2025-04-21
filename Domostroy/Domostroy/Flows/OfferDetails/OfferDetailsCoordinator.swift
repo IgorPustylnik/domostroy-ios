@@ -12,6 +12,8 @@ final class OfferDetailsCoordinator: BaseCoordinator, OfferDetailsCoordinatorOut
 
     // MARK: - OfferDetailsCoordinatorOutput
 
+    var onComplete: EmptyClosure?
+
     // MARK: - Private Properties
 
     private let router: Router
@@ -39,6 +41,9 @@ private extension OfferDetailsCoordinator {
         }
         output.onRent = { [weak self] in
             self?.showCreateRequest(offerId: id)
+        }
+        output.onDeinit = { [weak self] in
+            self?.onComplete?()
         }
         router.push(view, animated: true)
     }

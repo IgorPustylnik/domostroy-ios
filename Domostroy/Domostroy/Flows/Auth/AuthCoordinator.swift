@@ -12,6 +12,8 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
 
     // MARK: - AuthCoordinatorOutput
 
+    var onComplete: EmptyClosure?
+
     // MARK: - Private Properties
 
     private let router: Router
@@ -36,6 +38,7 @@ private extension AuthCoordinator {
         let (view, output) = AuthModuleConfigurator().configure()
         output.onLogin = { [weak self] in self?.showLogin() }
         output.onRegister = { [weak self] in self?.showRegister() }
+        output.onDeinit = { [weak self] in self?.onComplete?() }
         view.modalPresentationStyle = .pageSheet
         router.present(view)
     }
