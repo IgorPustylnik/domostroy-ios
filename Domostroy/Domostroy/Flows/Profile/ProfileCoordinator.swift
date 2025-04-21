@@ -52,7 +52,7 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
         case .profile:
             showProfile()
         case .auth:
-            runAuthFlow()
+            showAnauthorized()
         }
     }
 }
@@ -71,6 +71,14 @@ private extension ProfileCoordinator {
         }
         output.onLogout = { [weak self] in
 
+        }
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func showAnauthorized() {
+        let (view, output) = ProfileUnauthorizedModuleConfigurator().configure()
+        output.onAuthorize = { [weak self] in
+            self?.runAuthFlow()
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }

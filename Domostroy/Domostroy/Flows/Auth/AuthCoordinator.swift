@@ -36,12 +36,18 @@ private extension AuthCoordinator {
         let (view, output) = AuthModuleConfigurator().configure()
         output.onLogin = { [weak self] in self?.showLogin() }
         output.onRegister = { [weak self] in self?.showRegister() }
-        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+        view.modalPresentationStyle = .pageSheet
+        router.present(view)
     }
 
     func showLogin() {
         let (view, output) = LoginModuleConfigurator().configure()
-        router.push(view, animated: true)
+        output.onDismiss = { [weak view] in
+            view?.dismiss(animated: true)
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .fullScreen
+        router.present(navigationControllerWrapper)
     }
 
     func showRegister() {
@@ -49,7 +55,12 @@ private extension AuthCoordinator {
         output.onReceiveCode = { [weak self] registerDTO in
             self?.showCodeConfirmation(registerDTO: registerDTO)
         }
-        router.push(view, animated: true)
+        output.onDismiss = { [weak view] in
+            view?.dismiss(animated: true)
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .fullScreen
+        router.present(navigationControllerWrapper)
     }
 
     func showCodeConfirmation(registerDTO: RegisterDTO) {
