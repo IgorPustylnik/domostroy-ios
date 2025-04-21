@@ -42,6 +42,9 @@ private extension AuthCoordinator {
 
     func showLogin() {
         let (view, output) = LoginModuleConfigurator().configure()
+        output.onDismiss = { [weak view] in
+            view?.dismiss(animated: true)
+        }
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
         navigationControllerWrapper.modalPresentationStyle = .fullScreen
         router.present(navigationControllerWrapper)
@@ -51,6 +54,9 @@ private extension AuthCoordinator {
         let (view, output) = RegisterModuleConfigurator().configure()
         output.onReceiveCode = { [weak self] registerDTO in
             self?.showCodeConfirmation(registerDTO: registerDTO)
+        }
+        output.onDismiss = { [weak view] in
+            view?.dismiss(animated: true)
         }
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
         navigationControllerWrapper.modalPresentationStyle = .fullScreen

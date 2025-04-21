@@ -11,6 +11,7 @@ final class RegisterPresenter: RegisterModuleOutput {
     // MARK: - RegisterModuleOutput
 
     var onReceiveCode: ((RegisterDTO) -> Void)?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
@@ -33,6 +34,10 @@ extension RegisterPresenter: RegisterViewOutput {
 
     func register(registerDTO: RegisterDTO) {
         onReceiveCode?(registerDTO)
+    }
+
+    func dismiss() {
+        onDismiss?()
     }
 
 }

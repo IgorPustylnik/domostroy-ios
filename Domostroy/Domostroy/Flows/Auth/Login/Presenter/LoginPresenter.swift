@@ -10,6 +10,8 @@ final class LoginPresenter: LoginModuleOutput {
 
     // MARK: - LoginModuleOutput
 
+    var onDismiss: EmptyClosure?
+
     // MARK: - Properties
 
     weak var view: LoginViewInput?
@@ -36,6 +38,10 @@ extension LoginPresenter: LoginViewOutput {
         else {
             return
         }
+    }
+
+    func dismiss() {
+        onDismiss?()
     }
 
 }

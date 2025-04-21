@@ -46,13 +46,7 @@ final class RegisterViewController: ScrollViewController {
         scrollView.alwaysBounceVertical = true
         scrollView.keyboardDismissMode = .onDrag
         addRegisterButton()
-        registerView.onScrollToActiveView = { [weak self] view
-            in
-            guard let self, let view else {
-                return
-            }
-            self.scrollToView(view, offsetY: self.registerButton.frame.height)
-        }
+        addDismissButtonIfNeeded()
     }
 
     override func loadView() {
@@ -69,6 +63,13 @@ final class RegisterViewController: ScrollViewController {
                 email: self.registerView.email,
                 password: self.registerView.password)
             )
+        }
+        registerView.onScrollToActiveView = { [weak self] view
+            in
+            guard let self, let view else {
+                return
+            }
+            self.scrollToView(view, offsetY: self.registerButton.frame.height)
         }
     }
 
@@ -98,6 +99,21 @@ private extension RegisterViewController {
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.buttonInsets)
             buttonBottomConstraint = make.bottom
                 .equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Constants.buttonInsets.bottom).constraint
+        }
+    }
+
+    func addDismissButtonIfNeeded() {
+        let isModalInNav = presentingViewController != nil &&
+            navigationController?.viewControllers.first == self
+        if isModalInNav {
+            navigationBar.addButtonToLeft(
+                image: UIImage(systemName: "xmark")?.withTintColor(
+                    .Domostroy.primary,
+                    renderingMode: .alwaysOriginal
+                )
+            ) { [weak self] in
+                self?.output?.dismiss()
+            }
         }
     }
 
