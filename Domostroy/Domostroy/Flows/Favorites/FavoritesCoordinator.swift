@@ -34,6 +34,9 @@ private extension FavoritesCoordinator {
 
     func showFavorites() {
         let (view, output) = FavoritesModuleConfigurator().configure()
+        output.onOpenOffer = { [weak self] id in
+
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 

@@ -7,4 +7,6 @@
 //
 
 protocol FavoritesModuleOutput: AnyObject {
+    var onOpenSort: ((Sort) -> Void)? { get set }
+    var onOpenOffer: ((Int) -> Void)? { get set }
 }
