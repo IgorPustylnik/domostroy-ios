@@ -63,6 +63,8 @@
 		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
 		55189C562DB69B770079481A /* OfferDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */; };
 		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
+		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
+		55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */; };
 		55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55631AB32D95FB3900FD6856 /* Images.xcassets */; };
@@ -257,6 +259,8 @@
 		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
 		55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinator.swift; sourceTree = "<group>"; };
 		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
+		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
+		55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRadioButtonGroup.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55631A852D95FB3900FD6856 /* Domostroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domostroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1680,6 +1684,7 @@
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
+				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
 				CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */,
@@ -1737,6 +1742,7 @@
 				3DFCD1492F9656405D1EF06C /* OfferDetailsViewInput.swift in Sources */,
 				02E40F969F7A16094E3783B1 /* OfferDetailsViewOutput.swift in Sources */,
 				52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */,
+				55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */,
 				36729EAAF33B1AF4E00ED5E1 /* SearchPresenter.swift in Sources */,
 				7B1BA83DA70065BA1A05B82D /* SearchModuleInput.swift in Sources */,
 				913F7B74994AF3D60E48AA94 /* SearchModuleOutput.swift in Sources */,
