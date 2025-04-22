@@ -12,10 +12,7 @@ class BaseViewController: UIViewController {
 
     // MARK: - Properties
 
-    private lazy var _navigationBar = DNavigationBar()
-    var navigationBar: DNavigationBar {
-        _navigationBar
-    }
+    private(set) lazy var navigationBar = DNavigationBar()
 
     private var shouldUpdateTopInset: Bool = true
 

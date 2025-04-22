@@ -20,15 +20,9 @@ class ScrollViewController: BaseViewController {
 
     // MARK: - Properties
 
-    var keyboardHeight: CGFloat {
-        _keyboardHeight
-    }
-    private var _keyboardHeight: CGFloat = 0
+    private(set) var keyboardHeight: CGFloat = 0
 
-    var scrollView: UIScrollView {
-        _scrollView
-    }
-    private var _scrollView = TouchesCancellableScrollView()
+    private(set) var scrollView: UIScrollView = TouchesCancellableScrollView()
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
 
@@ -59,15 +53,15 @@ class ScrollViewController: BaseViewController {
     }
 
     private func setupScrollView() {
-        view.addSubview(_scrollView)
-        _scrollView.addSubview(contentView)
-        _scrollView.snp.makeConstraints { make in
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         contentView.snp.makeConstraints { make in
             make.edges.width.equalToSuperview()
         }
-        _scrollView.delaysContentTouches = false
+        scrollView.delaysContentTouches = false
     }
 
     func setupIndicatorView() {
@@ -120,7 +114,7 @@ class ScrollViewController: BaseViewController {
             return
         }
         let keyboardHeight = keyboardFrame.height
-        self._keyboardHeight = keyboardHeight
+        self.keyboardHeight = keyboardHeight
     }
 
     @objc
