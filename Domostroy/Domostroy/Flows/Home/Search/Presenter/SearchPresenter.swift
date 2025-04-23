@@ -107,6 +107,10 @@ extension SearchPresenter: SearchViewOutput {
         view?.setSort(sort.description)
         view?.setHasFilters(false)
 
+        Task {
+            await fetchCategories()
+        }
+
         loadFirstPage()
     }
 
@@ -332,6 +336,13 @@ private extension SearchPresenter {
         }
 
         return currentPage < pagesCount
+    }
+
+    // MARK: Filters
+
+    func fetchCategories() async {
+        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
+        self.filters.categoryFilter.all = categories
     }
 
 }
