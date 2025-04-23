@@ -64,8 +64,8 @@ private extension HomeCoordinator {
         output.onOpenSort = { [weak self, weak input] sort in
             self?.showSort(sort: sort, searchInput: input)
         }
-        output.onOpenFilters = { [weak self, weak input] filter in
-            self?.showFilters(filter: filter, input: input)
+        output.onOpenFilters = { [weak self, weak input] filters in
+            self?.showFilters(filters: filters, searchInput: input)
         }
         router.push(view, animated: true)
     }
@@ -88,8 +88,18 @@ private extension HomeCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showFilters(filter: Filter?, input: SearchModuleInput?) {
-
+    func showFilters(filters: Filters, searchInput: SearchModuleInput?) {
+        let (view, output, input) = FilterModuleConfigurator().configure()
+        input.setFilters(filters)
+        output.onApply = { [weak searchInput] newFilter in
+            searchInput?.setFilters(newFilter)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
     }
 
 }

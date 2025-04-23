@@ -43,7 +43,7 @@ final class SearchPresenter: SearchModuleOutput {
     var onOpenOffer: ((Int) -> Void)?
     var onOpenCity: ((City?) -> Void)?
     var onOpenSort: ((Sort) -> Void)?
-    var onOpenFilters: ((Filter?) -> Void)?
+    var onOpenFilters: ((Filters) -> Void)?
 
     // MARK: - Properties
 
@@ -61,7 +61,9 @@ final class SearchPresenter: SearchModuleOutput {
 
     private var city: City?
     private var sort: Sort = .default
-    private var filter: Filter = .init()
+    private var filters: Filters = .init(
+        categoryFilter: .init(all: [])
+    )
 
 }
 
@@ -87,10 +89,10 @@ extension SearchPresenter: SearchModuleInput {
         loadFirstPage()
     }
 
-    func setFilter(_ filter: Filter) {
-        self.filter = filter
-        // TODO: Check if empty
-        view?.setHasFilters(false)
+    func setFilters(_ filters: Filters) {
+        self.filters = filters
+        var hasFilters = filters.categoryFilter.selected != nil
+        view?.setHasFilters(hasFilters)
         loadFirstPage()
     }
 }
@@ -103,8 +105,11 @@ extension SearchPresenter: SearchViewOutput {
         city = .init(id: 0, name: "Воронеж")
         view?.setCity(city?.name)
         view?.setSort(sort.description)
-        filter = .init()
         view?.setHasFilters(false)
+
+        Task {
+            await fetchCategories()
+        }
 
         loadFirstPage()
     }
@@ -132,7 +137,7 @@ extension SearchPresenter: SearchViewOutput {
     }
 
     func openFilters() {
-        onOpenFilters?(filter)
+        onOpenFilters?(filters)
     }
 
 }
@@ -331,6 +336,13 @@ private extension SearchPresenter {
         }
 
         return currentPage < pagesCount
+    }
+
+    // MARK: Filters
+
+    func fetchCategories() async {
+        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
+        self.filters.categoryFilter.all = categories
     }
 
 }
