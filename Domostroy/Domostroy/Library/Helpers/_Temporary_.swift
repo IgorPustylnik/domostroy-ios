@@ -132,4 +132,13 @@ struct _Temporary_Mock_NetworkService {
             isAdmin: true
         )
     }
+
+    func fetchCategories() async -> [Category] {
+        try? await Task.sleep(nanoseconds: 1_500_000_000)
+        return [
+            .init(id: 0, name: "Test1"),
+            .init(id: 1, name: "Test2"),
+            .init(id: 2, name: "Test3")
+        ]
+    }
 }
