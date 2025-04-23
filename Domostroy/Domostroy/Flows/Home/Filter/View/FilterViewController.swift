@@ -1,0 +1,136 @@
+//
+//  FilterViewController.swift
+//  Domostroy
+//
+//  Created by igorpustylnik on 23/04/2025.
+//  Copyright © 2025 Domostroy. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+final class FilterViewController: UIViewController {
+
+    // MARK: - Constants
+
+    private enum Constants {
+        static let mainVStackSpacing: CGFloat = 10
+        static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
+    }
+
+    // MARK: - UI Elements
+
+    private lazy var mainVStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.mainVStackSpacing
+        $0.addArrangedSubview(categoryLabel)
+        $0.addArrangedSubview(categoryPicker)
+        return $0
+    }(UIStackView())
+
+    private lazy var categoryLabel = {
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+        // TODO: Localize
+        $0.text = "Category"
+        return $0
+    }(UILabel())
+
+    private lazy var categoryPicker = {
+        $0.onPick = { [weak self] picker in
+            self?.output?.selectCategory(index: picker.selectedIndex)
+        }
+        return $0
+    }(DPickerField())
+
+    private lazy var applyButton = {
+        // TODO: Localize
+        $0.title = "Apply"
+        $0.setAction { [weak self] in
+            self?.output?.apply()
+        }
+        return $0
+    }(DButton())
+
+    // MARK: - Properties
+
+    var output: FilterViewOutput?
+
+    // MARK: - UIViewController
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupSheetPresentation()
+        output?.viewLoaded()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updatePreferredContentSize()
+    }
+}
+
+// MARK: - Sheet presentation
+
+private extension FilterViewController {
+    func setupSheetPresentation() {
+        if let sheet = sheetPresentationController {
+            sheet.detents = [
+                .custom { _ in
+                    return self.preferredContentSize.height
+                }
+            ]
+            sheet.prefersGrabberVisible = true
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+    }
+
+    func updatePreferredContentSize() {
+        let fittingSize = CGSize(width: view.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+        let fullHeight = view.systemLayoutSizeFitting(fittingSize,
+                                                      withHorizontalFittingPriority: .required,
+                                                      verticalFittingPriority: .fittingSizeLevel).height
+
+        preferredContentSize = CGSize(width: view.bounds.width, height: fullHeight)
+        sheetPresentationController?.animateChanges {}
+    }
+}
+
+// MARK: - FilterViewInput
+
+extension FilterViewController: FilterViewInput {
+
+    func setupInitialState() {
+        // TODO: Localize
+        title = "Filters"
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: self, action: #selector(close))
+        view.backgroundColor = .systemBackground
+        view.addSubview(mainVStackView)
+        view.addSubview(applyButton)
+        mainVStackView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
+            make.bottom.lessThanOrEqualTo(applyButton.snp.top).offset(-Constants.insets.bottom)
+        }
+        applyButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-Constants.insets.bottom).priority(.medium)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets).priority(.low)
+        }
+    }
+
+    func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
+        // TODO: Localize
+        var categories = [placeholder]
+        categories.append(contentsOf: items)
+        categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
+    }
+
+}
+
+// MARK: - Selectors
+
+@objc
+private extension FilterViewController {
+    func close() {
+        output?.dismiss()
+    }
+}

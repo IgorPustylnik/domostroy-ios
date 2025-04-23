@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */; };
 		02E40F969F7A16094E3783B1 /* OfferDetailsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83265E917C7E935069288C7 /* OfferDetailsViewOutput.swift */; };
+		05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */; };
 		062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DED2031025435C99F93656 /* FavoritesViewOutput.swift */; };
 		07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */; };
 		08ACB7F1AFF820B20B33C7BC /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EC6185D6D266C164D37889 /* MainTabBarCoordinator.swift */; };
@@ -51,11 +52,14 @@
 		3FC726130A1BD0E82ACCE454 /* CreateRequestViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C079102E893B92AC9E2AECB0 /* CreateRequestViewOutput.swift */; };
 		42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */; };
 		43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */; };
+		44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F84CA5864B1143319BF777 /* FilterViewController.swift */; };
 		46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F96F662B07F1B4C4724559 /* AuthModuleInput.swift */; };
 		487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */; };
 		4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */; };
+		511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */; };
 		5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2D0FFBF84EB88DC41044F /* OfferDetailsPresenter.swift */; };
 		52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */; };
+		53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */; };
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
 		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
 		550D4F292D9FC20800B460CA /* DTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextField.swift */; };
@@ -122,6 +126,7 @@
 		55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		5952F8FF3CC5F4C7DFB2E9BD /* CreateOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69BA71D8E3B8728ED8047D0 /* CreateOfferViewController.swift */; };
+		5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
 		61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */; };
 		6359BCA7B1EFDD6870B03389 /* RequestCalendarViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA1446039CA892BC72876 /* RequestCalendarViewInput.swift */; };
@@ -178,6 +183,7 @@
 		BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D150A7A58C7BFBF7589DE82 /* MyOffersCoordinator.swift */; };
 		BD79D41D26D9E4DBA8969C46 /* CreateOfferViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA8146B0BA9630BF6F9CBD /* CreateOfferViewOutput.swift */; };
 		BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55F65B073FC94DFBF19ADE /* ProfileViewInput.swift */; };
+		BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */; };
 		BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAB4F7F0E93C9862D3D33E /* RegisterViewInput.swift */; };
 		BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF4D8DBBCC9F2A47F34B9 /* SortViewController.swift */; };
 		BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */; };
@@ -200,6 +206,7 @@
 		D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */; };
 		D84E87352FF9EB73CCA9499F /* ProfileUnauthorizedModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618066940A8961C0BBA3F090 /* ProfileUnauthorizedModuleOutput.swift */; };
 		D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476181DD437DFE179F0AC5A /* FavoritesCoordinatorOutput.swift */; };
+		DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */; };
 		E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86855E73D0855B252D23451E /* ProfileCoordinator.swift */; };
 		E41232A90ADA70D4F4AD0386 /* SortModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A0065DBFA6A05448E3D33 /* SortModuleInput.swift */; };
 		E46316161F403CF74FE69F06 /* ProfileUnauthorizedViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA75115FF5C04AE686F5BD /* ProfileUnauthorizedViewOutput.swift */; };
@@ -237,8 +244,10 @@
 		208886293679C418660D4AA6 /* RegisterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterViewOutput.swift; sourceTree = "<group>"; };
 		2220644AF7942AD009822866 /* CreateOfferModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferModuleInput.swift; sourceTree = "<group>"; };
 		25658698FEC4126E0455C643 /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		26F84CA5864B1143319BF777 /* FilterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		2A833554CE2AE52D6E4F582B /* RegisterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2A8FA1446039CA892BC72876 /* RequestCalendarViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestCalendarViewInput.swift; sourceTree = "<group>"; };
+		2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleOutput.swift; sourceTree = "<group>"; };
 		2DACE3FAE7D03342AB812DA8 /* SortModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleOutput.swift; sourceTree = "<group>"; };
 		2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewOutput.swift; sourceTree = "<group>"; };
 		2FA0476356BFFC33F827F9E1 /* RegisterModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterModuleOutput.swift; sourceTree = "<group>"; };
@@ -333,6 +342,7 @@
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		618066940A8961C0BBA3F090 /* ProfileUnauthorizedModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileUnauthorizedModuleOutput.swift; sourceTree = "<group>"; };
 		6282B02AD7B7D53A2EE59DA0 /* SortModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleConfigurator.swift; sourceTree = "<group>"; };
+		64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleInput.swift; sourceTree = "<group>"; };
 		65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsModuleInput.swift; sourceTree = "<group>"; };
 		674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewController.swift; sourceTree = "<group>"; };
 		686E2E628167A4950DE2D018 /* AuthViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +393,7 @@
 		B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		BAFCEC81A2FC09CE901B7617 /* LoginModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleConfigurator.swift; sourceTree = "<group>"; };
 		BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInput.swift; sourceTree = "<group>"; };
+		BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewOutput.swift; sourceTree = "<group>"; };
 		C079102E893B92AC9E2AECB0 /* CreateRequestViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewOutput.swift; sourceTree = "<group>"; };
 		C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesModuleOutput.swift; sourceTree = "<group>"; };
@@ -400,11 +411,14 @@
 		D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinator.swift; sourceTree = "<group>"; };
 		D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		D49D47613ABAF3DBC4E85DD8 /* CreateOfferViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferViewInput.swift; sourceTree = "<group>"; };
+		D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewInput.swift; sourceTree = "<group>"; };
 		D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewInput.swift; sourceTree = "<group>"; };
+		DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleConfigurator.swift; sourceTree = "<group>"; };
 		DACE5ECBF9623641BF17499D /* CreateRequestPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestPresenter.swift; sourceTree = "<group>"; };
 		DD7D1B42CDFD12442C973DE1 /* SortPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortPresenter.swift; sourceTree = "<group>"; };
 		DDF7890D7AFE614A23462017 /* AuthModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleOutput.swift; sourceTree = "<group>"; };
 		DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewOutput.swift; sourceTree = "<group>"; };
+		E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleInput.swift; sourceTree = "<group>"; };
 		E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsPresenter.swift; sourceTree = "<group>"; };
 		EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -445,6 +459,26 @@
 				B184306EE56A6605D76B88A7 /* ProfileModuleOutput.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0E7E1F637E4D677E0A43CCE6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */,
+				64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */,
+				2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		14816D1524AFF374C3EE22A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26F84CA5864B1143319BF777 /* FilterViewController.swift */,
+				D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */,
+				BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		149F42CA262655A5A2969037 /* View */ = {
@@ -584,6 +618,14 @@
 			path = ProfileUnauthorized;
 			sourceTree = "<group>";
 		};
+		395C3F0B3C40C3C3B265DC95 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		3DF804C4D2430BE0F916BEB7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +665,7 @@
 				55B496262D9E83D400C6AB57 /* Home */,
 				42ADB419757D41987C7B5386 /* Search */,
 				A5DFCB7BE3B47B4290FC5F8B /* Sort */,
+				DBEAAA3944131F3AB66CB321 /* Filter */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1412,6 +1455,16 @@
 			path = MainTabBar;
 			sourceTree = "<group>";
 		};
+		DBEAAA3944131F3AB66CB321 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				395C3F0B3C40C3C3B265DC95 /* Configurator */,
+				0E7E1F637E4D677E0A43CCE6 /* Presenter */,
+				14816D1524AFF374C3EE22A5 /* View */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		E4344F744AD3CADBE9516A30 /* CreateOffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1851,6 +1904,13 @@
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
 				867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */,
 				65C48F27871A9DFC981E641A /* SortViewOutput.swift in Sources */,
+				53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */,
+				BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */,
+				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,
+				05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */,
+				44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */,
+				5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */,
+				511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,7 +33,7 @@ struct Offer: Codable {
     let calendarId: Int
 }
 
-struct Category: Codable {
+struct Category: Codable, Equatable {
     let id: Int
     let name: String
 }
@@ -68,10 +68,6 @@ struct OfferCalendar: Codable {
     let startDate: Date
     let endDate: Date
     let forbiddenDates: [Date]
-}
-
-struct Filter {
-
 }
 
 enum Condition: CaseIterable {
