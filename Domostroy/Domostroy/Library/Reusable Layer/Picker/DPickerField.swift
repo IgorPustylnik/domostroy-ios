@@ -119,6 +119,8 @@ class DPickerField: UIView {
     var requiresNonPlaceholder: Bool = false
     var errorMessage: String?
 
+    var onPick: ((DPickerField) -> Void)?
+
     // MARK: - Init
 
     override init(frame: CGRect) {
@@ -254,6 +256,7 @@ extension DPickerField: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedIndex = row
         updateCGColors()
+        onPick?(self)
     }
 }
 
