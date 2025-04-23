@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ReactiveDataDisplayManager
 
-enum Sort {
+enum Sort: CaseIterable {
     case `default`
     case priceAscending
     case priceDescending

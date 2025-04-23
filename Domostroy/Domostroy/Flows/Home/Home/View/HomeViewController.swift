@@ -182,6 +182,7 @@ extension HomeViewController: HomeViewInput {
 
     func setLoading(_ isLoading: Bool) {
         if isLoading {
+            setEmptyState(false)
             activityIndicator.isHidden = false
             activityIndicator.hidesWhenStopped = true
             activityIndicator.startAnimating()

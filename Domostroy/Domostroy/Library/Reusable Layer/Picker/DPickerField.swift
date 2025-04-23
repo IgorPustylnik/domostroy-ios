@@ -98,7 +98,7 @@ class DPickerField: UIView {
     private var placeholderIndex: Int = 0 {
         didSet {
             if placeholderIndex >= 0 {
-                _selectedIndex = placeholderIndex
+                selectedIndex = placeholderIndex
             }
             updateText()
         }
@@ -106,13 +106,10 @@ class DPickerField: UIView {
 
     private var isErrorState: Bool = false
 
-    private var _selectedIndex: Int = 0 {
+    private(set) var selectedIndex: Int = 0 {
         didSet {
             updateText()
         }
-    }
-    var selectedIndex: Int {
-        _selectedIndex
     }
 
     var responder: UIResponder {
@@ -173,7 +170,7 @@ class DPickerField: UIView {
     func setItems(_ newItems: [String], selectedIndex: Int = 0, placeholderIndex: Int = 0) {
         self.items = newItems
         self.placeholderIndex = placeholderIndex
-        self._selectedIndex = selectedIndex
+        self.selectedIndex = selectedIndex
         picker.selectRow(selectedIndex, inComponent: 0, animated: false)
         updateText()
     }
@@ -255,7 +252,7 @@ extension DPickerField: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        _selectedIndex = row
+        selectedIndex = row
         updateCGColors()
     }
 }
