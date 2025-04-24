@@ -97,6 +97,7 @@
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
 		55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */; };
 		55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */; };
+		55BB62CA2DBAE3D800BD992E /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB62C92DBAE3D800BD992E /* Date+ext.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
@@ -311,6 +312,7 @@
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyView.swift; sourceTree = "<group>"; };
 		55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsView.swift; sourceTree = "<group>"; };
+		55BB62C92DBAE3D800BD992E /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
@@ -883,6 +885,7 @@
 				558285EF2DA6F573003C1861 /* RDDM */,
 				55631ACD2D95FB3900FD6856 /* UIKit */,
 				55ED677C2DA80E2500A3CA52 /* Double+ext.swift */,
+				55BB62C92DBAE3D800BD992E /* Date+ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1775,6 +1778,7 @@
 				42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */,
 				ADD24F15362922A8901FD41A /* RequestsPresenter.swift in Sources */,
 				7A6622B2BA0CA8AD94E900C2 /* RequestsModuleInput.swift in Sources */,
+				55BB62CA2DBAE3D800BD992E /* Date+ext.swift in Sources */,
 				559385A92DB028FB006F3C07 /* AddingImageCollectionViewCell.swift in Sources */,
 				3CD284215C70C6587A45637D /* RequestsModuleOutput.swift in Sources */,
 				9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */,
@@ -1803,10 +1807,12 @@
 				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
+				554F7CBF2DBA276D008A2BB3 /* UserProfileModuleOutput.swift in Sources */,
 				CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */,
 				55DD9F052DA529B2003F0CB3 /* InfoPlist.swift in Sources */,
 				55E0FF2C2DAEDDAE00D908A8 /* DMultiLineTextField.swift in Sources */,
 				46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */,
+				554F7CC62DBA2EFD008A2BB3 /* UserProfileInfoCollectionViewCell.swift in Sources */,
 				1B9F2608DB9E38CB44235E05 /* AuthModuleOutput.swift in Sources */,
 				AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */,
 				581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */,
