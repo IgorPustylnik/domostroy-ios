@@ -178,8 +178,7 @@ extension OfferCollectionViewCell: ConfigurableItem {
 
     func configure(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
-        // TODO: Localize
-        priceLabel.text = "\(viewModel.price)₽/день"
+        priceLabel.text = "\(viewModel.price)"
         descriptionLabel.text = viewModel.description
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.user.loadUser(viewModel.user.url, userImageView, userNameLabel)
@@ -244,6 +243,31 @@ extension OfferCollectionViewCell: HighlightableItem {
             self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
         }
     }
+}
+
+// MARK: - CalculatableHeightItem
+
+extension OfferCollectionViewCell: CalculatableHeightItem {
+
+    static func getHeight(forWidth width: CGFloat, with model: ViewModel) -> CGFloat {
+        let verticalPadding: CGFloat = Constants.insets.top + Constants.insets.bottom
+        let imageHeight: CGFloat = Constants.imageViewSize.height
+
+        let titleHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 16, weight: .bold))
+        let priceHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 14, weight: .medium))
+        let descriptionHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 12, weight: .regular))
+        let userHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 14, weight: .regular))
+
+        let infoStackHeight = titleHeight + priceHeight + descriptionHeight + userHeight
+
+        let actionsCount = model.actions.count + model.toggleActions.count
+        let actionsHeight = CGFloat(actionsCount) * Constants.actionSize.height + max(0, CGFloat(actionsCount - 1)) * Constants.actionsVStackViewSpacing
+
+        let contentHeight = max(imageHeight, infoStackHeight, actionsHeight)
+
+        return contentHeight + verticalPadding
+    }
+
 }
 
 // MARK: - Equatable ViewModel
