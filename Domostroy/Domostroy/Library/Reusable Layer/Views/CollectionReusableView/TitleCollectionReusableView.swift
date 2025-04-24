@@ -13,7 +13,7 @@ final class TitleCollectionReusableView: UICollectionReusableView, Accessibility
     // MARK: - Constants
 
     private enum Constants {
-        static let insets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        static let insets: UIEdgeInsets = .init(top: 8, left: 0, bottom: 8, right: 0)
     }
 
     // MARK: - CalculatableHeightItem
