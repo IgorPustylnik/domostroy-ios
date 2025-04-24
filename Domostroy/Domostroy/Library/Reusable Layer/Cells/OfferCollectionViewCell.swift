@@ -16,6 +16,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     // MARK: - ViewModel
 
     struct ViewModel {
+        let id: Int
         let imageUrl: URL?
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
