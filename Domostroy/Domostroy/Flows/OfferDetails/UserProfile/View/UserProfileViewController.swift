@@ -18,6 +18,8 @@ final class UserProfileViewController: BaseViewController {
         static let progressViewHeight: CGFloat = 80
         static let sectionInset: UIEdgeInsets = .init(top: 16, left: 0, bottom: 16, right: 0)
         static let contentInset: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+        static let minimumLineSpacing: CGFloat = 10
+        static let minimumInteritemSpacing: CGFloat = 10
         static let animationDuration: Double = 0.3
     }
 
@@ -73,8 +75,8 @@ final class UserProfileViewController: BaseViewController {
 
     private func configureLayoutFlow() {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 10.0
-        flowLayout.minimumInteritemSpacing = 10.0
+        flowLayout.minimumLineSpacing = Constants.minimumLineSpacing
+        flowLayout.minimumInteritemSpacing = Constants.minimumInteritemSpacing
         flowLayout.sectionInset = Constants.sectionInset
         collectionView.contentInset = Constants.contentInset
         flowLayout.scrollDirection = .vertical
@@ -165,7 +167,7 @@ private extension UserProfileViewController {
         guard let screenWidth = view.window?.screen.bounds.width else {
             return 0
         }
-        return screenWidth - Constants.contentInset.left - Constants.contentInset.right
+        return (screenWidth - Constants.minimumInteritemSpacing - Constants.contentInset.left - Constants.contentInset.right) / 2
     }
 
     func refillAdapter() {

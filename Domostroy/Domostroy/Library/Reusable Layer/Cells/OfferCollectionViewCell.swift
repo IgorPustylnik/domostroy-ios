@@ -21,15 +21,9 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
         let price: String
-        let description: String
-        let user: UserViewModel
+        let location: String
         let actions: [ActionButtonModel]
         let toggleActions: [ToggleButtonModel]
-
-        struct UserViewModel {
-            let url: URL?
-            let loadUser: (URL?, UIImageView, UILabel) -> Void
-        }
 
         struct ActionButtonModel {
             let image: UIImage
@@ -48,17 +42,29 @@ final class OfferCollectionViewCell: UICollectionViewCell {
 
     private enum Constants {
         static let insets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        static let mainVStackSpacing: CGFloat = 10
+        static let infoVStackSpacing: CGFloat = 5
         static let imageViewToInfoViewOffset: CGFloat = 16
         static let imageViewSize: CGSize = .init(width: 100, height: 84)
         static let imageViewCornerRadius: CGFloat = 8
         static let hStackViewSpacing: CGFloat = 8
-        static let userHStackViewSpacing: CGFloat = 8
-        static let userImageViewSize: CGSize = .init(width: 20, height: 20)
         static let actionsVStackViewSpacing: CGFloat = 8
         static let actionSize: CGSize = .init(width: 22, height: 22)
+
+        static let titleFont: UIFont = .systemFont(ofSize: 14, weight: .regular)
+        static let priceFont: UIFont = .systemFont(ofSize: 14, weight: .semibold)
+        static let locationFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
     }
 
     // MARK: - UI Elements
+
+    private lazy var mainVStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.mainVStackSpacing
+        $0.addArrangedSubview(itemImageView)
+        $0.addArrangedSubview(bottomHStackView)
+        return $0
+    }(UIStackView())
 
     private lazy var itemImageView: UIImageView = {
         $0.contentMode = .scaleAspectFill
@@ -68,59 +74,43 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         return $0
     }(UIImageView())
 
+    private lazy var bottomHStackView = {
+        $0.axis = .horizontal
+        $0.alignment = .leading
+        $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(actionsVStackView)
+        return $0
+    }(UIStackView())
+
     private lazy var infoVStackView: UIStackView = {
         $0.axis = .vertical
-        $0.distribution = .equalSpacing
+        $0.spacing = Constants.infoVStackSpacing
         $0.addArrangedSubview(titleLabel)
         $0.addArrangedSubview(priceLabel)
-        $0.addArrangedSubview(descriptionLabel)
-        $0.addArrangedSubview(userHStackView)
+        $0.addArrangedSubview(locationLabel)
         return $0
     }(UIStackView())
 
     private lazy var titleLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 16, weight: .bold)
+        $0.font = Constants.titleFont
         $0.numberOfLines = 1
         return $0
     }(UILabel())
 
     private lazy var priceLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 14, weight: .medium)
+        $0.font = Constants.priceFont
         $0.numberOfLines = 1
         return $0
     }(UILabel())
 
-    private lazy var descriptionLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 12, weight: .regular)
+    private lazy var locationLabel: UILabel = {
+        $0.font = Constants.locationFont
+        $0.textColor = .secondaryLabel
         $0.numberOfLines = 1
         return $0
     }(UILabel())
 
-    private lazy var userHStackView: UIStackView = {
-        $0.axis = .horizontal
-        $0.spacing = Constants.userHStackViewSpacing
-        $0.addArrangedSubview(userImageView)
-        $0.addArrangedSubview(userNameLabel)
-        return $0
-    }(UIStackView())
-
-    private lazy var userImageView: UIImageView = {
-        $0.contentMode = .scaleAspectFill
-        $0.snp.makeConstraints { make in
-            make.size.equalTo(Constants.userImageViewSize.width)
-        }
-        $0.layer.cornerRadius = Constants.userImageViewSize.width / 2
-        $0.layer.masksToBounds = true
-        return $0
-    }(UIImageView())
-
-    private lazy var userNameLabel: UILabel = {
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.numberOfLines = 1
-        return $0
-    }(UILabel())
-
-    private lazy var actionsVStack: UIStackView = {
+    private lazy var actionsVStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.actionsVStackViewSpacing
         return $0
@@ -142,32 +132,20 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         itemImageView.image = nil
         titleLabel.text = nil
         priceLabel.text = nil
-        descriptionLabel.text = nil
-        userImageView.image = nil
-        userNameLabel.text = nil
-        actionsVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        locationLabel.text = nil
+        actionsVStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
 
     // MARK: - Setup UI
 
     private func setupUI() {
         backgroundColor = .systemBackground
-        addSubview(itemImageView)
-        addSubview(infoVStackView)
-        addSubview(actionsVStack)
-
+        addSubview(mainVStackView)
+        mainVStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         itemImageView.snp.makeConstraints { make in
-            make.leading.verticalEdges.equalToSuperview().inset(Constants.insets)
-            make.size.equalTo(Constants.imageViewSize)
-        }
-        infoVStackView.snp.makeConstraints { make in
-            make.leading.equalTo(itemImageView.snp.trailing).offset(Constants.imageViewToInfoViewOffset)
-            make.verticalEdges.equalToSuperview().inset(Constants.insets)
-            make.trailing.equalTo(actionsVStack.snp.leading)
-        }
-        actionsVStack.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(Constants.insets)
-            make.width.equalTo(Constants.actionSize)
+            make.height.equalTo(snp.width)
         }
     }
 }
@@ -179,11 +157,10 @@ extension OfferCollectionViewCell: ConfigurableItem {
     func configure(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         priceLabel.text = "\(viewModel.price)"
-        descriptionLabel.text = viewModel.description
+        locationLabel.text = viewModel.location
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
-        viewModel.user.loadUser(viewModel.user.url, userImageView, userNameLabel)
-        viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
-        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
+        viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
+        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
     }
 
 }
@@ -250,46 +227,38 @@ extension OfferCollectionViewCell: HighlightableItem {
 extension OfferCollectionViewCell: CalculatableHeightItem {
 
     static func getHeight(forWidth width: CGFloat, with model: ViewModel) -> CGFloat {
-        let verticalPadding: CGFloat = Constants.insets.top + Constants.insets.bottom
-        let imageHeight: CGFloat = Constants.imageViewSize.height
+        let verticalPadding = Constants.insets.top + Constants.insets.bottom
+        let spacing = Constants.mainVStackSpacing
 
-        let titleHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 16, weight: .bold))
-        let priceHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 14, weight: .medium))
-        let descriptionHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 12, weight: .regular))
-        let userHeight: CGFloat = "A".heightForWidth(width, font: .systemFont(ofSize: 14, weight: .regular))
+        let imageHeight = width
 
-        let infoStackHeight = titleHeight + priceHeight + descriptionHeight + userHeight
+        // инфа
+        let titleHeight = "A".heightForWidth(width, font: Constants.titleFont)
+        let priceHeight = "A".heightForWidth(width, font: Constants.priceFont)
+        let locationHeight = "A".heightForWidth(width, font: Constants.locationFont)
+        let infoHeight = titleHeight + priceHeight + locationHeight
 
-        let actionsCount = model.actions.count + model.toggleActions.count
-        let actionsHeight = CGFloat(actionsCount) * Constants.actionSize.height + max(0, CGFloat(actionsCount - 1)) * Constants.actionsVStackViewSpacing
+        let maxActions = max(model.actions.count + model.toggleActions.count, 1)
+        let actionsHeight = CGFloat(maxActions) * Constants.actionSize.height +
+            CGFloat(maxActions - 1) * Constants.actionsVStackViewSpacing
 
-        let contentHeight = max(imageHeight, infoStackHeight, actionsHeight)
+        let hStackHeight = max(infoHeight, actionsHeight)
 
-        return contentHeight + verticalPadding
+        return verticalPadding + imageHeight + spacing + hStackHeight
     }
-
 }
 
 // MARK: - Equatable ViewModel
 
 extension OfferCollectionViewCell.ViewModel: Equatable {
     static func ==(lhs: OfferCollectionViewCell.ViewModel, rhs: OfferCollectionViewCell.ViewModel) -> Bool {
-        return lhs.imageUrl == rhs.imageUrl &&
+        return lhs.id == rhs.id &&
+               lhs.imageUrl == rhs.imageUrl &&
                lhs.title == rhs.title &&
                lhs.price == rhs.price &&
-               lhs.description == rhs.description &&
-               lhs.user == rhs.user &&
+               lhs.location == rhs.location &&
                lhs.actions == rhs.actions &&
                lhs.toggleActions == rhs.toggleActions
-    }
-}
-
-extension OfferCollectionViewCell.ViewModel.UserViewModel: Equatable {
-    static func ==(
-        lhs: OfferCollectionViewCell.ViewModel.UserViewModel,
-        rhs: OfferCollectionViewCell.ViewModel.UserViewModel
-    ) -> Bool {
-        return lhs.url == rhs.url
     }
 }
 

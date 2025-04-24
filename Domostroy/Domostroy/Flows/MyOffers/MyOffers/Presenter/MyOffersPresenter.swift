@@ -136,13 +136,7 @@ private extension MyOffersPresenter {
             },
             title: offer.name,
             price: offer.price.stringDroppingTrailingZero,
-            description: offer.description,
-            user: OfferCollectionViewCell.ViewModel.UserViewModel(
-                url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
-                loadUser: { [weak self] url, imageView, label in
-                    self?.loadUser(url: url, imageView: imageView, label: label)
-                }
-            ),
+            location: offer.city.name,
             actions: [
                 .init(image: .Buttons.edit, action: { [weak self] in
                     self?.onEditOffer?(offer.id)

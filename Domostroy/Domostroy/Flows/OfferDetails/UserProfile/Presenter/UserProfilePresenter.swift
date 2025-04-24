@@ -139,12 +139,6 @@ private extension UserProfilePresenter {
     func makeOfferViewModel(
         from offer: Offer
     ) -> OfferCollectionViewCell.ViewModel {
-        let userViewModel = OfferCollectionViewCell.ViewModel.UserViewModel(
-            url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
-            loadUser: { _, _, _ in
-                // Will be removed in future, so is not needed
-            }
-        )
         let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
             .init(
                 initialState: offer.isFavorite,
@@ -166,8 +160,7 @@ private extension UserProfilePresenter {
             title: offer.name,
             // TODO: Localize
             price: "\(offer.price.stringDroppingTrailingZero)₽/день",
-            description: offer.description,
-            user: userViewModel,
+            location: offer.city.name,
             actions: [],
             toggleActions: toggleActions
         )
