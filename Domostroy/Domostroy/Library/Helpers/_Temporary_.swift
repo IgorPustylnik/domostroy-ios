@@ -141,4 +141,16 @@ struct _Temporary_Mock_NetworkService {
             .init(id: 2, name: "Test3")
         ]
     }
+
+    func fetchUser(id: Int) async -> User {
+        try? await Task.sleep(nanoseconds: 3_500_000_000)
+        return .init(
+            id: 0,
+            firstName: "Виктор",
+            lastName: "Корнеплод",
+            avatar: URL.applicationDirectory,
+            offersAmount: 4,
+            registerDate: Date.now
+        )
+    }
 }

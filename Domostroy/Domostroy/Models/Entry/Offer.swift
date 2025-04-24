@@ -51,8 +51,9 @@ struct User: Codable {
     let id: Int
     let firstName: String
     let lastName: String
-    let email: String
-    let phoneNumber: String
+    let avatar: URL?
+    let offersAmount: Int
+    let registerDate: Date
 }
 
 struct MyProfile: Codable {
