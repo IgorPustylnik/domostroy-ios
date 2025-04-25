@@ -47,12 +47,8 @@ final class SearchPresenter: SearchModuleOutput {
 
     // MARK: - Properties
 
-    typealias DiffableOfferGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
-
     weak var view: SearchViewInput?
     private weak var paginatableInput: PaginatableInput?
-
-    var adapter: BaseCollectionManager?
 
     private var query: String?
     private var isFirstPageLoading = false
@@ -140,6 +136,10 @@ extension SearchPresenter: SearchViewOutput {
         onOpenFilters?(filters)
     }
 
+    func openOffer(_ id: Int) {
+        onOpenOffer?(id)
+    }
+
 }
 
 // MARK: - RefreshableOutput
@@ -195,11 +195,25 @@ extension SearchPresenter: PaginatableOutput {
 
 }
 
-// MARK: - Generators
+// MARK: - ViewModels
 
 private extension SearchPresenter {
 
-    func makeGenerator(from offer: Offer) -> DiffableOfferGenerator {
+    func makeOfferViewModel(
+        from offer: Offer
+    ) -> OfferCollectionViewCell.ViewModel {
+        let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
+            .init(
+                initialState: offer.isFavorite,
+                onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                toggleAction: { [weak self] newValue, handler in
+                    self?.setFavorite(id: offer.id, value: newValue) { success in
+                        handler?(success)
+                    }
+                }
+            )
+        ]
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.images.first,
@@ -207,28 +221,13 @@ private extension SearchPresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            price: offer.price.stringDroppingTrailingZero,
+            // TODO: Localize
+            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
             location: offer.city.name,
             actions: [],
-            toggleActions: [
-                .init(
-                    initialState: offer.isFavorite,
-                    onImage: .Buttons.favoriteFilled,
-                    offImage: .Buttons.favorite,
-                    toggleAction: { [weak self] newValue, handler in
-                        self?.setFavorite(id: offer.id, value: newValue) { success in
-                            handler?(success)
-                        }
-                    }
-                )
-            ]
+            toggleActions: toggleActions
         )
-
-        let generator = OfferCollectionViewCell.rddm.diffableGenerator(uniqueId: UUID(), with: viewModel, and: .class)
-        generator.didSelectEvent += { [weak self] in
-            self?.onOpenOffer?(offer.id)
-        }
-        return generator
+        return viewModel
     }
 }
 
@@ -242,14 +241,6 @@ private extension SearchPresenter {
         }
     }
 
-    func loadUser(url: URL?, imageView: UIImageView, label: UILabel) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            // TODO: Fetch user
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
-            label.text = "Test user"
-        }
-    }
-
     func setFavorite(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             completion?(false)
@@ -258,8 +249,6 @@ private extension SearchPresenter {
 
     func loadFirstPage() {
         view?.setLoading(true)
-        adapter?.clearCellGenerators()
-        adapter?.forceRefill()
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
@@ -297,14 +286,7 @@ private extension SearchPresenter {
             guard let self else {
                 return
             }
-
-            let newGenerators = page.offers.map { self.makeGenerator(from: $0) }
-            if let lastGenerator = self.adapter?.generators.last?.last {
-                self.adapter?.insert(after: lastGenerator, new: newGenerators)
-            } else {
-                self.adapter?.addCellGenerators(newGenerators)
-                self.adapter?.forceRefill()
-            }
+            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount
@@ -323,11 +305,8 @@ private extension SearchPresenter {
             guard let self else {
                 return
             }
-
             self.view?.setEmptyState(page.offers.isEmpty)
-            self.adapter?.clearCellGenerators()
-            self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
-            self.adapter?.forceRefill()
+            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount
