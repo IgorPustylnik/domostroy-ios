@@ -18,5 +18,4 @@ struct RequestCalendarConfig {
 
 protocol RequestCalendarModuleInput: AnyObject {
     func configure(with viewModel: RequestCalendarConfig)
-    func setSelectedDates(_ selectedDates: DayComponentsRange?)
 }
