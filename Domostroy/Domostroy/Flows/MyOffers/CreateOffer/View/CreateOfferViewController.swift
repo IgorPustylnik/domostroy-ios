@@ -32,6 +32,9 @@ final class CreateOfferViewController: ScrollViewController {
             }
             self.scrollToView(view, offsetY: 40)
         }
+        $0.onShowCalendar = { [weak self] in
+            self?.output?.showCalendar()
+        }
         $0.onPublish = { [weak self] in
             guard let self else {
                 return

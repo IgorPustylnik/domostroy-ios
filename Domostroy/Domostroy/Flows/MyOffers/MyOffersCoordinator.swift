@@ -99,9 +99,12 @@ private extension MyOffersCoordinator {
     }
 
     func showCreateOffer() {
-        let (view, output) = CreateOfferModuleConfigurator().configure()
+        let (view, output, input) = CreateOfferModuleConfigurator().configure()
         output.onAddImages = { [weak self] delegate, limit in
             self?.showImagePicker(delegate: delegate, limit: limit)
+        }
+        output.onShowCalendar = { [weak self] config in
+            self?.showLessorCalendar(config: config, createOfferInput: input)
         }
         output.onClose = { [weak self] in
             self?.router.dismissModule()
@@ -109,6 +112,19 @@ private extension MyOffersCoordinator {
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.modalPresentationStyle = .fullScreen
         router.present(navigationController)
+    }
+
+    func showLessorCalendar(config: LessorCalendarConfig, createOfferInput: CreateOfferModuleInput) {
+        let (view, output, input) = LessorCalendarModuleConfigurator().configure()
+        input.configure(with: config)
+        output.onApply = { [weak createOfferInput] dates in
+            createOfferInput?.setSelectedDates(dates)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        router.present(navigationControllerWrapper)
     }
 
     func showImagePicker(delegate: PHPickerViewControllerDelegate, limit: Int) {

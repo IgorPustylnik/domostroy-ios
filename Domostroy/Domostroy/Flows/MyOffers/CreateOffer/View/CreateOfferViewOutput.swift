@@ -10,5 +10,6 @@ protocol CreateOfferViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
     func create(details: CreateOfferDetails)
+    func showCalendar()
     func close()
 }

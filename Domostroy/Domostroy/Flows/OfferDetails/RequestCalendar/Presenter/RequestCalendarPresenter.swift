@@ -50,10 +50,6 @@ extension RequestCalendarPresenter: RequestCalendarModuleInput {
         forbiddenDates = viewModel.forbiddenDates
         selectedDayRange = viewModel.selectedDates
     }
-
-    func setSelectedDates(_ selectedDates: DayComponentsRange?) {
-        self.selectedDayRange = selectedDates
-    }
 }
 
 // MARK: - RequestCalendarViewOutput

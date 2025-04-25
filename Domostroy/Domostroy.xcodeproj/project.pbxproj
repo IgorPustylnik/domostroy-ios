@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F996CCAEDE962AAA816A6BA /* HomeModuleOutput.swift */; };
+		01DF48D48DCF76F6ADCE89F7 /* LessorCalendarViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FDD0F4977AB29C306B858D /* LessorCalendarViewInput.swift */; };
 		02E40F969F7A16094E3783B1 /* OfferDetailsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83265E917C7E935069288C7 /* OfferDetailsViewOutput.swift */; };
 		05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */; };
 		062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DED2031025435C99F93656 /* FavoritesViewOutput.swift */; };
@@ -56,6 +57,7 @@
 		46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F96F662B07F1B4C4724559 /* AuthModuleInput.swift */; };
 		487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */; };
 		4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */; };
+		4C8C01259C375686B6CAAA52 /* LessorCalendarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA04C9939CA41F1791F693 /* LessorCalendarModuleInput.swift */; };
 		511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */; };
 		5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2D0FFBF84EB88DC41044F /* OfferDetailsPresenter.swift */; };
 		52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */; };
@@ -69,6 +71,7 @@
 		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
 		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
 		55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */; };
+		551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 551FC3B42DBBD29800A8FE6B /* HorizonCalendar */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
 		554F7CBE2DBA276D008A2BB3 /* UserProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */; };
@@ -132,7 +135,6 @@
 		55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677C2DA80E2500A3CA52 /* Double+ext.swift */; };
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
-		55FFADA62DB18AA5002A067D /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 55FFADA52DB18AA5002A067D /* HorizonCalendar */; };
 		55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		5952F8FF3CC5F4C7DFB2E9BD /* CreateOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69BA71D8E3B8728ED8047D0 /* CreateOfferViewController.swift */; };
@@ -158,6 +160,7 @@
 		802D6C848E994BF7923B6C5D /* ProfileUnauthorizedViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B10F9E0609B34DEC4C0093 /* ProfileUnauthorizedViewInput.swift */; };
 		809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */; };
 		81B786043C7B853DA6B7FEAF /* CreateOfferViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D47613ABAF3DBC4E85DD8 /* CreateOfferViewInput.swift */; };
+		82196459D55024D020B4A41E /* LessorCalendarModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AD813CE517FA305539D19 /* LessorCalendarModuleConfigurator.swift */; };
 		8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0476356BFFC33F827F9E1 /* RegisterModuleOutput.swift */; };
 		82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */; };
 		849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */; };
@@ -209,6 +212,7 @@
 		CD7C1FB68E4EBAD3B147F6B3 /* OfferDetailsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741E51A0B96662F6D822E4BB /* OfferDetailsModuleConfigurator.swift */; };
 		CD8B8D07E84B499AB98B08E4 /* AuthViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC6DB4F68BDFF5E659FB8B /* AuthViewOutput.swift */; };
 		CDFEF63FE62A6D53E6FC4681 /* ProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C68513B7BD5D696B39144F7 /* ProfileModuleInput.swift */; };
+		CE0C7A4027760245C3CA85C2 /* LessorCalendarViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6277ECAE0AF4335ABAF454 /* LessorCalendarViewOutput.swift */; };
 		CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13C6AB792CD79F24770CB95 /* LoginViewOutput.swift */; };
 		CFC14D95FF06A6244B1CDAC7 /* CreateRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5421AC10D9FDFC1ECC217421 /* CreateRequestViewController.swift */; };
 		D0DA0A3F860BE4ABC53A89B1 /* SearchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200F5CF2F2BE8575E819E6C1 /* SearchViewOutput.swift */; };
@@ -218,9 +222,12 @@
 		D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476181DD437DFE179F0AC5A /* FavoritesCoordinatorOutput.swift */; };
 		DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */; };
 		E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86855E73D0855B252D23451E /* ProfileCoordinator.swift */; };
+		E2C4431AE3ED6636FB672784 /* LessorCalendarModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A97B274FC452F455AC98CC /* LessorCalendarModuleOutput.swift */; };
 		E41232A90ADA70D4F4AD0386 /* SortModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A0065DBFA6A05448E3D33 /* SortModuleInput.swift */; };
 		E46316161F403CF74FE69F06 /* ProfileUnauthorizedViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA75115FF5C04AE686F5BD /* ProfileUnauthorizedViewOutput.swift */; };
+		E5C87AF00B7A25FDA6978A1E /* LessorCalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C08C44C76280845E0D2F1D /* LessorCalendarPresenter.swift */; };
 		E8684EEC04479C82DF0B664D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A833554CE2AE52D6E4F582B /* RegisterViewController.swift */; };
+		EBD673653C8F904E06064992 /* LessorCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD4A6922BCC3AFE12F36D71 /* LessorCalendarViewController.swift */; };
 		EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55CA7DB140B0DC485DD4599 /* ProfileCoordinatorOutput.swift */; };
 		EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */; };
 		F15EC695DE83908603F9E4A8 /* ProfileUnauthorizedModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDA14184E9F12A7D48E6800 /* ProfileUnauthorizedModuleConfigurator.swift */; };
@@ -233,7 +240,9 @@
 
 /* Begin PBXFileReference section */
 		040B7C825F37113796CCBE2E /* CreateRequestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestView.swift; sourceTree = "<group>"; };
+		042AD813CE517FA305539D19 /* LessorCalendarModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarModuleConfigurator.swift; sourceTree = "<group>"; };
 		05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinatorOutput.swift; sourceTree = "<group>"; };
+		06FDD0F4977AB29C306B858D /* LessorCalendarViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewInput.swift; sourceTree = "<group>"; };
 		086E15C34F62AA93C14AE441 /* AuthPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		089BA3AFE737737FB3EC7AAE /* MyOffersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersPresenter.swift; sourceTree = "<group>"; };
 		08B10F9E0609B34DEC4C0093 /* ProfileUnauthorizedViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileUnauthorizedViewInput.swift; sourceTree = "<group>"; };
@@ -279,6 +288,7 @@
 		490062771BE7CE2BC5E3DCC2 /* CodeConfirmationViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewOutput.swift; sourceTree = "<group>"; };
 		4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersModuleOutput.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
+		52DA04C9939CA41F1791F693 /* LessorCalendarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarModuleInput.swift; sourceTree = "<group>"; };
 		53B35DA066014BB637B4F71F /* CreateRequestModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestModuleConfigurator.swift; sourceTree = "<group>"; };
 		5421AC10D9FDFC1ECC217421 /* CreateRequestViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewController.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
@@ -362,6 +372,8 @@
 		601764CB091D75C16EA7A1F6 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		618066940A8961C0BBA3F090 /* ProfileUnauthorizedModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileUnauthorizedModuleOutput.swift; sourceTree = "<group>"; };
 		6282B02AD7B7D53A2EE59DA0 /* SortModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleConfigurator.swift; sourceTree = "<group>"; };
+		64A97B274FC452F455AC98CC /* LessorCalendarModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarModuleOutput.swift; sourceTree = "<group>"; };
+		64C08C44C76280845E0D2F1D /* LessorCalendarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarPresenter.swift; sourceTree = "<group>"; };
 		64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleInput.swift; sourceTree = "<group>"; };
 		65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsModuleInput.swift; sourceTree = "<group>"; };
 		674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +425,7 @@
 		B7EF90689F8A7AE77FC1BCFB /* ProfilePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		BAFCEC81A2FC09CE901B7617 /* LoginModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleConfigurator.swift; sourceTree = "<group>"; };
 		BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInput.swift; sourceTree = "<group>"; };
+		BBD4A6922BCC3AFE12F36D71 /* LessorCalendarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewController.swift; sourceTree = "<group>"; };
 		BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewOutput.swift; sourceTree = "<group>"; };
 		C079102E893B92AC9E2AECB0 /* CreateRequestViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewOutput.swift; sourceTree = "<group>"; };
 		C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -437,6 +450,7 @@
 		DACE5ECBF9623641BF17499D /* CreateRequestPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestPresenter.swift; sourceTree = "<group>"; };
 		DD7D1B42CDFD12442C973DE1 /* SortPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortPresenter.swift; sourceTree = "<group>"; };
 		DDF7890D7AFE614A23462017 /* AuthModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleOutput.swift; sourceTree = "<group>"; };
+		DF6277ECAE0AF4335ABAF454 /* LessorCalendarViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewOutput.swift; sourceTree = "<group>"; };
 		DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewOutput.swift; sourceTree = "<group>"; };
 		E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleInput.swift; sourceTree = "<group>"; };
@@ -463,7 +477,7 @@
 			files = (
 				55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */,
 				550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */,
-				55FFADA62DB18AA5002A067D /* HorizonCalendar in Frameworks */,
+				551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */,
 				55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +485,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020E7CC55027D2830D622837 /* LessorCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				3EF604A5D83B9557D14DF7BD /* Configurator */,
+				CFA15CE4B5EE05B715BDA532 /* Presenter */,
+				5EC7D0BF1DC1BE5FF2EB83EE /* View */,
+			);
+			path = LessorCalendar;
+			sourceTree = "<group>";
+		};
 		0380730FAA2E451108D13C35 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +607,7 @@
 				EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */,
 				55B496282D9E84EF00C6AB57 /* MyOffers */,
 				E4344F744AD3CADBE9516A30 /* CreateOffer */,
+				020E7CC55027D2830D622837 /* LessorCalendar */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -654,6 +679,14 @@
 				42CC6DB4F68BDFF5E659FB8B /* AuthViewOutput.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3EF604A5D83B9557D14DF7BD /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				042AD813CE517FA305539D19 /* LessorCalendarModuleConfigurator.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 		42ADB419757D41987C7B5386 /* Search */ = {
@@ -1226,6 +1259,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5EC7D0BF1DC1BE5FF2EB83EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBD4A6922BCC3AFE12F36D71 /* LessorCalendarViewController.swift */,
+				06FDD0F4977AB29C306B858D /* LessorCalendarViewInput.swift */,
+				DF6277ECAE0AF4335ABAF454 /* LessorCalendarViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		674D147BA98E64895871C9BB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1485,6 +1528,16 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		CFA15CE4B5EE05B715BDA532 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				64C08C44C76280845E0D2F1D /* LessorCalendarPresenter.swift */,
+				52DA04C9939CA41F1791F693 /* LessorCalendarModuleInput.swift */,
+				64A97B274FC452F455AC98CC /* LessorCalendarModuleOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		D51D2616981CCE4866D1CB70 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1663,7 +1716,7 @@
 				550D4F242D9F29FB00B460CA /* SnapKit */,
 				55DD9F012DA5090A003F0CB3 /* Kingfisher */,
 				55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */,
-				55FFADA52DB18AA5002A067D /* HorizonCalendar */,
+				551FC3B42DBBD29800A8FE6B /* HorizonCalendar */,
 			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
@@ -1698,7 +1751,7 @@
 				550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */,
-				55FFADA42DB18AA5002A067D /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
@@ -1983,6 +2036,13 @@
 				44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */,
 				5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */,
 				511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */,
+				82196459D55024D020B4A41E /* LessorCalendarModuleConfigurator.swift in Sources */,
+				E5C87AF00B7A25FDA6978A1E /* LessorCalendarPresenter.swift in Sources */,
+				4C8C01259C375686B6CAAA52 /* LessorCalendarModuleInput.swift in Sources */,
+				E2C4431AE3ED6636FB672784 /* LessorCalendarModuleOutput.swift in Sources */,
+				EBD673653C8F904E06064992 /* LessorCalendarViewController.swift in Sources */,
+				01DF48D48DCF76F6ADCE89F7 /* LessorCalendarViewInput.swift in Sources */,
+				CE0C7A4027760245C3CA85C2 /* LessorCalendarViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2223,6 +2283,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IgorPustylnik/HorizonCalendar";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -2239,14 +2307,6 @@
 				minimumVersion = 7.4.0;
 			};
 		};
-		55FFADA42DB18AA5002A067D /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/HorizonCalendar";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2254,6 +2314,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 550D4F232D9F29FB00B460CA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		551FC3B42DBBD29800A8FE6B /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
 		};
 		55DD9F012DA5090A003F0CB3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2264,11 +2329,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */;
 			productName = ReactiveDataDisplayManager;
-		};
-		55FFADA52DB18AA5002A067D /* HorizonCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 55FFADA42DB18AA5002A067D /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
-			productName = HorizonCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

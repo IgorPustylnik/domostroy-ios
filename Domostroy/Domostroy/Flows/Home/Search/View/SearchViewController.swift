@@ -15,7 +15,7 @@ final class SearchViewController: BaseViewController {
 
     private enum Constants {
         static let progressViewHeight: CGFloat = 80
-        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
         static let intergroupSpacing: CGFloat = 10
         static let interitemSpacing: CGFloat = 10
         static let searchHStackSpacing: CGFloat = 10
