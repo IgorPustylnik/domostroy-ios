@@ -27,7 +27,7 @@ final class FavoritesModuleConfigurator {
             .build()
 
         presenter.view = view
-        presenter.adapter = adapter
+        view.adapter = adapter
         view.output = presenter
 
         return (view, presenter)

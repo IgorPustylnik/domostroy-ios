@@ -10,4 +10,5 @@ protocol FavoritesViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
     func openSort()
+    func openOffer(_ id: Int)
 }

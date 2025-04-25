@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import ReactiveDataDisplayManager
 
 final class FavoritesViewController: BaseViewController {
 
     // MARK: - Constants
 
     private enum Constants {
-        static let cellSpacing: CGFloat = 8
-        static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
-        static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
+        static let intergroupSpacing: CGFloat = 10
+        static let interitemSpacing: CGFloat = 10
         static let settingsViewHeight: CGFloat = 36
         static let animationDuration: Double = 0.3
     }
@@ -32,6 +33,11 @@ final class FavoritesViewController: BaseViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var adapter: BaseCollectionManager?
+
+    typealias OfferCellGenerator = DiffableCollectionCellGenerator<FavoriteOfferCollectionViewCell>
+
+    private var offerGenerators: [OfferCellGenerator] = []
 
     private var emptyView = FavoritesEmptyView()
 
@@ -75,41 +81,7 @@ final class FavoritesViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
         collectionView.alwaysBounceVertical = true
         observeScrollOffset(collectionView)
-    }
-
-    private func configureLayout() {
-        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            switch sectionIndex {
-            case 0:
-                return self?.createOffersSection()
-            default:
-                return self?.createOffersSection()
-            }
-        }
-        collectionView.setCollectionViewLayout(layout, animated: false)
-    }
-
-    private func createOffersSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(Constants.cellHeight)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(Constants.cellHeight)
-        )
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = Constants.sectionInsets
-        section.interGroupSpacing = Constants.cellSpacing
-
-        return section
+        collectionView.setCollectionViewLayout(makeLayout(), animated: false)
     }
 
     private func setupEmptyView() {
@@ -124,6 +96,40 @@ final class FavoritesViewController: BaseViewController {
     }
 }
 
+// MARK: - UICollectionViewCompositionalLayout
+
+private extension FavoritesViewController {
+
+    func makeLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            return self.makeSectionLayout(for: sectionIndex)
+        }
+
+        return layout
+    }
+
+    func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(Constants.interitemSpacing)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = Constants.sectionContentInset
+        section.interGroupSpacing = Constants.intergroupSpacing
+
+        return section
+    }
+}
+
 // MARK: - FavoritesViewInput
 
 extension FavoritesViewController: FavoritesViewInput {
@@ -131,7 +137,6 @@ extension FavoritesViewController: FavoritesViewInput {
     func setupInitialState() {
         setupCollectionView()
         setupEmptyView()
-        configureLayout()
         setupNavigationBar()
     }
 
@@ -164,4 +169,51 @@ extension FavoritesViewController: FavoritesViewInput {
         }
     }
 
+    func fillFirstPage(with viewModels: [FavoriteOfferCollectionViewCell.ViewModel]) {
+        offerGenerators = viewModels.map {
+            let generator = OfferCellGenerator(
+                uniqueId: UUID(),
+                with: $0,
+                registerType: .class
+            )
+            generator.didSelectEvent += { [weak self, viewModel = $0] in
+                self?.output?.openOffer(viewModel.id)
+            }
+            return generator
+        }
+        refillAdapter()
+    }
+
+    func fillNextPage(with viewModels: [FavoriteOfferCollectionViewCell.ViewModel]) {
+        let newGenerators = viewModels.map {
+            let generator = OfferCellGenerator(
+                uniqueId: UUID(),
+                with: $0,
+                registerType: .class
+            )
+            generator.didSelectEvent += { [weak self, viewModel = $0] in
+                self?.output?.openOffer(viewModel.id)
+            }
+            return generator
+        }
+        offerGenerators += newGenerators
+        if let lastGenerator = adapter?.generators.last?.last {
+            adapter?.insert(after: lastGenerator, new: newGenerators)
+        } else {
+            refillAdapter()
+        }
+    }
+
+}
+
+// MARK: - Private methods
+
+private extension FavoritesViewController {
+    func refillAdapter() {
+        adapter?.clearCellGenerators()
+        adapter?.clearHeaderGenerators()
+        adapter?.clearFooterGenerators()
+        adapter?.addCellGenerators(offerGenerators)
+        adapter?.forceRefill()
+    }
 }
