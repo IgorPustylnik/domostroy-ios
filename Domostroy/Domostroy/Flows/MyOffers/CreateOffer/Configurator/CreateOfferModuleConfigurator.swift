@@ -12,8 +12,9 @@ import ReactiveDataDisplayManager
 final class CreateOfferModuleConfigurator {
 
     func configure() -> (
-       CreateOfferViewController,
-       CreateOfferModuleOutput
+        CreateOfferViewController,
+        CreateOfferModuleOutput,
+        CreateOfferModuleInput
     ) {
         let view = CreateOfferViewController()
         let presenter = CreateOfferPresenter()
@@ -27,7 +28,7 @@ final class CreateOfferModuleConfigurator {
         presenter.adapter = adapter
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

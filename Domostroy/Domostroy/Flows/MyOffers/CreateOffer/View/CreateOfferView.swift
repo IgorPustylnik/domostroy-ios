@@ -34,6 +34,8 @@ final class CreateOfferView: UIView {
             conditionPicker,
             picturesLabel,
             picturesCollectionView,
+            calendarLabel,
+            calendarButton,
             priceLabel,
             priceTextField,
             publishButton
@@ -92,6 +94,20 @@ final class CreateOfferView: UIView {
     let picturesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
     // TODO: Localize
+    private lazy var calendarLabel = createHeaderLabel("Available dates")
+
+    private lazy var calendarButton = {
+        // TODO: Localize
+        $0.title = "Available dates"
+        $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
+        $0.imagePlacement = .right
+        $0.setAction { [weak self] in
+            self?.onShowCalendar?()
+        }
+        return $0
+    }(DButton(type: .calendar))
+
+    // TODO: Localize
     private lazy var priceLabel = createHeaderLabel("Price")
 
     private lazy var priceTextField: DValidatableTextField = {
@@ -117,6 +133,7 @@ final class CreateOfferView: UIView {
 
     var onPublish: EmptyClosure?
     var onScrollToActiveView: ((UIView?) -> Void)?
+    var onShowCalendar: EmptyClosure?
 
     var title: String {
         nameTextField.currentText()

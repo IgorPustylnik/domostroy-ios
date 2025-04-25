@@ -6,5 +6,8 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import Foundation
+
 protocol CreateOfferModuleInput: AnyObject {
+    func setSelectedDates(_ dates: Set<Date>)
 }

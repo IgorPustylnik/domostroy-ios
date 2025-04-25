@@ -34,6 +34,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     // MARK: - CreateOfferModuleOutput
 
     var onAddImages: ((PHPickerViewControllerDelegate, Int) -> Void)?
+    var onShowCalendar: ((LessorCalendarConfig) -> Void)?
     var onClose: EmptyClosure?
 
     // MARK: - Properties
@@ -50,12 +51,16 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
             return images.count
         }
     }
+
+    private var selectedDates: Set<Date> = Set()
 }
 
 // MARK: - CreateOfferModuleInput
 
 extension CreateOfferPresenter: CreateOfferModuleInput {
-
+    func setSelectedDates(_ dates: Set<Date>) {
+        self.selectedDates = dates
+    }
 }
 
 // MARK: - CreateOfferViewOutput
@@ -71,6 +76,18 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         refillAdapter()
     }
 
+    func showCalendar() {
+        let startDate = Date.now
+        guard let endDate = Calendar.current.date(byAdding: .month, value: 6, to: startDate) else {
+            return
+        }
+        let config = LessorCalendarConfig(
+            dates: startDate...endDate,
+            forbiddenDates: [],
+            selectedDays: selectedDates
+        )
+        onShowCalendar?(config)
+    }
     func create(details: CreateOfferDetails) {
         // TODO: Make request and use photos
     }
