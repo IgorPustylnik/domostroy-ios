@@ -16,10 +16,9 @@ final class UserProfileViewController: BaseViewController {
 
     private enum Constants {
         static let progressViewHeight: CGFloat = 80
-        static let sectionInset: UIEdgeInsets = .init(top: 16, left: 0, bottom: 16, right: 0)
-        static let contentInset: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-        static let minimumLineSpacing: CGFloat = 10
-        static let minimumInteritemSpacing: CGFloat = 10
+        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
+        static let intergroupSpacing: CGFloat = 10
+        static let interitemSpacing: CGFloat = 10
         static let animationDuration: Double = 0.3
     }
 
@@ -29,10 +28,12 @@ final class UserProfileViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var adapter: BaseCollectionManager?
 
-    typealias OfferCellGenerator = DiffableCalculatableHeightCollectionCellGenerator<OfferCollectionViewCell>
-    typealias UserInfoCellGenerator = DiffableCalculatableHeightCollectionCellGenerator<UserProfileInfoCollectionViewCell>
+    typealias OfferCellGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
+    typealias UserInfoCellGenerator = DiffableCollectionCellGenerator<UserProfileInfoCollectionViewCell>
 
-    private var userGenerator: UserInfoCellGenerator?
+    private var userGenerator: UserInfoCellGenerator = .init(
+        uniqueId: UUID(), with: .init(imageUrl: nil, loadImage: nil, username: nil, info1: nil, info2: nil), registerType: .class
+    )
     private var offerGenerators: [OfferCellGenerator] = []
 
     // MARK: - Private Properties
@@ -46,7 +47,6 @@ final class UserProfileViewController: BaseViewController {
 
     override func viewDidLoad() {
         setupCollectionView()
-        configureLayoutFlow()
         super.viewDidLoad()
         hidesTabBar = true
         output?.viewLoaded()
@@ -57,7 +57,7 @@ final class UserProfileViewController: BaseViewController {
         progressView.frame = CGRect(
             x: 0,
             y: 0,
-            width: collectionView.frame.width - Constants.contentInset.left - Constants.contentInset.right,
+            width: collectionView.frame.width,
             height: Constants.progressViewHeight
         )
     }
@@ -70,18 +70,99 @@ final class UserProfileViewController: BaseViewController {
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
         collectionView.alwaysBounceVertical = true
+        collectionView.setCollectionViewLayout(makeLayout(), animated: false)
         observeScrollOffset(collectionView)
     }
+}
 
-    private func configureLayoutFlow() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = Constants.minimumLineSpacing
-        flowLayout.minimumInteritemSpacing = Constants.minimumInteritemSpacing
-        flowLayout.sectionInset = Constants.sectionInset
-        collectionView.contentInset = Constants.contentInset
-        flowLayout.scrollDirection = .vertical
+// MARK: - UICollectionViewCompositionalLayout
 
-        collectionView.setCollectionViewLayout(flowLayout, animated: true)
+private extension UserProfileViewController {
+
+    func makeLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self.makeUserInfoSectionLayout(for: sectionIndex)
+            case 1:
+                return self.makeOfferSectionLayout(for: sectionIndex)
+            default:
+                return self.makeOfferSectionLayout(for: sectionIndex)
+            }
+        }
+
+        return layout
+    }
+
+    func makeOfferSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.5),
+            heightDimension: .estimated(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(Constants.interitemSpacing)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = Constants.sectionContentInset
+        section.interGroupSpacing = Constants.intergroupSpacing
+
+        let header = makeSectionHeader()
+        section.boundarySupplementaryItems = [header]
+
+        return section
+    }
+
+    func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(1)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        return header
+    }
+
+    func makeSectionFooter() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(1)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        return header
+    }
+
+    func makeUserInfoSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = .fixed(Constants.interitemSpacing)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = Constants.sectionContentInset
+        section.interGroupSpacing = Constants.intergroupSpacing
+
+        return section
     }
 }
 
@@ -107,7 +188,6 @@ extension UserProfileViewController: UserProfileViewInput {
         userGenerator = UserInfoCellGenerator(
             uniqueId: UUID(),
             with: viewModel,
-            width: calculateUserInfoCellWidth(),
             registerType: .class
         )
         refillAdapter()
@@ -118,7 +198,6 @@ extension UserProfileViewController: UserProfileViewInput {
             let generator = OfferCellGenerator(
                 uniqueId: UUID(),
                 with: $0,
-                width: calculateOfferCellWidth(),
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
@@ -134,7 +213,6 @@ extension UserProfileViewController: UserProfileViewInput {
             let generator = OfferCellGenerator(
                 uniqueId: UUID(),
                 with: $0,
-                width: calculateOfferCellWidth(),
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
@@ -156,32 +234,21 @@ extension UserProfileViewController: UserProfileViewInput {
 // MARK: - Private methods
 
 private extension UserProfileViewController {
-    func calculateUserInfoCellWidth() -> CGFloat {
-        guard let screenWidth = view.window?.screen.bounds.width else {
-            return 0
-        }
-        return screenWidth - Constants.contentInset.left - Constants.contentInset.right
-    }
-
-    func calculateOfferCellWidth() -> CGFloat {
-        guard let screenWidth = view.window?.screen.bounds.width else {
-            return 0
-        }
-        return (screenWidth - Constants.minimumInteritemSpacing - Constants.contentInset.left - Constants.contentInset.right) / 2
-    }
-
     func refillAdapter() {
         adapter?.clearCellGenerators()
         adapter?.clearHeaderGenerators()
         adapter?.clearFooterGenerators()
-        if let userGenerator {
-            adapter?.addCellGenerator(userGenerator)
-        }
+
+        adapter?.addSectionHeaderGenerator(EmptyCollectionHeaderGenerator())
+        adapter?.addCellGenerator(userGenerator)
+
         if offerGenerators.isEmpty {
             adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "No offers"))
         } else {
+            adapter?.addSectionHeaderGenerator(EmptyCollectionHeaderGenerator())
             adapter?.addCellGenerators(offerGenerators)
         }
+
         adapter?.forceRefill()
     }
 }
