@@ -33,9 +33,12 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
 private extension FavoritesCoordinator {
 
     func showFavorites() {
-        let (view, output) = FavoritesModuleConfigurator().configure()
+        let (view, output, input) = FavoritesModuleConfigurator().configure()
         output.onOpenOffer = { [weak self] id in
             self?.runOfferDetailsFlow(id: id)
+        }
+        output.onOpenSort = { [weak self, weak input] sort in
+            self?.showSort(sort: sort, favoritesInput: input)
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
@@ -47,6 +50,20 @@ private extension FavoritesCoordinator {
         }
         addDependency(coordinator)
         coordinator.start(with: id)
+    }
+
+    func showSort(sort: Sort, favoritesInput: FavoritesModuleInput?) {
+        let (view, output, input) = SortModuleConfigurator().configure()
+        input.setup(initialSort: sort)
+        output.onApply = { [weak favoritesInput] sort in
+            favoritesInput?.setSort(sort)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
     }
 
 }
