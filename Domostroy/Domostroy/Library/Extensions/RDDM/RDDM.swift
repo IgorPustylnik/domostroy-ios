@@ -77,6 +77,7 @@ final class TitleCollectionHeaderGenerator {
 
     // MARK: - Private Properties
 
+    private let id = UUID().uuidString
     private let title: String
 
     // MARK: - Initialization
@@ -113,7 +114,7 @@ extension TitleCollectionHeaderGenerator: ViewBuilder {
 extension TitleCollectionHeaderGenerator: DiffableItemSource {
 
     var diffableItem: ReactiveDataDisplayManager.DiffableItem {
-        DiffableItem(id: "title", state: .init(title))
+        DiffableItem(id: id, state: .init(title))
     }
 
 }
