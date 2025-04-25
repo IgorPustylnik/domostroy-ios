@@ -44,7 +44,7 @@ final class TitleCollectionReusableView: UICollectionReusableView, Accessibility
     private func setupLabel() {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Constants.insets)
+            make.edges.equalToSuperview().inset(Constants.insets).priority(.high)
         }
     }
 

@@ -21,20 +21,6 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         let username: String?
         let info1: String?
         let info2: String?
-
-        func height(forWidth width: CGFloat) -> CGFloat {
-            let horizontalInsets: CGFloat = Constants.insets.top + Constants.insets.bottom
-            let availableTextWidth = width - horizontalInsets - Constants.avatarSize.width - Constants.mainHStackSpacing
-
-            let usernameHeight = (username ?? "").heightForWidth(availableTextWidth, font: Constants.usernameFont)
-            let info1Height = (info1 ?? "").heightForWidth(availableTextWidth, font: Constants.info1Font)
-            let info2Height = (info2 ?? "").heightForWidth(availableTextWidth, font: Constants.info2Font)
-
-            let textHeight = usernameHeight + info1Height + info2Height + 2 * Constants.infoVStackSpacing
-
-            let contentHeight = max(textHeight, Constants.avatarSize.height)
-            return contentHeight + Constants.insets.bottom
-        }
     }
 
     // MARK: - Constants
@@ -129,7 +115,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         addSubview(bottomLineView)
 
         mainHStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Constants.insets)
+            make.edges.equalToSuperview().inset(Constants.insets).priority(.high)
         }
         bottomLineView.snp.makeConstraints { make in
             make.bottom.horizontalEdges.equalToSuperview()
@@ -147,16 +133,6 @@ extension UserProfileInfoCollectionViewCell: ConfigurableItem {
         info1Label.text = viewModel.info1
         info2Label.text = viewModel.info2
         viewModel.loadImage?(viewModel.imageUrl, avatarImageView)
-    }
-
-}
-
-// MARK: - CalculatableHeightItem
-
-extension UserProfileInfoCollectionViewCell: CalculatableHeightItem {
-
-    static func getHeight(forWidth width: CGFloat, with model: ViewModel) -> CGFloat {
-        return model.height(forWidth: width)
     }
 
 }

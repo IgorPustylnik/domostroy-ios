@@ -36,26 +36,6 @@ final class OfferCollectionViewCell: UICollectionViewCell {
             let offImage: UIImage
             let toggleAction: ToggleAction?
         }
-
-        func height(forWidth width: CGFloat) -> CGFloat {
-            let verticalPadding = Constants.insets.top + Constants.insets.bottom
-            let spacing = Constants.mainVStackSpacing
-
-            let imageHeight = width
-
-            let titleHeight = title.heightForWidth(width, font: Constants.titleFont)
-            let priceHeight = price.heightForWidth(width, font: Constants.priceFont)
-            let locationHeight = location.heightForWidth(width, font: Constants.locationFont)
-            let infoHeight = titleHeight + priceHeight + locationHeight
-
-            let maxActions = max(actions.count + toggleActions.count, 1)
-            let actionsHeight = CGFloat(maxActions) * Constants.actionSize.height +
-                CGFloat(maxActions - 1) * Constants.actionsVStackViewSpacing
-
-            let hStackHeight = max(infoHeight, actionsHeight)
-
-            return verticalPadding + imageHeight + spacing + hStackHeight
-        }
     }
 
     // MARK: - Constants
@@ -64,12 +44,10 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         static let insets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         static let mainVStackSpacing: CGFloat = 10
         static let infoVStackSpacing: CGFloat = 5
-        static let imageViewToInfoViewOffset: CGFloat = 16
-        static let imageViewSize: CGSize = .init(width: 100, height: 84)
         static let imageViewCornerRadius: CGFloat = 8
-        static let hStackViewSpacing: CGFloat = 8
         static let actionsVStackViewSpacing: CGFloat = 8
         static let actionSize: CGSize = .init(width: 22, height: 22)
+        static let bottomHStackSpacing: CGFloat = 5
 
         static let titleFont: UIFont = .systemFont(ofSize: 14, weight: .regular)
         static let priceFont: UIFont = .systemFont(ofSize: 14, weight: .semibold)
@@ -97,6 +75,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     private lazy var bottomHStackView = {
         $0.axis = .horizontal
         $0.alignment = .leading
+        $0.spacing = Constants.bottomHStackSpacing
         $0.addArrangedSubview(infoVStackView)
         $0.addArrangedSubview(actionsVStackView)
         return $0
@@ -113,7 +92,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
 
     private lazy var titleLabel: UILabel = {
         $0.font = Constants.titleFont
-        $0.numberOfLines = 0
+        $0.numberOfLines = 2
         return $0
     }(UILabel())
 
@@ -165,7 +144,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
         backgroundColor = .systemBackground
         addSubview(mainVStackView)
         mainVStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().priority(.high)
         }
         itemImageView.snp.makeConstraints { make in
             make.height.equalTo(snp.width)
@@ -242,15 +221,6 @@ extension OfferCollectionViewCell: HighlightableItem {
         UIView.animate(withDuration: 0.1) {
             self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
         }
-    }
-}
-
-// MARK: - CalculatableHeightItem
-
-extension OfferCollectionViewCell: CalculatableHeightItem {
-
-    static func getHeight(forWidth width: CGFloat, with model: ViewModel) -> CGFloat {
-        return model.height(forWidth: width)
     }
 }
 
