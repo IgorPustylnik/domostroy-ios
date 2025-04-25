@@ -77,6 +77,7 @@ final class TitleCollectionHeaderGenerator {
 
     // MARK: - Private Properties
 
+    private let id = UUID().uuidString
     private let title: String
 
     // MARK: - Initialization
@@ -113,7 +114,37 @@ extension TitleCollectionHeaderGenerator: ViewBuilder {
 extension TitleCollectionHeaderGenerator: DiffableItemSource {
 
     var diffableItem: ReactiveDataDisplayManager.DiffableItem {
-        DiffableItem(id: "title", state: .init(title))
+        DiffableItem(id: id, state: .init(title))
+    }
+
+}
+
+// MARK: - DiffableCalculatableHeightCollectionCellGenerator
+
+// Was not originally in RDDM
+
+// swiftlint:disable line_length
+public class DiffableCalculatableHeightCollectionCellGenerator<Cell: ConfigurableItem & CalculatableHeightItem>: DiffableCollectionCellGenerator<Cell> & SizableItem where Cell: UICollectionViewCell, Cell.Model: Equatable {
+// swiftlint:enable line_length
+
+    // MARK: - Private Properties
+
+    private let width: CGFloat
+
+    // MARK: - Initializaion
+
+    public init(uniqueId: AnyHashable,
+                with model: Cell.Model,
+                width: CGFloat,
+                registerType: CellRegisterType = .nib) {
+        self.width = width
+        super.init(uniqueId: uniqueId, with: model, registerType: registerType)
+    }
+
+    // MARK: - SizableCollectionCellGenerator
+
+    public func getSize() -> CGSize {
+        return .init(width: width, height: Cell.getHeight(forWidth: width, with: model))
     }
 
 }

@@ -20,6 +20,7 @@ final class SearchModuleConfigurator {
         let presenter = SearchPresenter()
         let adapter = view.collectionView.rddm.baseBuilder
             .set(dataSource: { DiffableCollectionDataSource(provider: $0) })
+            .set(delegate: FlowCollectionDelegate())
             .add(plugin: .paginatable(progressView: view.progressView, output: presenter))
             .add(plugin: .refreshable(refreshControl: view.refreshControl, output: presenter))
             .add(plugin: .accessibility())
@@ -28,7 +29,7 @@ final class SearchModuleConfigurator {
             .build()
 
         presenter.view = view
-        presenter.adapter = adapter
+        view.adapter = adapter
         view.output = presenter
 
         return (view, presenter, presenter)

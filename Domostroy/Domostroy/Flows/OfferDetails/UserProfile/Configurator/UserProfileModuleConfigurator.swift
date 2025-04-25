@@ -1,25 +1,26 @@
 //
-//  HomeModuleConfigurator.swift
+//  UserProfileModuleConfigurator.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 24/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import UIKit
 import ReactiveDataDisplayManager
 
-final class HomeModuleConfigurator {
+final class UserProfileModuleConfigurator {
 
     func configure() -> (
-        HomeViewController,
-        HomeModuleOutput
+        UserProfileViewController,
+        UserProfileModuleOutput,
+        UserProfileModuleInput
     ) {
-        let view = HomeViewController()
-        let presenter = HomePresenter()
+        let view = UserProfileViewController()
+        let presenter = UserProfilePresenter()
         let adapter = view.collectionView.rddm.baseBuilder
-            .set(delegate: FlowCollectionDelegate())
             .set(dataSource: { DiffableCollectionDataSource(provider: $0) })
+            .set(delegate: FlowCollectionDelegate())
             .add(plugin: .paginatable(progressView: view.progressView, output: presenter))
             .add(plugin: .refreshable(refreshControl: view.refreshControl, output: presenter))
             .add(plugin: .accessibility())
@@ -31,7 +32,7 @@ final class HomeModuleConfigurator {
         view.adapter = adapter
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

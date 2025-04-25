@@ -1,19 +1,18 @@
 //
-//  SearchViewInput.swift
+//  UserProfileViewInput.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 11/04/2025.
+//  Created by igorpustylnik on 24/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import UIKit
+
 // swiftlint:disable disclosure_of_view_details
-protocol SearchViewInput: AnyObject, Loadable, EmptyStateable {
+protocol UserProfileViewInput: AnyObject, Loadable {
     /// Method for setup initial state of view
-    func setQuery(_ query: String?)
-    func setCity(_ city: String?)
-    func setSort(_ sort: String)
-    func setHasFilters(_ hasFilters: Bool)
-    func setSearchOverlay(active: Bool)
+    func setupInitialState()
+    func fillUser(with viewModel: UserProfileInfoCollectionViewCell.ViewModel)
     func fillFirstPage(with viewModels: [OfferCollectionViewCell.ViewModel])
     func fillNextPage(with viewModels: [OfferCollectionViewCell.ViewModel])
 }

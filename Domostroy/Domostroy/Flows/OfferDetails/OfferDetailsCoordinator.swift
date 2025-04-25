@@ -33,17 +33,23 @@ final class OfferDetailsCoordinator: BaseCoordinator, OfferDetailsCoordinatorOut
 // MARK: - Private methods
 
 private extension OfferDetailsCoordinator {
-    func showOfferDetails(id: Int) {
+    func showOfferDetails(id: Int, isShownFromOwnersProfile: Bool = false) {
         let (view, output, input) = OfferDetailsModuleConfigurator().configure()
         input.set(offerId: id)
         output.onOpenUser = { [weak self] id in
-
+            if isShownFromOwnersProfile {
+                self?.router.popModule()
+            } else {
+                self?.showUser(id: id)
+            }
         }
         output.onRent = { [weak self] in
             self?.showCreateRequest(offerId: id)
         }
         output.onDeinit = { [weak self] in
-            self?.onComplete?()
+            if !isShownFromOwnersProfile {
+                self?.onComplete?()
+            }
         }
         router.push(view, animated: true)
     }
@@ -72,12 +78,16 @@ private extension OfferDetailsCoordinator {
         }
 
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
-        if let sheet = navigationControllerWrapper.sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.preferredCornerRadius = 10
-            sheet.prefersGrabberVisible = true
-        }
         router.present(navigationControllerWrapper)
+    }
+
+    func showUser(id: Int) {
+        let (view, output, input) = UserProfileModuleConfigurator().configure()
+        input.setUserId(id)
+        output.onOpenOffer = { [weak self] offerId in
+            self?.showOfferDetails(id: offerId, isShownFromOwnersProfile: true)
+        }
+        router.push(view)
     }
 
     func runAuthFlow() {

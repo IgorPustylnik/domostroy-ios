@@ -15,4 +15,5 @@ protocol SearchViewOutput {
     func openCity()
     func openSort()
     func openFilters()
+    func openOffer(_ id: Int)
 }

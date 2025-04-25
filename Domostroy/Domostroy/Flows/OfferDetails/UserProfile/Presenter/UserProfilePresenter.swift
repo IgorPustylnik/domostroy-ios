@@ -1,36 +1,16 @@
 //
-//  SearchPresenter.swift
+//  UserProfilePresenter.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 11/04/2025.
+//  Created by igorpustylnik on 24/04/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import ReactiveDataDisplayManager
+import Kingfisher
 
-enum Sort: CaseIterable {
-    case `default`
-    case priceAscending
-    case priceDescending
-    case recent
-
-    var description: String {
-        switch self {
-        case .default:
-            return "Default"
-        case .priceAscending:
-            return "Price ascending"
-        case .priceDescending:
-            return "Price descending"
-        case .recent:
-            return "Most recent"
-        }
-    }
-}
-
-final class SearchPresenter: SearchModuleOutput {
+final class UserProfilePresenter: UserProfileModuleOutput {
 
     // MARK: - Constants
 
@@ -38,102 +18,38 @@ final class SearchPresenter: SearchModuleOutput {
         static let pageSize = 10
     }
 
-    // MARK: - SearchModuleOutput
+    // MARK: - UserProfileModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onOpenCity: ((City?) -> Void)?
-    var onOpenSort: ((Sort) -> Void)?
-    var onOpenFilters: ((Filters) -> Void)?
+    var onSearch: ((String?) -> Void)?
 
     // MARK: - Properties
 
-    weak var view: SearchViewInput?
+    weak var view: UserProfileViewInput?
     private weak var paginatableInput: PaginatableInput?
 
-    private var query: String?
+    private var userId: Int?
+
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
-
-    private var city: City?
-    private var sort: Sort = .default
-    private var filters: Filters = .init(
-        categoryFilter: .init(all: [])
-    )
-
 }
 
-// MARK: - SearchModuleInput
+// MARK: - UserProfileModuleInput
 
-extension SearchPresenter: SearchModuleInput {
-
-    func setQuery(_ query: String?) {
-        self.query = query
-        view?.setQuery(self.query)
-        loadFirstPage()
-    }
-
-    func setCity(_ city: City) {
-        self.city = city
-        view?.setCity(city.name)
-        loadFirstPage()
-    }
-
-    func setSort(_ sort: Sort) {
-        self.sort = sort
-        view?.setSort(sort.description)
-        loadFirstPage()
-    }
-
-    func setFilters(_ filters: Filters) {
-        self.filters = filters
-        var hasFilters = filters.categoryFilter.selected != nil
-        view?.setHasFilters(hasFilters)
-        loadFirstPage()
+extension UserProfilePresenter: UserProfileModuleInput {
+    func setUserId(_ id: Int) {
+        self.userId = id
     }
 }
 
-// MARK: - SearchViewOutput
+// MARK: - UserProfileViewOutput
 
-extension SearchPresenter: SearchViewOutput {
+extension UserProfilePresenter: UserProfileViewOutput {
 
     func viewLoaded() {
-        city = .init(id: 0, name: "Воронеж")
-        view?.setCity(city?.name)
-        view?.setSort(sort.description)
-        view?.setHasFilters(false)
-
-        Task {
-            await fetchCategories()
-        }
-
+        view?.setupInitialState()
         loadFirstPage()
-    }
-
-    func setSearch(active: Bool) {
-        view?.setSearchOverlay(active: active)
-    }
-
-    func search(query: String?) {
-        self.query = query
-        view?.setEmptyState(false)
-        loadFirstPage()
-    }
-
-    func cancelSearchFieldInput() {
-        view?.setQuery(self.query)
-    }
-
-    func openCity() {
-        onOpenCity?(city)
-    }
-
-    func openSort() {
-        onOpenSort?(sort)
-    }
-
-    func openFilters() {
-        onOpenFilters?(filters)
     }
 
     func openOffer(_ id: Int) {
@@ -144,14 +60,21 @@ extension SearchPresenter: SearchViewOutput {
 
 // MARK: - RefreshableOutput
 
-extension SearchPresenter: RefreshableOutput {
+extension UserProfilePresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
+        guard let userId else {
+            return
+        }
+
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
         Task {
-            let canIterate = await fillFirst()
+            async let _ = fillUser(userId: userId)
+            async let canIterateTask = fillFirst(userId: userId)
+
+            let canIterate = await canIterateTask
 
             DispatchQueue.main.async { [weak self] in
                 input.endRefreshing()
@@ -165,7 +88,7 @@ extension SearchPresenter: RefreshableOutput {
 
 // MARK: - PaginatableOutput
 
-extension SearchPresenter: PaginatableOutput {
+extension UserProfilePresenter: PaginatableOutput {
 
     func onPaginationInitialized(with input: PaginatableInput) {
         paginatableInput = input
@@ -184,7 +107,6 @@ extension SearchPresenter: PaginatableOutput {
                     input.updatePagination(canIterate: canIterate)
                     input.updateProgress(isLoading: false)
                 }
-
             } else {
                 DispatchQueue.main.async {
                     input.updateProgress(isLoading: false)
@@ -197,7 +119,22 @@ extension SearchPresenter: PaginatableOutput {
 
 // MARK: - ViewModels
 
-private extension SearchPresenter {
+private extension UserProfilePresenter {
+
+    func makeUserViewModel(
+        from user: User
+    ) -> UserProfileInfoCollectionViewCell.ViewModel {
+        return .init(
+            imageUrl: user.avatar,
+            loadImage: { [weak self] url, imageView in
+                self?.loadImage(url: url, imageView: imageView)
+            },
+            username: user.firstName,
+            // TODO: Localize
+            info1: "\(user.offersAmount) объявлений",
+            info2: "На Домострое с \( user.registerDate.monthAndYearString())"
+        )
+    }
 
     func makeOfferViewModel(
         from offer: Offer
@@ -233,7 +170,7 @@ private extension SearchPresenter {
 
 // MARK: - Network requests
 
-private extension SearchPresenter {
+private extension UserProfilePresenter {
 
     func loadImage(url: URL?, imageView: UIImageView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -248,12 +185,18 @@ private extension SearchPresenter {
     }
 
     func loadFirstPage() {
+        guard let userId else {
+            return
+        }
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
         Task {
-            let canIterate = await fillFirst()
+            async let _ = fillUser(userId: userId)
+            async let canIterateTask = fillFirst(userId: userId)
+
+            let canIterate = await canIterateTask
 
             DispatchQueue.main.async { [weak self] in
                 self?.view?.setLoading(false)
@@ -292,7 +235,7 @@ private extension SearchPresenter {
         return currentPage < pagesCount
     }
 
-    func fillFirst() async -> Bool {
+    func fillFirst(userId: Int) async -> Bool {
         isFirstPageLoading = true
 
         let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
@@ -305,18 +248,21 @@ private extension SearchPresenter {
             guard let self else {
                 return
             }
-            self.view?.setEmptyState(page.offers.isEmpty)
             self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount
     }
 
-    // MARK: Filters
+    func fillUser(userId: Int) async {
+        let user = await _Temporary_Mock_NetworkService().fetchUser(id: userId)
 
-    func fetchCategories() async {
-        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
-        self.filters.categoryFilter.all = categories
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            self.view?.fillUser(with: self.makeUserViewModel(from: user))
+        }
     }
 
 }

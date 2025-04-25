@@ -129,19 +129,14 @@ private extension MyOffersPresenter {
 
     func makeGenerator(from offer: Offer) -> DiffableOfferGenerator {
         let viewModel = OfferCollectionViewCell.ViewModel(
+            id: offer.id,
             imageUrl: offer.images.first,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
             price: offer.price.stringDroppingTrailingZero,
-            description: offer.description,
-            user: OfferCollectionViewCell.ViewModel.UserViewModel(
-                url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
-                loadUser: { [weak self] url, imageView, label in
-                    self?.loadUser(url: url, imageView: imageView, label: label)
-                }
-            ),
+            location: offer.city.name,
             actions: [
                 .init(image: .Buttons.edit, action: { [weak self] in
                     self?.onEditOffer?(offer.id)
