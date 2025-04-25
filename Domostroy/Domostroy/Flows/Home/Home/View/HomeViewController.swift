@@ -46,7 +46,7 @@ final class HomeViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var adapter: BaseCollectionManager?
 
-    typealias OfferCellGenerator = DiffableCalculatableHeightCollectionCellGenerator<OfferCollectionViewCell>
+    typealias OfferCellGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
 
     private var offerGenerators: [OfferCellGenerator] = []
 
@@ -119,13 +119,13 @@ final class HomeViewController: BaseViewController {
     private func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.5),
-            heightDimension: .estimated(0)
+            heightDimension: .estimated(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(0)
+            heightDimension: .estimated(1)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
         group.interItemSpacing = .fixed(Constants.interitemSpacing)
@@ -143,7 +143,7 @@ final class HomeViewController: BaseViewController {
     private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(0)
+            heightDimension: .estimated(1)
         )
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
@@ -204,7 +204,6 @@ extension HomeViewController: HomeViewInput {
             let generator = OfferCellGenerator(
                 uniqueId: UUID(),
                 with: $0,
-                width: calculateOfferCellWidth(),
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
@@ -220,7 +219,6 @@ extension HomeViewController: HomeViewInput {
             let generator = OfferCellGenerator(
                 uniqueId: UUID(),
                 with: $0,
-                width: calculateOfferCellWidth(),
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
@@ -241,12 +239,6 @@ extension HomeViewController: HomeViewInput {
 // MARK: - Private methods
 
 private extension HomeViewController {
-    func calculateOfferCellWidth() -> CGFloat {
-        return (collectionView.collectionViewLayout.collectionViewContentSize.width
-                - Constants.interitemSpacing - Constants.sectionContentInset.leading - Constants.sectionContentInset.trailing
-        ) / 2
-    }
-
     func refillAdapter() {
         adapter?.clearCellGenerators()
         adapter?.clearHeaderGenerators()
