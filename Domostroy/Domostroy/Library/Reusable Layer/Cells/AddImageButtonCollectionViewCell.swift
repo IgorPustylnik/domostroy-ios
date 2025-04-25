@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
-final class AddImageButtonCollectionViewCell: UICollectionViewCell {
+final class AddImageButtonCollectionViewCell: UICollectionViewCell, HighlightableScaleView {
+
+    var highlightScaleFactor: CGFloat = 0.97
 
     // MARK: - Constants
 
@@ -81,34 +83,6 @@ final class AddImageButtonCollectionViewCell: UICollectionViewCell {
 
     private func updateCGColors() {
         layer.borderColor = Constants.borderColor.cgColor
-    }
-}
-
-// MARK: - HighlightableItem
-
-extension AddImageButtonCollectionViewCell: HighlightableItem {
-    func applyUnhighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applyHighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
-    }
-
-    func applyDeselectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applySelectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
     }
 }
 

@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
-final class OfferCollectionViewCell: UICollectionViewCell {
+final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleView {
+
+    var highlightScaleFactor: CGFloat = 0.97
 
     typealias Model = ViewModel
 
@@ -194,34 +196,6 @@ private extension OfferCollectionViewCell {
         return button
     }
 
-}
-
-// MARK: - HighlightableItem
-
-extension OfferCollectionViewCell: HighlightableItem {
-    func applyUnhighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applyHighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
-    }
-
-    func applyDeselectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applySelectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
-    }
 }
 
 // MARK: - Equatable ViewModel
