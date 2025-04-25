@@ -248,6 +248,7 @@ private extension SearchPresenter {
     }
 
     func loadFirstPage() {
+        view?.fillFirstPage(with: [])
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
