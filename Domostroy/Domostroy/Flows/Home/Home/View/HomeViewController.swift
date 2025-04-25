@@ -96,10 +96,10 @@ final class HomeViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
         collectionView.alwaysBounceVertical = true
         observeScrollOffset(collectionView)
-        collectionView.collectionViewLayout = makeLayout()
+        collectionView.setCollectionViewLayout(makeLayout(), animated: false)
     }
 
-    func setupSearchOverlayView() {
+    private func setupSearchOverlayView() {
         view.addSubview(overlayView)
         overlayView.backgroundColor = .systemBackground
         overlayView.alpha = 0
@@ -107,6 +107,21 @@ final class HomeViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
+
+    private func setupEmptyView() {
+        collectionView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-Constants.progressViewHeight)
+            make.centerX.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
+        emptyView.alpha = 0
+    }
+}
+
+// MARK: - UICollectionViewCompositionalLayout
+
+private extension HomeViewController {
 
     func makeLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
@@ -116,7 +131,7 @@ final class HomeViewController: BaseViewController {
         return layout
     }
 
-    private func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+    func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.5),
             heightDimension: .estimated(1)
@@ -140,7 +155,7 @@ final class HomeViewController: BaseViewController {
         return section
     }
 
-    private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .estimated(1)
@@ -151,16 +166,6 @@ final class HomeViewController: BaseViewController {
             alignment: .top
         )
         return header
-    }
-
-    private func setupEmptyView() {
-        collectionView.addSubview(emptyView)
-        emptyView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-Constants.progressViewHeight)
-            make.centerX.equalToSuperview()
-            make.horizontalEdges.equalToSuperview()
-        }
-        emptyView.alpha = 0
     }
 }
 
