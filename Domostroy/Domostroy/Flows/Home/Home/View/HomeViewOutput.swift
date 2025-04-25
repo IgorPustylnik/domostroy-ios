@@ -11,4 +11,5 @@ protocol HomeViewOutput {
     func viewLoaded()
     func setSearch(active: Bool)
     func search(query: String?)
+    func openOffer(_ id: Int)
 }

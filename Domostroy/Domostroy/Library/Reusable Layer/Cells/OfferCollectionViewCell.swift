@@ -36,6 +36,26 @@ final class OfferCollectionViewCell: UICollectionViewCell {
             let offImage: UIImage
             let toggleAction: ToggleAction?
         }
+
+        func height(forWidth width: CGFloat) -> CGFloat {
+            let verticalPadding = Constants.insets.top + Constants.insets.bottom
+            let spacing = Constants.mainVStackSpacing
+
+            let imageHeight = width
+
+            let titleHeight = title.heightForWidth(width, font: Constants.titleFont)
+            let priceHeight = price.heightForWidth(width, font: Constants.priceFont)
+            let locationHeight = location.heightForWidth(width, font: Constants.locationFont)
+            let infoHeight = titleHeight + priceHeight + locationHeight
+
+            let maxActions = max(actions.count + toggleActions.count, 1)
+            let actionsHeight = CGFloat(maxActions) * Constants.actionSize.height +
+                CGFloat(maxActions - 1) * Constants.actionsVStackViewSpacing
+
+            let hStackHeight = max(infoHeight, actionsHeight)
+
+            return verticalPadding + imageHeight + spacing + hStackHeight
+        }
     }
 
     // MARK: - Constants
@@ -93,7 +113,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
 
     private lazy var titleLabel: UILabel = {
         $0.font = Constants.titleFont
-        $0.numberOfLines = 1
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
 
@@ -113,6 +133,9 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     private lazy var actionsVStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.actionsVStackViewSpacing
+        $0.snp.makeConstraints { make in
+            make.width.equalTo(Constants.actionSize.width)
+        }
         return $0
     }(UIStackView())
 
@@ -227,24 +250,7 @@ extension OfferCollectionViewCell: HighlightableItem {
 extension OfferCollectionViewCell: CalculatableHeightItem {
 
     static func getHeight(forWidth width: CGFloat, with model: ViewModel) -> CGFloat {
-        let verticalPadding = Constants.insets.top + Constants.insets.bottom
-        let spacing = Constants.mainVStackSpacing
-
-        let imageHeight = width
-
-        // инфа
-        let titleHeight = "A".heightForWidth(width, font: Constants.titleFont)
-        let priceHeight = "A".heightForWidth(width, font: Constants.priceFont)
-        let locationHeight = "A".heightForWidth(width, font: Constants.locationFont)
-        let infoHeight = titleHeight + priceHeight + locationHeight
-
-        let maxActions = max(model.actions.count + model.toggleActions.count, 1)
-        let actionsHeight = CGFloat(maxActions) * Constants.actionSize.height +
-            CGFloat(maxActions - 1) * Constants.actionsVStackViewSpacing
-
-        let hStackHeight = max(infoHeight, actionsHeight)
-
-        return verticalPadding + imageHeight + spacing + hStackHeight
+        return model.height(forWidth: width)
     }
 }
 

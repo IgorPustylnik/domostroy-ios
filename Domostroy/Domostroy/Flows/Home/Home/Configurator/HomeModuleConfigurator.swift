@@ -18,6 +18,7 @@ final class HomeModuleConfigurator {
         let view = HomeViewController()
         let presenter = HomePresenter()
         let adapter = view.collectionView.rddm.baseBuilder
+            .set(delegate: FlowCollectionDelegate())
             .set(dataSource: { DiffableCollectionDataSource(provider: $0) })
             .add(plugin: .paginatable(progressView: view.progressView, output: presenter))
             .add(plugin: .refreshable(refreshControl: view.refreshControl, output: presenter))
@@ -27,7 +28,7 @@ final class HomeModuleConfigurator {
             .build()
 
         presenter.view = view
-        presenter.adapter = adapter
+        view.adapter = adapter
         view.output = presenter
 
         return (view, presenter)

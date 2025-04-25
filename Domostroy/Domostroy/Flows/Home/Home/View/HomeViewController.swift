@@ -15,16 +15,10 @@ final class HomeViewController: BaseViewController {
     // MARK: - Constants
 
     private enum Constants {
-        static let cellSpacing: CGFloat = 8
-        static let cellHeight: CGFloat = 100
         static let progressViewHeight: CGFloat = 80
-        static let boundaryItemSize: NSCollectionLayoutSize = {
-            let estimatedHeight = TitleCollectionReusableView.getHeight(forWidth: UIScreen.main.bounds.width,
-                                                                        with: "Some section")
-            return NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                   heightDimension: .estimated(estimatedHeight))
-        }()
-        static let sectionInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        static let intergroupSpacing: CGFloat = 10
+        static let interitemSpacing: CGFloat = 10
         static let animationDuration: Double = 0.3
     }
 
@@ -50,6 +44,11 @@ final class HomeViewController: BaseViewController {
 
     private var activityIndicator = UIActivityIndicatorView(style: .medium)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var adapter: BaseCollectionManager?
+
+    typealias OfferCellGenerator = DiffableCalculatableHeightCollectionCellGenerator<OfferCollectionViewCell>
+
+    private var offerGenerators: [OfferCellGenerator] = []
 
     private lazy var emptyView = HomeEmptyView()
 
@@ -69,7 +68,6 @@ final class HomeViewController: BaseViewController {
         setupSearchOverlayView()
         setupEmptyView()
         super.viewDidLoad()
-        configureLayout()
         setupNavigationBar()
         output?.viewLoaded()
     }
@@ -98,6 +96,7 @@ final class HomeViewController: BaseViewController {
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
         collectionView.alwaysBounceVertical = true
         observeScrollOffset(collectionView)
+        collectionView.collectionViewLayout = makeLayout()
     }
 
     func setupSearchOverlayView() {
@@ -109,50 +108,49 @@ final class HomeViewController: BaseViewController {
         }
     }
 
-    private func configureLayout() {
-        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            switch sectionIndex {
-            case 0:
-                return self?.createOffersSection()
-            default:
-                return self?.createOffersSection()
-            }
+    func makeLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            return self.makeSectionLayout(for: sectionIndex)
         }
-        collectionView.setCollectionViewLayout(layout, animated: false)
+
+        return layout
     }
 
-    private func createOffersSection() -> NSCollectionLayoutSection {
-        let header = makeSectionHeader()
-
+    private func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(Constants.cellHeight)
+            widthDimension: .fractionalWidth(0.5),
+            heightDimension: .estimated(0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(Constants.cellHeight)
+            heightDimension: .estimated(0)
         )
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(Constants.interitemSpacing)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = Constants.sectionInsets
-        section.interGroupSpacing = Constants.cellSpacing
+        section.contentInsets = Constants.sectionContentInset
+        section.interGroupSpacing = Constants.intergroupSpacing
+
+        let header = makeSectionHeader()
         section.boundarySupplementaryItems = [header]
 
         return section
     }
 
     private func makeSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: Constants.boundaryItemSize,
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(0)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
+        return header
     }
 
     private func setupEmptyView() {
@@ -201,4 +199,65 @@ extension HomeViewController: HomeViewInput {
         }
     }
 
+    func fillFirstPage(with viewModels: [OfferCollectionViewCell.ViewModel]) {
+        offerGenerators = viewModels.map {
+            let generator = OfferCellGenerator(
+                uniqueId: UUID(),
+                with: $0,
+                width: calculateOfferCellWidth(),
+                registerType: .class
+            )
+            generator.didSelectEvent += { [weak self, viewModel = $0] in
+                self?.output?.openOffer(viewModel.id)
+            }
+            return generator
+        }
+        refillAdapter()
+    }
+
+    func fillNextPage(with viewModels: [OfferCollectionViewCell.ViewModel]) {
+        let newGenerators = viewModels.map {
+            let generator = OfferCellGenerator(
+                uniqueId: UUID(),
+                with: $0,
+                width: calculateOfferCellWidth(),
+                registerType: .class
+            )
+            generator.didSelectEvent += { [weak self, viewModel = $0] in
+                self?.output?.openOffer(viewModel.id)
+            }
+            return generator
+        }
+        offerGenerators += newGenerators
+        if let lastGenerator = adapter?.generators.last?.last {
+            adapter?.insert(after: lastGenerator, new: newGenerators)
+        } else {
+            refillAdapter()
+        }
+    }
+
+}
+
+// MARK: - Private methods
+
+private extension HomeViewController {
+    func calculateOfferCellWidth() -> CGFloat {
+        return (collectionView.collectionViewLayout.collectionViewContentSize.width
+                - Constants.interitemSpacing - Constants.sectionContentInset.leading - Constants.sectionContentInset.trailing
+        ) / 2
+    }
+
+    func refillAdapter() {
+        adapter?.clearCellGenerators()
+        adapter?.clearHeaderGenerators()
+        adapter?.clearFooterGenerators()
+        if !offerGenerators.isEmpty {
+            adapter?.addSectionHeaderGenerator(
+                // TODO: Localize
+                TitleCollectionHeaderGenerator(title: "Recommended")
+            )
+        }
+        adapter?.addCellGenerators(offerGenerators)
+        adapter?.forceRefill()
+    }
 }
