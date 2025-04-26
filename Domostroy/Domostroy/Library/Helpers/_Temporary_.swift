@@ -44,7 +44,8 @@ struct _Temporary_Mock_NetworkService {
                         images: [url, url, url, url],
                         city: .init(id: 1, name: "Воронеж"),
                         userId: 0,
-                        calendarId: 0
+                        calendarId: 0,
+                        createdAt: .now
                     )
             }
         )
@@ -73,7 +74,8 @@ struct _Temporary_Mock_NetworkService {
             images: [url, url, url, url],
             city: .init(id: 0, name: "Воронеж"),
             userId: 0,
-            calendarId: 0
+            calendarId: 0,
+            createdAt: .now
         )
     }
 

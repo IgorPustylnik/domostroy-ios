@@ -26,12 +26,8 @@ final class FavoritesPresenter: FavoritesModuleOutput {
 
     // MARK: - Properties
 
-    typealias DiffableOfferGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
-
     weak var view: FavoritesViewInput?
     private weak var paginatableInput: PaginatableInput?
-
-    var adapter: BaseCollectionManager?
 
     private var sort: Sort = .default
 
@@ -64,6 +60,10 @@ extension FavoritesPresenter: FavoritesViewOutput {
 
     func openSort() {
         onOpenSort?(sort)
+    }
+
+    func openOffer(_ id: Int) {
+        onOpenOffer?(id)
     }
 
 }
@@ -125,40 +125,44 @@ extension FavoritesPresenter: PaginatableOutput {
 
 }
 
-// MARK: - Generators
+// MARK: - ViewModels
 
 private extension FavoritesPresenter {
 
-    func makeGenerator(from offer: Offer) -> DiffableOfferGenerator {
-        let viewModel = OfferCollectionViewCell.ViewModel(
+    func makeOfferViewModel(
+        from offer: Offer
+    ) -> FavoriteOfferCollectionViewCell.ViewModel {
+        let toggleActions: [FavoriteOfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
+            .init(
+                initialState: offer.isFavorite,
+                onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                toggleAction: { [weak self] newValue, handler in
+                    self?.setFavorite(id: offer.id, value: newValue) { success in
+                        handler?(success)
+                    }
+                }
+            )
+        ]
+        let userViewModel = FavoriteOfferCollectionViewCell.ViewModel.UserViewModel(
+            url: _Temporary_EndpointConstructor.user(id: offer.userId).url) { [weak self] url, imageView, label in
+                self?.loadUser(url: url, imageView: imageView, label: label)
+        }
+        let viewModel = FavoriteOfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.images.first,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            price: offer.price.stringDroppingTrailingZero,
-            location: offer.city.name,
+            // TODO: Localize
+            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            description: offer.description,
+            user: userViewModel,
             actions: [],
-            toggleActions: [
-                .init(
-                    initialState: offer.isFavorite,
-                    onImage: .Buttons.favoriteFilled,
-                    offImage: .Buttons.favorite,
-                    toggleAction: { [weak self] newValue, handler in
-                        self?.setFavorite(id: offer.id, value: newValue) { success in
-                            handler?(success)
-                        }
-                    }
-                )
-            ]
+            toggleActions: toggleActions
         )
-
-        let generator = OfferCollectionViewCell.rddm.diffableGenerator(uniqueId: UUID(), with: viewModel, and: .class)
-        generator.didSelectEvent += { [weak self] in
-            self?.onOpenOffer?(offer.id)
-        }
-        return generator
+        return viewModel
     }
 }
 
@@ -186,7 +190,9 @@ private extension FavoritesPresenter {
         }
     }
 
-    func loadFirstPage() {        view?.setLoading(true)
+    func loadFirstPage() {
+        view?.fillFirstPage(with: [])
+        view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
@@ -228,14 +234,7 @@ private extension FavoritesPresenter {
             guard let self else {
                 return
             }
-
-            let newGenerators = page.offers.map { self.makeGenerator(from: $0) }
-            if let lastGenerator = self.adapter?.generators.last?.last {
-                self.adapter?.insert(after: lastGenerator, new: newGenerators)
-            } else {
-                self.adapter?.addCellGenerators(newGenerators)
-                self.adapter?.forceRefill()
-            }
+            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount
@@ -254,11 +253,8 @@ private extension FavoritesPresenter {
             guard let self else {
                 return
             }
-
             self.view?.setEmptyState(page.offers.isEmpty)
-            self.adapter?.clearCellGenerators()
-            self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
-            self.adapter?.forceRefill()
+            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount

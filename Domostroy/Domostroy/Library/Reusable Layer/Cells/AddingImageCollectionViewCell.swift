@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
-final class AddingImageCollectionViewCell: UICollectionViewCell {
+final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableScaleView {
+
+    var highlightScaleFactor: CGFloat = 0.97
 
     // MARK: - ViewModel
 
@@ -93,34 +95,6 @@ final class AddingImageCollectionViewCell: UICollectionViewCell {
         layer.borderColor = Constants.borderColor.cgColor
     }
 
-}
-
-// MARK: - HighlightableItem
-
-extension AddingImageCollectionViewCell: HighlightableItem {
-    func applyUnhighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applyHighlightedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
-    }
-
-    func applyDeselectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
-    }
-
-    func applySelectedStyle() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-        }
-    }
 }
 
 // MARK: - ConfigurableItem

@@ -72,6 +72,9 @@
 		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
 		55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */; };
 		551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 551FC3B42DBBD29800A8FE6B /* HorizonCalendar */; };
+		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
+		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
+		551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
 		554F7CBE2DBA276D008A2BB3 /* UserProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */; };
@@ -299,6 +302,9 @@
 		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
 		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
 		55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRadioButtonGroup.swift; sourceTree = "<group>"; };
+		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -1182,6 +1188,8 @@
 			isa = PBXGroup;
 			children = (
 				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
+				551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */,
+				551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */,
 				55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */,
 				559385A82DB028FB006F3C07 /* AddingImageCollectionViewCell.swift */,
 				559385AA2DB0554F006F3C07 /* AddImageButtonCollectionViewCell.swift */,
@@ -1205,6 +1213,7 @@
 			children = (
 				5587AEB62DB40F5100669865 /* CalendarItemViewRepresentable */,
 				55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */,
+				551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */,
 				55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */,
 			);
 			path = Views;
@@ -1904,6 +1913,7 @@
 				2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */,
 				55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */,
 				E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */,
+				551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */,
 				55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */,
 				EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */,
 				C1F060D14EF1E5EB2E4FC671 /* ProfileModuleConfigurator.swift in Sources */,
@@ -1918,6 +1928,7 @@
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
+				551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */,
 				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
@@ -2018,6 +2029,7 @@
 				554F7CC02DBA276D008A2BB3 /* UserProfilePresenter.swift in Sources */,
 				725130308DF6CBBEF1675531 /* ProfileUnauthorizedModuleInput.swift in Sources */,
 				D84E87352FF9EB73CCA9499F /* ProfileUnauthorizedModuleOutput.swift in Sources */,
+				551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */,
 				9C0AD6610B18A383D949973F /* ProfileUnauthorizedViewController.swift in Sources */,
 				802D6C848E994BF7923B6C5D /* ProfileUnauthorizedViewInput.swift in Sources */,
 				E46316161F403CF74FE69F06 /* ProfileUnauthorizedViewOutput.swift in Sources */,

@@ -1,15 +1,15 @@
 //
-//  OfferCollectionViewCell.swift
+//  FavoriteOfferCollectionViewCell.swift
 //  Domostroy
 //
-//  Created by Игорь Пустыльник on 07.04.2025.
+//  Created by Игорь Пустыльник on 26.04.2025.
 //
 
 import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
-final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleView {
+final class FavoriteOfferCollectionViewCell: UICollectionViewCell, HighlightableScaleView {
 
     var highlightScaleFactor: CGFloat = 0.97
 
@@ -23,9 +23,15 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
         let price: String
-        let location: String
+        let description: String
+        let user: UserViewModel
         let actions: [ActionButtonModel]
         let toggleActions: [ToggleButtonModel]
+
+        struct UserViewModel {
+            let url: URL?
+            let loadUser: (URL?, UIImageView, UILabel) -> Void
+        }
 
         struct ActionButtonModel {
             let image: UIImage
@@ -43,26 +49,25 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
     // MARK: - Constants
 
     private enum Constants {
-        static let insets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
-        static let mainVStackSpacing: CGFloat = 10
-        static let infoVStackSpacing: CGFloat = 5
+        static let mainHStackSpacing: CGFloat = 16
+        static let imageViewSize: CGSize = .init(width: 100, height: 84)
         static let imageViewCornerRadius: CGFloat = 8
+        static let infoVStackSpacing: CGFloat = 5
+        static let userHStackViewSpacing: CGFloat = 8
+        static let userImageViewSize: CGSize = .init(width: 20, height: 20)
         static let actionsVStackViewSpacing: CGFloat = 8
         static let actionSize: CGSize = .init(width: 22, height: 22)
-        static let bottomHStackSpacing: CGFloat = 5
-
-        static let titleFont: UIFont = .systemFont(ofSize: 14, weight: .regular)
-        static let priceFont: UIFont = .systemFont(ofSize: 14, weight: .semibold)
-        static let locationFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
     }
 
     // MARK: - UI Elements
 
-    private lazy var mainVStackView = {
-        $0.axis = .vertical
-        $0.spacing = Constants.mainVStackSpacing
+    private lazy var mainHStackView = {
+        $0.axis = .horizontal
+        $0.alignment = .leading
+        $0.spacing = Constants.mainHStackSpacing
         $0.addArrangedSubview(itemImageView)
-        $0.addArrangedSubview(bottomHStackView)
+        $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(actionsVStack)
         return $0
     }(UIStackView())
 
@@ -71,51 +76,69 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
         $0.layer.cornerRadius = Constants.imageViewCornerRadius
         $0.layer.masksToBounds = true
         $0.backgroundColor = .secondarySystemBackground
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(Constants.imageViewSize)
+        }
         return $0
     }(UIImageView())
-
-    private lazy var bottomHStackView = {
-        $0.axis = .horizontal
-        $0.alignment = .leading
-        $0.spacing = Constants.bottomHStackSpacing
-        $0.addArrangedSubview(infoVStackView)
-        $0.addArrangedSubview(actionsVStackView)
-        return $0
-    }(UIStackView())
 
     private lazy var infoVStackView: UIStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.infoVStackSpacing
         $0.addArrangedSubview(titleLabel)
         $0.addArrangedSubview(priceLabel)
-        $0.addArrangedSubview(locationLabel)
+        $0.addArrangedSubview(descriptionLabel)
+        $0.addArrangedSubview(userHStackView)
         return $0
     }(UIStackView())
 
     private lazy var titleLabel: UILabel = {
-        $0.font = Constants.titleFont
+        $0.font = .systemFont(ofSize: 16, weight: .bold)
         $0.numberOfLines = 2
         return $0
     }(UILabel())
 
     private lazy var priceLabel: UILabel = {
-        $0.font = Constants.priceFont
+        $0.font = .systemFont(ofSize: 14, weight: .medium)
         $0.numberOfLines = 1
         return $0
     }(UILabel())
 
-    private lazy var locationLabel: UILabel = {
-        $0.font = Constants.locationFont
-        $0.textColor = .secondaryLabel
+    private lazy var descriptionLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 12, weight: .regular)
+        $0.numberOfLines = 2
+        return $0
+    }(UILabel())
+
+    private lazy var userHStackView: UIStackView = {
+        $0.axis = .horizontal
+        $0.spacing = Constants.userHStackViewSpacing
+        $0.addArrangedSubview(userImageView)
+        $0.addArrangedSubview(userNameLabel)
+        return $0
+    }(UIStackView())
+
+    private lazy var userImageView: UIImageView = {
+        $0.contentMode = .scaleAspectFill
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(Constants.userImageViewSize.width)
+        }
+        $0.layer.cornerRadius = Constants.userImageViewSize.width / 2
+        $0.layer.masksToBounds = true
+        return $0
+    }(UIImageView())
+
+    private lazy var userNameLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.numberOfLines = 1
         return $0
     }(UILabel())
 
-    private lazy var actionsVStackView: UIStackView = {
+    private lazy var actionsVStack: UIStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.actionsVStackViewSpacing
         $0.snp.makeConstraints { make in
-            make.width.equalTo(Constants.actionSize.width)
+            make.width.equalTo(Constants.actionSize)
         }
         return $0
     }(UIStackView())
@@ -136,42 +159,44 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
         itemImageView.image = nil
         titleLabel.text = nil
         priceLabel.text = nil
-        locationLabel.text = nil
-        actionsVStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        descriptionLabel.text = nil
+        userImageView.image = nil
+        userNameLabel.text = nil
+        actionsVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
 
     // MARK: - Setup UI
 
     private func setupUI() {
         backgroundColor = .systemBackground
-        addSubview(mainVStackView)
-        mainVStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().priority(.high)
-        }
-        itemImageView.snp.makeConstraints { make in
-            make.height.equalTo(snp.width)
+        addSubview(mainHStackView)
+
+        mainHStackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.verticalEdges.equalToSuperview().priority(.high)
         }
     }
 }
 
 // MARK: - ConfigurableItem
 
-extension OfferCollectionViewCell: ConfigurableItem {
+extension FavoriteOfferCollectionViewCell: ConfigurableItem {
 
     func configure(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         priceLabel.text = "\(viewModel.price)"
-        locationLabel.text = viewModel.location
+        descriptionLabel.text = viewModel.description
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
-        viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
-        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
+        viewModel.user.loadUser(viewModel.user.url, userImageView, userNameLabel)
+        viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
+        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
     }
 
 }
 
 // MARK: - Private methods
 
-private extension OfferCollectionViewCell {
+private extension FavoriteOfferCollectionViewCell {
 
     func createActionButton(with action: ViewModel.ActionButtonModel) -> DButton {
         let button = DButton(type: .plainPrimary)
@@ -200,31 +225,43 @@ private extension OfferCollectionViewCell {
 
 // MARK: - Equatable ViewModel
 
-extension OfferCollectionViewCell.ViewModel: Equatable {
-    static func ==(lhs: OfferCollectionViewCell.ViewModel, rhs: OfferCollectionViewCell.ViewModel) -> Bool {
-        return lhs.id == rhs.id &&
-               lhs.imageUrl == rhs.imageUrl &&
+extension FavoriteOfferCollectionViewCell.ViewModel: Equatable {
+    static func ==(
+        lhs: FavoriteOfferCollectionViewCell.ViewModel,
+        rhs: FavoriteOfferCollectionViewCell.ViewModel
+    ) -> Bool {
+        return lhs.imageUrl == rhs.imageUrl &&
                lhs.title == rhs.title &&
                lhs.price == rhs.price &&
-               lhs.location == rhs.location &&
+               lhs.description == rhs.description &&
+               lhs.user == rhs.user &&
                lhs.actions == rhs.actions &&
                lhs.toggleActions == rhs.toggleActions
     }
 }
 
-extension OfferCollectionViewCell.ViewModel.ActionButtonModel: Equatable {
+extension FavoriteOfferCollectionViewCell.ViewModel.UserViewModel: Equatable {
     static func ==(
-        lhs: OfferCollectionViewCell.ViewModel.ActionButtonModel,
-        rhs: OfferCollectionViewCell.ViewModel.ActionButtonModel
+        lhs: FavoriteOfferCollectionViewCell.ViewModel.UserViewModel,
+        rhs: FavoriteOfferCollectionViewCell.ViewModel.UserViewModel
+    ) -> Bool {
+        return lhs.url == rhs.url
+    }
+}
+
+extension FavoriteOfferCollectionViewCell.ViewModel.ActionButtonModel: Equatable {
+    static func ==(
+        lhs: FavoriteOfferCollectionViewCell.ViewModel.ActionButtonModel,
+        rhs: FavoriteOfferCollectionViewCell.ViewModel.ActionButtonModel
     ) -> Bool {
         return lhs.image == rhs.image
     }
 }
 
-extension OfferCollectionViewCell.ViewModel.ToggleButtonModel: Equatable {
+extension FavoriteOfferCollectionViewCell.ViewModel.ToggleButtonModel: Equatable {
     static func ==(
-        lhs: OfferCollectionViewCell.ViewModel.ToggleButtonModel,
-        rhs: OfferCollectionViewCell.ViewModel.ToggleButtonModel
+        lhs: FavoriteOfferCollectionViewCell.ViewModel.ToggleButtonModel,
+        rhs: FavoriteOfferCollectionViewCell.ViewModel.ToggleButtonModel
     ) -> Bool {
         return lhs.initialState == rhs.initialState &&
                lhs.onImage == rhs.onImage &&

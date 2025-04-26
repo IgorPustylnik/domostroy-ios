@@ -13,7 +13,8 @@ final class FavoritesModuleConfigurator {
 
     func configure() -> (
         FavoritesViewController,
-        FavoritesModuleOutput
+        FavoritesModuleOutput,
+        FavoritesModuleInput
     ) {
         let view = FavoritesViewController()
         let presenter = FavoritesPresenter()
@@ -27,10 +28,10 @@ final class FavoritesModuleConfigurator {
             .build()
 
         presenter.view = view
-        presenter.adapter = adapter
+        view.adapter = adapter
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

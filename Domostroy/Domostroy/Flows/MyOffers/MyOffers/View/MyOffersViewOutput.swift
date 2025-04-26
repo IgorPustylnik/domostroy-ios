@@ -9,4 +9,5 @@
 protocol MyOffersViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func openOffer(_ id: Int)
 }
