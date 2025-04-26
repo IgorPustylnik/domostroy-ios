@@ -63,8 +63,7 @@ final class CreateOfferViewController: ScrollViewController {
         super.viewDidLoad()
         scrollView.keyboardDismissMode = .onDrag
         configurePicturesCollectionView()
-        // TODO: Localize
-        navigationBar.title = "New offer"
+        navigationBar.title = L10n.Localizable.Offers.Create.NewOffer.title
         hidesTabBar = true
         setupKeyboardObservers()
         addCloseButton()

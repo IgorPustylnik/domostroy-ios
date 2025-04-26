@@ -17,17 +17,13 @@ final class CodeConfirmationView: UIView {
         static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
         static let codeFieldHeight: CGFloat = 80
         static let vSpacing: CGFloat = 16
-
-        // TODO: Localize
-        static let message: String = "We sent the code to "
     }
 
     // MARK: - UI Elements
 
     private lazy var titleLabel: UILabel = {
         $0.font = .systemFont(ofSize: 24, weight: .bold)
-        // TODO: Localize
-        $0.text = "Enter confirmation code"
+        $0.text = L10n.Localizable.Auth.CodeConfirmation.title
         return $0
     }(UILabel())
 
@@ -83,7 +79,7 @@ final class CodeConfirmationView: UIView {
         }
         messageLabel.removeFromSuperview()
 
-        let message = Constants.message + email
+        let message = L10n.Localizable.Auth.CodeConfirmation.sentToEmailMessage(email)
         let attributedMessage = NSMutableAttributedString(string: message)
         let emailRange = (message as NSString).range(of: email)
         attributedMessage.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .regular), range: emailRange)

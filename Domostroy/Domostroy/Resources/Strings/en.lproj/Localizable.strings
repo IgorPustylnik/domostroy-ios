@@ -1,21 +1,166 @@
+// MARK: - Validation
+
+"ValidationError.failed" = "Validation failed";
+"ValidationError.required" = "Field is required";
+"ValidationError.invalid" = "Incorrect format";
+"ValidationError.Password.mismatch" = "Passwords do not match";
+"ValidationError.Username.short"="Must be at least 2 characters long";
+"ValidationError.Username.long"="Mustn't be longer than 64 characters";
+"ValidationError.Email"="Invalid email address";
+"ValidationError.Phone"="Invalid phone number";
+
+"ValidationError.Password.short"="Password must be at least 8 characters long";
+"ValidationError.Password.long"="Password mustn't be longer than 69 characters";
+"ValidationError.Password.noSpecialChar" = "Password must contain at least one special character";
+"ValidationError.Password.noDigit" = "Password must contain at least one digit";
+"ValidationError.Password.noLetter" = "Password must contain at least one Latin letter";
+"ValidationError.Password.invalidSymbols" = "Password contains invalid characters";
+
+"ValidationError.Password.capitalletter"="Password must contain at least one capital letter";
+"ValidationError.Password.nonumbers"="Password must contain at least one number";
+"ValidationError.Password.mismatch"="Passwords must match";
+
+"ValidationError.OfferName.empty" = "Offer name can't be empty";
+"ValidationError.OfferName.long" = "Offer name is too long";
+
+"ValidationError.OfferDescription.long" = "Description is too long";
+
+"ValidationError.Price.invalidFormat" = "Invalid price format";
+"ValidationError.Price.negative" = "Price must be a positive value";
+"ValidationError.Price.tooHigh" = "Price must be less than %@";
+
 // MARK: - Auth
 
-"Auth.InputField.Error.empty" = "Field cannot be empty";
-"Auth.InputField.Error.invalid" = "Incorrect format";
-"Auth.InputField.Error.Password.mismatch" = "Passwords do not match";
-"Auth.InputField.Error.Username.short"="Must be at least 2 characters long";
-"Auth.InputField.Error.Username.long"="Mustn't be longer than 64 characters";
-"Auth.InputField.Error.Email"="Invalid email address";
-"Auth.InputField.Error.Phone"="Invalid phone number";
+"Auth.Button.Login" = "Login";
+"Auth.Button.Register" = "Register";
 
-"Auth.InputField.Error.Password.short"="Password must be at least 8 characters long";
-"Auth.InputField.Error.Password.long"="Password mustn't be longer than 69 characters";
-"Auth.InputField.Error.Password.noSpecialChar" = "Password must contain at least one special character";
-"Auth.InputField.Error.Password.noDigit" = "Password must contain at least one digit";
-"Auth.InputField.Error.Password.noLetter" = "Password must contain at least one Latin letter";
-"Auth.InputField.Error.Password.invalidSymbols" = "Password contains invalid characters";
+"Auth.Login.Title" = "Login";
+"Auth.Login.Button.Login" = "Login";
+"Auth.Login.Placeholder.Email" = "Email";
+"Auth.Login.Placeholder.Password" = "Password";
 
-"Auth.InputField.Error.Password.capitalletter"="Password must contain at least one capital letter";
-"Auth.InputField.Error.Password.nonumbers"="Password must contain at least one number";
-"Auth.InputField.Error.Password.mismatch"="Passwords must match";
+"Auth.Register.Title" = "Register";
+"Auth.Register.Button.Register" = "Register";
+"Auth.Register.Placeholder.FirstName" = "First name";
+"Auth.Register.Placeholder.LastName" = "Last name (optional)";
+"Auth.Register.Placeholder.PhoneNumber" = "Phone number (optional)";
+"Auth.Register.Placeholder.Email" = "Email";
+"Auth.Register.Placeholder.Password" = "Password";
+"Auth.Register.Placeholder.RepeatPassword" = "Repeat password";
 
+"Auth.CodeConfirmation.SentToEmailMessage" = "We sent the code to %@.";
+"Auth.CodeConfirmation.Title" = "Enter confirmation code";
+
+// MARK: - Common
+
+"Common.Button.AddPhoto" = "Add photo";
+"Common.Button.Done" = "Done";
+"Common.Button.Cancel" = "Cancel";
+"Common.Button.Retry" = "Retry";
+"Common.Placeholder.Search" = "Search";
+
+// MARK: - Filter
+
+"Filter.Title" = "Filters";
+"Filter.Button.Apply" = "Apply";
+"Filter.Placeholder.Category" = "Select a category";
+"Filter.Category.Header" = "Category";
+
+// MARK: - Sort
+
+"Sort.Title" = "Sort";
+"Sort.Button.Apply" = "Apply";
+"Sort.Placeholder" = "Sort";
+"Sort.Default" = "Default";
+"Sort.PriceAscending" = "Price ascending";
+"Sort.PriceDescending" = "Price descending";
+"Sort.Recent" = "Most recent";
+
+// MARK: - Home
+
+"Home.Section.Recommended.title" = "Recommended";
+"Home.Empty.message" = "Nothing found";
+
+// MARK: - Search
+
+"Search.TextField.Placeholder" = "Search";
+"Search.Empty.message" = "Nothing found";
+
+// MARK: - Offers
+
+"Offers.PublishedAt" = "Published on %@";
+
+"Offers.Condition.Used" = "Used";
+"Offers.Condition.New" = "Brand new";
+
+"Offers.MyOffers.Title" = "My offers";
+"Offers.MyOffers.Empty.Message" = "You have not posted any offers yet";
+
+"Offers.Favorites.Title" = "Favorites";
+"Offers.Favorites.Empty.Message" = "You have not saved any offers yet";
+
+"Offers.Create.NewOffer.Title" = "New offer";
+"Offers.Create.Label.Name" = "Name";
+"Offers.Create.Label.Description" = "Description";
+"Offers.Create.Label.Category" = "Category";
+"Offers.Create.Label.Condition" = "Condition";
+"Offers.Create.Label.Pictures" = "Pictures";
+"Offers.Create.Label.AvailableDates" = "Available dates";
+"Offers.Create.Label.Price" = "Price";
+"Offers.Create.Placeholder.Name" = "Name";
+"Offers.Create.Placeholder.Description" = "Description";
+"Offers.Create.Placeholder.Category" = "Select category";
+"Offers.Create.Placeholder.Condition" = "Select condition";
+"Offers.Create.Placeholder.Price" = "Price";
+"Offers.Create.Button.AvailableDates.Placeholder" = "Select available dates";
+"Offers.Create.Button.AvailableDates.Selected" = "Available dates";
+"Offers.Create.Button.Publish" = "Publish";
+
+// MARK: - Profile
+
+"Profile.Title" = "Profile";
+"Profile.Button.AdminPanel.Title" = "Admin panel";
+"Profile.Button.Logout.Title" = "Logout";
+"Profile.Unauthorized.Message" = "Please login to access all features";
+"Profile.Unauthorized.Button.Authorize" = "Authorize";
+
+// MARK: - Lessor Calendar
+
+"LessorCalendar.Title" = "Dates";
+"LessorCalendar.Button.Apply" = "Apply";
+
+// MARK: - Offer Details
+
+"OfferDetails.Button.Rent" = "Rent";
+"OfferDetails.Specifications.Header" = "Specifications";
+"OfferDetails.Description.Header" = "Description";
+
+// MARK: - User Profile
+
+"UserProfile.RegistrationDate" = "On Domostroy since %@";
+"UserProfile.Section.Offers.Empty" = "No offers";
+
+// MARK: - Create Request
+
+"CreateRequest.Title" = "Request";
+"CreateRequest.Details.Header" = "Submit";
+"CreateRequest.Placeholder.Calendar" = "Select dates";
+"CreateRequest.Info.Header" = "Communication with lessor";
+"CreateRequest.Info.AfterBooking" = "You will be able to contact the lessor after creating a booking.";
+"CreateRequest.Info.ContactData" = "The lessor will receive your contact details specified in your profile.";
+"CreateRequest.TotalCost.Header" = "Rental cost";
+"CreateRequest.TotalCost.Note" = "The amount is indicative. Payment terms to be agreed with the lessor.";
+"CreateRequest.Button.Submit" = "Submit";
+
+"RequestCalendar.Title" = "Dates";
+"RequestCalendar.TotalCost" = "Rental cost: %@";
+"RequestCalendar.Button.Apply" = "Apply";
+
+// MARK: - Plurals
+
+"Plural.Offer.One" = "offer";
+"Plural.Offer.Few" = "offers";
+"Plural.Offer.Many" = "offers";
+"Plural.Day.One" = "day";
+"Plural.Day.Few" = "days";
+"Plural.Day.Many" = "days";

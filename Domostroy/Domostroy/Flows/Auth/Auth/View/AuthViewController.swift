@@ -30,8 +30,7 @@ final class AuthViewController: UIViewController {
     }(UIStackView())
 
     private lazy var loginButton: DButton = {
-        // TODO: Localize
-        $0.title = "Login"
+        $0.title = L10n.Localizable.Auth.Button.login
         $0.setAction { [weak self] in
             self?.output?.login()
         }
@@ -39,8 +38,7 @@ final class AuthViewController: UIViewController {
     }(DButton(type: .filledPrimary))
 
     private lazy var registerButton: DButton = {
-        // TODO: Localize
-        $0.title = "Register"
+        $0.title = L10n.Localizable.Auth.Button.register
         $0.setAction { [weak self] in
             self?.output?.register()
         }

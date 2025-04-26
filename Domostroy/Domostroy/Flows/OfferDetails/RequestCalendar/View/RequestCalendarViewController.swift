@@ -41,8 +41,7 @@ final class RequestCalendarViewController: UIViewController {
     }(UILabel())
 
     private lazy var applyButton = {
-        // TODO: Localize
-        $0.title = "Apply"
+        $0.title = L10n.Localizable.RequestCalendar.Button.apply
         $0.setAction { [weak self] in
             self?.output?.apply()
         }
@@ -58,8 +57,7 @@ final class RequestCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        // TODO: Localize
-        title = "Dates"
+        title = L10n.Localizable.RequestCalendar.title
     }
 
     private func setupUI() {

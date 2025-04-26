@@ -34,8 +34,7 @@ final class FavoritesEmptyView: UIView {
     }(UIImageView())
 
     private lazy var messageLabel = {
-        // TODO: - Localize
-        $0.text = "Вы ещё не сохранили ни одного объявления"
+        $0.text = L10n.Localizable.Offers.Favorites.Empty.message
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textAlignment = .center
         $0.numberOfLines = 0

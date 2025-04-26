@@ -22,8 +22,7 @@ final class LoginViewController: ScrollViewController {
     private var loginView = LoginView()
 
     private lazy var loginButton: DButton = {
-        // TODO: Localize
-        $0.title = "Login"
+        $0.title = L10n.Localizable.Auth.Login.Button.login
         $0.setAction { [weak self] in
             self?.loginView.login()
         }

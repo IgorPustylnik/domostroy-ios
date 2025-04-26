@@ -76,13 +76,12 @@ enum Condition: CaseIterable {
     case used
     case new
 
-    // TODO: Localize
     var description: String {
         switch self {
         case .used:
-            return "Used"
+            return L10n.Localizable.Offers.Condition.used
         case .new:
-            return "Brand new"
+            return L10n.Localizable.Offers.Condition.new
         }
     }
 }

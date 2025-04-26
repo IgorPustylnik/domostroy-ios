@@ -34,8 +34,7 @@ final class HomeEmptyView: UIView {
     }(UIImageView())
 
     private lazy var messageLabel = {
-        // TODO: - Localize
-        $0.text = "Nothing found"
+        $0.text = L10n.Localizable.Home.Empty.message
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textAlignment = .center
         $0.numberOfLines = 0

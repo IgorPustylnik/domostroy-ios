@@ -87,7 +87,7 @@ private extension CreateRequestPresenter {
             let offerCalendar = await _Temporary_Mock_NetworkService().fetchCalendar(id: id)
             self.offerCalendar = offerCalendar
             DispatchQueue.main.async { [weak self] in
-                self?.view?.configureCalendar(with: "Select dates")
+                self?.view?.configureCalendar(with: L10n.Localizable.CreateRequest.Placeholder.calendar)
             }
         }
     }

@@ -96,8 +96,7 @@ final class OfferDetailsView: UIView {
     }(UILabel())
 
     private lazy var rentButton = {
-        // TODO: Localize
-        $0.title = "Rent"
+        $0.title = L10n.Localizable.OfferDetails.Button.rent
         $0.setAction { [weak self] in
             self?.onRent?()
         }
@@ -115,8 +114,7 @@ final class OfferDetailsView: UIView {
     }(UIStackView())
 
     private lazy var specsHeaderLabel = {
-        // TODO: Localize
-        $0.text = "Specifications"
+        $0.text = L10n.Localizable.OfferDetails.Specifications.header
         $0.font = .systemFont(ofSize: 24, weight: .bold)
         $0.numberOfLines = 0
         return $0
@@ -139,8 +137,7 @@ final class OfferDetailsView: UIView {
     }(UIStackView())
 
     private lazy var descriptionHeaderLabel = {
-        // TODO: Localize
-        $0.text = "Description"
+        $0.text = L10n.Localizable.OfferDetails.Description.header
         $0.font = .systemFont(ofSize: 24, weight: .bold)
         $0.numberOfLines = 0
         return $0

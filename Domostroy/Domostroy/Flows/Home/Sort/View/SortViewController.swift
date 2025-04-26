@@ -25,8 +25,7 @@ final class SortViewController: UIViewController {
     }(UIStackView())
 
     private lazy var applyButton = {
-        // TODO: Localize
-        $0.title = "Apply"
+        $0.title = L10n.Localizable.Sort.Button.apply
         $0.setAction { [weak self] in
             guard let value = self?.radioButtonGroup.selectedValue else {
                 return
@@ -57,8 +56,7 @@ final class SortViewController: UIViewController {
     }
 
     private func setupUI() {
-        // TODO: Localize
-        title = "Sort"
+        title = L10n.Localizable.Sort.title
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: self, action: #selector(close))
         view.addSubview(mainVStackView)

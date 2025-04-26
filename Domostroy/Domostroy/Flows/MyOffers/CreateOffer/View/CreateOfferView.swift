@@ -43,12 +43,10 @@ final class CreateOfferView: UIView {
         return stackView
     }()
 
-    // TODO: Localize
-    private lazy var nameLabel = createHeaderLabel("Name")
+    private lazy var nameLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.name)
 
     private lazy var nameTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Name", correction: .no, keyboardType: .default)
+        $0.configure(placeholder: L10n.Localizable.Offers.Create.Placeholder.name, correction: .no, keyboardType: .default)
         $0.validator = RequiredValidator(OfferNameValidator())
         $0.setNextResponder(descriptionTextField.responder)
         $0.onBeginEditing = { [weak self] _ in
@@ -57,12 +55,10 @@ final class CreateOfferView: UIView {
         return $0
     }(DValidatableTextField())
 
-    // TODO: Localize
-    private lazy var descriptionLabel = createHeaderLabel("Description")
+    private lazy var descriptionLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.description)
 
     private lazy var descriptionTextField: DValidatableMultilineTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Description", correction: .no, keyboardType: .default)
+        $0.configure(placeholder: L10n.Localizable.Offers.Create.Placeholder.description, correction: .no, keyboardType: .default)
         $0.validator = OptionalValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.descriptionTextField)
@@ -70,35 +66,28 @@ final class CreateOfferView: UIView {
         return $0
     }(DValidatableMultilineTextField())
 
-    // TODO: Localize
-    private lazy var categoryLabel = createHeaderLabel("Category")
+    private lazy var categoryLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.category)
 
-    // TODO: Chooser
     lazy var categoryPicker = {
         $0.requiresNonPlaceholder = true
         return $0
     }(DPickerField())
 
-    // TODO: Localize
-    private lazy var conditionLabel = createHeaderLabel("Condition")
+    private lazy var conditionLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.condition)
 
-    // TODO: Chooser
     lazy var conditionPicker = {
         $0.requiresNonPlaceholder = true
         return $0
     }(DPickerField())
 
-    // TODO: Localize
-    private lazy var picturesLabel = createHeaderLabel("Pictures")
+    private lazy var picturesLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.pictures)
 
     let picturesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    // TODO: Localize
-    private lazy var calendarLabel = createHeaderLabel("Available dates")
+    private lazy var calendarLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.availableDates)
 
     private lazy var calendarButton = {
-        // TODO: Localize
-        $0.title = "Available dates"
+        $0.title = L10n.Localizable.Offers.Create.Button.AvailableDates.placeholder
         $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
         $0.setAction { [weak self] in
@@ -107,11 +96,10 @@ final class CreateOfferView: UIView {
         return $0
     }(DButton(type: .calendar))
 
-    // TODO: Localize
-    private lazy var priceLabel = createHeaderLabel("Price")
+    private lazy var priceLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.price)
 
     private lazy var priceTextField: DValidatableTextField = {
-        $0.configure(placeholder: "Price", correction: .no, keyboardType: .numberPad)
+        $0.configure(placeholder: L10n.Localizable.Offers.Create.Placeholder.price, correction: .no, keyboardType: .numberPad)
         $0.validator = RequiredValidator(PriceValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.priceTextField)
@@ -121,8 +109,7 @@ final class CreateOfferView: UIView {
     }(DValidatableTextField())
 
     private lazy var publishButton = {
-        // TODO: Localize
-        $0.title = "Publish"
+        $0.title = L10n.Localizable.Offers.Create.Button.publish
         $0.setAction { [weak self] in
             self?.publish()
         }

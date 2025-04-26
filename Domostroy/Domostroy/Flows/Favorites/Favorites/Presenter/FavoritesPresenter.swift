@@ -43,7 +43,7 @@ extension FavoritesPresenter: FavoritesModuleInput {
 
     func setSort(_ sort: Sort) {
         self.sort = sort
-        view?.setSort(sort.description)
+        view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         loadFirstPage()
     }
 
@@ -84,7 +84,13 @@ extension FavoritesPresenter: RefreshableOutput {
                     return
                 }
                 input.endRefreshing()
-                self.view?.setSort(self.pagesCount > 0 ? sort.description : nil)
+                self.view?.setSort(
+                    self.pagesCount > 0 ?
+                        sort == .default ?
+                            L10n.Localizable.Sort.placeholder
+                            : sort.description
+                    : nil
+                )
                 self.paginatableInput?.updatePagination(canIterate: canIterate)
                 self.paginatableInput?.updateProgress(isLoading: false)
             }
@@ -206,7 +212,13 @@ private extension FavoritesPresenter {
                 self.view?.setLoading(false)
                 self.paginatableInput?.updatePagination(canIterate: canIterate)
                 self.paginatableInput?.updateProgress(isLoading: false)
-                self.view?.setSort(self.pagesCount > 0 ? sort.description : nil)
+                self.view?.setSort(
+                    self.pagesCount > 0 ?
+                        sort == .default ?
+                            L10n.Localizable.Sort.placeholder
+                            : sort.description
+                    : nil
+                )
             }
         }
     }

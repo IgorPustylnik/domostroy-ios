@@ -32,17 +32,15 @@ final class ProfileUnauthorizedViewController: ScrollViewController {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.numberOfLines = 0
         $0.textAlignment = .center
-        // TODO: Localize
-        $0.text = "Авторизуйтесь, чтобы пользоваться всеми функциями"
+        $0.text = L10n.Localizable.Profile.Unauthorized.message
         return $0
     }(UILabel())
 
     private lazy var authButton = {
-        // TODO: Localize
         $0.setAction { [weak self] in
             self?.output?.authorize()
         }
-        $0.title = "Authorize"
+        $0.title = L10n.Localizable.Profile.Unauthorized.Button.authorize
         return $0
     }(DButton())
 

@@ -66,7 +66,7 @@ final class FavoritesViewController: BaseViewController {
     }
 
     private func setupNavigationBar() {
-        navigationBar.title = "Favorites"
+        navigationBar.title = L10n.Localizable.Offers.Favorites.title
         settingsView.snp.makeConstraints { make in
             make.height.equalTo(Constants.settingsViewHeight)
         }

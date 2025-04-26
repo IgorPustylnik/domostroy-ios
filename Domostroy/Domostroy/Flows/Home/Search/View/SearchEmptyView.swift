@@ -34,8 +34,7 @@ final class SearchEmptyView: UIView {
     }(UIImageView())
 
     private lazy var messageLabel = {
-        // TODO: - Localize
-        $0.text = "Nothing found"
+        $0.text = L10n.Localizable.Search.Empty.message
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textAlignment = .center
         $0.numberOfLines = 0

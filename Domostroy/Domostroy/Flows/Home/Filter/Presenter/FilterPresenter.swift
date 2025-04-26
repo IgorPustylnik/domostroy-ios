@@ -101,8 +101,7 @@ private extension FilterPresenter {
         }
         view?.setCategories(
             model.categoryFilter.all.map { $0.name },
-            // TODO: Localize
-            placeholder: "Select a category",
+            placeholder: L10n.Localizable.Filter.Placeholder.category,
             initialIndex: model.categoryFilter.all.firstIndex {
                 $0 == model.categoryFilter.selected
             } ?? -1

@@ -42,8 +42,7 @@ final class AddImageButtonCollectionViewCell: UICollectionViewCell, Highlightabl
     private lazy var addPhotoLabel = {
         $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.textColor = .Domostroy.primary
-        // TODO: Localize
-        $0.text = "Add photo"
+        $0.text = L10n.Localizable.Common.Button.addPhoto
         return $0
     }(UILabel())
 

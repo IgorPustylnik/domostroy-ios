@@ -59,8 +59,7 @@ private extension OfferDetailsPresenter {
                         // TODO: Localize
                         price: "\(offer.price.stringDroppingTrailingZero)₽/день",
                         title: offer.name,
-                        // TODO: Localize
-                        city: "г. \(offer.city.name)",
+                        city: offer.city.name,
                         specs: [
                             ("Состояние", "новое"),
                             ("Производитель", "Makita")

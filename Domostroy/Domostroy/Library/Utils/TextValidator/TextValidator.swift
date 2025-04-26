@@ -16,13 +16,13 @@ protocol TextValidator {
 struct UsernameValidator: TextValidator {
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         if text.count < 2 {
-            return (false, L10n.Localizable.Auth.InputField.Error.Username.short)
+            return (false, L10n.Localizable.ValidationError.Username.short)
         }
         if text.count > 64 {
-            return (false, L10n.Localizable.Auth.InputField.Error.Username.long)
+            return (false, L10n.Localizable.ValidationError.Username.long)
         }
         return (true, nil)
     }
@@ -35,7 +35,7 @@ struct EmailValidator: TextValidator {
         }
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         if !NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text) {
-            return (false, L10n.Localizable.Auth.InputField.Error.email)
+            return (false, L10n.Localizable.ValidationError.email)
         }
         return (true, nil)
     }
@@ -46,14 +46,14 @@ struct PhoneValidator: TextValidator {
 
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         let cleaned = normalizer.normalizePhone(text)
         let pattern = "^7\\d{10}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
 
         if !predicate.evaluate(with: cleaned) {
-            return (false, L10n.Localizable.Auth.InputField.Error.phone)
+            return (false, L10n.Localizable.ValidationError.phone)
         }
         return (true, nil)
     }
@@ -62,31 +62,31 @@ struct PhoneValidator: TextValidator {
 struct PasswordValidator: TextValidator {
     func validate(_ text: String?) -> ValidationResult {
         guard let text else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
 
         let allowedCharsRegex = "^[A-Za-z0-9.~!@#$%^&*()+-]+$"
         if !NSPredicate(format: "SELF MATCHES %@", allowedCharsRegex).evaluate(with: text) {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.invalidSymbols)
+            return (false, L10n.Localizable.ValidationError.Password.invalidSymbols)
         }
 
         if !NSPredicate(format: "SELF MATCHES %@", ".*[A-Za-z]+.*").evaluate(with: text) {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.noLetter)
+            return (false, L10n.Localizable.ValidationError.Password.noLetter)
         }
 
         if !NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*").evaluate(with: text) {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.noDigit)
+            return (false, L10n.Localizable.ValidationError.Password.noDigit)
         }
 
         if !NSPredicate(format: "SELF MATCHES %@", ".*[.~!@#$%^&*()+-]+.*").evaluate(with: text) {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.noSpecialChar)
+            return (false, L10n.Localizable.ValidationError.Password.noSpecialChar)
         }
 
         if text.count < 8 {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.short)
+            return (false, L10n.Localizable.ValidationError.Password.short)
         }
         if text.count > 69 {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.long)
+            return (false, L10n.Localizable.ValidationError.Password.long)
         }
 
         return (true, nil)
@@ -96,13 +96,13 @@ struct PasswordValidator: TextValidator {
 struct OfferNameValidator: TextValidator {
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         guard !text.isEmpty else {
-            return (false, "Offer name can't be empty")
+            return (false, L10n.Localizable.ValidationError.OfferName.empty)
         }
         if text.count > 100 {
-            return (false, "Offer name is too long")
+            return (false, L10n.Localizable.ValidationError.OfferName.long)
         }
         return (true, nil)
     }
@@ -114,7 +114,7 @@ struct OfferDescriptionValidator: TextValidator {
             return (true, nil)
         }
         if text.count > 3000 {
-            return (false, "Description is too long")
+            return (false, L10n.Localizable.ValidationError.OfferDescription.long)
         }
         return (true, nil)
     }
@@ -123,21 +123,22 @@ struct OfferDescriptionValidator: TextValidator {
 struct PriceValidator: TextValidator {
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.numberStyle = .decimal
 
         guard let number = formatter.number(from: text) else {
-            return (false, "Invalid price format")
+            return (false, L10n.Localizable.ValidationError.Price.invalidFormat)
         }
 
         if number.doubleValue < 0 {
-            return (false, "Price must be a positive value")
+            return (false, L10n.Localizable.ValidationError.Price.negative)
         }
-        if number.doubleValue > 1000000 {
-            return (false, "Price must be less than 1000000")
+        let maxValue: Double = 1000000
+        if number.doubleValue > maxValue {
+            return (false, L10n.Localizable.ValidationError.Price.tooHigh(maxValue))
         }
 
         return (true, nil)
@@ -149,10 +150,10 @@ struct MatchPasswordValidator: TextValidator {
 
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         if text != password {
-            return (false, L10n.Localizable.Auth.InputField.Error.Password.mismatch)
+            return (false, L10n.Localizable.ValidationError.Password.mismatch)
         }
         return (true, nil)
     }
@@ -167,10 +168,10 @@ struct RequiredValidator: TextValidator {
 
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         guard !text.isEmpty else {
-            return (false, L10n.Localizable.Auth.InputField.Error.empty)
+            return (false, L10n.Localizable.ValidationError.required)
         }
         guard let wrapped else {
             return (true, nil)
@@ -188,7 +189,7 @@ struct OptionalValidator: TextValidator {
 
     func validate(_ text: String?) -> ValidationResult {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
-            return (false, "Validation failed")
+            return (false, L10n.Localizable.ValidationError.failed)
         }
         guard !text.isEmpty, let wrapped else {
             return (true, nil)

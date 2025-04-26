@@ -1,1 +1,166 @@
+// MARK: - Validation
 
+"ValidationError.failed" = "Ошибка валидации";
+"ValidationError.required" = "Поле обязательно для заполнения";
+"ValidationError.invalid" = "Неверный формат";
+"ValidationError.Password.mismatch" = "Пароли не совпадают";
+"ValidationError.Username.short" = "Минимум 2 символа";
+"ValidationError.Username.long" = "Не должно быть длиннее 64 символов";
+"ValidationError.Email" = "Неверный email-адрес";
+"ValidationError.Phone" = "Неверный номер телефона";
+
+"ValidationError.Password.short" = "Пароль должен содержать минимум 8 символов";
+"ValidationError.Password.long" = "Пароль не должен быть длиннее 69 символов";
+"ValidationError.Password.noSpecialChar" = "Пароль должен содержать хотя бы один специальный символ";
+"ValidationError.Password.noDigit" = "Пароль должен содержать хотя бы одну цифру";
+"ValidationError.Password.noLetter" = "Пароль должен содержать хотя бы одну латинскую букву";
+"ValidationError.Password.invalidSymbols" = "Пароль содержит недопустимые символы";
+
+"ValidationError.Password.capitalletter" = "Пароль должен содержать хотя бы одну заглавную букву";
+"ValidationError.Password.nonumbers" = "Пароль должен содержать хотя бы одну цифру";
+"ValidationError.Password.mismatch" = "Пароли должны совпадать";
+
+"ValidationError.OfferName.empty" = "Название объявления не может быть пустым";
+"ValidationError.OfferName.long" = "Название объявления слишком длинное";
+
+"ValidationError.OfferDescription.long" = "Описание слишком длинное";
+
+"ValidationError.Price.invalidFormat" = "Неверный формат цены";
+"ValidationError.Price.negative" = "Цена должна быть положительной";
+"ValidationError.Price.tooHigh" = "Цена должна быть меньше %@";
+
+// MARK: - Auth
+
+"Auth.Button.Login" = "Войти";
+"Auth.Button.Register" = "Зарегистрироваться";
+
+"Auth.Login.Title" = "Вход";
+"Auth.Login.Button.Login" = "Войти";
+"Auth.Login.Placeholder.Email" = "Электронная почта";
+"Auth.Login.Placeholder.Password" = "Пароль";
+
+"Auth.Register.Title" = "Регистрация";
+"Auth.Register.Button.Register" = "Зарегистрироваться";
+"Auth.Register.Placeholder.FirstName" = "Имя";
+"Auth.Register.Placeholder.LastName" = "Фамилия (необязательно)";
+"Auth.Register.Placeholder.PhoneNumber" = "Номер телефона (необязательно)";
+"Auth.Register.Placeholder.Email" = "Электронная почта";
+"Auth.Register.Placeholder.Password" = "Пароль";
+"Auth.Register.Placeholder.RepeatPassword" = "Повторите пароль";
+
+"Auth.CodeConfirmation.SentToEmailMessage" = "Код был отправлен по адресу %@.";
+"Auth.CodeConfirmation.Title" = "Введите код подтверждения";
+
+// MARK: - Common
+
+"Common.Button.AddPhoto" = "Добавить фото";
+"Common.Button.Done" = "Готово";
+"Common.Button.Cancel" = "Отменить";
+"Common.Button.Retry" = "Повторить";
+"Common.Placeholder.Search" = "Поиск";
+
+// MARK: - Filter
+
+"Filter.Title" = "Фильтры";
+"Filter.Button.Apply" = "Применить";
+"Filter.Placeholder.Category" = "Выберите категорию";
+"Filter.Category.Header" = "Категория";
+
+// MARK: - Sort
+
+"Sort.Title" = "Сортировка";
+"Sort.Button.Apply" = "Применить";
+"Sort.Placeholder" = "Сортировка";
+"Sort.Default" = "По умолчанию";
+"Sort.PriceAscending" = "Дешевле";
+"Sort.PriceDescending" = "Дороже";
+"Sort.Recent" = "По дате";
+
+// MARK: - Home
+
+"Home.Section.Recommended.title" = "Рекомендации";
+"Home.Empty.message" = "Ничего не найдено";
+
+// MARK: - Search
+
+"Search.TextField.Placeholder" = "Поиск";
+"Search.Empty.message" = "Ничего не найдено";
+
+// MARK: - Offers
+
+"Offers.PublishedAt" = "Опубликовано %@";
+
+"Offers.Condition.Used" = "Б/у";
+"Offers.Condition.New" = "Новое";
+
+"Offers.MyOffers.Title" = "Мои объявления";
+"Offers.MyOffers.Empty.Message" = "Вы ещё не опубликовали ни одного объявления";
+
+"Offers.Favorites.Title" = "Избранное";
+"Offers.Favorites.Empty.Message" = "Вы ещё не сохранили ни одного объявления";
+
+"Offers.Create.NewOffer.Title" = "Новое объявление";
+"Offers.Create.Label.Name" = "Название";
+"Offers.Create.Label.Description" = "Описание";
+"Offers.Create.Label.Category" = "Категория";
+"Offers.Create.Label.Condition" = "Состояние";
+"Offers.Create.Label.Pictures" = "Фотографии";
+"Offers.Create.Label.AvailableDates" = "Доступные даты аренды";
+"Offers.Create.Label.Price" = "Стоимость";
+"Offers.Create.Placeholder.Name" = "Название";
+"Offers.Create.Placeholder.Description" = "Описание";
+"Offers.Create.Placeholder.Category" = "Укажите категорию";
+"Offers.Create.Placeholder.Condition" = "Укажите состояние";
+"Offers.Create.Placeholder.Price" = "Стомость";
+"Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
+"Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
+"Offers.Create.Button.Publish" = "Опубликовать";
+
+// MARK: - Profile
+
+"Profile.Title" = "Профиль";
+"Profile.Button.AdminPanel.Title" = "Панель администратора";
+"Profile.Button.Logout.Title" = "Выйти";
+"Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
+"Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
+
+// MARK: - Lessor Calendar
+
+"LessorCalendar.Title" = "Доступные даты";
+"LessorCalendar.Button.Apply" = "Применить";
+
+// MARK: - Offer Details
+
+"OfferDetails.Button.Rent" = "Арендовать";
+"OfferDetails.Specifications.Header" = "Характеристики";
+"OfferDetails.Description.Header" = "Описание";
+
+// MARK: - User Profile
+
+"UserProfile.RegistrationDate" = "На Домострое с %@";
+"UserProfile.Section.Offers.Empty" = "Нет объявлений";
+
+// MARK: - Create Request
+
+"CreateRequest.Title" = "Арендовать";
+"CreateRequest.Details.Header" = "Детали аренды";
+"CreateRequest.Placeholder.Calendar" = "Выберите даты";
+"CreateRequest.Info.Header" = "Общение с арендодателем";
+"CreateRequest.Info.AfterBooking" = "Сможете связаться с арендодателем после подтверждения аренды арендодателем.";
+"CreateRequest.Info.ContactData" = "Арендодатель получит контактные данные, указанные в вашем профиле.";
+"CreateRequest.TotalCost.Header" = "Стоимость аренды";
+"CreateRequest.TotalCost.Note" = "Сумма указана для справки. Оплата — по договорённости с арендодателем.";
+"CreateRequest.Button.Submit" = "Оформить аренду";
+
+"RequestCalendar.Title" = "Даты";
+"RequestCalendar.TotalCost" = "Стоимость аренды: %@";
+"RequestCalendar.Button.Apply" = "Применить";
+
+// MARK: - Plurals
+
+"Plural.Offer.One" = "объявление";
+"Plural.Offer.Few" = "объявления";
+"Plural.Offer.Many" = "объявлений";
+"Plural.Day.One" = "день";
+"Plural.Day.Few" = "дня";
+"Plural.Day.Many" = "дней";

@@ -250,8 +250,7 @@ private extension HomeViewController {
         adapter?.clearFooterGenerators()
         if !offerGenerators.isEmpty {
             adapter?.addSectionHeaderGenerator(
-                // TODO: Localize
-                TitleCollectionHeaderGenerator(title: "Recommended")
+                TitleCollectionHeaderGenerator(title: L10n.Localizable.Home.Section.Recommended.title)
             )
         }
         adapter?.addCellGenerators(offerGenerators)

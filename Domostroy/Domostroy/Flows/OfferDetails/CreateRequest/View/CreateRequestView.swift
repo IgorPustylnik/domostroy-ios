@@ -91,7 +91,7 @@ final class CreateRequestView: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var detailsHeaderLabel = makeHeaderLabel("Rent details")
+    private lazy var detailsHeaderLabel = makeHeaderLabel(L10n.Localizable.CreateRequest.Details.header)
 
     private lazy var calendarButton = {
         $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -112,21 +112,19 @@ final class CreateRequestView: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var infoHeaderLabel = makeHeaderLabel("Communication with lessor")
+    private lazy var infoHeaderLabel = makeHeaderLabel(L10n.Localizable.CreateRequest.Info.header)
 
     private lazy var info1Label = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.numberOfLines = 0
-        // TODO: Localize
-        $0.text = "Сможете связаться с арендодателем после создания брони."
+        $0.text = L10n.Localizable.CreateRequest.Info.afterBooking
         return $0
     }(UILabel())
 
     private lazy var info2Label = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.numberOfLines = 0
-        // TODO: Localize
-        $0.text = "Арендодатель получит контактные данные, указанные в вашем профиле."
+        $0.text = L10n.Localizable.CreateRequest.Info.contactData
         return $0
     }(UILabel())
 
@@ -140,8 +138,7 @@ final class CreateRequestView: UIView {
         return $0
     }(UIStackView())
 
-    // TODO: Localize
-    private lazy var totalCostHeaderLabel = makeHeaderLabel("Стоимость аренды")
+    private lazy var totalCostHeaderLabel = makeHeaderLabel(L10n.Localizable.CreateRequest.TotalCost.header)
 
     private lazy var totalCostLabel = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
@@ -152,8 +149,7 @@ final class CreateRequestView: UIView {
     private lazy var totalCostInfoLabel = {
         $0.font = .systemFont(ofSize: 12, weight: .light)
         $0.numberOfLines = 0
-        // TODO: Localize
-        $0.text = "Сумма указана для справки. Оплата — по договорённости с арендодателем."
+        $0.text = L10n.Localizable.CreateRequest.TotalCost.note
         return $0
     }(UILabel())
 
