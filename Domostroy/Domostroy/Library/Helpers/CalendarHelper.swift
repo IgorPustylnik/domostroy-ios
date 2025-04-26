@@ -22,11 +22,11 @@ enum CalendarHelper {
         return diff + 1
     }
 
-    static func calculateCost(for range: DayComponentsRange?, price: Double?) -> Double? {
-        guard let days = numberOfDays(in: range), let price else {
+    static func calculateCost(for range: DayComponentsRange?, pricePerDay: Price?) -> Price? {
+        guard let days = numberOfDays(in: range), let pricePerDay else {
             return nil
         }
-        return Double(days) * price
+        return .init(value: Double(days) * pricePerDay.value, currency: pricePerDay.currency)
     }
 
     static func makeDateRanges(from dayComponents: Set<DayComponents>, calendar: Calendar) -> Set<ClosedRange<Date>> {

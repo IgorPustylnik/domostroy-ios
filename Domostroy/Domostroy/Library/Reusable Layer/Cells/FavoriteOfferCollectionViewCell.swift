@@ -29,8 +29,8 @@ final class FavoriteOfferCollectionViewCell: UICollectionViewCell, Highlightable
         let toggleActions: [ToggleButtonModel]
 
         struct UserViewModel {
-            let url: URL?
-            let loadUser: (URL?, UIImageView, UILabel) -> Void
+            let id: Int
+            let loadUser: (Int, UIImageView, UILabel) -> Void
         }
 
         struct ActionButtonModel {
@@ -187,7 +187,7 @@ extension FavoriteOfferCollectionViewCell: ConfigurableItem {
         priceLabel.text = "\(viewModel.price)"
         descriptionLabel.text = viewModel.description
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
-        viewModel.user.loadUser(viewModel.user.url, userImageView, userNameLabel)
+        viewModel.user.loadUser(viewModel.user.id, userImageView, userNameLabel)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
         viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
     }
@@ -245,7 +245,7 @@ extension FavoriteOfferCollectionViewCell.ViewModel.UserViewModel: Equatable {
         lhs: FavoriteOfferCollectionViewCell.ViewModel.UserViewModel,
         rhs: FavoriteOfferCollectionViewCell.ViewModel.UserViewModel
     ) -> Bool {
-        return lhs.url == rhs.url
+        return lhs.id == rhs.id
     }
 }
 

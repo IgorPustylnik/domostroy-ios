@@ -56,7 +56,7 @@ extension CreateRequestPresenter: CreateRequestModuleInput {
                 with: "\(dateFormatter.string(from: startDate)) — \(dateFormatter.string(from: endDate))"
             )
         }
-        view?.configureTotalCost(with: calculateTotalCostText(for: offer.price))
+        view?.configureTotalCost(with: calculateTotalCostText(pricePerDay: offer.price))
     }
 }
 
@@ -114,7 +114,7 @@ private extension CreateRequestPresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             calendarId: offer.calendarId,
             loadCalendar: { [weak self] id in
                 self?.loadCalendar(id: id)
@@ -125,16 +125,20 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func calculateTotalCostText(for price: Double) -> String? {
+    private func calculateTotalCostText(pricePerDay: Price) -> String? {
         guard
             let selectedDates,
             let days = CalendarHelper.numberOfDays(in: selectedDates),
-            let totalCost = CalendarHelper.calculateCost(for: selectedDates, price: price)
+            let totalCost = CalendarHelper.calculateCost(for: selectedDates, pricePerDay: pricePerDay)
         else { return nil }
-
-        let dayPrice = price.stringDroppingTrailingZero
-        let total = totalCost.stringDroppingTrailingZero
-        return "\(dayPrice)₽ × \(days) \("дней"/*Localized*/) = \(total)₽"
+        return String(format: "%@%@ × %d %@ = %@%@",
+            pricePerDay.value.stringDroppingTrailingZero,
+            pricePerDay.currency.description,
+            days,
+            LocalizationHelper.Plural.day(amount: days),
+            totalCost.value.stringDroppingTrailingZero,
+            pricePerDay.currency.description
+        )
     }
 
     private func presentCalendar(for offer: Offer) {

@@ -75,6 +75,7 @@
 		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
 		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
 		551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */; };
+		551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
 		554F7CBE2DBA276D008A2BB3 /* UserProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */; };
@@ -305,6 +306,7 @@
 		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
+		551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -1204,6 +1206,7 @@
 				5587AEB42DB3EFDB00669865 /* DayRangeSelectionHelper.swift */,
 				55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */,
 				5587AEB72DB543A000669865 /* CalendarHelper.swift */,
+				551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2041,6 +2044,7 @@
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
 				867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */,
 				65C48F27871A9DFC981E641A /* SortViewOutput.swift in Sources */,
+				551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */,
 				53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */,
 				BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */,
 				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,

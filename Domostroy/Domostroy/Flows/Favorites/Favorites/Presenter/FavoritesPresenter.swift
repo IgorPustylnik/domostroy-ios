@@ -151,8 +151,8 @@ private extension FavoritesPresenter {
             )
         ]
         let userViewModel = FavoriteOfferCollectionViewCell.ViewModel.UserViewModel(
-            url: _Temporary_EndpointConstructor.user(id: offer.userId).url) { [weak self] url, imageView, label in
-                self?.loadUser(url: url, imageView: imageView, label: label)
+            id: offer.userId) { [weak self] id, imageView, label in
+                self?.loadUser(id: id, imageView: imageView, nameLabel: label)
         }
         let viewModel = FavoriteOfferCollectionViewCell.ViewModel(
             id: offer.id,
@@ -161,8 +161,7 @@ private extension FavoritesPresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            // TODO: Localize
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
             user: userViewModel,
             actions: [],
@@ -182,11 +181,17 @@ private extension FavoritesPresenter {
         }
     }
 
-    func loadUser(url: URL?, imageView: UIImageView, label: UILabel) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            // TODO: Fetch user
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
-            label.text = "Test user"
+    func loadUser(id: Int, imageView: UIImageView, nameLabel: UILabel) {
+        Task {
+            let user = await _Temporary_Mock_NetworkService().fetchUser(id: id)
+            DispatchQueue.main.async {
+                imageView.kf.setImage(with: user.avatar, placeholder: UIImage.Mock.makita)
+                var name = user.firstName
+                if let lastName = user.lastName {
+                    name += " \(lastName)"
+                }
+                nameLabel.text = name
+            }
         }
     }
 
