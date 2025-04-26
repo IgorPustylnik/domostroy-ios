@@ -103,7 +103,7 @@ private extension OfferDetailsPresenter {
                     name += " \(lastName)"
                 }
                 userView.name.text = name
-                let offerAmount = "\(user.offersAmount) \(LocalizationHelper.Plural.offer(amount: user.offersAmount))"
+                let offerAmount = "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))"
                 userView.infoLabel.text = offerAmount
                 userView.avatar.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
             }

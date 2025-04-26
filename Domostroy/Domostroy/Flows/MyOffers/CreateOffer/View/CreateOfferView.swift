@@ -104,7 +104,7 @@ final class CreateOfferView: UIView {
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.priceTextField)
         }
-        $0.setUnit("₽/\(LocalizationHelper.Plural.day(amount: 1))")
+        $0.setUnit("₽/\(L10n.Plurals.day(1))")
         return $0
     }(DValidatableTextField())
 

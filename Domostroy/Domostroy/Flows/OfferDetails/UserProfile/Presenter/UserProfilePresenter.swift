@@ -130,7 +130,7 @@ private extension UserProfilePresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             username: user.firstName,
-            info1: "\(user.offersAmount) \(LocalizationHelper.Plural.offer(amount: user.offersAmount))",
+            info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
             info2: L10n.Localizable.UserProfile.registrationDate(user.registerDate.monthAndYearString())
         )
     }

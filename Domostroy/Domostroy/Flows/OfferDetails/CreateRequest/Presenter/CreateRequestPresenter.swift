@@ -135,7 +135,7 @@ private extension CreateRequestPresenter {
             pricePerDay.value.stringDroppingTrailingZero,
             pricePerDay.currency.description,
             days,
-            LocalizationHelper.Plural.day(amount: days),
+            L10n.Plurals.day(days),
             totalCost.value.stringDroppingTrailingZero,
             pricePerDay.currency.description
         )
