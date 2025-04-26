@@ -13,7 +13,7 @@ final class OfferDetailsView: UIView {
 
     // MARK: - ViewModel
 
-    typealias UserView = (name: UILabel, offerAmount: UILabel, avatar: UIImageView)
+    typealias UserView = (name: UILabel, infoLabel: UILabel, avatar: UIImageView)
 
     struct ViewModel {
         let price: String
@@ -161,7 +161,7 @@ final class OfferDetailsView: UIView {
     private lazy var userInfoVStackView = {
         $0.axis = .vertical
         $0.addArrangedSubview(userNameLabel)
-        $0.addArrangedSubview(userOffersAmountLabel)
+        $0.addArrangedSubview(userInfoLabel)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pressedOnUser))
         $0.addGestureRecognizer(tapGesture)
@@ -173,12 +173,13 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    private lazy var userOffersAmountLabel = {
+    private lazy var userInfoLabel = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         return $0
     }(UILabel())
 
     private lazy var userAvatarImageView = {
+        $0.backgroundColor = .secondarySystemBackground
         $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = Constants.avatarSize.height / 2
         $0.snp.makeConstraints { make in
@@ -205,7 +206,7 @@ final class OfferDetailsView: UIView {
         cityLabel.text = viewModel.city
         viewModel.specs.forEach { specsDetailsVStack.addArrangedSubview(createSpecLabel(title: $0.0, value: $0.1)) }
         descriptionLabel.text = viewModel.description
-        viewModel.user.loadUser(viewModel.user.url, (userNameLabel, userOffersAmountLabel, userAvatarImageView))
+        viewModel.user.loadUser(viewModel.user.url, (userNameLabel, userInfoLabel, userAvatarImageView))
         onOpenProfile = viewModel.user.onOpenProfile
         onRent = viewModel.onRent
     }

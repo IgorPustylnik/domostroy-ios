@@ -119,7 +119,7 @@ private extension FavoritesViewController {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(1)
         )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(Constants.interitemSpacing)
 
         let section = NSCollectionLayoutSection(group: group)
