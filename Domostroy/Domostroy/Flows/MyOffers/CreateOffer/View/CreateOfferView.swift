@@ -162,6 +162,16 @@ final class CreateOfferView: UIView {
         }
     }
 
+    // MARK: - Configuration
+
+    func setCalendarPlaceholder(active: Bool) {
+        if active {
+            calendarButton.title = L10n.Localizable.Offers.Create.Button.AvailableDates.placeholder
+        } else {
+            calendarButton.title = L10n.Localizable.Offers.Create.Button.AvailableDates.selected
+        }
+    }
+
 }
 
 // MARK: - Private methods

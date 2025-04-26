@@ -136,19 +136,16 @@ extension CreateOfferViewController: CreateOfferViewInput {
     func setupInitialState() {
 
     }
-
-    func setCategories(_ items: [String]) {
-        // TODO: Localize
-        var categories = ["Categories"]
+    func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
+        var categories = [placeholder]
         categories.append(contentsOf: items)
-        createOfferView.categoryPicker.setItems(categories)
+        createOfferView.categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
     }
 
-    func setConditions(_ items: [String]) {
-        // TODO: Localize
-        var conditions = ["Condition"]
+    func setConditions(_ items: [String], placeholder: String, initialIndex: Int) {
+        var conditions = [placeholder]
         conditions.append(contentsOf: items)
-        createOfferView.conditionPicker.setItems(conditions)
+        createOfferView.conditionPicker.setItems(conditions, selectedIndex: initialIndex + 1)
     }
 
     func updateImagesAmount(_ amount: Int) {
@@ -157,6 +154,10 @@ extension CreateOfferViewController: CreateOfferViewInput {
                 itemsAmount: amount
             )
         )
+    }
+
+    func setCalendarPlaceholder(active: Bool) {
+        createOfferView.setCalendarPlaceholder(active: active)
     }
 
 }
