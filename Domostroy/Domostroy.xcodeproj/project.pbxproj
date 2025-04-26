@@ -73,6 +73,7 @@
 		55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */; };
 		551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 551FC3B42DBBD29800A8FE6B /* HorizonCalendar */; };
 		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
+		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
 		551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
@@ -302,6 +303,7 @@
 		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
 		55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRadioButtonGroup.swift; sourceTree = "<group>"; };
 		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -1187,6 +1189,7 @@
 			children = (
 				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
 				551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */,
+				551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */,
 				55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */,
 				559385A82DB028FB006F3C07 /* AddingImageCollectionViewCell.swift */,
 				559385AA2DB0554F006F3C07 /* AddImageButtonCollectionViewCell.swift */,
@@ -2026,6 +2029,7 @@
 				554F7CC02DBA276D008A2BB3 /* UserProfilePresenter.swift in Sources */,
 				725130308DF6CBBEF1675531 /* ProfileUnauthorizedModuleInput.swift in Sources */,
 				D84E87352FF9EB73CCA9499F /* ProfileUnauthorizedModuleOutput.swift in Sources */,
+				551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */,
 				9C0AD6610B18A383D949973F /* ProfileUnauthorizedViewController.swift in Sources */,
 				802D6C848E994BF7923B6C5D /* ProfileUnauthorizedViewInput.swift in Sources */,
 				E46316161F403CF74FE69F06 /* ProfileUnauthorizedViewOutput.swift in Sources */,
