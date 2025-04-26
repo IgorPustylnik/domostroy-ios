@@ -52,6 +52,8 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
         }
     }
 
+    private var categoryPickerModel: PickerModel<Category> = .init(all: [], selected: nil)
+    private var conditionPickerModel: PickerModel<Condition> = .init(all: Condition.allCases, selected: nil)
     private var selectedDates: Set<Date> = Set()
 }
 

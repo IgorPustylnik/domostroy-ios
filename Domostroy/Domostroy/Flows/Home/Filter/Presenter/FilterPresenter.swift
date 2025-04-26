@@ -9,12 +9,7 @@
 import Foundation
 
 struct Filters {
-    var categoryFilter: CategoryFilter
-}
-
-struct CategoryFilter {
-    var all: [Category]
-    var selected: Category?
+    var categoryFilter: PickerModel<Category>
 }
 
 final class FilterPresenter: FilterModuleOutput {
