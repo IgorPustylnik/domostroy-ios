@@ -22,8 +22,7 @@ final class RegisterViewController: ScrollViewController {
     private var registerView = RegisterView()
 
     private lazy var registerButton: DButton = {
-        // TODO: Localize
-        $0.title = "Register"
+        $0.title = L10n.Localizable.Auth.Register.Button.register
         $0.setAction { [weak self] in
             self?.registerView.register()
         }

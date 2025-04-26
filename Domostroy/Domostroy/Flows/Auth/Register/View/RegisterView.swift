@@ -22,8 +22,7 @@ final class RegisterView: UIView {
 
     private lazy var titleLabel: UILabel = {
         $0.font = .systemFont(ofSize: 24, weight: .bold)
-        // TODO: Localize
-        $0.text = "Register"
+        $0.text = L10n.Localizable.Auth.Register.title
         return $0
     }(UILabel())
 
@@ -43,8 +42,12 @@ final class RegisterView: UIView {
     // MARK: - TextFields
 
     private lazy var firstNameTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "First name", correction: .yes, keyboardType: .default, mode: .firstName)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.firstName,
+            correction: .yes,
+            keyboardType: .default,
+            mode: .firstName
+        )
         $0.setNextResponder(lastNameTextField.responder)
         $0.validator = RequiredValidator(UsernameValidator())
         $0.onBeginEditing = { [weak self] _ in
@@ -54,8 +57,12 @@ final class RegisterView: UIView {
     }(DValidatableTextField())
 
     private lazy var lastNameTextField: DValidatableTextField = {
-        // TODO: Localize and make actually optional
-        $0.configure(placeholder: "Last name (optional)", correction: .yes, keyboardType: .default, mode: .lastName)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.lastName,
+            correction: .yes,
+            keyboardType: .default,
+            mode: .lastName
+        )
         $0.setNextResponder(phoneNumberTextField.responder)
         $0.validator = OptionalValidator(UsernameValidator())
         $0.onBeginEditing = { [weak self] _ in
@@ -65,8 +72,12 @@ final class RegisterView: UIView {
     }(DValidatableTextField())
 
     private lazy var phoneNumberTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Phone number (optional)", correction: .no, keyboardType: .phonePad, mode: .phoneNumber)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.phoneNumber,
+            correction: .no,
+            keyboardType: .phonePad,
+            mode: .phoneNumber
+        )
         $0.setNextResponder(emailTextField.responder)
         $0.validator = OptionalValidator(PhoneValidator(normalizer: RussianPhoneNumberNormalizer()))
         $0.onBeginEditing = { [weak self] _ in
@@ -76,8 +87,12 @@ final class RegisterView: UIView {
     }(DValidatableTextField())
 
     private lazy var emailTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.email,
+            correction: .no,
+            keyboardType: .emailAddress,
+            mode: .email
+        )
         $0.setNextResponder(passwordTextField.responder)
         $0.validator = RequiredValidator(EmailValidator())
         $0.onBeginEditing = { [weak self] _ in
@@ -87,8 +102,12 @@ final class RegisterView: UIView {
     }(DValidatableTextField())
 
     private lazy var passwordTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.password,
+            correction: .no,
+            keyboardType: .asciiCapable,
+            mode: .password
+        )
         $0.setNextResponder(repeatPasswordTextField.responder)
         $0.validator = RequiredValidator(PasswordValidator())
         $0.onEndEditing = { [weak self] _ in
@@ -103,8 +122,12 @@ final class RegisterView: UIView {
     }(DValidatableTextField())
 
     private lazy var repeatPasswordTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Repeat password", correction: .no, keyboardType: .asciiCapable, mode: .password)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Register.Placeholder.repeatPassword,
+            correction: .no,
+            keyboardType: .asciiCapable,
+            mode: .password
+        )
         $0.onShouldReturn = { [weak self] _ in
             self?.register()
         }

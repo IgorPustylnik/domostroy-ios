@@ -36,8 +36,7 @@ final class MyOffersEmptyView: UIView {
     }(UIImageView())
 
     private lazy var messageLabel = {
-        // TODO: - Localize
-        $0.text = "You have not posted any offers yet"
+        $0.text = L10n.Localizable.Offers.MyOffers.Empty.message
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.textAlignment = .center
         $0.numberOfLines = 0

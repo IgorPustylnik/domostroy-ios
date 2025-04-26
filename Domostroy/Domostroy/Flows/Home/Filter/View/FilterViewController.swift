@@ -30,8 +30,7 @@ final class FilterViewController: UIViewController {
 
     private lazy var categoryLabel = {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
-        // TODO: Localize
-        $0.text = "Category"
+        $0.text = L10n.Localizable.Filter.Category.header
         return $0
     }(UILabel())
 
@@ -43,8 +42,7 @@ final class FilterViewController: UIViewController {
     }(DPickerField())
 
     private lazy var applyButton = {
-        // TODO: Localize
-        $0.title = "Apply"
+        $0.title = L10n.Localizable.Filter.Button.apply
         $0.setAction { [weak self] in
             self?.output?.apply()
         }
@@ -100,8 +98,7 @@ private extension FilterViewController {
 extension FilterViewController: FilterViewInput {
 
     func setupInitialState() {
-        // TODO: Localize
-        title = "Filters"
+        title = L10n.Localizable.Filter.title
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: self, action: #selector(close))
         view.backgroundColor = .systemBackground
         view.addSubview(mainVStackView)
@@ -118,7 +115,6 @@ extension FilterViewController: FilterViewInput {
     }
 
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
-        // TODO: Localize
         var categories = [placeholder]
         categories.append(contentsOf: items)
         categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)

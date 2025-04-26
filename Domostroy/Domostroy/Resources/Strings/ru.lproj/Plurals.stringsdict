@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Day</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@VAR@</string>
+		<key>VAR</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>дней</string>
+			<key>one</key>
+			<string>день</string>
+			<key>two</key>
+			<string>дня</string>
+			<key>few</key>
+			<string>дня</string>
+			<key>many</key>
+			<string>дней</string>
+			<key>other</key>
+			<string>дни</string>
+		</dict>
+	</dict>
+	<key>Offer</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@VAR@</string>
+		<key>VAR</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>объявлений</string>
+			<key>one</key>
+			<string>объявление</string>
+			<key>two</key>
+			<string>объявления</string>
+			<key>few</key>
+			<string>объявления</string>
+			<key>many</key>
+			<string>объявлений</string>
+			<key>other</key>
+			<string>объявления</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

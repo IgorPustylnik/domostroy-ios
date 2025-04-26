@@ -21,8 +21,7 @@ final class PaginatorView: UIView {
     }(UILabel())
 
     private lazy var retryButton = {
-        // TODO: Localize
-        $0.title = "Retry"
+        $0.title = L10n.Localizable.Common.Button.retry
         $0.setAction {
             self.onRetryTapped()
         }

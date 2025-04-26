@@ -52,6 +52,8 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
         }
     }
 
+    private var categoryPickerModel: PickerModel<Category> = .init(all: [], selected: nil)
+    private var conditionPickerModel: PickerModel<Condition> = .init(all: Condition.allCases, selected: nil)
     private var selectedDates: Set<Date> = Set()
 }
 
@@ -60,6 +62,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
 extension CreateOfferPresenter: CreateOfferModuleInput {
     func setSelectedDates(_ dates: Set<Date>) {
         self.selectedDates = dates
+        view?.setCalendarPlaceholder(active: selectedDates.isEmpty)
     }
 }
 
@@ -70,9 +73,9 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
     func viewLoaded() {
         view?.setupInitialState()
         view?.updateImagesAmount(visibleItems)
-        view?.setCategories([])
+        updateCategoriesView()
         loadCategories()
-        view?.setConditions(Condition.allCases.map { $0.description })
+        loadConditions()
         refillAdapter()
     }
 
@@ -109,19 +112,37 @@ private extension CreateOfferPresenter {
 
     func loadCategories() {
         Task {
-            let categories = await fetchCategories()
+            await fetchCategories()
             DispatchQueue.main.async { [weak self] in
-                self?.view?.setCategories(categories)
+                self?.updateCategoriesView()
             }
         }
     }
 
-    func fetchCategories() async -> [String] {
-        // TODO: Network request
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
-        return ["Category1", "Category2"]
+    func loadConditions() {
+        view?.setConditions(
+            conditionPickerModel.all.map { $0.description },
+            placeholder: L10n.Localizable.Offers.Create.Placeholder.condition,
+            initialIndex: conditionPickerModel.all.firstIndex {
+                $0 == conditionPickerModel.selected
+            } ?? -1
+        )
     }
 
+    func fetchCategories() async {
+        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
+        self.categoryPickerModel.all = categories
+    }
+
+    func updateCategoriesView() {
+        view?.setCategories(
+            categoryPickerModel.all.map { $0.name },
+            placeholder: L10n.Localizable.Offers.Create.Placeholder.category,
+            initialIndex: categoryPickerModel.all.firstIndex {
+                $0 == categoryPickerModel.selected
+            } ?? -1
+        )
+    }
 }
 
 // MARK: - Generators

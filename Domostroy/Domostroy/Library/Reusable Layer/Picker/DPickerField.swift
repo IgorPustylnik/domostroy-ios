@@ -82,7 +82,7 @@ class DPickerField: UIView {
             )
         )
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        let doneButton = UIBarButtonItem(title: L10n.Localizable.Common.Button.done, style: .done, target: self, action: #selector(doneButtonTapped))
         toolbar.items = [flexSpace, doneButton]
         return toolbar
     }()
@@ -209,8 +209,7 @@ class DPickerField: UIView {
 
         isErrorState = isEmpty || (requiresNonPlaceholder && isPlaceholder)
         if isErrorState {
-            // TODO: Localize
-            setError(text: errorMessage ?? "Field is required")
+            setError(text: errorMessage ?? L10n.Localizable.ValidationError.required)
         } else {
             setError(text: nil)
         }

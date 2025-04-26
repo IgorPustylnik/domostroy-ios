@@ -38,8 +38,7 @@ final class DSearchTextField: UIView {
         }
     }
 
-    // TODO: Localize
-    var placeholder: String = "Search" {
+    var placeholder: String = L10n.Localizable.Common.Placeholder.search {
         didSet {
             textField.placeholder = placeholder
         }
@@ -111,8 +110,7 @@ final class DSearchTextField: UIView {
     }(DButton(type: .plain))
 
     private lazy var cancelButton = {
-        // TODO: Localize
-        $0.title = "Cancel"
+        $0.title = L10n.Localizable.Common.Button.cancel
         $0.insets = .zero
         $0.setAction { [weak self] in
             guard let self else {

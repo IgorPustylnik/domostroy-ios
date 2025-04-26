@@ -22,8 +22,7 @@ final class LoginView: UIView {
 
     private lazy var titleLabel: UILabel = {
         $0.font = .systemFont(ofSize: 24, weight: .bold)
-        // TODO: Localize
-        $0.text = "Login"
+        $0.text = L10n.Localizable.Auth.Login.title
         return $0
     }(UILabel())
 
@@ -37,16 +36,24 @@ final class LoginView: UIView {
     }(UIStackView())
 
     private lazy var emailTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Email", correction: .no, keyboardType: .emailAddress, mode: .email)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Login.Placeholder.email,
+            correction: .no,
+            keyboardType: .emailAddress,
+            mode: .email
+        )
         $0.setNextResponder(passwordTextField.responder)
         $0.validator = RequiredValidator(EmailValidator())
         return $0
     }(DValidatableTextField())
 
     private lazy var passwordTextField: DValidatableTextField = {
-        // TODO: Localize
-        $0.configure(placeholder: "Password", correction: .no, keyboardType: .asciiCapable, mode: .password)
+        $0.configure(
+            placeholder: L10n.Localizable.Auth.Login.Placeholder.password,
+            correction: .no,
+            keyboardType: .asciiCapable,
+            mode: .password
+        )
         $0.onShouldReturn = { [weak self] _ in
             self?.login()
         }

@@ -9,12 +9,7 @@
 import Foundation
 
 struct Filters {
-    var categoryFilter: CategoryFilter
-}
-
-struct CategoryFilter {
-    var all: [Category]
-    var selected: Category?
+    var categoryFilter: PickerModel<Category>
 }
 
 final class FilterPresenter: FilterModuleOutput {
@@ -101,8 +96,7 @@ private extension FilterPresenter {
         }
         view?.setCategories(
             model.categoryFilter.all.map { $0.name },
-            // TODO: Localize
-            placeholder: "Select a category",
+            placeholder: L10n.Localizable.Filter.Placeholder.category,
             initialIndex: model.categoryFilter.all.firstIndex {
                 $0 == model.categoryFilter.selected
             } ?? -1

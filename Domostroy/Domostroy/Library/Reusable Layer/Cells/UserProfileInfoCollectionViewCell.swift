@@ -30,7 +30,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         static let infoVStackSpacing: CGFloat = 5
         static let avatarSize: CGSize = .init(width: 80, height: 80)
         static let insets: UIEdgeInsets = .init(top: 0, left: 0, bottom: 16, right: 0)
-        static let usernameFont: UIFont = .systemFont(ofSize: 20, weight: .regular)
+        static let usernameFont: UIFont = .systemFont(ofSize: 20, weight: .semibold)
         static let info1Font: UIFont = .systemFont(ofSize: 14, weight: .regular)
         static let info2Font: UIFont = .systemFont(ofSize: 14, weight: .regular)
     }

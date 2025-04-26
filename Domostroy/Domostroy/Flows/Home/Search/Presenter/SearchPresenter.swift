@@ -19,13 +19,13 @@ enum Sort: CaseIterable {
     var description: String {
         switch self {
         case .default:
-            return "Default"
+            return L10n.Localizable.Sort.default
         case .priceAscending:
-            return "Price ascending"
+            return L10n.Localizable.Sort.priceAscending
         case .priceDescending:
-            return "Price descending"
+            return L10n.Localizable.Sort.priceDescending
         case .recent:
-            return "Most recent"
+            return L10n.Localizable.Sort.recent
         }
     }
 }
@@ -81,7 +81,7 @@ extension SearchPresenter: SearchModuleInput {
 
     func setSort(_ sort: Sort) {
         self.sort = sort
-        view?.setSort(sort.description)
+        view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         loadFirstPage()
     }
 
@@ -100,7 +100,7 @@ extension SearchPresenter: SearchViewOutput {
     func viewLoaded() {
         city = .init(id: 0, name: "Воронеж")
         view?.setCity(city?.name)
-        view?.setSort(sort.description)
+        view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         view?.setHasFilters(false)
 
         Task {
@@ -221,8 +221,7 @@ private extension SearchPresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            // TODO: Localize
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             location: offer.city.name,
             actions: [],
             toggleActions: toggleActions

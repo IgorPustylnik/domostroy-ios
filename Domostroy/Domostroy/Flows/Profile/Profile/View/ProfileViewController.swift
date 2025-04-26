@@ -48,8 +48,7 @@ extension ProfileViewController: ProfileViewInput {
         profileView.setupInitialState()
         setupRefreshControl()
         view.backgroundColor = .systemBackground
-        // TODO: Localize
-        navigationBar.title = "Profile"
+        navigationBar.title = L10n.Localizable.Profile.title
     }
 
     func configure(with viewModel: ProfileView.ViewModel) {

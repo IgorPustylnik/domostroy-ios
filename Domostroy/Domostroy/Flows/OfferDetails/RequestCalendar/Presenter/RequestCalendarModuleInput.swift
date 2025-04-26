@@ -13,7 +13,7 @@ struct RequestCalendarConfig {
     let dates: ClosedRange<Date>
     let forbiddenDates: [Date]
     let selectedDates: DayComponentsRange?
-    let price: Double
+    let price: Price
 }
 
 protocol RequestCalendarModuleInput: AnyObject {

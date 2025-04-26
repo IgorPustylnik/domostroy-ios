@@ -106,8 +106,7 @@ final class ProfileView: UIView {
     }(UILabel())
 
     private lazy var adminButton = {
-        // TODO: Localize
-        $0.title = "Admin panel"
+        $0.title = L10n.Localizable.Profile.Button.AdminPanel.title
         $0.setAction { [weak self] in
             self?.onAdminPanel?()
         }
@@ -115,8 +114,7 @@ final class ProfileView: UIView {
     }(DButton(type: .filledSecondary))
 
     private lazy var logoutButton = {
-        // TODO: Localize
-        $0.title = "Logout"
+        $0.title = L10n.Localizable.Profile.Button.Logout.title
         $0.setAction { [weak self] in
             self?.onLogout?()
         }

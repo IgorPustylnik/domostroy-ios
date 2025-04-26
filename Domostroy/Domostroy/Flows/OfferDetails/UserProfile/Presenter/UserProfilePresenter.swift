@@ -130,9 +130,8 @@ private extension UserProfilePresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             username: user.firstName,
-            // TODO: Localize
-            info1: "\(user.offersAmount) объявлений",
-            info2: "На Домострое с \( user.registerDate.monthAndYearString())"
+            info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
+            info2: L10n.Localizable.UserProfile.registrationDate(user.registerDate.monthAndYearString())
         )
     }
 
@@ -158,8 +157,7 @@ private extension UserProfilePresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            // TODO: Localize
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             location: offer.city.name,
             actions: [],
             toggleActions: toggleActions

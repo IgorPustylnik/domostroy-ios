@@ -75,6 +75,9 @@
 		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
 		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
 		551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */; };
+		551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */; };
+		551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */; };
+		551FC3C42DBD114500A8FE6B /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
 		554F7CBE2DBA276D008A2BB3 /* UserProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */; };
@@ -305,6 +308,10 @@
 		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
+		551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
+		551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
+		551FC3C32DBD114500A8FE6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
+		551FC3C52DBD114F00A8FE6B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -905,6 +912,7 @@
 			children = (
 				559610B32D9D8C3000746358 /* InfoPlist.strings */,
 				55B4960A2D9E75EA00C6AB57 /* Localizable.strings */,
+				551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */,
 				55631ABF2D95FB3900FD6856 /* Strings.swift */,
 			);
 			path = Strings;
@@ -1204,6 +1212,7 @@
 				5587AEB42DB3EFDB00669865 /* DayRangeSelectionHelper.swift */,
 				55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */,
 				5587AEB72DB543A000669865 /* CalendarHelper.swift */,
+				551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1233,6 +1242,7 @@
 			isa = PBXGroup;
 			children = (
 				55E0FF2E2DAFAF3E00D908A8 /* DPickerField.swift */,
+				551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -1781,6 +1791,7 @@
 				55631AB42D95FB3900FD6856 /* Images.xcassets in Resources */,
 				555304762D9DDE4700B7A27D /* LaunchScreen.storyboard in Resources */,
 				559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */,
+				551FC3C42DBD114500A8FE6B /* Plurals.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1925,6 +1936,7 @@
 				0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */,
 				55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */,
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
+				551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */,
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
@@ -2041,6 +2053,7 @@
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
 				867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */,
 				65C48F27871A9DFC981E641A /* SortViewOutput.swift in Sources */,
+				551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */,
 				53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */,
 				BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */,
 				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,
@@ -2061,6 +2074,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				551FC3C32DBD114500A8FE6B /* en */,
+				551FC3C52DBD114F00A8FE6B /* ru */,
+			);
+			name = Plurals.stringsdict;
+			sourceTree = "<group>";
+		};
 		559610B32D9D8C3000746358 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

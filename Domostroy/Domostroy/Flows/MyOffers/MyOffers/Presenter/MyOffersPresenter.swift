@@ -143,11 +143,9 @@ private extension MyOffersPresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            // TODO: Localize
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
-            // TODO: Localize
-            createdAt: "Published on \(offer.createdAt.toDMMYY())",
+            createdAt: L10n.Localizable.Offers.publishedAt(offer.createdAt.toDMMYY()),
             actions: actions
         )
         return viewModel

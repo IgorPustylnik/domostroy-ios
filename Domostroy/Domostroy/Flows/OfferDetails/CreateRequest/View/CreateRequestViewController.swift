@@ -23,8 +23,7 @@ final class CreateRequestViewController: ScrollViewController {
     private var createRequestView = CreateRequestView()
 
     private lazy var submitButton = {
-        // TODO: Localize
-        $0.title = "Submit"
+        $0.title = L10n.Localizable.CreateRequest.Button.submit
         $0.setAction { [weak self] in
             self?.output?.submit()
         }
@@ -41,7 +40,7 @@ final class CreateRequestViewController: ScrollViewController {
         setupUI()
         super.viewDidLoad()
         addSubmitButton()
-        navigationBar.title = "Request"
+        navigationBar.title = L10n.Localizable.CreateRequest.title
         hidesTabBar = true
         scrollView.alwaysBounceVertical = true
         output?.viewLoaded()

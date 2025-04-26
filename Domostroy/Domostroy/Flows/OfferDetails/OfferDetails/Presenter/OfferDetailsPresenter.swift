@@ -24,6 +24,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     weak var view: OfferDetailsViewInput?
 
     private var offerId: Int?
+    private var offer: Offer?
 
     var picturesAdapter: BaseCollectionManager?
 
@@ -42,6 +43,7 @@ private extension OfferDetailsPresenter {
         view?.setLoading(true)
         Task {
             let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: offerId)
+            self.offer = offer
 
             DispatchQueue.main.async { [weak self] in
                 self?.view?.setLoading(false)
@@ -56,11 +58,9 @@ private extension OfferDetailsPresenter {
                 self?.view?.setupInitialState()
                 self?.view?.configureOffer(
                     viewModel: .init(
-                        // TODO: Localize
-                        price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+                        price: LocalizationHelper.pricePerDay(for: offer.price),
                         title: offer.name,
-                        // TODO: Localize
-                        city: "г. \(offer.city.name)",
+                        city: offer.city.name,
                         specs: [
                             ("Состояние", "новое"),
                             ("Производитель", "Makita")
@@ -92,10 +92,21 @@ private extension OfferDetailsPresenter {
     }
 
     func fetchUser(url: URL?, userView: OfferDetailsView.UserView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            userView.name.text = "Test user"
-            userView.offerAmount.text = "4 оффера"
-            userView.avatar.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+        guard let userId = offer?.userId else {
+            return
+        }
+        Task {
+            let user = await _Temporary_Mock_NetworkService().fetchUser(id: userId)
+            DispatchQueue.main.async {
+                var name = user.firstName
+                if let lastName = user.lastName {
+                    name += " \(lastName)"
+                }
+                userView.name.text = name
+                let offerAmount = "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))"
+                userView.infoLabel.text = offerAmount
+                userView.avatar.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+            }
         }
     }
 

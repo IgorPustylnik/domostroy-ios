@@ -68,8 +68,12 @@ class DMultiLineTextField: UIView {
             )
         )
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        // TODO: Localize
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        let doneButton = UIBarButtonItem(
+            title: L10n.Localizable.Common.Button.done,
+            style: .done,
+            target: self,
+            action: #selector(doneButtonTapped)
+        )
         toolbar.items = [flexSpace, doneButton]
         return toolbar
     }()

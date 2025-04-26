@@ -61,8 +61,7 @@ final class MyOffersViewController: BaseViewController {
     }
 
     private func setupNavigationBar() {
-        // TODO: Localize
-        navigationBar.title = "My offers"
+        navigationBar.title = L10n.Localizable.Offers.MyOffers.title
     }
 
     private func setupCollectionView() {

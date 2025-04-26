@@ -24,8 +24,7 @@ struct Offer: Codable {
     let name: String
     let description: String
     let category: Category
-    let currency: Currency
-    let price: Double
+    let price: Price
     let isFavorite: Bool
     let images: [URL]
     let city: City
@@ -39,8 +38,32 @@ struct Category: Codable, Equatable {
     let name: String
 }
 
+struct Price: Codable {
+    let value: Double
+    let currency: Currency
+}
+
 enum Currency: Codable {
     case rub
+    case unknown
+
+    init(rawValue: String) {
+        switch rawValue {
+        case Currency.rub.description:
+            self = .rub
+        default:
+            self = .unknown
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .rub:
+            return "₽"
+        case .unknown:
+            return "?"
+        }
+    }
 }
 
 struct City: Codable {
@@ -51,7 +74,7 @@ struct City: Codable {
 struct User: Codable {
     let id: Int
     let firstName: String
-    let lastName: String
+    let lastName: String?
     let avatar: URL?
     let offersAmount: Int
     let registerDate: Date
@@ -76,13 +99,12 @@ enum Condition: CaseIterable {
     case used
     case new
 
-    // TODO: Localize
     var description: String {
         switch self {
         case .used:
-            return "Used"
+            return L10n.Localizable.Offers.Condition.used
         case .new:
-            return "Brand new"
+            return L10n.Localizable.Offers.Condition.new
         }
     }
 }

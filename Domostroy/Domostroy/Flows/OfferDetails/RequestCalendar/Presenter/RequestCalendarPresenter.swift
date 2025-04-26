@@ -23,7 +23,7 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
     private var dates: ClosedRange<Date>?
     private var forbiddenDates: [Date] = []
-    private var price: Double?
+    private var pricePerDay: Price?
 
     private lazy var calendar = Calendar.current
     private var selectedDayRange: DayComponentsRange?
@@ -46,7 +46,7 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 extension RequestCalendarPresenter: RequestCalendarModuleInput {
     func configure(with viewModel: RequestCalendarConfig) {
         dates = viewModel.dates
-        price = viewModel.price
+        pricePerDay = viewModel.price
         forbiddenDates = viewModel.forbiddenDates
         selectedDayRange = viewModel.selectedDates
     }
@@ -139,9 +139,8 @@ private extension RequestCalendarPresenter {
                 OverlaidItemLocation.day(containingDate: $0)
             }),
             info: {
-                if let cost = CalendarHelper.calculateCost(for: selectedDayRange, price: price) {
-                    // TODO: Localize
-                    return "Стоимость аренды: \(cost.stringDroppingTrailingZero)₽"
+                if let cost = CalendarHelper.calculateCost(for: selectedDayRange, pricePerDay: pricePerDay) {
+                    return L10n.Localizable.RequestCalendar.totalCost("\(cost.value)\(cost.currency)")
                 } else {
                     return nil
                 }

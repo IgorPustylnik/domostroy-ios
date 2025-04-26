@@ -9,8 +9,8 @@
 protocol CreateOfferViewInput: AnyObject {
     /// Method for setup initial state of view
     func setupInitialState()
-    func setConditions(_ items: [String])
-    func setCategories(_ items: [String])
+    func setConditions(_ items: [String], placeholder: String, initialIndex: Int)
+    func setCategories(_ items: [String], placeholder: String, initialIndex: Int)
     func updateImagesAmount(_ amount: Int)
-
+    func setCalendarPlaceholder(active: Bool)
 }

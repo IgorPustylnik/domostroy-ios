@@ -243,7 +243,9 @@ private extension UserProfileViewController {
         adapter?.addCellGenerator(userGenerator)
 
         if offerGenerators.isEmpty {
-            adapter?.addSectionHeaderGenerator(TitleCollectionHeaderGenerator(title: "No offers"))
+            adapter?.addSectionHeaderGenerator(
+                TitleCollectionHeaderGenerator(title: L10n.Localizable.UserProfile.Section.Offers.empty)
+            )
         } else {
             adapter?.addSectionHeaderGenerator(EmptyCollectionHeaderGenerator())
             adapter?.addCellGenerators(offerGenerators)

@@ -143,8 +143,7 @@ private extension HomePresenter {
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            // TODO: Localize
-            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             location: offer.city.name,
             actions: [],
             toggleActions: toggleActions

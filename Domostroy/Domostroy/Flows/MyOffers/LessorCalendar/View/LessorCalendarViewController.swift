@@ -34,8 +34,7 @@ final class LessorCalendarViewController: UIViewController {
     private lazy var bottomView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
 
     private lazy var applyButton = {
-        // TODO: Localize
-        $0.title = "Apply"
+        $0.title = L10n.Localizable.LessorCalendar.Button.apply
         $0.setAction { [weak self] in
             self?.output?.apply()
         }
@@ -51,8 +50,7 @@ final class LessorCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        // TODO: Localize
-        title = "Dates"
+        title = L10n.Localizable.LessorCalendar.title
     }
 
     private func setupUI() {
