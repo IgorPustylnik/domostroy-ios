@@ -31,12 +31,8 @@ final class MyOffersPresenter: MyOffersModuleOutput {
 
     // MARK: - Properties
 
-    typealias DiffableOfferGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
-
     weak var view: MyOffersViewInput?
     private weak var paginatableInput: PaginatableInput?
-
-    var adapter: BaseCollectionManager?
 
     private var isFirstPageLoading = false
     private var pagesCount = 0
@@ -57,6 +53,10 @@ extension MyOffersPresenter: MyOffersViewOutput {
     func viewLoaded() {
         view?.setupInitialState()
         loadFirstPage()
+    }
+
+    func openOffer(_ id: Int) {
+        onOpenOffer?(id)
     }
 
 }
@@ -123,33 +123,34 @@ extension MyOffersPresenter: PaginatableOutput {
 
 }
 
-// MARK: - Generators
+// MARK: - ViewModels
 
 private extension MyOffersPresenter {
 
-    func makeGenerator(from offer: Offer) -> DiffableOfferGenerator {
-        let viewModel = OfferCollectionViewCell.ViewModel(
+    func makeOfferViewModel(
+        from offer: Offer
+    ) -> OwnOfferCollectionViewCell.ViewModel {
+        let actions = [OwnOfferCollectionViewCell.ViewModel.ActionButtonModel(
+            image: .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+            action: { [weak self] in
+                self?.onEditOffer?(offer.id)
+            }
+        )]
+        let viewModel = OwnOfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.images.first,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
             title: offer.name,
-            price: offer.price.stringDroppingTrailingZero,
-            location: offer.city.name,
-            actions: [
-                .init(image: .Buttons.edit, action: { [weak self] in
-                    self?.onEditOffer?(offer.id)
-                })
-            ],
-            toggleActions: []
+            // TODO: Localize
+            price: "\(offer.price.stringDroppingTrailingZero)₽/день",
+            description: offer.description,
+            // TODO: Localize
+            createdAt: "Published on \(offer.createdAt.toDMMYY())",
+            actions: actions
         )
-
-        let generator = OfferCollectionViewCell.rddm.diffableGenerator(uniqueId: UUID(), with: viewModel, and: .class)
-        generator.didSelectEvent += { [weak self] in
-            self?.onOpenOffer?(offer.id)
-        }
-        return generator
+        return viewModel
     }
 }
 
@@ -160,14 +161,6 @@ private extension MyOffersPresenter {
     func loadImage(url: URL?, imageView: UIImageView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
-        }
-    }
-
-    func loadUser(url: URL?, imageView: UIImageView, label: UILabel) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            // TODO: Fetch user
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
-            label.text = "Test user"
         }
     }
 
@@ -210,14 +203,7 @@ private extension MyOffersPresenter {
             guard let self else {
                 return
             }
-
-            let newGenerators = page.offers.map { self.makeGenerator(from: $0) }
-            if let lastGenerator = self.adapter?.generators.last?.last {
-                self.adapter?.insert(after: lastGenerator, new: newGenerators)
-            } else {
-                self.adapter?.addCellGenerators(newGenerators)
-                self.adapter?.forceRefill()
-            }
+            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount
@@ -236,11 +222,8 @@ private extension MyOffersPresenter {
             guard let self else {
                 return
             }
-
             self.view?.setEmptyState(page.offers.isEmpty)
-            self.adapter?.clearCellGenerators()
-            self.adapter?.addCellGenerators(page.offers.map { self.makeGenerator(from: $0) })
-            self.adapter?.forceRefill()
+            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
         }
 
         return currentPage < pagesCount

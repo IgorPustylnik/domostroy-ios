@@ -10,9 +10,14 @@ import Foundation
 extension Date {
     func monthAndYearString() -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "MMMM yyyy"
 
+        return formatter.string(from: self)
+    }
+
+    func toDMMYY() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d.MM.yy"
         return formatter.string(from: self)
     }
 }

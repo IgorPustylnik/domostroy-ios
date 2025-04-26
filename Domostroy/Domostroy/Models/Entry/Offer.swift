@@ -31,6 +31,7 @@ struct Offer: Codable {
     let city: City
     let userId: Int
     let calendarId: Int
+    let createdAt: Date
 }
 
 struct Category: Codable, Equatable {
