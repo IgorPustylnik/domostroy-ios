@@ -55,7 +55,7 @@ final class RegisterViewController: ScrollViewController {
             guard let self else {
                 return
             }
-            self.output?.register(registerDTO: RegisterDTO(
+            self.output?.register(registerEntity: RegisterEntity(
                 firstName: self.registerView.firstName,
                 lastName: self.registerView.lastName,
                 phoneNumber: self.registerView.phoneNumber,

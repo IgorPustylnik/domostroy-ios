@@ -109,6 +109,31 @@
 		559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AF2D9C8D7B00746358 /* AppCoordinator.swift */; };
 		559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610B12D9C8E1B00746358 /* DeepLinkOption.swift */; };
 		559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559610B32D9D8C3000746358 /* InfoPlist.strings */; };
+		55AAA9C52DBEB7430018952F /* OfferEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9C42DBEB7430018952F /* OfferEntity.swift */; };
+		55AAA9C92DBEB8490018952F /* OffersPageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9C82DBEB8490018952F /* OffersPageEntity.swift */; };
+		55AAA9CB2DBEB8AC0018952F /* PaginationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9CA2DBEB8AC0018952F /* PaginationEntity.swift */; };
+		55AAA9D62DBEC1300018952F /* OfferEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9D52DBEC1300018952F /* OfferEntry.swift */; };
+		55AAA9D82DBEC2A60018952F /* PaginationEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9D72DBEC2A60018952F /* PaginationEntry.swift */; };
+		55AAA9DA2DBEC34B0018952F /* OffersPageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9D92DBEC34B0018952F /* OffersPageEntry.swift */; };
+		55AAA9DD2DBEC4930018952F /* PriceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9DC2DBEC4930018952F /* PriceEntity.swift */; };
+		55AAA9DF2DBEC49B0018952F /* PriceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9DE2DBEC49B0018952F /* PriceEntry.swift */; };
+		55AAA9E22DBEC5AE0018952F /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9E12DBEC5AE0018952F /* Currency.swift */; };
+		55AAA9E42DBEC8020018952F /* CategoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9E32DBEC8020018952F /* CategoryEntry.swift */; };
+		55AAA9E62DBEC8400018952F /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9E52DBEC8400018952F /* CategoryEntity.swift */; };
+		55AAA9EA2DBED1950018952F /* CityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9E92DBED1950018952F /* CityEntity.swift */; };
+		55AAA9EC2DBED1C70018952F /* CityEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9EB2DBED1C70018952F /* CityEntry.swift */; };
+		55AAA9EE2DBED3A20018952F /* UserEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9ED2DBED3A20018952F /* UserEntry.swift */; };
+		55AAA9F12DBED4EA0018952F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9F02DBED4EA0018952F /* UserEntity.swift */; };
+		55AAA9F32DBED5CF0018952F /* MyUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9F22DBED5CF0018952F /* MyUserEntity.swift */; };
+		55AAA9F52DBED6110018952F /* MyUserEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9F42DBED6110018952F /* MyUserEntry.swift */; };
+		55AAA9F72DBED6B90018952F /* OfferRequestCalendarEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9F62DBED6B90018952F /* OfferRequestCalendarEntity.swift */; };
+		55AAA9F92DBED8880018952F /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9F82DBED8880018952F /* RegisterEntity.swift */; };
+		55AAA9FB2DBED9420018952F /* RegisterEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9FA2DBED9420018952F /* RegisterEntry.swift */; };
+		55AAA9FD2DBED9740018952F /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9FC2DBED9740018952F /* LoginEntity.swift */; };
+		55AAA9FF2DBEDAD60018952F /* LoginEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9FE2DBEDAD60018952F /* LoginEntry.swift */; };
+		55AAAA012DBEDDA40018952F /* JSONEncoder+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAAA002DBEDDA40018952F /* JSONEncoder+ext.swift */; };
+		55AAAA032DBEDE170018952F /* JSONDecoder+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAAA022DBEDE170018952F /* JSONDecoder+ext.swift */; };
+		55AAAA062DBEE4440018952F /* NodeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55AAAA052DBEE4440018952F /* NodeKit */; };
 		55AAAA082DBEE4440018952F /* NodeKitMock in Frameworks */ = {isa = PBXBuildFile; productRef = 55AAAA072DBEE4440018952F /* NodeKitMock */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
@@ -124,8 +149,6 @@
 		55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */; };
 		55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D629512DAD755900E09764 /* HomeEmptyView.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
-		55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */; };
-		55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */; };
 		55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */; };
 		55DD9EF92DA416BD003F0CB3 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EF82DA416BD003F0CB3 /* Offer.swift */; };
 		55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */; };
@@ -347,6 +370,28 @@
 		559610B12D9C8E1B00746358 /* DeepLinkOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkOption.swift; sourceTree = "<group>"; };
 		559610B42D9D8C3000746358 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		559610B62D9D8C4100746358 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55AAA9C42DBEB7430018952F /* OfferEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferEntity.swift; sourceTree = "<group>"; };
+		55AAA9C82DBEB8490018952F /* OffersPageEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersPageEntity.swift; sourceTree = "<group>"; };
+		55AAA9CA2DBEB8AC0018952F /* PaginationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationEntity.swift; sourceTree = "<group>"; };
+		55AAA9D52DBEC1300018952F /* OfferEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferEntry.swift; sourceTree = "<group>"; };
+		55AAA9D72DBEC2A60018952F /* PaginationEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationEntry.swift; sourceTree = "<group>"; };
+		55AAA9D92DBEC34B0018952F /* OffersPageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersPageEntry.swift; sourceTree = "<group>"; };
+		55AAA9DC2DBEC4930018952F /* PriceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceEntity.swift; sourceTree = "<group>"; };
+		55AAA9DE2DBEC49B0018952F /* PriceEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceEntry.swift; sourceTree = "<group>"; };
+		55AAA9E12DBEC5AE0018952F /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		55AAA9E32DBEC8020018952F /* CategoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntry.swift; sourceTree = "<group>"; };
+		55AAA9E52DBEC8400018952F /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
+		55AAA9E92DBED1950018952F /* CityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEntity.swift; sourceTree = "<group>"; };
+		55AAA9EB2DBED1C70018952F /* CityEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEntry.swift; sourceTree = "<group>"; };
+		55AAA9ED2DBED3A20018952F /* UserEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntry.swift; sourceTree = "<group>"; };
+		55AAA9F02DBED4EA0018952F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		55AAA9F22DBED5CF0018952F /* MyUserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserEntity.swift; sourceTree = "<group>"; };
+		55AAA9F42DBED6110018952F /* MyUserEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserEntry.swift; sourceTree = "<group>"; };
+		55AAA9F82DBED8880018952F /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
+		55AAA9FA2DBED9420018952F /* RegisterEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntry.swift; sourceTree = "<group>"; };
+		55AAA9FC2DBED9740018952F /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		55AAA9FE2DBEDAD60018952F /* LoginEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntry.swift; sourceTree = "<group>"; };
+		55AAAA002DBEDDA40018952F /* JSONEncoder+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONEncoder+ext.swift"; sourceTree = "<group>"; };
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -362,8 +407,6 @@
 		55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		55D629512DAD755900E09764 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
-		55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDTO.swift; sourceTree = "<group>"; };
-		55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDTO.swift; sourceTree = "<group>"; };
 		55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		55DD9EF82DA416BD003F0CB3 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorView.swift; sourceTree = "<group>"; };
@@ -931,9 +974,9 @@
 		55631A9E2D95FB3900FD6856 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				55D9E6C32DA3EB1D0040846C /* DTO */,
 				55631A9F2D95FB3900FD6856 /* Entity */,
 				55631AA12D95FB3900FD6856 /* Entry */,
+				55AAA9E02DBEC5890018952F /* Enum */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -941,6 +984,16 @@
 		55631A9F2D95FB3900FD6856 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				55AAA9C42DBEB7430018952F /* OfferEntity.swift */,
+				55AAA9E52DBEC8400018952F /* CategoryEntity.swift */,
+				55AAA9DC2DBEC4930018952F /* PriceEntity.swift */,
+				55AAA9E92DBED1950018952F /* CityEntity.swift */,
+				55AAA9C82DBEB8490018952F /* OffersPageEntity.swift */,
+				55AAA9CA2DBEB8AC0018952F /* PaginationEntity.swift */,
+				55AAA9F02DBED4EA0018952F /* UserEntity.swift */,
+				55AAA9F22DBED5CF0018952F /* MyUserEntity.swift */,
+				55AAA9F82DBED8880018952F /* RegisterEntity.swift */,
+				55AAA9FC2DBED9740018952F /* LoginEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -948,6 +1001,16 @@
 		55631AA12D95FB3900FD6856 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				55AAA9D52DBEC1300018952F /* OfferEntry.swift */,
+				55AAA9E32DBEC8020018952F /* CategoryEntry.swift */,
+				55AAA9DE2DBEC49B0018952F /* PriceEntry.swift */,
+				55AAA9EB2DBED1C70018952F /* CityEntry.swift */,
+				55AAA9D92DBEC34B0018952F /* OffersPageEntry.swift */,
+				55AAA9D72DBEC2A60018952F /* PaginationEntry.swift */,
+				55AAA9ED2DBED3A20018952F /* UserEntry.swift */,
+				55AAA9F42DBED6110018952F /* MyUserEntry.swift */,
+				55AAA9FA2DBED9420018952F /* RegisterEntry.swift */,
+				55AAA9FE2DBEDAD60018952F /* LoginEntry.swift */,
 				55DD9EF82DA416BD003F0CB3 /* Offer.swift */,
 			);
 			path = Entry;
@@ -990,6 +1053,8 @@
 			children = (
 				558285EF2DA6F573003C1861 /* RDDM */,
 				55631ACD2D95FB3900FD6856 /* UIKit */,
+				55AAAA002DBEDDA40018952F /* JSONEncoder+ext.swift */,
+				55AAAA022DBEDE170018952F /* JSONDecoder+ext.swift */,
 				55ED677C2DA80E2500A3CA52 /* Double+ext.swift */,
 				55BB62C72DBABD7200BD992E /* String+ext.swift */,
 				55BB62C92DBAE3D800BD992E /* Date+ext.swift */,
@@ -1090,6 +1155,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		55AAA9E02DBEC5890018952F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				55AAA9E12DBEC5AE0018952F /* Currency.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		55B496252D9E83BD00C6AB57 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,15 +1257,6 @@
 				55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		55D9E6C32DA3EB1D0040846C /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				55D9E6C42DA3EB2B0040846C /* RegisterDTO.swift */,
-				55D9E6C62DA3ECFE0040846C /* LoginDTO.swift */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		55DD9EF52DA413A8003F0CB3 /* Cells */ = {
@@ -1850,6 +1914,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */,
+				55AAA9EA2DBED1950018952F /* CityEntity.swift in Sources */,
+				55AAA9D62DBEC1300018952F /* OfferEntry.swift in Sources */,
 				559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */,
 				55631AD12D95FB3900FD6856 /* Coordinator.swift in Sources */,
 				55631AD52D95FB3900FD6856 /* Router.swift in Sources */,
@@ -1867,7 +1933,7 @@
 				33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */,
 				550D4F292D9FC20800B460CA /* DTextField.swift in Sources */,
 				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
-				55D9E6C72DA3ECFE0040846C /* LoginDTO.swift in Sources */,
+				55AAA9DD2DBEC4930018952F /* PriceEntity.swift in Sources */,
 				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
 				8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */,
@@ -1879,6 +1945,7 @@
 				554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */,
 				34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */,
 				3C9DCEBD1975F2E4142BC4A8 /* HomeModuleConfigurator.swift in Sources */,
+				55AAA9E62DBEC8400018952F /* CategoryEntity.swift in Sources */,
 				550D4F2C2D9FC2AB00B460CA /* TextValidator.swift in Sources */,
 				0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */,
 				6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */,
@@ -1896,12 +1963,16 @@
 				AC19FC892DD4E1849AE9CED9 /* FavoritesPresenter.swift in Sources */,
 				7E4AEDF0E0295B1EA258EDF1 /* FavoritesModuleInput.swift in Sources */,
 				1C05DABC40ACBB635D460E4F /* FavoritesModuleOutput.swift in Sources */,
+				55AAA9E42DBEC8020018952F /* CategoryEntry.swift in Sources */,
+				55AAA9F52DBED6110018952F /* MyUserEntry.swift in Sources */,
 				97BC45714C6DB4DB0C7D9A60 /* FavoritesViewController.swift in Sources */,
 				978044CD1EC5858D6F1DADF9 /* FavoritesViewInput.swift in Sources */,
+				55AAA9FF2DBEDAD60018952F /* LoginEntry.swift in Sources */,
 				062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */,
 				BD3095DD38DEE129EF86F12B /* MyOffersCoordinator.swift in Sources */,
 				FE44F5AEFB2A3FFF0589CB61 /* MyOffersCoordinatorOutput.swift in Sources */,
 				3B3C87E1E51A6FB26A3CAAF1 /* MyOffersModuleConfigurator.swift in Sources */,
+				55AAA9F12DBED4EA0018952F /* UserEntity.swift in Sources */,
 				F6EC78CA5392439479DA7911 /* MyOffersPresenter.swift in Sources */,
 				BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */,
 				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
@@ -1910,6 +1981,7 @@
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
 				55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */,
+				55AAA9EC2DBED1C70018952F /* CityEntry.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
@@ -1940,6 +2012,7 @@
 				141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */,
 				55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */,
 				0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */,
+				55AAA9C92DBEB8490018952F /* OffersPageEntity.swift in Sources */,
 				55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */,
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
 				551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */,
@@ -1973,6 +2046,7 @@
 				F7200521E0364B5BB1C69C27 /* LoginViewInput.swift in Sources */,
 				55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */,
 				55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */,
+				55AAA9D82DBEC2A60018952F /* PaginationEntry.swift in Sources */,
 				CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */,
 				5587AEB52DB3EFDB00669865 /* DayRangeSelectionHelper.swift in Sources */,
 				AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */,
@@ -1985,11 +2059,13 @@
 				E8684EEC04479C82DF0B664D /* RegisterViewController.swift in Sources */,
 				7EC5C825D2774B9A8368C387 /* RegisterView.swift in Sources */,
 				55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */,
+				55AAA9FD2DBED9740018952F /* LoginEntity.swift in Sources */,
 				BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */,
 				B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */,
 				1348F79D9DB83178C7ED1EA9 /* CodeConfirmationModuleConfigurator.swift in Sources */,
-				55D9E6C52DA3EB2B0040846C /* RegisterDTO.swift in Sources */,
+				55AAA9CB2DBEB8AC0018952F /* PaginationEntity.swift in Sources */,
 				B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */,
+				55AAAA032DBEDE170018952F /* JSONDecoder+ext.swift in Sources */,
 				FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */,
 				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,
 				2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */,
@@ -2011,10 +2087,12 @@
 				36729EAAF33B1AF4E00ED5E1 /* SearchPresenter.swift in Sources */,
 				7B1BA83DA70065BA1A05B82D /* SearchModuleInput.swift in Sources */,
 				913F7B74994AF3D60E48AA94 /* SearchModuleOutput.swift in Sources */,
+				55AAA9F32DBED5CF0018952F /* MyUserEntity.swift in Sources */,
 				554F7CC22DBA276D008A2BB3 /* UserProfileViewController.swift in Sources */,
 				29D86EA4C56716D8CED28A83 /* SearchViewController.swift in Sources */,
 				911BED526C04330460A749A9 /* SearchViewInput.swift in Sources */,
 				D0DA0A3F860BE4ABC53A89B1 /* SearchViewOutput.swift in Sources */,
+				55AAA9E22DBEC5AE0018952F /* Currency.swift in Sources */,
 				C49F91C138D2ED15B1F52505 /* CreateOfferModuleConfigurator.swift in Sources */,
 				268B436F8501A27F7D5CA3B2 /* CreateOfferPresenter.swift in Sources */,
 				9F1F4BCB0C1C99CD443C49C3 /* CreateOfferModuleInput.swift in Sources */,
@@ -2038,6 +2116,7 @@
 				2BC9D19665BFCE38687EA581 /* RequestCalendarPresenter.swift in Sources */,
 				A128CE6DD314BF7CCF51B8E0 /* RequestCalendarModuleInput.swift in Sources */,
 				C90202D001A6900E4B9A3229 /* RequestCalendarModuleOutput.swift in Sources */,
+				55AAA9FB2DBED9420018952F /* RegisterEntry.swift in Sources */,
 				A6F5F5682EFC8DA286CCA3EB /* RequestCalendarViewController.swift in Sources */,
 				6359BCA7B1EFDD6870B03389 /* RequestCalendarViewInput.swift in Sources */,
 				554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */,
@@ -2051,9 +2130,12 @@
 				9C0AD6610B18A383D949973F /* ProfileUnauthorizedViewController.swift in Sources */,
 				802D6C848E994BF7923B6C5D /* ProfileUnauthorizedViewInput.swift in Sources */,
 				E46316161F403CF74FE69F06 /* ProfileUnauthorizedViewOutput.swift in Sources */,
+				55AAA9DF2DBEC49B0018952F /* PriceEntry.swift in Sources */,
+				55AAA9F92DBED8880018952F /* RegisterEntity.swift in Sources */,
 				A700F9C9F1E75A9A3A502305 /* SortModuleConfigurator.swift in Sources */,
 				C303BDC10ECF85B00C1A04A8 /* SortPresenter.swift in Sources */,
 				554F7CC42DBA276D008A2BB3 /* UserProfileViewOutput.swift in Sources */,
+				55AAA9F72DBED6B90018952F /* OfferRequestCalendarEntity.swift in Sources */,
 				E41232A90ADA70D4F4AD0386 /* SortModuleInput.swift in Sources */,
 				7149FD0B41262C91E8397A14 /* SortModuleOutput.swift in Sources */,
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
@@ -2064,6 +2146,7 @@
 				BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */,
 				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,
 				05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */,
+				55AAA9DA2DBEC34B0018952F /* OffersPageEntry.swift in Sources */,
 				44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */,
 				5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */,
 				511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */,
@@ -2071,9 +2154,12 @@
 				E5C87AF00B7A25FDA6978A1E /* LessorCalendarPresenter.swift in Sources */,
 				4C8C01259C375686B6CAAA52 /* LessorCalendarModuleInput.swift in Sources */,
 				E2C4431AE3ED6636FB672784 /* LessorCalendarModuleOutput.swift in Sources */,
+				55AAA9EE2DBED3A20018952F /* UserEntry.swift in Sources */,
+				55AAAA012DBEDDA40018952F /* JSONEncoder+ext.swift in Sources */,
 				EBD673653C8F904E06064992 /* LessorCalendarViewController.swift in Sources */,
 				01DF48D48DCF76F6ADCE89F7 /* LessorCalendarViewInput.swift in Sources */,
 				CE0C7A4027760245C3CA85C2 /* LessorCalendarViewOutput.swift in Sources */,
+				55AAA9C52DBEB7430018952F /* OfferEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

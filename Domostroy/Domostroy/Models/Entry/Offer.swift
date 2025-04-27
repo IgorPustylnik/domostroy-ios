@@ -40,16 +40,16 @@ struct Category: Codable, Equatable {
 
 struct Price: Codable {
     let value: Double
-    let currency: Currency
+    let currency: Currency1
 }
 
-enum Currency: Codable {
+enum Currency1: Codable {
     case rub
     case unknown
 
     init(rawValue: String) {
         switch rawValue {
-        case Currency.rub.description:
+        case Currency1.rub.description:
             self = .rub
         default:
             self = .unknown
