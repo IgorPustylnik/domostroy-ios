@@ -1,5 +1,5 @@
 {
-  "originHash" : "205bc85c420e233ac0607131e25d76fdf18a99f46d5a1136d378773621582e3c",
+  "originHash" : "01a916cb6955d059617912adacd91b3077c0956e66c0171136b644d6cdf23df2",
   "pins" : [
     {
       "identity" : "horizoncalendar",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "4c6b067f96953ee19526e49e4189403a2be21fb3",
         "version" : "8.3.1"
+      }
+    },
+    {
+      "identity" : "nodekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/surfstudio/NodeKit.git",
+      "state" : {
+        "revision" : "92be7d6c2128c9f681078b48fda84bdb8c4263ef",
+        "version" : "5.0.2"
       }
     },
     {

@@ -109,6 +109,7 @@
 		559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610AF2D9C8D7B00746358 /* AppCoordinator.swift */; };
 		559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610B12D9C8E1B00746358 /* DeepLinkOption.swift */; };
 		559610B52D9D8C3000746358 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 559610B32D9D8C3000746358 /* InfoPlist.strings */; };
+		55AAAA082DBEE4440018952F /* NodeKitMock in Frameworks */ = {isa = PBXBuildFile; productRef = 55AAAA072DBEE4440018952F /* NodeKitMock */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
@@ -490,8 +491,10 @@
 			files = (
 				55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */,
 				550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */,
+				55AAAA062DBEE4440018952F /* NodeKit in Frameworks */,
 				551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */,
 				55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */,
+				55AAAA082DBEE4440018952F /* NodeKitMock in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1736,6 +1739,8 @@
 				55DD9F012DA5090A003F0CB3 /* Kingfisher */,
 				55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */,
 				551FC3B42DBBD29800A8FE6B /* HorizonCalendar */,
+				55AAAA052DBEE4440018952F /* NodeKit */,
+				55AAAA072DBEE4440018952F /* NodeKitMock */,
 			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
@@ -1771,6 +1776,7 @@
 				55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */,
 				551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				55AAAA042DBEE4440018952F /* XCRemoteSwiftPackageReference "NodeKit" */,
 			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
@@ -2325,6 +2331,14 @@
 				kind = branch;
 			};
 		};
+		55AAAA042DBEE4440018952F /* XCRemoteSwiftPackageReference "NodeKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/surfstudio/NodeKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 		55DD9F002DA5090A003F0CB3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -2353,6 +2367,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
+		};
+		55AAAA052DBEE4440018952F /* NodeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55AAAA042DBEE4440018952F /* XCRemoteSwiftPackageReference "NodeKit" */;
+			productName = NodeKit;
+		};
+		55AAAA072DBEE4440018952F /* NodeKitMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55AAAA042DBEE4440018952F /* XCRemoteSwiftPackageReference "NodeKit" */;
+			productName = NodeKitMock;
 		};
 		55DD9F012DA5090A003F0CB3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
