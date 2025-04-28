@@ -392,6 +392,7 @@
 		55AAA9FC2DBED9740018952F /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
 		55AAA9FE2DBEDAD60018952F /* LoginEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntry.swift; sourceTree = "<group>"; };
 		55AAAA002DBEDDA40018952F /* JSONEncoder+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONEncoder+ext.swift"; sourceTree = "<group>"; };
+		55AAAA0E2DBF98BE0018952F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -949,6 +950,7 @@
 				555304752D9DDE4700B7A27D /* LaunchScreen.storyboard */,
 				55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */,
 				55631ADC2D95FB3900FD6856 /* Info.plist */,
+				55AAAA0E2DBF98BE0018952F /* Config.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2198,6 +2200,7 @@
 /* Begin XCBuildConfiguration section */
 		55631AF82D95FB3900FD6856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55AAAA0E2DBF98BE0018952F /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
