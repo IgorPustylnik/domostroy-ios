@@ -15,12 +15,4 @@ public struct PriceEntry: Codable {
 
 extension PriceEntry: RawMappable {
     public typealias Raw = Json
-
-    public func toRaw() throws -> Raw {
-        try JSONEncoder().encodeJson(self)
-    }
-
-    public static func from(raw: Raw) throws -> Self {
-        try JSONDecoder().decodeJson(raw: raw)
-    }
 }
