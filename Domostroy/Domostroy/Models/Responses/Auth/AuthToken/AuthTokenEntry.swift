@@ -8,10 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct AuthTokenEntry: Codable {
+public struct AuthTokenEntry {
     public let token: String
+    public let expiresAt: Date
 }
 
-extension AuthTokenEntry: RawMappable {
+extension AuthTokenEntry: Codable, RawMappable {
     public typealias Raw = Json
 }

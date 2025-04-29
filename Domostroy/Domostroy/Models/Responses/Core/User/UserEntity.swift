@@ -13,9 +13,12 @@ public struct UserEntity {
     public let firstName: String
     public let lastName: String
     public let phoneNumber: String?
+    public let offersAmount: Int?
+    public let registrationDate: Date?
+    public let isBanned: Bool
 }
 
-extension UserEntity: DTOConvertible {
+extension UserEntity: DTODecodable {
     public typealias DTO = UserEntry
 
     public static func from(dto model: DTO) throws -> Self {
@@ -23,16 +26,10 @@ extension UserEntity: DTOConvertible {
             id: model.id,
             firstName: model.firstName,
             lastName: model.lastName,
-            phoneNumber: model.phoneNumber
-        )
-    }
-
-    public func toDTO() throws -> DTO {
-        .init(
-            id: id,
-            firstName: firstName,
-            lastName: lastName,
-            phoneNumber: phoneNumber
+            phoneNumber: model.phoneNumber,
+            offersAmount: model.offersAmount,
+            registrationDate: model.registrationDate,
+            isBanned: model.isBanned
         )
     }
 }

@@ -10,16 +10,17 @@ import NodeKit
 
 public struct AuthTokenEntity {
     public let token: String
+    public let expiresAt: Date
 }
 
 extension AuthTokenEntity: DTOConvertible {
     public typealias DTO = AuthTokenEntry
 
-    public func toDTO() throws -> DTO {
-        .init(token: token)
+    public static func from(dto model: DTO) throws -> Self {
+        .init(token: model.token, expiresAt: model.expiresAt)
     }
 
-    public static func from(dto model: DTO) throws -> Self {
-        .init(token: model.token)
+    public func toDTO() throws -> DTO {
+        .init(token: token, expiresAt: expiresAt)
     }
 }

@@ -8,11 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct CategoryEntry: Codable {
+public struct CategoryEntry {
     public let id: Int
     public let name: String
 }
 
-extension CategoryEntry: RawMappable {
+extension CategoryEntry: Decodable, RawDecodable {
     public typealias Raw = Json
 }

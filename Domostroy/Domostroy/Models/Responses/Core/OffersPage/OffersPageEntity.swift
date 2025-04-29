@@ -15,15 +15,9 @@ public struct OffersPageEntity {
 
 // MARK: - DTOConvertible
 
-extension OffersPageEntity: DTOConvertible {
+extension OffersPageEntity: DTODecodable {
     public typealias DTO = OffersPageEntry
 
-    public func toDTO() throws -> DTO {
-        return try .init(
-            pagination: pagination.toDTO(),
-            data: data.map { try $0.toDTO() }
-        )
-    }
     public static func from(dto model: DTO) throws -> Self {
         return try .init(
             pagination: .from(dto: model.pagination),

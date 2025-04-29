@@ -8,11 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct LoginEntry: Codable {
+public struct LoginEntry {
     public let email: String
     public let password: String
 }
 
-extension LoginEntry: RawMappable {
+extension LoginEntry: Encodable, RawEncodable {
     public typealias Raw = Json
 }

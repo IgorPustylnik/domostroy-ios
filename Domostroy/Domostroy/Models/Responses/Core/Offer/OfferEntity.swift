@@ -16,15 +16,20 @@ public struct OfferEntity {
     public let price: PriceEntity
     public let createdAt: Date
     public let userId: Int
-    public let cityId: Int
+    public let city: CityEntity
     public let calendarId: Int
     public let isFavorite: Bool
     public let photos: [URL]
 }
 
+public struct PriceEntity: Codable {
+    public let value: Double
+    public let currency: Currency
+}
+
 // MARK: - DTOConvertible
 
-extension OfferEntity: DTOConvertible {
+extension OfferEntity: DTODecodable {
     public typealias DTO = OfferEntry
 
     public static func from(dto model: DTO) throws -> Self {
@@ -33,29 +38,13 @@ extension OfferEntity: DTOConvertible {
             title: model.title,
             description: model.description,
             category: .from(dto: model.category),
-            price: .from(dto: model.price),
+            price: .init(value: model.price, currency: .init(rawValue: model.currency)),
             createdAt: model.createdAt,
             userId: model.userId,
-            cityId: model.cityId,
+            city: .from(dto: model.city),
             calendarId: model.calendarId,
             isFavorite: model.isFavorite,
             photos: model.photos
-        )
-    }
-
-    public func toDTO() throws -> DTO {
-        try .init(
-            id: id,
-            title: title,
-            description: description,
-            category: category.toDTO(),
-            price: price.toDTO(),
-            createdAt: createdAt,
-            userId: userId,
-            cityId: cityId,
-            calendarId: calendarId,
-            isFavorite: isFavorite,
-            photos: photos
         )
     }
 }

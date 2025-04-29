@@ -8,11 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct OffersPageEntry: Codable {
+public struct OffersPageEntry {
     public let pagination: PaginationEntry
     public let data: [OfferEntry]
 }
 
-extension OffersPageEntry: RawMappable {
+extension OffersPageEntry: Decodable, RawDecodable {
     public typealias Raw = Json
 }

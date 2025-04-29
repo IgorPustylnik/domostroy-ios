@@ -16,7 +16,7 @@ public struct RegisterEntity {
     public let password: String
 }
 
-extension RegisterEntity: DTOConvertible {
+extension RegisterEntity: DTOEncodable {
     public typealias DTO = RegisterEntry
 
     public func toDTO() throws -> DTO {
@@ -26,16 +26,6 @@ extension RegisterEntity: DTOConvertible {
             phoneNumber: phoneNumber,
             email: email,
             password: password
-        )
-    }
-
-    public static func from(dto model: DTO) throws -> Self {
-        .init(
-            firstName: model.email,
-            lastName: model.lastName,
-            phoneNumber: model.phoneNumber,
-            email: model.email,
-            password: model.password
         )
     }
 }

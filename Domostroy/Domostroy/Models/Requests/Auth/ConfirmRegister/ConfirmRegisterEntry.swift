@@ -8,12 +8,12 @@
 import Foundation
 import NodeKit
 
-public struct ConfirmRegisterEntry: Codable {
+public struct ConfirmRegisterEntry {
     public let email: String
     public let password: String
-    public let confirmationCode: Int
+    public let confirmationCode: String
 }
 
-extension ConfirmRegisterEntry: RawMappable {
+extension ConfirmRegisterEntry: Encodable, RawEncodable {
     public typealias Raw = Json
 }

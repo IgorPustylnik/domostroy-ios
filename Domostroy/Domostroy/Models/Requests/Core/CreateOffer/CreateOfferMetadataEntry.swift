@@ -1,0 +1,37 @@
+//
+//  CreateOfferMetadataEntry.swift
+//  Domostroy
+//
+//  Created by Игорь Пустыльник on 29.04.2025.
+//
+
+import Foundation
+import NodeKit
+
+public struct CreateOfferMetadataEntry: Codable {
+    public let title: String
+    public let description: String
+    public let categoryId: Int
+    public let price: Double
+    public let currency: String
+    public let cityId: Int
+    public let rentDates: [Date]
+}
+
+extension CreateOfferMetadataEntry: RawMappable {
+    public typealias Raw = Json
+
+    public func toRaw() throws -> Json {
+        let encoder = JSONEncoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        encoder.dateEncodingStrategy = .formatted(formatter)
+
+        let data = try encoder.encode(self)
+        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        guard let dict = jsonObject as? [String: Any] else {
+            throw RawMappableCodableError.cantMapObjectToRaw
+        }
+        return dict
+    }
+}

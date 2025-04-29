@@ -13,15 +13,8 @@ public struct CategoryEntity {
     public let name: String
 }
 
-extension CategoryEntity: DTOConvertible {
+extension CategoryEntity: DTODecodable {
     public typealias DTO = CategoryEntry
-
-    public func toDTO() throws -> DTO {
-        .init(
-            id: id,
-            name: name
-        )
-    }
 
     public static func from(dto model: DTO) throws -> Self {
         .init(

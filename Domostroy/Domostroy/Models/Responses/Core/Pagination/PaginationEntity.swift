@@ -9,27 +9,17 @@ import Foundation
 import NodeKit
 
 public struct PaginationEntity {
-    public let totalCount: Int
+    public let totalElements: Int
     public let totalPages: Int
-    public let perPage: Int
 }
 
-extension PaginationEntity: DTOConvertible {
+extension PaginationEntity: DTODecodable {
     public typealias DTO = PaginationEntry
 
     public static func from(dto model: DTO) throws -> Self {
         .init(
-            totalCount: model.totalCount,
-            totalPages: model.totalPages,
-            perPage: model.perPage
-        )
-    }
-
-    public func toDTO() throws -> DTO {
-        .init(
-            totalCount: totalCount,
-            totalPages: totalPages,
-            perPage: perPage
+            totalElements: model.totalElements,
+            totalPages: model.totalPages
         )
     }
 }

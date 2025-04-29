@@ -8,12 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct PaginationEntry: Codable {
-    public let totalCount: Int
+public struct PaginationEntry {
+    public let totalElements: Int
     public let totalPages: Int
-    public let perPage: Int
 }
 
-extension PaginationEntry: RawMappable {
+extension PaginationEntry: Decodable, RawDecodable {
     public typealias Raw = Json
 }

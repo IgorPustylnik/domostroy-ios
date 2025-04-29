@@ -13,15 +13,8 @@ public struct CityEntity {
     public let name: String
 }
 
-extension CityEntity: DTOConvertible {
+extension CityEntity: DTODecodable {
     public typealias DTO = CityEntry
-
-    public func toDTO() throws -> DTO {
-        .init(
-            id: id,
-            name: name
-        )
-    }
 
     public static func from(dto model: DTO) throws -> Self {
         .init(

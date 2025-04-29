@@ -13,20 +13,13 @@ public struct LoginEntity {
     public let password: String
 }
 
-extension LoginEntity: DTOConvertible {
+extension LoginEntity: DTOEncodable {
     public typealias DTO = LoginEntry
 
     public func toDTO() throws -> DTO {
         .init(
             email: email,
             password: password
-        )
-    }
-
-    public static func from(dto model: DTO) throws -> Self {
-        .init(
-            email: model.email,
-            password: model.password
         )
     }
 }

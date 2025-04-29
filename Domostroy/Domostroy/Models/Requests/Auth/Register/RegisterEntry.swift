@@ -8,7 +8,7 @@
 import Foundation
 import NodeKit
 
-public struct RegisterEntry: Codable {
+public struct RegisterEntry {
     public let firstName: String
     public let lastName: String
     public let phoneNumber: String
@@ -16,6 +16,6 @@ public struct RegisterEntry: Codable {
     public let password: String
 }
 
-extension RegisterEntry: RawMappable {
+extension RegisterEntry: Encodable, RawEncodable {
     public typealias Raw = Json
 }

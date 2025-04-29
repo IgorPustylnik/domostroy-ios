@@ -8,11 +8,11 @@
 import Foundation
 import NodeKit
 
-public struct CityEntry: Codable {
+public struct CityEntry {
     public let id: Int
     public let name: String
 }
 
-extension CityEntry: RawMappable {
+extension CityEntry: Decodable, RawDecodable {
     public typealias Raw = Json
 }
