@@ -13,11 +13,11 @@ private enum LaunchInstructor {
     case auth
     case offers
 
-    static func configure(userState: UserState) -> LaunchInstructor {
-        switch userState {
-        case .authorized:
+    static func configure(isAuthorized: Bool) -> LaunchInstructor {
+        switch isAuthorized {
+        case true:
             return .offers
-        case .unauthorized:
+        case false:
             return .auth
         }
     }
@@ -36,9 +36,11 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
     private var onTapCenterControl: EmptyClosure?
 
     private var instructor: LaunchInstructor {
-        // TODO: Get from UserDefaults
-        let state = UserState.authorized
-        return .configure(userState: state)
+        let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+        if let token = secureStorage?.loadToken() {
+            return .configure(isAuthorized: true)
+        }
+        return .configure(isAuthorized: false)
     }
 
     // MARK: - Initialization

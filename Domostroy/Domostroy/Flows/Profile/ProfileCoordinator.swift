@@ -21,11 +21,11 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
     private enum LaunchInstructor {
         case profile, auth
 
-        static func configure(authState: AuthState) -> LaunchInstructor {
-            switch authState {
-            case .authorized:
+        static func configure(isAuthorized: Bool) -> LaunchInstructor {
+            switch isAuthorized {
+            case true:
                 return .profile
-            case .unauthorized:
+            case false:
                 return .auth
             }
         }
@@ -42,9 +42,11 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
     // MARK: - Private Properties
 
     private var instructor: LaunchInstructor {
-        // TODO: Get from UserDefaults
-        let state = AuthState.unauthorized
-        return .configure(authState: state)
+        let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+        if let token = secureStorage?.loadToken() {
+            return .configure(isAuthorized: true)
+        }
+        return .configure(isAuthorized: false)
     }
 
     override func start() {
