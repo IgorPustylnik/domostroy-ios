@@ -9,6 +9,6 @@
 protocol RegisterViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
-    func register(registerDTO: RegisterDTO)
+    func register(registerEntity: RegisterEntity)
     func dismiss()
 }

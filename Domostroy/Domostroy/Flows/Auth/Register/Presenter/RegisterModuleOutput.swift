@@ -7,6 +7,6 @@
 //
 
 protocol RegisterModuleOutput: AnyObject {
-    var onReceiveCode: ((RegisterDTO) -> Void)? { get set }
+    var onReceiveCode: ((RegisterEntity) -> Void)? { get set }
     var onDismiss: EmptyClosure? { get set }
 }

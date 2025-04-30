@@ -10,7 +10,7 @@ final class RegisterPresenter: RegisterModuleOutput {
 
     // MARK: - RegisterModuleOutput
 
-    var onReceiveCode: ((RegisterDTO) -> Void)?
+    var onReceiveCode: ((RegisterEntity) -> Void)?
     var onDismiss: EmptyClosure?
 
     // MARK: - Properties
@@ -32,8 +32,8 @@ extension RegisterPresenter: RegisterViewOutput {
         view?.setupInitialState()
     }
 
-    func register(registerDTO: RegisterDTO) {
-        onReceiveCode?(registerDTO)
+    func register(registerEntity: RegisterEntity) {
+        onReceiveCode?(registerEntity)
     }
 
     func dismiss() {

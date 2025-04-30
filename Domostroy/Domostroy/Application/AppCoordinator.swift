@@ -7,25 +7,15 @@
 
 import Foundation
 
-enum OnboardingState {
-    case notPassed
-    case passed
-}
-
-enum UserState {
-    case authorized
-    case unauthorized
-}
-
 private enum LaunchInstructor {
     case onboarding
     case main
 
-    static func configure(onboardingState: OnboardingState) -> LaunchInstructor {
-        switch onboardingState {
-        case .notPassed:
+    static func configure(passedOnboarding: Bool) -> LaunchInstructor {
+        switch passedOnboarding {
+        case false:
             return .onboarding
-        case .passed:
+        case true:
             return .main
         }
     }
@@ -36,9 +26,12 @@ final class AppCoordinator: BaseCoordinator {
     // MARK: - Private Properties
 
     private var instructor: LaunchInstructor {
-        // TODO: Get from UserDefaults
-        let state = OnboardingState.passed
-        return .configure(onboardingState: state)
+        let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
+        guard let passed = basicStorage?.get(for: .passedOnboarding) else {
+            // TODO: Return false
+            return .configure(passedOnboarding: true)
+        }
+        return .configure(passedOnboarding: passed)
     }
 
     // MARK: - Coordinator

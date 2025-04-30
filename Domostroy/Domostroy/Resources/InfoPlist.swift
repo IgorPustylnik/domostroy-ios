@@ -8,6 +8,5 @@
 import Foundation
 
 enum InfoPlist {
-    // TODO: Add to Info.plist
     static var serverHost = Bundle.main.infoDictionary?["SERVER_HOST"] as? String
 }

@@ -14,12 +14,12 @@ final class CodeConfirmationPresenter: CodeConfirmationModuleOutput {
 
     weak var view: CodeConfirmationViewInput?
 
-    private var registerDTO: RegisterDTO
+    private var registerEntity: RegisterEntity
 
     // MARK: - Init
 
-    init(registerDTO: RegisterDTO) {
-        self.registerDTO = registerDTO
+    init(registerEntity: RegisterEntity) {
+        self.registerEntity = registerEntity
     }
 }
 
@@ -34,7 +34,7 @@ extension CodeConfirmationPresenter: CodeConfirmationModuleInput {
 extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
 
     func viewLoaded() {
-        view?.setupInitialState(length: 6, email: registerDTO.email)
+        view?.setupInitialState(length: 6, email: registerEntity.email)
     }
 
 }

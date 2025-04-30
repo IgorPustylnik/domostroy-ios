@@ -55,8 +55,8 @@ private extension AuthCoordinator {
 
     func showRegister() {
         let (view, output) = RegisterModuleConfigurator().configure()
-        output.onReceiveCode = { [weak self] registerDTO in
-            self?.showCodeConfirmation(registerDTO: registerDTO)
+        output.onReceiveCode = { [weak self] registerEntity in
+            self?.showCodeConfirmation(registerEntity: registerEntity)
         }
         output.onDismiss = { [weak view] in
             view?.dismiss(animated: true)
@@ -66,8 +66,8 @@ private extension AuthCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showCodeConfirmation(registerDTO: RegisterDTO) {
-        let (view, output) = CodeConfirmationModuleConfigurator().configure(registerDTO: registerDTO)
+    func showCodeConfirmation(registerEntity: RegisterEntity) {
+        let (view, output) = CodeConfirmationModuleConfigurator().configure(registerEntity: registerEntity)
         router.push(view, animated: true)
     }
 
