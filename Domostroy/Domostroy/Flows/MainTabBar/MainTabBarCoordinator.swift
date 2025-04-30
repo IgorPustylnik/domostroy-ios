@@ -16,6 +16,12 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
     private let router: Router
 
+    private lazy var tokenExpirationHandler = {
+        $0.onExpire = { [weak self] in self?.start()}
+        return $0
+    }(TokenExpirationHandler())
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+
     private var onTapCenterControl: EmptyClosure?
 
     // MARK: - Initialization
@@ -25,10 +31,12 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
     }
 
     override func start() {
+        setupTokenExpirationHandler()
         showTabBar()
     }
 
     override func start(with deepLinkOption: DeepLinkOption?) {
+        setupTokenExpirationHandler()
         if let deepLinkOption {
             switch deepLinkOption {
             case .profile:
@@ -118,6 +126,13 @@ private extension MainTabBarCoordinator {
         }
         addDependency(coordinator)
         coordinator.start()
+    }
+
+    func setupTokenExpirationHandler() {
+        tokenExpirationHandler.cancel()
+        if let token = secureStorage?.loadToken() {
+            tokenExpirationHandler.scheduleExpiration(for: token)
+        }
     }
 
 }
