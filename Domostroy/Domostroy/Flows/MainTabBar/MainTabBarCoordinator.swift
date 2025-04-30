@@ -28,6 +28,15 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
         showTabBar()
     }
 
+    override func start(with deepLinkOption: DeepLinkOption?) {
+        if let deepLinkOption {
+            switch deepLinkOption {
+            case .profile:
+                showTabBar(initialTab: .profile)
+            }
+        }
+    }
+
 }
 
 // MARK: - Private methods
@@ -103,6 +112,10 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = ProfileCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start(with: .profile)
+        }
         addDependency(coordinator)
         coordinator.start()
     }

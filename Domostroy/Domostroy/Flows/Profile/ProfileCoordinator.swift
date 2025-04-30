@@ -16,6 +16,8 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 
     // MARK: - ProfileCoordinatorOutput
 
+    var onChangeAuthState: EmptyClosure?
+
     // MARK: - Private Properties
 
     private enum LaunchInstructor {
@@ -43,7 +45,7 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 
     private var instructor: LaunchInstructor {
         let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
-        if let token = secureStorage?.loadToken() {
+        if let _ = secureStorage?.loadToken() {
             return .configure(isAuthorized: true)
         }
         return .configure(isAuthorized: false)
@@ -72,7 +74,7 @@ private extension ProfileCoordinator {
 
         }
         output.onLogout = { [weak self] in
-
+            self?.onChangeAuthState?()
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
@@ -89,6 +91,9 @@ private extension ProfileCoordinator {
         let coordinator = AuthCoordinator(router: router)
         coordinator.onComplete = { [weak self, weak coordinator] in
             self?.removeDependency(coordinator)
+        }
+        coordinator.onSuccessfulAuth = { [weak self] in
+            self?.onChangeAuthState?()
         }
         addDependency(coordinator)
         coordinator.start()
