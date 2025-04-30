@@ -79,7 +79,7 @@ final class RegisterView: UIView {
             mode: .phoneNumber
         )
         $0.setNextResponder(emailTextField.responder)
-        $0.validator = OptionalValidator(PhoneValidator(normalizer: RussianPhoneNumberNormalizer()))
+        $0.validator = RequiredValidator(PhoneValidator(normalizer: RussianPhoneNumberNormalizer()))
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.phoneNumberTextField)
         }

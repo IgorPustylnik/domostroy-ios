@@ -43,7 +43,7 @@
 "Auth.Register.Button.Register" = "Register";
 "Auth.Register.Placeholder.FirstName" = "First name";
 "Auth.Register.Placeholder.LastName" = "Last name (optional)";
-"Auth.Register.Placeholder.PhoneNumber" = "Phone number (optional)";
+"Auth.Register.Placeholder.PhoneNumber" = "Phone number";
 "Auth.Register.Placeholder.Email" = "Email";
 "Auth.Register.Placeholder.Password" = "Password";
 "Auth.Register.Placeholder.RepeatPassword" = "Repeat password";
