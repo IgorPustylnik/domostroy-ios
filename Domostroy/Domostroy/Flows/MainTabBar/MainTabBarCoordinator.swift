@@ -61,7 +61,7 @@ private extension MainTabBarCoordinator {
             self?.onTapCenterControl?()
         }
 
-        router.setRootModule(view)
+        router.setRootModule(view, animated: true)
         input.selectTab(initialTab)
     }
 

@@ -19,6 +19,7 @@ protocol Router {
 
     func setNavigationControllerRootModule(_ module: Presentable?, animated: Bool, hideBar: Bool)
     func setRootModule(_ module: Presentable?)
+    func setRootModule(_ module: Presentable?, animated: Bool)
 
     func setTab(_ index: Int)
 }
