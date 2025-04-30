@@ -9,4 +9,5 @@
 protocol CodeConfirmationViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func confirmRegister(code: String)
 }

@@ -7,4 +7,5 @@
 //
 
 protocol CodeConfirmationModuleOutput: AnyObject {
+    var onCompleteRegistration: ((LoginEntity) -> Void)? { get set }
 }
