@@ -24,7 +24,7 @@ final class UserProfileViewController: BaseViewController {
 
     // MARK: - UI Elements
 
-    private var activityIndicator = UIActivityIndicatorView(style: .medium)
+    private var activityIndicator = DLoadingIndicator()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var adapter: BaseCollectionManager?
 
@@ -177,10 +177,8 @@ extension UserProfileViewController: UserProfileViewInput {
     func setLoading(_ isLoading: Bool) {
         if isLoading {
             activityIndicator.isHidden = false
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
         }
     }
 

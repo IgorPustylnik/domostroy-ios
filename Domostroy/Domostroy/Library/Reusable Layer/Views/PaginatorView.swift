@@ -13,7 +13,7 @@ final class PaginatorView: UIView {
 
     private var retryAction: (() -> Void)?
 
-    private lazy var indicator = UIActivityIndicatorView(style: .medium)
+    private lazy var indicator = DLoadingIndicator()
 
     private lazy var errorLabel = {
         $0.textAlignment = .center
@@ -87,7 +87,7 @@ extension PaginatorView: ProgressDisplayableItem {
     }
 
     func showProgress(_ isLoading: Bool) {
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+        indicator.isHidden = !isLoading
     }
 
     func showError(_ error: Error?) {

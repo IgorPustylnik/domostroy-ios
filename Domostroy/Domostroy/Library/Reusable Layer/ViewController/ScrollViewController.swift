@@ -24,7 +24,7 @@ class ScrollViewController: BaseViewController {
 
     private(set) var scrollView: UIScrollView = TouchesCancellableScrollView()
 
-    private var activityIndicator = UIActivityIndicatorView(style: .medium)
+    private var activityIndicator = DLoadingIndicator()
 
     var contentView = UIView()
 
@@ -135,10 +135,8 @@ extension ScrollViewController: Loadable {
     func setLoading(_ isLoading: Bool) {
         if isLoading {
             activityIndicator.isHidden = false
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
 
         }
     }

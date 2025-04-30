@@ -81,6 +81,7 @@
 		552402202DC185BC00AD83F1 /* CreateOfferResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */; };
 		552402222DC185C800AD83F1 /* CreateOfferResponseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */; };
 		552402272DC2B4F100AD83F1 /* TokenExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */; };
+		5524022B2DC2CC2900AD83F1 /* DLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524022A2DC2CC2900AD83F1 /* DLoadingIndicator.swift */; };
 		554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0B512DA136AC00382FEE /* BaseViewController.swift */; };
 		554F7CBD2DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */; };
 		554F7CBE2DBA276D008A2BB3 /* UserProfileModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */; };
@@ -361,6 +362,7 @@
 		5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntity.swift; sourceTree = "<group>"; };
 		552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntry.swift; sourceTree = "<group>"; };
 		552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExpirationHandler.swift; sourceTree = "<group>"; };
+		5524022A2DC2CC2900AD83F1 /* DLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLoadingIndicator.swift; sourceTree = "<group>"; };
 		554C0B512DA136AC00382FEE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		554F7CB12DBA276D008A2BB3 /* UserProfileModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		554F7CB32DBA276D008A2BB3 /* UserProfileModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModuleInput.swift; sourceTree = "<group>"; };
@@ -910,6 +912,14 @@
 			path = TokenExpiration;
 			sourceTree = "<group>";
 		};
+		552402292DC2CC1200AD83F1 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				5524022A2DC2CC2900AD83F1 /* DLoadingIndicator.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		553EE9202DA1D7DC00304407 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1099,6 +1109,7 @@
 				55DD9F0F2DA6CBD3003F0CB3 /* Buttons */,
 				55DD9EF52DA413A8003F0CB3 /* Cells */,
 				55DD9F0E2DA6C1E3003F0CB3 /* Views */,
+				552402292DC2CC1200AD83F1 /* Loading */,
 				553EE9202DA1D7DC00304407 /* TextField */,
 				55D17A382DA00E4700425A6B /* NavigationBar */,
 				55D9E6C02DA324430040846C /* ViewController */,
@@ -2217,6 +2228,7 @@
 				28B289C35636871A5EE81184 /* MainTabBarModuleConfigurator.swift in Sources */,
 				0A472CFED61344B475DC8E12 /* MainTabBarPresenter.swift in Sources */,
 				287D11C6EF92A336269D74A4 /* MainTabBarModuleInput.swift in Sources */,
+				5524022B2DC2CC2900AD83F1 /* DLoadingIndicator.swift in Sources */,
 				8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */,
 				07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */,
 				EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */,
