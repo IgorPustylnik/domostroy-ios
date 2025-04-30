@@ -34,6 +34,10 @@ extension MainTabBarPresenter: MainTabBarModuleInput {
         self.isCenterControlEnabled = enabled
     }
 
+    func selectTab(_ tab: MainTab) {
+        view?.selectTab(tab: tab)
+    }
+
 }
 
 // MARK: - MainTabBarViewOutput

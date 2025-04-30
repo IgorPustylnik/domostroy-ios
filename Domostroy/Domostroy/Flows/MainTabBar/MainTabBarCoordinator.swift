@@ -34,7 +34,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
 private extension MainTabBarCoordinator {
 
-    func showTabBar() {
+    func showTabBar(initialTab: MainTab = .home) {
         let (view, output, input) = MainTabBarModuleConfigurator().configure()
 
         output.onHomeFlowSelect = { [weak self] isInitial in
@@ -53,7 +53,7 @@ private extension MainTabBarCoordinator {
         }
 
         router.setRootModule(view)
-        runHomeFlow(isInitial: true)
+        input.selectTab(initialTab)
     }
 
     func runHomeFlow(isInitial: Bool) {

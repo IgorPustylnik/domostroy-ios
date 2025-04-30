@@ -8,4 +8,5 @@
 
 protocol MainTabBarModuleInput: AnyObject {
     func setCenterControl(enabled: Bool)
+    func selectTab(_ tab: MainTab)
 }
