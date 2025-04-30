@@ -72,7 +72,7 @@ private extension AuthCoordinator {
 
     func showCodeConfirmation(registerEntity: RegisterEntity) {
         let (view, output) = CodeConfirmationModuleConfigurator().configure(registerEntity: registerEntity)
-        output.onCompleteRegistration = { [weak self] loginEntity in
+        output.onCompleteRegistration = { [weak self] in
             // TODO: Autologin
             self?.onSuccessfulAuth?()
         }

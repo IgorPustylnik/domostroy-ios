@@ -7,12 +7,13 @@
 //
 
 import Combine
+import Foundation
 
 final class CodeConfirmationPresenter: CodeConfirmationModuleOutput {
 
     // MARK: - CodeConfirmationModuleOutput
 
-    var onCompleteRegistration: ((LoginEntity) -> Void)?
+    var onCompleteRegistration: EmptyClosure?
 
     // MARK: - Properties
 
@@ -47,6 +48,7 @@ extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
     }
 
     func confirmRegister(code: String) {
+        let loginEntity = LoginEntity(email: registerEntity.email, password: registerEntity.password)
         authService?.postConfirmRegister(
             confirmRegisterEntity: .init(
                 email: registerEntity.email,
@@ -54,18 +56,28 @@ extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
                 confirmationCode: code
             )
         )
-        .sink { [weak self] result in
+        .flatMap { result -> AnyPublisher<Result<AuthTokenEntity, Error>, Never> in
             switch result {
             case .success:
-                guard let self else {
-                    return
-                }
-                self.onCompleteRegistration?(.init(email: registerEntity.email, password: registerEntity.password))
+                return self.authService?.postLogin(loginEntity: loginEntity)
+                ?? Just(.failure(NSError())).eraseToAnyPublisher()
+            case .failure(let error):
+                print(error)
+                return Just(.failure(error)).eraseToAnyPublisher()
+            }
+        }
+        .sink { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let token):
+                secureStorage?.saveToken(token)
+                onCompleteRegistration?()
             case .failure(let error):
                 print(error)
             }
         }
         .store(in: &cancellables)
     }
-
 }
