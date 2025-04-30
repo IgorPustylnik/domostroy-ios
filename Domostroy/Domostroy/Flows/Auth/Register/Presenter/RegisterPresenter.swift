@@ -46,10 +46,12 @@ extension RegisterPresenter: RegisterViewOutput {
             email: registerEntity.email,
             password: registerEntity.password
         )
+        view?.setActivity(isLoading: true)
         authService?.postRegister(
             registerEntity: normalizedRegisterEntity
         )
         .sink { [weak self] result in
+            self?.view?.setActivity(isLoading: false)
             switch result {
             case .success:
                 self?.onReceiveCode?(normalizedRegisterEntity)

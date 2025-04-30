@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Foundation
 
 final class LoginPresenter: LoginModuleOutput {
 
@@ -44,8 +45,10 @@ extension LoginPresenter: LoginViewOutput {
             RequiredValidator(EmailValidator()).validate(email).isValid else {
             return
         }
+        view?.setActivity(isLoading: true)
         authService?.postLogin(loginEntity: .init(email: email, password: password))
             .sink(receiveValue: { [weak self] result in
+                self?.view?.setActivity(isLoading: false)
                 switch result {
                 case .success(let token):
                     if !token.token.isEmpty, let saved = self?.secureStorage?.saveToken(token), saved {

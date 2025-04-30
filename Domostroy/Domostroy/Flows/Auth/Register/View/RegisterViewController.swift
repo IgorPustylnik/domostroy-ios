@@ -126,4 +126,8 @@ extension RegisterViewController: RegisterViewInput {
 
     }
 
+    func setActivity(isLoading: Bool) {
+        registerButton.setLoading(isLoading)
+    }
+
 }
