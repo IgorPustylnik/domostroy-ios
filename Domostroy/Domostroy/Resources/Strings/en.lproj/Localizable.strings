@@ -119,6 +119,7 @@
 "Offers.Create.Label.Category" = "Category";
 "Offers.Create.Label.Condition" = "Condition";
 "Offers.Create.Label.Pictures" = "Pictures";
+"Offers.Create.Label.City" = "City";
 "Offers.Create.Label.AvailableDates" = "Available dates";
 "Offers.Create.Label.Price" = "Price";
 "Offers.Create.Placeholder.Name" = "Name";
@@ -126,6 +127,7 @@
 "Offers.Create.Placeholder.Category" = "Select category";
 "Offers.Create.Placeholder.Condition" = "Select condition";
 "Offers.Create.Placeholder.Price" = "Price";
+"Offers.Create.Button.City.Placeholder" = "Select city";
 "Offers.Create.Button.AvailableDates.Placeholder" = "Select available dates";
 "Offers.Create.Button.AvailableDates.Selected" = "Available dates";
 "Offers.Create.Button.Publish" = "Publish";

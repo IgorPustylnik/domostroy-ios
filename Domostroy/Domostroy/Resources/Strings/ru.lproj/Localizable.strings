@@ -119,6 +119,7 @@
 "Offers.Create.Label.Category" = "Категория";
 "Offers.Create.Label.Condition" = "Состояние";
 "Offers.Create.Label.Pictures" = "Фотографии";
+"Offers.Create.Label.City" = "Город";
 "Offers.Create.Label.AvailableDates" = "Доступные даты аренды";
 "Offers.Create.Label.Price" = "Стоимость";
 "Offers.Create.Placeholder.Name" = "Название";
@@ -126,6 +127,7 @@
 "Offers.Create.Placeholder.Category" = "Укажите категорию";
 "Offers.Create.Placeholder.Condition" = "Укажите состояние";
 "Offers.Create.Placeholder.Price" = "Стомость";
+"Offers.Create.Button.City.Placeholder" = "Укажите город";
 "Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
 "Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
 "Offers.Create.Button.Publish" = "Опубликовать";

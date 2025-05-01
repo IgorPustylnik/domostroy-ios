@@ -10,4 +10,5 @@ import Foundation
 
 protocol CreateOfferModuleInput: AnyObject {
     func setSelectedDates(_ dates: Set<Date>)
+    func setCity(_ city: CityEntity?)
 }

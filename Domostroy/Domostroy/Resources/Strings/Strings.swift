@@ -216,12 +216,18 @@ internal enum L10n {
             /// Available dates
             internal static let selected = L10n.tr("Localizable", "Offers.Create.Button.AvailableDates.Selected", fallback: "Available dates")
           }
+          internal enum City {
+            /// Select city
+            internal static let placeholder = L10n.tr("Localizable", "Offers.Create.Button.City.Placeholder", fallback: "Select city")
+          }
         }
         internal enum Label {
           /// Available dates
           internal static let availableDates = L10n.tr("Localizable", "Offers.Create.Label.AvailableDates", fallback: "Available dates")
           /// Category
           internal static let category = L10n.tr("Localizable", "Offers.Create.Label.Category", fallback: "Category")
+          /// City
+          internal static let city = L10n.tr("Localizable", "Offers.Create.Label.City", fallback: "City")
           /// Condition
           internal static let condition = L10n.tr("Localizable", "Offers.Create.Label.Condition", fallback: "Condition")
           /// Description

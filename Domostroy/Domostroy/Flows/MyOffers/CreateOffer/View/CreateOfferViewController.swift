@@ -32,22 +32,17 @@ final class CreateOfferViewController: ScrollViewController {
             }
             self.scrollToView(view, offsetY: 40)
         }
+        $0.onShowCities = { [weak self] in
+            self?.output?.showCities()
+        }
         $0.onShowCalendar = { [weak self] in
             self?.output?.showCalendar()
         }
         $0.onPublish = { [weak self] in
-            guard let self else {
-                return
-            }
-            self.output?.create(
-                details: .init(
-                    title: self.createOfferView.title,
-                    description: self.createOfferView.itemDescription,
-                    category: self.createOfferView.category,
-                    condition: self.createOfferView.condition,
-                    price: self.createOfferView.price
-                )
-            )
+            self?.output?.create()
+        }
+        $0.onPickCategory = { [weak self] index in
+            self?.output?.setSelectedCategory(index: index)
         }
         return $0
     }(CreateOfferView())
@@ -142,12 +137,6 @@ extension CreateOfferViewController: CreateOfferViewInput {
         createOfferView.categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
     }
 
-    func setConditions(_ items: [String], placeholder: String, initialIndex: Int) {
-        var conditions = [placeholder]
-        conditions.append(contentsOf: items)
-        createOfferView.conditionPicker.setItems(conditions, selectedIndex: initialIndex + 1)
-    }
-
     func updateImagesAmount(_ amount: Int) {
         picturesCollectionViewHeightConstraint?.update(
             offset: calculatePicturesCollectionViewHeight(
@@ -158,6 +147,10 @@ extension CreateOfferViewController: CreateOfferViewInput {
 
     func setCalendarPlaceholder(active: Bool) {
         createOfferView.setCalendarPlaceholder(active: active)
+    }
+
+    func setCity(title: String) {
+        createOfferView.setCityButton(title: title)
     }
 
 }

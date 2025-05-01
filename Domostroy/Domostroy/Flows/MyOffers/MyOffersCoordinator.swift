@@ -108,12 +108,31 @@ private extension MyOffersCoordinator {
         output.onShowCalendar = { [weak self] config in
             self?.showLessorCalendar(config: config, createOfferInput: input)
         }
+        output.onShowCities = { [weak self, weak input] city in
+            self?.showSelectCity(initialCity: city, createOfferInput: input)
+        }
         output.onClose = { [weak self] in
             self?.router.dismissModule()
         }
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.modalPresentationStyle = .fullScreen
         router.present(navigationController)
+    }
+
+    func showSelectCity(initialCity: CityEntity?, createOfferInput: CreateOfferModuleInput?) {
+        let (view, output, input) = SelectCityModuleConfigurator().configure()
+        input.setInitial(city: initialCity)
+        input.setAllowAllCities(false)
+        output.onApply = { [weak self, weak createOfferInput] city in
+            createOfferInput?.setCity(city)
+            self?.router.dismissModule()
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
     }
 
     func showLessorCalendar(config: LessorCalendarConfig, createOfferInput: CreateOfferModuleInput) {
