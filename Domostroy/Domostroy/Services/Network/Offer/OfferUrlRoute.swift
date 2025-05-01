@@ -13,6 +13,7 @@ enum OfferUrlRoute {
     case search
     case my
     case favorite
+    case base
 }
 
 extension OfferUrlRoute: URLRouteProvider {
@@ -30,6 +31,8 @@ extension OfferUrlRoute: URLRouteProvider {
             return try base + "/myOffers"
         case .favorite:
             return try base + "/favorite"
+        case .base:
+            return try base + ""
         }
     }
 }

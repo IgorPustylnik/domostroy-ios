@@ -66,9 +66,9 @@ public final class OfferNetworkService: OfferService {
 
     // MARK: - POST
 
-    public func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferEntity>, Never> {
+    public func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never> {
         return makeBuilder()
-            .route(.post, .search)
+            .route(.post, .base)
             .build()
             .nodeResultPublisher(for: createOfferEntity)
     }
@@ -91,7 +91,7 @@ private extension OfferNetworkService {
         var builder = URLChainBuilder<OfferUrlRoute>(serviceChainProvider: DURLServiceChainProvider())
 
         if let token {
-            builder = builder.set(metadata: ["Authorization": "Bearer \(token)"])
+            builder = builder.set(metadata: ["Authorization": "Bearer \(token.token)"])
         }
 
         return builder
