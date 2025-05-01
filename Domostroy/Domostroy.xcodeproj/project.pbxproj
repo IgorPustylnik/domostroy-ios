@@ -187,6 +187,8 @@
 		55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677A2DA7D33F00A3CA52 /* Loadable.swift */; };
 		55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677C2DA80E2500A3CA52 /* Double+ext.swift */; };
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
+		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
+		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
@@ -469,6 +471,7 @@
 		55ED677A2DA7D33F00A3CA52 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		55ED677C2DA80E2500A3CA52 /* Double+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ext.swift"; sourceTree = "<group>"; };
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
+		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -583,6 +586,7 @@
 			files = (
 				55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */,
 				550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */,
+				55F88C9A2DC35D84003EA26E /* Drops in Frameworks */,
 				55AAAA062DBEE4440018952F /* NodeKit in Frameworks */,
 				551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */,
 				55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */,
@@ -1113,6 +1117,7 @@
 				553EE9202DA1D7DC00304407 /* TextField */,
 				55D17A382DA00E4700425A6B /* NavigationBar */,
 				55D9E6C02DA324430040846C /* ViewController */,
+				55F88C9C2DC3601E003EA26E /* Drops */,
 			);
 			path = "Reusable Layer";
 			sourceTree = "<group>";
@@ -1612,6 +1617,14 @@
 			path = CollectionReusableView;
 			sourceTree = "<group>";
 		};
+		55F88C9C2DC3601E003EA26E /* Drops */ = {
+			isa = PBXGroup;
+			children = (
+				55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */,
+			);
+			path = Drops;
+			sourceTree = "<group>";
+		};
 		5B5E5F28DD0A0F0B0889F96A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2095,6 +2108,7 @@
 				551FC3B42DBBD29800A8FE6B /* HorizonCalendar */,
 				55AAAA052DBEE4440018952F /* NodeKit */,
 				55AAAA072DBEE4440018952F /* NodeKitMock */,
+				55F88C992DC35D84003EA26E /* Drops */,
 			);
 			productName = Domostroy;
 			productReference = 55631A852D95FB3900FD6856 /* Domostroy.app */;
@@ -2131,6 +2145,7 @@
 				55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */,
 				551FC3B32DBBD29800A8FE6B /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 				55AAAA042DBEE4440018952F /* XCRemoteSwiftPackageReference "NodeKit" */,
+				55F88C982DC35D84003EA26E /* XCRemoteSwiftPackageReference "Drops" */,
 			);
 			productRefGroup = 55631A862D95FB3900FD6856 /* Products */;
 			projectDirPath = "";
@@ -2461,6 +2476,7 @@
 				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,
 				05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */,
 				55AAA9DA2DBEC34B0018952F /* OffersPageEntry.swift in Sources */,
+				55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */,
 				44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */,
 				5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */,
 				511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */,
@@ -2755,6 +2771,14 @@
 				minimumVersion = 7.4.0;
 			};
 		};
+		55F88C982DC35D84003EA26E /* XCRemoteSwiftPackageReference "Drops" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/omaralbeik/Drops";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2787,6 +2811,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55DD9F092DA57097003F0CB3 /* XCRemoteSwiftPackageReference "ReactiveDataDisplayManager" */;
 			productName = ReactiveDataDisplayManager;
+		};
+		55F88C992DC35D84003EA26E /* Drops */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55F88C982DC35D84003EA26E /* XCRemoteSwiftPackageReference "Drops" */;
+			productName = Drops;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

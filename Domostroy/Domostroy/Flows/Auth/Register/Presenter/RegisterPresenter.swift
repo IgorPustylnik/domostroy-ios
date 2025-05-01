@@ -56,7 +56,7 @@ extension RegisterPresenter: RegisterViewOutput {
             case .success:
                 self?.onReceiveCode?(normalizedRegisterEntity)
             case .failure(let error):
-                print(error)
+                DropsPresenter.shared.showError(title: L10n.Localizable.Auth.Register.Error.failed, error: error)
             }
         }
         .store(in: &cancellables)

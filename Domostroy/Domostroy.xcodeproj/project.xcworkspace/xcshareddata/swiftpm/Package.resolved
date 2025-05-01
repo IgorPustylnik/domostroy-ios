@@ -1,6 +1,15 @@
 {
-  "originHash" : "01a916cb6955d059617912adacd91b3077c0956e66c0171136b644d6cdf23df2",
+  "originHash" : "c0e37c8a7182f748c1ad736b85d9d42997459213e7c8996433d7b3a47e9d107d",
   "pins" : [
+    {
+      "identity" : "drops",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/omaralbeik/Drops",
+      "state" : {
+        "revision" : "a183ee6f79f21c940092a19c2cba756555422371",
+        "version" : "1.7.0"
+      }
+    },
     {
       "identity" : "horizoncalendar",
       "kind" : "remoteSourceControl",
