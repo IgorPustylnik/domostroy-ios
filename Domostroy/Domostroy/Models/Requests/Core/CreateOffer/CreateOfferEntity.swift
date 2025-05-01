@@ -14,7 +14,6 @@ public struct CreateOfferEntity {
     public let description: String
     public let categoryId: Int
     public let price: PriceEntity
-    public let currency: String
     public let cityId: Int
     public let rentDates: [Date]
     public let photos: [UIImage]

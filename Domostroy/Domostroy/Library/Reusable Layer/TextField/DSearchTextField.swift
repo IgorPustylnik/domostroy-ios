@@ -61,14 +61,21 @@ final class DSearchTextField: UIView {
         }
     }
 
+    var containerColor: UIColor = Constants.backgroundColor {
+        didSet {
+            textFieldContainer.backgroundColor = containerColor
+        }
+    }
+
     private var containerWidthConstraint: Constraint?
 
     // MARK: - UI Elements
 
     private lazy var textFieldContainer = {
-        $0.backgroundColor = Constants.backgroundColor
+        $0.backgroundColor = containerColor
         $0.layer.borderColor = Constants.borderColor.cgColor
         $0.layer.borderWidth = Constants.fieldStrokeWidth
+        $0.layer.cornerRadius = cornerRadius
         $0.clipsToBounds = true
         return $0
     }(UIView())
@@ -159,8 +166,6 @@ final class DSearchTextField: UIView {
         textFieldContainer.addSubview(leftImageView)
         textFieldContainer.addSubview(textField)
         textFieldContainer.addSubview(clearButton)
-
-        textFieldContainer.layer.cornerRadius = cornerRadius
 
         textFieldContainer.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
