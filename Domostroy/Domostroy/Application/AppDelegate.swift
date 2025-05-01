@@ -33,8 +33,8 @@ private extension AppDelegate {
     func setupServices() {
         let basicStorage: BasicStorage = BasicUserDefaultsStorage()
         let secureStorage: SecureStorage = SecureKeychainStorage()
-        ServiceLocator.shared.register(service: BasicUserDefaultsStorage() as BasicStorage)
-        ServiceLocator.shared.register(service: SecureKeychainStorage() as SecureStorage)
+        ServiceLocator.shared.register(service: basicStorage as BasicStorage)
+        ServiceLocator.shared.register(service: secureStorage as SecureStorage)
         ServiceLocator.shared.register(service: AuthNetworkService() as AuthService)
         ServiceLocator.shared.register(service: OfferNetworkService(secureStorage: secureStorage) as OfferService)
         ServiceLocator.shared.register(service: UserNetworkService(secureStorage: secureStorage) as UserService)

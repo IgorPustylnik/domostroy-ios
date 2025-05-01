@@ -39,7 +39,6 @@ public final class OfferNetworkService: OfferService {
     ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
         return makeBuilder()
             .route(.get, .search)
-            .encode(as: .json)
             .build()
             .nodeResultPublisher()
     }
@@ -50,7 +49,6 @@ public final class OfferNetworkService: OfferService {
     ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
         return makeBuilder()
             .route(.get, .my)
-            .encode(as: .json)
             .build()
             .nodeResultPublisher()
     }
@@ -62,7 +60,6 @@ public final class OfferNetworkService: OfferService {
     ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
         return makeBuilder()
             .route(.get, .favorite)
-            .encode(as: .json)
             .build()
             .nodeResultPublisher()
     }

@@ -19,7 +19,7 @@ extension AuthUrlRoute: URLRouteProvider {
         guard let baseUrlString = InfoPlist.serverHost else {
             throw URLError(.badURL)
         }
-        let base = URL(string: baseUrlString + "/auth")
+        let base = URL(string: baseUrlString + "/auth/auth")
         switch self {
         case .login:
             return try base + "/sign-in"

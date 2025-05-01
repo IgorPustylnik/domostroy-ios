@@ -17,7 +17,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
     private let router: Router
 
     private lazy var tokenExpirationHandler = {
-        $0.onExpire = { [weak self] in self?.start()}
+        $0.onExpire = { [weak self] in self?.start() }
         return $0
     }(TokenExpirationHandler())
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
