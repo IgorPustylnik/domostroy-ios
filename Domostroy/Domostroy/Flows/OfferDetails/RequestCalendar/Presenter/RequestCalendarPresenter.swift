@@ -140,7 +140,7 @@ private extension RequestCalendarPresenter {
             }),
             info: {
                 if let cost = CalendarHelper.calculateCost(for: selectedDayRange, pricePerDay: pricePerDay) {
-                    return L10n.Localizable.RequestCalendar.totalCost("\(cost.value)\(cost.currency)")
+                    return L10n.Localizable.RequestCalendar.totalCost("\(cost.value.stringDroppingTrailingZero)\(cost.currency.description)")
                 } else {
                     return nil
                 }
