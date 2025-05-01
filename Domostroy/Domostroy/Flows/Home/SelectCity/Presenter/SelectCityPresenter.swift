@@ -28,7 +28,7 @@ final class SelectCityPresenter: SelectCityModuleOutput {
     ]
     private var initialCity: CityEntity?
     private var selectedCity: CityEntity?
-    private var allowAllCities = true
+    private var allowAllCities = false
 }
 
 // MARK: - SelectCityModuleInput

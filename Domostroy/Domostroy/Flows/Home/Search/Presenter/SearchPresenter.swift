@@ -41,7 +41,7 @@ final class SearchPresenter: SearchModuleOutput {
     // MARK: - SearchModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onOpenCity: ((City?) -> Void)?
+    var onOpenCity: ((CityEntity?) -> Void)?
     var onOpenSort: ((Sort) -> Void)?
     var onOpenFilters: ((Filters) -> Void)?
 
@@ -50,12 +50,14 @@ final class SearchPresenter: SearchModuleOutput {
     weak var view: SearchViewInput?
     private weak var paginatableInput: PaginatableInput?
 
+    private let basicStorage: BasicUserDefaultsStorage? = ServiceLocator.shared.resolve()
+
     private var query: String?
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
 
-    private var city: City?
+    private var city: CityEntity?
     private var sort: Sort = .default
     private var filters: Filters = .init(
         categoryFilter: .init(all: [])
@@ -73,9 +75,9 @@ extension SearchPresenter: SearchModuleInput {
         loadFirstPage()
     }
 
-    func setCity(_ city: City) {
+    func setCity(_ city: CityEntity?) {
         self.city = city
-        view?.setCity(city.name)
+        view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
         loadFirstPage()
     }
 
@@ -98,8 +100,8 @@ extension SearchPresenter: SearchModuleInput {
 extension SearchPresenter: SearchViewOutput {
 
     func viewLoaded() {
-        city = .init(id: 0, name: "Воронеж")
-        view?.setCity(city?.name)
+        city = try? .from(dto: basicStorage?.get(for: .defaultCity))
+        view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         view?.setHasFilters(false)
 
