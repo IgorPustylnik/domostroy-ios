@@ -62,7 +62,9 @@ extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
                 return self.authService?.postLogin(loginEntity: loginEntity)
                 ?? Just(.failure(NSError())).eraseToAnyPublisher()
             case .failure(let error):
-                print(error)
+                DropsPresenter.shared.showError(
+                    title: L10n.Localizable.Auth.CodeConfirmation.Error.failed, error: error
+                )
                 return Just(.failure(error)).eraseToAnyPublisher()
             }
         }
@@ -75,7 +77,9 @@ extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
                 secureStorage?.saveToken(token)
                 onCompleteRegistration?()
             case .failure(let error):
-                print(error)
+                DropsPresenter.shared.showError(
+                    title: L10n.Localizable.Auth.Login.Error.failed, error: error
+                )
             }
         }
         .store(in: &cancellables)

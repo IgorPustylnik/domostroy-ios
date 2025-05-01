@@ -55,7 +55,7 @@ extension LoginPresenter: LoginViewOutput {
                         self?.onLoggedIn?()
                     }
                 case .failure(let error):
-                    print(error)
+                    DropsPresenter.shared.showError(title: L10n.Localizable.Auth.Login.Error.failed, error: error)
                 }
             })
             .store(in: &cancellables)

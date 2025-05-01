@@ -31,6 +31,10 @@ internal enum L10n {
         }
         /// Enter confirmation code
         internal static let title = L10n.tr("Localizable", "Auth.CodeConfirmation.Title", fallback: "Enter confirmation code")
+        internal enum Error {
+          /// Failed to confirm registration
+          internal static let failed = L10n.tr("Localizable", "Auth.CodeConfirmation.Error.Failed", fallback: "Failed to confirm registration")
+        }
       }
       internal enum Login {
         /// Login
@@ -38,6 +42,10 @@ internal enum L10n {
         internal enum Button {
           /// Login
           internal static let login = L10n.tr("Localizable", "Auth.Login.Button.Login", fallback: "Login")
+        }
+        internal enum Error {
+          /// Failed to login
+          internal static let failed = L10n.tr("Localizable", "Auth.Login.Error.Failed", fallback: "Failed to login")
         }
         internal enum Placeholder {
           /// Email
@@ -52,6 +60,10 @@ internal enum L10n {
         internal enum Button {
           /// Register
           internal static let register = L10n.tr("Localizable", "Auth.Register.Button.Register", fallback: "Register")
+        }
+        internal enum Error {
+          /// Failed to register
+          internal static let failed = L10n.tr("Localizable", "Auth.Register.Error.Failed", fallback: "Failed to register")
         }
         internal enum Placeholder {
           /// Email
@@ -70,6 +82,12 @@ internal enum L10n {
       }
     }
     internal enum Common {
+      /// Error
+      internal static let error = L10n.tr("Localizable", "Common.Error", fallback: "Error")
+      /// Success
+      internal static let success = L10n.tr("Localizable", "Common.Success", fallback: "Success")
+      /// Warning
+      internal static let warning = L10n.tr("Localizable", "Common.Warning", fallback: "Warning")
       internal enum Button {
         /// Add photo
         internal static let addPhoto = L10n.tr("Localizable", "Common.Button.AddPhoto", fallback: "Add photo")
@@ -142,6 +160,18 @@ internal enum L10n {
           internal static let title = L10n.tr("Localizable", "Home.Section.Recommended.title", fallback: "Recommended")
         }
       }
+    }
+    internal enum HttpError {
+      /// Bad request
+      internal static let badRequest = L10n.tr("Localizable", "HttpError.BadRequest", fallback: "Bad request")
+      /// Forbidden
+      internal static let forbidden = L10n.tr("Localizable", "HttpError.forbidden", fallback: "Forbidden")
+      /// Internal server error
+      internal static let internalServerError = L10n.tr("Localizable", "HttpError.InternalServerError", fallback: "Internal server error")
+      /// Not found
+      internal static let notFound = L10n.tr("Localizable", "HttpError.NotFound", fallback: "Not found")
+      /// Unauthorized
+      internal static let unauthorized = L10n.tr("Localizable", "HttpError.Unauthorized", fallback: "Unauthorized")
     }
     internal enum LessorCalendar {
       /// Dates

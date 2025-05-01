@@ -29,6 +29,14 @@
 "ValidationError.Price.negative" = "Цена должна быть положительной";
 "ValidationError.Price.tooHigh" = "Цена должна быть меньше %@";
 
+// MARK: - Errors
+
+"HttpError.BadRequest" = "Некорректный запрос";
+"HttpError.Unauthorized" = "Неавторизован";
+"HttpError.forbidden" = "Доступ запрещён";
+"HttpError.NotFound" = "Не найдено";
+"HttpError.InternalServerError" = "Внутренняя ошибка сервера";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Войти";
@@ -38,6 +46,7 @@
 "Auth.Login.Button.Login" = "Войти";
 "Auth.Login.Placeholder.Email" = "Электронная почта";
 "Auth.Login.Placeholder.Password" = "Пароль";
+"Auth.Login.Error.Failed" = "Не удалось войти";
 
 "Auth.Register.Title" = "Регистрация";
 "Auth.Register.Button.Register" = "Зарегистрироваться";
@@ -47,9 +56,11 @@
 "Auth.Register.Placeholder.Email" = "Электронная почта";
 "Auth.Register.Placeholder.Password" = "Пароль";
 "Auth.Register.Placeholder.RepeatPassword" = "Повторите пароль";
+"Auth.Register.Error.Failed" = "Не удалось зарегистрироваться";
 
 "Auth.CodeConfirmation.SentToEmailMessage" = "Код был отправлен по адресу %@.";
 "Auth.CodeConfirmation.Title" = "Введите код подтверждения";
+"Auth.CodeConfirmation.Error.Failed" = "Не удалось подтвердить регистрацию";
 
 // MARK: - Common
 
@@ -58,6 +69,9 @@
 "Common.Button.Cancel" = "Отменить";
 "Common.Button.Retry" = "Повторить";
 "Common.Placeholder.Search" = "Поиск";
+"Common.Success" = "Успешно";
+"Common.Warning" = "Предупреждение";
+"Common.Error" = "Ошибка";
 
 // MARK: - Filter
 

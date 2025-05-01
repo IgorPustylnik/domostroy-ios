@@ -29,6 +29,14 @@
 "ValidationError.Price.negative" = "Price must be a positive value";
 "ValidationError.Price.tooHigh" = "Price must be less than %@";
 
+// MARK: - Errors
+
+"HttpError.BadRequest" = "Bad request";
+"HttpError.Unauthorized" = "Unauthorized";
+"HttpError.forbidden" = "Forbidden";
+"HttpError.NotFound" = "Not found";
+"HttpError.InternalServerError" = "Internal server error";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Login";
@@ -38,6 +46,7 @@
 "Auth.Login.Button.Login" = "Login";
 "Auth.Login.Placeholder.Email" = "Email";
 "Auth.Login.Placeholder.Password" = "Password";
+"Auth.Login.Error.Failed" = "Failed to login";
 
 "Auth.Register.Title" = "Register";
 "Auth.Register.Button.Register" = "Register";
@@ -47,9 +56,11 @@
 "Auth.Register.Placeholder.Email" = "Email";
 "Auth.Register.Placeholder.Password" = "Password";
 "Auth.Register.Placeholder.RepeatPassword" = "Repeat password";
+"Auth.Register.Error.Failed" = "Failed to register";
 
 "Auth.CodeConfirmation.SentToEmailMessage" = "We sent the code to %@.";
 "Auth.CodeConfirmation.Title" = "Enter confirmation code";
+"Auth.CodeConfirmation.Error.Failed" = "Failed to confirm registration";
 
 // MARK: - Common
 
@@ -58,6 +69,9 @@
 "Common.Button.Cancel" = "Cancel";
 "Common.Button.Retry" = "Retry";
 "Common.Placeholder.Search" = "Search";
+"Common.Success" = "Success";
+"Common.Warning" = "Warning";
+"Common.Error" = "Error";
 
 // MARK: - Filter
 
