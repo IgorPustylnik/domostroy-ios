@@ -13,6 +13,6 @@ public struct CityEntry {
     public let name: String
 }
 
-extension CityEntry: Decodable, RawDecodable {
+extension CityEntry: Codable, RawMappable {
     public typealias Raw = Json
 }

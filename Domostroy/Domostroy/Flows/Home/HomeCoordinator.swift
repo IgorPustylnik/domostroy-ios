@@ -59,7 +59,7 @@ private extension HomeCoordinator {
             self?.runOfferDetailsFlow(id)
         }
         output.onOpenCity = { [weak self, weak input] city in
-            self?.showCity(city: city, input: input)
+            self?.showCity(city: city, searchInput: input)
         }
         output.onOpenSort = { [weak self, weak input] sort in
             self?.showSort(sort: sort, searchInput: input)
@@ -70,8 +70,20 @@ private extension HomeCoordinator {
         router.push(view, animated: true)
     }
 
-    func showCity(city: City?, input: SearchModuleInput?) {
-
+    func showCity(city: CityEntity?, searchInput: SearchModuleInput?) {
+        let (view, output, input) = SelectCityModuleConfigurator().configure()
+        input.setInitial(city: city)
+        input.setAllowAllCities(true)
+        output.onApply = { [weak self, weak searchInput] city in
+            searchInput?.setCity(city)
+            self?.router.dismissModule()
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
     }
 
     func showSort(sort: Sort, searchInput: SearchModuleInput?) {

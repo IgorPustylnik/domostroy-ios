@@ -56,8 +56,8 @@ final class HomeViewController: BaseViewController {
 
     // MARK: - Private Properties
 
-    lazy var progressView = PaginatorView()
-    lazy var refreshControl = UIRefreshControl()
+    private(set) lazy var progressView = PaginatorView()
+    private(set) lazy var refreshControl = UIRefreshControl()
 
     var output: HomeViewOutput?
 

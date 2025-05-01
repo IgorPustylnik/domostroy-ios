@@ -27,7 +27,7 @@ final class DropsPresenter: InfoPresenter {
 
     // MARK: - Public methods
 
-    func showSuccess(title: String?, subtitle: String?, image: UIImage? = UIImage(systemName: "checkmark")) {
+    func showSuccess(title: String? = nil, subtitle: String? = nil, image: UIImage? = UIImage(systemName: "checkmark")) {
         let drop = Drop(
             title: title ?? L10n.Localizable.Common.success,
             titleNumberOfLines: 1,
@@ -57,7 +57,7 @@ final class DropsPresenter: InfoPresenter {
         Drops.show(drop)
     }
 
-    func showError(title: String?, subtitle: String?, image: UIImage? = UIImage(systemName: "xmark")) {
+    func showError(title: String? = nil, subtitle: String? = nil, image: UIImage? = UIImage(systemName: "xmark")) {
         let drop = Drop(
             title: title ?? L10n.Localizable.Common.error,
             titleNumberOfLines: 1,
@@ -70,7 +70,7 @@ final class DropsPresenter: InfoPresenter {
     }
 
     func showError(
-        title: String?,
+        title: String? = nil,
         error: Error,
         image: UIImage? = UIImage(systemName: "xmark")
     ) {

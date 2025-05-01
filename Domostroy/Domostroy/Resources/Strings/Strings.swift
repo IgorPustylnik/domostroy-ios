@@ -329,6 +329,16 @@ internal enum L10n {
         internal static let placeholder = L10n.tr("Localizable", "Search.TextField.Placeholder", fallback: "Search")
       }
     }
+    internal enum SelectCity {
+      /// All cities
+      internal static let allCities = L10n.tr("Localizable", "SelectCity.AllCities", fallback: "All cities")
+      /// City
+      internal static let title = L10n.tr("Localizable", "SelectCity.Title", fallback: "City")
+      internal enum Button {
+        /// Apply
+        internal static let apply = L10n.tr("Localizable", "SelectCity.Button.Apply", fallback: "Apply")
+      }
+    }
     internal enum Sort {
       /// Default
       internal static let `default` = L10n.tr("Localizable", "Sort.Default", fallback: "Default")

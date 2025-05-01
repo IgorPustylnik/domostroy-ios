@@ -154,6 +154,13 @@
 "UserProfile.RegistrationDate" = "На Домострое с %@";
 "UserProfile.Section.Offers.Empty" = "Нет объявлений";
 
+// MARK: - Select City
+
+"SelectCity.Title" = "Город";
+"SelectCity.AllCities" = "Все города";
+"SelectCity.Button.Apply" = "Применить";
+
+
 // MARK: - Create Request
 
 "CreateRequest.Title" = "Арендовать";

@@ -8,7 +8,7 @@
 import Foundation
 import NodeKit
 
-public struct CityEntity {
+public struct CityEntity: Equatable {
     public let id: Int
     public let name: String
 }
