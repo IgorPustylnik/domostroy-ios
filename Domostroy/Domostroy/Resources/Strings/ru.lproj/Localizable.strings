@@ -2,6 +2,7 @@
 
 "ValidationError.failed" = "Ошибка валидации";
 "ValidationError.required" = "Поле обязательно для заполнения";
+"ValidationError.SomeRequiredMissing" = "Не заполнены все обязательные поля";
 "ValidationError.invalid" = "Неверный формат";
 "ValidationError.Password.mismatch" = "Пароли не совпадают";
 "ValidationError.Username.short" = "Минимум 2 символа";
@@ -36,6 +37,7 @@
 "HttpError.forbidden" = "Доступ запрещён";
 "HttpError.NotFound" = "Не найдено";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
+"ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
 
 // MARK: - Auth
 
@@ -119,6 +121,7 @@
 "Offers.Create.Label.Category" = "Категория";
 "Offers.Create.Label.Condition" = "Состояние";
 "Offers.Create.Label.Pictures" = "Фотографии";
+"Offers.Create.Label.City" = "Город";
 "Offers.Create.Label.AvailableDates" = "Доступные даты аренды";
 "Offers.Create.Label.Price" = "Стоимость";
 "Offers.Create.Placeholder.Name" = "Название";
@@ -126,9 +129,11 @@
 "Offers.Create.Placeholder.Category" = "Укажите категорию";
 "Offers.Create.Placeholder.Condition" = "Укажите состояние";
 "Offers.Create.Placeholder.Price" = "Стомость";
+"Offers.Create.Button.City.Placeholder" = "Укажите город";
 "Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
 "Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
 "Offers.Create.Button.Publish" = "Опубликовать";
+"Offers.Create.Error.Failed" = "Не удалось создать";
 
 // MARK: - Profile
 
@@ -159,7 +164,6 @@
 "SelectCity.Title" = "Город";
 "SelectCity.AllCities" = "Все города";
 "SelectCity.Button.Apply" = "Применить";
-
 
 // MARK: - Create Request
 

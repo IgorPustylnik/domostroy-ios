@@ -11,7 +11,8 @@ import PhotosUI
 
 protocol CreateOfferModuleOutput: AnyObject {
     var onAddImages: ((PHPickerViewControllerDelegate, Int) -> Void)? { get set }
-    var onShowCities: ((Int) -> Void)? { get set }
+    var onShowCities: ((CityEntity?) -> Void)? { get set }
     var onShowCalendar: ((LessorCalendarConfig) -> Void)? { get set }
     var onClose: EmptyClosure? { get set }
+    var onSuccess: ((Int) -> Void)? { get set }
 }

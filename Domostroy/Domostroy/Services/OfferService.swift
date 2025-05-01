@@ -38,7 +38,7 @@ public protocol OfferService {
 
     // MARK: - POST
 
-    func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferEntity>, Never>
+    func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>
 
     // MARK: - DELETE
 

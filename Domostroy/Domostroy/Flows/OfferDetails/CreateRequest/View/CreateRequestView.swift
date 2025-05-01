@@ -101,7 +101,7 @@ final class CreateRequestView: UIView {
             self?.onCalendar?()
         }
         return $0
-    }(DButton(type: .calendar))
+    }(DButton(type: .modalPicker))
 
     private lazy var infoVStackView = {
         $0.axis = .vertical

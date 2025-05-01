@@ -9,14 +9,7 @@
 import ReactiveDataDisplayManager
 import UIKit
 import PhotosUI
-
-struct CreateOfferDetails {
-    let title: String
-    let description: String
-    let category: String
-    let condition: String
-    let price: Double
-}
+import Combine
 
 private struct ImageItem {
     let id = UUID()
@@ -28,18 +21,23 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     // MARK: - Constants
 
     private enum Constants {
-        static let maxPicturesAmount = 10
+        static let maxPicturesAmount = 5
     }
 
     // MARK: - CreateOfferModuleOutput
 
     var onAddImages: ((PHPickerViewControllerDelegate, Int) -> Void)?
+    var onShowCities: ((CityEntity?) -> Void)?
     var onShowCalendar: ((LessorCalendarConfig) -> Void)?
     var onClose: EmptyClosure?
+    var onSuccess: ((Int) -> Void)?
 
     // MARK: - Properties
 
     weak var view: CreateOfferViewInput?
+
+    private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: [AnyCancellable] = []
 
     var adapter: BaseCollectionManager?
 
@@ -52,9 +50,12 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
         }
     }
 
+    private var title: String?
+    private var offerDescription: String?
     private var categoryPickerModel: PickerModel<Category> = .init(all: [], selected: nil)
-    private var conditionPickerModel: PickerModel<Condition> = .init(all: Condition.allCases, selected: nil)
+    private var selectedCity: CityEntity?
     private var selectedDates: Set<Date> = Set()
+    private var price: PriceEntity?
 }
 
 // MARK: - CreateOfferModuleInput
@@ -63,6 +64,11 @@ extension CreateOfferPresenter: CreateOfferModuleInput {
     func setSelectedDates(_ dates: Set<Date>) {
         self.selectedDates = dates
         view?.setCalendarPlaceholder(active: selectedDates.isEmpty)
+    }
+
+    func setCity(_ city: CityEntity?) {
+        self.selectedCity = city
+        view?.setCity(title: selectedCity?.name ?? L10n.Localizable.Offers.Create.Button.City.placeholder)
     }
 }
 
@@ -75,8 +81,26 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         view?.updateImagesAmount(visibleItems)
         updateCategoriesView()
         loadCategories()
-        loadConditions()
         refillAdapter()
+    }
+
+    func titleChanged(_ text: String) {
+        self.title = text
+    }
+
+    func descriptionChanged(_ text: String) {
+        self.offerDescription = text
+    }
+
+    func setSelectedCategory(index: Int) {
+        guard index < categoryPickerModel.all.count else {
+            return
+        }
+        categoryPickerModel.selected = categoryPickerModel.all[index]
+    }
+
+    func showCities() {
+        onShowCities?(selectedCity)
     }
 
     func showCalendar() {
@@ -91,8 +115,64 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         )
         onShowCalendar?(config)
     }
-    func create(details: CreateOfferDetails) {
-        // TODO: Make request and use photos
+
+    func priceChanged(_ text: String) {
+        var priceValue = (try? Double(text, format: .number)) ?? 0
+        price = .init(value: priceValue, currency: .rub)
+    }
+
+    func create() {
+        guard let selectedCity else {
+            showCities()
+            return
+        }
+        guard !selectedDates.isEmpty else {
+            showCalendar()
+            return
+        }
+        guard !images.isEmpty else {
+            addImages()
+            return
+        }
+        guard let category = categoryPickerModel.selected,
+              let title,
+              let offerDescription,
+              let category = categoryPickerModel.selected,
+              let price else {
+            DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
+            return
+        }
+
+        view?.setActivity(isLoading: true)
+        offerService?.createOffer(
+            createOfferEntity: .init(
+                title: title,
+                description: offerDescription,
+                categoryId: category.id,
+                price: price,
+                cityId: selectedCity.id,
+                rentDates: selectedDates,
+                photos: images.map { $0.image }
+            )
+        )
+        .sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setActivity(isLoading: false)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success(let offerIdEntity):
+                    self?.onClose?()
+                    self?.onSuccess?(offerIdEntity.offerId)
+                case .failure(let error):
+                    DropsPresenter.shared.showError(
+                        title: L10n.Localizable.Offers.Create.Error.failed,
+                        error: error
+                    )
+                }
+            }
+        )
+        .store(in: &cancellables)
     }
 
     func close() {
@@ -117,16 +197,6 @@ private extension CreateOfferPresenter {
                 self?.updateCategoriesView()
             }
         }
-    }
-
-    func loadConditions() {
-        view?.setConditions(
-            conditionPickerModel.all.map { $0.description },
-            placeholder: L10n.Localizable.Offers.Create.Placeholder.condition,
-            initialIndex: conditionPickerModel.all.firstIndex {
-                $0 == conditionPickerModel.selected
-            } ?? -1
-        )
     }
 
     func fetchCategories() async {

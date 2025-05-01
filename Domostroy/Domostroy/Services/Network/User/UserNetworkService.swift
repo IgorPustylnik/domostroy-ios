@@ -46,7 +46,7 @@ private extension UserNetworkService {
         var builder = URLChainBuilder<UserUrlRoute>(serviceChainProvider: DURLServiceChainProvider())
 
         if let token {
-            builder = builder.set(metadata: ["Authorization": "Bearer \(token)"])
+            builder = builder.set(metadata: ["Authorization": "Bearer \(token.token)"])
         }
 
         return builder

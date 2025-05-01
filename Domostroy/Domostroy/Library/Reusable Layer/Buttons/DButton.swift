@@ -28,7 +28,7 @@ class DButton: UIControl {
     // MARK: - Enums
 
     enum ButtonType {
-        case filledPrimary, filledWhite, filledSecondary, plainPrimary, plain, calendar, navbar, destructive
+        case filledPrimary, filledWhite, filledSecondary, plainPrimary, plain, modalPicker, navbar, destructive
     }
 
     enum ImagePlacement {
@@ -181,7 +181,7 @@ class DButton: UIControl {
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .label
             tintColor = .label
-        case .calendar:
+        case .modalPicker:
             backgroundView.backgroundColor = .secondarySystemBackground
             titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
             titleLabel.textColor = .label

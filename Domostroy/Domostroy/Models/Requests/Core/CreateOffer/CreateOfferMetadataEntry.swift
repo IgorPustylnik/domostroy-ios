@@ -15,7 +15,7 @@ public struct CreateOfferMetadataEntry: Codable {
     public let price: Double
     public let currency: String
     public let cityId: Int
-    public let rentDates: [Date]
+    public let rentDates: Set<Date>
 }
 
 extension CreateOfferMetadataEntry: RawMappable {

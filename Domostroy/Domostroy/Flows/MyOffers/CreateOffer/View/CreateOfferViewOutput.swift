@@ -9,7 +9,12 @@
 protocol CreateOfferViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
-    func create(details: CreateOfferDetails)
+    func titleChanged(_ text: String)
+    func descriptionChanged(_ text: String)
+    func setSelectedCategory(index: Int)
+    func showCities()
     func showCalendar()
+    func priceChanged(_ text: String)
+    func create()
     func close()
 }

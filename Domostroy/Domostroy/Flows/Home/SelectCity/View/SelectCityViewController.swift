@@ -128,17 +128,11 @@ private extension SelectCityViewController {
     }
 }
 
-extension SelectCityViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        output?.search(query: searchController.searchBar.text)
-    }
-}
-
 // MARK: - Selectors
 
 @objc
 private extension SelectCityViewController {
     func close() {
-
+        output?.dismiss()
     }
 }

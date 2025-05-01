@@ -27,7 +27,11 @@ final class DropsPresenter: InfoPresenter {
 
     // MARK: - Public methods
 
-    func showSuccess(title: String? = nil, subtitle: String? = nil, image: UIImage? = UIImage(systemName: "checkmark")) {
+    func showSuccess(
+        title: String? = nil,
+        subtitle: String? = nil,
+        image: UIImage? = UIImage(systemName: "checkmark")
+    ) {
         let drop = Drop(
             title: title ?? L10n.Localizable.Common.success,
             titleNumberOfLines: 1,
@@ -88,6 +92,8 @@ final class DropsPresenter: InfoPresenter {
             case .internalServerError:
                 subtitle = L10n.Localizable.HttpError.internalServerError
             }
+        } else if let parseError = error as? ResponseDataParserNodeError {
+            subtitle = L10n.Localizable.ParseError.cantDeserialize
         } else {
             subtitle = error.localizedDescription
         }
