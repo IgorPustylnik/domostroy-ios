@@ -9,4 +9,23 @@ import Foundation
 
 public enum Currency: String, Codable {
     case rub = "rub"
+    case unknown
+
+    public init(rawValue: String) {
+        switch rawValue {
+        case Currency.rub.description:
+            self = .rub
+        default:
+            self = .unknown
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .rub:
+            return "₽"
+        case .unknown:
+            return "?"
+        }
+    }
 }

@@ -15,7 +15,7 @@ public struct CreateOfferEntity {
     public let categoryId: Int
     public let price: PriceEntity
     public let cityId: Int
-    public let rentDates: [Date]
+    public let rentDates: Set<Date>
     public let photos: [UIImage]
 }
 
