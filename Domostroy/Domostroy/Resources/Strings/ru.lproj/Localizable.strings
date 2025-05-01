@@ -43,7 +43,7 @@
 "Auth.Register.Button.Register" = "Зарегистрироваться";
 "Auth.Register.Placeholder.FirstName" = "Имя";
 "Auth.Register.Placeholder.LastName" = "Фамилия (необязательно)";
-"Auth.Register.Placeholder.PhoneNumber" = "Номер телефона (необязательно)";
+"Auth.Register.Placeholder.PhoneNumber" = "Номер телефона";
 "Auth.Register.Placeholder.Email" = "Электронная почта";
 "Auth.Register.Placeholder.Password" = "Пароль";
 "Auth.Register.Placeholder.RepeatPassword" = "Повторите пароль";

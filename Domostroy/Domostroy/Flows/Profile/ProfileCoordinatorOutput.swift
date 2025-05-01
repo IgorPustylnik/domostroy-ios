@@ -9,5 +9,5 @@
 import UIKit
 
 protocol ProfileCoordinatorOutput: AnyObject {
-
+    var onChangeAuthState: EmptyClosure? { get set }
 }

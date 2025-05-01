@@ -16,6 +16,12 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
     private let router: Router
 
+    private lazy var tokenExpirationHandler = {
+        $0.onExpire = { [weak self] in self?.start() }
+        return $0
+    }(TokenExpirationHandler())
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+
     private var onTapCenterControl: EmptyClosure?
 
     // MARK: - Initialization
@@ -25,7 +31,18 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
     }
 
     override func start() {
+        setupTokenExpirationHandler()
         showTabBar()
+    }
+
+    override func start(with deepLinkOption: DeepLinkOption?) {
+        setupTokenExpirationHandler()
+        if let deepLinkOption {
+            switch deepLinkOption {
+            case .profile:
+                showTabBar(initialTab: .profile)
+            }
+        }
     }
 
 }
@@ -34,7 +51,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
 private extension MainTabBarCoordinator {
 
-    func showTabBar() {
+    func showTabBar(initialTab: MainTab = .home) {
         let (view, output, input) = MainTabBarModuleConfigurator().configure()
 
         output.onHomeFlowSelect = { [weak self] isInitial in
@@ -52,8 +69,8 @@ private extension MainTabBarCoordinator {
             self?.onTapCenterControl?()
         }
 
-        router.setRootModule(view)
-        runHomeFlow(isInitial: true)
+        router.setRootModule(view, animated: true)
+        input.selectTab(initialTab)
     }
 
     func runHomeFlow(isInitial: Bool) {
@@ -103,8 +120,19 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = ProfileCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start(with: .profile)
+        }
         addDependency(coordinator)
         coordinator.start()
+    }
+
+    func setupTokenExpirationHandler() {
+        tokenExpirationHandler.cancel()
+        if let token = secureStorage?.loadToken() {
+            tokenExpirationHandler.scheduleExpiration(for: token)
+        }
     }
 
 }

@@ -12,4 +12,5 @@ protocol MainTabBarViewInput: AnyObject {
     /// Method for setup initial state of view
     func configure(controllers: [UIViewController])
     func setCenterControl(enabled: Bool)
+    func selectTab(tab: MainTab)
 }

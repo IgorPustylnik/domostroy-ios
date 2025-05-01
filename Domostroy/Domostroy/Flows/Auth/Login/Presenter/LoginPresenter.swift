@@ -6,15 +6,24 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import Combine
+import Foundation
+
 final class LoginPresenter: LoginModuleOutput {
 
     // MARK: - LoginModuleOutput
 
     var onDismiss: EmptyClosure?
+    var onLoggedIn: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: LoginViewInput?
+
+    private let authService: AuthService? = ServiceLocator.shared.resolve()
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private var cancellables: [AnyCancellable] = []
+
 }
 
 // MARK: - LoginModuleInput
@@ -33,11 +42,23 @@ extension LoginPresenter: LoginViewOutput {
 
     func login(email: String, password: String) {
         guard
-            RequiredValidator(EmailValidator()).validate(email).isValid,
-            RequiredValidator(PasswordValidator()).validate(password).isValid
-        else {
+            RequiredValidator(EmailValidator()).validate(email).isValid else {
             return
         }
+        view?.setActivity(isLoading: true)
+        authService?.postLogin(loginEntity: .init(email: email, password: password))
+            .sink(receiveValue: { [weak self] result in
+                self?.view?.setActivity(isLoading: false)
+                switch result {
+                case .success(let token):
+                    if !token.token.isEmpty, let saved = self?.secureStorage?.saveToken(token), saved {
+                        self?.onLoggedIn?()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            })
+            .store(in: &cancellables)
     }
 
     func dismiss() {

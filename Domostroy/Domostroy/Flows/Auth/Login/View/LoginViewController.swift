@@ -116,4 +116,8 @@ extension LoginViewController: LoginViewInput {
 
     }
 
+    func setActivity(isLoading: Bool) {
+        loginButton.setLoading(isLoading)
+    }
+
 }

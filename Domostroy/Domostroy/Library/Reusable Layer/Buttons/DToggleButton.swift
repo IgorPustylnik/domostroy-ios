@@ -37,17 +37,15 @@ final class DToggleButton: DButton {
     // MARK: - Private methods
 
     private func performToggleAction() {
-        isOn.toggle()
-        updateIcon()
+        setLoading(true)
 
         toggleAction?(isOn) { [weak self] success in
-            if !success {
-                guard let self else {
-                    return
-                }
+            self?.setLoading(false)
+            if success {
+                self?.isOn.toggle()
+                self?.updateIcon()
+            } else {
                 UINotificationFeedbackGenerator().notificationOccurred(.error)
-                self.isOn.toggle()
-                self.updateIcon()
             }
         }
     }

@@ -7,4 +7,5 @@
 //
 
 protocol CodeConfirmationModuleOutput: AnyObject {
+    var onCompleteRegistration: EmptyClosure? { get set }
 }

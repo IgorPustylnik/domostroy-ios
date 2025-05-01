@@ -42,7 +42,7 @@ final class HomeViewController: BaseViewController {
         return $0
     }(DSearchTextField())
 
-    private var activityIndicator = UIActivityIndicatorView(style: .medium)
+    private var activityIndicator = DLoadingIndicator()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var adapter: BaseCollectionManager?
 
@@ -187,10 +187,8 @@ extension HomeViewController: HomeViewInput {
         if isLoading {
             setEmptyState(false)
             activityIndicator.isHidden = false
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
         }
     }
 

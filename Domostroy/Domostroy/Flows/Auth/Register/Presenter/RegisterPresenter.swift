@@ -6,6 +6,8 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import Combine
+
 final class RegisterPresenter: RegisterModuleOutput {
 
     // MARK: - RegisterModuleOutput
@@ -16,6 +18,10 @@ final class RegisterPresenter: RegisterModuleOutput {
     // MARK: - Properties
 
     weak var view: RegisterViewInput?
+
+    private let authService: AuthService? = ServiceLocator.shared.resolve()
+    private var cancellables: [AnyCancellable] = []
+
 }
 
 // MARK: - RegisterModuleInput
@@ -33,7 +39,27 @@ extension RegisterPresenter: RegisterViewOutput {
     }
 
     func register(registerEntity: RegisterEntity) {
-        onReceiveCode?(registerEntity)
+        let normalizedRegisterEntity = RegisterEntity(
+            firstName: registerEntity.firstName,
+            lastName: registerEntity.lastName,
+            phoneNumber: RussianPhoneNumberNormalizer().normalizePhone(registerEntity.phoneNumber),
+            email: registerEntity.email,
+            password: registerEntity.password
+        )
+        view?.setActivity(isLoading: true)
+        authService?.postRegister(
+            registerEntity: normalizedRegisterEntity
+        )
+        .sink { [weak self] result in
+            self?.view?.setActivity(isLoading: false)
+            switch result {
+            case .success:
+                self?.onReceiveCode?(normalizedRegisterEntity)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        .store(in: &cancellables)
     }
 
     func dismiss() {

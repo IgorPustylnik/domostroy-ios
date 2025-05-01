@@ -9,6 +9,7 @@ import Foundation
 import Security
 
 public protocol SecureStorage {
+    @discardableResult
     func saveToken(_ token: AuthTokenEntity) -> Bool
     func loadToken() -> AuthTokenEntity?
     func deleteToken()

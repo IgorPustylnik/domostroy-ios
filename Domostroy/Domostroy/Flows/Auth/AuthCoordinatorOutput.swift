@@ -10,4 +10,5 @@ import UIKit
 
 protocol AuthCoordinatorOutput: AnyObject {
     var onComplete: EmptyClosure? { get set }
+    var onSuccessfulAuth: EmptyClosure? { get set }
 }

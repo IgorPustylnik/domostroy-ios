@@ -60,12 +60,14 @@ extension MainTabBarViewController: MainTabBarViewInput {
     func configure(controllers: [UIViewController]) {
         tabBarView.configure(with: controllers.map { $0.tabBarItem })
         viewControllers = controllers
-        output?.selectTab(with: .home, isInitial: true)
-        didSelect(0)
     }
 
     func setCenterControl(enabled: Bool) {
         tabBarView.isCenterControlEnabled = enabled
+    }
+
+    func selectTab(tab: MainTab) {
+        didSelect(tab.rawValue)
     }
 
 }

@@ -29,6 +29,9 @@ final class CodeConfirmationViewController: ScrollViewController {
     override func loadView() {
         super.loadView()
         contentView = codeConfirmationView
+        codeConfirmationView.onConfirm = { [weak self] code in
+            self?.output?.confirmRegister(code: code)
+        }
     }
 
 }

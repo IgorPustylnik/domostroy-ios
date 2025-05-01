@@ -8,4 +8,5 @@
 
 protocol LoginModuleOutput: AnyObject {
     var onDismiss: EmptyClosure? { get set }
+    var onLoggedIn: EmptyClosure? { get set }
 }

@@ -88,6 +88,18 @@ class MainRouter: Router {
         window?.rootViewController = module?.toPresent()
     }
 
+    func setRootModule(_ module: Presentable?, animated: Bool) {
+        guard let window else {
+            return
+        }
+        UIView.transition(with: window,
+                          duration: 0.5,
+                          options: .transitionFlipFromRight,
+                          animations: {
+            window.rootViewController = module?.toPresent()
+        }, completion: nil)
+    }
+
     func setTab(_ index: Int) {
         tabBarController?.selectedIndex = index
     }

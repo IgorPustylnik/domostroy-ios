@@ -13,6 +13,7 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     // MARK: - AuthCoordinatorOutput
 
     var onComplete: EmptyClosure?
+    var onSuccessfulAuth: EmptyClosure?
 
     // MARK: - Private Properties
 
@@ -48,6 +49,9 @@ private extension AuthCoordinator {
         output.onDismiss = { [weak view] in
             view?.dismiss(animated: true)
         }
+        output.onLoggedIn = { [weak self] in
+            self?.onSuccessfulAuth?()
+        }
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
         navigationControllerWrapper.modalPresentationStyle = .fullScreen
         router.present(navigationControllerWrapper)
@@ -68,6 +72,10 @@ private extension AuthCoordinator {
 
     func showCodeConfirmation(registerEntity: RegisterEntity) {
         let (view, output) = CodeConfirmationModuleConfigurator().configure(registerEntity: registerEntity)
+        output.onCompleteRegistration = { [weak self] in
+            // TODO: Autologin
+            self?.onSuccessfulAuth?()
+        }
         router.push(view, animated: true)
     }
 

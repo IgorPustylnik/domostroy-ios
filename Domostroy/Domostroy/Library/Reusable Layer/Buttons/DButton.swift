@@ -16,7 +16,6 @@ class DButton: UIControl {
         static let highlightedAlpha: CGFloat = 0.7
         static let disabledAlpha: CGFloat = 0.5
         static let hStackViewHighlightedScale: CGFloat = 0.96
-        static let animationDuration: CGFloat = 0.3
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
         static let touchesInset: UIEdgeInsets = .init(top: -30, left: -30, bottom: -30, right: -30)
         static let hSpacing: CGFloat = 5
@@ -66,6 +65,8 @@ class DButton: UIControl {
         $0.addArrangedSubview(titleLabel)
         return $0
     }(UIStackView())
+
+    private lazy var activityIndicator = DLoadingIndicator()
 
     // MARK: - Init
 
@@ -147,6 +148,14 @@ class DButton: UIControl {
         }
     }
 
+    // swiftlint:disable implicitly_unwrapped_optional
+    override var tintColor: UIColor! {
+        didSet {
+            activityIndicator.tintColor = tintColor
+        }
+    }
+    // swiftlint:enable implicitly_unwrapped_optional
+
     // MARK: - Configuration
 
     private func configure(_ type: DButton.ButtonType) {
@@ -155,24 +164,30 @@ class DButton: UIControl {
         case .filledPrimary:
             backgroundView.backgroundColor = .Domostroy.primary
             titleLabel.textColor = .white
+            tintColor = .white
         case .filledWhite:
             backgroundView.backgroundColor = .white
             titleLabel.textColor = .Domostroy.primary
+            tintColor = .Domostroy.primary
         case .filledSecondary:
             backgroundView.backgroundColor = .secondarySystemBackground
             borderColor = .separator
+            tintColor = .label
         case .plainPrimary:
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .Domostroy.primary
+            tintColor = .Domostroy.primary
         case .plain:
             backgroundView.backgroundColor = .clear
             titleLabel.textColor = .label
+            tintColor = .label
         case .calendar:
             backgroundView.backgroundColor = .secondarySystemBackground
             titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
             titleLabel.textColor = .label
             titleLabel.textAlignment = .left
             borderColor = .separator
+            tintColor = .label
         case .navbar:
             titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
             backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
@@ -180,9 +195,11 @@ class DButton: UIControl {
             hStackView.spacing = 12
             insets = .init(top: 8, left: 10, bottom: 8, right: 10)
             borderColor = .separator
+            tintColor = .label
         case .destructive:
             backgroundView.backgroundColor = .systemRed
             titleLabel.textColor = .white
+            tintColor = .white
         }
     }
 
@@ -197,6 +214,10 @@ class DButton: UIControl {
         hStackView.snp.makeConstraints { make in
             make.center.equalTo(snp.center)
             make.edges.equalToSuperview().inset(insets).priority(.medium)
+        }
+        backgroundView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
 
@@ -273,7 +294,7 @@ private extension DButton {
     private func triggerHighlightAnimation(isEnding: Bool = false) {
         highlightAnimator?.stopAnimation(true)
         highlightAnimator = UIViewPropertyAnimator(
-            duration: Constants.animationDuration,
+            duration: 0.3,
             dampingRatio: 0.8
         ) {
             self.alpha = isEnding ? 1.0 : Constants.highlightedAlpha
@@ -301,5 +322,21 @@ private extension DButton {
             break
         }
     }
+}
 
+extension DButton: Loadable {
+    func setLoading(_ isLoading: Bool) {
+        isUserInteractionEnabled = !isLoading
+
+        UIView.animate(withDuration: 0.1) {
+            self.imageView.alpha = isLoading ? 0 : 1
+            self.titleLabel.alpha = isLoading ? 0 : 1
+
+            if isLoading {
+                self.activityIndicator.isHidden = false
+            } else {
+                self.activityIndicator.isHidden = true
+            }
+        }
+    }
 }

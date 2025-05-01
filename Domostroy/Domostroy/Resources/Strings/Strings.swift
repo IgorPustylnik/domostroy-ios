@@ -62,8 +62,8 @@ internal enum L10n {
           internal static let lastName = L10n.tr("Localizable", "Auth.Register.Placeholder.LastName", fallback: "Last name (optional)")
           /// Password
           internal static let password = L10n.tr("Localizable", "Auth.Register.Placeholder.Password", fallback: "Password")
-          /// Phone number (optional)
-          internal static let phoneNumber = L10n.tr("Localizable", "Auth.Register.Placeholder.PhoneNumber", fallback: "Phone number (optional)")
+          /// Phone number
+          internal static let phoneNumber = L10n.tr("Localizable", "Auth.Register.Placeholder.PhoneNumber", fallback: "Phone number")
           /// Repeat password
           internal static let repeatPassword = L10n.tr("Localizable", "Auth.Register.Placeholder.RepeatPassword", fallback: "Repeat password")
         }

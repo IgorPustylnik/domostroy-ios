@@ -31,8 +31,13 @@ final class CodeConfirmationView: UIView {
 
     private lazy var messageLabel: UILabel = {
         $0.font = .systemFont(ofSize: 16, weight: .light)
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
+
+    // MARK: - Properties
+
+    var onConfirm: ((String) -> Void)?
 
     // MARK: - Init
 
@@ -97,7 +102,10 @@ final class CodeConfirmationView: UIView {
     func configure(length: Int, email: String) {
         codeField = .init(length: length)
         codeField?.onCodeCompleted = { [weak self] in
-            print(self?.codeField?.getCode())
+            guard let codeField = self?.codeField else {
+                return
+            }
+            self?.onConfirm?(codeField.getCode())
         }
         setupCodeField()
         setupMessageLabel(email)

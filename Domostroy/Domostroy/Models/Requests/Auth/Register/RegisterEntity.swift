@@ -10,7 +10,7 @@ import NodeKit
 
 public struct RegisterEntity {
     public let firstName: String
-    public let lastName: String
+    public let lastName: String?
     public let phoneNumber: String
     public let email: String
     public let password: String

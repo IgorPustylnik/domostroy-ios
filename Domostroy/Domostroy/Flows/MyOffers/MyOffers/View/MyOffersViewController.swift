@@ -27,7 +27,7 @@ final class MyOffersViewController: BaseViewController {
 
     // MARK: - UI Elements
 
-    private var activityIndicator = UIActivityIndicatorView(style: .medium)
+    private var activityIndicator = DLoadingIndicator()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     var adapter: BaseCollectionManager?
 
@@ -133,10 +133,8 @@ extension MyOffersViewController: MyOffersViewInput {
         if isLoading {
             setEmptyState(false)
             activityIndicator.isHidden = false
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
         }
     }
 
