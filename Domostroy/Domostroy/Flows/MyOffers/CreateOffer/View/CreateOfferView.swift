@@ -123,7 +123,11 @@ final class CreateOfferView: UIView {
     private lazy var priceLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.price)
 
     private lazy var priceTextField: DValidatableTextField = {
-        $0.configure(placeholder: L10n.Localizable.Offers.Create.Placeholder.price, correction: .no, keyboardType: .numberPad)
+        $0.configure(
+            placeholder: L10n.Localizable.Offers.Create.Placeholder.price,
+            correction: .no,
+            keyboardType: .numberPad
+        )
         $0.validator = RequiredValidator(PriceValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.priceTextField)
@@ -138,7 +142,7 @@ final class CreateOfferView: UIView {
         return $0
     }(DValidatableTextField())
 
-    private lazy var publishButton = {
+    private(set) lazy var publishButton = {
         $0.title = L10n.Localizable.Offers.Create.Button.publish
         $0.setAction { [weak self] in
             self?.publish()

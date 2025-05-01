@@ -37,7 +37,7 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
 
     private var instructor: LaunchInstructor {
         let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
-        if let token = secureStorage?.loadToken() {
+        if let _ = secureStorage?.loadToken() {
             return .configure(isAuthorized: true)
         }
         return .configure(isAuthorized: false)
@@ -113,6 +113,10 @@ private extension MyOffersCoordinator {
         }
         output.onClose = { [weak self] in
             self?.router.dismissModule()
+        }
+        output.onSuccess = { [weak self] offerId in
+            self?.start()
+            self?.runOfferDetailsFlow(id: offerId)
         }
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.modalPresentationStyle = .fullScreen

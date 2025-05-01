@@ -32,6 +32,12 @@ final class CreateOfferViewController: ScrollViewController {
             }
             self.scrollToView(view, offsetY: 40)
         }
+        $0.onEditTitle = { [weak self] title in
+            self?.output?.titleChanged(title)
+        }
+        $0.onEditDescription = { [weak self] description in
+            self?.output?.descriptionChanged(description)
+        }
         $0.onShowCities = { [weak self] in
             self?.output?.showCities()
         }
@@ -43,6 +49,9 @@ final class CreateOfferViewController: ScrollViewController {
         }
         $0.onPickCategory = { [weak self] index in
             self?.output?.setSelectedCategory(index: index)
+        }
+        $0.onEditPrice = { [weak self] price in
+            self?.output?.priceChanged(price)
         }
         return $0
     }(CreateOfferView())
@@ -151,6 +160,10 @@ extension CreateOfferViewController: CreateOfferViewInput {
 
     func setCity(title: String) {
         createOfferView.setCityButton(title: title)
+    }
+
+    func setActivity(isLoading: Bool) {
+        createOfferView.publishButton.setLoading(isLoading)
     }
 
 }

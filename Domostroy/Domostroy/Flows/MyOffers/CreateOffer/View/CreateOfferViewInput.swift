@@ -13,4 +13,5 @@ protocol CreateOfferViewInput: AnyObject {
     func updateImagesAmount(_ amount: Int)
     func setCity(title: String)
     func setCalendarPlaceholder(active: Bool)
+    func setActivity(isLoading: Bool)
 }

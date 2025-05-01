@@ -2,6 +2,7 @@
 
 "ValidationError.failed" = "Ошибка валидации";
 "ValidationError.required" = "Поле обязательно для заполнения";
+"ValidationError.SomeRequiredMissing" = "Не заполнены все обязательные поля";
 "ValidationError.invalid" = "Неверный формат";
 "ValidationError.Password.mismatch" = "Пароли не совпадают";
 "ValidationError.Username.short" = "Минимум 2 символа";
@@ -132,6 +133,7 @@
 "Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
 "Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
 "Offers.Create.Button.Publish" = "Опубликовать";
+"Offers.Create.Error.Failed" = "Не удалось создать";
 
 // MARK: - Profile
 

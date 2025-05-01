@@ -9,6 +9,7 @@
 import ReactiveDataDisplayManager
 import UIKit
 import PhotosUI
+import Combine
 
 private struct ImageItem {
     let id = UUID()
@@ -29,12 +30,14 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     var onShowCities: ((CityEntity?) -> Void)?
     var onShowCalendar: ((LessorCalendarConfig) -> Void)?
     var onClose: EmptyClosure?
+    var onSuccess: ((Int) -> Void)?
 
     // MARK: - Properties
 
     weak var view: CreateOfferViewInput?
 
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: [AnyCancellable] = []
 
     var adapter: BaseCollectionManager?
 
@@ -52,7 +55,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     private var categoryPickerModel: PickerModel<Category> = .init(all: [], selected: nil)
     private var selectedCity: CityEntity?
     private var selectedDates: Set<Date> = Set()
-    private var price: Double = 0
+    private var price: PriceEntity?
 }
 
 // MARK: - CreateOfferModuleInput
@@ -114,15 +117,62 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
     }
 
     func priceChanged(_ text: String) {
-        self.price = (try? Double(text, format: .number)) ?? 0
+        var priceValue = (try? Double(text, format: .number)) ?? 0
+        price = .init(value: priceValue, currency: .rub)
     }
 
     func create() {
-        guard let category = categoryPickerModel.selected else {
-            DropsPresenter.shared.showError(title: "Не все поля заполнены")
+        guard let selectedCity else {
+            showCities()
+            return
+        }
+        guard !selectedDates.isEmpty else {
+            showCalendar()
+            return
+        }
+        guard !images.isEmpty else {
+            addImages()
+            return
+        }
+        guard let category = categoryPickerModel.selected,
+              let title,
+              let offerDescription,
+              let category = categoryPickerModel.selected,
+              let price else {
+            DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
 
+        view?.setActivity(isLoading: true)
+        offerService?.createOffer(
+            createOfferEntity: .init(
+                title: title,
+                description: offerDescription,
+                categoryId: category.id,
+                price: price,
+                cityId: selectedCity.id,
+                rentDates: selectedDates,
+                photos: images.map { $0.image }
+            )
+        )
+        .sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setActivity(isLoading: false)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success(let offerIdEntity):
+                    self?.onClose?()
+                    self?.onSuccess?(offerIdEntity.offerId)
+                case .failure(let error):
+                    DropsPresenter.shared.showError(
+                        title: L10n.Localizable.Offers.Create.Error.failed,
+                        error: error
+                    )
+                }
+            }
+        )
+        .store(in: &cancellables)
     }
 
     func close() {

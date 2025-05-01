@@ -2,6 +2,7 @@
 
 "ValidationError.failed" = "Validation failed";
 "ValidationError.required" = "Field is required";
+"ValidationError.SomeRequiredMissing" = "Every required field must be filled";
 "ValidationError.invalid" = "Incorrect format";
 "ValidationError.Password.mismatch" = "Passwords do not match";
 "ValidationError.Username.short"="Must be at least 2 characters long";
@@ -132,6 +133,7 @@
 "Offers.Create.Button.AvailableDates.Placeholder" = "Select available dates";
 "Offers.Create.Button.AvailableDates.Selected" = "Available dates";
 "Offers.Create.Button.Publish" = "Publish";
+"Offers.Create.Error.Failed" = "Failed to create";
 
 // MARK: - Profile
 

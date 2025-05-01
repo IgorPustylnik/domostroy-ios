@@ -192,6 +192,8 @@
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
+		55F88CA82DC3F37F003EA26E /* OfferIdEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */; };
+		55F88CAA2DC3F38A003EA26E /* OfferIdEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA92DC3F38A003EA26E /* OfferIdEntry.swift */; };
 		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
@@ -483,6 +485,8 @@
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
 		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntity.swift; sourceTree = "<group>"; };
+		55F88CA92DC3F38A003EA26E /* OfferIdEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntry.swift; sourceTree = "<group>"; };
 		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -1302,6 +1306,8 @@
 			children = (
 				55AAA9C42DBEB7430018952F /* OfferEntity.swift */,
 				55AAA9D52DBEC1300018952F /* OfferEntry.swift */,
+				55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */,
+				55F88CA92DC3F38A003EA26E /* OfferIdEntry.swift */,
 			);
 			path = Offer;
 			sourceTree = "<group>";
@@ -2348,6 +2354,7 @@
 				550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */,
 				55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */,
 				55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */,
+				55F88CA82DC3F37F003EA26E /* OfferIdEntity.swift in Sources */,
 				55AAA9EC2DBED1C70018952F /* CityEntry.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
@@ -2461,6 +2468,7 @@
 				52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */,
 				55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */,
 				5589B74F2DC1707D00DEA9CF /* BasicUserDefaultsStorage.swift in Sources */,
+				55F88CAA2DC3F38A003EA26E /* OfferIdEntry.swift in Sources */,
 				36729EAAF33B1AF4E00ED5E1 /* SearchPresenter.swift in Sources */,
 				7B1BA83DA70065BA1A05B82D /* SearchModuleInput.swift in Sources */,
 				913F7B74994AF3D60E48AA94 /* SearchModuleOutput.swift in Sources */,

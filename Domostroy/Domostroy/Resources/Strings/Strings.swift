@@ -221,6 +221,10 @@ internal enum L10n {
             internal static let placeholder = L10n.tr("Localizable", "Offers.Create.Button.City.Placeholder", fallback: "Select city")
           }
         }
+        internal enum Error {
+          /// Failed to create
+          internal static let failed = L10n.tr("Localizable", "Offers.Create.Error.Failed", fallback: "Failed to create")
+        }
         internal enum Label {
           /// Available dates
           internal static let availableDates = L10n.tr("Localizable", "Offers.Create.Label.AvailableDates", fallback: "Available dates")
@@ -390,6 +394,8 @@ internal enum L10n {
       internal static let phone = L10n.tr("Localizable", "ValidationError.Phone", fallback: "Invalid phone number")
       /// Field is required
       internal static let `required` = L10n.tr("Localizable", "ValidationError.required", fallback: "Field is required")
+      /// Every required field must be filled
+      internal static let someRequiredMissing = L10n.tr("Localizable", "ValidationError.SomeRequiredMissing", fallback: "Every required field must be filled")
       internal enum OfferDescription {
         /// Description is too long
         internal static let long = L10n.tr("Localizable", "ValidationError.OfferDescription.long", fallback: "Description is too long")

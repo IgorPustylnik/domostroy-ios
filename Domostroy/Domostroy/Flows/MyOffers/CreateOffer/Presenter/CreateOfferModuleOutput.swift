@@ -14,4 +14,5 @@ protocol CreateOfferModuleOutput: AnyObject {
     var onShowCities: ((CityEntity?) -> Void)? { get set }
     var onShowCalendar: ((LessorCalendarConfig) -> Void)? { get set }
     var onClose: EmptyClosure? { get set }
+    var onSuccess: ((Int) -> Void)? { get set }
 }
