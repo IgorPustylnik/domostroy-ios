@@ -36,6 +36,7 @@
 "HttpError.forbidden" = "Доступ запрещён";
 "HttpError.NotFound" = "Не найдено";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
+"ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
 
 // MARK: - Auth
 
@@ -161,7 +162,6 @@
 "SelectCity.Title" = "Город";
 "SelectCity.AllCities" = "Все города";
 "SelectCity.Button.Apply" = "Применить";
-
 
 // MARK: - Create Request
 

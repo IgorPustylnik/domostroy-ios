@@ -36,6 +36,7 @@
 "HttpError.forbidden" = "Forbidden";
 "HttpError.NotFound" = "Not found";
 "HttpError.InternalServerError" = "Internal server error";
+"ParseError.cantDeserialize" = "Unknown server response format";
 
 // MARK: - Auth
 

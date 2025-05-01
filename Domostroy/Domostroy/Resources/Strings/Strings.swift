@@ -273,6 +273,10 @@ internal enum L10n {
         }
       }
     }
+    internal enum ParseError {
+      /// Unknown server response format
+      internal static let cantDeserialize = L10n.tr("Localizable", "ParseError.cantDeserialize", fallback: "Unknown server response format")
+    }
     internal enum Plural {
       internal enum Day {
         /// days
