@@ -154,6 +154,12 @@
 "UserProfile.RegistrationDate" = "On Domostroy since %@";
 "UserProfile.Section.Offers.Empty" = "No offers";
 
+// MARK: - Select City
+
+"SelectCity.Title" = "City";
+"SelectCity.AllCities" = "All cities";
+"SelectCity.Button.Apply" = "Apply";
+
 // MARK: - Create Request
 
 "CreateRequest.Title" = "Request";
