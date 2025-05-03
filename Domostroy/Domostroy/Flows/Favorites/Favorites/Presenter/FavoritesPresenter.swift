@@ -22,14 +22,14 @@ final class FavoritesPresenter: FavoritesModuleOutput {
     // MARK: - FavoritesModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onOpenSort: ((Sort) -> Void)?
+    var onOpenSort: ((SortViewModel) -> Void)?
 
     // MARK: - Properties
 
     weak var view: FavoritesViewInput?
     private weak var paginatableInput: PaginatableInput?
 
-    private var sort: Sort = .default
+    private var sort: SortViewModel = .default
 
     private var isFirstPageLoading = false
     private var pagesCount = 0
@@ -41,7 +41,7 @@ final class FavoritesPresenter: FavoritesModuleOutput {
 
 extension FavoritesPresenter: FavoritesModuleInput {
 
-    func setSort(_ sort: Sort) {
+    func setSort(_ sort: SortViewModel) {
         self.sort = sort
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         loadFirstPage()
@@ -136,11 +136,11 @@ extension FavoritesPresenter: PaginatableOutput {
 private extension FavoritesPresenter {
 
     func makeOfferViewModel(
-        from offer: Offer
+        from offer: FavoriteOfferEntity
     ) -> FavoriteOfferCollectionViewCell.ViewModel {
         let toggleActions: [FavoriteOfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
             .init(
-                initialState: offer.isFavorite,
+                initialState: true,
                 onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
                 offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
                 toggleAction: { [weak self] newValue, handler in
@@ -156,11 +156,11 @@ private extension FavoritesPresenter {
         }
         let viewModel = FavoriteOfferCollectionViewCell.ViewModel(
             id: offer.id,
-            imageUrl: offer.images.first,
+            imageUrl: offer.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
             user: userViewModel,
@@ -242,37 +242,11 @@ private extension FavoritesPresenter {
     func fillNext() async -> Bool {
         currentPage += 1
 
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
-
         return currentPage < pagesCount
     }
 
     func fillFirst() async -> Bool {
         isFirstPageLoading = true
-
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-        isFirstPageLoading = false
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.setEmptyState(page.offers.isEmpty)
-            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
 
         return currentPage < pagesCount
     }

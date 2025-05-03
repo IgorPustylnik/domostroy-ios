@@ -23,7 +23,7 @@ public final class OfferNetworkService: OfferService {
 
     // MARK: - GET
 
-    public func getOffer(id: Int) -> AnyPublisher<NodeResult<OfferEntity>, Never> {
+    public func getOffer(id: Int) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never> {
         return makeBuilder()
             .route(.get, .one(id))
             .build()
@@ -31,22 +31,18 @@ public final class OfferNetworkService: OfferService {
     }
 
     public func getOffers(
-        page: Int,
-        perPage: Int,
-        searchQuery: String?,
-        category: CategoryEntity?,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+        searchOffersEntity: SearchOffersEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never> {
         return makeBuilder()
-            .route(.get, .search)
+            .route(.post, .search)
             .build()
-            .nodeResultPublisher()
+            .nodeResultPublisher(for: searchOffersEntity)
     }
 
     public func getMyOffers(
         page: Int,
         perPage: Int
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+    ) -> AnyPublisher<NodeResult<PageEntity<MyOfferEntity>>, Never> {
         return makeBuilder()
             .route(.get, .my)
             .build()
@@ -56,8 +52,8 @@ public final class OfferNetworkService: OfferService {
     public func getFavoriteOffers(
         page: Int,
         perPage: Int,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+        sort: SortViewModel?
+    ) -> AnyPublisher<NodeResult<PageEntity<FavoriteOfferEntity>>, Never> {
         return makeBuilder()
             .route(.get, .favorite)
             .build()

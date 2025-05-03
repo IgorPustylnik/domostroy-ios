@@ -128,7 +128,7 @@ extension MyOffersPresenter: PaginatableOutput {
 private extension MyOffersPresenter {
 
     func makeOfferViewModel(
-        from offer: Offer
+        from offer: MyOfferEntity
     ) -> OwnOfferCollectionViewCell.ViewModel {
         let actions = [OwnOfferCollectionViewCell.ViewModel.ActionButtonModel(
             image: .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
@@ -138,11 +138,11 @@ private extension MyOffersPresenter {
         )]
         let viewModel = OwnOfferCollectionViewCell.ViewModel(
             id: offer.id,
-            imageUrl: offer.images.first,
+            imageUrl: offer.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
             createdAt: L10n.Localizable.Offers.publishedAt(offer.createdAt.toDMMYY()),

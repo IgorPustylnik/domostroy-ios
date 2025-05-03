@@ -20,7 +20,7 @@ final class CreateRequestPresenter: CreateRequestModuleOutput {
 
     weak var view: CreateRequestViewInput?
 
-    private var offer: Offer?
+    private var offer: OfferDetailsEntity?
     private var offerCalendar: OfferCalendar?
     private var selectedDates: DayComponentsRange?
 }
@@ -102,18 +102,18 @@ private extension CreateRequestPresenter {
         }
     }
 
-    private func updateView(with offer: Offer) {
+    private func updateView(with offer: OfferDetailsEntity) {
         let viewModel = self.makeViewModel(from: offer)
         view?.configure(with: viewModel)
     }
 
-    private func makeViewModel(from offer: Offer) -> CreateRequestView.ViewModel {
+    private func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
         .init(
-            imageUrl: offer.images.first,
+            imageUrl: offer.photos.first,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             calendarId: offer.calendarId,
             loadCalendar: { [weak self] id in
@@ -125,7 +125,7 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func calculateTotalCostText(pricePerDay: Price) -> String? {
+    private func calculateTotalCostText(pricePerDay: PriceEntity) -> String? {
         guard
             let selectedDates,
             let days = CalendarHelper.numberOfDays(in: selectedDates),
@@ -141,7 +141,7 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func presentCalendar(for offer: Offer) {
+    private func presentCalendar(for offer: OfferDetailsEntity) {
         guard let offerCalendar else {
             return
         }

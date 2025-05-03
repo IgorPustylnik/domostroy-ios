@@ -9,6 +9,6 @@
 protocol SortViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
-    func apply(sort: Sort)
+    func apply(sort: SortViewModel)
     func dismiss()
 }

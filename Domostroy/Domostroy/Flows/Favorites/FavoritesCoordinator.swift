@@ -52,7 +52,7 @@ private extension FavoritesCoordinator {
         coordinator.start(with: id)
     }
 
-    func showSort(sort: Sort, favoritesInput: FavoritesModuleInput?) {
+    func showSort(sort: SortViewModel, favoritesInput: FavoritesModuleInput?) {
         let (view, output, input) = SortModuleConfigurator().configure()
         input.setup(initialSort: sort)
         output.onApply = { [weak favoritesInput] sort in

@@ -81,7 +81,7 @@ private extension ProfilePresenter {
         return await _Temporary_Mock_NetworkService().fetchMyProfile()
     }
 
-    func configure(with profile: MyProfile) {
+    func configure(with myUser: MyUserEntity) {
         view?.configure(
             with: .init(
                 imageUrl: nil,
@@ -89,14 +89,14 @@ private extension ProfilePresenter {
                     self?.loadImage(url: url, imageView: imageView)
                 },
                 name: {
-                    if let lastName = profile.lastName {
-                        return "\(profile.firstName) \(lastName)"
+                    if let lastName = myUser.lastName {
+                        return "\(myUser.firstName) \(lastName)"
                     }
-                    return "\(profile.firstName)"
+                    return "\(myUser.firstName)"
                 }(),
-                phoneNumber: profile.phoneNumber,
-                email: profile.email,
-                isAdmin: profile.isAdmin
+                phoneNumber: myUser.phoneNumber,
+                email: myUser.email,
+                isAdmin: myUser.isAdmin
             )
         )
     }

@@ -8,20 +8,20 @@
 import Foundation
 import NodeKit
 
-public struct OffersPageEntity {
+public struct PageEntity<Entity: DTOEncodable> {
     public let pagination: PaginationEntity
-    public let data: [OfferEntity]
+    public let offers: [Entity]
 }
 
 // MARK: - DTOConvertible
 
-extension OffersPageEntity: DTODecodable {
-    public typealias DTO = OffersPageEntry
+extension PageEntity: DTODecodable {
+    public typealias DTO = PageEntry
 
     public static func from(dto model: DTO) throws -> Self {
         return try .init(
             pagination: .from(dto: model.pagination),
-            data: model.data.map { try .from(dto: $0) }
+            offers: model.data.map { try .from(dto: $0) }
         )
     }
 }

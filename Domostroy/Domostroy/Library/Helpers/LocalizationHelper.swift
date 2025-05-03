@@ -8,7 +8,7 @@
 import Foundation
 
 enum LocalizationHelper {
-    static func pricePerDay(for price: Price) -> String {
+    static func pricePerDay(for price: PriceEntity) -> String {
         let priceWithCurrency = "\(price.value.stringDroppingTrailingZero)\(price.currency.description)"
         return "\(priceWithCurrency)/\(L10n.Plurals.day(1))"
     }

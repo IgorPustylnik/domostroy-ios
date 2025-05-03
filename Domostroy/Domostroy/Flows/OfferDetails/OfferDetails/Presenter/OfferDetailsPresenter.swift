@@ -24,7 +24,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     weak var view: OfferDetailsViewInput?
 
     private var offerId: Int?
-    private var offer: Offer?
+    private var offer: OfferDetailsEntity?
 
     var picturesAdapter: BaseCollectionManager?
 

@@ -15,26 +15,20 @@ public protocol OfferService {
 
     func getOffer(
         id: Int
-    ) -> AnyPublisher<NodeResult<OfferEntity>, Never>
+    ) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never>
 
-    func getOffers(
-        page: Int,
-        perPage: Int,
-        searchQuery: String?,
-        category: CategoryEntity?,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never>
+    func getOffers(searchOffersEntity: SearchOffersEntity) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never>
 
     func getMyOffers(
         page: Int,
         perPage: Int
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never>
+    ) -> AnyPublisher<NodeResult<PageEntity<MyOfferEntity>>, Never>
 
     func getFavoriteOffers(
         page: Int,
         perPage: Int,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never>
+        sort: SortViewModel?
+    ) -> AnyPublisher<NodeResult<PageEntity<FavoriteOfferEntity>>, Never>
 
     // MARK: - POST
 

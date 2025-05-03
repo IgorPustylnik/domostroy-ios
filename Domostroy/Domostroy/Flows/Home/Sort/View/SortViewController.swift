@@ -37,7 +37,7 @@ final class SortViewController: UIViewController {
 
     // MARK: - Properties
 
-    var radioButtonGroup = DRadioButtonGroup<Sort>()
+    var radioButtonGroup = DRadioButtonGroup<SortViewModel>()
 
     var output: SortViewOutput?
 
@@ -101,7 +101,7 @@ private extension SortViewController {
 
 extension SortViewController: SortViewInput {
 
-    func setup(with options: [Sort], initial: Sort) {
+    func setup(with options: [SortViewModel], initial: SortViewModel) {
         mainVStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         options.forEach { value in
             let radioOption = makeRadioButton(value: value, isInitial: value == initial)
@@ -114,7 +114,7 @@ extension SortViewController: SortViewInput {
 // MARK: - Private Methods
 
 private extension SortViewController {
-    func makeRadioButton(value: Sort, isInitial: Bool) -> DRadioButton {
+    func makeRadioButton(value: SortViewModel, isInitial: Bool) -> DRadioButton {
         let radio = DRadioButton()
         radio.setTitle(value.description)
         radioButtonGroup.add(button: radio, value: value)

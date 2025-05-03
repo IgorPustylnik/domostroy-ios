@@ -1,5 +1,5 @@
 //
-//  OfferEntry.swift
+//  OfferDetailsEntry.swift
 //  Domostroy
 //
 //  Created by Игорь Пустыльник on 27.04.2025.
@@ -8,7 +8,7 @@
 import Foundation
 import NodeKit
 
-public struct OfferEntry {
+public struct OfferDetailsEntry {
     public let id: Int
     public let title: String
     public let description: String
@@ -17,12 +17,12 @@ public struct OfferEntry {
     public let currency: String
     public let createdAt: Date
     public let userId: Int
-    public let city: CityEntry
+    public let cityId: Int
     public let calendarId: Int
     public let isFavorite: Bool
     public let photos: [URL]
 }
 
-extension OfferEntry: Decodable, RawDecodable {
+extension OfferDetailsEntry: Decodable, RawDecodable {
     public typealias Raw = Json
 }

@@ -8,28 +8,32 @@
 
 import Foundation
 
-struct Filters {
+struct FiltersViewModel {
     var categoryFilter: PickerModel<Category>
+
+    var isNotEmpty: Bool {
+        categoryFilter.selected != nil
+    }
 }
 
 final class FilterPresenter: FilterModuleOutput {
 
     // MARK: - FilterModuleOutput
 
-    var onApply: ((Filters) -> Void)?
+    var onApply: ((FiltersViewModel) -> Void)?
     var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: FilterViewInput?
 
-    private var model: Filters?
+    private var model: FiltersViewModel?
 }
 
 // MARK: - FilterModuleInput
 
 extension FilterPresenter: FilterModuleInput {
-    func setFilters(_ model: Filters) {
+    func setFilters(_ model: FiltersViewModel) {
         self.model = model
     }
 }

@@ -22,7 +22,7 @@ enum CalendarHelper {
         return diff + 1
     }
 
-    static func calculateCost(for range: DayComponentsRange?, pricePerDay: Price?) -> Price? {
+    static func calculateCost(for range: DayComponentsRange?, pricePerDay: PriceEntity?) -> PriceEntity? {
         guard let days = numberOfDays(in: range), let pricePerDay else {
             return nil
         }

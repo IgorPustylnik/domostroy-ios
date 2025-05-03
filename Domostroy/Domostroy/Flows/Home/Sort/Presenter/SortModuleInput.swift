@@ -7,5 +7,5 @@
 //
 
 protocol SortModuleInput: AnyObject {
-    func setup(initialSort: Sort)
+    func setup(initialSort: SortViewModel)
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import ReactiveDataDisplayManager
 
-public enum Sort: CaseIterable {
+public enum SortViewModel: CaseIterable {
     case `default`
     case priceAscending
     case priceDescending
@@ -28,22 +28,29 @@ public enum Sort: CaseIterable {
             return L10n.Localizable.Sort.recent
         }
     }
+
+    var toSortEntity: SortEntity? {
+        switch self {
+        case .default:
+            return nil
+        case .priceAscending:
+            return .init(property: .price, direction: .ascending)
+        case .priceDescending:
+            return .init(property: .price, direction: .descending)
+        case .recent:
+            return .init(property: .date, direction: .descending)
+        }
+    }
 }
 
 final class SearchPresenter: SearchModuleOutput {
-
-    // MARK: - Constants
-
-    private enum Constants {
-        static let pageSize = 10
-    }
 
     // MARK: - SearchModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
     var onOpenCity: ((CityEntity?) -> Void)?
-    var onOpenSort: ((Sort) -> Void)?
-    var onOpenFilters: ((Filters) -> Void)?
+    var onOpenSort: ((SortViewModel) -> Void)?
+    var onOpenFilters: ((FiltersViewModel) -> Void)?
 
     // MARK: - Properties
 
@@ -58,8 +65,8 @@ final class SearchPresenter: SearchModuleOutput {
     private var currentPage = 0
 
     private var city: CityEntity?
-    private var sort: Sort = .default
-    private var filters: Filters = .init(
+    private var sort: SortViewModel = .default
+    private var filters: FiltersViewModel = .init(
         categoryFilter: .init(all: [])
     )
 
@@ -81,16 +88,15 @@ extension SearchPresenter: SearchModuleInput {
         loadFirstPage()
     }
 
-    func setSort(_ sort: Sort) {
+    func setSort(_ sort: SortViewModel) {
         self.sort = sort
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         loadFirstPage()
     }
 
-    func setFilters(_ filters: Filters) {
+    func setFilters(_ filters: FiltersViewModel) {
         self.filters = filters
-        var hasFilters = filters.categoryFilter.selected != nil
-        view?.setHasFilters(hasFilters)
+        view?.setHasFilters(filters.isNotEmpty)
         loadFirstPage()
     }
 }
@@ -103,7 +109,7 @@ extension SearchPresenter: SearchViewOutput {
         city = try? .from(dto: basicStorage?.get(for: .defaultCity))
         view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
-        view?.setHasFilters(false)
+        view?.setHasFilters(filters.isNotEmpty)
 
         Task {
             await fetchCategories()
@@ -202,7 +208,7 @@ extension SearchPresenter: PaginatableOutput {
 private extension SearchPresenter {
 
     func makeOfferViewModel(
-        from offer: Offer
+        from offer: BriefOfferEntity
     ) -> OfferCollectionViewCell.ViewModel {
         let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
             .init(
@@ -218,11 +224,11 @@ private extension SearchPresenter {
         ]
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
-            imageUrl: offer.images.first,
+            imageUrl: offer.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             location: offer.city.name,
             actions: [],

@@ -7,6 +7,6 @@
 //
 
 protocol FilterModuleOutput: AnyObject {
-    var onApply: ((Filters) -> Void)? { get set }
+    var onApply: ((FiltersViewModel) -> Void)? { get set }
     var onDismiss: EmptyClosure? { get set }
 }
