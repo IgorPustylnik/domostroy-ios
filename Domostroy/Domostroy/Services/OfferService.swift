@@ -17,7 +17,9 @@ public protocol OfferService {
         id: Int
     ) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never>
 
-    func getOffers(searchOffersEntity: SearchOffersEntity) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never>
+    func getOffers(
+        searchOffersEntity: SearchOffersEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never>
 
     func getMyOffers(
         page: Int,
@@ -33,6 +35,8 @@ public protocol OfferService {
     // MARK: - POST
 
     func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>
+
+    func toggleFavorite(id: Int) -> AnyPublisher<NodeResult<Void>, Never>
 
     // MARK: - DELETE
 

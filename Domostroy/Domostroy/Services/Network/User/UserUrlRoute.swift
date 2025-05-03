@@ -10,7 +10,9 @@ import NodeKit
 
 enum UserUrlRoute {
     case my
-    case byId(Int)
+    case other(Int)
+    case info
+    case password
 }
 
 extension UserUrlRoute: URLRouteProvider {
@@ -21,9 +23,16 @@ extension UserUrlRoute: URLRouteProvider {
         let base = URL(string: baseUrlString + "/core/user")
         switch self {
         case .my:
-            return try base + "/my"
-        case .byId(let id):
+            guard let base else {
+                throw URLError(.badURL)
+            }
+            return base
+        case .other(let id):
             return try base + "/\(id)"
+        case .info:
+            return try base + "/info"
+        case .password:
+            return try base + "/password"
         }
     }
 }

@@ -16,7 +16,7 @@ public struct PaginationRequestEntity {
 extension PaginationRequestEntity: DTOEncodable {
     public typealias DTO = PaginationRequestEntry
 
-    public func toDTO() throws -> PaginationRequestEntry {
+    public func toDTO() throws -> DTO {
         .init(page: page, size: size)
     }
 }

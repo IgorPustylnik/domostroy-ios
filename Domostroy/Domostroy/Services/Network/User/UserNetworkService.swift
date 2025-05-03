@@ -25,7 +25,7 @@ public final class UserNetworkService: UserService {
 
     public func getUser(id: Int) -> AnyPublisher<NodeResult<UserEntity>, Never> {
         makeBuilder()
-            .route(.get, .byId(id))
+            .route(.get, .other(id))
             .build()
             .nodeResultPublisher()
     }
@@ -36,6 +36,21 @@ public final class UserNetworkService: UserService {
             .build()
             .nodeResultPublisher()
     }
+
+    public func editInfo(editUserInfoEntity: EditUserInfoEntity) -> AnyPublisher<NodeResult<Void>, Never> {
+        makeBuilder()
+            .route(.post, .info)
+            .build()
+            .nodeResultPublisher(for: editUserInfoEntity)
+    }
+
+    public func changePassword(changePasswordEntity: ChangePasswordEntity) -> AnyPublisher<NodeResult<Void>, Never> {
+        makeBuilder()
+            .route(.post, .password)
+            .build()
+            .nodeResultPublisher(for: changePasswordEntity)
+    }
+
 }
 
 // MARK: - Private methods

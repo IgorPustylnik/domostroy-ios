@@ -55,7 +55,7 @@ public final class OfferNetworkService: OfferService {
         sort: SortViewModel?
     ) -> AnyPublisher<NodeResult<PageEntity<FavoriteOfferEntity>>, Never> {
         return makeBuilder()
-            .route(.get, .favorite)
+            .route(.get, .favorites)
             .build()
             .nodeResultPublisher()
     }
@@ -67,6 +67,13 @@ public final class OfferNetworkService: OfferService {
             .route(.post, .base)
             .build()
             .nodeResultPublisher(for: createOfferEntity)
+    }
+
+    public func toggleFavorite(id: Int) -> AnyPublisher<NodeResult<Void>, Never> {
+        return makeBuilder()
+            .route(.post, .toggleFavorite(id))
+            .build()
+            .nodeResultPublisher()
     }
 
     // MARK: - DELETE
