@@ -122,7 +122,7 @@ extension HomePresenter: PaginatableOutput {
 private extension HomePresenter {
 
     func makeOfferViewModel(
-        from offer: Offer
+        from offer: BriefOfferEntity
     ) -> OfferCollectionViewCell.ViewModel {
         let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
             .init(
@@ -138,13 +138,13 @@ private extension HomePresenter {
         ]
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
-            imageUrl: offer.images.first,
+            imageUrl: offer.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
-            location: offer.city.name,
+            location: offer.city,
             actions: [],
             toggleActions: toggleActions
         )

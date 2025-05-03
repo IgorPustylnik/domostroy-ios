@@ -12,7 +12,7 @@ public struct BriefOfferEntity {
     public let id: Int
     public let title: String
     public let price: PriceEntity
-    public let city: CityEntity
+    public let city: String
     public let photoUrl: URL
     public let isFavorite: Bool
 }
@@ -27,9 +27,9 @@ extension BriefOfferEntity: DTODecodable {
             id: model.id,
             title: model.title,
             price: .init(value: model.price, currency: .init(rawValue: model.currency)),
-            city: try .from(dto: model.city),
+            city: model.city,
             photoUrl: model.photoUrl,
-            isFavorite: model.isFavorite
+            isFavorite: model.isFavourite
         )
     }
 }

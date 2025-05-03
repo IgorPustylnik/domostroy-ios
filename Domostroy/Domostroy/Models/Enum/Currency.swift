@@ -8,12 +8,12 @@
 import Foundation
 
 public enum Currency: String, Codable {
-    case rub = "rub"
+    case rub = "RUB"
     case unknown
 
     public init(rawValue: String) {
         switch rawValue {
-        case Currency.rub.description:
+        case Currency.rub.rawValue:
             self = .rub
         default:
             self = .unknown

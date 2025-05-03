@@ -10,25 +10,33 @@ import NodeKit
 
 public struct CreateOfferEntry {
     public let metadata: CreateOfferMetadataEntry
-    public let photos: [Data]
+    public let file: [Data]
 }
 
 extension CreateOfferEntry: RawEncodable {
     public typealias Raw = MultipartModel<[String: Data]>
 
     public func toRaw() throws -> Raw {
-        return .init(
-            payloadModel: [
-                "metadata": try JSONSerialization.data(withJSONObject: metadata.toRaw(), options: [])
-            ],
-            files: Dictionary(
-                uniqueKeysWithValues: self.photos.enumerated().map { index, photoData in
-                    (
-                        "\(index)",
-                        .data(data: photoData, filename: "photo\(index)", mimetype: "jpg")
-                    )
-                }
-            )
+        var filesDict = Dictionary(
+            uniqueKeysWithValues: self.file.enumerated().map { index, photoData in
+                (
+                    "\(index)",
+                    MultipartFileProvider.data(data: photoData, filename: "file", mimetype: "image/jpeg")
+                )
+            }
         )
+
+        filesDict["metadata"] = MultipartFileProvider.data(
+            data: try JSONSerialization.data(withJSONObject: metadata.toRaw()),
+            filename: "metadata",
+            mimetype: "application/json"
+        )
+        return .init(
+            payloadModel: [:
+//                "metadata": try JSONSerialization.data(withJSONObject: metadata.toRaw(), options: [])
+            ],
+            files: filesDict
+        )
+
     }
 }

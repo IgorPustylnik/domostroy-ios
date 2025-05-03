@@ -13,9 +13,9 @@ public struct BriefOfferEntry {
     public let title: String
     public let price: Double
     public let currency: String
-    public let city: CityEntry
+    public let city: String
     public let photoUrl: URL
-    public let isFavorite: Bool
+    public let isFavourite: Bool
 }
 
 extension BriefOfferEntry: Decodable, RawDecodable {

@@ -158,7 +158,7 @@ private extension UserProfilePresenter {
             },
             title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
-            location: offer.city.name,
+            location: offer.city,
             actions: [],
             toggleActions: toggleActions
         )
