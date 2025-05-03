@@ -23,7 +23,7 @@ final class DURLServiceChainProvider: URLServiceChainProvider {
     }
 }
 
-// MARK: - Костыли для того, чтобы было так же, как на бэке (много файлов по ключу file)
+// MARK: - Костыли для того, чтобы названия полей соответствовали названию файлов
 
 private final class FileMultipartRequestCreatorNode<Route>: MultipartRequestCreatorNode<Route> {
     override func append(multipartForm: MultipartFormDataProtocol, with request: MultipartURLRequest) {
@@ -33,7 +33,7 @@ private final class FileMultipartRequestCreatorNode<Route>: MultipartRequestCrea
         request.data.files.forEach { key, value in
             switch value {
             case .data(data: let data, filename: let filename, mimetype: let mimetype):
-                multipartForm.append(data, withName: "file", fileName: filename, mimeType: mimetype)
+                multipartForm.append(data, withName: filename, fileName: filename, mimeType: mimetype)
             case .url(url: let url):
                 multipartForm.append(url, withName: key)
             case .customWithURL(url: let url, filename: let filename, mimetype: let mimetype):
