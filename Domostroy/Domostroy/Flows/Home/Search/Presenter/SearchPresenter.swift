@@ -128,23 +128,8 @@ extension SearchPresenter: RefreshableOutput {
         paginatableInput?.updateProgress(isLoading: false)
         paginationSnapshot = .now
 
-        fetchOffers { [weak self] in
+        loadFirstPage {
             input.endRefreshing()
-            self?.view?.setLoading(false)
-            self?.updatePagination()
-            self?.paginatableInput?.updateProgress(isLoading: false)
-        } handleResult: { [weak self] result in
-            switch result {
-            case .success(let page):
-                guard let self else {
-                    return
-                }
-                self.pagesCount = page.pagination.totalPages
-                self.view?.setEmptyState(page.data.isEmpty)
-                self.view?.fillFirstPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
-            case .failure(let error):
-                DropsPresenter.shared.showError(error: error)
-            }
         }
     }
 
@@ -159,25 +144,26 @@ extension SearchPresenter: PaginatableOutput {
     }
 
     func loadNextPage(with input: PaginatableInput) {
-        if canLoadNext() {
-            input.updateProgress(isLoading: true)
-            currentPage += 1
+        guard canLoadNext() else {
+            return
+        }
+        input.updateProgress(isLoading: true)
+        currentPage += 1
 
-            fetchOffers { [weak self] in
-                self?.updatePagination()
-                input.updateProgress(isLoading: false)
-            } handleResult: { [weak self] result in
-                switch result {
-                case .success(let page):
-                    guard let self else {
-                        return
-                    }
-                    self.pagesCount = page.pagination.totalPages
-                    self.view?.setEmptyState(page.data.isEmpty)
-                    self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
-                case .failure(let error):
-                    DropsPresenter.shared.showError(error: error)
+        fetchOffers { [weak self] in
+            self?.updatePagination()
+            input.updateProgress(isLoading: false)
+        } handleResult: { [weak self] result in
+            switch result {
+            case .success(let page):
+                guard let self else {
+                    return
                 }
+                self.pagesCount = page.pagination.totalPages
+                self.view?.setEmptyState(page.data.isEmpty)
+                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
     }
@@ -249,8 +235,9 @@ private extension SearchPresenter {
             .store(in: &cancellables)
     }
 
-    func loadFirstPage() {
+    func loadFirstPage(completion: (() -> Void)? = nil) {
         currentPage = 0
+        paginationSnapshot = .now
         view?.fillFirstPage(with: [])
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
@@ -260,6 +247,7 @@ private extension SearchPresenter {
             self?.view?.setLoading(false)
             self?.updatePagination()
             self?.paginatableInput?.updateProgress(isLoading: false)
+            completion?()
         } handleResult: { [weak self] result in
             switch result {
             case .success(let page):

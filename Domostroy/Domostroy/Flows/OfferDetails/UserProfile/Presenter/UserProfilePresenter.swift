@@ -70,13 +70,6 @@ extension UserProfilePresenter: UserProfileViewOutput {
 extension UserProfilePresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
-        guard let userId else {
-            return
-        }
-
-        paginatableInput?.updatePagination(canIterate: false)
-        paginatableInput?.updateProgress(isLoading: false)
-
         loadFirstPage {
             input.endRefreshing()
         }
@@ -190,6 +183,7 @@ private extension UserProfilePresenter {
 
     func loadFirstPage(completion: (() -> Void)? = nil) {
         currentPage = 0
+        paginationSnapshot = .now
         isFirstPageLoading = true
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
