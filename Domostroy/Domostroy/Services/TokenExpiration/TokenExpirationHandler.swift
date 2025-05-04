@@ -30,6 +30,10 @@ final class TokenExpirationHandler {
             withTimeInterval: interval,
             repeats: false
         ) { [weak self] _ in
+            DropsPresenter.shared.showWarning(
+                title: L10n.Localizable.TokenExpirationHandler.loggedOut,
+                subtitle: L10n.Localizable.TokenExpirationHandler.expired
+            )
             self?.expireNow()
         }
     }

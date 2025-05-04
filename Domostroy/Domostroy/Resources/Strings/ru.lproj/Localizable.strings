@@ -40,6 +40,11 @@
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
 
+// MARK: - Token Expiration Handler
+
+"TokenExpirationHandler.LoggedOut"="Вы больше не авторизованы";
+"TokenExpirationHandler.Expired"="Срок действия токена истёк";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Войти";

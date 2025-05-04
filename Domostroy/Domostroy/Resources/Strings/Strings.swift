@@ -371,6 +371,12 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "Sort.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum TokenExpirationHandler {
+      /// Token has expired
+      internal static let expired = L10n.tr("Localizable", "TokenExpirationHandler.Expired", fallback: "Token has expired")
+      /// You have been logged out
+      internal static let loggedOut = L10n.tr("Localizable", "TokenExpirationHandler.LoggedOut", fallback: "You have been logged out")
+    }
     internal enum UserProfile {
       /// On Domostroy since %@
       internal static func registrationDate(_ p1: Any) -> String {

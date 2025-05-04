@@ -40,6 +40,11 @@
 "HttpError.InternalServerError" = "Internal server error";
 "ParseError.cantDeserialize" = "Unknown server response format";
 
+// MARK: - Token Expiration Handler
+
+"TokenExpirationHandler.LoggedOut"="You have been logged out";
+"TokenExpirationHandler.Expired"="Token has expired";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Login";
