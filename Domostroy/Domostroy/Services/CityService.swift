@@ -10,7 +10,5 @@ import NodeKit
 
 public protocol CityService {
 
-    func getCities(query: String) -> AnyPublisher<NodeResult<CitiesEntity>, Never>
-    func getPopularCities() -> AnyPublisher<NodeResult<CitiesEntity>, Never>
-
+    func getCities(query: String?) -> AnyPublisher<NodeResult<CitiesEntity>, Never>
 }

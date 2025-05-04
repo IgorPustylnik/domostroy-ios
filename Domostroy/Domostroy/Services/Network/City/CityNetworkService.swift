@@ -22,22 +22,21 @@ public final class CityNetworkService: CityService {
 
     // MARK: - GET
 
-    public func getCities(query: String) -> AnyPublisher<NodeResult<CitiesEntity>, Never> {
-        makeBuilder()
-            .route(.get, .base)
-            .set(query: ["city": query])
-            .encode(as: .urlQuery)
-            .build()
-            .nodeResultPublisher()
+    public func getCities(query: String?) -> AnyPublisher<NodeResult<CitiesEntity>, Never> {
+        if let query, !query.isEmpty {
+            return makeBuilder()
+                .route(.get, .base)
+                .set(query: ["city": query])
+                .encode(as: .urlQuery)
+                .build()
+                .nodeResultPublisher()
+        } else {
+            return makeBuilder()
+                .route(.get, .popular)
+                .build()
+                .nodeResultPublisher()
+        }
     }
-
-    public func getPopularCities() -> AnyPublisher<NodeResult<CitiesEntity>, Never> {
-        makeBuilder()
-            .route(.get, .popular)
-            .build()
-            .nodeResultPublisher()
-    }
-
 }
 
 // MARK: - Private methods
