@@ -109,6 +109,7 @@ final class DSearchTextField: UIView {
         $0.image = .TextField.xmark.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.setAction { [weak self] in
             self?.textField.text = ""
+            self?.textField.sendActions(for: .editingChanged)
             self?.updateIsActive()
         }
         $0.imageSize = Constants.clearButtonImageSize
