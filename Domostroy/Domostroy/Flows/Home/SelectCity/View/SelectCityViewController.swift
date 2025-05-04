@@ -62,7 +62,7 @@ final class SelectCityViewController: UIViewController {
     // MARK: - UI Setup
 
     private func setupUI() {
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(searchTextField)
         view.addSubview(tableView)
         view.addSubview(applyButton)
@@ -72,10 +72,11 @@ final class SelectCityViewController: UIViewController {
         }
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchTextField.snp.bottom).offset(Constants.insets.bottom)
-            make.bottom.horizontalEdges.equalToSuperview()
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.greaterThanOrEqualTo(applyButton.snp.top).offset(-Constants.insets.bottom)
         }
         applyButton.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(Constants.insets)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(Constants.insets)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
                 .inset(Constants.insets.bottom)
                 .priority(.high)
