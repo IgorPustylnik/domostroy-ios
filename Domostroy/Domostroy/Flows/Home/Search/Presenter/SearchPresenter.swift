@@ -35,6 +35,7 @@ final class SearchPresenter: SearchModuleOutput {
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
+    private var paginationSnapshot: Date = .now
 
     private var city: CityEntity?
     private var sort: SortViewModel = .default
@@ -125,10 +126,9 @@ extension SearchPresenter: RefreshableOutput {
         currentPage = 0
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
+        paginationSnapshot = .now
 
-        fetchOffers(
-            page: currentPage
-        ) { [weak self] in
+        fetchOffers { [weak self] in
             input.endRefreshing()
             self?.view?.setLoading(false)
             self?.updatePagination()
@@ -163,9 +163,7 @@ extension SearchPresenter: PaginatableOutput {
             input.updateProgress(isLoading: true)
             currentPage += 1
 
-            fetchOffers(
-                page: currentPage
-            ) { [weak self] in
+            fetchOffers { [weak self] in
                 self?.updatePagination()
                 input.updateProgress(isLoading: false)
             } handleResult: { [weak self] result in
@@ -258,9 +256,7 @@ private extension SearchPresenter {
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
-        fetchOffers(
-            page: currentPage
-        ) { [weak self] in
+        fetchOffers { [weak self] in
             self?.view?.setLoading(false)
             self?.updatePagination()
             self?.paginatableInput?.updateProgress(isLoading: false)
@@ -280,7 +276,6 @@ private extension SearchPresenter {
     }
 
     func fetchOffers(
-        page: Int,
         completion: EmptyClosure?,
         handleResult: ((NodeResult<PageEntity<BriefOfferEntity>>) -> Void)?
     ) {
@@ -304,9 +299,11 @@ private extension SearchPresenter {
             }
         }
         let searchOffersEntity = SearchOffersEntity(
-            pagination: .init(page: page, size: CommonConstants.pageSize),
+            pagination: .init(page: currentPage, size: CommonConstants.pageSize),
             sorting: sorting,
-            searchCriteriaList: filtering
+            searchCriteriaList: filtering,
+            snapshot: paginationSnapshot,
+            seed: sort == .default ? "seed" : nil
         )
         offerService?.getOffers(searchOffersEntity: searchOffersEntity)
             .sink(

@@ -12,6 +12,8 @@ public struct SearchOffersEntity {
     public let pagination: PaginationRequestEntity
     public let sorting: [SortEntity]
     public let searchCriteriaList: [FilterEntity]
+    public let snapshot: Date
+    public let seed: String?
 }
 
 extension SearchOffersEntity: DTOEncodable {
@@ -21,7 +23,9 @@ extension SearchOffersEntity: DTOEncodable {
         try .init(
             pagination: pagination.toDTO(),
             sorting: sorting.toDTO(),
-            searchCriteriaList: searchCriteriaList.toDTO()
+            searchCriteriaList: searchCriteriaList.toDTO(),
+            snapshot: snapshot,
+            seed: seed
         )
     }
 }
