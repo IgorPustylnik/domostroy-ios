@@ -437,6 +437,8 @@ internal enum L10n {
         }
       }
       internal enum Username {
+        /// Mustn't contain spaces
+        internal static let containsSpaces = L10n.tr("Localizable", "ValidationError.Username.ContainsSpaces", fallback: "Mustn't contain spaces")
         /// Mustn't be longer than 64 characters
         internal static let long = L10n.tr("Localizable", "ValidationError.Username.long", fallback: "Mustn't be longer than 64 characters")
         /// Must be at least 2 characters long

@@ -7,6 +7,7 @@
 "ValidationError.Password.mismatch" = "Пароли не совпадают";
 "ValidationError.Username.short" = "Минимум 2 символа";
 "ValidationError.Username.long" = "Не должно быть длиннее 64 символов";
+"ValidationError.Username.ContainsSpaces"="Не должно содержать пробелы";
 "ValidationError.Email" = "Неверный email-адрес";
 "ValidationError.Phone" = "Неверный номер телефона";
 
