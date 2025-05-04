@@ -9,6 +9,8 @@
 import UIKit
 import ReactiveDataDisplayManager
 import Kingfisher
+import Combine
+import NodeKit
 
 final class UserProfilePresenter: UserProfileModuleOutput {
 
@@ -28,11 +30,16 @@ final class UserProfilePresenter: UserProfileModuleOutput {
     weak var view: UserProfileViewInput?
     private weak var paginatableInput: PaginatableInput?
 
+    private var userService: UserService? = ServiceLocator.shared.resolve()
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
     private var userId: Int?
 
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
+    private var paginationSnapshot: Date = .now
 }
 
 // MARK: - UserProfileModuleInput
@@ -70,17 +77,8 @@ extension UserProfilePresenter: RefreshableOutput {
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
-        Task {
-            async let _ = fillUser(userId: userId)
-            async let canIterateTask = fillFirst(userId: userId)
-
-            let canIterate = await canIterateTask
-
-            DispatchQueue.main.async { [weak self] in
-                input.endRefreshing()
-                self?.paginatableInput?.updatePagination(canIterate: canIterate)
-                self?.paginatableInput?.updateProgress(isLoading: false)
-            }
+        loadFirstPage {
+            input.endRefreshing()
         }
     }
 
@@ -95,24 +93,30 @@ extension UserProfilePresenter: PaginatableOutput {
     }
 
     func loadNextPage(with input: PaginatableInput) {
+        guard canLoadNext() else {
+            return
+        }
+        currentPage += 1
         input.updateProgress(isLoading: true)
 
-        Task {
-            let canFillNext = canFillNext()
-
-            if canFillNext {
-                let canIterate = await fillNext()
-
-                DispatchQueue.main.async {
-                    input.updatePagination(canIterate: canIterate)
-                    input.updateProgress(isLoading: false)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    input.updateProgress(isLoading: false)
-                }
+        fetchOffers { [weak self] in
+            self?.updatePagination()
+            input.updateProgress(isLoading: false)
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
+    }
+
+    func updatePagination() {
+        paginatableInput?.updatePagination(canIterate: canLoadNext())
     }
 
 }
@@ -122,16 +126,16 @@ extension UserProfilePresenter: PaginatableOutput {
 private extension UserProfilePresenter {
 
     func makeUserViewModel(
-        from user: User
+        from user: UserEntity
     ) -> UserProfileInfoCollectionViewCell.ViewModel {
         return .init(
-            imageUrl: user.avatar,
+            imageUrl: nil,
             loadImage: { [weak self] url, imageView in
-                self?.loadImage(url: url, imageView: imageView)
+                self?.loadAvatar(id: user.id, name: user.name, url: url, imageView: imageView)
             },
             username: user.firstName,
             info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
-            info2: L10n.Localizable.UserProfile.registrationDate(user.registerDate.monthAndYearString())
+            info2: L10n.Localizable.UserProfile.registrationDate(user.registrationDate.monthAndYearString())
         )
     }
 
@@ -153,8 +157,10 @@ private extension UserProfilePresenter {
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.photoUrl,
-            loadImage: { [weak self] url, imageView in
-                self?.loadImage(url: url, imageView: imageView)
+            loadImage: { url, imageView in
+                DispatchQueue.main.async {
+                    imageView.kf.setImage(with: url)
+                }
             },
             title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
@@ -170,9 +176,9 @@ private extension UserProfilePresenter {
 
 private extension UserProfilePresenter {
 
-    func loadImage(url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+    func loadAvatar(id: Int, name: String, url: URL?, imageView: UIImageView) {
+        DispatchQueue.main.async {
+            imageView.kf.setImage(with: url, placeholder: UIImage.initialsAvatar(name: name, hashable: id))
         }
     }
 
@@ -182,29 +188,90 @@ private extension UserProfilePresenter {
         }
     }
 
-    func loadFirstPage() {
-        guard let userId else {
-            return
-        }
+    func loadFirstPage(completion: (() -> Void)? = nil) {
+        currentPage = 0
+        isFirstPageLoading = true
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
-        Task {
-            async let _ = fillUser(userId: userId)
-            async let canIterateTask = fillFirst(userId: userId)
+        fetchOffers { [weak self] in
+            self?.view?.setLoading(false)
+            self?.updatePagination()
+            self?.paginatableInput?.updateProgress(isLoading: false)
 
-            let canIterate = await canIterateTask
+            self?.fetchUser(completion: nil) { [weak self] result in
+                guard let self else {
+                    return
+                }
+                switch result {
+                case .success(let user):
+                    self.view?.fillUser(with: self.makeUserViewModel(from: user))
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
 
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.setLoading(false)
-                self?.paginatableInput?.updatePagination(canIterate: canIterate)
-                self?.paginatableInput?.updateProgress(isLoading: false)
+            completion?()
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.pagesCount = page.pagination.totalPages
+                self.isFirstPageLoading = false
+                self.view?.fillFirstPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
     }
 
-    func canFillNext() -> Bool {
+    func fetchUser(
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<UserEntity>) -> Void)?
+    ) {
+        guard let userId else {
+            return
+        }
+        userService?.getUser(id: userId)
+            .sink(
+                receiveCompletion: { _ in
+                    completion?()
+                },
+                receiveValue: { result in
+                    handleResult?(result)
+                }
+            )
+            .store(in: &cancellables)
+    }
+
+    func fetchOffers(
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<PageEntity<BriefOfferEntity>>) -> Void)?
+    ) {
+        let searchOffersEntity = SearchOffersEntity(
+            pagination: .init(page: currentPage, size: CommonConstants.pageSize),
+            sorting: [.init(property: .date, direction: .descending)],
+            searchCriteriaList: [.init(filterKey: .userId, operation: .equals, value: AnyEncodable(userId))],
+            snapshot: paginationSnapshot,
+            seed: nil
+        )
+        offerService?.getOffers(searchOffersEntity: searchOffersEntity)
+            .sink(
+                receiveCompletion: { _ in
+                    completion?()
+                },
+                receiveValue: { result in
+                    handleResult?(result)
+                }
+            )
+            .store(in: &cancellables)
+    }
+
+    func canLoadNext() -> Bool {
         guard !isFirstPageLoading else {
             isFirstPageLoading.toggle()
             return false
@@ -213,54 +280,6 @@ private extension UserProfilePresenter {
             return true
         }
         return false
-    }
-
-    func fillNext() async -> Bool {
-        currentPage += 1
-
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
-
-        return currentPage < pagesCount
-    }
-
-    func fillFirst(userId: Int) async -> Bool {
-        isFirstPageLoading = true
-
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-        isFirstPageLoading = false
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
-
-        return currentPage < pagesCount
-    }
-
-    func fillUser(userId: Int) async {
-        let user = await _Temporary_Mock_NetworkService().fetchUser(id: userId)
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.fillUser(with: self.makeUserViewModel(from: user))
-        }
     }
 
 }
