@@ -23,9 +23,7 @@ extension CreateOfferMetadataEntry: RawMappable {
 
     public func toRaw() throws -> Json {
         let encoder = JSONEncoder()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd"
-        encoder.dateEncodingStrategy = .formatted(formatter)
+        encoder.dateEncodingStrategy = .formatted(.yyyymmdd)
 
         let data = try encoder.encode(self)
         let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)

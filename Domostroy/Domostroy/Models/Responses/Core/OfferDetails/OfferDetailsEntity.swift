@@ -17,7 +17,7 @@ public struct OfferDetailsEntity {
     public let createdAt: Date
     public let userId: Int
     public let cityId: Int
-    public let calendarId: Int
+//    public let calendarId: Int
     public let isFavorite: Bool
     public let photos: [URL]
 }
@@ -32,13 +32,14 @@ extension OfferDetailsEntity: DTODecodable {
             id: model.id,
             title: model.title,
             description: model.description,
-            category: .from(dto: model.category),
+            // TODO: Load category name
+            category: .init(id: model.category, name: "placeholder"),
             price: .init(value: model.price, currency: .init(rawValue: model.currency)),
             createdAt: model.createdAt,
             userId: model.userId,
             cityId: model.cityId,
-            calendarId: model.calendarId,
-            isFavorite: model.isFavorite,
+//            calendarId: model.calendarId,
+            isFavorite: model.isFavourite,
             photos: model.photos
         )
     }
