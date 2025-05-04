@@ -83,6 +83,7 @@
 		551747712DC7900500AFAF24 /* ChangeUserInfoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747702DC7900500AFAF24 /* ChangeUserInfoEntry.swift */; };
 		551747742DC7912B00AFAF24 /* ChangePasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747732DC7912B00AFAF24 /* ChangePasswordEntity.swift */; };
 		551747762DC791CE00AFAF24 /* ChangePasswordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747752DC791CE00AFAF24 /* ChangePasswordEntry.swift */; };
+		551747792DC7F09D00AFAF24 /* SortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747782DC7F09D00AFAF24 /* SortViewModel.swift */; };
 		55189C562DB69B770079481A /* OfferDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */; };
 		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
 		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
@@ -406,6 +407,7 @@
 		551747702DC7900500AFAF24 /* ChangeUserInfoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserInfoEntry.swift; sourceTree = "<group>"; };
 		551747732DC7912B00AFAF24 /* ChangePasswordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEntity.swift; sourceTree = "<group>"; };
 		551747752DC791CE00AFAF24 /* ChangePasswordEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEntry.swift; sourceTree = "<group>"; };
+		551747782DC7F09D00AFAF24 /* SortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewModel.swift; sourceTree = "<group>"; };
 		55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinator.swift; sourceTree = "<group>"; };
 		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
 		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,14 @@
 				551747752DC791CE00AFAF24 /* ChangePasswordEntry.swift */,
 			);
 			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		551747772DC7F08B00AFAF24 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				551747782DC7F09D00AFAF24 /* SortViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		55189C5A2DB6CAFC0079481A /* RadioButton */ = {
@@ -2254,6 +2264,7 @@
 		E9BBA0D0A8F17FC878BDF619 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				551747772DC7F08B00AFAF24 /* ViewModel */,
 				DD7D1B42CDFD12442C973DE1 /* SortPresenter.swift */,
 				773A0065DBFA6A05448E3D33 /* SortModuleInput.swift */,
 				2DACE3FAE7D03342AB812DA8 /* SortModuleOutput.swift */,
@@ -2596,6 +2607,7 @@
 				5589B7422DC15C1D00DEA9CF /* SearchOffersEntity.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
 				551747512DC788BB00AFAF24 /* CityNetworkService.swift in Sources */,
+				551747792DC7F09D00AFAF24 /* SortViewModel.swift in Sources */,
 				554F7CBF2DBA276D008A2BB3 /* UserProfileModuleOutput.swift in Sources */,
 				CD75723C4B6C3501975A852E /* AuthPresenter.swift in Sources */,
 				551747552DC788E300AFAF24 /* CityService.swift in Sources */,
