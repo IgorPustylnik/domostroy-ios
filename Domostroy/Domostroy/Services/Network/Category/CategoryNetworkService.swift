@@ -22,7 +22,7 @@ public final class CategoryNetworkService: CategoryService {
 
     // MARK: - GET
 
-    public func getCategories(query: String) -> AnyPublisher<NodeResult<CategoriesEntity>, Never> {
+    public func getCategories() -> AnyPublisher<NodeResult<CategoriesEntity>, Never> {
         makeBuilder()
             .route(.get, .base)
             .build()

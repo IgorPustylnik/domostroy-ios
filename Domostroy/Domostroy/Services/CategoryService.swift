@@ -11,6 +11,6 @@ import NodeKit
 
 public protocol CategoryService {
 
-    func getCategories(query: String) -> AnyPublisher<NodeResult<CategoriesEntity>, Never>
+    func getCategories() -> AnyPublisher<NodeResult<CategoriesEntity>, Never>
 
 }
