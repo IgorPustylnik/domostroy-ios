@@ -15,7 +15,7 @@ final class ImageCollectionViewCell: UICollectionViewCell {
 
     struct ViewModel {
         let imageUrl: URL?
-        let loadImage: (URL?, UIImageView) -> Void
+        let loadImage: (URL?, UIImageView, @escaping () -> Void) -> Void
     }
 
     // MARK: - UI Elements
@@ -24,6 +24,8 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
+
+    private lazy var spinner = DLoadingIndicator()
 
     // MARK: - Init
 
@@ -48,6 +50,10 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
 
 }
@@ -58,7 +64,10 @@ extension ImageCollectionViewCell: ConfigurableItem {
     typealias Model = ViewModel
 
     func configure(with model: ViewModel) {
-        model.loadImage(model.imageUrl, imageView)
+        spinner.isHidden = false
+        model.loadImage(model.imageUrl, imageView) { [weak self] in
+            self?.spinner.isHidden = true
+        }
     }
 
 }

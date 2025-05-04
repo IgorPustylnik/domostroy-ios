@@ -51,6 +51,9 @@ private extension OfferDetailsCoordinator {
                 self?.onComplete?()
             }
         }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
         router.push(view, animated: true)
     }
 

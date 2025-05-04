@@ -84,6 +84,7 @@
 		551747742DC7912B00AFAF24 /* ChangePasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747732DC7912B00AFAF24 /* ChangePasswordEntity.swift */; };
 		551747762DC791CE00AFAF24 /* ChangePasswordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747752DC791CE00AFAF24 /* ChangePasswordEntry.swift */; };
 		551747792DC7F09D00AFAF24 /* SortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747782DC7F09D00AFAF24 /* SortViewModel.swift */; };
+		5517477B2DC80F2400AFAF24 /* DateFormatter+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517477A2DC80F2400AFAF24 /* DateFormatter+ext.swift */; };
 		55189C562DB69B770079481A /* OfferDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */; };
 		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
 		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
@@ -408,6 +409,7 @@
 		551747732DC7912B00AFAF24 /* ChangePasswordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEntity.swift; sourceTree = "<group>"; };
 		551747752DC791CE00AFAF24 /* ChangePasswordEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordEntry.swift; sourceTree = "<group>"; };
 		551747782DC7F09D00AFAF24 /* SortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewModel.swift; sourceTree = "<group>"; };
+		5517477A2DC80F2400AFAF24 /* DateFormatter+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ext.swift"; sourceTree = "<group>"; };
 		55189C542DB69B770079481A /* OfferDetailsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinator.swift; sourceTree = "<group>"; };
 		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
 		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
@@ -1295,6 +1297,7 @@
 				55ED677C2DA80E2500A3CA52 /* Double+ext.swift */,
 				55BB62C72DBABD7200BD992E /* String+ext.swift */,
 				55BB62C92DBAE3D800BD992E /* Date+ext.swift */,
+				5517477A2DC80F2400AFAF24 /* DateFormatter+ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2711,6 +2714,7 @@
 				BD79D41D26D9E4DBA8969C46 /* CreateOfferViewOutput.swift in Sources */,
 				09E4C5333B4DCC20903323F0 /* CreateRequestModuleConfigurator.swift in Sources */,
 				5592A38D2DBFB4B40082DB28 /* UserUrlRoute.swift in Sources */,
+				5517477B2DC80F2400AFAF24 /* DateFormatter+ext.swift in Sources */,
 				5517475E2DC78C3600AFAF24 /* CategoryService.swift in Sources */,
 				15A7B1D9A196FBD567BD5CC2 /* CreateRequestPresenter.swift in Sources */,
 				9E8AA91D048B7591E15F8371 /* CreateRequestModuleInput.swift in Sources */,

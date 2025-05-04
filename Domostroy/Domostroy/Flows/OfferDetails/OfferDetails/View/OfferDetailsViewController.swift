@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import ReactiveDataDisplayManager
 
 final class OfferDetailsViewController: ScrollViewController {
 
@@ -22,7 +23,13 @@ final class OfferDetailsViewController: ScrollViewController {
 
     // MARK: - Properties
 
-    var picturesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private(set) var picturesCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
+    )
+
+    var picturesAdapter: BaseCollectionManager?
+    private var pictureGenerators: [CollectionCellGenerator] = []
+
     private var offerDetailsView = OfferDetailsView()
 
     var output: OfferDetailsViewOutput?
@@ -55,6 +62,7 @@ final class OfferDetailsViewController: ScrollViewController {
     }
 
     private func configureCollectionView() {
+        picturesCollectionView.backgroundColor = .secondarySystemBackground
         picturesCollectionView.showsHorizontalScrollIndicator = false
         picturesCollectionView.isPagingEnabled = true
         contentView.layoutIfNeeded()
@@ -94,4 +102,21 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
         offerDetailsView.configure(with: viewModel)
     }
 
+    func configurePictures(with viewModels: [ImageCollectionViewCell.ViewModel]) {
+        pictureGenerators = viewModels.map {
+            ImageCollectionViewCell.rddm.baseGenerator(with: $0, and: .class)
+        }
+        refillAdapter()
+    }
+
+}
+
+// MARK: - Private methods
+
+private extension OfferDetailsViewController {
+    func refillAdapter() {
+        picturesAdapter?.clearCellGenerators()
+        picturesAdapter?.addCellGenerators(pictureGenerators)
+        picturesAdapter?.forceRefill()
+    }
 }

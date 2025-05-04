@@ -158,6 +158,7 @@
 
 "OfferDetails.Button.Rent" = "Rent";
 "OfferDetails.Specifications.Header" = "Specifications";
+"OfferDetails.Specifications.Category" = "Category";
 "OfferDetails.Description.Header" = "Description";
 
 // MARK: - User Profile

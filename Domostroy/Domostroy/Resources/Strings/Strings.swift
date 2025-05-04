@@ -191,6 +191,8 @@ internal enum L10n {
         internal static let header = L10n.tr("Localizable", "OfferDetails.Description.Header", fallback: "Description")
       }
       internal enum Specifications {
+        /// Category
+        internal static let category = L10n.tr("Localizable", "OfferDetails.Specifications.Category", fallback: "Category")
         /// Specifications
         internal static let header = L10n.tr("Localizable", "OfferDetails.Specifications.Header", fallback: "Specifications")
       }

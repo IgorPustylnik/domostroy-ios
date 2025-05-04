@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ReactiveDataDisplayManager
 import Kingfisher
+import Combine
 
 final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
@@ -18,6 +19,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     var onOpenUser: ((Int) -> Void)?
     var onRent: EmptyClosure?
     var onDeinit: EmptyClosure?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
@@ -26,122 +28,14 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     private var offerId: Int?
     private var offer: OfferDetailsEntity?
 
-    var picturesAdapter: BaseCollectionManager?
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var userService: UserService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 
     deinit {
         onDeinit?()
     }
 
-}
-
-private extension OfferDetailsPresenter {
-
-    func fetchOffer() {
-        guard let offerId else {
-            return
-        }
-        view?.setLoading(true)
-        Task {
-            let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: offerId)
-            self.offer = offer
-
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.setLoading(false)
-                self?.view?.setupFavoriteToggle(
-                    initialState: offer.isFavorite,
-                    toggleAction: { [weak self] newValue, handler in
-                        self?.setFavorite(value: newValue) { success in
-                            handler?(success)
-                        }
-                    }
-                )
-                self?.view?.setupInitialState()
-                self?.view?.configureOffer(
-                    viewModel: .init(
-                        price: LocalizationHelper.pricePerDay(for: offer.price),
-                        title: offer.name,
-                        city: offer.city.name,
-                        specs: [
-                            ("Состояние", "новое"),
-                            ("Производитель", "Makita")
-                        ],
-                        description: offer.description,
-                        user: .init(
-                            url: _Temporary_EndpointConstructor.user(id: offer.userId).url,
-                            loadUser: { [weak self] url, userView in
-                                self?.fetchUser(url: url, userView: userView)
-                            },
-                            onOpenProfile: { [weak self] in
-                                self?.openUser(id: offer.userId)
-                            }
-                        ),
-                        onRent: { [weak self] in
-                            self?.rent()
-                        }
-                    )
-                )
-                self?.fillPictures(for: offer)
-            }
-        }
-    }
-
-    func setFavorite(value: Bool, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            completion?(false)
-        }
-    }
-
-    func fetchUser(url: URL?, userView: OfferDetailsView.UserView) {
-        guard let userId = offer?.userId else {
-            return
-        }
-        Task {
-            let user = await _Temporary_Mock_NetworkService().fetchUser(id: userId)
-            DispatchQueue.main.async {
-                var name = user.firstName
-                if let lastName = user.lastName {
-                    name += " \(lastName)"
-                }
-                userView.name.text = name
-                let offerAmount = "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))"
-                userView.infoLabel.text = offerAmount
-                userView.avatar.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
-            }
-        }
-    }
-
-    func openUser(id: Int) {
-        onOpenUser?(id)
-    }
-
-    func fillPictures(for offer: Offer) {
-        var generators: [CollectionCellGenerator] = []
-        offer.images.forEach {
-            generators.append(makeGenerator(from: $0))
-        }
-        picturesAdapter?.clearCellGenerators()
-        picturesAdapter?.addCellGenerators(generators)
-        picturesAdapter?.forceRefill()
-    }
-
-    func makeGenerator(from imageUrl: URL) -> CollectionCellGenerator {
-        let viewModel = ImageCollectionViewCell.ViewModel(
-            imageUrl: imageUrl) { [weak self] url, imageView in
-                self?.loadImage(url: url, imageView: imageView)
-        }
-
-        let generator = ImageCollectionViewCell.rddm.baseGenerator(with: viewModel, and: .class)
-        generator.didSelectEvent += { [weak self] in
-            print("did select \(imageUrl)")
-        }
-        return generator
-    }
-
-    private func loadImage(url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.async {
-            imageView.kf.setImage(with: URL(string: ""), placeholder: UIImage.Mock.makita)
-        }
-    }
 }
 
 // MARK: - OfferDetailsModuleInput
@@ -166,4 +60,105 @@ extension OfferDetailsPresenter: OfferDetailsViewOutput {
         onRent?()
     }
 
+}
+
+// MARK: - Network requests
+
+private extension OfferDetailsPresenter {
+
+    func fetchOffer() {
+        guard let offerId else {
+            return
+        }
+        view?.setLoading(true)
+        offerService?.getOffer(
+            id: offerId
+        )
+        .sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setLoading(false)
+            },
+            receiveValue: { [weak self] result in
+                guard let self else {
+                    return
+                }
+                switch result {
+                case .success(let offer):
+                    self.offer = offer
+                    self.view?.setupInitialState()
+                    self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
+                    self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                    self.onDismiss?()
+                }
+            }
+        )
+        .store(in: &cancellables)
+    }
+
+    func setFavorite(value: Bool, completion: ((Bool) -> Void)?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            completion?(false)
+        }
+    }
+
+    func fetchUser(id: Int, userView: OfferDetailsView.UserView) {
+        userService?.getUser(
+            id: id
+        )
+        .sink(receiveValue: { result in
+            switch result {
+            case .success(let user):
+                userView.name.text = user.name
+                userView.infoLabel.text = "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))"
+                userView.avatar.image = .initialsAvatar(name: user.name, hashable: user.id)
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        })
+        .store(in: &cancellables)
+    }
+
+    func openUser(id: Int) {
+        onOpenUser?(id)
+    }
+}
+
+private extension OfferDetailsPresenter {
+
+    func makeOfferViewModel(offer: OfferDetailsEntity) -> OfferDetailsView.ViewModel {
+        .init(
+            price: "\(offer.price.value.stringDroppingTrailingZero)\(offer.price.currency.description)",
+            title: offer.title,
+            // TODO: Receive city name
+            city: "Воронеж"/*offer.cityId.description*/,
+            specs: [(L10n.Localizable.OfferDetails.Specifications.category, offer.category.name)],
+            description: offer.description,
+            user: .init(
+                url: try? UserUrlRoute.other(offer.userId).url(),
+                loadUser: { [weak self] url, userView in
+                    self?.fetchUser(id: offer.userId, userView: userView)
+                },
+                onOpenProfile: { [weak self] in
+                    self?.onOpenUser?(offer.userId)
+                }
+            ),
+            onRent: { [weak self] in
+                self?.onRent?()
+            }
+        )
+    }
+
+    func makePictureViewModel(url: URL) -> ImageCollectionViewCell.ViewModel {
+        ImageCollectionViewCell.ViewModel(
+            imageUrl: url
+        ) { url, imageView, completion in
+            DispatchQueue.main.async {
+                imageView.kf.setImage(with: url) { _ in
+                    completion()
+                }
+            }
+        }
+    }
 }
