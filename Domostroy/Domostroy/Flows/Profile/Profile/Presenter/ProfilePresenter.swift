@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import Combine
 
 final class ProfilePresenter: ProfileModuleOutput {
 
@@ -21,6 +22,12 @@ final class ProfilePresenter: ProfileModuleOutput {
     // MARK: - Properties
 
     weak var view: ProfileViewInput?
+
+    private let userService: UserService? = ServiceLocator.shared.resolve()
+    private var cancellables: [AnyCancellable] = []
+
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+
 }
 
 // MARK: - ProfileModuleInput
@@ -33,31 +40,46 @@ extension ProfilePresenter: ProfileModuleInput {
 
 extension ProfilePresenter: ProfileViewOutput {
     func viewLoaded() {
+        view?.setupInitialState()
         view?.setLoading(true)
-        Task {
-            let profile = await fetchProfile()
-            DispatchQueue.main.async { [weak self] in
+        userService?.getMyUser()
+            .sink(receiveCompletion: { [weak self] completion in
                 self?.view?.setLoading(false)
-                self?.view?.setupInitialState()
-                self?.configure(with: profile)
-            }
-        }
+            }, receiveValue: { [weak self] result in
+                switch result {
+                case .success(let myUser):
+                    self?.view?.setLoading(false)
+                    self?.configure(with: myUser)
+                case .failure(let error):
+                    self?.view?.setLoading(false)
+                    print(error)
+                }
+            })
+            .store(in: &cancellables)
     }
 
-    func loadImage(url: URL?, imageView: UIImageView) {
+    func loadAvatar(id: Int, name: String, url: URL?, imageView: UIImageView) {
         DispatchQueue.main.async {
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+            imageView.kf.setImage(with: url, placeholder: UIImage.initialsAvatar(name: name, hashable: id))
         }
     }
 
     func refresh() {
-        Task {
-            let profile = await fetchProfile()
-            DispatchQueue.main.async { [weak self] in
+        userService?.getMyUser()
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
                 self?.view?.endRefreshing()
-                self?.configure(with: profile)
-            }
-        }
+            }, receiveValue: { [weak self] result in
+                switch result {
+                case .success(let myUser):
+                    self?.view?.endRefreshing()
+                    self?.configure(with: myUser)
+                case .failure(let error):
+                    self?.view?.setLoading(false)
+                    print(error)
+                }
+            })
+            .store(in: &cancellables)
     }
 
     func edit() {
@@ -69,7 +91,7 @@ extension ProfilePresenter: ProfileViewOutput {
     }
 
     func logout() {
-        // actually do log out
+        secureStorage?.deleteToken()
         onLogout?()
     }
 }
@@ -86,17 +108,12 @@ private extension ProfilePresenter {
             with: .init(
                 imageUrl: nil,
                 loadImage: { [weak self] url, imageView in
-                    self?.loadImage(url: url, imageView: imageView)
+                    self?.loadAvatar(id: myUser.id, name: myUser.name, url: url, imageView: imageView)
                 },
-                name: {
-                    if let lastName = myUser.lastName {
-                        return "\(myUser.firstName) \(lastName)"
-                    }
-                    return "\(myUser.firstName)"
-                }(),
-                phoneNumber: myUser.phoneNumber,
+                name: myUser.name,
+                phoneNumber: "+\(myUser.phoneNumber)",
                 email: myUser.email,
-                isAdmin: myUser.isAdmin
+                isAdmin: false
             )
         )
     }
