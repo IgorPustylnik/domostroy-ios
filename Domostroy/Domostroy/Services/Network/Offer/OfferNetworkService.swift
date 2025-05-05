@@ -39,10 +39,7 @@ public final class OfferNetworkService: OfferService {
             .nodeResultPublisher(for: searchOffersEntity)
     }
 
-    public func getMyOffers(
-        page: Int,
-        perPage: Int
-    ) -> AnyPublisher<NodeResult<PageEntity<MyOfferEntity>>, Never> {
+    public func getMyOffers() -> AnyPublisher<NodeResult<PageEntity<MyOfferEntity>>, Never> {
         return makeBuilder()
             .route(.get, .my)
             .build()
@@ -50,12 +47,19 @@ public final class OfferNetworkService: OfferService {
     }
 
     public func getFavoriteOffers(
-        page: Int,
-        perPage: Int,
-        sort: SortViewModel?
+        paginationEntity: PaginationRequestEntity,
+        sortEntity: SortEntity?
     ) -> AnyPublisher<NodeResult<PageEntity<FavoriteOfferEntity>>, Never> {
+        var query: [String: Any] = [:]
+        query["page"] = paginationEntity.page
+        query["size"] = paginationEntity.size
+        if let sortEntity {
+            query["sort"] = sortEntity.property.rawValue
+            query["direction"] = sortEntity.direction.rawValue
+        }
         return makeBuilder()
             .route(.get, .favorites)
+            .set(query: query)
             .build()
             .nodeResultPublisher()
     }

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import ReactiveDataDisplayManager
 import Kingfisher
+import Combine
+import NodeKit
 
 final class FavoritesPresenter: FavoritesModuleOutput {
 
@@ -29,11 +31,16 @@ final class FavoritesPresenter: FavoritesModuleOutput {
     weak var view: FavoritesViewInput?
     private weak var paginatableInput: PaginatableInput?
 
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var userService: UserService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
     private var sort: SortViewModel = .default
 
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
+    private var paginationSnapshot: Date = .now
 
 }
 
@@ -73,27 +80,8 @@ extension FavoritesPresenter: FavoritesViewOutput {
 extension FavoritesPresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
-        paginatableInput?.updatePagination(canIterate: false)
-        paginatableInput?.updateProgress(isLoading: false)
-
-        Task {
-            let canIterate = await fillFirst()
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
-                input.endRefreshing()
-                self.view?.setSort(
-                    self.pagesCount > 0 ?
-                        sort == .default ?
-                            L10n.Localizable.Sort.placeholder
-                            : sort.description
-                    : nil
-                )
-                self.paginatableInput?.updatePagination(canIterate: canIterate)
-                self.paginatableInput?.updateProgress(isLoading: false)
-            }
+        loadFirstPage {
+            input.endRefreshing()
         }
     }
 
@@ -108,25 +96,30 @@ extension FavoritesPresenter: PaginatableOutput {
     }
 
     func loadNextPage(with input: PaginatableInput) {
+        guard canLoadNext() else {
+            return
+        }
+        currentPage += 1
         input.updateProgress(isLoading: true)
 
-        Task {
-            let canFillNext = canFillNext()
-
-            if canFillNext {
-                let canIterate = await fillNext()
-
-                DispatchQueue.main.async {
-                    input.updatePagination(canIterate: canIterate)
-                    input.updateProgress(isLoading: false)
-                }
-
-            } else {
-                DispatchQueue.main.async {
-                    input.updateProgress(isLoading: false)
-                }
+        fetchOffers { [weak self] in
+            self?.updatePagination()
+            input.updateProgress(isLoading: false)
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
+    }
+
+    func updatePagination() {
+        paginatableInput?.updatePagination(canIterate: canLoadNext())
     }
 
 }
@@ -182,53 +175,108 @@ private extension FavoritesPresenter {
     }
 
     func loadUser(id: Int, imageView: UIImageView, nameLabel: UILabel) {
-        Task {
-            let user = await _Temporary_Mock_NetworkService().fetchUser(id: id)
-            DispatchQueue.main.async {
-                imageView.kf.setImage(with: user.avatar, placeholder: UIImage.Mock.makita)
-                var name = user.firstName
-                if let lastName = user.lastName {
-                    name += " \(lastName)"
+        fetchUser(
+            userId: id,
+            completion: nil
+        ) { result in
+            switch result {
+            case .success(let user):
+                nameLabel.text = user.name
+                DispatchQueue.main.async {
+                    let url: URL? = nil
+                    imageView.kf.setImage(with: url, placeholder: UIImage.initialsAvatar(name: user.name, hashable: user.id))
                 }
-                nameLabel.text = name
+            case .failure(let error):
+                break
             }
         }
     }
 
     func setFavorite(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            completion?(false)
-        }
+        offerService?.toggleFavorite(
+            id: id
+        )
+        .sink(receiveValue: { result in
+            switch result {
+            case .success:
+                completion?(true)
+            case .failure(let error):
+                completion?(false)
+                DropsPresenter.shared.showError(error: error)
+            }
+        })
+        .store(in: &cancellables)
     }
 
-    func loadFirstPage() {
-        view?.fillFirstPage(with: [])
+    func loadFirstPage(completion: (() -> Void)? = nil) {
+        currentPage = 0
+        paginationSnapshot = .now
+        isFirstPageLoading = true
         view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
-        Task {
-            let canIterate = await fillFirst()
+        fetchOffers { [weak self] in
+            self?.view?.setLoading(false)
+            self?.updatePagination()
+            self?.paginatableInput?.updateProgress(isLoading: false)
+            completion?()
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.pagesCount = page.pagination.totalPages
+                self.isFirstPageLoading = false
+                self.view?.fillFirstPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
 
-            DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
-                self.view?.setLoading(false)
-                self.paginatableInput?.updatePagination(canIterate: canIterate)
-                self.paginatableInput?.updateProgress(isLoading: false)
-                self.view?.setSort(
-                    self.pagesCount > 0 ?
-                        sort == .default ?
-                            L10n.Localizable.Sort.placeholder
-                            : sort.description
-                    : nil
-                )
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
     }
 
-    func canFillNext() -> Bool {
+    func fetchOffers(
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<PageEntity<FavoriteOfferEntity>>) -> Void)?
+    ) {
+        offerService?.getFavoriteOffers(
+            paginationEntity: .init(
+                page: currentPage,
+                size: CommonConstants.pageSize
+            ),
+            sortEntity: sort.toSortEntity
+        )
+        .sink(
+            receiveCompletion: { _ in
+                completion?()
+            },
+            receiveValue: { result in
+                handleResult?(result)
+            }
+        )
+        .store(in: &cancellables)
+    }
+
+    func fetchUser(
+        userId: Int,
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<UserEntity>) -> Void)?
+    ) {
+        userService?.getUser(id: userId)
+            .sink(
+                receiveCompletion: { _ in
+                    completion?()
+                },
+                receiveValue: { result in
+                    handleResult?(result)
+                }
+            )
+            .store(in: &cancellables)
+    }
+
+    func canLoadNext() -> Bool {
         guard !isFirstPageLoading else {
             isFirstPageLoading.toggle()
             return false
@@ -237,18 +285,6 @@ private extension FavoritesPresenter {
             return true
         }
         return false
-    }
-
-    func fillNext() async -> Bool {
-        currentPage += 1
-
-        return currentPage < pagesCount
-    }
-
-    func fillFirst() async -> Bool {
-        isFirstPageLoading = true
-
-        return currentPage < pagesCount
     }
 
 }
