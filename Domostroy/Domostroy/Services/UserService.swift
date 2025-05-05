@@ -19,6 +19,8 @@ public protocol UserService {
 
     // MARK: - POST
 
-    // MARK: - DELETE
+    func editInfo(editUserInfoEntity: EditUserInfoEntity) -> AnyPublisher<NodeResult<Void>, Never>
+
+    func changePassword(changePasswordEntity: ChangePasswordEntity) -> AnyPublisher<NodeResult<Void>, Never>
 
 }

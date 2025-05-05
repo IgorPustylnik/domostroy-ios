@@ -7,6 +7,7 @@
 "ValidationError.Password.mismatch" = "Пароли не совпадают";
 "ValidationError.Username.short" = "Минимум 2 символа";
 "ValidationError.Username.long" = "Не должно быть длиннее 64 символов";
+"ValidationError.Username.ContainsSpaces"="Не должно содержать пробелы";
 "ValidationError.Email" = "Неверный email-адрес";
 "ValidationError.Phone" = "Неверный номер телефона";
 
@@ -38,6 +39,11 @@
 "HttpError.NotFound" = "Не найдено";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
+
+// MARK: - Token Expiration Handler
+
+"TokenExpirationHandler.LoggedOut"="Вы больше не авторизованы";
+"TokenExpirationHandler.Expired"="Срок действия токена истёк";
 
 // MARK: - Auth
 
@@ -152,6 +158,7 @@
 
 "OfferDetails.Button.Rent" = "Арендовать";
 "OfferDetails.Specifications.Header" = "Характеристики";
+"OfferDetails.Specifications.Category" = "Категория";
 "OfferDetails.Description.Header" = "Описание";
 
 // MARK: - User Profile

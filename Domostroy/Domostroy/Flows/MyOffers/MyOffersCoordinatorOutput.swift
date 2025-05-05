@@ -10,4 +10,5 @@ import UIKit
 
 protocol MyOffersCoordinatorOutput: AnyObject {
     var onSetTabBarCenterControlEnabled: ((Bool) -> Void)? { get set }
+    var onChangeAuthState: EmptyClosure? { get set }
 }

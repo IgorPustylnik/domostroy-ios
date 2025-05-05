@@ -33,7 +33,11 @@ extension CreateOfferEntity: DTOEncodable {
                 cityId: cityId,
                 rentDates: rentDates
             ),
-            photos: photos.compactMap { $0.jpegData(compressionQuality: 0.5) }
+            file: photos.compactMap {
+                $0.resizedToFit(fitSize: CommonConstants.maxPhotoSize).jpegData(
+                    compressionQuality: CommonConstants.compressionQuality
+                )
+            }
         )
     }
 }

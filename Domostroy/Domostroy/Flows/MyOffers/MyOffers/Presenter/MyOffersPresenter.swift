@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import ReactiveDataDisplayManager
+import Combine
+import NodeKit
 
 final class MyOffersPresenter: MyOffersModuleOutput {
 
@@ -34,9 +36,13 @@ final class MyOffersPresenter: MyOffersModuleOutput {
     weak var view: MyOffersViewInput?
     private weak var paginatableInput: PaginatableInput?
 
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
     private var isFirstPageLoading = false
     private var pagesCount = 0
     private var currentPage = 0
+    private var paginationSnapshot: Date = .now
 
     private var isCenterControlEnabled: Bool = true {
         didSet {
@@ -52,6 +58,7 @@ extension MyOffersPresenter: MyOffersViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+        view?.setLoading(true)
         loadFirstPage()
     }
 
@@ -76,17 +83,8 @@ extension MyOffersPresenter: MyOffersModuleInput {
 extension MyOffersPresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
-        paginatableInput?.updatePagination(canIterate: false)
-        paginatableInput?.updateProgress(isLoading: false)
-
-        Task {
-            let canIterate = await fillFirst()
-
-            DispatchQueue.main.async { [weak self] in
-                input.endRefreshing()
-                self?.paginatableInput?.updatePagination(canIterate: canIterate)
-                self?.paginatableInput?.updateProgress(isLoading: false)
-            }
+        loadFirstPage {
+            input.endRefreshing()
         }
     }
 }
@@ -100,25 +98,30 @@ extension MyOffersPresenter: PaginatableOutput {
     }
 
     func loadNextPage(with input: PaginatableInput) {
+        guard canLoadNext() else {
+            return
+        }
+        currentPage += 1
         input.updateProgress(isLoading: true)
 
-        Task {
-            let canFillNext = canFillNext()
-
-            if canFillNext {
-                let canIterate = await fillNext()
-
-                DispatchQueue.main.async {
-                    input.updatePagination(canIterate: canIterate)
-                    input.updateProgress(isLoading: false)
-                }
-
-            } else {
-                DispatchQueue.main.async {
-                    input.updateProgress(isLoading: false)
-                }
+        fetchOffers { [weak self] in
+            self?.updatePagination()
+            input.updateProgress(isLoading: false)
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.view?.fillNextPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
+    }
+
+    func updatePagination() {
+        paginatableInput?.updatePagination(canIterate: canLoadNext())
     }
 
 }
@@ -128,7 +131,7 @@ extension MyOffersPresenter: PaginatableOutput {
 private extension MyOffersPresenter {
 
     func makeOfferViewModel(
-        from offer: Offer
+        from offer: MyOfferEntity
     ) -> OwnOfferCollectionViewCell.ViewModel {
         let actions = [OwnOfferCollectionViewCell.ViewModel.ActionButtonModel(
             image: .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
@@ -138,11 +141,11 @@ private extension MyOffersPresenter {
         )]
         let viewModel = OwnOfferCollectionViewCell.ViewModel(
             id: offer.id,
-            imageUrl: offer.images.first,
+            imageUrl: offer.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
             createdAt: L10n.Localizable.Offers.publishedAt(offer.createdAt.toDMMYY()),
@@ -157,28 +160,60 @@ private extension MyOffersPresenter {
 private extension MyOffersPresenter {
 
     func loadImage(url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+        DispatchQueue.main.async {
+            imageView.kf.setImage(with: url)
         }
     }
 
-    func loadFirstPage() {
-        view?.setLoading(true)
+    func loadFirstPage(completion: (() -> Void)? = nil) {
+        currentPage = 0
+        paginationSnapshot = .now
+        isFirstPageLoading = true
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
+        view?.setEmptyState(false)
 
-        Task {
-            let canIterate = await fillFirst()
+        fetchOffers { [weak self] in
+            self?.view?.setLoading(false)
+            self?.updatePagination()
+            self?.paginatableInput?.updateProgress(isLoading: false)
+            completion?()
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let page):
+                self.pagesCount = page.totalPages
+                self.isFirstPageLoading = false
+                self.view?.fillFirstPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
+                view?.setEmptyState(page.totalElements < 1)
 
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.setLoading(false)
-                self?.paginatableInput?.updatePagination(canIterate: canIterate)
-                self?.paginatableInput?.updateProgress(isLoading: false)
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
         }
     }
 
-    func canFillNext() -> Bool {
+    func fetchOffers(
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<Page1Entity<MyOfferEntity>>) -> Void)?
+    ) {
+        offerService?.getMyOffers(
+            paginationEntity: .init(page: currentPage, size: CommonConstants.pageSize)
+        )
+        .sink(
+            receiveCompletion: { _ in
+                completion?()
+            },
+            receiveValue: { result in
+                handleResult?(result)
+            }
+        )
+        .store(in: &cancellables)
+    }
+
+    func canLoadNext() -> Bool {
         guard !isFirstPageLoading else {
             isFirstPageLoading.toggle()
             return false
@@ -187,44 +222,6 @@ private extension MyOffersPresenter {
             return true
         }
         return false
-    }
-
-    func fillNext() async -> Bool {
-        currentPage += 1
-
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: currentPage, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.fillNextPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
-
-        return currentPage < pagesCount
-    }
-
-    func fillFirst() async -> Bool {
-        isFirstPageLoading = true
-
-        let page = await _Temporary_Mock_NetworkService().fetchOffers(page: 0, pageSize: Constants.pageSize)
-
-        currentPage = page.pagination.currentPage
-        pagesCount = page.pagination.totalPages
-        isFirstPageLoading = false
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.setEmptyState(page.offers.isEmpty)
-            self.view?.fillFirstPage(with: page.offers.map { self.makeOfferViewModel(from: $0) })
-        }
-
-        return currentPage < pagesCount
     }
 
 }

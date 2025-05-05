@@ -9,11 +9,12 @@ import Foundation
 import NodeKit
 
 enum OfferUrlRoute {
+    case base
     case one(Int)
     case search
     case my
-    case favorite
-    case base
+    case favorites
+    case toggleFavorite(Int)
 }
 
 extension OfferUrlRoute: URLRouteProvider {
@@ -21,18 +22,23 @@ extension OfferUrlRoute: URLRouteProvider {
         guard let baseUrlString = InfoPlist.serverHost else {
             throw URLError(.badURL)
         }
-        let base = URL(string: baseUrlString + "/core/offer")
+        let base = URL(string: baseUrlString + "/core/offers")
         switch self {
+        case .base:
+            guard let base else {
+                throw URLError(.badURL)
+            }
+            return base
         case .one(let id):
             return try base + "/\(id)"
         case .search:
             return try base + "/search"
         case .my:
             return try base + "/myOffers"
-        case .favorite:
-            return try base + "/favorite"
-        case .base:
-            return try base + ""
+        case .favorites:
+            return try base + "/favourite"
+        case .toggleFavorite(let id):
+            return try base + "/favourite/\(id)"
         }
     }
 }

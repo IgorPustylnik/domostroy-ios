@@ -8,7 +8,7 @@
 import Foundation
 import NodeKit
 
-public struct CategoryEntity {
+public struct CategoryEntity: Equatable {
     public let id: Int
     public let name: String
 }

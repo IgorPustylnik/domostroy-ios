@@ -23,7 +23,7 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
     private var dates: ClosedRange<Date>?
     private var forbiddenDates: [Date] = []
-    private var pricePerDay: Price?
+    private var pricePerDay: PriceEntity?
 
     private lazy var calendar = Calendar.current
     private var selectedDayRange: DayComponentsRange?

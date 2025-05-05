@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import HorizonCalendar
+import Combine
 
 final class CreateRequestPresenter: CreateRequestModuleOutput {
 
@@ -20,9 +21,12 @@ final class CreateRequestPresenter: CreateRequestModuleOutput {
 
     weak var view: CreateRequestViewInput?
 
-    private var offer: Offer?
+    private var offer: OfferDetailsEntity?
     private var offerCalendar: OfferCalendar?
     private var selectedDates: DayComponentsRange?
+
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 }
 
 // MARK: - CreateRequestModuleInput
@@ -66,6 +70,7 @@ extension CreateRequestPresenter: CreateRequestViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+
     }
 
     func submit() {
@@ -77,8 +82,8 @@ extension CreateRequestPresenter: CreateRequestViewOutput {
 
 private extension CreateRequestPresenter {
     func loadImage(url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+        DispatchQueue.main.async {
+            imageView.kf.setImage(with: url)
         }
     }
 
@@ -93,29 +98,35 @@ private extension CreateRequestPresenter {
     }
 
     func fetchOffer(id: Int) {
-        Task {
-            let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: id)
-            self.offer = offer
-            DispatchQueue.main.async { [weak self] in
+        offerService?.getOffer(
+            id: id
+        )
+        .sink(receiveValue: { [weak self] result in
+            switch result {
+            case .success(let offer):
+                self?.offer = offer
                 self?.updateView(with: offer)
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
-        }
+        })
+        .store(in: &cancellables)
     }
 
-    private func updateView(with offer: Offer) {
+    private func updateView(with offer: OfferDetailsEntity) {
         let viewModel = self.makeViewModel(from: offer)
         view?.configure(with: viewModel)
     }
 
-    private func makeViewModel(from offer: Offer) -> CreateRequestView.ViewModel {
+    private func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
         .init(
-            imageUrl: offer.images.first,
+            imageUrl: offer.photos.first,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: offer.name,
+            title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
-            calendarId: offer.calendarId,
+            calendarId: -1 /*offer.calendarId*/,
             loadCalendar: { [weak self] id in
                 self?.loadCalendar(id: id)
             },
@@ -125,7 +136,7 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func calculateTotalCostText(pricePerDay: Price) -> String? {
+    private func calculateTotalCostText(pricePerDay: PriceEntity) -> String? {
         guard
             let selectedDates,
             let days = CalendarHelper.numberOfDays(in: selectedDates),
@@ -141,7 +152,7 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func presentCalendar(for offer: Offer) {
+    private func presentCalendar(for offer: OfferDetailsEntity) {
         guard let offerCalendar else {
             return
         }

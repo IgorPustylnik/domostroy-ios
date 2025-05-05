@@ -7,6 +7,6 @@
 //
 
 protocol SortModuleOutput: AnyObject {
-    var onApply: ((Sort) -> Void)? { get set }
+    var onApply: ((SortViewModel) -> Void)? { get set }
     var onDismiss: EmptyClosure? { get set }
 }

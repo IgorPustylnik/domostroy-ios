@@ -10,31 +10,39 @@ import NodeKit
 import UIKit
 
 public struct SearchOffersEntry {
-    public let pas: PaginationAndSortRequestEntry
-    public let searchCriteriaList: SearchCriteriaListRequestEntry
+    private let pas: PaginationAndSortingEntry
+    public let searchCriteriaList: [FilterEntry]
+
+    init(
+        pagination: PaginationRequestEntry,
+        sorting: [SortEntry],
+        searchCriteriaList: [FilterEntry],
+        snapshot: Date,
+        seed: String?
+    ) {
+        self.pas = .init(pagination: pagination, sorting: sorting, snapshot: snapshot, seed: seed)
+        self.searchCriteriaList = searchCriteriaList
+    }
 }
 
 extension SearchOffersEntry: Encodable, RawEncodable {
     public typealias Raw = Json
+
+    public func toRaw() throws -> Json {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try encoder.encode(self)
+        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        guard let dict = jsonObject as? [String: Any] else {
+            throw RawMappableCodableError.cantMapObjectToRaw
+        }
+        return dict
+    }
 }
 
-public struct PaginationAndSortRequestEntry: Encodable {
-    public let pagination: PaginationRequestEntry
-    public let sorting: [SortItemRequestEntry]
-}
-
-public struct SearchCriteriaListRequestEntry: Encodable {
-    public let filterKey: String
-    public let operation: String
-    public let value: String
-}
-
-public struct PaginationRequestEntry: Encodable {
-    public let page: Int
-    public let size: Int
-}
-
-public struct SortItemRequestEntry: Encodable {
-    public let property: String
-    public let direction: String
+private struct PaginationAndSortingEntry: Encodable {
+    let pagination: PaginationRequestEntry
+    let sorting: [SortEntry]
+    let snapshot: Date
+    let seed: String?
 }

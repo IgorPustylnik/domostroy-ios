@@ -14,8 +14,13 @@ public struct MyUserEntity {
     public let lastName: String?
     public let email: String
     public let phoneNumber: String
-    public let isAdmin: Bool
-    public let isBanned: Bool
+
+    public var name: String {
+        if let lastName = lastName {
+            return "\(firstName) \(lastName)"
+        }
+        return "\(firstName)"
+    }
 }
 
 extension MyUserEntity: DTODecodable {
@@ -23,13 +28,11 @@ extension MyUserEntity: DTODecodable {
 
     public static func from(dto model: DTO) throws -> Self {
         .init(
-            id: model.id,
+            id: 300,
             firstName: model.firstName,
             lastName: model.lastName,
             email: model.email,
-            phoneNumber: model.phoneNumber,
-            isAdmin: model.isAdmin,
-            isBanned: model.isBanned
+            phoneNumber: model.phoneNumber
         )
     }
 }

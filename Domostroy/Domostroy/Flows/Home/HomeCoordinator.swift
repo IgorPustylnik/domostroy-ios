@@ -86,7 +86,7 @@ private extension HomeCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showSort(sort: Sort, searchInput: SearchModuleInput?) {
+    func showSort(sort: SortViewModel, searchInput: SearchModuleInput?) {
         let (view, output, input) = SortModuleConfigurator().configure()
         input.setup(initialSort: sort)
         output.onApply = { [weak searchInput] sort in
@@ -100,7 +100,7 @@ private extension HomeCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showFilters(filters: Filters, searchInput: SearchModuleInput?) {
+    func showFilters(filters: FiltersViewModel, searchInput: SearchModuleInput?) {
         let (view, output, input) = FilterModuleConfigurator().configure()
         input.setFilters(filters)
         output.onApply = { [weak searchInput] newFilter in

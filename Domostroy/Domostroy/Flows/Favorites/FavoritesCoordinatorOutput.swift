@@ -9,5 +9,5 @@
 import UIKit
 
 protocol FavoritesCoordinatorOutput: AnyObject {
-
+    var onChangeAuthState: EmptyClosure? { get set }
 }

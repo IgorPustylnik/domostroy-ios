@@ -23,7 +23,7 @@ public final class OfferNetworkService: OfferService {
 
     // MARK: - GET
 
-    public func getOffer(id: Int) -> AnyPublisher<NodeResult<OfferEntity>, Never> {
+    public func getOffer(id: Int) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never> {
         return makeBuilder()
             .route(.get, .one(id))
             .build()
@@ -31,35 +31,41 @@ public final class OfferNetworkService: OfferService {
     }
 
     public func getOffers(
-        page: Int,
-        perPage: Int,
-        searchQuery: String?,
-        category: CategoryEntity?,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+        searchOffersEntity: SearchOffersEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never> {
         return makeBuilder()
-            .route(.get, .search)
+            .route(.post, .search)
             .build()
-            .nodeResultPublisher()
+            .nodeResultPublisher(for: searchOffersEntity)
     }
 
     public func getMyOffers(
-        page: Int,
-        perPage: Int
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+        paginationEntity: PaginationRequestEntity
+    ) -> AnyPublisher<NodeResult<Page1Entity<MyOfferEntity>>, Never> {
+        var query: [String: Any] = [:]
+        query["page"] = paginationEntity.page
+        query["size"] = paginationEntity.size
+        query["sort"] = "\(SortEntity.SortProperty.date.rawValue),\(SortEntity.SortDirection.descending.rawValue)"
         return makeBuilder()
             .route(.get, .my)
+            .set(query: query)
             .build()
             .nodeResultPublisher()
     }
 
     public func getFavoriteOffers(
-        page: Int,
-        perPage: Int,
-        sort: Sort?
-    ) -> AnyPublisher<NodeResult<OffersPageEntity>, Never> {
+        paginationEntity: PaginationRequestEntity,
+        sortEntity: SortEntity?
+    ) -> AnyPublisher<NodeResult<Page1Entity<FavoriteOfferEntity>>, Never> {
+        var query: [String: Any] = [:]
+        query["page"] = paginationEntity.page
+        query["size"] = paginationEntity.size
+        if let sortEntity {
+            query["sort"] = "\(sortEntity.property.rawValue),\(sortEntity.direction.rawValue)"
+        }
         return makeBuilder()
-            .route(.get, .favorite)
+            .route(.get, .favorites)
+            .set(query: query)
             .build()
             .nodeResultPublisher()
     }
@@ -71,6 +77,13 @@ public final class OfferNetworkService: OfferService {
             .route(.post, .base)
             .build()
             .nodeResultPublisher(for: createOfferEntity)
+    }
+
+    public func toggleFavorite(id: Int) -> AnyPublisher<NodeResult<Void>, Never> {
+        return makeBuilder()
+            .route(.post, .toggleFavorite(id))
+            .build()
+            .nodeResultPublisher()
     }
 
     // MARK: - DELETE

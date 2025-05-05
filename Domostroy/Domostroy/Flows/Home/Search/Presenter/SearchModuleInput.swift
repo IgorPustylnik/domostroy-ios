@@ -9,6 +9,6 @@
 protocol SearchModuleInput: AnyObject {
     func setQuery(_ query: String?)
     func setCity(_ city: CityEntity?)
-    func setSort(_ sort: Sort)
-    func setFilters(_ filters: Filters)
+    func setSort(_ sort: SortViewModel)
+    func setFilters(_ filters: FiltersViewModel)
 }

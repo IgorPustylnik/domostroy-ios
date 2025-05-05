@@ -12,7 +12,22 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
 
     // MARK: - FavoritesCoordinatorOutput
 
+    var onChangeAuthState: EmptyClosure?
+
     // MARK: - Private Properties
+
+    private enum LaunchInstructor {
+        case profile, auth
+
+        static func configure(isAuthorized: Bool) -> LaunchInstructor {
+            switch isAuthorized {
+            case true:
+                return .profile
+            case false:
+                return .auth
+            }
+        }
+    }
 
     private let router: Router
 
@@ -22,8 +37,23 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
         self.router = router
     }
 
+    // MARK: - Private Properties
+
+    private var instructor: LaunchInstructor {
+        let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+        if let _ = secureStorage?.loadToken() {
+            return .configure(isAuthorized: true)
+        }
+        return .configure(isAuthorized: false)
+    }
+
     override func start() {
-        showFavorites()
+        switch instructor {
+        case .profile:
+            showFavorites()
+        case .auth:
+            showUnauthorized()
+        }
     }
 
 }
@@ -52,7 +82,7 @@ private extension FavoritesCoordinator {
         coordinator.start(with: id)
     }
 
-    func showSort(sort: Sort, favoritesInput: FavoritesModuleInput?) {
+    func showSort(sort: SortViewModel, favoritesInput: FavoritesModuleInput?) {
         let (view, output, input) = SortModuleConfigurator().configure()
         input.setup(initialSort: sort)
         output.onApply = { [weak favoritesInput] sort in
@@ -64,6 +94,26 @@ private extension FavoritesCoordinator {
         let navigationControllerWrapper = UINavigationController(rootViewController: view)
         navigationControllerWrapper.modalPresentationStyle = .pageSheet
         router.present(navigationControllerWrapper)
+    }
+
+    func showUnauthorized() {
+        let (view, output) = ProfileUnauthorizedModuleConfigurator().configure()
+        output.onAuthorize = { [weak self] in
+            self?.runAuthFlow()
+        }
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func runAuthFlow() {
+        let coordinator = AuthCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
+        coordinator.onSuccessfulAuth = { [weak self] in
+            self?.onChangeAuthState?()
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
 
 }

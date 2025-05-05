@@ -87,6 +87,10 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = FavoritesCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start()
+        }
         addDependency(coordinator)
         coordinator.start()
     }
@@ -98,6 +102,10 @@ private extension MainTabBarCoordinator {
         let coordinator = MyOffersCoordinator(router: router)
         coordinator.onSetTabBarCenterControlEnabled = { [weak mainTabBarModuleInput] enabled in
             mainTabBarModuleInput?.setCenterControl(enabled: enabled)
+        }
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start()
         }
         onTapCenterControl = { [weak coordinator] in
             coordinator?.didTapCenterControl()

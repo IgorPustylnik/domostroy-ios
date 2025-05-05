@@ -13,8 +13,11 @@ final class OfferDetailsCoordinator: BaseCoordinator, OfferDetailsCoordinatorOut
     // MARK: - OfferDetailsCoordinatorOutput
 
     var onComplete: EmptyClosure?
+    var onChangeAuthState: EmptyClosure?
 
     // MARK: - Private Properties
+
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
 
     private let router: Router
 
@@ -44,12 +47,22 @@ private extension OfferDetailsCoordinator {
             }
         }
         output.onRent = { [weak self] in
+            guard let secureStorage = self?.secureStorage else {
+                return
+            }
+            guard let _ = secureStorage.loadToken() else {
+                self?.runAuthFlow()
+                return
+            }
             self?.showCreateRequest(offerId: id)
         }
         output.onDeinit = { [weak self] in
             if !isShownFromOwnersProfile {
                 self?.onComplete?()
             }
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
         }
         router.push(view, animated: true)
     }
@@ -92,6 +105,9 @@ private extension OfferDetailsCoordinator {
 
     func runAuthFlow() {
         let coordinator = AuthCoordinator(router: router)
+        coordinator.onSuccessfulAuth = { [weak self] in
+            self?.onChangeAuthState?()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

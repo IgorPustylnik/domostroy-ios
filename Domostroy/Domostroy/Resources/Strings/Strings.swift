@@ -191,6 +191,8 @@ internal enum L10n {
         internal static let header = L10n.tr("Localizable", "OfferDetails.Description.Header", fallback: "Description")
       }
       internal enum Specifications {
+        /// Category
+        internal static let category = L10n.tr("Localizable", "OfferDetails.Specifications.Category", fallback: "Category")
         /// Specifications
         internal static let header = L10n.tr("Localizable", "OfferDetails.Specifications.Header", fallback: "Specifications")
       }
@@ -371,6 +373,12 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "Sort.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum TokenExpirationHandler {
+      /// Token has expired
+      internal static let expired = L10n.tr("Localizable", "TokenExpirationHandler.Expired", fallback: "Token has expired")
+      /// You have been logged out
+      internal static let loggedOut = L10n.tr("Localizable", "TokenExpirationHandler.LoggedOut", fallback: "You have been logged out")
+    }
     internal enum UserProfile {
       /// On Domostroy since %@
       internal static func registrationDate(_ p1: Any) -> String {
@@ -437,6 +445,8 @@ internal enum L10n {
         }
       }
       internal enum Username {
+        /// Mustn't contain spaces
+        internal static let containsSpaces = L10n.tr("Localizable", "ValidationError.Username.ContainsSpaces", fallback: "Mustn't contain spaces")
         /// Mustn't be longer than 64 characters
         internal static let long = L10n.tr("Localizable", "ValidationError.Username.long", fallback: "Mustn't be longer than 64 characters")
         /// Must be at least 2 characters long

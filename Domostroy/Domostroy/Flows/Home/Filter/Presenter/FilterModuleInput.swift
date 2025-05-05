@@ -7,5 +7,5 @@
 //
 
 protocol FilterModuleInput: AnyObject {
-    func setFilters(_ model: Filters)
+    func setFilters(_ model: FiltersViewModel)
 }

@@ -18,6 +18,9 @@ struct UsernameValidator: TextValidator {
         guard let text = text?.trimmingCharacters(in: .whitespaces) else {
             return (false, L10n.Localizable.ValidationError.failed)
         }
+        if text.contains(" ") {
+            return (false, L10n.Localizable.ValidationError.Username.containsSpaces)
+        }
         if text.count < 2 {
             return (false, L10n.Localizable.ValidationError.Username.short)
         }

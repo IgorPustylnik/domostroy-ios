@@ -7,5 +7,5 @@
 //
 
 protocol FavoritesModuleInput: AnyObject {
-    func setSort(_ sort: Sort)
+    func setSort(_ sort: SortViewModel)
 }

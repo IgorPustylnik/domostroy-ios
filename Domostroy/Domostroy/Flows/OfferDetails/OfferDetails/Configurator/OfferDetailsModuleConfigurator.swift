@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveDataDisplayManager
 
 final class OfferDetailsModuleConfigurator {
 
@@ -23,7 +24,7 @@ final class OfferDetailsModuleConfigurator {
             .build()
 
         presenter.view = view
-        presenter.picturesAdapter = picturesAdapter
+        view.picturesAdapter = picturesAdapter
         view.output = presenter
 
         return (view, presenter, presenter)

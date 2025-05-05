@@ -21,6 +21,7 @@ final class DToggleButton: DButton {
     // MARK: - Configuration
 
     func configure(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
+        self.isOn = initialState
         self.onImage = onImage
         self.offImage = offImage
         self.toggleAction = toggleAction

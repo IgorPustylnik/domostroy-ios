@@ -94,6 +94,17 @@ final class DropsPresenter: InfoPresenter {
             }
         } else if let parseError = error as? ResponseDataParserNodeError {
             subtitle = L10n.Localizable.ParseError.cantDeserialize
+        } else if let baseTechnicalError = error as? BaseTechnicalError {
+            switch baseTechnicalError {
+            case .noInternetConnection:
+                subtitle = "No internet connection"
+            case .dataNotAllowed:
+                subtitle = "Data not allowed"
+            case .timeout:
+                subtitle = "Timeout"
+            case .cantConnectToHost:
+                subtitle = "Can't connect to server"
+            }
         } else {
             subtitle = error.localizedDescription
         }

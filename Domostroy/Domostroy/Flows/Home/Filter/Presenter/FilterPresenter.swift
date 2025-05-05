@@ -7,29 +7,37 @@
 //
 
 import Foundation
+import Combine
 
-struct Filters {
-    var categoryFilter: PickerModel<Category>
+struct FiltersViewModel {
+    var categoryFilter: PickerModel<CategoryEntity>
+
+    var isNotEmpty: Bool {
+        categoryFilter.selected != nil
+    }
 }
 
 final class FilterPresenter: FilterModuleOutput {
 
     // MARK: - FilterModuleOutput
 
-    var onApply: ((Filters) -> Void)?
+    var onApply: ((FiltersViewModel) -> Void)?
     var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: FilterViewInput?
 
-    private var model: Filters?
+    private var categoryService: CategoryService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
+    private var model: FiltersViewModel?
 }
 
 // MARK: - FilterModuleInput
 
 extension FilterPresenter: FilterModuleInput {
-    func setFilters(_ model: Filters) {
+    func setFilters(_ model: FiltersViewModel) {
         self.model = model
     }
 }
@@ -40,18 +48,7 @@ extension FilterPresenter: FilterViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-        guard let model else {
-            return
-        }
-        updateCategoriesView()
-        if model.categoryFilter.all.isEmpty {
-            Task {
-                await fetchCategories()
-                DispatchQueue.main.async { [weak self] in
-                    self?.updateCategoriesView()
-                }
-            }
-        }
+        fetchCategories()
     }
 
     func selectCategory(index: Int) {
@@ -85,9 +82,20 @@ extension FilterPresenter: FilterViewOutput {
 // MARK: - Private methods
 
 private extension FilterPresenter {
-    func fetchCategories() async {
-        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
-        self.model?.categoryFilter.all = categories
+    func fetchCategories() {
+        categoryService?.getCategories(
+        )
+        .sink(receiveCompletion: { [weak self] _ in
+            self?.updateCategoriesView()
+        }, receiveValue: { [weak self] result in
+            switch result {
+            case .success(let categories):
+                self?.model?.categoryFilter.all = categories.categories
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        })
+        .store(in: &cancellables)
     }
 
     func updateCategoriesView() {

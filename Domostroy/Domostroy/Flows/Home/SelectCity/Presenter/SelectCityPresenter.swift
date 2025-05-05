@@ -7,6 +7,7 @@
 //
 
 import ReactiveDataDisplayManager
+import Combine
 
 final class SelectCityPresenter: SelectCityModuleOutput {
 
@@ -19,13 +20,10 @@ final class SelectCityPresenter: SelectCityModuleOutput {
 
     weak var view: SelectCityViewInput?
 
-    private var allCities: [CityEntity] = [
-        .init(id: 0, name: "Test1"),
-        .init(id: 1, name: "Test2"),
-        .init(id: 2, name: "Test3"),
-        .init(id: 3, name: "Test4"),
-        .init(id: 4, name: "Test5")
-    ]
+    private var cityService: CityService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
+    private var allCities: [CityEntity] = []
     private var initialCity: CityEntity?
     private var selectedCity: CityEntity?
     private var allowAllCities = false
@@ -50,11 +48,23 @@ extension SelectCityPresenter: SelectCityViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-        updateView()
+        search(query: nil)
     }
 
     func search(query: String?) {
-        // TODO: Search
+        cityService?.getCities(
+            query: query
+        )
+        .sink { [weak self] result in
+            switch result {
+            case .success(let cities):
+                self?.allCities = cities.cities
+                self?.updateView()
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        }
+        .store(in: &cancellables)
     }
 
     func apply() {

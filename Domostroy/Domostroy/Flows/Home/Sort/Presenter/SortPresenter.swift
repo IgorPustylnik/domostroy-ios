@@ -10,13 +10,13 @@ final class SortPresenter: SortModuleOutput {
 
     // MARK: - SortModuleOutput
 
-    var onApply: ((Sort) -> Void)?
+    var onApply: ((SortViewModel) -> Void)?
     var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
-    private var sorts = Sort.allCases
-    private var currentSort: Sort?
+    private var sorts = SortViewModel.allCases
+    private var currentSort: SortViewModel?
 
     weak var view: SortViewInput?
 }
@@ -24,7 +24,7 @@ final class SortPresenter: SortModuleOutput {
 // MARK: - SortModuleInput
 
 extension SortPresenter: SortModuleInput {
-    func setup(initialSort: Sort) {
+    func setup(initialSort: SortViewModel) {
         currentSort = initialSort
     }
 }
@@ -40,7 +40,7 @@ extension SortPresenter: SortViewOutput {
         view?.setup(with: sorts, initial: currentSort)
     }
 
-    func apply(sort: Sort) {
+    func apply(sort: SortViewModel) {
         currentSort = sort
         onApply?(sort)
         onDismiss?()
