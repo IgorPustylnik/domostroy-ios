@@ -69,7 +69,7 @@ final class CreateOfferView: UIView {
         $0.configure(
             placeholder: L10n.Localizable.Offers.Create.Placeholder.description, correction: .no, keyboardType: .default
         )
-        $0.validator = OptionalValidator(OfferDescriptionValidator())
+        $0.validator = RequiredValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.onScrollToActiveView?(self?.descriptionTextField)
         }
