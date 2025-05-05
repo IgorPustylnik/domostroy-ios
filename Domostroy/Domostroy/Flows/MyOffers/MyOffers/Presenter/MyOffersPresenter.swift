@@ -58,6 +58,7 @@ extension MyOffersPresenter: MyOffersViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+        view?.setLoading(true)
         loadFirstPage()
     }
 
@@ -112,7 +113,7 @@ extension MyOffersPresenter: PaginatableOutput {
             }
             switch result {
             case .success(let page):
-                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+                self.view?.fillNextPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }
@@ -159,8 +160,8 @@ private extension MyOffersPresenter {
 private extension MyOffersPresenter {
 
     func loadImage(url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+        DispatchQueue.main.async {
+            imageView.kf.setImage(with: url)
         }
     }
 
@@ -168,9 +169,9 @@ private extension MyOffersPresenter {
         currentPage = 0
         paginationSnapshot = .now
         isFirstPageLoading = true
-        view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
+        view?.setEmptyState(false)
 
         fetchOffers { [weak self] in
             self?.view?.setLoading(false)
@@ -183,9 +184,10 @@ private extension MyOffersPresenter {
             }
             switch result {
             case .success(let page):
-                self.pagesCount = page.pagination.totalPages
+                self.pagesCount = page.totalPages
                 self.isFirstPageLoading = false
-                self.view?.fillFirstPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+                self.view?.fillFirstPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
+                view?.setEmptyState(page.totalElements < 1)
 
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -195,9 +197,10 @@ private extension MyOffersPresenter {
 
     func fetchOffers(
         completion: EmptyClosure?,
-        handleResult: ((NodeResult<PageEntity<MyOfferEntity>>) -> Void)?
+        handleResult: ((NodeResult<Page1Entity<MyOfferEntity>>) -> Void)?
     ) {
         offerService?.getMyOffers(
+            paginationEntity: .init(page: currentPage, size: CommonConstants.pageSize)
         )
         .sink(
             receiveCompletion: { _ in

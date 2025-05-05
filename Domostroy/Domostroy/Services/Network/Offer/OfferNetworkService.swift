@@ -39,9 +39,16 @@ public final class OfferNetworkService: OfferService {
             .nodeResultPublisher(for: searchOffersEntity)
     }
 
-    public func getMyOffers() -> AnyPublisher<NodeResult<PageEntity<MyOfferEntity>>, Never> {
+    public func getMyOffers(
+        paginationEntity: PaginationRequestEntity
+    ) -> AnyPublisher<NodeResult<Page1Entity<MyOfferEntity>>, Never> {
+        var query: [String: Any] = [:]
+        query["page"] = paginationEntity.page
+        query["size"] = paginationEntity.size
+        query["sort"] = "\(SortEntity.SortProperty.date.rawValue),\(SortEntity.SortDirection.descending.rawValue)"
         return makeBuilder()
             .route(.get, .my)
+            .set(query: query)
             .build()
             .nodeResultPublisher()
     }
@@ -49,13 +56,12 @@ public final class OfferNetworkService: OfferService {
     public func getFavoriteOffers(
         paginationEntity: PaginationRequestEntity,
         sortEntity: SortEntity?
-    ) -> AnyPublisher<NodeResult<PageEntity<FavoriteOfferEntity>>, Never> {
+    ) -> AnyPublisher<NodeResult<Page1Entity<FavoriteOfferEntity>>, Never> {
         var query: [String: Any] = [:]
         query["page"] = paginationEntity.page
         query["size"] = paginationEntity.size
         if let sortEntity {
-            query["sort"] = sortEntity.property.rawValue
-            query["direction"] = sortEntity.direction.rawValue
+            query["sort"] = "\(sortEntity.property.rawValue),\(sortEntity.direction.rawValue)"
         }
         return makeBuilder()
             .route(.get, .favorites)

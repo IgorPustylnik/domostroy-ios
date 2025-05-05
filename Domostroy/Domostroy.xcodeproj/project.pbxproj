@@ -131,6 +131,8 @@
 		55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55631AD62D95FB3900FD6856 /* MainRouter.swift */; };
 		556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */; };
 		558285F12DA6F57B003C1861 /* RDDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558285F02DA6F57B003C1861 /* RDDM.swift */; };
+		55843B0E2DC8B38100BE4D61 /* Page1Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55843B0D2DC8B38100BE4D61 /* Page1Entity.swift */; };
+		55843B102DC8B39200BE4D61 /* Page1Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55843B0F2DC8B39200BE4D61 /* Page1Entry.swift */; };
 		5587AEB52DB3EFDB00669865 /* DayRangeSelectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5587AEB42DB3EFDB00669865 /* DayRangeSelectionHelper.swift */; };
 		5587AEB82DB543A000669865 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5587AEB72DB543A000669865 /* CalendarHelper.swift */; };
 		5587AEBA2DB594D300669865 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5587AEB92DB594D300669865 /* ProfileViewController.swift */; };
@@ -458,6 +460,8 @@
 		55631ADC2D95FB3900FD6856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		556CEFAE2DA1E41F003ECD4B /* DCodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCodeField.swift; sourceTree = "<group>"; };
 		558285F02DA6F57B003C1861 /* RDDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDDM.swift; sourceTree = "<group>"; };
+		55843B0D2DC8B38100BE4D61 /* Page1Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1Entity.swift; sourceTree = "<group>"; };
+		55843B0F2DC8B39200BE4D61 /* Page1Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1Entry.swift; sourceTree = "<group>"; };
 		5587AEB42DB3EFDB00669865 /* DayRangeSelectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeSelectionHelper.swift; sourceTree = "<group>"; };
 		5587AEB72DB543A000669865 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		5587AEB92DB594D300669865 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1478,6 +1482,8 @@
 			children = (
 				55AAA9C82DBEB8490018952F /* PageEntity.swift */,
 				55AAA9D92DBEC34B0018952F /* PageEntry.swift */,
+				55843B0D2DC8B38100BE4D61 /* Page1Entity.swift */,
+				55843B0F2DC8B39200BE4D61 /* Page1Entry.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -2747,6 +2753,7 @@
 				551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */,
 				9C0AD6610B18A383D949973F /* ProfileUnauthorizedViewController.swift in Sources */,
 				551747652DC78CC100AFAF24 /* CategoriesEntity.swift in Sources */,
+				55843B0E2DC8B38100BE4D61 /* Page1Entity.swift in Sources */,
 				5589B7552DC1751400DEA9CF /* AuthNetworkService.swift in Sources */,
 				551747762DC791CE00AFAF24 /* ChangePasswordEntry.swift in Sources */,
 				802D6C848E994BF7923B6C5D /* ProfileUnauthorizedViewInput.swift in Sources */,
@@ -2792,6 +2799,7 @@
 				1590A017FD14D7D8EDFA2142 /* SelectCityModuleOutput.swift in Sources */,
 				18BA80EFA821ADC3D732A85D /* SelectCityViewController.swift in Sources */,
 				A67BA599C4D51E39D50E647A /* SelectCityViewInput.swift in Sources */,
+				55843B102DC8B39200BE4D61 /* Page1Entry.swift in Sources */,
 				73241CA170FB0B3CE90B9AE4 /* SelectCityViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
