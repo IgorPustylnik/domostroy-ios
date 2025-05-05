@@ -10,4 +10,5 @@ import UIKit
 
 protocol OfferDetailsCoordinatorOutput: AnyObject {
     var onComplete: EmptyClosure? { get set }
+    var onChangeAuthState: EmptyClosure? { get set }
 }

@@ -28,6 +28,7 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
     // MARK: - MyOffersCoordinatorOutput
 
     var onSetTabBarCenterControlEnabled: ((Bool) -> Void)?
+    var onChangeAuthState: EmptyClosure?
 
     // MARK: - Private Properties
 
@@ -54,7 +55,7 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
     override func start() {
         switch instructor {
         case .auth:
-            runAuthFlow()
+            showUnauthorized()
         case .offers:
             showMyOffers()
         }
@@ -76,6 +77,9 @@ private extension MyOffersCoordinator {
 
     func runAuthFlow() {
         let coordinator = AuthCoordinator(router: router)
+        coordinator.onSuccessfulAuth = { [weak self] in
+            self?.onChangeAuthState?()
+        }
         addDependency(coordinator)
         coordinator.start()
     }
@@ -172,6 +176,14 @@ private extension MyOffersCoordinator {
 
     func editOffer(id: Int) {
         print("edit offer id: \(id)")
+    }
+
+    func showUnauthorized() {
+        let (view, output) = ProfileUnauthorizedModuleConfigurator().configure()
+        output.onAuthorize = { [weak self] in
+            self?.runAuthFlow()
+        }
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
 }
