@@ -37,6 +37,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     weak var view: CreateOfferViewInput?
 
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
     private var cancellables: [AnyCancellable] = []
 
     var adapter: BaseCollectionManager?
@@ -52,7 +53,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
 
     private var title: String?
     private var offerDescription: String?
-    private var categoryPickerModel: PickerModel<Category> = .init(all: [], selected: nil)
+    private var categoryPickerModel: PickerModel<CategoryEntity> = .init(all: [], selected: nil)
     private var selectedCity: CityEntity?
     private var selectedDates: Set<Date> = Set()
     private var price: PriceEntity?
@@ -191,17 +192,18 @@ private extension CreateOfferPresenter {
     }
 
     func loadCategories() {
-        Task {
-            await fetchCategories()
-            DispatchQueue.main.async { [weak self] in
+        categoryService?.getCategories(
+        )
+        .sink(receiveValue: { [weak self] result in
+            switch result {
+            case .success(let categories):
+                self?.categoryPickerModel.all = categories.categories
                 self?.updateCategoriesView()
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
             }
-        }
-    }
-
-    func fetchCategories() async {
-        let categories = await _Temporary_Mock_NetworkService().fetchCategories()
-        self.categoryPickerModel.all = categories
+        })
+        .store(in: &cancellables)
     }
 
     func updateCategoriesView() {

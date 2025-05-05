@@ -88,6 +88,11 @@ private extension OfferDetailsPresenter {
                     self.view?.setupInitialState()
                     self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
                     self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
+                    self.view?.setupFavoriteToggle(initialState: offer.isFavorite, toggleAction: { newValue, handler in
+                        self.setFavorite(value: newValue) { success in
+                            handler?(success)
+                        }
+                    })
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
                     self.onDismiss?()
@@ -98,9 +103,24 @@ private extension OfferDetailsPresenter {
     }
 
     func setFavorite(value: Bool, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            completion?(false)
+        guard let offerId else {
+            return
         }
+        offerService?.toggleFavorite(
+            id: offerId
+        )
+        .sink(
+            receiveValue: { result in
+                switch result {
+                case .success:
+                    completion?(true)
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        )
+        .store(in: &cancellables)
     }
 
     func fetchUser(id: Int, userView: OfferDetailsView.UserView) {
@@ -129,7 +149,7 @@ private extension OfferDetailsPresenter {
 
     func makeOfferViewModel(offer: OfferDetailsEntity) -> OfferDetailsView.ViewModel {
         .init(
-            price: "\(offer.price.value.stringDroppingTrailingZero)\(offer.price.currency.description)",
+            price: LocalizationHelper.pricePerDay(for: offer.price),
             title: offer.title,
             // TODO: Receive city name
             city: "Воронеж"/*offer.cityId.description*/,

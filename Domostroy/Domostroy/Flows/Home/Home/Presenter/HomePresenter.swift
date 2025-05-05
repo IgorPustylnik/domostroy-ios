@@ -56,6 +56,7 @@ extension HomePresenter: HomeViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+        view?.setLoading(true)
         loadFirstPage()
     }
 
@@ -79,7 +80,9 @@ extension HomePresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
         loadFirstPage {
-            input.endRefreshing()
+            DispatchQueue.main.async {
+                input.endRefreshing()
+            }
         }
     }
 
@@ -189,14 +192,16 @@ private extension HomePresenter {
         currentPage = 0
         paginationSnapshot = .now
         view?.fillFirstPage(with: [])
-        view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
         fetchOffers { [weak self] in
-            self?.view?.setLoading(false)
-            self?.updatePagination()
-            self?.paginatableInput?.updateProgress(isLoading: false)
+            guard let self else {
+                return
+            }
+            self.view?.setLoading(false)
+            self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
+            self.paginatableInput?.updateProgress(isLoading: false)
             completion?()
         } handleResult: { [weak self] result in
             switch result {
@@ -204,9 +209,11 @@ private extension HomePresenter {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
-                self.view?.setEmptyState(page.data.isEmpty)
-                self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
+                DispatchQueue.main.async {
+                    self.pagesCount = page.pagination.totalPages
+                    self.view?.setEmptyState(page.data.isEmpty)
+                    self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
+                }
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }

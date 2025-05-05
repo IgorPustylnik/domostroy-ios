@@ -83,6 +83,8 @@ extension SearchPresenter: SearchViewOutput {
         view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         view?.setHasFilters(filters.isNotEmpty)
+
+        view?.setLoading(true)
         loadFirstPage()
     }
 
@@ -239,7 +241,6 @@ private extension SearchPresenter {
         currentPage = 0
         paginationSnapshot = .now
         view?.fillFirstPage(with: [])
-        view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 

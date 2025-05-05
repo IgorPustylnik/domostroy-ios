@@ -56,6 +56,7 @@ extension UserProfilePresenter: UserProfileViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+        view?.setLoading(true)
         loadFirstPage()
     }
 
@@ -126,7 +127,7 @@ private extension UserProfilePresenter {
             loadImage: { [weak self] url, imageView in
                 self?.loadAvatar(id: user.id, name: user.name, url: url, imageView: imageView)
             },
-            username: user.firstName,
+            username: user.name,
             info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
             info2: L10n.Localizable.UserProfile.registrationDate(user.registrationDate.monthAndYearString())
         )
@@ -195,7 +196,6 @@ private extension UserProfilePresenter {
         currentPage = 0
         paginationSnapshot = .now
         isFirstPageLoading = true
-        view?.setLoading(true)
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
