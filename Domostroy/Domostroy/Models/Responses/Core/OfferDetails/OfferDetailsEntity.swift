@@ -33,7 +33,7 @@ extension OfferDetailsEntity: DTODecodable {
             title: model.title,
             description: model.description,
             // TODO: Load category name
-            category: .init(id: model.category, name: "placeholder"),
+            category: .init(id: model.category, name: "категория"),
             price: .init(value: model.price, currency: .init(rawValue: model.currency)),
             createdAt: model.createdAt,
             userId: model.userId,

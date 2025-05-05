@@ -93,13 +93,6 @@ private extension CreateRequestPresenter {
     }
 
     func fetchOffer(id: Int) {
-        Task {
-            let offer = await _Temporary_Mock_NetworkService().fetchOffer(id: id)
-            self.offer = offer
-            DispatchQueue.main.async { [weak self] in
-                self?.updateView(with: offer)
-            }
-        }
     }
 
     private func updateView(with offer: OfferDetailsEntity) {
@@ -115,7 +108,7 @@ private extension CreateRequestPresenter {
             },
             title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
-            calendarId: offer.calendarId,
+            calendarId: -1 /*offer.calendarId*/,
             loadCalendar: { [weak self] id in
                 self?.loadCalendar(id: id)
             },

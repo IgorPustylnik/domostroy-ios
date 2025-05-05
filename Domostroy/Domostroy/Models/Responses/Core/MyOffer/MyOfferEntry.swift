@@ -20,4 +20,11 @@ public struct MyOfferEntry {
 
 extension MyOfferEntry: Decodable, RawDecodable {
     public typealias Raw = Json
+
+    public static func from(raw: Raw) throws -> Self {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(.iso8601WithMicroseconds)
+        let data = try JSONSerialization.data(withJSONObject: raw, options: .prettyPrinted)
+        return try decoder.decode(Self.self, from: data)
+    }
 }

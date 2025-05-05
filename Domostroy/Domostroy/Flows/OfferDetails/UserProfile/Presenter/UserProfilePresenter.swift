@@ -176,9 +176,19 @@ private extension UserProfilePresenter {
     }
 
     func setFavorite(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            completion?(false)
-        }
+        offerService?.toggleFavorite(id: id)
+            .sink(
+                receiveValue: { result in
+                    switch result {
+                    case .success:
+                        completion?(true)
+                    case .failure(let error):
+                        completion?(false)
+                        DropsPresenter.shared.showError(error: error)
+                    }
+                }
+            )
+            .store(in: &cancellables)
     }
 
     func loadFirstPage(completion: (() -> Void)? = nil) {
