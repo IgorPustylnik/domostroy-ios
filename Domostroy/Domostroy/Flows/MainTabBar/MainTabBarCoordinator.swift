@@ -78,6 +78,10 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = HomeCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

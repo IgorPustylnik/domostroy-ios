@@ -12,6 +12,8 @@ final class HomeCoordinator: BaseCoordinator, HomeCoordinatorOutput {
 
     // MARK: - HomeCoordinatorOutput
 
+    var onChangeAuthState: EmptyClosure?
+
     // MARK: - Private Properties
 
     private let router: Router
@@ -47,6 +49,9 @@ private extension HomeCoordinator {
         let coordinator = OfferDetailsCoordinator(router: router)
         coordinator.onComplete = { [weak self, weak coordinator] in
             self?.removeDependency(coordinator)
+        }
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.onChangeAuthState?()
         }
         addDependency(coordinator)
         coordinator.start(with: id)
