@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DButton: UIControl {
+class DButton: UIButton {
 
     // MARK: - Constants
 
@@ -43,7 +43,7 @@ class DButton: UIControl {
         return $0
     }(UIView())
 
-    private lazy var imageView: UIImageView = {
+    private lazy var _imageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.isHidden = true
         $0.snp.makeConstraints { make in
@@ -52,7 +52,7 @@ class DButton: UIControl {
         return $0
     }(UIImageView())
 
-    private var titleLabel: UILabel = {
+    private var _titleLabel: UILabel = {
         $0.font = Constants.font
         $0.textAlignment = .center
         $0.isHidden = true
@@ -62,7 +62,7 @@ class DButton: UIControl {
     private lazy var hStackView: UIStackView = {
         $0.axis = .horizontal
         $0.spacing = Constants.hSpacing
-        $0.addArrangedSubview(titleLabel)
+        $0.addArrangedSubview(_titleLabel)
         return $0
     }(UIStackView())
 
@@ -84,7 +84,6 @@ class DButton: UIControl {
 
     // MARK: - Properties
 
-    var actionHandler: (() -> Void)?
     private var highlightAnimator: UIViewPropertyAnimator?
 
     var type: ButtonType
@@ -97,14 +96,14 @@ class DButton: UIControl {
 
     var image: UIImage? {
         didSet {
-            imageView.image = image
-            imageView.isHidden = (image == nil)
+            _imageView.image = image
+            _imageView.isHidden = (image == nil)
         }
     }
 
     var imageSize: CGSize = Constants.defaultImageSize {
         didSet {
-            imageView.snp.remakeConstraints { make in
+            _imageView.snp.remakeConstraints { make in
                 make.size.equalTo(imageSize)
             }
         }
@@ -125,12 +124,16 @@ class DButton: UIControl {
     var title: String? {
         didSet {
             if let title {
-                titleLabel.isHidden = title.isEmpty
+                _titleLabel.isHidden = title.isEmpty
             } else {
-                titleLabel.isHidden = true
+                _titleLabel.isHidden = true
             }
-            titleLabel.text = title
+            _titleLabel.text = title
         }
+    }
+
+    override var titleLabel: UILabel? {
+        _titleLabel
     }
 
     var insets: UIEdgeInsets = Constants.defaultInsets {
@@ -148,13 +151,11 @@ class DButton: UIControl {
         }
     }
 
-    // swiftlint:disable implicitly_unwrapped_optional
-    override var tintColor: UIColor! {
+    override var isHighlighted: Bool {
         didSet {
-            activityIndicator.tintColor = tintColor
+            triggerHighlightAnimation(isEnding: !isHighlighted)
         }
     }
-    // swiftlint:enable implicitly_unwrapped_optional
 
     // MARK: - Configuration
 
@@ -163,43 +164,44 @@ class DButton: UIControl {
         switch type {
         case .filledPrimary:
             backgroundView.backgroundColor = .Domostroy.primary
-            titleLabel.textColor = .white
+            _titleLabel.textColor = .white
+            activityIndicator.tintColor = .white
             tintColor = .white
         case .filledWhite:
             backgroundView.backgroundColor = .white
-            titleLabel.textColor = .Domostroy.primary
-            tintColor = .Domostroy.primary
+            _titleLabel.textColor = .Domostroy.primary
+            activityIndicator.tintColor = .Domostroy.primary
         case .filledSecondary:
             backgroundView.backgroundColor = .secondarySystemBackground
             borderColor = .separator
-            tintColor = .label
+            activityIndicator.tintColor = .label
         case .plainPrimary:
             backgroundView.backgroundColor = .clear
-            titleLabel.textColor = .Domostroy.primary
-            tintColor = .Domostroy.primary
+            _titleLabel.textColor = .Domostroy.primary
+            activityIndicator.tintColor = .Domostroy.primary
         case .plain:
             backgroundView.backgroundColor = .clear
-            titleLabel.textColor = .label
-            tintColor = .label
+            _titleLabel.textColor = .label
+            activityIndicator.tintColor = .label
         case .modalPicker:
             backgroundView.backgroundColor = .secondarySystemBackground
-            titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
-            titleLabel.textColor = .label
-            titleLabel.textAlignment = .left
+            _titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
+            _titleLabel.textColor = .label
+            _titleLabel.textAlignment = .left
             borderColor = .separator
-            tintColor = .label
+            activityIndicator.tintColor = .label
         case .navbar:
-            titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
+            _titleLabel.font = .systemFont(ofSize: 12, weight: .regular)
             backgroundView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
-            titleLabel.textColor = .label
+            _titleLabel.textColor = .label
             hStackView.spacing = 12
             insets = .init(top: 8, left: 10, bottom: 8, right: 10)
             borderColor = .separator
-            tintColor = .label
+            activityIndicator.tintColor = .label
         case .destructive:
             backgroundView.backgroundColor = .systemRed
-            titleLabel.textColor = .white
-            tintColor = .white
+            _titleLabel.textColor = .white
+            activityIndicator.tintColor = .white
         }
     }
 
@@ -221,51 +223,6 @@ class DButton: UIControl {
         }
     }
 
-    // MARK: - Touches overriding
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        isHighlighted = true
-        triggerHighlightAnimation()
-    }
-
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-
-        guard let touch = touches.first else {
-            return
-        }
-        let touchLocation = touch.location(in: self)
-
-        if !self.bounds.inset(by: Constants.touchesInset).contains(touchLocation) {
-            isHighlighted = false
-            triggerHighlightAnimation(isEnding: true)
-        } else {
-            isHighlighted = true
-            triggerHighlightAnimation(isEnding: false)
-        }
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        isHighlighted = false
-        triggerHighlightAnimation(isEnding: true)
-
-        guard let touch = touches.first else {
-            return
-        }
-        let touchLocation = touch.location(in: self)
-        if self.bounds.inset(by: Constants.touchesInset).contains(touchLocation) {
-            actionHandler?()
-        }
-    }
-
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        isHighlighted = false
-        triggerHighlightAnimation(isEnding: true)
-    }
-
 }
 
 // MARK: - Action
@@ -273,7 +230,12 @@ class DButton: UIControl {
 extension DButton {
 
     func setAction(_ action: @escaping () -> Void) {
-        actionHandler = action
+        addAction(
+            .init(handler: { _ in
+                action()
+            }),
+            for: .touchUpInside
+        )
     }
 }
 
@@ -282,12 +244,12 @@ extension DButton {
 private extension DButton {
 
     func updateImagePlacement() {
-        hStackView.removeArrangedSubview(imageView)
+        hStackView.removeArrangedSubview(_imageView)
         switch imagePlacement {
         case.left:
-            hStackView.insertArrangedSubview(imageView, at: 0)
+            hStackView.insertArrangedSubview(_imageView, at: 0)
         case .right:
-            hStackView.insertArrangedSubview(imageView, at: 1)
+            hStackView.insertArrangedSubview(_imageView, at: 1)
         }
     }
 
@@ -329,8 +291,8 @@ extension DButton: Loadable {
         isUserInteractionEnabled = !isLoading
 
         UIView.animate(withDuration: 0.1) {
-            self.imageView.alpha = isLoading ? 0 : 1
-            self.titleLabel.alpha = isLoading ? 0 : 1
+            self._imageView.alpha = isLoading ? 0 : 1
+            self._titleLabel.alpha = isLoading ? 0 : 1
 
             if isLoading {
                 self.activityIndicator.isHidden = false
