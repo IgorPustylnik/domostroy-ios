@@ -335,6 +335,30 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "RequestCalendar.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum Requests {
+      /// Requests
+      internal static let title = L10n.tr("Localizable", "Requests.Title", fallback: "Requests")
+      internal enum Accepted {
+        /// Accepted
+        internal static let title = L10n.tr("Localizable", "Requests.Accepted.Title", fallback: "Accepted")
+      }
+      internal enum Declined {
+        /// Declined
+        internal static let title = L10n.tr("Localizable", "Requests.Declined.Title", fallback: "Declined")
+      }
+      internal enum Incoming {
+        /// Incoming
+        internal static let title = L10n.tr("Localizable", "Requests.Incoming.Title", fallback: "Incoming")
+      }
+      internal enum Outcoming {
+        /// Outcoming
+        internal static let title = L10n.tr("Localizable", "Requests.Outcoming.Title", fallback: "Outcoming")
+      }
+      internal enum Pending {
+        /// Pending
+        internal static let title = L10n.tr("Localizable", "Requests.Pending.Title", fallback: "Pending")
+      }
+    }
     internal enum Search {
       internal enum Empty {
         /// Nothing found

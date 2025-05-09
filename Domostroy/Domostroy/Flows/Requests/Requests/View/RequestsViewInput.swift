@@ -6,7 +6,20 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+struct RequestsTopViewModel {
+    let requestType: RequestType
+    let requestStatus: RequestStatus
+
+    struct RequestType {
+        let all: [String]
+        let currentIndex: Int
+    }
+    struct RequestStatus {
+        let all: [String]
+        let currentIndex: Int
+    }
+}
+
 protocol RequestsViewInput: AnyObject {
-    /// Method for setup initial state of view
-    func setupInitialState()
+    func configure(topModel: RequestsTopViewModel)
 }

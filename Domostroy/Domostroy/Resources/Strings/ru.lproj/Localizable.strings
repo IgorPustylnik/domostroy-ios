@@ -149,6 +149,15 @@
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
 "Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
 
+// MARK: - Requests
+
+"Requests.Title" = "Заявки";
+"Requests.Incoming.Title" = "Входящие";
+"Requests.Outcoming.Title" = "Исходящие";
+"Requests.Accepted.Title" = "Принятые";
+"Requests.Pending.Title" = "Ожидают";
+"Requests.Declined.Title" = "Отклонённые";
+
 // MARK: - Lessor Calendar
 
 "LessorCalendar.Title" = "Доступные даты";

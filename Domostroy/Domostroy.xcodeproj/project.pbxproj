@@ -223,6 +223,7 @@
 		55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677A2DA7D33F00A3CA52 /* Loadable.swift */; };
 		55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677C2DA80E2500A3CA52 /* Double+ext.swift */; };
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
+		55ED9D792DCEA69E0015195E /* DMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED9D782DCEA69E0015195E /* DMenuButton.swift */; };
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
@@ -257,7 +258,6 @@
 		81B786043C7B853DA6B7FEAF /* CreateOfferViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D47613ABAF3DBC4E85DD8 /* CreateOfferViewInput.swift */; };
 		82196459D55024D020B4A41E /* LessorCalendarModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AD813CE517FA305539D19 /* LessorCalendarModuleConfigurator.swift */; };
 		8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0476356BFFC33F827F9E1 /* RegisterModuleOutput.swift */; };
-		82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */; };
 		849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */; };
 		867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A019C42B3850A14497524DD /* SortViewInput.swift */; };
 		878026C1C4230791368A13ED /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25658698FEC4126E0455C643 /* LoginPresenter.swift */; };
@@ -551,6 +551,7 @@
 		55ED677A2DA7D33F00A3CA52 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		55ED677C2DA80E2500A3CA52 /* Double+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ext.swift"; sourceTree = "<group>"; };
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
+		55ED9D782DCEA69E0015195E /* DMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMenuButton.swift; sourceTree = "<group>"; };
 		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntity.swift; sourceTree = "<group>"; };
@@ -573,7 +574,6 @@
 		6920DF8F80B220CC38B056F9 /* FavoritesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewInput.swift; sourceTree = "<group>"; };
 		6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		6FDB69703EF270C33736FF91 /* RegisterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
 		7394255A8A3DBFECEB051A11 /* CodeConfirmationModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleOutput.swift; sourceTree = "<group>"; };
 		741E51A0B96662F6D822E4BB /* OfferDetailsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsModuleConfigurator.swift; sourceTree = "<group>"; };
 		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -792,7 +792,6 @@
 			isa = PBXGroup;
 			children = (
 				B5C32623404067045C4322BA /* RequestsViewController.swift */,
-				6FF1F4532E4503BB58C8AC6D /* RequestsView.swift */,
 				FA1CCC04FDB663339F544555 /* RequestsViewInput.swift */,
 				C8934FD6E9A556C2F926E3D0 /* RequestsViewOutput.swift */,
 			);
@@ -1843,6 +1842,7 @@
 				55189C5A2DB6CAFC0079481A /* RadioButton */,
 				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 				55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */,
+				55ED9D782DCEA69E0015195E /* DMenuButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -2583,7 +2583,6 @@
 				9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */,
 				551747632DC78CA600AFAF24 /* CitiesEntry.swift in Sources */,
 				55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */,
-				82D57C2629592B3D7A7EE6CD /* RequestsView.swift in Sources */,
 				552886A42DC6A65F00CADD6C /* MyOfferEntity.swift in Sources */,
 				55AAA9C32DBE882F0018952F /* OfferNetworkService.swift in Sources */,
 				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
@@ -2612,6 +2611,7 @@
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
 				551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */,
 				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
+				55ED9D792DCEA69E0015195E /* DMenuButton.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				5589B7422DC15C1D00DEA9CF /* SearchOffersEntity.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,

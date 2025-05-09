@@ -149,6 +149,15 @@
 "Profile.Unauthorized.Message" = "Please login to access all features";
 "Profile.Unauthorized.Button.Authorize" = "Authorize";
 
+// MARK: - Requests
+
+"Requests.Title" = "Requests";
+"Requests.Incoming.Title" = "Incoming";
+"Requests.Outcoming.Title" = "Outcoming";
+"Requests.Accepted.Title" = "Accepted";
+"Requests.Pending.Title" = "Pending";
+"Requests.Declined.Title" = "Declined";
+
 // MARK: - Lessor Calendar
 
 "LessorCalendar.Title" = "Dates";
