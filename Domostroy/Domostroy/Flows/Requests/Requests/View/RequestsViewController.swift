@@ -20,14 +20,15 @@ final class RequestsViewController: BaseViewController {
 
     // MARK: - UI Elements
 
-    private lazy var requestTypeMenuButton = {
+    private lazy var archiveButton = {
         $0.insets = .init(top: $0.insets.top, left: 0, bottom: $0.insets.bottom, right: 0)
-        $0.onSelect = { [weak self] index in
-            self?.output?.selectRequestType(index)
+        $0.setAction { [weak self] in
+            self?.output?.openArchive()
         }
+        $0.title = L10n.Localizable.Requests.Archive.title
         $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
         return $0
-    }(DMenuButton(type: .plainPrimary))
+    }(DButton(type: .plainPrimary))
     private lazy var segmentedControl = UISegmentedControl()
 
     private(set) lazy var refreshControl = UIRefreshControl()
@@ -71,28 +72,20 @@ final class RequestsViewController: BaseViewController {
         navigationBar.title = L10n.Localizable.Requests.title
         navigationBar.addArrangedSubview(segmentedControl)
         segmentedControl.addTarget(self, action: #selector(segmentedControlChangedIndex(_:)), for: .valueChanged)
-        navigationBar.rightItems.append(requestTypeMenuButton)
-        requestTypeMenuButton.showsMenuAsPrimaryAction = true
+        navigationBar.rightItems.append(archiveButton)
     }
 }
 
 // MARK: - RequestsViewInput
 
 extension RequestsViewController: RequestsViewInput {
-
-    func configure(topModel: RequestsTopViewModel) {
-        if topModel.requestType.currentIndex < topModel.requestType.all.count {
-            requestTypeMenuButton.titles = topModel.requestType.all
-            requestTypeMenuButton.selectedIndex = topModel.requestType.currentIndex
+    func setupSegments(_ values: [String], selectedIndex: Int) {
+        segmentedControl.removeAllSegments()
+        for (index, value) in values.enumerated() {
+            segmentedControl.insertSegment(withTitle: value, at: index, animated: false)
         }
-        if topModel.requestStatus.currentIndex < topModel.requestStatus.all.count {
-            for (index, title) in topModel.requestStatus.all.enumerated() {
-                segmentedControl.insertSegment(withTitle: title, at: index, animated: false)
-            }
-            segmentedControl.selectedSegmentIndex = topModel.requestStatus.currentIndex
-        }
+        segmentedControl.selectedSegmentIndex = selectedIndex
     }
-
 }
 
 @objc

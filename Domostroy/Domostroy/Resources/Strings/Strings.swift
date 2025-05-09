@@ -338,25 +338,17 @@ internal enum L10n {
     internal enum Requests {
       /// Requests
       internal static let title = L10n.tr("Localizable", "Requests.Title", fallback: "Requests")
-      internal enum Accepted {
-        /// Accepted
-        internal static let title = L10n.tr("Localizable", "Requests.Accepted.Title", fallback: "Accepted")
-      }
-      internal enum Declined {
-        /// Declined
-        internal static let title = L10n.tr("Localizable", "Requests.Declined.Title", fallback: "Declined")
+      internal enum Archive {
+        /// Archive
+        internal static let title = L10n.tr("Localizable", "Requests.Archive.Title", fallback: "Archive")
       }
       internal enum Incoming {
         /// Incoming
         internal static let title = L10n.tr("Localizable", "Requests.Incoming.Title", fallback: "Incoming")
       }
-      internal enum Outcoming {
+      internal enum Outgoing {
         /// Outcoming
-        internal static let title = L10n.tr("Localizable", "Requests.Outcoming.Title", fallback: "Outcoming")
-      }
-      internal enum Pending {
-        /// Pending
-        internal static let title = L10n.tr("Localizable", "Requests.Pending.Title", fallback: "Pending")
+        internal static let title = L10n.tr("Localizable", "Requests.Outgoing.Title", fallback: "Outcoming")
       }
     }
     internal enum Search {

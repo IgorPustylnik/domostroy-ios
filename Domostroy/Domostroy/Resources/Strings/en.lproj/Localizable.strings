@@ -152,11 +152,9 @@
 // MARK: - Requests
 
 "Requests.Title" = "Requests";
+"Requests.Archive.Title" = "Archive";
 "Requests.Incoming.Title" = "Incoming";
-"Requests.Outcoming.Title" = "Outcoming";
-"Requests.Accepted.Title" = "Accepted";
-"Requests.Pending.Title" = "Pending";
-"Requests.Declined.Title" = "Declined";
+"Requests.Outgoing.Title" = "Outcoming";
 
 // MARK: - Lessor Calendar
 

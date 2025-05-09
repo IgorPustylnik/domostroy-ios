@@ -8,35 +8,16 @@
 
 import ReactiveDataDisplayManager
 
-// Temporary model
-private enum Request {
-    enum RequestType: Int, CaseIterable {
-        case incoming
-        case outcoming
+private enum RequestType: Int, CaseIterable {
+    case outgoing
+    case incoming
 
-        var description: String {
-            switch self {
-            case .incoming:
-                return L10n.Localizable.Requests.Incoming.title
-            case .outcoming:
-                return L10n.Localizable.Requests.Outcoming.title
-            }
-        }
-    }
-    enum RequestStatus: Int, CaseIterable {
-        case accepted
-        case pending
-        case declined
-
-        var description: String {
-            switch self {
-            case .accepted:
-                return L10n.Localizable.Requests.Accepted.title
-            case .pending:
-                return L10n.Localizable.Requests.Pending.title
-            case .declined:
-                return L10n.Localizable.Requests.Declined.title
-            }
+    var description: String {
+        switch self {
+        case .outgoing:
+            return L10n.Localizable.Requests.Outgoing.title
+        case .incoming:
+            return L10n.Localizable.Requests.Incoming.title
         }
     }
 }
@@ -49,7 +30,6 @@ final class RequestsPresenter: RequestsModuleOutput {
 
     weak var view: RequestsViewInput?
 
-    private var requestTypeIndex: Int = 0
     private var requestStatusIndex: Int = 0
 }
 
@@ -64,26 +44,15 @@ extension RequestsPresenter: RequestsModuleInput {
 extension RequestsPresenter: RequestsViewOutput {
 
     func viewLoaded() {
-        view?.configure(
-            topModel: .init(
-                requestType: .init(
-                    all: Request.RequestType.allCases.map { $0.description },
-                    currentIndex: requestTypeIndex
-                ),
-                requestStatus: .init(
-                    all: Request.RequestStatus.allCases.map { $0.description },
-                    currentIndex: requestStatusIndex
-                )
-            )
-        )
-    }
-
-    func selectRequestType(_ index: Int) {
-        requestTypeIndex = index
+        view?.setupSegments(RequestType.allCases.map { $0.description }, selectedIndex: 0)
     }
 
     func selectRequestStatus(_ index: Int) {
         requestStatusIndex = index
+    }
+
+    func openArchive() {
+
     }
 
 }
