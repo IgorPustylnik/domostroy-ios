@@ -149,7 +149,9 @@ private extension BaseViewController {
 
     func setBackButtonIfNeeded() {
         if shouldShowBackButton {
-            navigationBar.addButtonToLeft(image: .NavigationBar.chevronLeft) { [weak self] in
+            navigationBar.addButtonToLeft(
+                title: nil, image: .NavigationBar.chevronLeft
+            ) { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }
         }

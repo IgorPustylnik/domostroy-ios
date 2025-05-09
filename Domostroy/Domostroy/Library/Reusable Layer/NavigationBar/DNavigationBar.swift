@@ -168,12 +168,12 @@ class DNavigationBar: UIView {
         bottomLine.alpha = progress
     }
 
-    func addButtonToRight(image: UIImage?, action: @escaping EmptyClosure) {
-        rightItems.insert(createButton(image: image, action: action), at: 0)
+    func addButtonToRight(title: String?, image: UIImage?, action: @escaping EmptyClosure) {
+        rightItems.insert(createButton(title: title, image: image, action: action), at: 0)
     }
 
-    func addButtonToLeft(image: UIImage?, action: @escaping EmptyClosure) {
-        leftItems.append(createButton(image: image, action: action))
+    func addButtonToLeft(title: String?, image: UIImage?, action: @escaping EmptyClosure) {
+        leftItems.append(createButton(title: title, image: image, action: action))
     }
 
     func addToggleToRight(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
@@ -204,8 +204,9 @@ class DNavigationBar: UIView {
 
 private extension DNavigationBar {
 
-    func createButton(image: UIImage?, action: @escaping EmptyClosure) -> DButton {
+    func createButton(title: String?, image: UIImage?, action: @escaping EmptyClosure) -> DButton {
         let button = DButton(type: .plainPrimary)
+        button.title = title
         button.insets = .zero
         button.setAction {
             action()
