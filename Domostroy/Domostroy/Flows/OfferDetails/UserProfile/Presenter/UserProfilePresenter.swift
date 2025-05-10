@@ -93,8 +93,7 @@ extension UserProfilePresenter: PaginatableOutput {
         currentPage += 1
         input.updateProgress(isLoading: true)
 
-        fetchOffers { [weak self] in
-            self?.updatePagination()
+        fetchOffers {
             input.updateProgress(isLoading: false)
         } handleResult: { [weak self] result in
             guard let self else {
@@ -102,6 +101,8 @@ extension UserProfilePresenter: PaginatableOutput {
             }
             switch result {
             case .success(let page):
+                self.pagesCount = page.pagination.totalPages
+                self.updatePagination()
                 self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -201,7 +202,6 @@ private extension UserProfilePresenter {
 
         fetchOffers { [weak self] in
             self?.view?.setLoading(false)
-            self?.updatePagination()
             self?.paginatableInput?.updateProgress(isLoading: false)
 
             self?.fetchUser(completion: nil) { [weak self] result in
@@ -224,6 +224,7 @@ private extension UserProfilePresenter {
             switch result {
             case .success(let page):
                 self.pagesCount = page.pagination.totalPages
+                self.updatePagination()
                 self.isFirstPageLoading = false
                 self.view?.fillFirstPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
 

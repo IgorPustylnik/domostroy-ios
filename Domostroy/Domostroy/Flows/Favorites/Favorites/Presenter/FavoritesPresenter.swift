@@ -103,8 +103,7 @@ extension FavoritesPresenter: PaginatableOutput {
         currentPage += 1
         input.updateProgress(isLoading: true)
 
-        fetchOffers { [weak self] in
-            self?.updatePagination()
+        fetchOffers {
             input.updateProgress(isLoading: false)
         } handleResult: { [weak self] result in
             guard let self else {
@@ -112,6 +111,8 @@ extension FavoritesPresenter: PaginatableOutput {
             }
             switch result {
             case .success(let page):
+                self.pagesCount = page.totalPages
+                self.updatePagination()
                 self.view?.fillNextPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -222,8 +223,8 @@ private extension FavoritesPresenter {
 
         fetchOffers { [weak self] in
             self?.view?.setLoading(false)
-            self?.updatePagination()
             self?.paginatableInput?.updateProgress(isLoading: false)
+            self?.isFirstPageLoading = false
             completion?()
         } handleResult: { [weak self] result in
             guard let self else {
@@ -232,7 +233,7 @@ private extension FavoritesPresenter {
             switch result {
             case .success(let page):
                 self.pagesCount = page.totalPages
-                self.isFirstPageLoading = false
+                self.updatePagination()
                 self.view?.fillFirstPage(with: page.content.map { self.makeOfferViewModel(from: $0) })
                 self.view?.setEmptyState(page.totalElements < 1)
                 self.view?.setSort(

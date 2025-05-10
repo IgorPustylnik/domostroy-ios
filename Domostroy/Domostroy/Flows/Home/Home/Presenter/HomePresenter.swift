@@ -80,9 +80,7 @@ extension HomePresenter: RefreshableOutput {
 
     func refreshContent(with input: RefreshableInput) {
         loadFirstPage {
-            DispatchQueue.main.async {
-                input.endRefreshing()
-            }
+            input.endRefreshing()
         }
     }
 
@@ -103,8 +101,7 @@ extension HomePresenter: PaginatableOutput {
         input.updateProgress(isLoading: true)
         currentPage += 1
 
-        fetchOffers { [weak self] in
-            self?.updatePagination()
+        fetchOffers {
             input.updateProgress(isLoading: false)
         } handleResult: { [weak self] result in
             switch result {
@@ -113,6 +110,8 @@ extension HomePresenter: PaginatableOutput {
                     return
                 }
                 self.pagesCount = page.pagination.totalPages
+                self.updatePagination()
+                self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
                 self.view?.setEmptyState(page.data.isEmpty)
                 self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
@@ -196,12 +195,8 @@ private extension HomePresenter {
         paginatableInput?.updateProgress(isLoading: false)
 
         fetchOffers { [weak self] in
-            guard let self else {
-                return
-            }
-            self.view?.setLoading(false)
-            self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
-            self.paginatableInput?.updateProgress(isLoading: false)
+            self?.view?.setLoading(false)
+            self?.paginatableInput?.updateProgress(isLoading: false)
             completion?()
         } handleResult: { [weak self] result in
             switch result {
@@ -211,6 +206,8 @@ private extension HomePresenter {
                 }
                 DispatchQueue.main.async {
                     self.pagesCount = page.pagination.totalPages
+                    self.updatePagination()
+                    self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
                     self.view?.setEmptyState(page.data.isEmpty)
                     self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
                 }

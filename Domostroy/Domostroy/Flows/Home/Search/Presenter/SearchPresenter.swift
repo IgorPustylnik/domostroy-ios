@@ -152,8 +152,7 @@ extension SearchPresenter: PaginatableOutput {
         input.updateProgress(isLoading: true)
         currentPage += 1
 
-        fetchOffers { [weak self] in
-            self?.updatePagination()
+        fetchOffers {
             input.updateProgress(isLoading: false)
         } handleResult: { [weak self] result in
             switch result {
@@ -162,6 +161,7 @@ extension SearchPresenter: PaginatableOutput {
                     return
                 }
                 self.pagesCount = page.pagination.totalPages
+                self.updatePagination()
                 self.view?.setEmptyState(page.data.isEmpty)
                 self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
@@ -246,7 +246,6 @@ private extension SearchPresenter {
 
         fetchOffers { [weak self] in
             self?.view?.setLoading(false)
-            self?.updatePagination()
             self?.paginatableInput?.updateProgress(isLoading: false)
             completion?()
         } handleResult: { [weak self] result in
@@ -256,6 +255,7 @@ private extension SearchPresenter {
                     return
                 }
                 self.pagesCount = page.pagination.totalPages
+                self.updatePagination()
                 self.view?.setEmptyState(page.data.isEmpty)
                 self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
