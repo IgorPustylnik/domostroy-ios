@@ -6,76 +6,10 @@
 //
 
 import Foundation
-
-enum _Temporary_EndpointConstructor {
-    case user(id: Int)
-
-    var url: URL? {
-        guard let host = InfoPlist.serverHost else {
-            return nil
-        }
-        switch self {
-        case .user(let id):
-            return URL(string: host + "/api/user/\(id)")
-        }
-    }
-}
+import Combine
+import NodeKit
 
 struct _Temporary_Mock_NetworkService {
-    func fetchOffers(page: Int, pageSize: Int) async -> OffersPage {
-        let url = URL(string: "https://www.superiorwallpapers.com/landscapes/blue-lake-in-the-mountains_5120x2880.jpg")!
-        try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
-        return OffersPage(
-            pagination: .init(
-                currentPage: page,
-                perPage: pageSize,
-                totalItems: 100,
-                totalPages: 10
-            ),
-            offers: (0..<pageSize).map { i in
-                    .init(
-                        id: Int.random(in: 0...1000),
-                        name: "Test \(page * pageSize + i)",
-                        description: "Test description",
-                        category: .init(id: 1, name: "Category"),
-                        price: .init(value: 500, currency: .rub),
-                        isFavorite: true,
-                        images: [url, url, url, url],
-                        city: .init(id: 1, name: "Воронеж"),
-                        userId: 0,
-                        calendarId: 0,
-                        createdAt: .now
-                    )
-            }
-        )
-    }
-
-    func fetchOffer(id: Int) async -> Offer {
-        let url = URL.applicationDirectory
-        try? await Task.sleep(nanoseconds: 2 * 1_000_000_000)
-        return Offer(
-            id: 0,
-            name: "Шуруповёрт Makita",
-            description: """
-Продаю почти новый шуруповерт Makita. Состояние: новый (ну, почти, если бы не пару мелких происшествий). Сгорел, но это не беда, бывает. Так что, если вам нужно что-то, что выглядит как предмет из апокалипсиса, но всё ещё работает (возможно), то это как раз для вас.
-
-- Комплектация: Шуруповерт, пару незаметных следов от огня, и, конечно же, куча пепла, который можно использовать как декор на вашем рабочем столе.
-- Потенциал: 90% мощности остаётся. 10% — немного перегорели, но это не мешает создавать неповторимую атмосферу. Вполне возможно, что шуруповерт снова заработает, как только выйдет из своего «периода восстановления».
-- Уникальная особенность: Никакой запах нового инструмента, зато гарантированно душевный запах "горелого". Подарит вам незабываемые воспоминания.
-- Зачем покупать новый, если можно взять с историей? Этот шуруповерт был пережившим свою жизнь, и он готов продолжить свои подвиги на вашем рабочем месте.
-
-Состояние: Новый. Не верите? Проверьте сами, только осторожно — и не забудьте про огнетушитель.
-""",
-            category: .init(id: 0, name: "category"),
-            price: .init(value: 500, currency: .rub),
-            isFavorite: true,
-            images: [url, url, url, url],
-            city: .init(id: 0, name: "Воронеж"),
-            userId: 0,
-            calendarId: 0,
-            createdAt: .now
-        )
-    }
 
     func fetchCalendar(id: Int) async -> OfferCalendar {
         let url = URL.applicationDirectory
@@ -121,36 +55,111 @@ struct _Temporary_Mock_NetworkService {
         )
     }
 
-    func fetchMyProfile() async -> MyProfile {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        return MyProfile(
-            id: 0,
-            firstName: "Виктор",
-            lastName: "Корнеплод",
-            email: "test@mail.ru",
-            phoneNumber: "+78005553535",
-            isAdmin: true
+    enum RequestType {
+        case incoming
+        case outgoing
+    }
+
+    func fetchRequests() async -> NodeResult<PageEntity<RentalRequestEntity>> {
+        try? await Task.sleep(nanoseconds: 3_000_000_000)
+        return .success(
+            .init(
+                pagination: .init(totalElements: 10, totalPages: 2),
+                data: [
+                    .init(
+                        id: 0,
+                        status: .accepted,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .pending,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .declined,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .declined,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .pending,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .accepted,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .pending,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    ),
+                    .init(
+                        id: 0,
+                        status: .accepted,
+                        dates: [.now],
+                        createdAt: .now,
+                        resolvedAt: nil,
+                        offer: makeRentalOffer(),
+                        user: makeRentalUser()
+                    )
+                ]
+            )
         )
     }
 
-    func fetchCategories() async -> [Category] {
-        try? await Task.sleep(nanoseconds: 1_500_000_000)
-        return [
-            .init(id: 0, name: "Test1"),
-            .init(id: 1, name: "Test2"),
-            .init(id: 2, name: "Test3")
-        ]
-    }
-
-    func fetchUser(id: Int) async -> User {
-        try? await Task.sleep(nanoseconds: 3_500_000_000)
-        return .init(
+    private func makeRentalOffer() -> RentalRequestOfferEntity {
+        .init(
             id: 0,
-            firstName: "Виктор",
-            lastName: "Корнеплод",
-            avatar: URL.applicationDirectory,
-            offersAmount: 4,
-            registerDate: Date.now
+            title: "Test",
+            photoUrl: .applicationDirectory,
+            price: .init(value: 500, currency: .rub),
+            city: "City"
         )
     }
+
+    private func makeRentalUser() -> RentalRequestUserEntity {
+        .init(id: 0, name: "User", phoneNumber: "+78005553535")
+    }
+}
+
+struct OfferCalendar: Codable {
+    let startDate: Date
+    let endDate: Date
+    let forbiddenDates: [Date]
 }
