@@ -43,7 +43,6 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
     // MARK: - Constants
 
     private enum Constants {
-        static let insets: UIEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
         static let mainVStackSpacing: CGFloat = 10
         static let infoVStackSpacing: CGFloat = 5
         static let imageViewCornerRadius: CGFloat = 8
