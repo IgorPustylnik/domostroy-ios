@@ -154,7 +154,15 @@
 "Requests.Title" = "Requests";
 "Requests.Archive.Title" = "Archive";
 "Requests.Incoming.Title" = "Incoming";
-"Requests.Outgoing.Title" = "Outcoming";
+"Requests.Outgoing.Title" = "Outgoing";
+
+"Requests.Action.Call" = "Call";
+"Requests.Action.CancelRequest" = "Cancel requst";
+"Requests.Action.Accept" = "Accept";
+"Requests.Action.Decline" = "Decline";
+"Requests.Info.Dates" = "Dates";
+"Requests.Info.Lessor" = "Lessor";
+"Requests.Info.Leaser" = "Leaser";
 
 // MARK: - Lessor Calendar
 

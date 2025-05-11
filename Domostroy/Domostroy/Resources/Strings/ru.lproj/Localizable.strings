@@ -156,6 +156,14 @@
 "Requests.Incoming.Title" = "Входящие";
 "Requests.Outgoing.Title" = "Исходящие";
 
+"Requests.Action.Call" = "Позвонить";
+"Requests.Action.CancelRequest" = "Отменить заявку";
+"Requests.Action.Accept" = "Принять";
+"Requests.Action.Decline" = "Отклонить";
+"Requests.Info.Dates" = "Даты";
+"Requests.Info.Lessor" = "Арендодатель";
+"Requests.Info.Leaser" = "Арендатор";
+
 // MARK: - Lessor Calendar
 
 "LessorCalendar.Title" = "Доступные даты";

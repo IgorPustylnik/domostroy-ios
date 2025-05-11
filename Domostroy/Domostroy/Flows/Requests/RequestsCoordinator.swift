@@ -33,7 +33,19 @@ final class RequestsCoordinator: BaseCoordinator, RequestsCoordinatorOutput {
 private extension RequestsCoordinator {
 
     func showRequests() {
-        let (view, output) = RequestsModuleConfigurator().configure()
+        let (view, output, input) = RequestsModuleConfigurator().configure()
+
+        let (incomingView, incomingOutput) = IncomingRequestsModuleConfigurator().configure()
+        let (outgoingView, outgoingOutput) = OutgoingRequestsModuleConfigurator().configure()
+
+        output.onPresentSegment = { [weak input] segment in
+            switch segment {
+            case .incoming:
+                input?.present(incomingView, scrollView: incomingView.collectionView)
+            case .outgoing:
+                input?.present(outgoingView, scrollView: outgoingView.collectionView)
+            }
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 

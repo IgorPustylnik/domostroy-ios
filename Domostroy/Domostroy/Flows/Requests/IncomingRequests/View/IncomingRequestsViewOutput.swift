@@ -1,13 +1,12 @@
 //
-//  RequestsViewOutput.swift
+//  IncomingRequestsViewOutput.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 11/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol RequestsViewOutput {
+protocol IncomingRequestsViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
-    func selectRequestStatus(_ index: Int)
 }

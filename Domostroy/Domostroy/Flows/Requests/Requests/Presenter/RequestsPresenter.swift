@@ -6,36 +6,40 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import Foundation
+import UIKit
+import Kingfisher
 import ReactiveDataDisplayManager
-
-private enum RequestType: Int, CaseIterable {
-    case outgoing
-    case incoming
-
-    var description: String {
-        switch self {
-        case .outgoing:
-            return L10n.Localizable.Requests.Outgoing.title
-        case .incoming:
-            return L10n.Localizable.Requests.Incoming.title
-        }
-    }
-}
+import Combine
+import NodeKit
 
 final class RequestsPresenter: RequestsModuleOutput {
 
     // MARK: - RequestsModuleOutput
 
+    var onPresentSegment: ((RequestsPresenterModel.Segment) -> Void)?
+
     // MARK: - Properties
 
     weak var view: RequestsViewInput?
 
-    private var requestStatusIndex: Int = 0
+    private var segment: RequestsPresenterModel.Segment = .outgoing
+
 }
 
 // MARK: - RequestsModuleInput
 
 extension RequestsPresenter: RequestsModuleInput {
+
+    func present(_ presentable: Presentable, scrollView: UIScrollView?) {
+        view?.setRoot(presentable, scrollView: scrollView)
+
+        if let scrollView {
+            let originalOffset = scrollView.contentOffset
+            scrollView.setContentOffset(CGPoint(x: originalOffset.x, y: originalOffset.y + 0.01), animated: false)
+            scrollView.setContentOffset(originalOffset, animated: false)
+        }
+    }
 
 }
 
@@ -44,43 +48,13 @@ extension RequestsPresenter: RequestsModuleInput {
 extension RequestsPresenter: RequestsViewOutput {
 
     func viewLoaded() {
-        view?.setupSegments(RequestType.allCases.map { $0.description }, selectedIndex: 0)
+        view?.setupSegments(RequestsPresenterModel.Segment.allCases.map { $0.description }, selectedIndex: 0)
+        onPresentSegment?(.outgoing)
     }
 
     func selectRequestStatus(_ index: Int) {
-        requestStatusIndex = index
+        segment = .init(rawValue: index) ?? .outgoing
+        onPresentSegment?(segment)
     }
 
-    func openArchive() {
-
-    }
-
-}
-
-// MARK: - RefreshableOutput
-
-extension RequestsPresenter: RefreshableOutput {
-    func refreshContent(with input: RefreshableInput) {
-        input.endRefreshing()
-    }
-}
-
-// MARK: - PaginatableOutput
-
-extension RequestsPresenter: PaginatableOutput {
-    func onPaginationInitialized(with input: PaginatableInput) {
-
-    }
-
-    func loadNextPage(with input: PaginatableInput) {
-
-    }
-}
-
-// MARK: - Private methods
-
-private extension RequestsPresenter {
-    func loadFirstPage() {
-
-    }
 }

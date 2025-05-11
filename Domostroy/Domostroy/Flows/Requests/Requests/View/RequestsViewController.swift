@@ -12,30 +12,12 @@ import ReactiveDataDisplayManager
 
 final class RequestsViewController: BaseViewController {
 
-    // MARK: - Constants
-
-    private enum Constants {
-        static let progressViewHeight: CGFloat = 80
-    }
-
     // MARK: - UI Elements
 
-    private lazy var archiveButton = {
-        $0.insets = .init(top: $0.insets.top, left: 0, bottom: $0.insets.bottom, right: 0)
-        $0.setAction { [weak self] in
-            self?.output?.openArchive()
-        }
-        $0.title = L10n.Localizable.Requests.Archive.title
-        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
-        return $0
-    }(DButton(type: .plainPrimary))
     private lazy var segmentedControl = UISegmentedControl()
 
-    private(set) lazy var refreshControl = UIRefreshControl()
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private(set) lazy var progressView = PaginatorView()
-
-    var adapter: BaseCollectionManager?
+    private var currentViewController: UIViewController?
+    private lazy var contentView = UIView()
 
     // MARK: - Properties
 
@@ -44,36 +26,25 @@ final class RequestsViewController: BaseViewController {
     // MARK: - UIViewController
 
     override func viewDidLoad() {
-        setupCollectionView()
+        setupContentView()
         super.viewDidLoad()
         setupNavbar()
         output?.viewLoaded()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        progressView.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: collectionView.frame.width,
-            height: Constants.progressViewHeight
-        )
-    }
-
-    private func setupCollectionView() {
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
+    private func setupContentView() {
+        view.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        observeScrollOffset(collectionView)
     }
 
     private func setupNavbar() {
         navigationBar.title = L10n.Localizable.Requests.title
         navigationBar.addArrangedSubview(segmentedControl)
         segmentedControl.addTarget(self, action: #selector(segmentedControlChangedIndex(_:)), for: .valueChanged)
-        navigationBar.rightItems.append(archiveButton)
     }
+
 }
 
 // MARK: - RequestsViewInput
@@ -85,6 +56,23 @@ extension RequestsViewController: RequestsViewInput {
             segmentedControl.insertSegment(withTitle: value, at: index, animated: false)
         }
         segmentedControl.selectedSegmentIndex = selectedIndex
+    }
+
+    func setRoot(_ presentable: Presentable, scrollView: UIScrollView?) {
+        currentViewController?.view.removeFromSuperview()
+        currentViewController?.removeFromParent()
+
+        guard let vc = presentable.toPresent() else {
+            return
+        }
+        addChild(vc)
+        vc.didMove(toParent: self)
+
+        observeScrollOffset(scrollView)
+
+        vc.view.frame = contentView.bounds
+        contentView.addSubview(vc.view)
+        currentViewController = vc
     }
 }
 
