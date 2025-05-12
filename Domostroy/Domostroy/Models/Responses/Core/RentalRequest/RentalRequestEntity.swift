@@ -58,8 +58,16 @@ extension RentalRequestOfferEntity: DTODecodable {
 
 public struct RentalRequestUserEntity {
     public let id: Int
-    public let name: String
+    public let firstName: String
+    public let lastName: String?
     public let phoneNumber: String
+
+    public var name: String {
+        if let lastName = lastName {
+            return "\(firstName) \(lastName)"
+        }
+        return "\(firstName)"
+    }
 }
 
 extension RentalRequestUserEntity: DTODecodable {
@@ -68,7 +76,8 @@ extension RentalRequestUserEntity: DTODecodable {
     public static func from(dto model: DTO) throws -> Self {
         .init(
             id: model.id,
-            name: model.name,
+            firstName: model.firstName,
+            lastName: model.lastName,
             phoneNumber: model.phoneNumber
         )
     }
