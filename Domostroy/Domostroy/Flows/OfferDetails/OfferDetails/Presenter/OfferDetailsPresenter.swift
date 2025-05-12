@@ -28,6 +28,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     private var offerId: Int?
     private var offer: OfferDetailsEntity?
 
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private var offerService: OfferService? = ServiceLocator.shared.resolve()
     private var userService: UserService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
@@ -88,11 +89,16 @@ private extension OfferDetailsPresenter {
                     self.view?.setupInitialState()
                     self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
                     self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
-                    self.view?.setupFavoriteToggle(initialState: offer.isFavorite, toggleAction: { newValue, handler in
-                        self.setFavorite(value: newValue) { success in
-                            handler?(success)
-                        }
-                    })
+
+                    if self.secureStorage?.loadToken() != nil {
+                        self.view?.setupFavoriteToggle(
+                            initialState: offer.isFavorite,
+                            toggleAction: { newValue, handler in
+                                self.setFavorite(value: newValue) { success in
+                                    handler?(success)
+                                }
+                            })
+                    }
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
                     self.onDismiss?()

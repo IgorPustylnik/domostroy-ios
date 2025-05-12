@@ -27,6 +27,7 @@ final class SearchPresenter: SearchModuleOutput {
     private weak var paginatableInput: PaginatableInput?
 
     private let basicStorage: BasicUserDefaultsStorage? = ServiceLocator.shared.resolve()
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
 
     private var cancellables: Set<AnyCancellable> = .init()
@@ -183,18 +184,21 @@ private extension SearchPresenter {
     func makeOfferViewModel(
         from offer: BriefOfferEntity
     ) -> OfferCollectionViewCell.ViewModel {
-        let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
-            .init(
-                initialState: offer.isFavorite,
-                onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-                offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-                toggleAction: { [weak self] newValue, handler in
-                    self?.setFavorite(id: offer.id, value: newValue) { success in
-                        handler?(success)
+        var toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = []
+        if secureStorage?.loadToken() != nil {
+            toggleActions.append(
+                .init(
+                    initialState: offer.isFavorite,
+                    onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                    offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                    toggleAction: { [weak self] newValue, handler in
+                        self?.setFavorite(id: offer.id, value: newValue) { success in
+                            handler?(success)
+                        }
                     }
-                }
+                )
             )
-        ]
+        }
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.photoUrl,
