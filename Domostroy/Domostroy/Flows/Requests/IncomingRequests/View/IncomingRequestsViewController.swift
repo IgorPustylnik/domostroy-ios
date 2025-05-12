@@ -16,6 +16,7 @@ final class IncomingRequestsViewController: UIViewController {
 
     private enum Constants {
         static let progressViewHeight: CGFloat = 80
+        static let emptyViewTopOffset: CGFloat = 52
         static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
         static let intergroupSpacing: CGFloat = 10
         static let interitemSpacing: CGFloat = 10
@@ -24,21 +25,16 @@ final class IncomingRequestsViewController: UIViewController {
 
     // MARK: - UI Elements
 
-    private lazy var segmentedControl = UISegmentedControl()
-
     private(set) lazy var refreshControl = UIRefreshControl()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private(set) lazy var progressView = PaginatorView()
-
     private var activityIndicator = DLoadingIndicator()
+    private lazy var emptyView = IncomingRequestsEmptyView()
+
     typealias IncomingRequestCellGenerator = DiffableCollectionCellGenerator<IncomingRequestCollectionViewCell>
 
-    private var requestsGenerators: [CollectionCellGenerator] = []
-
-    // TODO: Add custom empty view
-    private lazy var emptyView = HomeEmptyView()
-
     var adapter: BaseCollectionManager?
+    private var requestsGenerators: [CollectionCellGenerator] = []
 
     // MARK: - Properties
 
@@ -78,7 +74,9 @@ final class IncomingRequestsViewController: UIViewController {
     private func setupEmptyView() {
         collectionView.addSubview(emptyView)
         emptyView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-Constants.progressViewHeight).priority(.high)
+            make.centerY.equalToSuperview().offset(
+                -Constants.progressViewHeight - Constants.emptyViewTopOffset
+            ).priority(.high)
             make.centerX.equalToSuperview().priority(.high)
             make.horizontalEdges.equalToSuperview().priority(.high)
         }

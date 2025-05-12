@@ -82,7 +82,6 @@ extension IncomingRequestsPresenter: PaginatableOutput {
                 }
                 self.pagesCount = page.pagination.totalPages
                 self.updatePagination()
-                self.view?.setEmptyState(page.data.isEmpty)
                 self.view?.fillNextPage(with: page.data.map { self.makeIncomingRequestViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)

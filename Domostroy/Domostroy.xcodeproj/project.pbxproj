@@ -202,6 +202,8 @@
 		55B126542DC675CF0030A6FC /* FilterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B126532DC675CF0030A6FC /* FilterEntity.swift */; };
 		55B126562DC675DC0030A6FC /* FilterEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B126552DC675DC0030A6FC /* FilterEntry.swift */; };
 		55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */; };
+		55B40ECC2DD159DE0008C345 /* IncomingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */; };
+		55B40ECE2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */; };
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
@@ -553,6 +555,8 @@
 		55B126532DC675CF0030A6FC /* FilterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEntity.swift; sourceTree = "<group>"; };
 		55B126552DC675DC0030A6FC /* FilterEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEntry.swift; sourceTree = "<group>"; };
 		55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsPresenterModel.swift; sourceTree = "<group>"; };
+		55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestsEmptyView.swift; sourceTree = "<group>"; };
+		55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsEmptyView.swift; sourceTree = "<group>"; };
 		55B4960B2D9E75EA00C6AB57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -1948,6 +1952,7 @@
 			isa = PBXGroup;
 			children = (
 				501BF1AD03AC5B4173EBE034 /* IncomingRequestsViewController.swift */,
+				55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */,
 				B9F5917A34D741ED0AFE2569 /* IncomingRequestsViewInput.swift */,
 				475D01A94D981DE12689C7DA /* IncomingRequestsViewOutput.swift */,
 			);
@@ -2252,6 +2257,7 @@
 			isa = PBXGroup;
 			children = (
 				1EC6AF3F0243F9BD40DF44AF /* OutgoingRequestsViewController.swift */,
+				55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */,
 				2550006DCF4823003D24BE9D /* OutgoingRequestsViewInput.swift */,
 				0971BA8DB3D339E788257B42 /* OutgoingRequestsViewOutput.swift */,
 			);
@@ -2662,6 +2668,7 @@
 				554F7CC32DBA276D008A2BB3 /* UserProfileViewInput.swift in Sources */,
 				8FD2444E0A5217AD9EDEB3C1 /* HomeCoordinator.swift in Sources */,
 				554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */,
+				55B40ECE2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift in Sources */,
 				34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */,
 				55FE25D12DD0D98900B7B35F /* RequestStatus.swift in Sources */,
 				5589B7362DC1557400DEA9CF /* SecureStorage.swift in Sources */,
@@ -2794,6 +2801,7 @@
 				AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */,
 				55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */,
 				10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */,
+				55B40ECC2DD159DE0008C345 /* IncomingRequestsEmptyView.swift in Sources */,
 				990F65C7E2F656B0E78056CD /* RegisterModuleInput.swift in Sources */,
 				8258A0EDE8E2F1D2873D57FD /* RegisterModuleOutput.swift in Sources */,
 				558285F12DA6F57B003C1861 /* RDDM.swift in Sources */,

@@ -82,7 +82,6 @@ extension OutgoingRequestsPresenter: PaginatableOutput {
                 }
                 self.pagesCount = page.pagination.totalPages
                 self.updatePagination()
-                self.view?.setEmptyState(page.data.isEmpty)
                 self.view?.fillNextPage(with: page.data.map { self.makeOutgoingRequestViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -147,8 +146,7 @@ private extension OutgoingRequestsPresenter {
 
     func loadImage(url: URL?, imageView: UIImageView) {
         DispatchQueue.main.async {
-            // TODO: Remove mock
-            imageView.kf.setImage(with: url, placeholder: UIImage.Mock.makita)
+            imageView.kf.setImage(with: url)
         }
     }
 
