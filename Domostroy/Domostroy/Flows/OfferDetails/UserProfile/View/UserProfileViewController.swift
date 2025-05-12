@@ -80,7 +80,10 @@ final class UserProfileViewController: BaseViewController {
 private extension UserProfileViewController {
 
     func makeLayout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self else {
+                return nil
+            }
             switch sectionIndex {
             case 0:
                 return self.makeUserInfoSectionLayout(for: sectionIndex)
