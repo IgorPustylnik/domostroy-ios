@@ -74,6 +74,8 @@
 		550D4F292D9FC20800B460CA /* DTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextField.swift */; };
 		550D4F2C2D9FC2AB00B460CA /* TextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */; };
 		550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F2D2D9FCBE600B460CA /* DButton.swift */; };
+		551503902DD308AE003E79FD /* ConciseOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515038F2DD308AE003E79FD /* ConciseOfferView.swift */; };
+		551503922DD30A63003E79FD /* RequestStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551503912DD30A63003E79FD /* RequestStatusView.swift */; };
 		551747512DC788BB00AFAF24 /* CityNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5517474F2DC788BB00AFAF24 /* CityNetworkService.swift */; };
 		551747522DC788BB00AFAF24 /* CityUrlRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747502DC788BB00AFAF24 /* CityUrlRoute.swift */; };
 		551747552DC788E300AFAF24 /* CityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551747542DC788E300AFAF24 /* CityService.swift */; };
@@ -421,6 +423,8 @@
 		550D4F282D9FC20800B460CA /* DTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextField.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValidator.swift; sourceTree = "<group>"; };
 		550D4F2D2D9FCBE600B460CA /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
+		5515038F2DD308AE003E79FD /* ConciseOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConciseOfferView.swift; sourceTree = "<group>"; };
+		551503912DD30A63003E79FD /* RequestStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStatusView.swift; sourceTree = "<group>"; };
 		5517474F2DC788BB00AFAF24 /* CityNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityNetworkService.swift; sourceTree = "<group>"; };
 		551747502DC788BB00AFAF24 /* CityUrlRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityUrlRoute.swift; sourceTree = "<group>"; };
 		551747542DC788E300AFAF24 /* CityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityService.swift; sourceTree = "<group>"; };
@@ -1890,6 +1894,8 @@
 				55ED67752DA7AC7E00A3CA52 /* CollectionReusableView */,
 				551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */,
 				55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */,
+				5515038F2DD308AE003E79FD /* ConciseOfferView.swift */,
+				551503912DD30A63003E79FD /* RequestStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2844,6 +2850,7 @@
 				C49F91C138D2ED15B1F52505 /* CreateOfferModuleConfigurator.swift in Sources */,
 				552886A62DC6A69200CADD6C /* MyOfferEntry.swift in Sources */,
 				552402272DC2B4F100AD83F1 /* TokenExpirationHandler.swift in Sources */,
+				551503902DD308AE003E79FD /* ConciseOfferView.swift in Sources */,
 				268B436F8501A27F7D5CA3B2 /* CreateOfferPresenter.swift in Sources */,
 				9F1F4BCB0C1C99CD443C49C3 /* CreateOfferModuleInput.swift in Sources */,
 				77694EA20CF915480D650BF9 /* CreateOfferModuleOutput.swift in Sources */,
@@ -2953,6 +2960,7 @@
 				FA749726E9607136DDEADDC4 /* OutgoingRequestsViewController.swift in Sources */,
 				ED3AE30DBE83D5D6018A477C /* OutgoingRequestsViewInput.swift in Sources */,
 				1E371A19B9C19F0C3EF4A940 /* OutgoingRequestsViewOutput.swift in Sources */,
+				551503922DD30A63003E79FD /* RequestStatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

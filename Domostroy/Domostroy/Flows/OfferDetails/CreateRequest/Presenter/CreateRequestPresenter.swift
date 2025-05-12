@@ -120,12 +120,14 @@ private extension CreateRequestPresenter {
 
     private func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
         .init(
-            imageUrl: offer.photos.first,
-            loadImage: { [weak self] url, imageView in
-                self?.loadImage(url: url, imageView: imageView)
-            },
-            title: offer.title,
-            price: LocalizationHelper.pricePerDay(for: offer.price),
+            offer: .init(
+                imageUrl: offer.photos.first,
+                loadImage: { [weak self] url, imageView in
+                    self?.loadImage(url: url, imageView: imageView)
+                },
+                title: offer.title,
+                price: LocalizationHelper.pricePerDay(for: offer.price)
+            ),
             calendarId: -1 /*offer.calendarId*/,
             loadCalendar: { [weak self] id in
                 self?.loadCalendar(id: id)

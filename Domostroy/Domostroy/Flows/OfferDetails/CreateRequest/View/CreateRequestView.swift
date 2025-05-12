@@ -14,10 +14,7 @@ final class CreateRequestView: UIView {
     // MARK: - ViewModel
 
     struct ViewModel {
-        let imageUrl: URL?
-        let loadImage: (URL?, UIImageView) -> Void
-        let title: String
-        let price: String
+        let offer: ConciseOfferView.ViewModel
         let calendarId: Int
         let loadCalendar: (Int) -> Void
         let onCalendar: EmptyClosure
@@ -39,49 +36,14 @@ final class CreateRequestView: UIView {
     private lazy var mainVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.mainVStackSpacing
-        $0.addArrangedSubview(offerHStackView)
+        $0.addArrangedSubview(conciseOfferView)
         $0.addArrangedSubview(detailsVStackView)
         $0.addArrangedSubview(infoVStackView)
         $0.addArrangedSubview(totalCostVStackView)
         return $0
     }(UIStackView())
 
-    private lazy var offerHStackView = {
-        $0.axis = .horizontal
-        $0.alignment = .center
-        $0.spacing = Constants.offerHStackSpacing
-        $0.addArrangedSubview(offerImageView)
-        $0.addArrangedSubview(offerTitleLabel)
-        $0.addArrangedSubview(priceLabel)
-        return $0
-    }(UIStackView())
-
-    private lazy var offerImageView = {
-        $0.layer.cornerRadius = Constants.offerImageSize.width / 5
-        $0.layer.masksToBounds = true
-        $0.backgroundColor = .secondarySystemBackground
-        $0.contentMode = .scaleAspectFill
-        $0.snp.makeConstraints { make in
-            make.size.equalTo(Constants.offerImageSize)
-        }
-        return $0
-    }(UIImageView())
-
-    private lazy var offerTitleLabel = {
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.numberOfLines = 0
-        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        return $0
-    }(UILabel())
-
-    private lazy var priceLabel = {
-        $0.font = .systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = .secondaryLabel
-        $0.setContentHuggingPriority(.required, for: .horizontal)
-        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return $0
-    }(UILabel())
+    private lazy var conciseOfferView = ConciseOfferView()
 
     private lazy var detailsVStackView = {
         $0.axis = .vertical
@@ -195,10 +157,8 @@ private extension CreateRequestView {
 
 extension CreateRequestView {
     func configure(with viewModel: ViewModel) {
-        viewModel.loadImage(viewModel.imageUrl, offerImageView)
+        conciseOfferView.configure(with: viewModel.offer)
         viewModel.loadCalendar(viewModel.calendarId)
-        offerTitleLabel.text = viewModel.title
-        priceLabel.text = viewModel.price
         onCalendar = viewModel.onCalendar
     }
 
