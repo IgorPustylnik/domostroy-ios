@@ -175,29 +175,6 @@ class DNavigationBar: UIView {
     func addButtonToLeft(title: String?, image: UIImage?, action: @escaping EmptyClosure) {
         leftItems.append(createButton(title: title, image: image, action: action))
     }
-
-    func addToggleToRight(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
-        rightItems.insert(
-            createToggleButton(
-                initialState: initialState,
-                onImage: onImage,
-                offImage: offImage,
-                toggleAction: toggleAction
-            ),
-            at: 0
-        )
-    }
-
-    func addToggleToLeft(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
-        leftItems.append(
-            createToggleButton(
-                initialState: initialState,
-                onImage: onImage,
-                offImage: offImage,
-                toggleAction: toggleAction
-            )
-        )
-    }
 }
 
 // MARK: - Private methods
