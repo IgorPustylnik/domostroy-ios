@@ -59,6 +59,8 @@ final class OfferDetailsViewController: ScrollViewController {
             make.horizontalEdges.equalToSuperview().inset(Constants.detailsInsets)
         }
         scrollView.alwaysBounceVertical = true
+
+        contentView.isHidden = true
     }
 
     private func configureCollectionView() {
@@ -90,15 +92,19 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
     }
 
     func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleAction?) {
-        navigationBar.addToggleToRight(
+        let toggle = DToggleButton(type: .plainPrimary)
+        toggle.insets = .zero
+        toggle.configure(
             initialState: initialState,
             onImage: .Buttons.favoriteFilled,
             offImage: .Buttons.favorite,
             toggleAction: toggleAction
         )
+        navigationBar.rightItems = [toggle]
     }
 
     func configureOffer(viewModel: OfferDetailsView.ViewModel) {
+        contentView.isHidden = false
         offerDetailsView.configure(with: viewModel)
     }
 

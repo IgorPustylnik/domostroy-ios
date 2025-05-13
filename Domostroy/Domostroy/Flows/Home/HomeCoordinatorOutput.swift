@@ -9,5 +9,5 @@
 import UIKit
 
 protocol HomeCoordinatorOutput: AnyObject {
-
+    var onChangeAuthState: EmptyClosure? { get set }
 }

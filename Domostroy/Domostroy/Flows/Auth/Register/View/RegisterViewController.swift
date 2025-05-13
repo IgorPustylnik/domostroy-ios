@@ -106,6 +106,7 @@ private extension RegisterViewController {
             navigationController?.viewControllers.first == self
         if isModalInNav {
             navigationBar.addButtonToLeft(
+                title: nil,
                 image: UIImage(systemName: "xmark")?.withTintColor(
                     .Domostroy.primary,
                     renderingMode: .alwaysOriginal

@@ -99,10 +99,6 @@ extension ProfilePresenter: ProfileViewOutput {
 // MARK: - Private methods
 
 private extension ProfilePresenter {
-    func fetchProfile() async -> MyProfile {
-        return await _Temporary_Mock_NetworkService().fetchMyProfile()
-    }
-
     func configure(with myUser: MyUserEntity) {
         view?.configure(
             with: .init(

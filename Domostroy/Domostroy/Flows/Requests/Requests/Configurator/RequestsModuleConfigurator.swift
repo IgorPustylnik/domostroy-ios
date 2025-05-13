@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ReactiveDataDisplayManager
 
 final class RequestsModuleConfigurator {
 
     func configure() -> (
         RequestsViewController,
-        RequestsModuleOutput
+        RequestsModuleOutput,
+        RequestsModuleInput
     ) {
         let view = RequestsViewController()
         let presenter = RequestsPresenter()
@@ -20,7 +22,7 @@ final class RequestsModuleConfigurator {
         presenter.view = view
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

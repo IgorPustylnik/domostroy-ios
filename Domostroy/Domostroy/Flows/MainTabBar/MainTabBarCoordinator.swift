@@ -63,8 +63,12 @@ private extension MainTabBarCoordinator {
         output.onMyOffersFlowSelect = { [weak self, weak input] isInitial in
             self?.runMyOffersFlow(isInitial: isInitial, mainTabBarModuleInput: input)
         }
-        output.onRequestsFlowSelect = runRequestsFlow
-        output.onProfileFlowSelect = runProfileFlow
+        output.onRequestsFlowSelect = { [weak self] isInitial in
+            self?.runRequestsFlow(isInitial: isInitial)
+        }
+        output.onProfileFlowSelect = { [weak self] isInitial in
+            self?.runProfileFlow(isInitial: isInitial)
+        }
         output.onTapCenterControl = { [weak self] in
             self?.onTapCenterControl?()
         }
@@ -78,6 +82,10 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = HomeCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

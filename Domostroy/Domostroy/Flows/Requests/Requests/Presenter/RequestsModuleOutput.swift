@@ -7,4 +7,5 @@
 //
 
 protocol RequestsModuleOutput: AnyObject {
+    var onPresentSegment: ((RequestsPresenterModel.Segment) -> Void)? { get set }
 }

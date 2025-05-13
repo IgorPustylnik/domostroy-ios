@@ -8,4 +8,5 @@
 
 protocol UserProfileModuleOutput: AnyObject {
     var onOpenOffer: ((Int) -> Void)? { get set }
+    var onDismiss: EmptyClosure? { get set }
 }

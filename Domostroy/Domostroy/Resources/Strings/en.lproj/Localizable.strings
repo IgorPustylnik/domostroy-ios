@@ -149,6 +149,38 @@
 "Profile.Unauthorized.Message" = "Please login to access all features";
 "Profile.Unauthorized.Button.Authorize" = "Authorize";
 
+// MARK: - Requests
+
+"Requests.Title" = "Requests";
+"Requests.Archive.Title" = "Archive";
+"Requests.Incoming.Title" = "Incoming";
+"Requests.Outgoing.Title" = "Outgoing";
+"Requests.Incoming.Empty.Message" = "You have no incoming requests";
+"Requests.Outgoing.Empty.Message" = "You have not made any requests";
+
+"Requests.Action.Call" = "Call";
+"Requests.Action.CancelRequest" = "Cancel request";
+"Requests.Action.Accept" = "Accept";
+"Requests.Action.Decline" = "Decline";
+"Requests.Info.Dates" = "Dates";
+"Requests.Info.Lessor" = "Lessor";
+"Requests.Info.Leaser" = "Leaser";
+
+"RequestDetails.Incoming.Title" = "Incoming request";
+"RequestDetails.Outgoing.Title" = "Outgoing request";
+"RequestDetails.Status.AcceptedOn" = "Accepted on";
+"RequestDetails.Status.Pending" = "Awaiting a response";
+"RequestDetails.Status.DeclinedOn" = "Declined on";
+"RequestDetails.Info.Title" = "Information";
+"RequestDetails.Info.Dates" = "Dates";
+"RequestDetails.Info.RequestDate" = "Request submission date";
+"RequestDetails.Button.Call" = "Call";
+"RequestDetails.Button.Cancel" = "Cancel";
+"RequestDetails.Button.Accept" = "Accept";
+"RequestDetails.Button.Decline" = "Decline";
+"RequestDetails.Menu.Button.CancelRent" = "Cancel rent";
+"RequestDetails.Menu.Button.CancelRequest" = "Cancel request";
+
 // MARK: - Lessor Calendar
 
 "LessorCalendar.Title" = "Dates";

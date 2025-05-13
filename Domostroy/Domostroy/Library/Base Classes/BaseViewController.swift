@@ -99,7 +99,12 @@ class BaseViewController: UIViewController {
 
 extension BaseViewController {
 
-    func observeScrollOffset(_ scrollView: UIScrollView) {
+    func observeScrollOffset(_ scrollView: UIScrollView?) {
+        guard let scrollView else {
+            contentOffsetObservation = nil
+            self.handleScroll(offsetY: 0)
+            return
+        }
         contentOffsetObservation = scrollView.observe(
             \.contentOffset, options: [.new]
         ) { [weak self] scrollView, change in
@@ -108,6 +113,7 @@ extension BaseViewController {
             }
             self.handleScroll(offsetY: offsetY + self.navigationBar.frame.height)
         }
+        handleScroll(offsetY: scrollView.contentOffset.y + navigationBar.frame.height)
     }
 
     func handleScroll(offsetY: CGFloat) {
@@ -149,7 +155,9 @@ private extension BaseViewController {
 
     func setBackButtonIfNeeded() {
         if shouldShowBackButton {
-            navigationBar.addButtonToLeft(image: .NavigationBar.chevronLeft) { [weak self] in
+            navigationBar.addButtonToLeft(
+                title: nil, image: .NavigationBar.chevronLeft
+            ) { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }
         }

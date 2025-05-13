@@ -6,7 +6,9 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import UIKit
+
 protocol RequestsViewInput: AnyObject {
-    /// Method for setup initial state of view
-    func setupInitialState()
+    func setupSegments(_ values: [String], selectedIndex: Int)
+    func setRoot(_ presentable: Presentable, scrollView: UIScrollView?)
 }

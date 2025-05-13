@@ -126,8 +126,10 @@ final class CreateOfferViewController: ScrollViewController {
 
     private func addCloseButton() {
         navigationBar.addButtonToLeft(
+            title: nil,
             image: UIImage(systemName: "xmark")?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            action: { [weak self] in
+            action: {
+                [weak self] in
                 self?.output?.close()
             }
         )

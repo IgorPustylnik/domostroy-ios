@@ -92,7 +92,10 @@ final class MyOffersViewController: BaseViewController {
 private extension MyOffersViewController {
 
     func makeLayout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self else {
+                return nil
+            }
             return self.makeSectionLayout(for: sectionIndex)
         }
 

@@ -335,6 +335,92 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "RequestCalendar.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum RequestDetails {
+      internal enum Button {
+        /// Accept
+        internal static let accept = L10n.tr("Localizable", "RequestDetails.Button.Accept", fallback: "Accept")
+        /// Call
+        internal static let call = L10n.tr("Localizable", "RequestDetails.Button.Call", fallback: "Call")
+        /// Cancel
+        internal static let cancel = L10n.tr("Localizable", "RequestDetails.Button.Cancel", fallback: "Cancel")
+        /// Decline
+        internal static let decline = L10n.tr("Localizable", "RequestDetails.Button.Decline", fallback: "Decline")
+      }
+      internal enum Incoming {
+        /// Incoming request
+        internal static let title = L10n.tr("Localizable", "RequestDetails.Incoming.Title", fallback: "Incoming request")
+      }
+      internal enum Info {
+        /// Dates
+        internal static let dates = L10n.tr("Localizable", "RequestDetails.Info.Dates", fallback: "Dates")
+        /// Request submission date
+        internal static let requestDate = L10n.tr("Localizable", "RequestDetails.Info.RequestDate", fallback: "Request submission date")
+        /// Information
+        internal static let title = L10n.tr("Localizable", "RequestDetails.Info.Title", fallback: "Information")
+      }
+      internal enum Menu {
+        internal enum Button {
+          /// Cancel rent
+          internal static let cancelRent = L10n.tr("Localizable", "RequestDetails.Menu.Button.CancelRent", fallback: "Cancel rent")
+          /// Cancel request
+          internal static let cancelRequest = L10n.tr("Localizable", "RequestDetails.Menu.Button.CancelRequest", fallback: "Cancel request")
+        }
+      }
+      internal enum Outgoing {
+        /// Outgoing request
+        internal static let title = L10n.tr("Localizable", "RequestDetails.Outgoing.Title", fallback: "Outgoing request")
+      }
+      internal enum Status {
+        /// Accepted on
+        internal static let acceptedOn = L10n.tr("Localizable", "RequestDetails.Status.AcceptedOn", fallback: "Accepted on")
+        /// Declined on
+        internal static let declinedOn = L10n.tr("Localizable", "RequestDetails.Status.DeclinedOn", fallback: "Declined on")
+        /// Awaiting a response
+        internal static let pending = L10n.tr("Localizable", "RequestDetails.Status.Pending", fallback: "Awaiting a response")
+      }
+    }
+    internal enum Requests {
+      /// Requests
+      internal static let title = L10n.tr("Localizable", "Requests.Title", fallback: "Requests")
+      internal enum Action {
+        /// Accept
+        internal static let accept = L10n.tr("Localizable", "Requests.Action.Accept", fallback: "Accept")
+        /// Call
+        internal static let call = L10n.tr("Localizable", "Requests.Action.Call", fallback: "Call")
+        /// Cancel request
+        internal static let cancelRequest = L10n.tr("Localizable", "Requests.Action.CancelRequest", fallback: "Cancel request")
+        /// Decline
+        internal static let decline = L10n.tr("Localizable", "Requests.Action.Decline", fallback: "Decline")
+      }
+      internal enum Archive {
+        /// Archive
+        internal static let title = L10n.tr("Localizable", "Requests.Archive.Title", fallback: "Archive")
+      }
+      internal enum Incoming {
+        /// Incoming
+        internal static let title = L10n.tr("Localizable", "Requests.Incoming.Title", fallback: "Incoming")
+        internal enum Empty {
+          /// You have no incoming requests
+          internal static let message = L10n.tr("Localizable", "Requests.Incoming.Empty.Message", fallback: "You have no incoming requests")
+        }
+      }
+      internal enum Info {
+        /// Dates
+        internal static let dates = L10n.tr("Localizable", "Requests.Info.Dates", fallback: "Dates")
+        /// Leaser
+        internal static let leaser = L10n.tr("Localizable", "Requests.Info.Leaser", fallback: "Leaser")
+        /// Lessor
+        internal static let lessor = L10n.tr("Localizable", "Requests.Info.Lessor", fallback: "Lessor")
+      }
+      internal enum Outgoing {
+        /// Outgoing
+        internal static let title = L10n.tr("Localizable", "Requests.Outgoing.Title", fallback: "Outgoing")
+        internal enum Empty {
+          /// You have not made any requests
+          internal static let message = L10n.tr("Localizable", "Requests.Outgoing.Empty.Message", fallback: "You have not made any requests")
+        }
+      }
+    }
     internal enum Search {
       internal enum Empty {
         /// Nothing found

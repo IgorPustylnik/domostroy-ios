@@ -155,6 +155,8 @@ final class OfferDetailsView: UIView {
         $0.axis = .horizontal
         $0.addArrangedSubview(userInfoVStackView)
         $0.addArrangedSubview(userAvatarImageView)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pressedOnUser))
+        $0.addGestureRecognizer(tapGesture)
         return $0
     }(UIStackView())
 
@@ -162,9 +164,6 @@ final class OfferDetailsView: UIView {
         $0.axis = .vertical
         $0.addArrangedSubview(userNameLabel)
         $0.addArrangedSubview(userInfoLabel)
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pressedOnUser))
-        $0.addGestureRecognizer(tapGesture)
         return $0
     }(UIStackView())
 

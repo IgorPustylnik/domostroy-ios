@@ -149,6 +149,38 @@
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
 "Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
 
+// MARK: - Requests
+
+"Requests.Title" = "Заявки";
+"Requests.Archive.Title" = "Архив";
+"Requests.Incoming.Title" = "Входящие";
+"Requests.Outgoing.Title" = "Исходящие";
+"Requests.Incoming.Empty.Message" = "Входящие заявки не найдены";
+"Requests.Outgoing.Empty.Message" = "Вы ещё не оставляли заявки";
+
+"Requests.Action.Call" = "Позвонить";
+"Requests.Action.CancelRequest" = "Отменить заявку";
+"Requests.Action.Accept" = "Принять";
+"Requests.Action.Decline" = "Отклонить";
+"Requests.Info.Dates" = "Даты";
+"Requests.Info.Lessor" = "Арендодатель";
+"Requests.Info.Leaser" = "Арендатор";
+
+"RequestDetails.Incoming.Title" = "Входящая заявка";
+"RequestDetails.Outgoing.Title" = "Исходящая заявка";
+"RequestDetails.Status.AcceptedOn" = "Подтверждена";
+"RequestDetails.Status.Pending" = "Ожидает ответа";
+"RequestDetails.Status.DeclinedOn" = "Отклонена";
+"RequestDetails.Info.Title" = "Информация";
+"RequestDetails.Info.Dates" = "Даты";
+"RequestDetails.Info.RequestDate" = "Дата подачи заявки";
+"RequestDetails.Button.Call" = "Позвонить";
+"RequestDetails.Button.Cancel" = "Отменить";
+"RequestDetails.Button.Accept" = "Принять";
+"RequestDetails.Button.Decline" = "Отклонить";
+"RequestDetails.Menu.Button.CancelRent" = "Отменить аренду";
+"RequestDetails.Menu.Button.CancelRequest" = "Отменить заявку";
+
 // MARK: - Lessor Calendar
 
 "LessorCalendar.Title" = "Доступные даты";

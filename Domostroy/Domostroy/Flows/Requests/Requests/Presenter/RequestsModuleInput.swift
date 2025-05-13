@@ -6,5 +6,8 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import UIKit
+
 protocol RequestsModuleInput: AnyObject {
+    func present(_ presentable: Presentable, scrollView: UIScrollView?)
 }

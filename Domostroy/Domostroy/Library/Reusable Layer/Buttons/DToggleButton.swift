@@ -25,12 +25,9 @@ final class DToggleButton: DButton {
         self.onImage = onImage
         self.offImage = offImage
         self.toggleAction = toggleAction
-        self.actionHandler = { [weak self] in
-            guard let self else {
-                return
-            }
+        setAction { [weak self] in
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-            self.performToggleAction()
+            self?.performToggleAction()
         }
         updateIcon()
     }

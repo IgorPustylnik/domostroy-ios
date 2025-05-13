@@ -9,4 +9,5 @@
 protocol RequestsViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func selectRequestStatus(_ index: Int)
 }
