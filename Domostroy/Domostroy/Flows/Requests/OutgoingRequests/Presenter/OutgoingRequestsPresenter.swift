@@ -17,6 +17,8 @@ final class OutgoingRequestsPresenter: OutgoingRequestsModuleOutput {
 
     // MARK: - RequestsModuleOutput
 
+    var onShowRequestDetails: ((Int) -> Void)?
+
     // MARK: - Properties
 
     weak var view: OutgoingRequestsViewInput?
@@ -44,6 +46,10 @@ extension OutgoingRequestsPresenter: OutgoingRequestsViewOutput {
     func viewLoaded() {
         view?.setLoading(true)
         loadFirstPage()
+    }
+
+    func openRequestDetails(id: Int) {
+        onShowRequestDetails?(id)
     }
 
 }

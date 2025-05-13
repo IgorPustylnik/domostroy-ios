@@ -110,7 +110,7 @@ extension IncomingRequestsViewController: IncomingRequestsViewInput {
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
-//                self?.output?.openOffer(viewModel.id)
+                self?.output?.openRequestDetails(id: viewModel.id)
             }
             return generator
         }
@@ -125,7 +125,7 @@ extension IncomingRequestsViewController: IncomingRequestsViewInput {
                 registerType: .class
             )
             generator.didSelectEvent += { [weak self, viewModel = $0] in
-//                self?.output?.openOffer(viewModel.id)
+                self?.output?.openRequestDetails(id: viewModel.id)
             }
             return generator
         }

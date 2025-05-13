@@ -7,4 +7,5 @@
 //
 
 protocol IncomingRequestsModuleOutput: AnyObject {
+    var onShowRequestDetails: ((Int) -> Void)? { get set }
 }

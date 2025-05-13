@@ -9,4 +9,5 @@
 protocol OutgoingRequestsViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func openRequestDetails(id: Int)
 }
