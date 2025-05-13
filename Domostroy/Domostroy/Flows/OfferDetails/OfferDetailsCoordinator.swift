@@ -100,6 +100,9 @@ private extension OfferDetailsCoordinator {
         output.onOpenOffer = { [weak self] offerId in
             self?.showOfferDetails(id: offerId, isShownFromOwnersProfile: true)
         }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
         router.push(view)
     }
 

@@ -23,13 +23,14 @@ final class UserProfilePresenter: UserProfileModuleOutput {
     // MARK: - UserProfileModuleOutput
 
     var onOpenOffer: ((Int) -> Void)?
-    var onSearch: ((String?) -> Void)?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: UserProfileViewInput?
     private weak var paginatableInput: PaginatableInput?
 
+    private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private var userService: UserService? = ServiceLocator.shared.resolve()
     private var offerService: OfferService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
@@ -137,18 +138,21 @@ private extension UserProfilePresenter {
     func makeOfferViewModel(
         from offer: BriefOfferEntity
     ) -> OfferCollectionViewCell.ViewModel {
-        let toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = [
-            .init(
-                initialState: offer.isFavorite,
-                onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-                offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-                toggleAction: { [weak self] newValue, handler in
-                    self?.setFavorite(id: offer.id, value: newValue) { success in
-                        handler?(success)
+        var toggleActions: [OfferCollectionViewCell.ViewModel.ToggleButtonModel] = []
+        if secureStorage?.loadToken() != nil {
+            toggleActions.append(
+                .init(
+                    initialState: offer.isFavorite,
+                    onImage: .Buttons.favoriteFilled.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                    offImage: .Buttons.favorite.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                    toggleAction: { [weak self] newValue, handler in
+                        self?.setFavorite(id: offer.id, value: newValue) { success in
+                            handler?(success)
+                        }
                     }
-                }
+                )
             )
-        ]
+        }
         let viewModel = OfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.photoUrl,
@@ -212,6 +216,7 @@ private extension UserProfilePresenter {
                 case .success(let user):
                     self.view?.fillUser(with: self.makeUserViewModel(from: user))
                 case .failure(let error):
+                    self.onDismiss?()
                     DropsPresenter.shared.showError(error: error)
                 }
             }

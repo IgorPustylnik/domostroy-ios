@@ -24,7 +24,9 @@ extension Date {
 
 extension Collection where Element == Date {
     func formattedDateRanges() -> String {
-        guard !self.isEmpty else { return "" }
+        guard !self.isEmpty else {
+            return ""
+        }
 
         let calendar = Calendar.current
         let sortedDates = self.sorted()
