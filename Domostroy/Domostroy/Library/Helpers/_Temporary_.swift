@@ -60,85 +60,130 @@ struct _Temporary_Mock_NetworkService {
         case outgoing
     }
 
+    static var i = 0
+
     func fetchRequests() async -> NodeResult<PageEntity<RentalRequestEntity>> {
-        try? await Task.sleep(nanoseconds: 3_000_000_000)
+        _Temporary_Mock_NetworkService.i += 1
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        if _Temporary_Mock_NetworkService.i % 3 != 1 {
+            return .success(
+                .init(
+                    pagination: .init(totalElements: 10, totalPages: 2),
+                    data: [
+                        .init(
+                            id: 0,
+                            status: .accepted,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .pending,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .declined,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .declined,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .pending,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .accepted,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .pending,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        ),
+                        .init(
+                            id: 0,
+                            status: .accepted,
+                            dates: [.now],
+                            createdAt: .now,
+                            resolvedAt: nil,
+                            offer: makeRentalOffer(),
+                            user: makeRentalUser()
+                        )
+                    ]
+                )
+            )
+        } else {
+            return .success(.init(pagination: .init(totalElements: 0, totalPages: 0), data: []))
+        }
+    }
+
+    func fetchRentalRequest() async -> NodeResult<RentalRequestEntity> {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        _Temporary_Mock_NetworkService.i += 1
+        let status: RequestStatus
+        switch _Temporary_Mock_NetworkService.i % 3 {
+        case 0:
+            status = .accepted
+        case 1:
+            status = .pending
+        case 2:
+            status = .declined
+        default:
+            status = .pending
+        }
         return .success(
             .init(
-                pagination: .init(totalElements: 10, totalPages: 2),
-                data: [
-                    .init(
-                        id: 0,
-                        status: .accepted,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .pending,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .declined,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .declined,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .pending,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .accepted,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .pending,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    ),
-                    .init(
-                        id: 0,
-                        status: .accepted,
-                        dates: [.now],
-                        createdAt: .now,
-                        resolvedAt: nil,
-                        offer: makeRentalOffer(),
-                        user: makeRentalUser()
-                    )
-                ]
+                id: 0,
+                status: status,
+                dates: [.now],
+                createdAt: .now,
+                resolvedAt: .now,
+                offer: .init(
+                    id: 0,
+                    title: "test offer test offer test offer test offer test offer test offer",
+                    photoUrl: .applicationDirectory,
+                    price: .init(value: 100, currency: .rub),
+                    city: "test city"
+                ),
+                user: .init(
+                    id: 0,
+                    firstName: "test",
+                    lastName: "name",
+                    phoneNumber: "test phone"
+                )
             )
         )
     }
@@ -154,7 +199,7 @@ struct _Temporary_Mock_NetworkService {
     }
 
     private func makeRentalUser() -> RentalRequestUserEntity {
-        .init(id: 0, name: "User", phoneNumber: "+78005553535")
+        .init(id: 0, firstName: "User", lastName: nil, phoneNumber: "+78005553535")
     }
 }
 
