@@ -80,35 +80,53 @@ final class DropsPresenter: InfoPresenter {
     ) {
         var subtitle: String?
         if let httpError = error as? ResponseHttpErrorProcessorNodeError {
-            switch httpError {
-            case .badRequest:
-                subtitle = L10n.Localizable.HttpError.badRequest
-            case .unauthorized:
-                subtitle = L10n.Localizable.HttpError.unauthorized
-            case .forbidden:
-                subtitle = L10n.Localizable.HttpError.forbidden
-            case .notFound:
-                subtitle = L10n.Localizable.HttpError.notFound
-            case .internalServerError:
-                subtitle = L10n.Localizable.HttpError.internalServerError
-            }
+            subtitle = httpError.fancyDescription()
         } else if let parseError = error as? ResponseDataParserNodeError {
             subtitle = L10n.Localizable.ParseError.cantDeserialize
         } else if let baseTechnicalError = error as? BaseTechnicalError {
-            switch baseTechnicalError {
-            case .noInternetConnection:
-                subtitle = "No internet connection"
-            case .dataNotAllowed:
-                subtitle = "Data not allowed"
-            case .timeout:
-                subtitle = "Timeout"
-            case .cantConnectToHost:
-                subtitle = "Can't connect to server"
-            }
+            subtitle = baseTechnicalError.fancyDescription()
         } else {
             subtitle = error.localizedDescription
         }
         showError(title: title, subtitle: subtitle, image: image)
     }
 
+}
+
+// MARK: - Errors descriptions extensions
+
+extension ResponseHttpErrorProcessorNodeError {
+    func fancyDescription() -> String {
+        var description: String
+        switch self {
+        case .badRequest:
+            description = L10n.Localizable.HttpError.badRequest
+        case .unauthorized:
+            description = L10n.Localizable.HttpError.unauthorized
+        case .forbidden:
+            description = L10n.Localizable.HttpError.forbidden
+        case .notFound:
+            description = L10n.Localizable.HttpError.notFound
+        case .internalServerError:
+            description = L10n.Localizable.HttpError.internalServerError
+        }
+        return description
+    }
+}
+
+extension BaseTechnicalError {
+    func fancyDescription() -> String {
+        var description: String
+        switch self {
+        case .noInternetConnection:
+            description = "No internet connection"
+        case .dataNotAllowed:
+            description = "Data not allowed"
+        case .timeout:
+            description = "Timeout"
+        case .cantConnectToHost:
+            description = "Can't connect to server"
+        }
+        return description
+    }
 }

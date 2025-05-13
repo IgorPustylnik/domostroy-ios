@@ -32,7 +32,11 @@ final class UserProfileViewController: BaseViewController {
     typealias UserInfoCellGenerator = DiffableCollectionCellGenerator<UserProfileInfoCollectionViewCell>
 
     private var userGenerator: UserInfoCellGenerator = .init(
-        uniqueId: UUID(), with: .init(imageUrl: nil, loadImage: nil, username: nil, info1: nil, info2: nil), registerType: .class
+        uniqueId: UUID(),
+        with: .init(
+            imageUrl: nil, loadImage: nil, username: nil, info1: nil, info2: nil
+        ),
+        registerType: .class
     )
     private var offerGenerators: [OfferCellGenerator] = []
 

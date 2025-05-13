@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class FavoritesModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         FavoritesViewController,
         FavoritesModuleOutput,

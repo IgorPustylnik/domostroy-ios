@@ -11,6 +11,7 @@ import HorizonCalendar
 
 final class RequestCalendarModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         RequestCalendarViewController,
         RequestCalendarModuleOutput,

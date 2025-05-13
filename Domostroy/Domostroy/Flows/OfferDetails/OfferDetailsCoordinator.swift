@@ -50,7 +50,7 @@ private extension OfferDetailsCoordinator {
             guard let secureStorage = self?.secureStorage else {
                 return
             }
-            guard let _ = secureStorage.loadToken() else {
+            guard secureStorage.loadToken() != nil else {
                 self?.runAuthFlow()
                 return
             }

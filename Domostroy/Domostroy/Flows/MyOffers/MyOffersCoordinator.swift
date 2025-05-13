@@ -38,7 +38,7 @@ final class MyOffersCoordinator: BaseCoordinator, MyOffersCoordinatorOutput {
 
     private var instructor: LaunchInstructor {
         let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
-        if let _ = secureStorage?.loadToken() {
+        if secureStorage?.loadToken() != nil {
             return .configure(isAuthorized: true)
         }
         return .configure(isAuthorized: false)

@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class RequestsModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         RequestsViewController,
         RequestsModuleOutput,

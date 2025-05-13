@@ -10,6 +10,7 @@ import UIKit
 
 final class MainTabBarModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         MainTabBarViewController,
         MainTabBarModuleOutput,

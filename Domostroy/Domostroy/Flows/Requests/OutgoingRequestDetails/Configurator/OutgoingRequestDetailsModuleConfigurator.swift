@@ -10,6 +10,7 @@ import UIKit
 
 final class OutgoingRequestDetailsModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
        OutgoingRequestDetailsViewController,
        OutgoingRequestDetailsModuleOutput,
