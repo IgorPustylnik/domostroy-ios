@@ -126,8 +126,8 @@ private extension UserProfilePresenter {
     ) -> UserProfileInfoCollectionViewCell.ViewModel {
         return .init(
             imageUrl: nil,
-            loadImage: { [weak self] url, imageView in
-                self?.loadAvatar(id: user.id, name: user.name, url: url, imageView: imageView)
+            loadImage: { url, imageView in
+               imageView.loadAvatar(id: user.id, name: user.name, url: url)
             },
             username: user.name,
             info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
@@ -174,12 +174,6 @@ private extension UserProfilePresenter {
 // MARK: - Network requests
 
 private extension UserProfilePresenter {
-
-    func loadAvatar(id: Int, name: String, url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.async {
-            imageView.kf.setImage(with: url, placeholder: UIImage.initialsAvatar(name: name, hashable: id))
-        }
-    }
 
     func setFavorite(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
         offerService?.toggleFavorite(id: id)

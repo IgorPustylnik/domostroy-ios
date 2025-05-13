@@ -24,19 +24,13 @@ final class OfferDetailsView: UIView {
 
         struct User {
             let url: URL?
-            let loadUser: (URL?, UserView) -> Void
+            let loadUser: (URL?, View) -> Void
             let onOpenProfile: EmptyClosure
-        }
 
-        struct UserView {
-            let nameLabel: UILabel
-            let infoLabel: UILabel
-            let avatarImageView: UIImageView
-
-            init(_ nameLabel: UILabel, _ infoLabel: UILabel, _ avatarImageView: UIImageView) {
-                self.nameLabel = nameLabel
-                self.infoLabel = infoLabel
-                self.avatarImageView = avatarImageView
+            struct View {
+                let nameLabel: UILabel
+                let infoLabel: UILabel
+                let avatarImageView: UIImageView
             }
         }
     }
@@ -217,7 +211,7 @@ final class OfferDetailsView: UIView {
         descriptionLabel.text = viewModel.description
         viewModel.user.loadUser(
             viewModel.user.url,
-            .init(userNameLabel, userInfoLabel, userAvatarImageView)
+            .init(nameLabel: userNameLabel, infoLabel: userInfoLabel, avatarImageView: userAvatarImageView)
         )
         onOpenProfile = viewModel.user.onOpenProfile
         onRent = viewModel.onRent

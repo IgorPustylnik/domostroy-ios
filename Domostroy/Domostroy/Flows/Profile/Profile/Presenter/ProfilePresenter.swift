@@ -52,16 +52,10 @@ extension ProfilePresenter: ProfileViewOutput {
                     self?.configure(with: myUser)
                 case .failure(let error):
                     self?.view?.setLoading(false)
-                    print(error)
+                    DropsPresenter.shared.showError(error: error)
                 }
             })
             .store(in: &cancellables)
-    }
-
-    func loadAvatar(id: Int, name: String, url: URL?, imageView: UIImageView) {
-        DispatchQueue.main.async {
-            imageView.kf.setImage(with: url, placeholder: UIImage.initialsAvatar(name: name, hashable: id))
-        }
     }
 
     func refresh() {
@@ -76,7 +70,7 @@ extension ProfilePresenter: ProfileViewOutput {
                     self?.configure(with: myUser)
                 case .failure(let error):
                     self?.view?.setLoading(false)
-                    print(error)
+                    DropsPresenter.shared.showError(error: error)
                 }
             })
             .store(in: &cancellables)
@@ -103,8 +97,8 @@ private extension ProfilePresenter {
         view?.configure(
             with: .init(
                 imageUrl: nil,
-                loadImage: { [weak self] url, imageView in
-                    self?.loadAvatar(id: myUser.id, name: myUser.name, url: url, imageView: imageView)
+                loadImage: { url, imageView in
+                    imageView.loadAvatar(id: myUser.id, name: myUser.name, url: url)
                 },
                 name: myUser.name,
                 phoneNumber: "+\(myUser.phoneNumber)",
