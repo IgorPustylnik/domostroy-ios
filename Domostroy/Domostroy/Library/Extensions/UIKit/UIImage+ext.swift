@@ -48,7 +48,7 @@ extension UIImage {
             .map { String($0).uppercased() }
             .joined()
 
-        let bgColor = neutralColor(for: name)
+        let bgColor = neutralColor(for: hashable)
         let renderer = UIGraphicsImageRenderer(size: size)
 
         return renderer.image { _ in
