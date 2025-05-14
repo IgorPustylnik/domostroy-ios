@@ -38,6 +38,13 @@ final class ProfileViewController: ScrollViewController {
             self?.output?.logout()
         }
     }
+
+    // MARK: - Loadable
+
+    override func setLoading(_ isLoading: Bool) {
+        super.setLoading(isLoading)
+        profileView.isHidden = isLoading
+    }
 }
 
 // MARK: - ProfileViewInput

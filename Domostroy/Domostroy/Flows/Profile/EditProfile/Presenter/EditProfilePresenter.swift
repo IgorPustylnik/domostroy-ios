@@ -67,6 +67,7 @@ extension EditProfilePresenter: EditProfileViewOutput {
         }, handleResult: { [weak self] result in
             switch result {
             case .success:
+                DropsPresenter.shared.showSuccess(subtitle: L10n.Localizable.Profile.Edit.Message.success)
                 self?.onSave?()
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)

@@ -16,7 +16,7 @@ private final class TouchesCancellableScrollView: UIScrollView {
     }
 }
 
-class ScrollViewController: BaseViewController {
+class ScrollViewController: BaseViewController, Loadable {
 
     // MARK: - Properties
 
@@ -128,9 +128,7 @@ class ScrollViewController: BaseViewController {
         }
     }
 
-}
-
-extension ScrollViewController: Loadable {
+    // MARK: - Loadable
 
     func setLoading(_ isLoading: Bool) {
         if isLoading {
@@ -140,5 +138,4 @@ extension ScrollViewController: Loadable {
 
         }
     }
-
 }
