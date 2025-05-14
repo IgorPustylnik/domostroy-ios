@@ -303,6 +303,10 @@ internal enum L10n {
           /// Save
           internal static let save = L10n.tr("Localizable", "Profile.ChangePassword.Button.Save", fallback: "Save")
         }
+        internal enum Message {
+          /// Password has been changed
+          internal static let success = L10n.tr("Localizable", "Profile.ChangePassword.Message.Success", fallback: "Password has been changed")
+        }
         internal enum Placeholder {
           /// New password
           internal static let newPassword = L10n.tr("Localizable", "Profile.ChangePassword.Placeholder.NewPassword", fallback: "New password")
@@ -318,6 +322,10 @@ internal enum L10n {
         internal enum Button {
           /// Change password
           internal static let changePassword = L10n.tr("Localizable", "Profile.Edit.Button.ChangePassword", fallback: "Change password")
+        }
+        internal enum Message {
+          /// Changes have been saved
+          internal static let success = L10n.tr("Localizable", "Profile.Edit.Message.Success", fallback: "Changes have been saved")
         }
         internal enum NavigationBar {
           internal enum Button {

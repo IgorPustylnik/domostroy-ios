@@ -157,6 +157,7 @@
 "Profile.Edit.Placeholder.PhoneNumber" = "Номер телефона";
 "Profile.Edit.Button.ChangePassword" = "Изменить пароль";
 "Profile.Edit.NavigationBar.Button.Save" = "Сохранить";
+"Profile.Edit.Message.Success" = "Изменения были сохранены";
 
 // MARK: - Change Password
 
@@ -165,6 +166,7 @@
 "Profile.ChangePassword.Placeholder.NewPassword" = "Новый пароль";
 "Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Повторите новый пароль";
 "Profile.ChangePassword.Button.Save" = "Сохранить";
+"Profile.ChangePassword.Message.Success" = "Пароль был изменён";
 
 // MARK: - Requests
 
