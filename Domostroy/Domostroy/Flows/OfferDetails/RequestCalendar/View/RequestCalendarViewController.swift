@@ -197,7 +197,7 @@ private extension RequestCalendarViewController {
 
 private extension RequestCalendarViewController {
     func makeDayItemProvider(config: RequestCalendarViewConfig, day: DayComponents) -> AnyCalendarItemModel {
-        var invariantViewProperties = DayView.InvariantViewProperties.baseInteractive
+        var invariantViewProperties = CustomDayView.InvariantViewProperties.baseInteractive
 
         if let selectedDayRange = config.selectedDayRange {
             let start = selectedDayRange.lowerBound
@@ -206,18 +206,21 @@ private extension RequestCalendarViewController {
             if day == start || day == end {
                 invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .Domostroy.primary
                 invariantViewProperties.textColor = .white
+                invariantViewProperties.font = .systemFont(ofSize: 17, weight: .semibold)
             } else if start < day && day < end {
                 invariantViewProperties.textColor = .white
+                invariantViewProperties.font = .systemFont(ofSize: 17, weight: .semibold)
             }
         }
 
         let date = config.calendar.date(from: day.components)
         if let date, config.forbiddenDates.contains(date) {
             invariantViewProperties.interaction = .disabled
+            invariantViewProperties.strikethrough = true
             invariantViewProperties.textColor = .placeholderText
         }
 
-        return DayView.calendarItemModel(
+        return CustomDayView.calendarItemModel(
             invariantViewProperties: invariantViewProperties,
             content: .init(
                 dayText: "\(day.day)",
