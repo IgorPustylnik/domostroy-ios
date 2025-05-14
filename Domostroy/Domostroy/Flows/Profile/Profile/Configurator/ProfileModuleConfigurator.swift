@@ -10,9 +10,11 @@ import UIKit
 
 final class ProfileModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         ProfileViewController,
-        ProfileModuleOutput
+        ProfileModuleOutput,
+        ProfileModuleInput
     ) {
         let view = ProfileViewController()
         let presenter = ProfilePresenter()
@@ -20,7 +22,7 @@ final class ProfileModuleConfigurator {
         presenter.view = view
         view.output = presenter
 
-        return (view, presenter)
+        return (view, presenter, presenter)
     }
 
 }

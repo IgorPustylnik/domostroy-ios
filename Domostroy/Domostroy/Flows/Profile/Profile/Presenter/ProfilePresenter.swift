@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Kingfisher
 import Combine
+import NodeKit
 
 final class ProfilePresenter: ProfileModuleOutput {
 
@@ -33,7 +34,10 @@ final class ProfilePresenter: ProfileModuleOutput {
 // MARK: - ProfileModuleInput
 
 extension ProfilePresenter: ProfileModuleInput {
-
+    func reload() {
+        view?.setLoading(true)
+        loadUser()
+    }
 }
 
 // MARK: - ProfileViewOutput
@@ -42,38 +46,13 @@ extension ProfilePresenter: ProfileViewOutput {
     func viewLoaded() {
         view?.setupInitialState()
         view?.setLoading(true)
-        userService?.getMyUser()
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.view?.setLoading(false)
-            }, receiveValue: { [weak self] result in
-                switch result {
-                case .success(let myUser):
-                    self?.view?.setLoading(false)
-                    self?.configure(with: myUser)
-                case .failure(let error):
-                    self?.view?.setLoading(false)
-                    DropsPresenter.shared.showError(error: error)
-                }
-            })
-            .store(in: &cancellables)
+        loadUser()
     }
 
     func refresh() {
-        userService?.getMyUser()
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.view?.endRefreshing()
-            }, receiveValue: { [weak self] result in
-                switch result {
-                case .success(let myUser):
-                    self?.view?.endRefreshing()
-                    self?.configure(with: myUser)
-                case .failure(let error):
-                    self?.view?.setLoading(false)
-                    DropsPresenter.shared.showError(error: error)
-                }
-            })
-            .store(in: &cancellables)
+        loadUser { [weak self] in
+            self?.view?.endRefreshing()
+        }
     }
 
     func edit() {
@@ -93,6 +72,34 @@ extension ProfilePresenter: ProfileViewOutput {
 // MARK: - Private methods
 
 private extension ProfilePresenter {
+
+    func loadUser(completion: EmptyClosure? = nil) {
+        fetchUser(
+            completion: { [weak self] in
+                self?.view?.setLoading(false)
+                completion?()
+            },
+            handleResult: { [weak self] result in
+                switch result {
+                case .success(let myUser):
+                    self?.configure(with: myUser)
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        )
+    }
+
+    func fetchUser(completion: EmptyClosure?, handleResult: ((NodeResult<MyUserEntity>) -> Void)?) {
+        userService?.getMyUser()
+            .sink(receiveCompletion: { _ in
+                completion?()
+            }, receiveValue: { result in
+                handleResult?(result)
+            })
+            .store(in: &cancellables)
+    }
+
     func configure(with myUser: MyUserEntity) {
         view?.configure(
             with: .init(
