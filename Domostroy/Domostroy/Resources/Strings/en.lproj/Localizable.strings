@@ -234,6 +234,7 @@
 "CreateRequest.TotalCost.Header" = "Rental cost";
 "CreateRequest.TotalCost.Note" = "The amount is indicative. Payment terms to be agreed with the lessor.";
 "CreateRequest.Button.Submit" = "Submit";
+"CreateRequest.Message.Created" = "Created a request";
 
 "RequestCalendar.Title" = "Dates";
 "RequestCalendar.TotalCost" = "Rental cost: %@";

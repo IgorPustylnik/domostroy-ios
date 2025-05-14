@@ -12,4 +12,5 @@ protocol CreateRequestViewInput: AnyObject {
     func configure(with viewModel: CreateRequestView.ViewModel)
     func configureCalendar(with description: String)
     func configureTotalCost(with totalCost: String?)
+    func setSubmissionActivity(isLoading: Bool)
 }

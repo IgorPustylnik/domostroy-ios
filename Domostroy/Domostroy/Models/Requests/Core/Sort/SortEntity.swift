@@ -19,6 +19,7 @@ public struct SortEntity {
     public enum SortProperty: String {
         case date = "createdAt"
         case price = "price"
+        case resolutionDate = "resolvedAt"
     }
 
     public enum SortDirection: String {

@@ -10,8 +10,7 @@ import Foundation
 import HorizonCalendar
 
 struct RequestCalendarConfig {
-    let dates: ClosedRange<Date>
-    let forbiddenDates: [Date]
+    let offerId: Int
     let selectedDates: DayComponentsRange?
     let price: PriceEntity
 }

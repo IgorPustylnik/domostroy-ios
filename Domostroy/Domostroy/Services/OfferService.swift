@@ -30,6 +30,10 @@ public protocol OfferService {
         sortEntity: SortEntity?
     ) -> AnyPublisher<NodeResult<Page1Entity<FavoriteOfferEntity>>, Never>
 
+    func getOfferCalendar(
+        offerId: Int
+    ) -> AnyPublisher<NodeResult<OfferCalendarEntity>, Never>
+
     // MARK: - POST
 
     func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>

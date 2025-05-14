@@ -76,6 +76,9 @@ private extension OfferDetailsCoordinator {
             }
             self?.showRequestCalendar(config: config, createRequestInput: input)
         }
+        output.onCreated = { [weak self] in
+            self?.router.popModule()
+        }
 
         router.push(view)
     }

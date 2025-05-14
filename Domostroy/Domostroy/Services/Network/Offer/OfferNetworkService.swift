@@ -70,6 +70,13 @@ public final class OfferNetworkService: OfferService {
             .nodeResultPublisher()
     }
 
+    public func getOfferCalendar(offerId: Int) -> AnyPublisher<NodeResult<OfferCalendarEntity>, Never> {
+        makeBuilder()
+            .route(.get, .calendar(offerId))
+            .build()
+            .nodeResultPublisher()
+    }
+
     // MARK: - POST
 
     public func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never> {

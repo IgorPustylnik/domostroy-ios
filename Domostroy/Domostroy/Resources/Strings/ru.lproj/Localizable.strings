@@ -234,6 +234,7 @@
 "CreateRequest.TotalCost.Header" = "Стоимость аренды";
 "CreateRequest.TotalCost.Note" = "Сумма указана для справки. Оплата — по договорённости с арендодателем.";
 "CreateRequest.Button.Submit" = "Оформить аренду";
+"CreateRequest.Message.Created" = "Заявка была создана";
 
 "RequestCalendar.Title" = "Даты";
 "RequestCalendar.TotalCost" = "Стоимость аренды: %@";

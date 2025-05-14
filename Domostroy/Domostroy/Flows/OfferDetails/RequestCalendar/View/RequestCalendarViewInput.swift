@@ -19,6 +19,7 @@ struct RequestCalendarViewConfig {
     let info: String?
 }
 
-protocol RequestCalendarViewInput: AnyObject {
+protocol RequestCalendarViewInput: AnyObject, Loadable {
+    func setupInitialState()
     func setupCalendar(config: RequestCalendarViewConfig)
 }

@@ -8,4 +8,5 @@
 
 protocol CreateRequestModuleOutput: AnyObject {
     var onShowCalendar: ((RequestCalendarConfig?) -> Void)? { get set }
+    var onCreated: EmptyClosure? { get set }
 }
