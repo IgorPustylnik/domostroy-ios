@@ -86,7 +86,16 @@ private extension ProfileCoordinator {
             profileModuleInput?.reload()
         }
         output.onShowChangePassword = { [weak self] in
+            self?.showChangePassword()
+        }
+        router.push(view)
+    }
 
+    func showChangePassword() {
+        let (view, output) = ChangePasswordModuleConfigurator().configure()
+        output.onSave = { [weak self] in
+            self?.router.popPreviousView()
+            self?.router.popModule()
         }
         router.push(view)
     }
