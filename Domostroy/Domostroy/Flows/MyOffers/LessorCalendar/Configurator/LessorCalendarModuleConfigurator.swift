@@ -10,6 +10,7 @@ import UIKit
 
 final class LessorCalendarModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         LessorCalendarViewController,
         LessorCalendarModuleOutput,

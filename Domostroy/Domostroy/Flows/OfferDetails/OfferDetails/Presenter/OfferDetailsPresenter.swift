@@ -129,16 +129,16 @@ private extension OfferDetailsPresenter {
         .store(in: &cancellables)
     }
 
-    func fetchUser(id: Int, userView: OfferDetailsView.UserView) {
+    func fetchUser(id: Int, userView: OfferDetailsView.ViewModel.User.View) {
         userService?.getUser(
             id: id
         )
         .sink(receiveValue: { result in
             switch result {
             case .success(let user):
-                userView.name.text = user.name
+                userView.nameLabel.text = user.name
                 userView.infoLabel.text = "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))"
-                userView.avatar.image = .initialsAvatar(name: user.name, hashable: user.id)
+                userView.avatarImageView.loadAvatar(id: user.id, name: user.name, url: nil)
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }

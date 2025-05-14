@@ -149,6 +149,15 @@
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
 "Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
 
+// MARK: - Edit Profile
+
+"Profile.Edit.Title" = "Редактировать профиль";
+"Profile.Edit.Placeholder.FirstName" = "Имя";
+"Profile.Edit.Placeholder.LastName" = "Фамилия (необязательно)";
+"Profile.Edit.Placeholder.PhoneNumber" = "Номер телефона";
+"Profile.Edit.Button.ChangePassword" = "Изменить пароль";
+"Profile.Edit.NavigationBar.Button.Save" = "Сохранить";
+
 // MARK: - Requests
 
 "Requests.Title" = "Заявки";
@@ -219,12 +228,3 @@
 "RequestCalendar.Title" = "Даты";
 "RequestCalendar.TotalCost" = "Стоимость аренды: %@";
 "RequestCalendar.Button.Apply" = "Применить";
-
-// MARK: - Plurals
-
-"Plural.Offer.One" = "объявление";
-"Plural.Offer.Few" = "объявления";
-"Plural.Offer.Many" = "объявлений";
-"Plural.Day.One" = "день";
-"Plural.Day.Few" = "дня";
-"Plural.Day.Many" = "дней";

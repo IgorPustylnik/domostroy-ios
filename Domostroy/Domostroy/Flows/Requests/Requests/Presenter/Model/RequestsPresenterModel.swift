@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RequestsPresenterModel {
+enum RequestsPresenterModel {
     enum Segment: Int, CaseIterable {
         case outgoing
         case incoming
@@ -21,5 +21,4 @@ struct RequestsPresenterModel {
             }
         }
     }
-
 }

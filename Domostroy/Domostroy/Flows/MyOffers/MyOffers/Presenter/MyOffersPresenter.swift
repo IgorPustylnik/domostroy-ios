@@ -134,12 +134,14 @@ private extension MyOffersPresenter {
     func makeOfferViewModel(
         from offer: MyOfferEntity
     ) -> OwnOfferCollectionViewCell.ViewModel {
-        let actions = [OwnOfferCollectionViewCell.ViewModel.ActionButtonModel(
-            image: .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            action: { [weak self] in
-                self?.onEditOffer?(offer.id)
-            }
-        )]
+        let actions = [
+            OwnOfferCollectionViewCell.ViewModel.ActionButtonModel(
+                image: .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
+                action: { [weak self] in
+                    self?.onEditOffer?(offer.id)
+                }
+            )
+        ]
         let viewModel = OwnOfferCollectionViewCell.ViewModel(
             id: offer.id,
             imageUrl: offer.photoUrl,

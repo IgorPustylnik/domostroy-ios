@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class SelectCityModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
        SelectCityViewController,
        SelectCityModuleOutput,

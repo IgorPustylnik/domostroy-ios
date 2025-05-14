@@ -30,7 +30,7 @@ extension UserUrlRoute: URLRouteProvider {
         case .other(let id):
             return try base + "/\(id)"
         case .info:
-            return try base + "/info"
+            return try base + "/userInfo"
         case .password:
             return try base + "/password"
         }

@@ -163,7 +163,9 @@ extension OfferCollectionViewCell: ConfigurableItem {
         locationLabel.text = viewModel.location
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
-        viewModel.toggleActions.map { createToggleButton(with: $0) }.forEach { actionsVStackView.addArrangedSubview($0) }
+        viewModel.toggleActions.map {
+            createToggleButton(with: $0)
+        }.forEach { actionsVStackView.addArrangedSubview($0) }
     }
 
 }

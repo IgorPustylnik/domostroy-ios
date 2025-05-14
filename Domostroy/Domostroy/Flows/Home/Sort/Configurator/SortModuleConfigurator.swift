@@ -10,6 +10,7 @@ import UIKit
 
 final class SortModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         SortViewController,
         SortModuleOutput,

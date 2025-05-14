@@ -214,7 +214,9 @@ final class DSearchTextField: UIView {
     private func updateContainerTrailingConstraint() {
         UIView.animate(withDuration: Constants.animationDuration) {
             if self.isActive {
-                self.containerWidthConstraint?.update(offset: -self.cancelButton.frame.width - Constants.cancelButtonPadding.left)
+                self.containerWidthConstraint?.update(
+                    offset: -self.cancelButton.frame.width - Constants.cancelButtonPadding.left
+                )
             } else {
                 self.containerWidthConstraint?.update(offset: 0)
             }

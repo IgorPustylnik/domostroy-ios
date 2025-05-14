@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
     private(set) lazy var navigationBar = DNavigationBar()
 
     private var shouldUpdateTopInset: Bool = true
+    private var shouldUpdateAnimated: Bool = false
 
     private var contentOffsetObservation: NSKeyValueObservation?
 
@@ -76,7 +77,7 @@ class BaseViewController: UIViewController {
             additionalSafeAreaInsets.top = 0
             navigationBar.topInset = view.safeAreaInsets.top
             navigationBar.invalidateIntrinsicContentSize()
-            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) {
+            UIView.animate(withDuration: shouldUpdateAnimated ? 0.1 : 0, delay: 0, options: .curveEaseInOut) {
                 self.navigationBar.setNeedsLayout()
                 self.navigationBar.layoutIfNeeded()
             }
@@ -88,6 +89,7 @@ class BaseViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             self?.shouldUpdateTopInset = true
+            self?.shouldUpdateAnimated = true
             self?.view.setNeedsLayout()
             self?.view.layoutIfNeeded()
         }

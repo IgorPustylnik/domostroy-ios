@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class SearchModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
        SearchViewController,
        SearchModuleOutput,

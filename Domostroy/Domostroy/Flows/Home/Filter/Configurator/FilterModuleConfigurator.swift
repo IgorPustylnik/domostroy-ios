@@ -10,6 +10,7 @@ import UIKit
 
 final class FilterModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         FilterViewController,
         FilterModuleOutput,

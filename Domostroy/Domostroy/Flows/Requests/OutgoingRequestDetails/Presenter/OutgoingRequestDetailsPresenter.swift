@@ -128,8 +128,8 @@ private extension OutgoingRequestDetailsPresenter {
             username: entity.user.name,
             phoneNumber: entity.user.phoneNumber,
             imageUrl: nil,
-            loadImage: { _, imageView in
-                imageView.image = .initialsAvatar(name: entity.user.name, hashable: entity.user.id)
+            loadImage: { url, imageView in
+                imageView.loadAvatar(id: entity.user.id, name: entity.user.name, url: url)
             }
         )
         var actions: [OutgoingRequestDetailsView.ViewModel.Action] = []

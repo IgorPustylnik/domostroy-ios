@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class CreateOfferModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         CreateOfferViewController,
         CreateOfferModuleOutput,

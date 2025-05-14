@@ -128,8 +128,7 @@ final class CreateOfferViewController: ScrollViewController {
         navigationBar.addButtonToLeft(
             title: nil,
             image: UIImage(systemName: "xmark")?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            action: {
-                [weak self] in
+            action: { [weak self] in
                 self?.output?.close()
             }
         )

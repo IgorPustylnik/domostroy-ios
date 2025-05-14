@@ -45,7 +45,7 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 
     private var instructor: LaunchInstructor {
         let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
-        if let _ = secureStorage?.loadToken() {
+        if secureStorage?.loadToken() != nil {
             return .configure(isAuthorized: true)
         }
         return .configure(isAuthorized: false)
@@ -66,9 +66,9 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
 private extension ProfileCoordinator {
 
     func showProfile() {
-        let (view, output) = ProfileModuleConfigurator().configure()
-        output.onEdit = { [weak self] in
-
+        let (view, output, input) = ProfileModuleConfigurator().configure()
+        output.onEdit = { [weak self, weak input] in
+            self?.showEditProfile(profileModuleInput: input)
         }
         output.onAdminPanel = { [weak self] in
 
@@ -77,6 +77,18 @@ private extension ProfileCoordinator {
             self?.onChangeAuthState?()
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func showEditProfile(profileModuleInput: ProfileModuleInput?) {
+        let (view, output) = EditProfileModuleConfigurator().configure()
+        output.onSave = { [weak self, weak profileModuleInput] in
+            self?.router.popModule()
+            profileModuleInput?.reload()
+        }
+        output.onShowChangePassword = { [weak self] in
+
+        }
+        router.push(view)
     }
 
     func showUnauthorized() {

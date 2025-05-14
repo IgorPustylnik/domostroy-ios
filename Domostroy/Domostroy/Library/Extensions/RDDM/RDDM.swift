@@ -48,7 +48,9 @@ extension StaticDataDisplayWrapper where Base: UICollectionViewCell & Configurab
 
 }
 
+// swiftlint:disable line_length
 extension StaticDataDisplayWrapper where Base: UICollectionViewCell & ConfigurableItem, Base.Model: Equatable & IdOwner {
+// swiftlint:enable line_length
 
     public func diffableGenerator(
         with model: Base.Model,

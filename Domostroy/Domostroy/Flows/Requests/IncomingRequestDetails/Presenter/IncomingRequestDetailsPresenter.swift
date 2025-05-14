@@ -129,7 +129,7 @@ private extension IncomingRequestDetailsPresenter {
             phoneNumber: entity.user.phoneNumber,
             imageUrl: nil,
             loadImage: { _, imageView in
-                imageView.image = .initialsAvatar(name: entity.user.name, hashable: entity.user.id)
+                imageView.loadAvatar(id: entity.user.id, name: entity.user.name, url: nil)
             }
         )
         var actions: [IncomingRequestDetailsView.ViewModel.Action] = []

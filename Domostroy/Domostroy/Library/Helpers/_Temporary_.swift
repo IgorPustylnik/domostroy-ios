@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import NodeKit
 
+// swiftlint:disable force_unwrapping
 struct _Temporary_Mock_NetworkService {
 
     func fetchCalendar(id: Int) async -> OfferCalendar {

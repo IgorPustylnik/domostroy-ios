@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class UserProfileModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
         UserProfileViewController,
         UserProfileModuleOutput,

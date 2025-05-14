@@ -7,4 +7,5 @@
 //
 
 protocol ProfileModuleInput: AnyObject {
+    func reload()
 }

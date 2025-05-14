@@ -118,7 +118,7 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
     }
 
     func priceChanged(_ text: String) {
-        var priceValue = (try? Double(text, format: .number)) ?? 0
+        let priceValue = (try? Double(text, format: .number)) ?? 0
         price = .init(value: priceValue, currency: .rub)
     }
 

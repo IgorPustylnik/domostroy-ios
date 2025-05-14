@@ -13,21 +13,25 @@ final class OfferDetailsView: UIView {
 
     // MARK: - ViewModel
 
-    typealias UserView = (name: UILabel, infoLabel: UILabel, avatar: UIImageView)
-
     struct ViewModel {
         let price: String
         let title: String
         let city: String
         let specs: [(String, String)]
         let description: String
-        let user: UserViewModel
+        let user: User
         let onRent: EmptyClosure?
 
-        struct UserViewModel {
+        struct User {
             let url: URL?
-            let loadUser: (URL?, UserView) -> Void
+            let loadUser: (URL?, View) -> Void
             let onOpenProfile: EmptyClosure
+
+            struct View {
+                let nameLabel: UILabel
+                let infoLabel: UILabel
+                let avatarImageView: UIImageView
+            }
         }
     }
 
@@ -205,7 +209,10 @@ final class OfferDetailsView: UIView {
         cityLabel.text = viewModel.city
         viewModel.specs.forEach { specsDetailsVStack.addArrangedSubview(createSpecLabel(title: $0.0, value: $0.1)) }
         descriptionLabel.text = viewModel.description
-        viewModel.user.loadUser(viewModel.user.url, (userNameLabel, userInfoLabel, userAvatarImageView))
+        viewModel.user.loadUser(
+            viewModel.user.url,
+            .init(nameLabel: userNameLabel, infoLabel: userInfoLabel, avatarImageView: userAvatarImageView)
+        )
         onOpenProfile = viewModel.user.onOpenProfile
         onRent = viewModel.onRent
     }

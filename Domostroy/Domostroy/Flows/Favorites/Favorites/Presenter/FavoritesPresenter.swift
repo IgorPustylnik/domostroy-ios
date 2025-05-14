@@ -185,13 +185,9 @@ private extension FavoritesPresenter {
             case .success(let user):
                 nameLabel.text = user.name
                 DispatchQueue.main.async {
-                    let url: URL? = nil
-                    imageView.kf.setImage(
-                        with: url,
-                        placeholder: UIImage.initialsAvatar(name: user.name, hashable: user.id)
-                    )
+                    imageView.loadAvatar(id: user.id, name: user.name, url: nil)
                 }
-            case .failure(let error):
+            case .failure:
                 break
             }
         }

@@ -149,6 +149,15 @@
 "Profile.Unauthorized.Message" = "Please login to access all features";
 "Profile.Unauthorized.Button.Authorize" = "Authorize";
 
+// MARK: - Edit Profile
+
+"Profile.Edit.Title" = "Edit profile";
+"Profile.Edit.Placeholder.FirstName" = "First name";
+"Profile.Edit.Placeholder.LastName" = "Last name (optional)";
+"Profile.Edit.Placeholder.PhoneNumber" = "Phone number";
+"Profile.Edit.Button.ChangePassword" = "Change password";
+"Profile.Edit.NavigationBar.Button.Save" = "Save";
+
 // MARK: - Requests
 
 "Requests.Title" = "Requests";
@@ -219,12 +228,3 @@
 "RequestCalendar.Title" = "Dates";
 "RequestCalendar.TotalCost" = "Rental cost: %@";
 "RequestCalendar.Button.Apply" = "Apply";
-
-// MARK: - Plurals
-
-"Plural.Offer.One" = "offer";
-"Plural.Offer.Few" = "offers";
-"Plural.Offer.Many" = "offers";
-"Plural.Day.One" = "day";
-"Plural.Day.Few" = "days";
-"Plural.Day.Many" = "days";
