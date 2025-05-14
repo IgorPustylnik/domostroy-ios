@@ -296,6 +296,22 @@ internal enum L10n {
           internal static let title = L10n.tr("Localizable", "Profile.Button.Logout.Title", fallback: "Logout")
         }
       }
+      internal enum ChangePassword {
+        /// Change password
+        internal static let title = L10n.tr("Localizable", "Profile.ChangePassword.Title", fallback: "Change password")
+        internal enum Button {
+          /// Save
+          internal static let save = L10n.tr("Localizable", "Profile.ChangePassword.Button.Save", fallback: "Save")
+        }
+        internal enum Placeholder {
+          /// New password
+          internal static let newPassword = L10n.tr("Localizable", "Profile.ChangePassword.Placeholder.NewPassword", fallback: "New password")
+          /// Old password
+          internal static let oldPassword = L10n.tr("Localizable", "Profile.ChangePassword.Placeholder.OldPassword", fallback: "Old password")
+          /// Repeat new password
+          internal static let repeatNewPassword = L10n.tr("Localizable", "Profile.ChangePassword.Placeholder.RepeatNewPassword", fallback: "Repeat new password")
+        }
+      }
       internal enum Edit {
         /// Edit profile
         internal static let title = L10n.tr("Localizable", "Profile.Edit.Title", fallback: "Edit profile")

@@ -158,6 +158,14 @@
 "Profile.Edit.Button.ChangePassword" = "Изменить пароль";
 "Profile.Edit.NavigationBar.Button.Save" = "Сохранить";
 
+// MARK: - Change Password
+
+"Profile.ChangePassword.Title" = "Изменить пароль";
+"Profile.ChangePassword.Placeholder.OldPassword" = "Старый пароль";
+"Profile.ChangePassword.Placeholder.NewPassword" = "Новый пароль";
+"Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Повторите новый пароль";
+"Profile.ChangePassword.Button.Save" = "Сохранить";
+
 // MARK: - Requests
 
 "Requests.Title" = "Заявки";
