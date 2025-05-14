@@ -283,24 +283,6 @@ internal enum L10n {
       /// Unknown server response format
       internal static let cantDeserialize = L10n.tr("Localizable", "ParseError.cantDeserialize", fallback: "Unknown server response format")
     }
-    internal enum Plural {
-      internal enum Day {
-        /// days
-        internal static let few = L10n.tr("Localizable", "Plural.Day.Few", fallback: "days")
-        /// days
-        internal static let many = L10n.tr("Localizable", "Plural.Day.Many", fallback: "days")
-        /// day
-        internal static let one = L10n.tr("Localizable", "Plural.Day.One", fallback: "day")
-      }
-      internal enum Offer {
-        /// offers
-        internal static let few = L10n.tr("Localizable", "Plural.Offer.Few", fallback: "offers")
-        /// offers
-        internal static let many = L10n.tr("Localizable", "Plural.Offer.Many", fallback: "offers")
-        /// offer
-        internal static let one = L10n.tr("Localizable", "Plural.Offer.One", fallback: "offer")
-      }
-    }
     internal enum Profile {
       /// Profile
       internal static let title = L10n.tr("Localizable", "Profile.Title", fallback: "Profile")
@@ -312,6 +294,28 @@ internal enum L10n {
         internal enum Logout {
           /// Logout
           internal static let title = L10n.tr("Localizable", "Profile.Button.Logout.Title", fallback: "Logout")
+        }
+      }
+      internal enum Edit {
+        /// Edit profile
+        internal static let title = L10n.tr("Localizable", "Profile.Edit.Title", fallback: "Edit profile")
+        internal enum Button {
+          /// Change password
+          internal static let changePassword = L10n.tr("Localizable", "Profile.Edit.Button.ChangePassword", fallback: "Change password")
+        }
+        internal enum NavigationBar {
+          internal enum Button {
+            /// Save
+            internal static let save = L10n.tr("Localizable", "Profile.Edit.NavigationBar.Button.Save", fallback: "Save")
+          }
+        }
+        internal enum Placeholder {
+          /// First name
+          internal static let firstName = L10n.tr("Localizable", "Profile.Edit.Placeholder.FirstName", fallback: "First name")
+          /// Last name (optional)
+          internal static let lastName = L10n.tr("Localizable", "Profile.Edit.Placeholder.LastName", fallback: "Last name (optional)")
+          /// Phone number
+          internal static let phoneNumber = L10n.tr("Localizable", "Profile.Edit.Placeholder.PhoneNumber", fallback: "Phone number")
         }
       }
       internal enum Unauthorized {
