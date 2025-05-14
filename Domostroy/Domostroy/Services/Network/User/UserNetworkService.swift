@@ -39,14 +39,14 @@ public final class UserNetworkService: UserService {
 
     public func editInfo(editUserInfoEntity: EditUserInfoEntity) -> AnyPublisher<NodeResult<Void>, Never> {
         makeBuilder()
-            .route(.post, .info)
+            .route(.patch, .info)
             .build()
             .nodeResultPublisher(for: editUserInfoEntity)
     }
 
     public func changePassword(changePasswordEntity: ChangePasswordEntity) -> AnyPublisher<NodeResult<Void>, Never> {
         makeBuilder()
-            .route(.post, .password)
+            .route(.patch, .password)
             .build()
             .nodeResultPublisher(for: changePasswordEntity)
     }
