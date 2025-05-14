@@ -22,10 +22,7 @@ final class EditProfileViewController: ScrollViewController {
         return $0
     }(DButton(type: .plainPrimary))
 
-    private var editProfileView = {
-        $0.isHidden = true
-        return $0
-    }(EditProfileView())
+    private var editProfileView = EditProfileView()
 
     // MARK: - Properties
 
@@ -58,6 +55,13 @@ final class EditProfileViewController: ScrollViewController {
         }
     }
 
+    // MARK: - Loadable
+
+    override func setLoading(_ isLoading: Bool) {
+        super.setLoading(isLoading)
+        editProfileView.isHidden = isLoading
+    }
+
 }
 
 // MARK: - EditProfileViewInput
@@ -65,15 +69,14 @@ final class EditProfileViewController: ScrollViewController {
 extension EditProfileViewController: EditProfileViewInput {
 
     func setupInitialState() {
-        editProfileView.isHidden = false
         navigationBar.title = L10n.Localizable.Profile.Edit.title
-        navigationBar.rightItems = [saveButton]
         scrollView.alwaysBounceVertical = true
         scrollView.keyboardDismissMode = .onDrag
     }
 
     func configure(with viewModel: EditProfileView.ViewModel) {
         editProfileView.configure(with: viewModel)
+        navigationBar.rightItems = [saveButton]
     }
 
     func setSavingActivity(isLoading: Bool) {
