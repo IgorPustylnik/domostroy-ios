@@ -122,6 +122,10 @@ internal enum L10n {
         /// Communication with lessor
         internal static let header = L10n.tr("Localizable", "CreateRequest.Info.Header", fallback: "Communication with lessor")
       }
+      internal enum Message {
+        /// Created a request
+        internal static let created = L10n.tr("Localizable", "CreateRequest.Message.Created", fallback: "Created a request")
+      }
       internal enum Placeholder {
         /// Select dates
         internal static let calendar = L10n.tr("Localizable", "CreateRequest.Placeholder.Calendar", fallback: "Select dates")

@@ -37,24 +37,11 @@ final class CreateRequestViewController: ScrollViewController {
     // MARK: - UIViewController
 
     override func viewDidLoad() {
-        setupUI()
         super.viewDidLoad()
-        addSubmitButton()
-        navigationBar.title = L10n.Localizable.CreateRequest.title
-        hidesTabBar = true
-        scrollView.alwaysBounceVertical = true
         output?.viewLoaded()
     }
 
     // MARK: - UI Setup
-
-    private func setupUI() {
-        contentView.addSubview(createRequestView)
-        createRequestView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Constants.insets)
-        }
-
-    }
 
     private func addSubmitButton() {
         view.addSubview(submitButton)
@@ -62,6 +49,7 @@ final class CreateRequestViewController: ScrollViewController {
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.buttonInsets)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Constants.buttonInsets.bottom)
         }
+        submitButton.isHidden = true
     }
 
 }
@@ -71,11 +59,19 @@ final class CreateRequestViewController: ScrollViewController {
 extension CreateRequestViewController: CreateRequestViewInput {
 
     func setupInitialState() {
-
+        contentView.addSubview(createRequestView)
+        createRequestView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(Constants.insets)
+        }
+        addSubmitButton()
+        navigationBar.title = L10n.Localizable.CreateRequest.title
+        hidesTabBar = true
+        scrollView.alwaysBounceVertical = true
     }
 
     func configure(with viewModel: CreateRequestView.ViewModel) {
         createRequestView.configure(with: viewModel)
+        submitButton.isHidden = false
     }
 
     func configureCalendar(with description: String) {
@@ -84,6 +80,10 @@ extension CreateRequestViewController: CreateRequestViewInput {
 
     func configureTotalCost(with totalCost: String?) {
         createRequestView.configureTotalCost(with: totalCost)
+    }
+
+    func setSubmissionActivity(isLoading: Bool) {
+        submitButton.setLoading(isLoading)
     }
 
 }

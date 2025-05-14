@@ -15,8 +15,6 @@ final class CreateRequestView: UIView {
 
     struct ViewModel {
         let offer: ConciseOfferView.ViewModel
-        let calendarId: Int
-        let loadCalendar: (Int) -> Void
         let onCalendar: EmptyClosure
     }
 
@@ -137,6 +135,7 @@ final class CreateRequestView: UIView {
         mainVStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        calendarButton.setLoading(true)
     }
 
 }
@@ -158,8 +157,8 @@ private extension CreateRequestView {
 extension CreateRequestView {
     func configure(with viewModel: ViewModel) {
         conciseOfferView.configure(with: viewModel.offer)
-        viewModel.loadCalendar(viewModel.calendarId)
         onCalendar = viewModel.onCalendar
+        calendarButton.setLoading(false)
     }
 
     func configureCalendar(with description: String) {

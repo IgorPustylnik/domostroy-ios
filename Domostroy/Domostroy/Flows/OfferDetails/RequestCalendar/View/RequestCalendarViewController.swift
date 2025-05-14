@@ -27,6 +27,8 @@ final class RequestCalendarViewController: UIViewController {
 
     private var calendarView: CalendarView?
 
+    private lazy var activityIndicator = DLoadingIndicator()
+
     private lazy var bottomLineView = {
         $0.backgroundColor = .separator
         return $0
@@ -58,22 +60,29 @@ final class RequestCalendarViewController: UIViewController {
         super.viewDidLoad()
         output?.viewLoaded()
         title = L10n.Localizable.RequestCalendar.title
+        view.backgroundColor = .systemBackground
     }
 
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
+    private func setupCalendarView() {
         guard let calendarView else {
             return
         }
-        view.addSubview(calendarView)
+        view.insertSubview(calendarView, belowSubview: activityIndicator)
+        calendarView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top)
+        }
+    }
+
+    private func setupUI() {
+        view.addSubview(activityIndicator)
         view.addSubview(bottomLineView)
         view.addSubview(bottomView)
         bottomView.contentView.addSubview(infoLabel)
         bottomView.contentView.addSubview(applyButton)
 
-        calendarView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(bottomView.snp.top)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
 
         bottomLineView.snp.makeConstraints { make in
@@ -108,6 +117,12 @@ final class RequestCalendarViewController: UIViewController {
 // MARK: - RequestCalendarViewInput
 
 extension RequestCalendarViewController: RequestCalendarViewInput {
+
+    func setupInitialState() {
+        setupUI()
+        setupCloseButton()
+    }
+
     func setupCalendar(config: RequestCalendarViewConfig) {
         infoLabel.text = config.info
         guard let calendarView else {
@@ -121,7 +136,7 @@ extension RequestCalendarViewController: RequestCalendarViewInput {
                 self?.output?.handleDragDaySelection(day, state)
             }
 
-            setupUI()
+            setupCalendarView()
             setupCloseButton()
 
             guard let components = config.selectedDayRange?.lowerBound.components,
@@ -132,6 +147,13 @@ extension RequestCalendarViewController: RequestCalendarViewInput {
             return
         }
         calendarView.setContent(makeContent(config: config))
+    }
+
+    func setLoading(_ isLoading: Bool) {
+        calendarView?.isHidden = isLoading
+        bottomView.isHidden = isLoading
+        bottomLineView.isHidden = isLoading
+        activityIndicator.isHidden = !isLoading
     }
 }
 
@@ -149,7 +171,10 @@ private extension RequestCalendarViewController {
         return CalendarViewContent(
             calendar: config.calendar,
             visibleDateRange: config.dates,
-            monthsLayout: .vertical(options: .init(scrollsToFirstMonthOnStatusBarTap: true)))
+            monthsLayout: .vertical(
+                options: .init(alwaysShowCompleteBoundaryMonths: false, scrollsToFirstMonthOnStatusBarTap: true)
+            )
+        )
         .interMonthSpacing(Constants.interMonthSpacing)
         .verticalDayMargin(Constants.verticalDayMargin)
         .horizontalDayMargin(Constants.horizontalDayMargin)
@@ -172,7 +197,7 @@ private extension RequestCalendarViewController {
 
 private extension RequestCalendarViewController {
     func makeDayItemProvider(config: RequestCalendarViewConfig, day: DayComponents) -> AnyCalendarItemModel {
-        var invariantViewProperties = DayView.InvariantViewProperties.baseInteractive
+        var invariantViewProperties = CustomDayView.InvariantViewProperties.baseInteractive
 
         if let selectedDayRange = config.selectedDayRange {
             let start = selectedDayRange.lowerBound
@@ -181,18 +206,21 @@ private extension RequestCalendarViewController {
             if day == start || day == end {
                 invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .Domostroy.primary
                 invariantViewProperties.textColor = .white
+                invariantViewProperties.font = .systemFont(ofSize: 17, weight: .semibold)
             } else if start < day && day < end {
                 invariantViewProperties.textColor = .white
+                invariantViewProperties.font = .systemFont(ofSize: 17, weight: .semibold)
             }
         }
 
         let date = config.calendar.date(from: day.components)
         if let date, config.forbiddenDates.contains(date) {
             invariantViewProperties.interaction = .disabled
+            invariantViewProperties.strikethrough = true
             invariantViewProperties.textColor = .placeholderText
         }
 
-        return DayView.calendarItemModel(
+        return CustomDayView.calendarItemModel(
             invariantViewProperties: invariantViewProperties,
             content: .init(
                 dayText: "\(day.day)",

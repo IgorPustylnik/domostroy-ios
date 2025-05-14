@@ -106,6 +106,13 @@
 		55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */; };
 		55189C592DB6C9300079481A /* DRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C582DB6C9300079481A /* DRadioButton.swift */; };
 		55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */; };
+		55190AEF2DD4DE7B00C33A57 /* RentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AEE2DD4DE7B00C33A57 /* RentService.swift */; };
+		55190AF22DD4E19E00C33A57 /* RentUrlRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AF12DD4E19E00C33A57 /* RentUrlRoute.swift */; };
+		55190AF42DD4E1A900C33A57 /* RentNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AF32DD4E1A900C33A57 /* RentNetworkService.swift */; };
+		55190AF72DD4ED9800C33A57 /* CreateRequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AF62DD4ED9800C33A57 /* CreateRequestEntity.swift */; };
+		55190AF92DD4ED9E00C33A57 /* CreateRequestEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AF82DD4ED9E00C33A57 /* CreateRequestEntry.swift */; };
+		55190AFC2DD4F05A00C33A57 /* OfferCalendarEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AFB2DD4F05A00C33A57 /* OfferCalendarEntity.swift */; };
+		55190AFE2DD4F06400C33A57 /* OfferCalendarEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AFD2DD4F06400C33A57 /* OfferCalendarEntry.swift */; };
 		551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 551FC3B42DBBD29800A8FE6B /* HorizonCalendar */; };
 		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
 		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
@@ -221,6 +228,8 @@
 		55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */; };
 		55BB62C82DBABD7200BD992E /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB62C72DBABD7200BD992E /* String+ext.swift */; };
 		55BB62CA2DBAE3D800BD992E /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB62C92DBAE3D800BD992E /* Date+ext.swift */; };
+		55C369612DD54A67002E31E5 /* CustomDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C369602DD54A67002E31E5 /* CustomDayView.swift */; };
+		55C369642DD551C9002E31E5 /* DayComponentsRange+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C369632DD551C9002E31E5 /* DayComponentsRange+ext.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
@@ -494,6 +503,13 @@
 		55189C552DB69B770079481A /* OfferDetailsCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferDetailsCoordinatorOutput.swift; sourceTree = "<group>"; };
 		55189C582DB6C9300079481A /* DRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRadioButton.swift; sourceTree = "<group>"; };
 		55189C5D2DB6DB9C0079481A /* DRadioButtonGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRadioButtonGroup.swift; sourceTree = "<group>"; };
+		55190AEE2DD4DE7B00C33A57 /* RentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentService.swift; sourceTree = "<group>"; };
+		55190AF12DD4E19E00C33A57 /* RentUrlRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentUrlRoute.swift; sourceTree = "<group>"; };
+		55190AF32DD4E1A900C33A57 /* RentNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentNetworkService.swift; sourceTree = "<group>"; };
+		55190AF62DD4ED9800C33A57 /* CreateRequestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestEntity.swift; sourceTree = "<group>"; };
+		55190AF82DD4ED9E00C33A57 /* CreateRequestEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestEntry.swift; sourceTree = "<group>"; };
+		55190AFB2DD4F05A00C33A57 /* OfferCalendarEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCalendarEntity.swift; sourceTree = "<group>"; };
+		55190AFD2DD4F06400C33A57 /* OfferCalendarEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCalendarEntry.swift; sourceTree = "<group>"; };
 		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
@@ -613,6 +629,8 @@
 		55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsView.swift; sourceTree = "<group>"; };
 		55BB62C72DBABD7200BD992E /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		55BB62C92DBAE3D800BD992E /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
+		55C369602DD54A67002E31E5 /* CustomDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDayView.swift; sourceTree = "<group>"; };
+		55C369632DD551C9002E31E5 /* DayComponentsRange+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayComponentsRange+ext.swift"; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
@@ -1210,6 +1228,33 @@
 			path = RadioButton;
 			sourceTree = "<group>";
 		};
+		55190AF02DD4E18500C33A57 /* Rent */ = {
+			isa = PBXGroup;
+			children = (
+				55190AF12DD4E19E00C33A57 /* RentUrlRoute.swift */,
+				55190AF32DD4E1A900C33A57 /* RentNetworkService.swift */,
+			);
+			path = Rent;
+			sourceTree = "<group>";
+		};
+		55190AF52DD4ED8300C33A57 /* CreateRequest */ = {
+			isa = PBXGroup;
+			children = (
+				55190AF62DD4ED9800C33A57 /* CreateRequestEntity.swift */,
+				55190AF82DD4ED9E00C33A57 /* CreateRequestEntry.swift */,
+			);
+			path = CreateRequest;
+			sourceTree = "<group>";
+		};
+		55190AFA2DD4F03D00C33A57 /* OfferCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				55190AFB2DD4F05A00C33A57 /* OfferCalendarEntity.swift */,
+				55190AFD2DD4F06400C33A57 /* OfferCalendarEntry.swift */,
+			);
+			path = OfferCalendar;
+			sourceTree = "<group>";
+		};
 		552402252DC2B4DC00AD83F1 /* TokenExpiration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1367,6 +1412,7 @@
 				5589B7502DC173EC00DEA9CF /* ServiceLocator */,
 				5589B70D2DC0187F00DEA9CF /* AuthService.swift */,
 				55AAA9C62DBEB7B60018952F /* OfferService.swift */,
+				55190AEE2DD4DE7B00C33A57 /* RentService.swift */,
 				551747542DC788E300AFAF24 /* CityService.swift */,
 				5517475D2DC78C3600AFAF24 /* CategoryService.swift */,
 				5592A3872DBFB48E0082DB28 /* UserService.swift */,
@@ -1456,6 +1502,7 @@
 			isa = PBXGroup;
 			children = (
 				558285EF2DA6F573003C1861 /* RDDM */,
+				55C369622DD551AA002E31E5 /* HorizonCalendar */,
 				55631ACD2D95FB3900FD6856 /* UIKit */,
 				55ED677C2DA80E2500A3CA52 /* Double+ext.swift */,
 				55BB62C72DBABD7200BD992E /* String+ext.swift */,
@@ -1549,6 +1596,7 @@
 			isa = PBXGroup;
 			children = (
 				55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */,
+				55C369602DD54A67002E31E5 /* CustomDayView.swift */,
 			);
 			path = CalendarItemViewRepresentable;
 			sourceTree = "<group>";
@@ -1611,6 +1659,7 @@
 		5589B71E2DC01F9200DEA9CF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				55190AFA2DD4F03D00C33A57 /* OfferCalendar */,
 				55FE25CD2DD0D79000B7B35F /* RentalRequest */,
 				552886A72DC6A6C000CADD6C /* Price */,
 				5589B71F2DC01F9A00DEA9CF /* OfferDetails */,
@@ -1725,6 +1774,7 @@
 				55B126522DC675BD0030A6FC /* Filter */,
 				5589B73E2DC15C0400DEA9CF /* SearchOffers */,
 				5589B72B2DC0B8E900DEA9CF /* CreateOffer */,
+				55190AF52DD4ED8300C33A57 /* CreateRequest */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1813,6 +1863,7 @@
 			children = (
 				5589B7512DC174FD00DEA9CF /* Auth */,
 				55AAAA0B2DBEE70A0018952F /* Offer */,
+				55190AF02DD4E18500C33A57 /* Rent */,
 				552886B92DC787FF00CADD6C /* City */,
 				5517475A2DC78C0100AFAF24 /* Category */,
 				5592A38B2DBFB4A10082DB28 /* User */,
@@ -1942,6 +1993,14 @@
 				1B22FC96C407A08696AD6FAC /* View */,
 			);
 			path = OfferDetails;
+			sourceTree = "<group>";
+		};
+		55C369622DD551AA002E31E5 /* HorizonCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				55C369632DD551C9002E31E5 /* DayComponentsRange+ext.swift */,
+			);
+			path = HorizonCalendar;
 			sourceTree = "<group>";
 		};
 		55D17A382DA00E4700425A6B /* NavigationBar */ = {
@@ -2915,6 +2974,7 @@
 				552886B82DC7737D00CADD6C /* UIImage+ext.swift in Sources */,
 				AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */,
 				55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */,
+				55190AF22DD4E19E00C33A57 /* RentUrlRoute.swift in Sources */,
 				55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */,
 				D8975FF59591C62A72876D21 /* FavoritesCoordinatorOutput.swift in Sources */,
 				1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */,
@@ -2991,6 +3051,8 @@
 				55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
 				5589B7422DC15C1D00DEA9CF /* SearchOffersEntity.swift in Sources */,
+				55190AFC2DD4F05A00C33A57 /* OfferCalendarEntity.swift in Sources */,
+				55C369612DD54A67002E31E5 /* CustomDayView.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,
 				551747512DC788BB00AFAF24 /* CityNetworkService.swift in Sources */,
 				551747792DC7F09D00AFAF24 /* SortViewModel.swift in Sources */,
@@ -3011,7 +3073,9 @@
 				1659E76B0E946C0025CF1E08 /* LoginModuleConfigurator.swift in Sources */,
 				878026C1C4230791368A13ED /* LoginPresenter.swift in Sources */,
 				55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */,
+				55190AF92DD4ED9E00C33A57 /* CreateRequestEntry.swift in Sources */,
 				5589B7122DC0196A00DEA9CF /* AuthTokenEntity.swift in Sources */,
+				55C369642DD551C9002E31E5 /* DayComponentsRange+ext.swift in Sources */,
 				2F69917961E28819CC7968A3 /* LoginModuleInput.swift in Sources */,
 				55E0FF2F2DAFAF3E00D908A8 /* DPickerField.swift in Sources */,
 				25644132567969AE8290743C /* LoginModuleOutput.swift in Sources */,
@@ -3021,6 +3085,7 @@
 				F7200521E0364B5BB1C69C27 /* LoginViewInput.swift in Sources */,
 				55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */,
 				55D6294E2DAD198900E09764 /* EmptyStateable.swift in Sources */,
+				55190AEF2DD4DE7B00C33A57 /* RentService.swift in Sources */,
 				552886B62DC6ACB900CADD6C /* FavoriteOfferEntry.swift in Sources */,
 				55AAA9D82DBEC2A60018952F /* PaginationEntry.swift in Sources */,
 				CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */,
@@ -3063,14 +3128,17 @@
 				70137BF7DDC374152BFF0D20 /* OfferDetailsModuleOutput.swift in Sources */,
 				1F53718CD4AC134C6E4E782A /* OfferDetailsViewController.swift in Sources */,
 				1844232FAB0EC06098F4493F /* OfferDetailsView.swift in Sources */,
+				55190AF72DD4ED9800C33A57 /* CreateRequestEntity.swift in Sources */,
 				55AAA9C72DBEB7B60018952F /* OfferService.swift in Sources */,
 				3DFCD1492F9656405D1EF06C /* OfferDetailsViewInput.swift in Sources */,
 				55B1264D2DC670F40030A6FC /* SortEntry.swift in Sources */,
+				55190AFE2DD4F06400C33A57 /* OfferCalendarEntry.swift in Sources */,
 				02E40F969F7A16094E3783B1 /* OfferDetailsViewOutput.swift in Sources */,
 				52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */,
 				55189C5E2DB6DB9D0079481A /* DRadioButtonGroup.swift in Sources */,
 				552886AB2DC6A6CE00CADD6C /* PriceEntity.swift in Sources */,
 				5589B74F2DC1707D00DEA9CF /* BasicUserDefaultsStorage.swift in Sources */,
+				55190AF42DD4E1A900C33A57 /* RentNetworkService.swift in Sources */,
 				55F88CAA2DC3F38A003EA26E /* OfferIdEntry.swift in Sources */,
 				36729EAAF33B1AF4E00ED5E1 /* SearchPresenter.swift in Sources */,
 				7B1BA83DA70065BA1A05B82D /* SearchModuleInput.swift in Sources */,

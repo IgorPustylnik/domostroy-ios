@@ -9,6 +9,8 @@
 import Foundation
 import HorizonCalendar
 import UIKit
+import Combine
+import NodeKit
 
 final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
@@ -21,7 +23,11 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
     weak var view: RequestCalendarViewInput?
 
-    private var dates: ClosedRange<Date>?
+    private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
+    private var offerId: Int?
+    private var offerCalendarEntity: OfferCalendarEntity?
     private var forbiddenDates: [Date] = []
     private var pricePerDay: PriceEntity?
 
@@ -45,9 +51,8 @@ final class RequestCalendarPresenter: RequestCalendarModuleOutput {
 
 extension RequestCalendarPresenter: RequestCalendarModuleInput {
     func configure(with viewModel: RequestCalendarConfig) {
-        dates = viewModel.dates
+        offerId = viewModel.offerId
         pricePerDay = viewModel.price
-        forbiddenDates = viewModel.forbiddenDates
         selectedDayRange = viewModel.selectedDates
     }
 }
@@ -57,7 +62,9 @@ extension RequestCalendarPresenter: RequestCalendarModuleInput {
 extension RequestCalendarPresenter: RequestCalendarViewOutput {
 
     func viewLoaded() {
-        configureCalendar()
+        view?.setupInitialState()
+        view?.setLoading(true)
+        loadCalendar()
     }
 
     func dismiss() {
@@ -121,18 +128,61 @@ extension RequestCalendarPresenter: RequestCalendarViewOutput {
 
 }
 
-// MARK: - Calendar
+// MARK: - Private methods
 
 private extension RequestCalendarPresenter {
 
     func configureCalendar() {
-        guard let dates else {
+        guard let offerCalendarEntity else {
             return
         }
-        let config = RequestCalendarViewConfig(
-            calendar: calendar,
+        view?.setupCalendar(config: makeCalendarViewConfig(offerCalendarEntity: offerCalendarEntity))
+    }
+
+    func loadCalendar() {
+        fetchCalendar { [weak self] in
+            self?.view?.setLoading(false)
+        } handleResult: { [weak self] result in
+            switch result {
+            case .success(let calendar):
+                guard let self else {
+                    return
+                }
+                self.offerCalendarEntity = calendar
+                self.configureCalendar()
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        }
+    }
+
+    func makeCalendarViewConfig(offerCalendarEntity: OfferCalendarEntity) -> RequestCalendarViewConfig {
+        let availableDates = offerCalendarEntity.dates
+            .filter { !$0.isBooked }
+            .map { $0.date }
+            .sorted()
+        let firstDate = availableDates.first ?? .now
+        let lastDate = calendar.date(
+            bySetting: .day,
+            value: calendar.range(of: .day, in: .month, for: availableDates.last ?? firstDate)?.last ?? 1,
+            of: availableDates.last ?? firstDate
+        ) ?? firstDate
+        let allDates = firstDate...lastDate
+
+        var allDatesInRange: [Date] = []
+        var currentDate = calendar.startOfDay(for: firstDate)
+        while currentDate <= lastDate {
+            allDatesInRange.append(currentDate)
+            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) else {
+                break
+            }
+            currentDate = nextDate
+        }
+        self.forbiddenDates = allDatesInRange.filter { !availableDates.contains($0) }
+        return .init(
+            calendar: .current,
             selectedDayRange: selectedDayRange,
-            dates: dates,
+            dates: allDates,
             dayDateFormatter: dayDateFormatter,
             forbiddenDates: forbiddenDates,
             overlaidItemLocations: Set(forbiddenDates.map {
@@ -148,6 +198,20 @@ private extension RequestCalendarPresenter {
                 }
             }()
         )
-        view?.setupCalendar(config: config)
+    }
+
+    func fetchCalendar(completion: EmptyClosure?, handleResult: ((NodeResult<OfferCalendarEntity>) -> Void)?) {
+        guard let offerId else {
+            completion?()
+            return
+        }
+        offerService?.getOfferCalendar(
+            offerId: offerId
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
     }
 }

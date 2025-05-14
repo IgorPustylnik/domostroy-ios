@@ -10,22 +10,24 @@ import UIKit
 import Kingfisher
 import HorizonCalendar
 import Combine
+import NodeKit
 
 final class CreateRequestPresenter: CreateRequestModuleOutput {
 
     // MARK: - CreateRequestModuleOutput
 
     var onShowCalendar: ((RequestCalendarConfig?) -> Void)?
+    var onCreated: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: CreateRequestViewInput?
 
     private var offer: OfferDetailsEntity?
-    private var offerCalendar: OfferCalendar?
     private var selectedDates: DayComponentsRange?
 
-    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let rentService: RentService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 }
 
@@ -70,10 +72,29 @@ extension CreateRequestPresenter: CreateRequestViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-
+        view?.configureCalendar(with: L10n.Localizable.CreateRequest.Placeholder.calendar)
     }
 
     func submit() {
+        guard let selectedDates, !selectedDates.isEmpty else {
+            presentCalendar()
+            return
+        }
+        view?.setSubmissionActivity(isLoading: true)
+        createRequest(
+            completion: { [weak self] in
+                self?.view?.setSubmissionActivity(isLoading: false)
+            },
+            handleResult: { [weak self] result in
+                switch result {
+                case .success:
+                    DropsPresenter.shared.showSuccess(subtitle: L10n.Localizable.CreateRequest.Message.created)
+                    self?.onCreated?()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        )
     }
 
 }
@@ -84,16 +105,6 @@ private extension CreateRequestPresenter {
     func loadImage(url: URL?, imageView: UIImageView) {
         DispatchQueue.main.async {
             imageView.kf.setImage(with: url)
-        }
-    }
-
-    func loadCalendar(id: Int) {
-        Task {
-            let offerCalendar = await _Temporary_Mock_NetworkService().fetchCalendar(id: id)
-            self.offerCalendar = offerCalendar
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.configureCalendar(with: L10n.Localizable.CreateRequest.Placeholder.calendar)
-            }
         }
     }
 
@@ -113,12 +124,27 @@ private extension CreateRequestPresenter {
         .store(in: &cancellables)
     }
 
-    private func updateView(with offer: OfferDetailsEntity) {
+    func createRequest(completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        guard let offer else {
+            completion?()
+            return
+        }
+        rentService?.createRentRequest(
+            createRequestEntity: .init(offerId: offer.id, dates: selectedDates?.asDatesArray() ?? [])
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
+    }
+
+    func updateView(with offer: OfferDetailsEntity) {
         let viewModel = self.makeViewModel(from: offer)
         view?.configure(with: viewModel)
     }
 
-    private func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
+    func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
         .init(
             offer: .init(
                 imageUrl: offer.photos.first,
@@ -128,20 +154,16 @@ private extension CreateRequestPresenter {
                 title: offer.title,
                 price: LocalizationHelper.pricePerDay(for: offer.price)
             ),
-            calendarId: -1 /*offer.calendarId*/,
-            loadCalendar: { [weak self] id in
-                self?.loadCalendar(id: id)
-            },
             onCalendar: { [weak self] in
-                self?.presentCalendar(for: offer)
+                self?.presentCalendar()
             }
         )
     }
 
-    private func calculateTotalCostText(pricePerDay: PriceEntity) -> String? {
+    func calculateTotalCostText(pricePerDay: PriceEntity) -> String? {
         guard
             let selectedDates,
-            let days = CalendarHelper.numberOfDays(in: selectedDates),
+            let days = selectedDates.numberOfDays(),
             let totalCost = CalendarHelper.calculateCost(for: selectedDates, pricePerDay: pricePerDay)
         else { return nil }
         return String(format: "%@%@ × %d %@ = %@%@",
@@ -154,14 +176,13 @@ private extension CreateRequestPresenter {
         )
     }
 
-    private func presentCalendar(for offer: OfferDetailsEntity) {
-        guard let offerCalendar else {
+    func presentCalendar() {
+        guard let offer else {
             return
         }
         onShowCalendar?(
             .init(
-                dates: offerCalendar.startDate...offerCalendar.endDate,
-                forbiddenDates: offerCalendar.forbiddenDates,
+                offerId: offer.id,
                 selectedDates: selectedDates,
                 price: offer.price
             )

@@ -15,6 +15,7 @@ enum OfferUrlRoute {
     case my
     case favorites
     case toggleFavorite(Int)
+    case calendar(Int)
 }
 
 extension OfferUrlRoute: URLRouteProvider {
@@ -39,6 +40,8 @@ extension OfferUrlRoute: URLRouteProvider {
             return try base + "/favourite"
         case .toggleFavorite(let id):
             return try base + "/favourite/\(id)"
+        case .calendar(let id):
+            return try base + "/calendar/\(id)"
         }
     }
 }
