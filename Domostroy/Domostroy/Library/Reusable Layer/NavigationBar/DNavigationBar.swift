@@ -29,21 +29,15 @@ class DNavigationBar: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var mainBar: UIView = {
-        $0.addSubview(titleView)
-        $0.addSubview(leftMainBarHStack)
-        $0.addSubview(rightMainBarHStack)
-        titleView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        leftMainBarHStack.snp.makeConstraints { make in
-            make.top.bottom.leading.equalToSuperview()
-        }
-        rightMainBarHStack.snp.makeConstraints { make in
-            make.top.bottom.trailing.equalToSuperview()
-        }
+    private lazy var mainBar = {
+        $0.axis = .horizontal
+        $0.alignment = .center
+        $0.distribution = .equalCentering
+        $0.addArrangedSubview(leftMainBarHStack)
+        $0.addArrangedSubview(titleLabel)
+        $0.addArrangedSubview(rightMainBarHStack)
         return $0
-    }(UIView())
+    }(UIStackView())
 
     private lazy var leftMainBarHStack: UIStackView = {
         $0.axis = .horizontal
@@ -52,7 +46,7 @@ class DNavigationBar: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var titleView: UILabel = {
+    private lazy var titleLabel: UILabel = {
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
         return $0
     }(UILabel())
@@ -78,8 +72,8 @@ class DNavigationBar: UIView {
     }
 
     var title: String? {
-        get { titleView.text }
-        set { titleView.text = newValue }
+        get { titleLabel.text }
+        set { titleLabel.text = newValue }
     }
 
     var showsMainBar: Bool = true {
@@ -189,23 +183,6 @@ private extension DNavigationBar {
             action()
         }
         button.image = image?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
-        return button
-    }
-
-    func createToggleButton(
-        initialState: Bool,
-        onImage: UIImage?,
-        offImage: UIImage?,
-        toggleAction: ToggleAction?
-    ) -> DToggleButton {
-        let button = DToggleButton(type: .plainPrimary)
-        button.insets = .zero
-        button.configure(
-            initialState: initialState,
-            onImage: onImage?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            offImage: offImage?.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            toggleAction: toggleAction
-        )
         return button
     }
 
