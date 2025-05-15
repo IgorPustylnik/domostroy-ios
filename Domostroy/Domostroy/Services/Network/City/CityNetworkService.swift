@@ -37,6 +37,24 @@ public final class CityNetworkService: CityService {
                 .nodeResultPublisher()
         }
     }
+
+    public func getCity(id: Int) -> AnyPublisher<NodeResult<CityEntity>, Never> {
+        makeBuilder()
+            .route(.get, .one(id))
+            .build()
+            .nodeResultPublisher()
+            .map { (result: NodeResult<CitiesEntity>) in
+                result.flatMap { cities in
+                    if let first = cities.cities.first {
+                        return .success(first)
+                    } else {
+                        return .failure(ResponseDataParserNodeError.cantCastDesirializedDataToJson(""))
+                    }
+                }
+            }
+            .eraseToAnyPublisher()
+
+    }
 }
 
 // MARK: - Private methods

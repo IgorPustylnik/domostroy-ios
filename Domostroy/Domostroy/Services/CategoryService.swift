@@ -13,4 +13,6 @@ public protocol CategoryService {
 
     func getCategories() -> AnyPublisher<NodeResult<CategoriesEntity>, Never>
 
+    func getCategory(id: Int) -> AnyPublisher<NodeResult<CategoryEntity>, Never>
+
 }

@@ -10,6 +10,7 @@ import NodeKit
 
 enum CityUrlRoute {
     case base
+    case one(Int)
     case popular
 }
 
@@ -25,6 +26,8 @@ extension CityUrlRoute: URLRouteProvider {
                 throw URLError(.badURL)
             }
             return base
+        case .one(let id):
+            return try base + "/\(id)"
         case .popular:
             return try base + "/popular"
         }
