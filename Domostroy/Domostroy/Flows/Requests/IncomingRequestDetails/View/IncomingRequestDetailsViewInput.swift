@@ -12,4 +12,6 @@ protocol IncomingRequestDetailsViewInput: AnyObject, Loadable {
     /// Method for setup initial state of view
     func setupInitialState()
     func configure(with viewModel: IncomingRequestDetailsView.ViewModel, moreActions: [UIAction])
+    func setAcceptingActivity(isLoading: Bool)
+    func setDecliningActivity(isLoading: Bool)
 }

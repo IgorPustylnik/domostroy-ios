@@ -18,6 +18,7 @@ final class IncomingRequestDetailsPresenter: IncomingRequestDetailsModuleOutput 
 
     var onOpenOffer: ((Int) -> Void)?
     var onOpenUser: ((Int) -> Void)?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
@@ -25,6 +26,9 @@ final class IncomingRequestDetailsPresenter: IncomingRequestDetailsModuleOutput 
 
     private var requestId: Int?
     private var requestEntity: RentalRequestEntity?
+
+    private let rentService: RentService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 }
 
 // MARK: - IncomingRequestDetailsModuleInput
@@ -71,11 +75,47 @@ extension IncomingRequestDetailsPresenter: IncomingRequestDetailsViewOutput {
     }
 
     func accept() {
-        print("accept")
+        guard let requestId else {
+            return
+        }
+        view?.setAcceptingActivity(isLoading: true)
+        rentService?.changeRequestStatus(
+            id: requestId, status: .accepted
+        ).sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setAcceptingActivity(isLoading: false)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.loadRequest()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func decline() {
-        print("decline")
+        guard let requestId else {
+            return
+        }
+        view?.setDecliningActivity(isLoading: true)
+        rentService?.changeRequestStatus(
+            id: requestId, status: .accepted
+        ).sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setDecliningActivity(isLoading: false)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.loadRequest()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
 }
@@ -101,6 +141,7 @@ private extension IncomingRequestDetailsPresenter {
                     self.view?.configure(with: viewModel, moreActions: self.makeMoreActions(status: request.status))
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
+                    self.onDismiss?()
                 }
             }
         )
@@ -193,13 +234,12 @@ private extension IncomingRequestDetailsPresenter {
         guard let requestId else {
             return
         }
-        Task {
-            let result = await _Temporary_Mock_NetworkService().fetchRentalRequest()
-            DispatchQueue.main.async {
-                completion?()
-                handleResult?(result)
-            }
-        }
+        rentService?.getIncomingRequest(
+            id: requestId
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 
     func loadImage(url: URL?, imageView: UIImageView) {

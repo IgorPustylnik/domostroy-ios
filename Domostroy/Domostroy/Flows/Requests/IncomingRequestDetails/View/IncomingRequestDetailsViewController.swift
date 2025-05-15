@@ -62,4 +62,12 @@ extension IncomingRequestDetailsViewController: IncomingRequestDetailsViewInput 
         moreButton.menu = .init(children: moreActions)
     }
 
+    func setAcceptingActivity(isLoading: Bool) {
+        incomingRequestDetailsView.setAcceptingActivity(isLoading: isLoading)
+    }
+
+    func setDecliningActivity(isLoading: Bool) {
+        incomingRequestDetailsView.setAcceptingActivity(isLoading: isLoading)
+    }
+
 }

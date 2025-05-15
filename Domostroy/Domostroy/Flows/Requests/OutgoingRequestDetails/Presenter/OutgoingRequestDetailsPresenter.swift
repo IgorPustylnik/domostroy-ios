@@ -18,6 +18,7 @@ final class OutgoingRequestDetailsPresenter: OutgoingRequestDetailsModuleOutput 
 
     var onOpenOffer: ((Int) -> Void)?
     var onOpenUser: ((Int) -> Void)?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
@@ -25,6 +26,9 @@ final class OutgoingRequestDetailsPresenter: OutgoingRequestDetailsModuleOutput 
 
     private var requestId: Int?
     private var requestEntity: RentalRequestEntity?
+
+    private let rentService: RentService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 }
 
 // MARK: - OutgoingRequestDetailsModuleInput
@@ -71,11 +75,11 @@ extension OutgoingRequestDetailsPresenter: OutgoingRequestDetailsViewOutput {
     }
 
     func cancelRent() {
-        print("cancel rent")
+        deleteRequest()
     }
 
     func cancelRequest() {
-        print("cancel request")
+        deleteRequest()
     }
 
 }
@@ -101,9 +105,32 @@ private extension OutgoingRequestDetailsPresenter {
                     self.view?.configure(with: viewModel, moreActions: self.makeMoreActions(status: request.status))
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
+                    self.onDismiss?()
                 }
             }
         )
+    }
+
+    func deleteRequest() {
+        guard let requestId else {
+            return
+        }
+        // TODO: Show loading overlay
+        rentService?.deleteRentRequest(
+            id: requestId
+        ).sink(
+            receiveCompletion: { _ in
+                // TODO: Hide loading overlay
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.onDismiss?()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func makeViewModel(from entity: RentalRequestEntity) -> OutgoingRequestDetailsView.ViewModel {
@@ -192,13 +219,12 @@ private extension OutgoingRequestDetailsPresenter {
         guard let requestId else {
             return
         }
-        Task {
-            let result = await _Temporary_Mock_NetworkService().fetchRentalRequest()
-            DispatchQueue.main.async {
-                completion?()
-                handleResult?(result)
-            }
-        }
+        rentService?.getOutgoingRequest(
+            id: requestId
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 
     func loadImage(url: URL?, imageView: UIImageView) {
