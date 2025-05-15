@@ -116,6 +116,7 @@
 		55190AF92DD4ED9E00C33A57 /* CreateRequestEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AF82DD4ED9E00C33A57 /* CreateRequestEntry.swift */; };
 		55190AFC2DD4F05A00C33A57 /* OfferCalendarEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AFB2DD4F05A00C33A57 /* OfferCalendarEntity.swift */; };
 		55190AFE2DD4F06400C33A57 /* OfferCalendarEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55190AFD2DD4F06400C33A57 /* OfferCalendarEntry.swift */; };
+		551FB8A02DD66B50006E3551 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FB89F2DD66B50006E3551 /* Validatable.swift */; };
 		551FC3B52DBBD29800A8FE6B /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 551FC3B42DBBD29800A8FE6B /* HorizonCalendar */; };
 		551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */; };
 		551FC3B92DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */; };
@@ -522,6 +523,7 @@
 		55190AF82DD4ED9E00C33A57 /* CreateRequestEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestEntry.swift; sourceTree = "<group>"; };
 		55190AFB2DD4F05A00C33A57 /* OfferCalendarEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCalendarEntity.swift; sourceTree = "<group>"; };
 		55190AFD2DD4F06400C33A57 /* OfferCalendarEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCalendarEntry.swift; sourceTree = "<group>"; };
+		551FB89F2DD66B50006E3551 /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
 		551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		551FC3BA2DBC466800A8FE6B /* HighlightableScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableScaleView.swift; sourceTree = "<group>"; };
@@ -1563,6 +1565,7 @@
 				55631AD42D95FB3900FD6856 /* Router.swift */,
 				55ED677A2DA7D33F00A3CA52 /* Loadable.swift */,
 				55D6294D2DAD198900E09764 /* EmptyStateable.swift */,
+				551FB89F2DD66B50006E3551 /* Validatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -3347,6 +3350,7 @@
 				4B9261939FFFA3C0ABC81EF2 /* EditProfileViewOutput.swift in Sources */,
 				DD45F9361F937B8AEE44F444 /* ChangePasswordModuleConfigurator.swift in Sources */,
 				8139B2AF58B1E942704BC7D5 /* ChangePasswordPresenter.swift in Sources */,
+				551FB8A02DD66B50006E3551 /* Validatable.swift in Sources */,
 				A8829F901896E4C7CAF4919B /* ChangePasswordModuleInput.swift in Sources */,
 				1569AFFB45A1B117BDD8F72F /* ChangePasswordModuleOutput.swift in Sources */,
 				320F5CF997ED4E848B40CAB3 /* ChangePasswordViewController.swift in Sources */,

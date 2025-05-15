@@ -32,6 +32,12 @@ final class CreateOfferViewController: ScrollViewController {
             }
             self.scrollToView(view, offsetY: 40)
         }
+        $0.onScrollToInvalidView = { [weak self] view in
+            guard let self, let view else {
+                return
+            }
+            self.scrollView.scrollRectToVisible(view.frame, animated: true)
+        }
         $0.onEditTitle = { [weak self] title in
             self?.output?.titleChanged(title)
         }
