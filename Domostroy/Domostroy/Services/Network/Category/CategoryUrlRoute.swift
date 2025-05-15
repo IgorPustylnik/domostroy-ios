@@ -10,6 +10,7 @@ import NodeKit
 
 enum CategoryUrlRoute {
     case base
+    case one(Int)
 }
 
 extension CategoryUrlRoute: URLRouteProvider {
@@ -24,6 +25,8 @@ extension CategoryUrlRoute: URLRouteProvider {
                 throw URLError(.badURL)
             }
             return base
+        case .one(let id):
+            return try base + "/\(id)"
         }
     }
 }

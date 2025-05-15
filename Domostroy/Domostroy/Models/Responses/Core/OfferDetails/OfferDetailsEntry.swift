@@ -18,7 +18,6 @@ public struct OfferDetailsEntry {
     public let createdAt: Date
     public let userId: Int
     public let cityId: Int
-//    public let calendarId: Int
     public let isFavourite: Bool
     public let photos: [URL]
 }

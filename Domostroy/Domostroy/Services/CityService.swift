@@ -11,4 +11,6 @@ import NodeKit
 public protocol CityService {
 
     func getCities(query: String?) -> AnyPublisher<NodeResult<CitiesEntity>, Never>
+
+    func getCity(id: Int) -> AnyPublisher<NodeResult<CityEntity>, Never>
 }

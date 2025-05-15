@@ -165,7 +165,7 @@
 "Profile.ChangePassword.Placeholder.OldPassword" = "Старый пароль";
 "Profile.ChangePassword.Placeholder.NewPassword" = "Новый пароль";
 "Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Повторите новый пароль";
-"Profile.ChangePassword.Button.Save" = "Сохранить";
+"Profile.ChangePassword.Button.Save" = "Изменить пароль";
 "Profile.ChangePassword.Message.Success" = "Пароль был изменён";
 
 // MARK: - Requests
@@ -208,9 +208,14 @@
 // MARK: - Offer Details
 
 "OfferDetails.Button.Rent" = "Арендовать";
-"OfferDetails.Specifications.Header" = "Характеристики";
-"OfferDetails.Specifications.Category" = "Категория";
+"OfferDetails.Info.Header" = "Информация";
+"OfferDetails.Info.Category" = "Категория";
 "OfferDetails.Description.Header" = "Описание";
+
+"OfferDetails.My.Calendar.Header" = "Доступные даты";
+"OfferDetails.My.Calendar.Placeholder" = "Доступные даты";
+"OfferDetails.My.MoreActions.Edit" = "Редактировать";
+"OfferDetails.My.MoreActions.Delete" = "Удалить";
 
 // MARK: - User Profile
 

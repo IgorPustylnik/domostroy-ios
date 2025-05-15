@@ -29,6 +29,23 @@ public final class CategoryNetworkService: CategoryService {
             .nodeResultPublisher()
     }
 
+    public func getCategory(id: Int) -> AnyPublisher<NodeResult<CategoryEntity>, Never> {
+        makeBuilder()
+            .route(.get, .one(id))
+            .build()
+            .nodeResultPublisher()
+            .map { (result: NodeResult<CategoriesEntity>) in
+                result.flatMap { categories in
+                    if let first = categories.categories.first {
+                        return .success(first)
+                    } else {
+                        return .failure(ResponseDataParserNodeError.cantCastDesirializedDataToJson(""))
+                    }
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
 }
 
 // MARK: - Private methods

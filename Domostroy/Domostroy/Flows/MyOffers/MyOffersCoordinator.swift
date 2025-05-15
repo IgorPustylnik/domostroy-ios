@@ -92,11 +92,11 @@ private extension MyOffersCoordinator {
         output.onSetCenterControlEnabled = { [weak self] enabled in
             self?.onSetTabBarCenterControlEnabled?(enabled)
         }
-        output.onAdd = { [weak self] in
-            self?.showCreateOffer()
+        output.onAdd = { [weak self, weak input] in
+            self?.showCreateOffer(myOffersModuleInput: input)
         }
-        output.onOpenOffer = { [weak self] id in
-            self?.runOfferDetailsFlow(id: id)
+        output.onOpenOffer = { [weak self, weak input] id in
+            self?.showMyOfferDetails(id: id, myOffersModuleInput: input)
         }
         output.onEditOffer = { [weak self] id in
             self?.editOffer(id: id)
@@ -104,7 +104,7 @@ private extension MyOffersCoordinator {
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
-    func showCreateOffer() {
+    func showCreateOffer(myOffersModuleInput: MyOffersModuleInput?) {
         let (view, output, input) = CreateOfferModuleConfigurator().configure()
         output.onAddImages = { [weak self] delegate, limit in
             self?.showImagePicker(delegate: delegate, limit: limit)
@@ -118,9 +118,9 @@ private extension MyOffersCoordinator {
         output.onClose = { [weak self] in
             self?.router.dismissModule()
         }
-        output.onSuccess = { [weak self] offerId in
+        output.onSuccess = { [weak self, weak myOffersModuleInput] offerId in
             self?.start()
-            self?.runOfferDetailsFlow(id: offerId)
+            self?.showMyOfferDetails(id: offerId, myOffersModuleInput: myOffersModuleInput)
         }
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.modalPresentationStyle = .fullScreen
@@ -165,17 +165,27 @@ private extension MyOffersCoordinator {
         router.present(picker, animated: true, completion: nil)
     }
 
-    func runOfferDetailsFlow(id: Int) {
-        let coordinator = OfferDetailsCoordinator(router: router)
-        coordinator.onComplete = { [weak self, weak coordinator] in
-            self?.removeDependency(coordinator)
+    func showMyOfferDetails(id: Int, myOffersModuleInput: MyOffersModuleInput?) {
+        let (view, output, input) = MyOfferDetailsModuleConfigurator().configure()
+        input.set(offerId: id)
+        output.onEdit = { [weak self] id in
+            print("edit offer \(id)")
         }
-        addDependency(coordinator)
-        coordinator.start(with: id)
+        output.onDeleted = { [weak self, weak myOffersModuleInput] in
+            self?.router.popModule()
+            myOffersModuleInput?.reload()
+        }
+        output.onCalendar = { [weak self] offerId in
+            print("calendar offer \(offerId)")
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
+        router.push(view)
     }
 
     func editOffer(id: Int) {
-        print("edit offer id: \(id)")
+        print("edit offer: \(id)")
     }
 
     func showUnauthorized() {

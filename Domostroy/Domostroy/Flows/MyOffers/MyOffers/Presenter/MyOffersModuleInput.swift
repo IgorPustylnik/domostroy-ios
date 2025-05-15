@@ -8,4 +8,5 @@
 
 protocol MyOffersModuleInput: AnyObject {
     func didTapCenterControl()
+    func reload()
 }

@@ -1,15 +1,15 @@
 //
-//  OfferDetailsView.swift
+//  MyOfferDetailsView.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 10/04/2025.
+//  Created by igorpustylnik on 15/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-final class OfferDetailsView: UIView {
+final class MyOfferDetailsView: UIView {
 
     // MARK: - ViewModel
 
@@ -19,20 +19,7 @@ final class OfferDetailsView: UIView {
         let loadCity: (UILabel) -> Void
         let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
         let description: String
-        let user: User
-        let onRent: EmptyClosure?
-
-        struct User {
-            let url: URL?
-            let loadUser: (URL?, View) -> Void
-            let onOpenProfile: EmptyClosure
-
-            struct View {
-                let nameLabel: UILabel
-                let infoLabel: UILabel
-                let avatarImageView: UIImageView
-            }
-        }
+        let onCalendar: EmptyClosure?
     }
 
     // MARK: - Constants
@@ -43,13 +30,11 @@ final class OfferDetailsView: UIView {
         static let headerVStackSpacing: CGFloat = 5
         static let stackHeaderBottomPadding: CGFloat = 10
         static let infoDetailsVStackSpacing: CGFloat = 3
-        static let avatarSize: CGSize = .init(width: 58, height: 58)
     }
 
     // MARK: - Properties
 
-    private var onOpenProfile: EmptyClosure?
-    private var onRent: EmptyClosure?
+    private var onCalendar: EmptyClosure?
 
     // MARK: - UI Elements
 
@@ -57,9 +42,9 @@ final class OfferDetailsView: UIView {
         $0.axis = .vertical
         $0.spacing = Constants.mainVStackSpacing
         $0.addArrangedSubview(headerVStackView)
-        $0.addArrangedSubview(infoVStack)
-        $0.addArrangedSubview(descriptionVStack)
-        $0.addArrangedSubview(userHStackView)
+        $0.addArrangedSubview(calendarVStackView)
+        $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(descriptionVStackView)
         return $0
     }(UIStackView())
 
@@ -70,7 +55,6 @@ final class OfferDetailsView: UIView {
         $0.spacing = Constants.topVStackSpacing
         $0.addArrangedSubview(titleVStackView)
         $0.addArrangedSubview(cityLabel)
-        $0.addArrangedSubview(rentButton)
         return $0
     }(UIStackView())
 
@@ -99,21 +83,40 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    private lazy var rentButton = {
-        $0.title = L10n.Localizable.OfferDetails.Button.rent
+    // MARK: - Calendar
+
+    private lazy var calendarVStackView = {
+        $0.axis = .vertical
+        $0.spacing = Constants.stackHeaderBottomPadding
+        $0.addArrangedSubview(calendarHeaderLabel)
+        $0.addArrangedSubview(calendarButton)
+        return $0
+    }(UIStackView())
+
+    private lazy var calendarHeaderLabel = {
+        $0.text = L10n.Localizable.OfferDetails.My.Calendar.header
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.numberOfLines = 0
+        return $0
+    }(UILabel())
+
+    private lazy var calendarButton = {
+        $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
+        $0.imagePlacement = .right
+        $0.title = L10n.Localizable.OfferDetails.My.Calendar.placeholder
         $0.setAction { [weak self] in
-            self?.onRent?()
+            self?.onCalendar?()
         }
         return $0
-    }(DButton())
+    }(DButton(type: .modalPicker))
 
     // MARK: - Info
 
-    private lazy var infoVStack = {
+    private lazy var infoVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.stackHeaderBottomPadding
         $0.addArrangedSubview(infoHeaderLabel)
-        $0.addArrangedSubview(infoDetailsVStack)
+        $0.addArrangedSubview(infoDetailsVStackView)
         return $0
     }(UIStackView())
 
@@ -124,7 +127,7 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    private lazy var infoDetailsVStack = {
+    private lazy var infoDetailsVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.infoDetailsVStackSpacing
         return $0
@@ -132,7 +135,7 @@ final class OfferDetailsView: UIView {
 
     // MARK: - Description
 
-    private lazy var descriptionVStack = {
+    private lazy var descriptionVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.stackHeaderBottomPadding
         $0.addArrangedSubview(descriptionHeaderLabel)
@@ -153,45 +156,6 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    // MARK: - User
-
-    private lazy var userHStackView = {
-        $0.axis = .horizontal
-        $0.addArrangedSubview(userInfoVStackView)
-        $0.addArrangedSubview(userAvatarImageView)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pressedOnUser))
-        $0.addGestureRecognizer(tapGesture)
-        return $0
-    }(UIStackView())
-
-    private lazy var userInfoVStackView = {
-        $0.axis = .vertical
-        $0.addArrangedSubview(userNameLabel)
-        $0.addArrangedSubview(userInfoLabel)
-        return $0
-    }(UIStackView())
-
-    private lazy var userNameLabel = {
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
-        return $0
-    }(UILabel())
-
-    private lazy var userInfoLabel = {
-        $0.font = .systemFont(ofSize: 16, weight: .regular)
-        return $0
-    }(UILabel())
-
-    private lazy var userAvatarImageView = {
-        $0.backgroundColor = .secondarySystemBackground
-        $0.contentMode = .scaleAspectFill
-        $0.layer.cornerRadius = Constants.avatarSize.height / 2
-        $0.snp.makeConstraints { make in
-            make.size.equalTo(Constants.avatarSize)
-        }
-        $0.layer.masksToBounds = true
-        return $0
-    }(UIImageView())
-
     // MARK: - Initial state
 
     func setupInitialState() {
@@ -207,28 +171,25 @@ final class OfferDetailsView: UIView {
         priceLabel.text = viewModel.price
         titleLabel.text = viewModel.title
         viewModel.loadCity(cityLabel)
-        viewModel.loadInfo { [weak self] completion in
+        viewModel.loadInfo { [weak self] info in
             guard let self else {
                 return
             }
-            completion.forEach {
-                self.infoDetailsVStack.addArrangedSubview(self.createSpecLabel(title: $0.0, value: $0.1))
+            info.forEach {
+                self.infoDetailsVStackView.addArrangedSubview(
+                    self.createSpecLabel(title: $0.0, value: $0.1)
+                )
             }
         }
         descriptionLabel.text = viewModel.description
-        viewModel.user.loadUser(
-            viewModel.user.url,
-            .init(nameLabel: userNameLabel, infoLabel: userInfoLabel, avatarImageView: userAvatarImageView)
-        )
-        onOpenProfile = viewModel.user.onOpenProfile
-        onRent = viewModel.onRent
+        onCalendar = viewModel.onCalendar
     }
 
 }
 
 // MARK: - Private methods
 
-private extension OfferDetailsView {
+private extension MyOfferDetailsView {
 
     func createSpecLabel(title: String, value: String) -> UILabel {
         let label = UILabel()
@@ -241,17 +202,6 @@ private extension OfferDetailsView {
         label.attributedText = attributedText
 
         return label
-    }
-
-}
-
-// MARK: - Selectors
-
-private extension OfferDetailsView {
-
-    @objc
-    func pressedOnUser() {
-        onOpenProfile?()
     }
 
 }
