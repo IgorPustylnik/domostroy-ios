@@ -67,6 +67,7 @@ final class MyOfferDetailsViewController: ScrollViewController {
         picturesCollectionView.backgroundColor = .secondarySystemBackground
         picturesCollectionView.showsHorizontalScrollIndicator = false
         picturesCollectionView.isPagingEnabled = true
+        picturesCollectionView.alwaysBounceHorizontal = true
         contentView.layoutIfNeeded()
 
         let layout = UICollectionViewFlowLayout()

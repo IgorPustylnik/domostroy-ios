@@ -67,7 +67,10 @@ final class CreateOfferView: UIView {
 
     private lazy var descriptionTextField: DValidatableMultilineTextField = {
         $0.configure(
-            placeholder: L10n.Localizable.Offers.Create.Placeholder.description, correction: .no, keyboardType: .default
+            placeholder: L10n.Localizable.Offers.Create.Placeholder.description,
+            correction: .no,
+            keyboardType: .default,
+            autocapitalizationType: .sentences
         )
         $0.validator = RequiredValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
@@ -154,6 +157,7 @@ final class CreateOfferView: UIView {
 
     var onPublish: EmptyClosure?
     var onScrollToActiveView: ((UIView?) -> Void)?
+    var onScrollToInvalidView: ((UIView?) -> Void)?
 
     var onEditTitle: ((String) -> Void)?
     var onEditDescription: ((String) -> Void)?
@@ -212,19 +216,19 @@ private extension CreateOfferView {
 private extension CreateOfferView {
     func publish() {
         endEditing(true)
-        let textFields = mainVStackView.arrangedSubviews.compactMap { $0 as? DValidatableTextField }
-        let multilineTextFields = mainVStackView.arrangedSubviews.compactMap { $0 as? DValidatableMultilineTextField }
-        let pickers = mainVStackView.arrangedSubviews.compactMap { $0 as? DPickerField }
-        if textFields.allSatisfy({ $0.isValid() }),
-           multilineTextFields.allSatisfy({ $0.isValid() }),
-           pickers.allSatisfy({ $0.isValid() }) {
+        let validatables = mainVStackView.arrangedSubviews.compactMap { $0 as? Validatable & UIView }
+        if validatables.allSatisfy({
+            let isValid = $0.isValid()
+            if !isValid {
+                onScrollToInvalidView?($0)
+            }
+            return isValid
+        }) {
             onPublish?()
             return
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
-        textFields.forEach { $0.isValid() }
-        multilineTextFields.forEach { $0.isValid() }
-        pickers.forEach { $0.isValid() }
+        validatables.forEach { $0.isValid() }
     }
 }

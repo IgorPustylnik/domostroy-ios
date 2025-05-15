@@ -37,7 +37,7 @@ final class DToggleButton: DButton {
     private func performToggleAction() {
         setLoading(true)
 
-        toggleAction?(isOn) { [weak self] success in
+        toggleAction?(!isOn) { [weak self] success in
             self?.setLoading(false)
             if success {
                 self?.isOn.toggle()

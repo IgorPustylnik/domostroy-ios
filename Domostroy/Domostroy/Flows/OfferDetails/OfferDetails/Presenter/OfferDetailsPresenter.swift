@@ -115,8 +115,8 @@ private extension OfferDetailsPresenter {
         guard let offerId else {
             return
         }
-        offerService?.toggleFavorite(
-            id: offerId
+        offerService?.setFavorite(
+            id: offerId, value: value
         )
         .sink(
             receiveValue: { result in

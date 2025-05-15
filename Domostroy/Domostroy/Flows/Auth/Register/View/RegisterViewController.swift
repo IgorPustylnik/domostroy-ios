@@ -63,12 +63,17 @@ final class RegisterViewController: ScrollViewController {
                 password: self.registerView.password)
             )
         }
-        registerView.onScrollToActiveView = { [weak self] view
-            in
+        registerView.onScrollToActiveView = { [weak self] view in
             guard let self, let view else {
                 return
             }
             self.scrollToView(view, offsetY: self.registerButton.frame.height)
+        }
+        registerView.onScrollToInvalidView = { [weak self] view in
+            guard let self, let view else {
+                return
+            }
+            self.scrollView.scrollRectToVisible(view.frame, animated: true)
         }
     }
 

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DPickerField: UIView {
+class DPickerField: UIView, Validatable {
 
     // MARK: - Constants
 

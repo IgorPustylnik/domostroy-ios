@@ -143,6 +143,7 @@ final class RegisterView: UIView {
     var onRegister: EmptyClosure?
 
     var onScrollToActiveView: ((UIView?) -> Void)?
+    var onScrollToInvalidView: ((UIView?) -> Void)?
 
     var firstName: String {
         firstNameTextField.currentText()
@@ -199,14 +200,20 @@ extension RegisterView {
 
     func register() {
         endEditing(true)
-        let textFields = vStackView.arrangedSubviews.compactMap { $0 as? DValidatableTextField }
-        if textFields.allSatisfy({ $0.isValid() }) {
+        let validatables = vStackView.arrangedSubviews.compactMap { $0 as? Validatable & UIView }
+        if validatables.allSatisfy({
+            let isValid = $0.isValid()
+            if !isValid {
+                onScrollToInvalidView?($0)
+            }
+            return isValid
+        }) {
             onRegister?()
             return
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
-        textFields.forEach { $0.isValid() }
+        validatables.forEach { $0.isValid() }
     }
 
 }

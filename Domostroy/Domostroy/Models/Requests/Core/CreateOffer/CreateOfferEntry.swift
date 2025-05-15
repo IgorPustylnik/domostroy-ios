@@ -32,9 +32,7 @@ extension CreateOfferEntry: RawEncodable {
             mimetype: "application/json"
         )
         return .init(
-            payloadModel: [:
-//                "metadata": try JSONSerialization.data(withJSONObject: metadata.toRaw(), options: [])
-            ],
+            payloadModel: [:],
             files: filesDict
         )
 

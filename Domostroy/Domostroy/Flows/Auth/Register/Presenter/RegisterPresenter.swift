@@ -43,7 +43,7 @@ extension RegisterPresenter: RegisterViewOutput {
             firstName: registerEntity.firstName,
             lastName: registerEntity.lastName,
             phoneNumber: RussianPhoneNumberNormalizer().normalizePhone(registerEntity.phoneNumber),
-            email: registerEntity.email,
+            email: registerEntity.email.lowercased(),
             password: registerEntity.password
         )
         view?.setActivity(isLoading: true)

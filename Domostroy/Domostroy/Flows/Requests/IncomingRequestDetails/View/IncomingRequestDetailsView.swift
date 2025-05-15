@@ -187,6 +187,20 @@ final class IncomingRequestDetailsView: UIView {
             buttonsVStackView.addArrangedSubview(makeButton(with: action))
         }
     }
+
+    func setAcceptingActivity(isLoading: Bool) {
+        buttonsVStackView.arrangedSubviews
+            .compactMap { $0 as? DButton }
+            .first { $0.title == L10n.Localizable.RequestDetails.Button.accept }?
+            .setLoading(isLoading)
+    }
+
+    func setDecliningActivity(isLoading: Bool) {
+        buttonsVStackView.arrangedSubviews
+            .compactMap { $0 as? DButton }
+            .first { $0.title == L10n.Localizable.RequestDetails.Button.decline }?
+            .setLoading(isLoading)
+    }
 }
 
 // MARK: - Private methods

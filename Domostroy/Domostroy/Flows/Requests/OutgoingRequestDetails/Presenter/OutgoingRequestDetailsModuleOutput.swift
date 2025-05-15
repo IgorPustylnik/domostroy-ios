@@ -9,4 +9,5 @@
 protocol OutgoingRequestDetailsModuleOutput: AnyObject {
     var onOpenOffer: ((Int) -> Void)? { get set }
     var onOpenUser: ((Int) -> Void)? { get set }
+    var onDismiss: EmptyClosure? { get set }
 }

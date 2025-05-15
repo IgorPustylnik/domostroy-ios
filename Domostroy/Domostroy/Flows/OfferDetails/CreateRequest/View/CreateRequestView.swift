@@ -56,7 +56,6 @@ final class CreateRequestView: UIView {
     private lazy var calendarButton = {
         $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
-        $0.title = " "
         $0.setAction { [weak self] in
             self?.onCalendar?()
         }

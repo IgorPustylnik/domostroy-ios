@@ -64,6 +64,9 @@ private extension RequestsCoordinator {
         output.onOpenUser = { [weak self] id in
             self?.showUser(id: id)
         }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
         router.push(view)
     }
 
@@ -75,6 +78,9 @@ private extension RequestsCoordinator {
         }
         output.onOpenUser = { [weak self] id in
             self?.showUser(id: id)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
         }
         router.push(view)
     }

@@ -24,7 +24,7 @@ final class IncomingRequestsPresenter: IncomingRequestsModuleOutput {
     weak var view: IncomingRequestsViewInput?
     private weak var paginatableInput: PaginatableInput?
 
-    private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let rentService: RentService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 
     private var isFirstPageLoading = false
@@ -86,9 +86,9 @@ extension IncomingRequestsPresenter: PaginatableOutput {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
+                self.pagesCount = page.totalPages
                 self.updatePagination()
-                self.view?.fillNextPage(with: page.data.map { self.makeIncomingRequestViewModel(from: $0) })
+                self.view?.fillNextPage(with: page.content.map { self.makeIncomingRequestViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }
@@ -171,11 +171,41 @@ private extension IncomingRequestsPresenter {
     }
 
     func acceptRequest(id: Int) {
-        print("accept request id: \(id)")
+        // TODO: Show loading overlay
+        rentService?.changeRequestStatus(
+            id: id, status: .accepted
+        ).sink(
+            receiveCompletion: { _ in
+                // TODO: Hide loading overlay
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func declineRequest(id: Int) {
-        print("decline request id: \(id)")
+        // TODO: Show loading overlay
+        rentService?.changeRequestStatus(
+            id: id, status: .declined
+        ).sink(
+            receiveCompletion: { _ in
+                // TODO: Hide loading overlay
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func loadFirstPage(completion: (() -> Void)? = nil) {
@@ -197,10 +227,10 @@ private extension IncomingRequestsPresenter {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.pagesCount = page.pagination.totalPages
+                    self.pagesCount = page.totalPages
                     self.updatePagination()
-                    self.view?.setEmptyState(page.data.isEmpty)
-                    self.view?.fillFirstPage(with: page.data.compactMap { self.makeIncomingRequestViewModel(from: $0) })
+                    self.view?.setEmptyState(page.content.isEmpty)
+                    self.view?.fillFirstPage(with: page.content.compactMap { self.makeIncomingRequestViewModel(from: $0) })
                 }
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -210,15 +240,16 @@ private extension IncomingRequestsPresenter {
 
     func fetchRequests(
         completion: EmptyClosure?,
-        handleResult: ((NodeResult<PageEntity<RentalRequestEntity>>) -> Void)?
+        handleResult: ((NodeResult<Page1Entity<RentalRequestEntity>>) -> Void)?
     ) {
-        Task {
-            let result = await _Temporary_Mock_NetworkService().fetchRequests()
-            DispatchQueue.main.async {
-                completion?()
-                handleResult?(result)
-            }
-        }
+        rentService?.getIncomingRequests(
+            paginationEntity: .init(page: currentPage, size: CommonConstants.pageSize)
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
     }
 
     func canLoadNext() -> Bool {

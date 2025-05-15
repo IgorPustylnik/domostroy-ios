@@ -181,8 +181,7 @@ struct _Temporary_Mock_NetworkService {
                 ),
                 user: .init(
                     id: 0,
-                    firstName: "test",
-                    lastName: "name",
+                    name: "test name",
                     phoneNumber: "test phone"
                 )
             )
@@ -200,7 +199,7 @@ struct _Temporary_Mock_NetworkService {
     }
 
     private func makeRentalUser() -> RentalRequestUserEntity {
-        .init(id: 0, firstName: "User", lastName: nil, phoneNumber: "+78005553535")
+        .init(id: 0, name: "test name", phoneNumber: "+78005553535")
     }
 }
 
