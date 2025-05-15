@@ -76,6 +76,10 @@ extension MyOffersPresenter: MyOffersModuleInput {
         onAdd?()
     }
 
+    func reload() {
+        loadFirstPage()
+    }
+
 }
 
 // MARK: - RefreshableOutput
