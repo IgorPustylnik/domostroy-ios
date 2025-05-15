@@ -67,7 +67,10 @@ final class CreateOfferView: UIView {
 
     private lazy var descriptionTextField: DValidatableMultilineTextField = {
         $0.configure(
-            placeholder: L10n.Localizable.Offers.Create.Placeholder.description, correction: .no, keyboardType: .default
+            placeholder: L10n.Localizable.Offers.Create.Placeholder.description,
+            correction: .no,
+            keyboardType: .default,
+            autocapitalizationType: .sentences
         )
         $0.validator = RequiredValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in

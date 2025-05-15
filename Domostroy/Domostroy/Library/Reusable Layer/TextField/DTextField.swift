@@ -50,6 +50,23 @@ class DTextField: UIView {
                 return .oneTimeCode
             }
         }
+
+        var autocapitalizationType: UITextAutocapitalizationType {
+            switch self {
+            case .firstName:
+                return .sentences
+            case .lastName:
+                return .sentences
+            case .email:
+                return .none
+            case .phoneNumber:
+                return .none
+            case .password:
+                return .none
+            case .oneTimeCode:
+                return .none
+            }
+        }
     }
 
     // MARK: - Constants
@@ -125,7 +142,6 @@ class DTextField: UIView {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .label
         $0.tintColor = .label
-        $0.autocapitalizationType = .none
         $0.delegate = self
         return $0
     }(UIBackspaceDetectingTextField())
@@ -197,6 +213,7 @@ class DTextField: UIView {
         }
         textField.textContentType = mode.contentType
         textField.isSecureTextEntry = mode == .password
+        textField.autocapitalizationType = mode.autocapitalizationType
         isHideable = mode == .password
     }
 
@@ -303,7 +320,7 @@ extension DTextField: UITextFieldDelegate {
 
 // MARK: - DValidatableTextField
 
-final class DValidatableTextField: DTextField {
+final class DValidatableTextField: DTextField, Validatable {
 
     // MARK: - UI Elements
 

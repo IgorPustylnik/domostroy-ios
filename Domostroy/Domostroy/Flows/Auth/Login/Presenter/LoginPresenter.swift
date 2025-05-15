@@ -46,7 +46,7 @@ extension LoginPresenter: LoginViewOutput {
             return
         }
         view?.setActivity(isLoading: true)
-        authService?.postLogin(loginEntity: .init(email: email, password: password))
+        authService?.postLogin(loginEntity: .init(email: email.lowercased(), password: password))
             .sink(receiveValue: { [weak self] result in
                 self?.view?.setActivity(isLoading: false)
                 switch result {

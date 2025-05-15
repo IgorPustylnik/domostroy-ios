@@ -82,7 +82,6 @@ class DMultiLineTextField: UIView {
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .label
         $0.tintColor = .label
-        $0.autocapitalizationType = .none
         $0.inputAccessoryView = textFieldInputAccessoryView
         $0.delegate = self
         return $0
@@ -118,12 +117,14 @@ class DMultiLineTextField: UIView {
     func configure(
         placeholder: String?,
         correction: UITextAutocorrectionType,
-        keyboardType: UIKeyboardType
+        keyboardType: UIKeyboardType,
+        autocapitalizationType: UITextAutocapitalizationType
     ) {
         placeholderLabel.text = placeholder
         cornerRadius = Constants.defaultCornerRadius
         textView.autocorrectionType = correction
         textView.keyboardType = keyboardType
+        textView.autocapitalizationType = autocapitalizationType
     }
 
     /// Sets next responder, which will be activated after 'Next' button in keyboard will be pressed
@@ -216,7 +217,7 @@ extension DMultiLineTextField: UITextViewDelegate {
 
 // MARK: - DValidatableMultilineTextField
 
-final class DValidatableMultilineTextField: DMultiLineTextField {
+final class DValidatableMultilineTextField: DMultiLineTextField, Validatable {
 
     // MARK: - UI Elements
 
