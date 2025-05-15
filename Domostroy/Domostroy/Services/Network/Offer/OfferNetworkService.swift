@@ -86,9 +86,10 @@ public final class OfferNetworkService: OfferService {
             .nodeResultPublisher(for: createOfferEntity)
     }
 
-    public func toggleFavorite(id: Int) -> AnyPublisher<NodeResult<Void>, Never> {
+    public func setFavorite(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never> {
         return makeBuilder()
-            .route(.post, .toggleFavorite(id))
+            .route(.post, .favorite(id))
+            .set(query: ["isFavourite": value])
             .build()
             .nodeResultPublisher()
     }

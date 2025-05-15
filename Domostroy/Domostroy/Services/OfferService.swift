@@ -38,7 +38,7 @@ public protocol OfferService {
 
     func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>
 
-    func toggleFavorite(id: Int) -> AnyPublisher<NodeResult<Void>, Never>
+    func setFavorite(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never>
 
     // MARK: - DELETE
 

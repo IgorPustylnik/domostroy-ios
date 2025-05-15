@@ -226,7 +226,7 @@ private extension SearchPresenter {
     }
 
     func setFavorite(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        offerService?.toggleFavorite(id: id)
+        offerService?.setFavorite(id: id, value: value)
             .sink(
                 receiveValue: { result in
                     switch result {
