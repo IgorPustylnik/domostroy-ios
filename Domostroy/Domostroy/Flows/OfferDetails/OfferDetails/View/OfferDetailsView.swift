@@ -16,8 +16,8 @@ final class OfferDetailsView: UIView {
     struct ViewModel {
         let price: String
         let title: String
-        let city: String
-        let specs: [(String, String)]
+        let loadCity: (UILabel) -> Void
+        let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
         let description: String
         let user: User
         let onRent: EmptyClosure?
@@ -42,7 +42,7 @@ final class OfferDetailsView: UIView {
         static let topVStackSpacing: CGFloat = 10
         static let headerVStackSpacing: CGFloat = 5
         static let stackHeaderBottomPadding: CGFloat = 10
-        static let specsDetailsVStackSpacing: CGFloat = 3
+        static let infoDetailsVStackSpacing: CGFloat = 3
         static let avatarSize: CGSize = .init(width: 58, height: 58)
     }
 
@@ -57,7 +57,7 @@ final class OfferDetailsView: UIView {
         $0.axis = .vertical
         $0.spacing = Constants.mainVStackSpacing
         $0.addArrangedSubview(headerVStackView)
-        $0.addArrangedSubview(specsVStack)
+        $0.addArrangedSubview(infoVStack)
         $0.addArrangedSubview(descriptionVStack)
         $0.addArrangedSubview(userHStackView)
         return $0
@@ -107,26 +107,26 @@ final class OfferDetailsView: UIView {
         return $0
     }(DButton())
 
-    // MARK: - Specs
+    // MARK: - Info
 
-    private lazy var specsVStack = {
+    private lazy var infoVStack = {
         $0.axis = .vertical
         $0.spacing = Constants.stackHeaderBottomPadding
-        $0.addArrangedSubview(specsHeaderLabel)
-        $0.addArrangedSubview(specsDetailsVStack)
+        $0.addArrangedSubview(infoHeaderLabel)
+        $0.addArrangedSubview(infoDetailsVStack)
         return $0
     }(UIStackView())
 
-    private lazy var specsHeaderLabel = {
-        $0.text = L10n.Localizable.OfferDetails.Specifications.header
+    private lazy var infoHeaderLabel = {
+        $0.text = L10n.Localizable.OfferDetails.Info.header
         $0.font = .systemFont(ofSize: 24, weight: .bold)
         $0.numberOfLines = 0
         return $0
     }(UILabel())
 
-    private lazy var specsDetailsVStack = {
+    private lazy var infoDetailsVStack = {
         $0.axis = .vertical
-        $0.spacing = Constants.specsDetailsVStackSpacing
+        $0.spacing = Constants.infoDetailsVStackSpacing
         return $0
     }(UIStackView())
 
@@ -206,8 +206,15 @@ final class OfferDetailsView: UIView {
     func configure(with viewModel: ViewModel) {
         priceLabel.text = viewModel.price
         titleLabel.text = viewModel.title
-        cityLabel.text = viewModel.city
-        viewModel.specs.forEach { specsDetailsVStack.addArrangedSubview(createSpecLabel(title: $0.0, value: $0.1)) }
+        viewModel.loadCity(cityLabel)
+        viewModel.loadInfo { [weak self] completion in
+            guard let self else {
+                return
+            }
+            completion.forEach {
+                self.infoDetailsVStack.addArrangedSubview(self.createSpecLabel(title: $0.0, value: $0.1))
+            }
+        }
         descriptionLabel.text = viewModel.description
         viewModel.user.loadUser(
             viewModel.user.url,

@@ -165,7 +165,7 @@
 "Profile.ChangePassword.Placeholder.OldPassword" = "Old password";
 "Profile.ChangePassword.Placeholder.NewPassword" = "New password";
 "Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Repeat new password";
-"Profile.ChangePassword.Button.Save" = "Save";
+"Profile.ChangePassword.Button.Save" = "Change password";
 "Profile.ChangePassword.Message.Success" = "Password has been changed";
 
 // MARK: - Requests
@@ -208,9 +208,14 @@
 // MARK: - Offer Details
 
 "OfferDetails.Button.Rent" = "Rent";
-"OfferDetails.Specifications.Header" = "Specifications";
-"OfferDetails.Specifications.Category" = "Category";
+"OfferDetails.Info.Header" = "Information";
+"OfferDetails.Info.Category" = "Category";
 "OfferDetails.Description.Header" = "Description";
+
+"OfferDetails.My.Calendar.Header" = "Available dates";
+"OfferDetails.My.Calendar.Placeholder" = "Available dates";
+"OfferDetails.My.MoreActions.Edit" = "Edit";
+"OfferDetails.My.MoreActions.Delete" = "Delete";
 
 // MARK: - User Profile
 

@@ -194,11 +194,25 @@ internal enum L10n {
         /// Description
         internal static let header = L10n.tr("Localizable", "OfferDetails.Description.Header", fallback: "Description")
       }
-      internal enum Specifications {
+      internal enum Info {
         /// Category
-        internal static let category = L10n.tr("Localizable", "OfferDetails.Specifications.Category", fallback: "Category")
-        /// Specifications
-        internal static let header = L10n.tr("Localizable", "OfferDetails.Specifications.Header", fallback: "Specifications")
+        internal static let category = L10n.tr("Localizable", "OfferDetails.Info.Category", fallback: "Category")
+        /// Information
+        internal static let header = L10n.tr("Localizable", "OfferDetails.Info.Header", fallback: "Information")
+      }
+      internal enum My {
+        internal enum Calendar {
+          /// Available dates
+          internal static let header = L10n.tr("Localizable", "OfferDetails.My.Calendar.Header", fallback: "Available dates")
+          /// Available dates
+          internal static let placeholder = L10n.tr("Localizable", "OfferDetails.My.Calendar.Placeholder", fallback: "Available dates")
+        }
+        internal enum MoreActions {
+          /// Delete
+          internal static let delete = L10n.tr("Localizable", "OfferDetails.My.MoreActions.Delete", fallback: "Delete")
+          /// Edit
+          internal static let edit = L10n.tr("Localizable", "OfferDetails.My.MoreActions.Edit", fallback: "Edit")
+        }
       }
     }
     internal enum Offers {
@@ -304,8 +318,8 @@ internal enum L10n {
         /// Change password
         internal static let title = L10n.tr("Localizable", "Profile.ChangePassword.Title", fallback: "Change password")
         internal enum Button {
-          /// Save
-          internal static let save = L10n.tr("Localizable", "Profile.ChangePassword.Button.Save", fallback: "Save")
+          /// Change password
+          internal static let save = L10n.tr("Localizable", "Profile.ChangePassword.Button.Save", fallback: "Change password")
         }
         internal enum Message {
           /// Password has been changed

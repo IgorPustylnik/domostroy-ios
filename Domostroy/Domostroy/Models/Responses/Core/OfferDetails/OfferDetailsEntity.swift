@@ -12,12 +12,11 @@ public struct OfferDetailsEntity {
     public let id: Int
     public let title: String
     public let description: String
-    public let category: CategoryEntity
+    public let categoryId: Int
     public let price: PriceEntity
     public let createdAt: Date
     public let userId: Int
     public let cityId: Int
-//    public let calendarId: Int
     public let isFavorite: Bool
     public let photos: [URL]
 }
@@ -32,13 +31,11 @@ extension OfferDetailsEntity: DTODecodable {
             id: model.id,
             title: model.title,
             description: model.description,
-            // TODO: Load category name
-            category: .init(id: model.category, name: "категория"),
+            categoryId: model.category,
             price: .init(value: model.price, currency: .init(rawValue: model.currency)),
             createdAt: model.createdAt,
             userId: model.userId,
             cityId: model.cityId,
-//            calendarId: model.calendarId,
             isFavorite: model.isFavourite,
             photos: model.photos
         )

@@ -11,6 +11,7 @@ import UIKit
 import ReactiveDataDisplayManager
 import Kingfisher
 import Combine
+import NodeKit
 
 final class OfferDetailsPresenter: OfferDetailsModuleOutput {
 
@@ -29,8 +30,10 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     private var offer: OfferDetailsEntity?
 
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
-    private var offerService: OfferService? = ServiceLocator.shared.resolve()
-    private var userService: UserService? = ServiceLocator.shared.resolve()
+    private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let cityService: CityService? = ServiceLocator.shared.resolve()
+    private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
+    private let userService: UserService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 
     deinit {
@@ -146,6 +149,42 @@ private extension OfferDetailsPresenter {
         .store(in: &cancellables)
     }
 
+    func fetchCity(
+        completion: EmptyClosure? = nil,
+        handleResult: ((NodeResult<CityEntity>) -> Void)? = nil
+    ) {
+        guard let offer else {
+            completion?()
+            return
+        }
+        cityService?.getCity(
+            id: offer.cityId
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
+    }
+
+    func fetchCategory(
+        completion: EmptyClosure? = nil,
+        handleResult: ((NodeResult<CategoryEntity>) -> Void)? = nil
+    ) {
+        guard let offer else {
+            completion?()
+            return
+        }
+        categoryService?.getCategory(
+            id: offer.categoryId
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
+    }
+
     func openUser(id: Int) {
         onOpenUser?(id)
     }
@@ -157,9 +196,28 @@ private extension OfferDetailsPresenter {
         .init(
             price: LocalizationHelper.pricePerDay(for: offer.price),
             title: offer.title,
-            // TODO: Receive city name
-            city: "Воронеж"/*offer.cityId.description*/,
-            specs: [(L10n.Localizable.OfferDetails.Specifications.category, offer.category.name)],
+            loadCity: { [weak self] cityLabel in
+                self?.fetchCity(completion: nil, handleResult: { result in
+                    switch result {
+                    case .success(let city):
+                        cityLabel.text = city.name
+                    case .failure:
+                        break
+                    }
+                })
+            },
+            loadInfo: { [weak self] completion in
+                self?.fetchCategory(handleResult: { result in
+                    switch result {
+                    case .success(let category):
+                        completion([
+                            (L10n.Localizable.OfferDetails.Info.category, category.name.lowercased())
+                        ])
+                    case .failure:
+                        break
+                    }
+                })
+            },
             description: offer.description,
             user: .init(
                 url: try? UserUrlRoute.other(offer.userId).url(),
