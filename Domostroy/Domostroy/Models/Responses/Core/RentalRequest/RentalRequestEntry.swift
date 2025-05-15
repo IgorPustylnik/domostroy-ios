@@ -23,7 +23,7 @@ extension RentalRequestEntry: Decodable, RawDecodable {
 }
 
 public struct RentalRequestOfferEntry {
-    public let id: Int
+    public let offerId: Int
     public let title: String
     public let photoUrl: URL
     public let price: Double
@@ -37,8 +37,7 @@ extension RentalRequestOfferEntry: Decodable, RawDecodable {
 
 public struct RentalRequestUserEntry {
     public let id: Int
-    public let firstName: String
-    public let lastName: String
+    public let name: String
     public let phoneNumber: String
 }
 

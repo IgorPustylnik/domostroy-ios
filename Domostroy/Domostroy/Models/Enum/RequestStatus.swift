@@ -6,7 +6,7 @@
 //
 
 public enum RequestStatus: String, Codable {
-    case accepted = "ACCEPTED"
+    case accepted = "APPROVED"
     case pending = "PENDING"
     case declined = "REJECTED"
 }
