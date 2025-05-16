@@ -8,26 +8,35 @@
 import UIKit
 
 extension UIImage {
-    func resizedToFit(fitSize: CGSize) -> UIImage {
-        let originalSize = self.size
+    func compressImage(maxSize: Int) -> Data? {
+        let originalQuality: CGFloat = 1.0
 
-        guard originalSize.width > fitSize.width || originalSize.height > fitSize.height else {
-            return self
+        guard let originalData = jpegData(compressionQuality: originalQuality) else {
+            return nil
         }
 
-        let widthRatio = fitSize.width / originalSize.width
-        let heightRatio = fitSize.height / originalSize.height
-        let scaleFactor = min(widthRatio, heightRatio)
-
-        let newSize = CGSize(
-            width: originalSize.width * scaleFactor,
-            height: originalSize.height * scaleFactor
-        )
-
-        let renderer = UIGraphicsImageRenderer(size: newSize)
-        return renderer.image { _ in
-            self.draw(in: CGRect(origin: .zero, size: newSize))
+        if originalData.count <= maxSize {
+            return originalData
         }
+
+        var minQuality: CGFloat = 0.01
+        var maxQuality: CGFloat = 1.0
+        var bestData: Data?
+
+        for _ in 0..<6 {
+            let midQuality = (minQuality + maxQuality) / 2
+            guard let data = jpegData(compressionQuality: midQuality) else {
+                return nil
+            }
+            if data.count > maxSize {
+                maxQuality = midQuality
+            } else {
+                bestData = data
+                minQuality = midQuality
+            }
+        }
+
+        return bestData
     }
 }
 
