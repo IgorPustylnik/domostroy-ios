@@ -32,30 +32,18 @@ extension RentUrlRoute: URLRouteProvider {
         case .one(let id):
             return try base + "/\(id)"
         case .outgoingRequests(let page, let size):
-            guard var components = URLComponents(string: baseUrlString + "/core/rent/outgoingRequests") else {
-                throw URLError(.badURL)
-            }
-            components.queryItems = [
-                URLQueryItem(name: "page", value: "\(page)"),
-                URLQueryItem(name: "size", value: "\(size)"),
-                URLQueryItem(name: "sort", value: "createdAt,desc"),
-                URLQueryItem(name: "sort", value: "resolvedAt,desc")
-            ]
-            guard let url = components.url else {
+            let urlString = """
+\(baseUrlString)/core/rent/outgoingRequests?page=\(page)&size=\(size)&sort=createdAt,desc&sort=resolvedAt,desc
+"""
+            guard let url = URL(string: urlString) else {
                 throw URLError(.badURL)
             }
             return url
         case .incomingRequests(let page, let size):
-            guard var components = URLComponents(string: baseUrlString + "/core/rent/incomingRequests") else {
-                throw URLError(.badURL)
-            }
-            components.queryItems = [
-                URLQueryItem(name: "page", value: "\(page)"),
-                URLQueryItem(name: "size", value: "\(size)"),
-                URLQueryItem(name: "sort", value: "createdAt,desc"),
-                URLQueryItem(name: "sort", value: "resolvedAt,desc")
-            ]
-            guard let url = components.url else {
+            let urlString = """
+\(baseUrlString)/core/rent/incomingRequests?page=\(page)&size=\(size)&sort=createdAt,desc&sort=resolvedAt,desc
+"""
+            guard let url = URL(string: urlString) else {
                 throw URLError(.badURL)
             }
             return url

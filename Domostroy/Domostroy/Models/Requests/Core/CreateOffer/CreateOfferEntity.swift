@@ -34,9 +34,7 @@ extension CreateOfferEntity: DTOEncodable {
                 rentDates: rentDates
             ),
             file: photos.compactMap {
-                $0.resizedToFit(fitSize: CommonConstants.maxPhotoSize).jpegData(
-                    compressionQuality: CommonConstants.compressionQuality
-                )
+                $0.compressImage(maxSize: CommonConstants.maxPhotoSizeBytes)
             }
         )
     }

@@ -15,6 +15,8 @@ internal enum L10n {
     internal static let cfBundleDisplayName = L10n.tr("InfoPlist", "CFBundleDisplayName", fallback: "Domostroy")
     /// Domostroy
     internal static let cfBundleName = L10n.tr("InfoPlist", "CFBundleName", fallback: "Domostroy")
+    /// We need access to your camera to take photos.
+    internal static let nsCameraUsageDescription = L10n.tr("InfoPlist", "NSCameraUsageDescription", fallback: "We need access to your camera to take photos.")
   }
   internal enum Localizable {
     internal enum Auth {
@@ -82,10 +84,14 @@ internal enum L10n {
       }
     }
     internal enum Common {
+      /// Choose from library
+      internal static let chooseFromLibrary = L10n.tr("Localizable", "Common.ChooseFromLibrary", fallback: "Choose from library")
       /// Error
       internal static let error = L10n.tr("Localizable", "Common.Error", fallback: "Error")
       /// Success
       internal static let success = L10n.tr("Localizable", "Common.Success", fallback: "Success")
+      /// Take a photo
+      internal static let takeAPhoto = L10n.tr("Localizable", "Common.TakeAPhoto", fallback: "Take a photo")
       /// Warning
       internal static let warning = L10n.tr("Localizable", "Common.Warning", fallback: "Warning")
       internal enum Button {
@@ -185,6 +191,16 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "LessorCalendar.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum NoCameraPermission {
+      /// Please enable camera access in Settings to use this feature.
+      internal static let message = L10n.tr("Localizable", "NoCameraPermission.Message", fallback: "Please enable camera access in Settings to use this feature.")
+      /// No camera access
+      internal static let title = L10n.tr("Localizable", "NoCameraPermission.Title", fallback: "No camera access")
+      internal enum Action {
+        /// Open settings
+        internal static let openSettins = L10n.tr("Localizable", "NoCameraPermission.Action.OpenSettins", fallback: "Open settings")
+      }
+    }
     internal enum OfferDetails {
       internal enum Button {
         /// Rent
@@ -278,6 +294,16 @@ internal enum L10n {
           internal static let name = L10n.tr("Localizable", "Offers.Create.Placeholder.Name", fallback: "Name")
           /// Price
           internal static let price = L10n.tr("Localizable", "Offers.Create.Placeholder.Price", fallback: "Price")
+        }
+      }
+      internal enum Edit {
+        /// Edit offer
+        internal static let title = L10n.tr("Localizable", "Offers.Edit.Title", fallback: "Edit offer")
+        internal enum Button {
+          /// Delete offer
+          internal static let delete = L10n.tr("Localizable", "Offers.Edit.Button.Delete", fallback: "Delete offer")
+          /// Save
+          internal static let save = L10n.tr("Localizable", "Offers.Edit.Button.Save", fallback: "Save")
         }
       }
       internal enum Favorites {

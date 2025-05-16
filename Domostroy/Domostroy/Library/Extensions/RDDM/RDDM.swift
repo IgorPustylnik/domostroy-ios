@@ -120,3 +120,72 @@ extension TitleCollectionHeaderGenerator: DiffableItemSource {
     }
 
 }
+
+class ContextMenuCollectionCellGenerator<Cell: ConfigurableItem>: SelectableItem where Cell: UICollectionViewCell {
+
+    // MARK: - Public Properties
+
+    public var isNeedDeselect = true
+    public var didSelectEvent = BaseEvent<Void>()
+    public var didDeselectEvent = BaseEvent<Void>()
+    public let model: Cell.Model
+    public let menu: UIMenu?
+
+    private var fakeButton: UIButton?
+
+    // MARK: - Initialization
+
+    public init(with model: Cell.Model, menu: UIMenu?) {
+        self.model = model
+        self.menu = menu
+    }
+
+    // MARK: - Public methods
+
+    public func configure(cell: Cell, with model: Cell.Model) {
+        cell.configure(with: model)
+    }
+
+    public func triggerMenu() {
+        let gestureRecognizer = fakeButton?.gestureRecognizers?.first {
+            $0.description.contains("UITouchDownGestureRecognizer")
+        }
+        gestureRecognizer?.touchesBegan([], with: UIEvent())
+        gestureRecognizer?.touchesEnded([], with: UIEvent())
+    }
+
+}
+
+extension ContextMenuCollectionCellGenerator: CollectionCellGenerator {
+    public var identifier: String {
+        return String(describing: Cell.self)
+    }
+
+    public func generate(collectionView: UICollectionView, for indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: identifier,
+            for: indexPath
+        ) as? Cell else {
+            return UICollectionViewCell()
+        }
+        configure(cell: cell, with: model)
+        if let menu {
+            let button = UIButton()
+            button.menu = menu
+            button.showsMenuAsPrimaryAction = true
+            button.alpha = 0
+            button.isUserInteractionEnabled = false
+            cell.contentView.addSubview(button)
+            button.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+            fakeButton = button
+        }
+        return cell
+    }
+
+    public func registerCell(in collectionView: UICollectionView) {
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: identifier)
+    }
+}

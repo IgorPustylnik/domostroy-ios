@@ -1,8 +1,8 @@
 //
-//  CreateOfferViewController.swift
+//  EditOfferViewController.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 15/04/2025.
+//  Created by igorpustylnik on 15/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
-final class CreateOfferViewController: ScrollViewController {
+final class EditOfferViewController: ScrollViewController {
 
     // MARK: - Constants
 
@@ -24,7 +24,7 @@ final class CreateOfferViewController: ScrollViewController {
     // MARK: - Properties
 
     var picturesCollectionView: UICollectionView {
-        createOfferView.picturesCollectionView
+        editOfferView.picturesCollectionView
     }
 
     var adapter: BaseCollectionManager?
@@ -38,10 +38,20 @@ final class CreateOfferViewController: ScrollViewController {
     }
     private var isAddImageButtonShown = true
 
-    private lazy var createOfferView: CreateOfferView = {
+    private lazy var saveButton = {
+        $0.title = L10n.Localizable.Offers.Edit.Button.save
+        $0.insets = .zero
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        $0.setAction { [weak self] in
+            self?.editOfferView.save()
+        }
+        return $0
+    }(DButton(type: .plainPrimary))
+
+    private lazy var editOfferView: EditOfferView = {
         $0.delegate = self
         return $0
-    }(CreateOfferView())
+    }(EditOfferView())
 
     private var picturesCollectionViewHeightConstraint: Constraint?
 
@@ -58,7 +68,7 @@ final class CreateOfferViewController: ScrollViewController {
         }
     ])
 
-    var output: CreateOfferViewOutput?
+    var output: EditOfferViewOutput?
 
     // MARK: - UIViewController
 
@@ -70,8 +80,8 @@ final class CreateOfferViewController: ScrollViewController {
     // MARK: - UI Setup
 
     private func setupUI() {
-        contentView.addSubview(createOfferView)
-        createOfferView.snp.makeConstraints { make in
+        contentView.addSubview(editOfferView)
+        editOfferView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         picturesCollectionView.snp.makeConstraints { make in
@@ -127,26 +137,40 @@ final class CreateOfferViewController: ScrollViewController {
         )
     }
 
+    // MARK: - Loadable
+
+    override func setLoading(_ isLoading: Bool) {
+        super.setLoading(isLoading)
+        editOfferView.isHidden = isLoading
+    }
+
 }
 
-// MARK: - CreateOfferViewInput
+// MARK: - EditOfferViewInput
 
-extension CreateOfferViewController: CreateOfferViewInput {
+extension EditOfferViewController: EditOfferViewInput {
 
     func setupInitialState() {
         setupUI()
         scrollView.keyboardDismissMode = .onDrag
         configurePicturesCollectionView()
-        navigationBar.title = L10n.Localizable.Offers.Create.NewOffer.title
+        navigationBar.title = L10n.Localizable.Offers.Edit.title
+        navigationBar.rightItems = [saveButton]
         hidesTabBar = true
         setupKeyboardObservers()
         addCloseButton()
     }
 
+    func configure(with model: EditOfferViewModel) {
+        editOfferView.nameTextField.setText(model.title)
+        editOfferView.descriptionTextField.setText(model.description)
+        editOfferView.priceTextField.setText(model.price)
+    }
+
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
         var categories = [placeholder]
         categories.append(contentsOf: items)
-        createOfferView.categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
+        editOfferView.categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
     }
 
     func setImages(_ images: [AddingImageCollectionViewCell.Model], canAddMore: Bool) {
@@ -160,23 +184,24 @@ extension CreateOfferViewController: CreateOfferViewInput {
         refillAdapter()
     }
 
-    func setCalendarPlaceholder(active: Bool) {
-        createOfferView.setCalendarPlaceholder(active: active)
-    }
-
     func setCity(title: String) {
-        createOfferView.setCityButton(title: title)
+        editOfferView.setCityButton(title: title)
     }
 
-    func setActivity(isLoading: Bool) {
-        createOfferView.publishButton.setLoading(isLoading)
+    func setSavingActivity(isLoading: Bool) {
+        saveButton.setLoading(isLoading)
+    }
+
+    func setDeletingActivity(isLoading: Bool) {
+        editOfferView.deleteButton.setLoading(isLoading)
     }
 
 }
 
 // MARK: - Adapter
 
-private extension CreateOfferViewController {
+private extension EditOfferViewController {
+
     private func makeImageGenerator(
         from model: AddingImageCollectionViewCell.Model
     ) -> AddingImageCellGenerator {
@@ -193,10 +218,7 @@ private extension CreateOfferViewController {
         adapter?.forceRefill()
     }
 }
-
-// MARK: - CreateOfferViewDelegate
-
-extension CreateOfferViewController: CreateOfferViewDelegate {
+extension EditOfferViewController: EditOfferViewDelegate {
     func scrollToActiveView(_ view: UIView?) {
         guard let view else {
             return
@@ -223,12 +245,12 @@ extension CreateOfferViewController: CreateOfferViewDelegate {
         output?.showCities()
     }
 
-    func showCalendar() {
-        output?.showCalendar()
+    func saveOffer() {
+        output?.save()
     }
 
-    func publishOffer() {
-        output?.create()
+    func deleteOffer() {
+        output?.delete()
     }
 
     func didPickCategory(index: Int) {

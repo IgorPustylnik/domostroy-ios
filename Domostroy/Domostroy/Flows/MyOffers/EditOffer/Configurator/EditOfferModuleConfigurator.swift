@@ -1,24 +1,24 @@
 //
-//  CreateOfferModuleConfigurator.swift
+//  EditOfferModuleConfigurator.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 15/04/2025.
+//  Editd by igorpustylnik on 15/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import UIKit
 import ReactiveDataDisplayManager
 
-final class CreateOfferModuleConfigurator {
+final class EditOfferModuleConfigurator {
 
     // swiftlint:disable large_tuple
     func configure() -> (
-        CreateOfferViewController,
-        CreateOfferModuleOutput,
-        CreateOfferModuleInput
+        EditOfferViewController,
+        EditOfferModuleOutput,
+        EditOfferModuleInput
     ) {
-        let view = CreateOfferViewController()
-        let presenter = CreateOfferPresenter()
+        let view = EditOfferViewController()
+        let presenter = EditOfferPresenter()
         let adapter = view.picturesCollectionView.rddm.baseBuilder
             .add(plugin: .selectable())
             .add(plugin: .highlightable())

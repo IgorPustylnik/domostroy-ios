@@ -1,24 +1,20 @@
 //
-//  CreateOfferPresenter.swift
+//  EditOfferPresenter.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 15/04/2025.
+//  Created by igorpustylnik on 15/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
+import Foundation
 import ReactiveDataDisplayManager
 import UIKit
+import Kingfisher
 import PhotosUI
 import Combine
+import NodeKit
 
-struct ImageItem {
-    let uuid = UUID()
-    let id: Int
-    var image: UIImage?
-    let url: URL?
-}
-
-final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
+final class EditOfferPresenter: NSObject, EditOfferModuleOutput {
 
     // MARK: - Constants
 
@@ -26,22 +22,25 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
         static let maxPicturesAmount = 5
     }
 
-    // MARK: - CreateOfferModuleOutput
+    // MARK: - EditOfferModuleOutput
 
     var onChooseFromLibrary: ((PHPickerViewControllerDelegate, Int) -> Void)?
     var onTakeAPhoto: ((UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> Void)?
     var onCameraPermissionRequest: EmptyClosure?
     var onShowCities: ((CityEntity?) -> Void)?
-    var onShowCalendar: ((LessorCalendarConfig) -> Void)?
     var onClose: EmptyClosure?
+    var onChanged: EmptyClosure?
     var onSuccess: ((Int) -> Void)?
 
     // MARK: - Properties
 
-    weak var view: CreateOfferViewInput?
+    weak var view: EditOfferViewInput?
+
+    private var offerId: Int?
 
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
     private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
+    private let cityService: CityService? = ServiceLocator.shared.resolve()
     private var cancellables: [AnyCancellable] = []
 
     private var images: [ImageItem] = []
@@ -55,18 +54,22 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
 
     private var title: String?
     private var offerDescription: String?
+
+    private var selectedCategoryId: Int?
     private var categoryPickerModel: PickerModel<CategoryEntity> = .init(all: [], selected: nil)
+
+    private var selectedCityId: Int?
     private var selectedCity: CityEntity?
-    private var selectedDates: Set<Date> = Set()
+
     private var price: PriceEntity?
 }
 
-// MARK: - CreateOfferModuleInput
+// MARK: - EditOfferModuleInput
 
-extension CreateOfferPresenter: CreateOfferModuleInput {
-    func setSelectedDates(_ dates: Set<Date>) {
-        self.selectedDates = dates
-        view?.setCalendarPlaceholder(active: selectedDates.isEmpty)
+extension EditOfferPresenter: EditOfferModuleInput {
+
+    func setOfferId(_ id: Int) {
+        self.offerId = id
     }
 
     func setCity(_ city: CityEntity?) {
@@ -75,15 +78,23 @@ extension CreateOfferPresenter: CreateOfferModuleInput {
     }
 }
 
-// MARK: - CreateOfferViewOutput
+// MARK: - EditOfferViewOutput
 
-extension CreateOfferPresenter: CreateOfferViewOutput {
+extension EditOfferPresenter: EditOfferViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-        updateImages()
-        updateCategoriesView()
-        loadCategories()
+        loadOffer { [weak self] in
+            guard let self else {
+                return
+            }
+            updateImages()
+            updateCategoriesView()
+            loadSelectedCategory { [weak self] in
+                self?.loadCategories()
+            }
+            loadSelectedCity()
+        }
     }
 
     func titleChanged(_ text: String) {
@@ -99,6 +110,22 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
             return
         }
         categoryPickerModel.selected = categoryPickerModel.all[index]
+    }
+
+    func showCities() {
+        onShowCities?(selectedCity)
+    }
+
+    func deleteImage(uuid: UUID) {
+        images.removeAll {
+            $0.uuid == uuid
+        }
+        updateImages()
+    }
+
+    func priceChanged(_ text: String) {
+        let priceValue = (try? Double(text, format: .number)) ?? 0
+        price = .init(value: priceValue, currency: .rub)
     }
 
     func chooseFromLibrary() {
@@ -123,42 +150,9 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         }
     }
 
-    func deleteImage(uuid: UUID) {
-        images.removeAll {
-            $0.uuid == uuid
-        }
-        updateImages()
-    }
-
-    func showCities() {
-        onShowCities?(selectedCity)
-    }
-
-    func showCalendar() {
-        let startDate = Date.now
-        guard let endDate = Calendar.current.date(byAdding: .month, value: 6, to: startDate) else {
-            return
-        }
-        let config = LessorCalendarConfig(
-            dates: startDate...endDate,
-            forbiddenDates: [],
-            selectedDays: selectedDates
-        )
-        onShowCalendar?(config)
-    }
-
-    func priceChanged(_ text: String) {
-        let priceValue = (try? Double(text, format: .number)) ?? 0
-        price = .init(value: priceValue, currency: .rub)
-    }
-
-    func create() {
+    func save() {
         guard let selectedCity else {
             showCities()
-            return
-        }
-        guard !selectedDates.isEmpty else {
-            showCalendar()
             return
         }
         guard !images.isEmpty else {
@@ -173,48 +167,82 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
+        // TODO: Save
+    }
 
-        view?.setActivity(isLoading: true)
-        offerService?.createOffer(
-            createOfferEntity: .init(
-                title: title,
-                description: offerDescription,
-                categoryId: category.id,
-                price: price,
-                cityId: selectedCity.id,
-                rentDates: selectedDates,
-                photos: images.compactMap { $0.image }
-            )
-        )
-        .sink(
+    func delete() {
+        guard let offerId else {
+            return
+        }
+        view?.setDeletingActivity(isLoading: true)
+        offerService?.deleteOffer(
+            id: offerId
+        ).sink(
             receiveCompletion: { [weak self] _ in
-                self?.view?.setActivity(isLoading: false)
+                self?.view?.setDeletingActivity(isLoading: false)
             },
             receiveValue: { [weak self] result in
                 switch result {
-                case .success(let offerIdEntity):
-                    self?.onClose?()
-                    self?.onSuccess?(offerIdEntity.offerId)
+                case .success:
+                    self?.onChanged?()
                 case .failure(let error):
-                    DropsPresenter.shared.showError(
-                        title: L10n.Localizable.Offers.Create.Error.failed,
-                        error: error
-                    )
+                    DropsPresenter.shared.showError(error: error)
                 }
             }
-        )
-        .store(in: &cancellables)
+        ).store(in: &cancellables)
     }
 
     func close() {
         onClose?()
     }
-
 }
 
 // MARK: - Private methods
 
-private extension CreateOfferPresenter {
+private extension EditOfferPresenter {
+
+    func loadOffer(completion: EmptyClosure? = nil) {
+        view?.setLoading(true)
+        fetchOffer { [weak self] in
+            self?.view?.setLoading(false)
+            completion?()
+        } handleResult: { [weak self] result in
+            switch result {
+            case .success(let offer):
+                self?.view?.configure(
+                    with: .init(
+                        title: offer.title,
+                        description: offer.description,
+                        price: offer.price.value.stringDroppingTrailingZero
+                    )
+                )
+                self?.title = offer.title
+                self?.offerDescription = offer.description
+                self?.price = offer.price
+                // TODO: Add id to photos
+                self?.images = offer.photos.map { .init(id: -1, image: nil, url: $0) }
+                self?.selectedCategoryId = offer.categoryId
+                self?.selectedCityId = offer.cityId
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+                self?.onClose?()
+            }
+        }
+
+    }
+
+    func fetchOffer(completion: EmptyClosure?, handleResult: ((NodeResult<OfferDetailsEntity>) -> Void)?) {
+        guard let offerId else {
+            completion?()
+            return
+        }
+        offerService?.getOffer(
+            id: offerId
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
+    }
 
     func loadCategories() {
         categoryService?.getCategories(
@@ -229,6 +257,46 @@ private extension CreateOfferPresenter {
             }
         })
         .store(in: &cancellables)
+    }
+
+    func loadSelectedCategory(completion: EmptyClosure? = nil) {
+        guard let selectedCategoryId else {
+            completion?()
+            return
+        }
+        categoryService?.getCategory(
+            id: selectedCategoryId
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success(let category):
+                    self?.categoryPickerModel.all.append(category)
+                    self?.categoryPickerModel.selected = category
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
+    }
+
+    func loadSelectedCity() {
+        guard let selectedCityId else {
+            return
+        }
+        cityService?.getCity(
+            id: selectedCityId
+        ).sink(
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success(let city):
+                    self?.selectedCity = city
+                    self?.view?.setCity(title: city.name)
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func updateImages() {
@@ -270,7 +338,7 @@ private extension CreateOfferPresenter {
 
 // MARK: - PHPickerViewControllerDelegate
 
-extension CreateOfferPresenter: PHPickerViewControllerDelegate {
+extension EditOfferPresenter: PHPickerViewControllerDelegate {
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
@@ -299,7 +367,7 @@ extension CreateOfferPresenter: PHPickerViewControllerDelegate {
 
 // MARK: - UIImagePickerControllerDelegate
 
-extension CreateOfferPresenter: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditOfferPresenter: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]

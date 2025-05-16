@@ -230,7 +230,9 @@ private extension IncomingRequestsPresenter {
                     self.pagesCount = page.totalPages
                     self.updatePagination()
                     self.view?.setEmptyState(page.content.isEmpty)
-                    self.view?.fillFirstPage(with: page.content.compactMap { self.makeIncomingRequestViewModel(from: $0) })
+                    self.view?.fillFirstPage(
+                        with: page.content.compactMap { self.makeIncomingRequestViewModel(from: $0) }
+                    )
                 }
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)

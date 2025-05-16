@@ -80,6 +80,8 @@
 "Common.Success" = "Success";
 "Common.Warning" = "Warning";
 "Common.Error" = "Error";
+"Common.ChooseFromLibrary" = "Choose from library";
+"Common.TakeAPhoto" = "Take a photo";
 
 // MARK: - Filter
 
@@ -140,6 +142,10 @@
 "Offers.Create.Button.AvailableDates.Selected" = "Available dates";
 "Offers.Create.Button.Publish" = "Publish";
 "Offers.Create.Error.Failed" = "Failed to create";
+
+"Offers.Edit.Title" = "Edit offer";
+"Offers.Edit.Button.Delete" = "Delete offer";
+"Offers.Edit.Button.Save" = "Save";
 
 // MARK: - Profile
 
@@ -244,3 +250,9 @@
 "RequestCalendar.Title" = "Dates";
 "RequestCalendar.TotalCost" = "Rental cost: %@";
 "RequestCalendar.Button.Apply" = "Apply";
+
+// MARK: - No Camera Permission
+
+"NoCameraPermission.Title" = "No camera access";
+"NoCameraPermission.Message" = "Please enable camera access in Settings to use this feature.";
+"NoCameraPermission.Action.OpenSettins" = "Open settings";

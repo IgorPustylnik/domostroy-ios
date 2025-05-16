@@ -80,6 +80,8 @@
 "Common.Success" = "Успешно";
 "Common.Warning" = "Предупреждение";
 "Common.Error" = "Ошибка";
+"Common.ChooseFromLibrary" = "Выбрать из медиатеки";
+"Common.TakeAPhoto" = "Сделать фото";
 
 // MARK: - Filter
 
@@ -140,6 +142,10 @@
 "Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
 "Offers.Create.Button.Publish" = "Опубликовать";
 "Offers.Create.Error.Failed" = "Не удалось создать";
+
+"Offers.Edit.Title" = "Редактировать объявление";
+"Offers.Edit.Button.Delete" = "Удалить объявление";
+"Offers.Edit.Button.Save" = "Сохранить";
 
 // MARK: - Profile
 
@@ -244,3 +250,9 @@
 "RequestCalendar.Title" = "Даты";
 "RequestCalendar.TotalCost" = "Стоимость аренды: %@";
 "RequestCalendar.Button.Apply" = "Применить";
+
+// MARK: - No Camera Permission
+
+"NoCameraPermission.Title" = "Нет доступа к камере";
+"NoCameraPermission.Message" = "Разрешите доступ к камере в настройках, чтобы использовать эту функцию.";
+"NoCameraPermission.Action.OpenSettins" = "Открыть настройки";

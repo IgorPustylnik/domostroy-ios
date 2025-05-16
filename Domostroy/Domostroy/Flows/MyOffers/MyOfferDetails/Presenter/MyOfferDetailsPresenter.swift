@@ -45,6 +45,10 @@ extension MyOfferDetailsPresenter: MyOfferDetailsModuleInput {
         self.offerId = offerId
     }
 
+    func reload() {
+        loadOffer()
+    }
+
 }
 
 // MARK: - MyOfferDetailsViewOutput

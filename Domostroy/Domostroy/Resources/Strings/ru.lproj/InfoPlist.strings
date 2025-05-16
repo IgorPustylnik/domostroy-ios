@@ -1,2 +1,3 @@
 "CFBundleDisplayName"="Домострой";
 "CFBundleName"="Домострой";
+"NSCameraUsageDescription" = "Нам нужен доступ к камере, чтобы вы могли делать фото.";

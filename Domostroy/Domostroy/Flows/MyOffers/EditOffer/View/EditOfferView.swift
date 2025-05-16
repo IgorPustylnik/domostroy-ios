@@ -1,30 +1,30 @@
 //
-//  CreateOfferView.swift
+//  EditOfferView.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 15/04/2025.
+//  Created by igorpustylnik on 15/05/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
 import UIKit
 
-// MARK: - CreateOfferViewDelegate
+// MARK: - EditOfferViewDelegate
 
-protocol CreateOfferViewDelegate: AnyObject {
+protocol EditOfferViewDelegate: AnyObject {
     func scrollToActiveView(_ view: UIView?)
     func scrollToInvalidView(_ view: UIView?)
     func titleDidChange(_ title: String)
     func descriptionDidChange(_ description: String)
     func showCities()
-    func showCalendar()
-    func publishOffer()
+    func saveOffer()
+    func deleteOffer()
     func didPickCategory(index: Int)
     func priceDidChange(_ price: String)
 }
 
-// MARK: - CreateOfferView
+// MARK: - EditOfferView
 
-final class CreateOfferView: UIView {
+final class EditOfferView: UIView {
 
     // MARK: - Constants
 
@@ -50,11 +50,9 @@ final class CreateOfferView: UIView {
             picturesCollectionView,
             cityLabel,
             cityButton,
-            calendarLabel,
-            calendarButton,
             priceLabel,
             priceTextField,
-            publishButton
+            deleteButton
         ].forEach { stackView.addArrangedSubview($0) }
         return stackView
     }()
@@ -63,7 +61,7 @@ final class CreateOfferView: UIView {
 
     private lazy var nameLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.name)
 
-    private lazy var nameTextField: DValidatableTextField = {
+    private(set) lazy var nameTextField: DValidatableTextField = {
         $0.configure(
             placeholder: L10n.Localizable.Offers.Create.Placeholder.name, correction: .no, keyboardType: .default
         )
@@ -85,7 +83,7 @@ final class CreateOfferView: UIView {
 
     private lazy var descriptionLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.description)
 
-    private lazy var descriptionTextField: DValidatableMultilineTextField = {
+    private(set) lazy var descriptionTextField: DValidatableMultilineTextField = {
         $0.configure(
             placeholder: L10n.Localizable.Offers.Create.Placeholder.description,
             correction: .no,
@@ -127,7 +125,7 @@ final class CreateOfferView: UIView {
 
     private lazy var cityLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.city)
 
-    private lazy var cityButton = {
+    private(set) lazy var cityButton = {
         $0.title = L10n.Localizable.Offers.Create.Button.City.placeholder
         $0.image = .Buttons.locationFilled.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
@@ -137,25 +135,11 @@ final class CreateOfferView: UIView {
         return $0
     }(DButton(type: .modalPicker))
 
-    // MARK: Calendar
-
-    private lazy var calendarLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.availableDates)
-
-    private lazy var calendarButton = {
-        $0.title = L10n.Localizable.Offers.Create.Button.AvailableDates.placeholder
-        $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
-        $0.imagePlacement = .right
-        $0.setAction { [weak self] in
-            self?.delegate?.showCalendar()
-        }
-        return $0
-    }(DButton(type: .modalPicker))
-
     // MARK: Price
 
     private lazy var priceLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.price)
 
-    private lazy var priceTextField: DValidatableTextField = {
+    private(set) lazy var priceTextField: DValidatableTextField = {
         $0.configure(
             placeholder: L10n.Localizable.Offers.Create.Placeholder.price,
             correction: .no,
@@ -175,17 +159,18 @@ final class CreateOfferView: UIView {
         return $0
     }(DValidatableTextField())
 
-    private(set) lazy var publishButton = {
-        $0.title = L10n.Localizable.Offers.Create.Button.publish
+    private(set) lazy var deleteButton = {
+        $0.title = L10n.Localizable.Offers.Edit.Button.delete
+        $0.image = UIImage(systemName: "trash")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         $0.setAction { [weak self] in
-            self?.publish()
+            self?.delegate?.deleteOffer()
         }
         return $0
-    }(DButton())
+    }(DButton(type: .destructive))
 
     // MARK: - Properties
 
-    weak var delegate: CreateOfferViewDelegate?
+    weak var delegate: EditOfferViewDelegate?
 
     // MARK: - Init
 
@@ -209,14 +194,6 @@ final class CreateOfferView: UIView {
 
     // MARK: - Configuration
 
-    func setCalendarPlaceholder(active: Bool) {
-        if active {
-            calendarButton.title = L10n.Localizable.Offers.Create.Button.AvailableDates.placeholder
-        } else {
-            calendarButton.title = L10n.Localizable.Offers.Create.Button.AvailableDates.selected
-        }
-    }
-
     func setCityButton(title: String) {
         cityButton.title = title
     }
@@ -225,7 +202,7 @@ final class CreateOfferView: UIView {
 
 // MARK: - Private methods
 
-private extension CreateOfferView {
+private extension EditOfferView {
     func createHeaderLabel(_ text: String) -> UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -234,8 +211,10 @@ private extension CreateOfferView {
     }
 }
 
-private extension CreateOfferView {
-    func publish() {
+// MARK: - Save action
+
+extension EditOfferView {
+    func save() {
         endEditing(true)
         let validatables = mainVStackView.arrangedSubviews.compactMap { $0 as? Validatable & UIView }
         if validatables.allSatisfy({
@@ -245,7 +224,7 @@ private extension CreateOfferView {
             }
             return isValid
         }) {
-            delegate?.publishOffer()
+            delegate?.saveOffer()
             return
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)

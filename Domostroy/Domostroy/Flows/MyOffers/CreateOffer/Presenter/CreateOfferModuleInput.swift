@@ -8,7 +8,10 @@
 
 import Foundation
 
-protocol CreateOfferModuleInput: AnyObject {
+protocol CreateOfferModuleInput: AnyObject, CitySettable {
     func setSelectedDates(_ dates: Set<Date>)
+}
+
+protocol CitySettable: AnyObject {
     func setCity(_ city: CityEntity?)
 }
