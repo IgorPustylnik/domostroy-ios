@@ -143,6 +143,10 @@
 "Offers.Create.Button.Publish" = "Опубликовать";
 "Offers.Create.Error.Failed" = "Не удалось создать";
 
+"Offers.Edit.Title" = "Редактировать объявление";
+"Offers.Edit.Button.Delete" = "Удалить объявление";
+"Offers.Edit.Button.Save" = "Сохранить";
+
 // MARK: - Profile
 
 "Profile.Title" = "Профиль";

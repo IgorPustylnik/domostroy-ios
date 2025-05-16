@@ -296,6 +296,16 @@ internal enum L10n {
           internal static let price = L10n.tr("Localizable", "Offers.Create.Placeholder.Price", fallback: "Price")
         }
       }
+      internal enum Edit {
+        /// Edit offer
+        internal static let title = L10n.tr("Localizable", "Offers.Edit.Title", fallback: "Edit offer")
+        internal enum Button {
+          /// Delete offer
+          internal static let delete = L10n.tr("Localizable", "Offers.Edit.Button.Delete", fallback: "Delete offer")
+          /// Save
+          internal static let save = L10n.tr("Localizable", "Offers.Edit.Button.Save", fallback: "Save")
+        }
+      }
       internal enum Favorites {
         /// Favorites
         internal static let title = L10n.tr("Localizable", "Offers.Favorites.Title", fallback: "Favorites")

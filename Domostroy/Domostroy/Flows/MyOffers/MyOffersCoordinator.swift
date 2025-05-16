@@ -192,8 +192,35 @@ private extension MyOffersCoordinator {
         router.push(view)
     }
 
-    func editOffer(id: Int) {
-        print("edit offer: \(id)")
+    func editOffer(id: Int, reloadables: [Reloadable?]) {
+        let (view, output, input) = EditOfferModuleConfigurator().configure()
+        input.setOfferId(id)
+        output.onChooseFromLibrary = { [weak self] delegate, limit in
+            self?.showImagePicker(delegate: delegate, limit: limit)
+        }
+        output.onTakeAPhoto = { [weak self] delegate in
+            self?.openCamera(delegate: delegate)
+        }
+        output.onCameraPermissionRequest = { [weak self] in
+            self?.showCameraPermissionRequest()
+        }
+        output.onShowCities = { [weak self, weak input] city in
+            self?.showSelectCity(initialCity: city, citySettable: input)
+        }
+        output.onClose = { [weak self] in
+            self?.router.dismissModule()
+        }
+        output.onChanged = { [weak self] in
+            self?.router.popModule()
+            reloadables.forEach { $0?.reload() }
+        }
+        output.onSuccess = { [weak self] offerId in
+            self?.start()
+            self?.showMyOfferDetails(id: offerId, reloadables: reloadables)
+        }
+        let navigationController = UINavigationController(rootViewController: view)
+        navigationController.modalPresentationStyle = .fullScreen
+        router.present(navigationController)
     }
 
     func showUnauthorized() {

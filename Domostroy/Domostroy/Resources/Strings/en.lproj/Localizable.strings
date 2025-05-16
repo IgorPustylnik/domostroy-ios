@@ -143,6 +143,10 @@
 "Offers.Create.Button.Publish" = "Publish";
 "Offers.Create.Error.Failed" = "Failed to create";
 
+"Offers.Edit.Title" = "Edit offer";
+"Offers.Edit.Button.Delete" = "Delete offer";
+"Offers.Edit.Button.Save" = "Save";
+
 // MARK: - Profile
 
 "Profile.Title" = "Profile";
