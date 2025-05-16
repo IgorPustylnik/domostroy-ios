@@ -15,6 +15,7 @@ class DNavigationBar: UIView {
     private enum Constants {
         static let vSpacing: CGFloat = 8
         static let mainBarHeight: CGFloat = 34
+        static let mainBarSpacing: CGFloat = 10
         static let buttonHSpacing: CGFloat = 5
     }
 
@@ -33,6 +34,7 @@ class DNavigationBar: UIView {
         $0.axis = .horizontal
         $0.alignment = .center
         $0.distribution = .equalCentering
+        $0.spacing = Constants.mainBarSpacing
         $0.addArrangedSubview(leftMainBarHStack)
         $0.addArrangedSubview(titleLabel)
         $0.addArrangedSubview(rightMainBarHStack)
@@ -48,6 +50,8 @@ class DNavigationBar: UIView {
 
     private lazy var titleLabel: UILabel = {
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
+        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return $0
     }(UILabel())
 
