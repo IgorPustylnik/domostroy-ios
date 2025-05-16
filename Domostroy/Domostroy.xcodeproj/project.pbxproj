@@ -257,6 +257,7 @@
 		55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677C2DA80E2500A3CA52 /* Double+ext.swift */; };
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
 		55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */; };
+		55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */; };
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
@@ -1568,6 +1569,7 @@
 				55ED677A2DA7D33F00A3CA52 /* Loadable.swift */,
 				55D6294D2DAD198900E09764 /* EmptyStateable.swift */,
 				551FB89F2DD66B50006E3551 /* Validatable.swift */,
+				55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -3106,6 +3108,7 @@
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
 				551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */,
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
+				55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
 				551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */,

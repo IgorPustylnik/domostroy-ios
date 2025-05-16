@@ -6,7 +6,6 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol MyOffersModuleInput: AnyObject {
+protocol MyOffersModuleInput: AnyObject, Reloadable {
     func didTapCenterControl()
-    func reload()
 }

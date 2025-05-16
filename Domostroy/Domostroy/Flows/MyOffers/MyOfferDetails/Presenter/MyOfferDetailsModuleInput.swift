@@ -6,6 +6,6 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-protocol MyOfferDetailsModuleInput: AnyObject {
+protocol MyOfferDetailsModuleInput: AnyObject, Reloadable {
     func set(offerId: Int)
 }
