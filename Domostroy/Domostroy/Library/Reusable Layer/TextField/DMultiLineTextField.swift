@@ -135,6 +135,8 @@ class DMultiLineTextField: UIView {
 
     func setText(_ text: String) {
         textView.text = text
+        placeholderLabel.isHidden = !text.isEmpty
+        updateContainerSize()
     }
 
     func currentText() -> String {
