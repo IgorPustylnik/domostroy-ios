@@ -45,7 +45,7 @@ final class OutgoingRequestCollectionViewCell: UICollectionViewCell, Highlightab
         static let mainHStackSpacing: CGFloat = 16
         static let rightVStackSpacing: CGFloat = 6
         static let badgeImageSize: CGSize = .init(width: 20, height: 20)
-        static let badgeBorderWidth: CGFloat = 1
+        static let badgeBorderWidth: CGFloat = 2
         static let badgeVOffset: CGFloat = 4
         static let badgeBorderColor: UIColor = .systemBackground
         static let actionsHStackSpacing: CGFloat = 8
@@ -79,6 +79,7 @@ final class OutgoingRequestCollectionViewCell: UICollectionViewCell, Highlightab
         $0.layer.cornerRadius = Constants.badgeImageSize.width / 2
         $0.layer.borderColor = Constants.badgeBorderColor.cgColor
         $0.layer.borderWidth = Constants.badgeBorderWidth
+        $0.layer.masksToBounds = true
         $0.snp.makeConstraints { make in
             make.size.equalTo(Constants.badgeImageSize)
         }

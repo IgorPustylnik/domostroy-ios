@@ -15,7 +15,7 @@ class DButton: UIButton {
     private enum Constants {
         static let highlightedAlpha: CGFloat = 0.7
         static let disabledAlpha: CGFloat = 0.5
-        static let hStackViewHighlightedScale: CGFloat = 0.96
+        static let hStackViewHighlightedScale: CGFloat = 0.98
         static let font: UIFont = .systemFont(ofSize: 17, weight: .semibold)
         static let touchesInset: UIEdgeInsets = .init(top: -30, left: -30, bottom: -30, right: -30)
         static let hSpacing: CGFloat = 5
@@ -277,12 +277,7 @@ private extension DButton {
     }
 
     private func updateCGColors() {
-        switch type {
-        case .navbar:
-            backgroundView.layer.borderColor = borderColor.cgColor
-        default:
-            break
-        }
+        backgroundView.layer.borderColor = borderColor.cgColor
     }
 }
 

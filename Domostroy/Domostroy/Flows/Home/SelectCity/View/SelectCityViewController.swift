@@ -25,6 +25,10 @@ final class SelectCityViewController: UIViewController {
         $0.onTextChange = { [weak self] textField in
             self?.output?.search(query: textField.text)
         }
+        $0.onCancel = { textField in
+            textField.text = ""
+            textField.sendActions(for: .editingChanged)
+        }
         return $0
     }(DSearchTextField())
 

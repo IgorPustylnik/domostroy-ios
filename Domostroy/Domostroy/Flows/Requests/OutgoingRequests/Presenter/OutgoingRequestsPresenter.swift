@@ -204,7 +204,9 @@ private extension OutgoingRequestsPresenter {
                     self.pagesCount = page.totalPages
                     self.updatePagination()
                     self.view?.setEmptyState(page.content.isEmpty)
-                    self.view?.fillFirstPage(with: page.content.compactMap { self.makeOutgoingRequestViewModel(from: $0) })
+                    self.view?.fillFirstPage(
+                        with: page.content.compactMap { self.makeOutgoingRequestViewModel(from: $0) }
+                    )
                 }
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
