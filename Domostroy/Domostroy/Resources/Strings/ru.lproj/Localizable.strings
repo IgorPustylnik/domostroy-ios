@@ -80,6 +80,8 @@
 "Common.Success" = "Успешно";
 "Common.Warning" = "Предупреждение";
 "Common.Error" = "Ошибка";
+"Common.ChooseFromLibrary" = "Выбрать из медиатеки";
+"Common.TakeAPhoto" = "Сделать фото";
 
 // MARK: - Filter
 
@@ -244,3 +246,9 @@
 "RequestCalendar.Title" = "Даты";
 "RequestCalendar.TotalCost" = "Стоимость аренды: %@";
 "RequestCalendar.Button.Apply" = "Применить";
+
+// MARK: - No Camera Permission
+
+"NoCameraPermission.Title" = "Нет доступа к камере";
+"NoCameraPermission.Message" = "Разрешите доступ к камере в настройках, чтобы использовать эту функцию.";
+"NoCameraPermission.Action.OpenSettins" = "Открыть настройки";

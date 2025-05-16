@@ -256,6 +256,7 @@
 		55ED677B2DA7D33F00A3CA52 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677A2DA7D33F00A3CA52 /* Loadable.swift */; };
 		55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677C2DA80E2500A3CA52 /* Double+ext.swift */; };
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
+		55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */; };
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
@@ -665,6 +666,7 @@
 		55ED677A2DA7D33F00A3CA52 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		55ED677C2DA80E2500A3CA52 /* Double+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ext.swift"; sourceTree = "<group>"; };
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
+		55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelper.swift; sourceTree = "<group>"; };
 		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntity.swift; sourceTree = "<group>"; };
@@ -2083,6 +2085,7 @@
 				55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */,
 				5587AEB72DB543A000669865 /* CalendarHelper.swift */,
 				551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */,
+				55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3183,6 +3186,7 @@
 				7ED559F766A68CA9C664DFAD /* CodeConfirmationViewOutput.swift in Sources */,
 				CD7C1FB68E4EBAD3B147F6B3 /* OfferDetailsModuleConfigurator.swift in Sources */,
 				5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */,
+				55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */,
 				487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */,
 				70137BF7DDC374152BFF0D20 /* OfferDetailsModuleOutput.swift in Sources */,
 				1F53718CD4AC134C6E4E782A /* OfferDetailsViewController.swift in Sources */,
@@ -3533,6 +3537,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 483R2RBHL2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -3562,6 +3567,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 483R2RBHL2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos.";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
