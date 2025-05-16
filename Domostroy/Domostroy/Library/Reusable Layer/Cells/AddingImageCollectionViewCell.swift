@@ -17,7 +17,8 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
 
     struct ViewModel {
         let onDelete: EmptyClosure?
-        let image: UIImage?
+        let url: URL?
+        let loadImage: (UIImageView) -> Void
     }
 
     // MARK: - Constants
@@ -61,6 +62,7 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        deleteButton.removeTarget(nil, action: nil, for: .allEvents)
     }
 
     // MARK: - UI Setup
@@ -102,7 +104,7 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
 extension AddingImageCollectionViewCell: ConfigurableItem {
 
     func configure(with model: ViewModel) {
-        imageView.image = model.image
+        model.loadImage(imageView)
         deleteButton.setAction {
             model.onDelete?()
         }

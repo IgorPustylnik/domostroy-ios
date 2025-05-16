@@ -8,6 +8,22 @@
 
 import UIKit
 
+// MARK: - CreateOfferViewDelegate
+
+protocol CreateOfferViewDelegate: AnyObject {
+    func scrollToActiveView(_ view: UIView?)
+    func scrollToInvalidView(_ view: UIView?)
+    func titleDidChange(_ title: String)
+    func descriptionDidChange(_ description: String)
+    func showCities()
+    func showCalendar()
+    func publishOffer()
+    func didPickCategory(index: Int)
+    func priceDidChange(_ price: String)
+}
+
+// MARK: - CreateOfferView
+
 final class CreateOfferView: UIView {
 
     // MARK: - Constants
@@ -43,6 +59,8 @@ final class CreateOfferView: UIView {
         return stackView
     }()
 
+    // MARK: Name
+
     private lazy var nameLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.name)
 
     private lazy var nameTextField: DValidatableTextField = {
@@ -52,16 +70,18 @@ final class CreateOfferView: UIView {
         $0.validator = RequiredValidator(OfferNameValidator())
         $0.setNextResponder(descriptionTextField.responder)
         $0.onBeginEditing = { [weak self] _ in
-            self?.onScrollToActiveView?(self?.nameTextField)
+            self?.delegate?.scrollToActiveView(self?.nameTextField)
         }
         $0.onTextChange = { [weak self] _ in
             guard let self else {
                 return
             }
-            self.onEditTitle?(self.nameTextField.currentText())
+            self.delegate?.titleDidChange(self.nameTextField.currentText())
         }
         return $0
     }(DValidatableTextField())
+
+    // MARK: Description
 
     private lazy var descriptionLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.description)
 
@@ -74,30 +94,36 @@ final class CreateOfferView: UIView {
         )
         $0.validator = RequiredValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
-            self?.onScrollToActiveView?(self?.descriptionTextField)
+            self?.delegate?.scrollToActiveView(self?.descriptionTextField)
         }
         $0.onTextChange = { [weak self] _ in
             guard let self else {
                 return
             }
-            self.onEditDescription?(self.descriptionTextField.currentText())
+            self.delegate?.descriptionDidChange(self.descriptionTextField.currentText())
         }
         return $0
     }(DValidatableMultilineTextField())
+
+    // MARK: Category
 
     private lazy var categoryLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.category)
 
     private(set) lazy var categoryPicker = {
         $0.requiresNonPlaceholder = true
         $0.onPick = { [weak self] pickerField in
-            self?.onPickCategory?(pickerField.selectedIndex)
+            self?.delegate?.didPickCategory(index: pickerField.selectedIndex)
         }
         return $0
     }(DPickerField())
 
+    // MARK: Pictures
+
     private lazy var picturesLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.pictures)
 
     let picturesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+    // MARK: City
 
     private lazy var cityLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.city)
 
@@ -106,10 +132,12 @@ final class CreateOfferView: UIView {
         $0.image = .Buttons.locationFilled.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
         $0.setAction { [weak self] in
-            self?.onShowCities?()
+            self?.delegate?.showCities()
         }
         return $0
     }(DButton(type: .modalPicker))
+
+    // MARK: Calendar
 
     private lazy var calendarLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.availableDates)
 
@@ -118,10 +146,12 @@ final class CreateOfferView: UIView {
         $0.image = .Buttons.calendar.withTintColor(.label, renderingMode: .alwaysOriginal)
         $0.imagePlacement = .right
         $0.setAction { [weak self] in
-            self?.onShowCalendar?()
+            self?.delegate?.showCalendar()
         }
         return $0
     }(DButton(type: .modalPicker))
+
+    // MARK: Price
 
     private lazy var priceLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.price)
 
@@ -133,13 +163,13 @@ final class CreateOfferView: UIView {
         )
         $0.validator = RequiredValidator(PriceValidator())
         $0.onBeginEditing = { [weak self] _ in
-            self?.onScrollToActiveView?(self?.priceTextField)
+            self?.delegate?.scrollToActiveView(self?.priceTextField)
         }
         $0.onTextChange = { [weak self] _ in
             guard let self else {
                 return
             }
-            self.onEditPrice?(self.priceTextField.currentText())
+            self.delegate?.priceDidChange(self.priceTextField.currentText())
         }
         $0.setUnit("₽/\(L10n.Plurals.day(1))")
         return $0
@@ -155,16 +185,7 @@ final class CreateOfferView: UIView {
 
     // MARK: - Properties
 
-    var onPublish: EmptyClosure?
-    var onScrollToActiveView: ((UIView?) -> Void)?
-    var onScrollToInvalidView: ((UIView?) -> Void)?
-
-    var onEditTitle: ((String) -> Void)?
-    var onEditDescription: ((String) -> Void)?
-    var onPickCategory: ((Int) -> Void)?
-    var onShowCities: EmptyClosure?
-    var onShowCalendar: EmptyClosure?
-    var onEditPrice: ((String) -> Void)?
+    weak var delegate: CreateOfferViewDelegate?
 
     // MARK: - Init
 
@@ -220,11 +241,11 @@ private extension CreateOfferView {
         if validatables.allSatisfy({
             let isValid = $0.isValid()
             if !isValid {
-                onScrollToInvalidView?($0)
+                delegate?.scrollToInvalidView($0)
             }
             return isValid
         }) {
-            onPublish?()
+            delegate?.publishOffer()
             return
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)

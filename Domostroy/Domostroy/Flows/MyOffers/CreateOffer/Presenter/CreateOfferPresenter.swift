@@ -11,9 +11,11 @@ import UIKit
 import PhotosUI
 import Combine
 
-private struct ImageItem {
-    let id = UUID()
-    let image: UIImage
+struct ImageItem {
+    let uuid = UUID()
+    let id: Int
+    var image: UIImage?
+    let url: URL?
 }
 
 final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
@@ -26,7 +28,9 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
 
     // MARK: - CreateOfferModuleOutput
 
-    var onAddImages: ((PHPickerViewControllerDelegate, Int) -> Void)?
+    var onChooseFromLibrary: ((PHPickerViewControllerDelegate, Int) -> Void)?
+    var onTakeAPhoto: ((UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> Void)?
+    var onCameraPermissionRequest: EmptyClosure?
     var onShowCities: ((CityEntity?) -> Void)?
     var onShowCalendar: ((LessorCalendarConfig) -> Void)?
     var onClose: EmptyClosure?
@@ -39,8 +43,6 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
     private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
     private var cancellables: [AnyCancellable] = []
-
-    var adapter: BaseCollectionManager?
 
     private var images: [ImageItem] = []
     private var visibleItems: Int {
@@ -79,10 +81,9 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
-        view?.updateImagesAmount(visibleItems)
+        updateImages()
         updateCategoriesView()
         loadCategories()
-        refillAdapter()
     }
 
     func titleChanged(_ text: String) {
@@ -98,6 +99,35 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
             return
         }
         categoryPickerModel.selected = categoryPickerModel.all[index]
+    }
+
+    func chooseFromLibrary() {
+        let limit = Constants.maxPicturesAmount - images.count
+        onChooseFromLibrary?(self, limit)
+    }
+
+    func takeAPhoto() {
+        if PermissionHelper.shared.checkCameraAccess() {
+            onTakeAPhoto?(self)
+        } else {
+            PermissionHelper.shared.requestCameraAccess { [weak self] success in
+                guard let self else {
+                    return
+                }
+                if success {
+                    onTakeAPhoto?(self)
+                } else {
+                    onCameraPermissionRequest?()
+                }
+            }
+        }
+    }
+
+    func deleteImage(uuid: UUID) {
+        images.removeAll {
+            $0.uuid == uuid
+        }
+        updateImages()
     }
 
     func showCities() {
@@ -132,7 +162,7 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
             return
         }
         guard !images.isEmpty else {
-            addImages()
+            chooseFromLibrary()
             return
         }
         guard let category = categoryPickerModel.selected,
@@ -153,7 +183,7 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
                 price: price,
                 cityId: selectedCity.id,
                 rentDates: selectedDates,
-                photos: images.map { $0.image }
+                photos: images.compactMap { $0.image }
             )
         )
         .sink(
@@ -186,11 +216,6 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
 
 private extension CreateOfferPresenter {
 
-    func addImages() {
-        let limit = Constants.maxPicturesAmount - images.count
-        onAddImages?(self, limit)
-    }
-
     func loadCategories() {
         categoryService?.getCategories(
         )
@@ -206,6 +231,14 @@ private extension CreateOfferPresenter {
         .store(in: &cancellables)
     }
 
+    func updateImages() {
+        let viewModels = images.map { makeImageViewModel(imageItem: $0) }
+        view?.setImages(
+            viewModels,
+            canAddMore: images.count < Constants.maxPicturesAmount
+        )
+    }
+
     func updateCategoriesView() {
         view?.setCategories(
             categoryPickerModel.all.map { $0.name },
@@ -215,47 +248,24 @@ private extension CreateOfferPresenter {
             } ?? -1
         )
     }
-}
 
-// MARK: - Generators
-
-private extension CreateOfferPresenter {
-
-    func makeImageGenerator(
-        from imageItem: ImageItem
-    ) -> BaseCollectionCellGenerator<AddingImageCollectionViewCell> {
-        let viewModel = AddingImageCollectionViewCell.ViewModel(
+    func makeImageViewModel(imageItem: ImageItem) -> AddingImageCollectionViewCell.Model {
+        .init(
             onDelete: { [weak self] in
-                self?.deleteImage(id: imageItem.id)
+                self?.deleteImage(uuid: imageItem.uuid)
             },
-            image: imageItem.image)
-        let generator = AddingImageCollectionViewCell.rddm.baseGenerator(with: viewModel, and: .class)
-        return generator
+            url: imageItem.url,
+            loadImage: { imageView in
+                if let image = imageItem.image {
+                    imageView.image = image
+                } else {
+                    DispatchQueue.main.async {
+                        imageView.kf.setImage(with: imageItem.url)
+                    }
+                }
+            }
+        )
     }
-
-    func makeAddImageButtonGenerator() -> BaseCollectionCellGenerator<AddImageButtonCollectionViewCell> {
-        let generator = AddImageButtonCollectionViewCell.rddm.baseGenerator(with: true, and: .class)
-        generator.didSelectEvent += { [weak self] in
-            self?.addImages()
-        }
-        return generator
-    }
-
-    func refillAdapter() {
-        adapter?.clearCellGenerators()
-        adapter?.addCellGenerators(images.map { makeImageGenerator(from: $0) })
-        if images.count < Constants.maxPicturesAmount {
-            adapter?.addCellGenerator(makeAddImageButtonGenerator())
-        }
-        adapter?.forceRefill()
-    }
-
-    func deleteImage(id: UUID) {
-        images.removeAll { $0.id == id }
-        refillAdapter()
-        view?.updateImagesAmount(visibleItems)
-    }
-
 }
 
 // MARK: - PHPickerViewControllerDelegate
@@ -274,13 +284,35 @@ extension CreateOfferPresenter: PHPickerViewControllerDelegate {
                 guard let self, let image = reading as? UIImage else {
                     return
                 }
-                self.images.append(ImageItem(image: image))
+                self.images.append(ImageItem(id: -1, image: image, url: nil))
             }
         }
 
-        group.notify(queue: .main) {
-            self.refillAdapter()
-            self.view?.updateImagesAmount(self.visibleItems)
+        group.notify(queue: .main) { [weak self] in
+            guard let self else {
+                return
+            }
+            updateImages()
         }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension CreateOfferPresenter: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        picker.dismiss(animated: true)
+
+        if let image = info[.originalImage] as? UIImage {
+            images.append(.init(id: -1, image: image, url: nil))
+            updateImages()
+        }
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }

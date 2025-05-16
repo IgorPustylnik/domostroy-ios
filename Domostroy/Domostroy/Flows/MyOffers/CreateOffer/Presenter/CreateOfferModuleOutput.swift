@@ -6,11 +6,12 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-import UIKit
 import PhotosUI
 
 protocol CreateOfferModuleOutput: AnyObject {
-    var onAddImages: ((PHPickerViewControllerDelegate, Int) -> Void)? { get set }
+    var onChooseFromLibrary: ((PHPickerViewControllerDelegate, Int) -> Void)? { get set }
+    var onTakeAPhoto: ((UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> Void)? { get set }
+    var onCameraPermissionRequest: EmptyClosure? { get set }
     var onShowCities: ((CityEntity?) -> Void)? { get set }
     var onShowCalendar: ((LessorCalendarConfig) -> Void)? { get set }
     var onClose: EmptyClosure? { get set }

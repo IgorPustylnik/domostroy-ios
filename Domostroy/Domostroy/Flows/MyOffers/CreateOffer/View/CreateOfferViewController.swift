@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import ReactiveDataDisplayManager
 
 final class CreateOfferViewController: ScrollViewController {
 
@@ -25,58 +26,44 @@ final class CreateOfferViewController: ScrollViewController {
     var picturesCollectionView: UICollectionView {
         createOfferView.picturesCollectionView
     }
+
+    var adapter: BaseCollectionManager?
+    private typealias AddingImageCellGenerator = BaseCollectionCellGenerator<AddingImageCollectionViewCell>
+    private typealias AddImageButtonCellGenerator = ContextMenuCollectionCellGenerator<AddImageButtonCollectionViewCell>
+    private var addingImageGenerators: [AddingImageCellGenerator] = []
+    private var addImageButtonCellGenerator: AddImageButtonCellGenerator {
+        let generator = AddImageButtonCellGenerator(with: true, menu: addImageMenu)
+        generator.didSelectEvent += { generator.triggerMenu() }
+        return generator
+    }
+    private var isAddImageButtonShown = true
+
     private lazy var createOfferView: CreateOfferView = {
-        $0.onScrollToActiveView = { [weak self] view in
-            guard let self, let view else {
-                return
-            }
-            self.scrollToView(view, offsetY: 40)
-        }
-        $0.onScrollToInvalidView = { [weak self] view in
-            guard let self, let view else {
-                return
-            }
-            self.scrollView.scrollRectToVisible(view.frame, animated: true)
-        }
-        $0.onEditTitle = { [weak self] title in
-            self?.output?.titleChanged(title)
-        }
-        $0.onEditDescription = { [weak self] description in
-            self?.output?.descriptionChanged(description)
-        }
-        $0.onShowCities = { [weak self] in
-            self?.output?.showCities()
-        }
-        $0.onShowCalendar = { [weak self] in
-            self?.output?.showCalendar()
-        }
-        $0.onPublish = { [weak self] in
-            self?.output?.create()
-        }
-        $0.onPickCategory = { [weak self] index in
-            self?.output?.setSelectedCategory(index: index)
-        }
-        $0.onEditPrice = { [weak self] price in
-            self?.output?.priceChanged(price)
-        }
+        $0.delegate = self
         return $0
     }(CreateOfferView())
 
     private var picturesCollectionViewHeightConstraint: Constraint?
+
+    private lazy var addImageMenu: UIMenu = .init(children: [
+        UIAction(
+            title: L10n.Localizable.Common.takeAPhoto, image: UIImage(systemName: "camera")
+        ) { [weak self] _ in
+            self?.output?.takeAPhoto()
+        },
+        UIAction(
+            title: L10n.Localizable.Common.chooseFromLibrary, image: UIImage(systemName: "photo")
+        ) { [weak self] _ in
+            self?.output?.chooseFromLibrary()
+        }
+    ])
 
     var output: CreateOfferViewOutput?
 
     // MARK: - UIViewController
 
     override func viewDidLoad() {
-        setupUI()
         super.viewDidLoad()
-        scrollView.keyboardDismissMode = .onDrag
-        configurePicturesCollectionView()
-        navigationBar.title = L10n.Localizable.Offers.Create.NewOffer.title
-        hidesTabBar = true
-        setupKeyboardObservers()
-        addCloseButton()
         output?.viewLoaded()
     }
 
@@ -142,23 +129,35 @@ final class CreateOfferViewController: ScrollViewController {
 
 }
 
+// MARK: - CreateOfferViewInput
+
 extension CreateOfferViewController: CreateOfferViewInput {
 
     func setupInitialState() {
-
+        setupUI()
+        scrollView.keyboardDismissMode = .onDrag
+        configurePicturesCollectionView()
+        navigationBar.title = L10n.Localizable.Offers.Create.NewOffer.title
+        hidesTabBar = true
+        setupKeyboardObservers()
+        addCloseButton()
     }
+
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
         var categories = [placeholder]
         categories.append(contentsOf: items)
         createOfferView.categoryPicker.setItems(categories, selectedIndex: initialIndex + 1)
     }
 
-    func updateImagesAmount(_ amount: Int) {
+    func setImages(_ images: [AddingImageCollectionViewCell.Model], canAddMore: Bool) {
+        addingImageGenerators = images.map { makeImageGenerator(from: $0) }
+        isAddImageButtonShown = canAddMore
         picturesCollectionViewHeightConstraint?.update(
             offset: calculatePicturesCollectionViewHeight(
-                itemsAmount: amount
+                itemsAmount: images.count + (canAddMore ? 1 : 0)
             )
         )
+        refillAdapter()
     }
 
     func setCalendarPlaceholder(active: Bool) {
@@ -173,4 +172,70 @@ extension CreateOfferViewController: CreateOfferViewInput {
         createOfferView.publishButton.setLoading(isLoading)
     }
 
+}
+
+// MARK: - Adapter
+
+private extension CreateOfferViewController {
+    private func makeImageGenerator(
+        from model: AddingImageCollectionViewCell.Model
+    ) -> AddingImageCellGenerator {
+        let generator = AddingImageCollectionViewCell.rddm.baseGenerator(with: model, and: .class)
+        return generator
+    }
+
+    func refillAdapter() {
+        adapter?.clearCellGenerators()
+        adapter?.addCellGenerators(addingImageGenerators)
+        if isAddImageButtonShown {
+            adapter?.addCellGenerator(addImageButtonCellGenerator)
+        }
+        adapter?.forceRefill()
+    }
+}
+
+// MARK: - CreateOfferViewDelegate
+
+extension CreateOfferViewController: CreateOfferViewDelegate {
+    func scrollToActiveView(_ view: UIView?) {
+        guard let view else {
+            return
+        }
+        scrollToView(view, offsetY: 40)
+    }
+
+    func scrollToInvalidView(_ view: UIView?) {
+        guard let view else {
+            return
+        }
+        scrollView.scrollRectToVisible(view.frame, animated: true)
+    }
+
+    func titleDidChange(_ title: String) {
+        output?.titleChanged(title)
+    }
+
+    func descriptionDidChange(_ description: String) {
+        output?.descriptionChanged(description)
+    }
+
+    func showCities() {
+        output?.showCities()
+    }
+
+    func showCalendar() {
+        output?.showCalendar()
+    }
+
+    func publishOffer() {
+        output?.create()
+    }
+
+    func didPickCategory(index: Int) {
+        output?.setSelectedCategory(index: index)
+    }
+
+    func priceDidChange(_ price: String) {
+        output?.priceChanged(price)
+    }
 }
