@@ -167,7 +167,7 @@ private extension IncomingRequestDetailsPresenter {
         )
         let userViewModel = IncomingRequestDetailsView.ViewModel.User(
             username: entity.user.name,
-            phoneNumber: entity.user.phoneNumber,
+            phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: entity.user.phoneNumber),
             imageUrl: nil,
             loadImage: { _, imageView in
                 imageView.loadAvatar(id: entity.user.id, name: entity.user.name, url: nil)

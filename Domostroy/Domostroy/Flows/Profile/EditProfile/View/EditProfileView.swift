@@ -114,6 +114,7 @@ final class EditProfileView: UIView {
             textField.resignFirstResponder()
         }
         $0.validator = RequiredValidator(RussianPhoneValidator())
+        $0.formatter = RussianPhoneTextFieldFormatter()
         return $0
     }(DValidatableTextField())
 

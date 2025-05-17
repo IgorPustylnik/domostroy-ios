@@ -245,6 +245,7 @@
 		55D629502DAD70DF00E09764 /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */; };
 		55D629522DAD755900E09764 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D629512DAD755900E09764 /* HomeEmptyView.swift */; };
 		55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */; };
+		55DAD1672DD92C6B0043C0A4 /* DecimalTextFieldFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAD1662DD92C6B0043C0A4 /* DecimalTextFieldFormatter.swift */; };
 		55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */; };
 		55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */; };
 		55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F012DA5090A003F0CB3 /* Kingfisher */; };
@@ -262,6 +263,7 @@
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
 		55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */; };
 		55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */; };
+		55EDEBF92DD881650001EFC7 /* TextFieldFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBF82DD881650001EFC7 /* TextFieldFormatter.swift */; };
 		55EDEBFC2DD893B60001EFC7 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFB2DD893B60001EFC7 /* UsernameValidator.swift */; };
 		55EDEBFE2DD893D60001EFC7 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFD2DD893D60001EFC7 /* EmailValidator.swift */; };
 		55EDEC002DD893E60001EFC7 /* RussianPhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFF2DD893E60001EFC7 /* RussianPhoneValidator.swift */; };
@@ -272,6 +274,8 @@
 		55EDEC0A2DD894270001EFC7 /* MatchPasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC092DD894270001EFC7 /* MatchPasswordValidator.swift */; };
 		55EDEC0C2DD894340001EFC7 /* RequiredValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC0B2DD894340001EFC7 /* RequiredValidator.swift */; };
 		55EDEC0E2DD8943F0001EFC7 /* OptionalValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC0D2DD8943F0001EFC7 /* OptionalValidator.swift */; };
+		55EDEC102DD8949F0001EFC7 /* RussianPhoneTextFieldFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC0F2DD8949F0001EFC7 /* RussianPhoneTextFieldFormatter.swift */; };
+		55EDEC122DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC112DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift */; };
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
@@ -675,6 +679,7 @@
 		55D6294F2DAD70DF00E09764 /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		55D629512DAD755900E09764 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		55D9E6BC2DA31BF70040846C /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		55DAD1662DD92C6B0043C0A4 /* DecimalTextFieldFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextFieldFormatter.swift; sourceTree = "<group>"; };
 		55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorView.swift; sourceTree = "<group>"; };
 		55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
@@ -690,6 +695,7 @@
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
 		55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelper.swift; sourceTree = "<group>"; };
 		55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
+		55EDEBF82DD881650001EFC7 /* TextFieldFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldFormatter.swift; sourceTree = "<group>"; };
 		55EDEBFB2DD893B60001EFC7 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
 		55EDEBFD2DD893D60001EFC7 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		55EDEBFF2DD893E60001EFC7 /* RussianPhoneValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RussianPhoneValidator.swift; sourceTree = "<group>"; };
@@ -700,6 +706,8 @@
 		55EDEC092DD894270001EFC7 /* MatchPasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPasswordValidator.swift; sourceTree = "<group>"; };
 		55EDEC0B2DD894340001EFC7 /* RequiredValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredValidator.swift; sourceTree = "<group>"; };
 		55EDEC0D2DD8943F0001EFC7 /* OptionalValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalValidator.swift; sourceTree = "<group>"; };
+		55EDEC0F2DD8949F0001EFC7 /* RussianPhoneTextFieldFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RussianPhoneTextFieldFormatter.swift; sourceTree = "<group>"; };
+		55EDEC112DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixTextFieldFormatter.swift; sourceTree = "<group>"; };
 		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntity.swift; sourceTree = "<group>"; };
@@ -1618,6 +1626,7 @@
 				551FB89F2DD66B50006E3551 /* Validatable.swift */,
 				55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */,
 				550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */,
+				55EDEBF82DD881650001EFC7 /* TextFieldFormatter.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -2186,6 +2195,16 @@
 				55ED67762DA7AC9500A3CA52 /* TitleCollectionReusableView.swift */,
 			);
 			path = CollectionReusableView;
+			sourceTree = "<group>";
+		};
+		55EDEBFA2DD893570001EFC7 /* TextFieldFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				55EDEC0F2DD8949F0001EFC7 /* RussianPhoneTextFieldFormatter.swift */,
+				55EDEC112DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift */,
+				55DAD1662DD92C6B0043C0A4 /* DecimalTextFieldFormatter.swift */,
+			);
+			path = TextFieldFormatter;
 			sourceTree = "<group>";
 		};
 		55F88C9C2DC3601E003EA26E /* Drops */ = {
@@ -3129,6 +3148,7 @@
 				550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */,
 				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
 				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
+				55EDEC122DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift in Sources */,
 				C5FD29B6B59A01CD31A91E2F /* HomeViewInput.swift in Sources */,
 				809432997CB077BDD83C1BAF /* HomeViewOutput.swift in Sources */,
 				55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */,
@@ -3208,6 +3228,7 @@
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */,
 				201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */,
+				55EDEBF92DD881650001EFC7 /* TextFieldFormatter.swift in Sources */,
 				556CEFAF2DA1E41F003ECD4B /* DCodeField.swift in Sources */,
 				551FC3B72DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift in Sources */,
 				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
@@ -3467,6 +3488,8 @@
 				1569AFFB45A1B117BDD8F72F /* ChangePasswordModuleOutput.swift in Sources */,
 				320F5CF997ED4E848B40CAB3 /* ChangePasswordViewController.swift in Sources */,
 				0F5500563C2803C56D1F66EB /* ChangePasswordView.swift in Sources */,
+				55EDEC102DD8949F0001EFC7 /* RussianPhoneTextFieldFormatter.swift in Sources */,
+				55DAD1672DD92C6B0043C0A4 /* DecimalTextFieldFormatter.swift in Sources */,
 				F6B76422B25C7753A8080AF3 /* ChangePasswordViewInput.swift in Sources */,
 				D48FDE307178BAEECF82167F /* ChangePasswordViewOutput.swift in Sources */,
 				55EDEC0C2DD894340001EFC7 /* RequiredValidator.swift in Sources */,

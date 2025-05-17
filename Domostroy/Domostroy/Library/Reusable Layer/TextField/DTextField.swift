@@ -115,6 +115,13 @@ class DTextField: UIView {
     var responder: UIResponder {
         return self.textField
     }
+    var formatter: TextFieldFormatter? {
+        didSet {
+            if let formatter = formatter, let text = textField.text {
+                textField.text = formatter.format(text: text)
+            }
+        }
+    }
 
     // MARK: - Properties
 
@@ -224,7 +231,11 @@ class DTextField: UIView {
     }
 
     func setText(_ text: String) {
-        textField.text = text
+        if let formatter {
+            textField.text = formatter.format(text: text)
+        } else {
+            textField.text = text
+        }
     }
 
     func setUnit(_ unit: String?) {
@@ -233,6 +244,9 @@ class DTextField: UIView {
     }
 
     func currentText() -> String {
+        if let formatter {
+            return formatter.rawText
+        }
         return textField.text ?? ""
     }
 
@@ -309,6 +323,29 @@ extension DTextField: UITextFieldDelegate {
             return true
         }
         return false
+    }
+
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if let formatter = formatter {
+            let (newText, shouldChange) = formatter.shouldChangeCharacters(
+                in: textField,
+                range: range,
+                replacementString: string
+            )
+
+            if !shouldChange {
+                textField.text = newText
+                onTextChange?(textField)
+            }
+
+            return shouldChange
+        }
+
+        return true
     }
 
     @objc
@@ -418,7 +455,13 @@ final class DValidatableTextField: DTextField, Validatable {
             setError(text: "")
             return
         }
-        let (isValid, errorMessage) = validator.validate(textField.text)
+        let text: String?
+        if let formatter {
+            text = formatter.rawText
+        } else {
+            text = textField.text
+        }
+        let (isValid, errorMessage) = validator.validate(text)
         isErrorState = !isValid
         setError(text: errorMessage)
     }
