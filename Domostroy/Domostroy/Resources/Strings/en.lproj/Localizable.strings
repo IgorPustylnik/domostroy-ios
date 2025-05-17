@@ -39,6 +39,10 @@
 "HttpError.NotFound" = "Not found";
 "HttpError.InternalServerError" = "Internal server error";
 "ParseError.cantDeserialize" = "Unknown server response format";
+"BaseTechnicalError.NoInternet" = "No internet connection";
+"BaseTechnicalError.DataNotAllowed" = "Data not allowed";
+"BaseTechnicalError.Timeout" = "Request timeout";
+"BaseTechnicalError.CantConnectToHost" = "Server is unavailable";
 
 // MARK: - Token Expiration Handler
 

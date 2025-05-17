@@ -39,6 +39,10 @@
 "HttpError.NotFound" = "Не найдено";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
+"BaseTechnicalError.NoInternet" = "Нет соединения с интернетом";
+"BaseTechnicalError.DataNotAllowed" = "Передача данных запрещена";
+"BaseTechnicalError.Timeout" = "Время ожидания истекло";
+"BaseTechnicalError.CantConnectToHost" = "Сервер недоступен";
 
 // MARK: - Token Expiration Handler
 
