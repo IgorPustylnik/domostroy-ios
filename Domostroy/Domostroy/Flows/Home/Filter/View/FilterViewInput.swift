@@ -10,4 +10,5 @@ protocol FilterViewInput: AnyObject {
     /// Method for setup initial state of view
     func setupInitialState()
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int)
+    func setPriceFilter(from: String, to: String)
 }

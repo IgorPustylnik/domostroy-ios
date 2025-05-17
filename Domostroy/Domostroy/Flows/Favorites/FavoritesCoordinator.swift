@@ -8,26 +8,25 @@
 
 import UIKit
 
+
+private enum LaunchInstructor {
+    case favorites, auth
+
+    static func configure(isAuthorized: Bool) -> LaunchInstructor {
+        switch isAuthorized {
+        case true:
+            return .favorites
+        case false:
+            return .auth
+        }
+    }
+}
+
 final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
 
     // MARK: - FavoritesCoordinatorOutput
 
     var onChangeAuthState: EmptyClosure?
-
-    // MARK: - Private Properties
-
-    private enum LaunchInstructor {
-        case profile, auth
-
-        static func configure(isAuthorized: Bool) -> LaunchInstructor {
-            switch isAuthorized {
-            case true:
-                return .profile
-            case false:
-                return .auth
-            }
-        }
-    }
 
     private let router: Router
 
@@ -49,7 +48,7 @@ final class FavoritesCoordinator: BaseCoordinator, FavoritesCoordinatorOutput {
 
     override func start() {
         switch instructor {
-        case .profile:
+        case .favorites:
             showFavorites()
         case .auth:
             showUnauthorized()

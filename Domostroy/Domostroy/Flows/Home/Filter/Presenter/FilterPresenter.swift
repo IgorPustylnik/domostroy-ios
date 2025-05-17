@@ -11,9 +11,12 @@ import Combine
 
 struct FiltersViewModel {
     var categoryFilter: PickerModel<CategoryEntity>
+    var priceFilter: (from: PriceEntity?, to: PriceEntity?)
 
     var isNotEmpty: Bool {
         categoryFilter.selected != nil
+        || priceFilter.from != nil
+        || priceFilter.to != nil
     }
 }
 
@@ -39,6 +42,10 @@ final class FilterPresenter: FilterModuleOutput {
 extension FilterPresenter: FilterModuleInput {
     func setFilters(_ model: FiltersViewModel) {
         self.model = model
+        view?.setPriceFilter(
+            from: model.priceFilter.from?.value.stringDroppingTrailingZero ?? "",
+            to: model.priceFilter.to?.value.stringDroppingTrailingZero ?? ""
+        )
     }
 }
 
@@ -63,6 +70,22 @@ extension FilterPresenter: FilterViewOutput {
         } else {
             model?.categoryFilter.selected = nil
         }
+    }
+
+    func setPriceFrom(_ from: String) {
+        guard let price = try? Double(from, format: .number) else {
+            model?.priceFilter.from = nil
+            return
+        }
+        model?.priceFilter.from = PriceEntity(value: price, currency: .rub)
+    }
+
+    func setPriceTo(_ to: String) {
+        guard let price = try? Double(to, format: .number) else {
+            model?.priceFilter.to = nil
+            return
+        }
+        model?.priceFilter.to = PriceEntity(value: price, currency: .rub)
     }
 
     func apply() {

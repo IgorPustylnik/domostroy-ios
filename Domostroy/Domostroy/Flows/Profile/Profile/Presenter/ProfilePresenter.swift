@@ -108,7 +108,7 @@ private extension ProfilePresenter {
                     imageView.loadAvatar(id: myUser.id, name: myUser.name, url: url)
                 },
                 name: myUser.name,
-                phoneNumber: "+\(myUser.phoneNumber)",
+                phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: myUser.phoneNumber),
                 email: myUser.email,
                 isAdmin: false
             )

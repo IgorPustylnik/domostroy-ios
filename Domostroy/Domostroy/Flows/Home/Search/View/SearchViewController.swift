@@ -266,8 +266,12 @@ extension SearchViewController: SearchViewInput {
         navigationBar.invalidateIntrinsicContentSize()
         UIView.animate(withDuration: Constants.animationDuration) {
             if active {
+                self.backButton.isHidden = true
+                self.backButton.alpha = 0
                 self.overlayView.alpha = 1
             } else {
+                self.backButton.isHidden = false
+                self.backButton.alpha = 1
                 self.overlayView.alpha = 0
             }
         }

@@ -39,6 +39,10 @@
 "HttpError.NotFound" = "Not found";
 "HttpError.InternalServerError" = "Internal server error";
 "ParseError.cantDeserialize" = "Unknown server response format";
+"BaseTechnicalError.NoInternet" = "No internet connection";
+"BaseTechnicalError.DataNotAllowed" = "Data not allowed";
+"BaseTechnicalError.Timeout" = "Request timeout";
+"BaseTechnicalError.CantConnectToHost" = "Server is unavailable";
 
 // MARK: - Token Expiration Handler
 
@@ -89,6 +93,9 @@
 "Filter.Button.Apply" = "Apply";
 "Filter.Placeholder.Category" = "Select a category";
 "Filter.Category.Header" = "Category";
+"Filter.RentCost.Header" = "Rent cost";
+"Filter.RentCost.From.Placeholder" = "From";
+"Filter.RentCost.To.Placeholder" = "To";
 
 // MARK: - Sort
 
@@ -98,7 +105,8 @@
 "Sort.Default" = "Default";
 "Sort.PriceAscending" = "Price ascending";
 "Sort.PriceDescending" = "Price descending";
-"Sort.Recent" = "Most recent";
+"Sort.Newest" = "Newest first";
+"Sort.Oldest" = "Oldest first";
 
 // MARK: - Home
 

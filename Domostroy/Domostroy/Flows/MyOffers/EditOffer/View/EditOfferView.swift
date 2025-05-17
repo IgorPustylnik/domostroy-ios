@@ -155,6 +155,7 @@ final class EditOfferView: UIView {
             }
             self.delegate?.priceDidChange(self.priceTextField.currentText())
         }
+        $0.formatter = DecimalTextFieldFormatter()
         $0.setUnit("₽/\(L10n.Plurals.day(1))")
         return $0
     }(DValidatableTextField())

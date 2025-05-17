@@ -119,13 +119,13 @@ extension BaseTechnicalError {
         var description: String
         switch self {
         case .noInternetConnection:
-            description = "No internet connection"
+            description = L10n.Localizable.BaseTechnicalError.noInternet
         case .dataNotAllowed:
-            description = "Data not allowed"
+            description = L10n.Localizable.BaseTechnicalError.dataNotAllowed
         case .timeout:
-            description = "Timeout"
+            description = L10n.Localizable.BaseTechnicalError.timeout
         case .cantConnectToHost:
-            description = "Can't connect to server"
+            description = L10n.Localizable.BaseTechnicalError.cantConnectToHost
         }
         return description
     }

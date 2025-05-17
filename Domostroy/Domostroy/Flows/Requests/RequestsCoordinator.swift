@@ -8,13 +8,37 @@
 
 import UIKit
 
+private enum LaunchInstructor {
+    case requests
+    case auth
+
+    static func configure(isAuthorized: Bool) -> LaunchInstructor {
+        switch isAuthorized {
+        case true:
+            return .requests
+        case false:
+            return .auth
+        }
+    }
+}
+
 final class RequestsCoordinator: BaseCoordinator, RequestsCoordinatorOutput {
 
     // MARK: - RequestsCoordinatorOutput
 
+    var onChangeAuthState: EmptyClosure?
+
     // MARK: - Private Properties
 
     private let router: Router
+
+    private var instructor: LaunchInstructor {
+        let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+        if secureStorage?.loadToken() != nil {
+            return .configure(isAuthorized: true)
+        }
+        return .configure(isAuthorized: false)
+    }
 
     // MARK: - Initialization
 
@@ -23,7 +47,12 @@ final class RequestsCoordinator: BaseCoordinator, RequestsCoordinatorOutput {
     }
 
     override func start() {
-        showRequests()
+        switch instructor {
+        case .requests:
+            showRequests()
+        case .auth:
+            showUnauthorized()
+        }
     }
 
 }
@@ -101,6 +130,26 @@ private extension RequestsCoordinator {
             self?.router.popModule()
         }
         router.push(view)
+    }
+
+    func showUnauthorized() {
+        let (view, output) = ProfileUnauthorizedModuleConfigurator().configure()
+        output.onAuthorize = { [weak self] in
+            self?.runAuthFlow()
+        }
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func runAuthFlow() {
+        let coordinator = AuthCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator)
+        }
+        coordinator.onSuccessfulAuth = { [weak self] in
+            self?.onChangeAuthState?()
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
 
 }

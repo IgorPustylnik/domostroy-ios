@@ -37,11 +37,21 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
     override func start(with deepLinkOption: DeepLinkOption?) {
         setupTokenExpirationHandler()
-        if let deepLinkOption {
-            switch deepLinkOption {
-            case .profile:
-                showTabBar(initialTab: .profile)
-            }
+        guard let deepLinkOption else {
+            start()
+            return
+        }
+        switch deepLinkOption {
+        case .home:
+            showTabBar(initialTab: .home)
+        case .favorites:
+            showTabBar(initialTab: .favorites)
+        case .myOffers:
+            showTabBar(initialTab: .myOffers)
+        case .requests:
+            showTabBar(initialTab: .requests)
+        case .profile:
+            showTabBar(initialTab: .profile)
         }
     }
 
@@ -84,7 +94,7 @@ private extension MainTabBarCoordinator {
         let coordinator = HomeCoordinator(router: router)
         coordinator.onChangeAuthState = { [weak self] in
             self?.childCoordinators.forEach { self?.removeDependency($0) }
-            self?.start()
+            self?.start(with: .home)
         }
         addDependency(coordinator)
         coordinator.start()
@@ -97,7 +107,7 @@ private extension MainTabBarCoordinator {
         let coordinator = FavoritesCoordinator(router: router)
         coordinator.onChangeAuthState = { [weak self] in
             self?.childCoordinators.forEach { self?.removeDependency($0) }
-            self?.start()
+            self?.start(with: .favorites)
         }
         addDependency(coordinator)
         coordinator.start()
@@ -113,7 +123,7 @@ private extension MainTabBarCoordinator {
         }
         coordinator.onChangeAuthState = { [weak self] in
             self?.childCoordinators.forEach { self?.removeDependency($0) }
-            self?.start()
+            self?.start(with: .myOffers)
         }
         onTapCenterControl = { [weak coordinator] in
             coordinator?.didTapCenterControl()
@@ -127,6 +137,10 @@ private extension MainTabBarCoordinator {
             return
         }
         let coordinator = RequestsCoordinator(router: router)
+        coordinator.onChangeAuthState = { [weak self] in
+            self?.childCoordinators.forEach { self?.removeDependency($0) }
+            self?.start(with: .requests)
+        }
         addDependency(coordinator)
         coordinator.start()
     }

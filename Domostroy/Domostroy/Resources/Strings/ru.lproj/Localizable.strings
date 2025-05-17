@@ -39,6 +39,10 @@
 "HttpError.NotFound" = "Не найдено";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
+"BaseTechnicalError.NoInternet" = "Нет соединения с интернетом";
+"BaseTechnicalError.DataNotAllowed" = "Передача данных запрещена";
+"BaseTechnicalError.Timeout" = "Время ожидания истекло";
+"BaseTechnicalError.CantConnectToHost" = "Сервер недоступен";
 
 // MARK: - Token Expiration Handler
 
@@ -89,6 +93,9 @@
 "Filter.Button.Apply" = "Применить";
 "Filter.Placeholder.Category" = "Выберите категорию";
 "Filter.Category.Header" = "Категория";
+"Filter.RentCost.Header" = "Стоимость аренды";
+"Filter.RentCost.From.Placeholder" = "От";
+"Filter.RentCost.To.Placeholder" = "До";
 
 // MARK: - Sort
 
@@ -98,7 +105,8 @@
 "Sort.Default" = "По умолчанию";
 "Sort.PriceAscending" = "Дешевле";
 "Sort.PriceDescending" = "Дороже";
-"Sort.Recent" = "По дате";
+"Sort.Newest" = "Сначала новые";
+"Sort.Oldest" = "Сначала старые";
 
 // MARK: - Home
 

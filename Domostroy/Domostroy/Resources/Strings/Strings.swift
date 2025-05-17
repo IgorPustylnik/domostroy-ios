@@ -83,6 +83,16 @@ internal enum L10n {
         }
       }
     }
+    internal enum BaseTechnicalError {
+      /// Server is unavailable
+      internal static let cantConnectToHost = L10n.tr("Localizable", "BaseTechnicalError.CantConnectToHost", fallback: "Server is unavailable")
+      /// Data not allowed
+      internal static let dataNotAllowed = L10n.tr("Localizable", "BaseTechnicalError.DataNotAllowed", fallback: "Data not allowed")
+      /// No internet connection
+      internal static let noInternet = L10n.tr("Localizable", "BaseTechnicalError.NoInternet", fallback: "No internet connection")
+      /// Request timeout
+      internal static let timeout = L10n.tr("Localizable", "BaseTechnicalError.Timeout", fallback: "Request timeout")
+    }
     internal enum Common {
       /// Choose from library
       internal static let chooseFromLibrary = L10n.tr("Localizable", "Common.ChooseFromLibrary", fallback: "Choose from library")
@@ -157,6 +167,18 @@ internal enum L10n {
       internal enum Placeholder {
         /// Select a category
         internal static let category = L10n.tr("Localizable", "Filter.Placeholder.Category", fallback: "Select a category")
+      }
+      internal enum RentCost {
+        /// Rent cost
+        internal static let header = L10n.tr("Localizable", "Filter.RentCost.Header", fallback: "Rent cost")
+        internal enum From {
+          /// From
+          internal static let placeholder = L10n.tr("Localizable", "Filter.RentCost.From.Placeholder", fallback: "From")
+        }
+        internal enum To {
+          /// To
+          internal static let placeholder = L10n.tr("Localizable", "Filter.RentCost.To.Placeholder", fallback: "To")
+        }
       }
     }
     internal enum Home {
@@ -516,14 +538,16 @@ internal enum L10n {
     internal enum Sort {
       /// Default
       internal static let `default` = L10n.tr("Localizable", "Sort.Default", fallback: "Default")
+      /// Newest first
+      internal static let newest = L10n.tr("Localizable", "Sort.Newest", fallback: "Newest first")
+      /// Oldest first
+      internal static let oldest = L10n.tr("Localizable", "Sort.Oldest", fallback: "Oldest first")
       /// Sort
       internal static let placeholder = L10n.tr("Localizable", "Sort.Placeholder", fallback: "Sort")
       /// Price ascending
       internal static let priceAscending = L10n.tr("Localizable", "Sort.PriceAscending", fallback: "Price ascending")
       /// Price descending
       internal static let priceDescending = L10n.tr("Localizable", "Sort.PriceDescending", fallback: "Price descending")
-      /// Most recent
-      internal static let recent = L10n.tr("Localizable", "Sort.Recent", fallback: "Most recent")
       /// Sort
       internal static let title = L10n.tr("Localizable", "Sort.Title", fallback: "Sort")
       internal enum Button {
