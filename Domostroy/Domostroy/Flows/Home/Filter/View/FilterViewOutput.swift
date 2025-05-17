@@ -10,7 +10,8 @@ protocol FilterViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
     func selectCategory(index: Int)
-
+    func setPriceFrom(_ from: String)
+    func setPriceTo(_ to: String)
     func apply()
     func dismiss()
 }

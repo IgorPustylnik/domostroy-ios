@@ -41,7 +41,8 @@ final class SearchPresenter: SearchModuleOutput {
     private var city: CityEntity?
     private var sort: SortViewModel = .default
     private var filters: FiltersViewModel = .init(
-        categoryFilter: .init(all: [])
+        categoryFilter: .init(all: []),
+        priceFilter: (nil, nil)
     )
 
 }
@@ -284,6 +285,12 @@ private extension SearchPresenter {
         }
         if let category = filters.categoryFilter.selected, category.id > 0 {
             filtering.append(.init(filterKey: .categoryId, operation: .equals, value: AnyEncodable(category.id)))
+        }
+        if let fromPrice = filters.priceFilter.from {
+            filtering.append(.init(filterKey: .price, operation: .greaterThanEqual, value: AnyEncodable(fromPrice.value)))
+        }
+        if let toPrice = filters.priceFilter.to {
+            filtering.append(.init(filterKey: .price, operation: .lessThanEqual, value: AnyEncodable(toPrice.value)))
         }
         if let query, !query.isEmpty {
             let words = query.split(separator: " ").map { String($0) }

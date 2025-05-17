@@ -168,6 +168,18 @@ internal enum L10n {
         /// Select a category
         internal static let category = L10n.tr("Localizable", "Filter.Placeholder.Category", fallback: "Select a category")
       }
+      internal enum RentCost {
+        /// Rent cost
+        internal static let header = L10n.tr("Localizable", "Filter.RentCost.Header", fallback: "Rent cost")
+        internal enum From {
+          /// From
+          internal static let placeholder = L10n.tr("Localizable", "Filter.RentCost.From.Placeholder", fallback: "From")
+        }
+        internal enum To {
+          /// To
+          internal static let placeholder = L10n.tr("Localizable", "Filter.RentCost.To.Placeholder", fallback: "To")
+        }
+      }
     }
     internal enum Home {
       internal enum Empty {

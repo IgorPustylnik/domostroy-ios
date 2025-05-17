@@ -93,6 +93,9 @@
 "Filter.Button.Apply" = "Apply";
 "Filter.Placeholder.Category" = "Select a category";
 "Filter.Category.Header" = "Category";
+"Filter.RentCost.Header" = "Rent cost";
+"Filter.RentCost.From.Placeholder" = "From";
+"Filter.RentCost.To.Placeholder" = "To";
 
 // MARK: - Sort
 

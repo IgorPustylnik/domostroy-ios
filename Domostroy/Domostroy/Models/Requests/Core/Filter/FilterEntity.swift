@@ -16,6 +16,7 @@ public struct FilterEntity {
     public enum FilterKey: String {
         case title = "title"
         case description = "description"
+        case price = "price"
         case cityId = "cityId"
         case categoryId = "categoryId"
         case userId = "userId"

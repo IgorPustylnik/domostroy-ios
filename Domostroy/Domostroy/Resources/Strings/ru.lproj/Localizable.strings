@@ -93,6 +93,9 @@
 "Filter.Button.Apply" = "Применить";
 "Filter.Placeholder.Category" = "Выберите категорию";
 "Filter.Category.Header" = "Категория";
+"Filter.RentCost.Header" = "Стоимость аренды";
+"Filter.RentCost.From.Placeholder" = "От";
+"Filter.RentCost.To.Placeholder" = "До";
 
 // MARK: - Sort
 
