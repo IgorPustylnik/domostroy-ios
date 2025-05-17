@@ -262,12 +262,21 @@
 		55ED677F2DA8181200A3CA52 /* DSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */; };
 		55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */; };
 		55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */; };
+		55EDEBFC2DD893B60001EFC7 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFB2DD893B60001EFC7 /* UsernameValidator.swift */; };
+		55EDEBFE2DD893D60001EFC7 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFD2DD893D60001EFC7 /* EmailValidator.swift */; };
+		55EDEC002DD893E60001EFC7 /* RussianPhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEBFF2DD893E60001EFC7 /* RussianPhoneValidator.swift */; };
+		55EDEC022DD893F20001EFC7 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC012DD893F20001EFC7 /* PasswordValidator.swift */; };
+		55EDEC042DD893FF0001EFC7 /* OfferNameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC032DD893FF0001EFC7 /* OfferNameValidator.swift */; };
+		55EDEC062DD8940D0001EFC7 /* OfferDescriptionValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC052DD8940D0001EFC7 /* OfferDescriptionValidator.swift */; };
+		55EDEC082DD894180001EFC7 /* PriceValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC072DD894180001EFC7 /* PriceValidator.swift */; };
+		55EDEC0A2DD894270001EFC7 /* MatchPasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC092DD894270001EFC7 /* MatchPasswordValidator.swift */; };
+		55EDEC0C2DD894340001EFC7 /* RequiredValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC0B2DD894340001EFC7 /* RequiredValidator.swift */; };
+		55EDEC0E2DD8943F0001EFC7 /* OptionalValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEC0D2DD8943F0001EFC7 /* OptionalValidator.swift */; };
 		55F88C9A2DC35D84003EA26E /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 55F88C992DC35D84003EA26E /* Drops */; };
 		55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */; };
 		55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */; };
 		55F88CA82DC3F37F003EA26E /* OfferIdEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */; };
 		55F88CAA2DC3F38A003EA26E /* OfferIdEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F88CA92DC3F38A003EA26E /* OfferIdEntry.swift */; };
-		55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */; };
 		55FE25CF2DD0D86700B7B35F /* IncomingRequestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE25CE2DD0D86700B7B35F /* IncomingRequestCollectionViewCell.swift */; };
 		55FE25D12DD0D98900B7B35F /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE25D02DD0D98900B7B35F /* RequestStatus.swift */; };
 		55FE25D32DD0F0FB00B7B35F /* RentalRequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE25D22DD0F0FB00B7B35F /* RentalRequestEntity.swift */; };
@@ -681,11 +690,20 @@
 		55ED677E2DA8181200A3CA52 /* DSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSearchTextField.swift; sourceTree = "<group>"; };
 		55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelper.swift; sourceTree = "<group>"; };
 		55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
+		55EDEBFB2DD893B60001EFC7 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
+		55EDEBFD2DD893D60001EFC7 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		55EDEBFF2DD893E60001EFC7 /* RussianPhoneValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RussianPhoneValidator.swift; sourceTree = "<group>"; };
+		55EDEC012DD893F20001EFC7 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		55EDEC032DD893FF0001EFC7 /* OfferNameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferNameValidator.swift; sourceTree = "<group>"; };
+		55EDEC052DD8940D0001EFC7 /* OfferDescriptionValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDescriptionValidator.swift; sourceTree = "<group>"; };
+		55EDEC072DD894180001EFC7 /* PriceValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceValidator.swift; sourceTree = "<group>"; };
+		55EDEC092DD894270001EFC7 /* MatchPasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPasswordValidator.swift; sourceTree = "<group>"; };
+		55EDEC0B2DD894340001EFC7 /* RequiredValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredValidator.swift; sourceTree = "<group>"; };
+		55EDEC0D2DD8943F0001EFC7 /* OptionalValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalValidator.swift; sourceTree = "<group>"; };
 		55F88C9D2DC3603E003EA26E /* DropsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsPresenter.swift; sourceTree = "<group>"; };
 		55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		55F88CA72DC3F37F003EA26E /* OfferIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntity.swift; sourceTree = "<group>"; };
 		55F88CA92DC3F38A003EA26E /* OfferIdEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferIdEntry.swift; sourceTree = "<group>"; };
-		55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberNormalizer.swift; sourceTree = "<group>"; };
 		55FE25CE2DD0D86700B7B35F /* IncomingRequestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestCollectionViewCell.swift; sourceTree = "<group>"; };
 		55FE25D02DD0D98900B7B35F /* RequestStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
 		55FE25D22DD0F0FB00B7B35F /* RentalRequestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalRequestEntity.swift; sourceTree = "<group>"; };
@@ -1231,7 +1249,16 @@
 		550D4F2A2D9FC29D00B460CA /* TextValidator */ = {
 			isa = PBXGroup;
 			children = (
-				550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */,
+				55EDEC0B2DD894340001EFC7 /* RequiredValidator.swift */,
+				55EDEC0D2DD8943F0001EFC7 /* OptionalValidator.swift */,
+				55EDEBFB2DD893B60001EFC7 /* UsernameValidator.swift */,
+				55EDEBFD2DD893D60001EFC7 /* EmailValidator.swift */,
+				55EDEBFF2DD893E60001EFC7 /* RussianPhoneValidator.swift */,
+				55EDEC012DD893F20001EFC7 /* PasswordValidator.swift */,
+				55EDEC032DD893FF0001EFC7 /* OfferNameValidator.swift */,
+				55EDEC052DD8940D0001EFC7 /* OfferDescriptionValidator.swift */,
+				55EDEC072DD894180001EFC7 /* PriceValidator.swift */,
+				55EDEC092DD894270001EFC7 /* MatchPasswordValidator.swift */,
 			);
 			path = TextValidator;
 			sourceTree = "<group>";
@@ -1544,8 +1571,8 @@
 		55631AA62D95FB3900FD6856 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				55EDEBFA2DD893570001EFC7 /* TextFieldFormatter */,
 				550D4F2A2D9FC29D00B460CA /* TextValidator */,
-				55FC66E92DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1590,6 +1617,7 @@
 				55D6294D2DAD198900E09764 /* EmptyStateable.swift */,
 				551FB89F2DD66B50006E3551 /* Validatable.swift */,
 				55EDEBED2DD7E3AF0001EFC7 /* Reloadable.swift */,
+				550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -3097,6 +3125,7 @@
 				550D4F2C2D9FC2AB00B460CA /* TextValidator.swift in Sources */,
 				0DB74CCC61D02CA122A4CE0B /* HomePresenter.swift in Sources */,
 				6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */,
+				55EDEBFC2DD893B60001EFC7 /* UsernameValidator.swift in Sources */,
 				550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */,
 				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
 				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
@@ -3127,6 +3156,7 @@
 				F6EC78CA5392439479DA7911 /* MyOffersPresenter.swift in Sources */,
 				5592A38A2DBFB49B0082DB28 /* UserNetworkService.swift in Sources */,
 				BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */,
+				55EDEC062DD8940D0001EFC7 /* OfferDescriptionValidator.swift in Sources */,
 				3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */,
 				D79632CFEED2C45192B37FA9 /* MyOffersViewController.swift in Sources */,
 				55189C572DB69B770079481A /* OfferDetailsCoordinatorOutput.swift in Sources */,
@@ -3151,7 +3181,6 @@
 				3CD284215C70C6587A45637D /* RequestsModuleOutput.swift in Sources */,
 				9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */,
 				551747632DC78CA600AFAF24 /* CitiesEntry.swift in Sources */,
-				55FC66EA2DA0AC6A005DE2AC /* PhoneNumberNormalizer.swift in Sources */,
 				552886A42DC6A65F00CADD6C /* MyOfferEntity.swift in Sources */,
 				55AAA9C32DBE882F0018952F /* OfferNetworkService.swift in Sources */,
 				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
@@ -3174,6 +3203,7 @@
 				55AAA9C92DBEB8490018952F /* PageEntity.swift in Sources */,
 				55ED677D2DA80E2600A3CA52 /* Double+ext.swift in Sources */,
 				BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */,
+				55EDEBFE2DD893D60001EFC7 /* EmailValidator.swift in Sources */,
 				551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */,
 				7CEFB8B6EC9E66B117592453 /* ProfileViewOutput.swift in Sources */,
 				55EDEBEE2DD7E3AF0001EFC7 /* Reloadable.swift in Sources */,
@@ -3195,10 +3225,12 @@
 				55DD9F052DA529B2003F0CB3 /* InfoPlist.swift in Sources */,
 				551747522DC788BB00AFAF24 /* CityUrlRoute.swift in Sources */,
 				55E0FF2C2DAEDDAE00D908A8 /* DMultiLineTextField.swift in Sources */,
+				55EDEC0A2DD894270001EFC7 /* MatchPasswordValidator.swift in Sources */,
 				46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */,
 				554F7CC62DBA2EFD008A2BB3 /* UserProfileInfoCollectionViewCell.swift in Sources */,
 				1B9F2608DB9E38CB44235E05 /* AuthModuleOutput.swift in Sources */,
 				55B126542DC675CF0030A6FC /* FilterEntity.swift in Sources */,
+				55EDEC0E2DD8943F0001EFC7 /* OptionalValidator.swift in Sources */,
 				AD52102C9664F92595A23951 /* AuthViewController.swift in Sources */,
 				581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */,
 				55ED67792DA7BCB300A3CA52 /* ImageCollectionViewCell.swift in Sources */,
@@ -3258,10 +3290,12 @@
 				CD7C1FB68E4EBAD3B147F6B3 /* OfferDetailsModuleConfigurator.swift in Sources */,
 				5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */,
 				55EDEBEA2DD79C3D0001EFC7 /* PermissionHelper.swift in Sources */,
+				55EDEC022DD893F20001EFC7 /* PasswordValidator.swift in Sources */,
 				487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */,
 				70137BF7DDC374152BFF0D20 /* OfferDetailsModuleOutput.swift in Sources */,
 				1F53718CD4AC134C6E4E782A /* OfferDetailsViewController.swift in Sources */,
 				1844232FAB0EC06098F4493F /* OfferDetailsView.swift in Sources */,
+				55EDEC042DD893FF0001EFC7 /* OfferNameValidator.swift in Sources */,
 				55190AF72DD4ED9800C33A57 /* CreateRequestEntity.swift in Sources */,
 				55AAA9C72DBEB7B60018952F /* OfferService.swift in Sources */,
 				3DFCD1492F9656405D1EF06C /* OfferDetailsViewInput.swift in Sources */,
@@ -3399,6 +3433,7 @@
 				FA749726E9607136DDEADDC4 /* OutgoingRequestsViewController.swift in Sources */,
 				ED3AE30DBE83D5D6018A477C /* OutgoingRequestsViewInput.swift in Sources */,
 				1E371A19B9C19F0C3EF4A940 /* OutgoingRequestsViewOutput.swift in Sources */,
+				55EDEC002DD893E60001EFC7 /* RussianPhoneValidator.swift in Sources */,
 				78C650E81CB7AAE845C315F2 /* IncomingRequestDetailsModuleConfigurator.swift in Sources */,
 				52EA661ED069E59736D14ACA /* IncomingRequestDetailsPresenter.swift in Sources */,
 				CB9B1773326E47A5340C5CF4 /* IncomingRequestDetailsModuleInput.swift in Sources */,
@@ -3406,6 +3441,7 @@
 				E4501583582AA754D90E318B /* IncomingRequestDetailsModuleOutput.swift in Sources */,
 				9367B72F78457B3038A0FB3B /* IncomingRequestDetailsViewController.swift in Sources */,
 				977CF0272C785FBF51DB4E85 /* IncomingRequestDetailsView.swift in Sources */,
+				55EDEC082DD894180001EFC7 /* PriceValidator.swift in Sources */,
 				EA283FCD867F40055E07054C /* IncomingRequestDetailsViewInput.swift in Sources */,
 				FBC1CA59D265695EBB4FB424 /* IncomingRequestDetailsViewOutput.swift in Sources */,
 				53BE3F3B545312262D05BFE6 /* OutgoingRequestDetailsModuleConfigurator.swift in Sources */,
@@ -3433,6 +3469,7 @@
 				0F5500563C2803C56D1F66EB /* ChangePasswordView.swift in Sources */,
 				F6B76422B25C7753A8080AF3 /* ChangePasswordViewInput.swift in Sources */,
 				D48FDE307178BAEECF82167F /* ChangePasswordViewOutput.swift in Sources */,
+				55EDEC0C2DD894340001EFC7 /* RequiredValidator.swift in Sources */,
 				3E7BF9AC7CC6483CE806130C /* MyOfferDetailsModuleConfigurator.swift in Sources */,
 				ED8E4419E50FB80B3A4D7259 /* MyOfferDetailsPresenter.swift in Sources */,
 				6B1EE337CDEC624C2F9FBA27 /* MyOfferDetailsModuleInput.swift in Sources */,

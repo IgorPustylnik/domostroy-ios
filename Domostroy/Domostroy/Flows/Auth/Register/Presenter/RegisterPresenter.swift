@@ -42,7 +42,7 @@ extension RegisterPresenter: RegisterViewOutput {
         let normalizedRegisterEntity = RegisterEntity(
             firstName: registerEntity.firstName,
             lastName: registerEntity.lastName,
-            phoneNumber: RussianPhoneNumberNormalizer().normalizePhone(registerEntity.phoneNumber),
+            phoneNumber: registerEntity.phoneNumber,
             email: registerEntity.email.lowercased(),
             password: registerEntity.password
         )

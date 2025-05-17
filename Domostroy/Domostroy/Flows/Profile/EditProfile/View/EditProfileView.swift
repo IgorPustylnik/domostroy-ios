@@ -113,7 +113,7 @@ final class EditProfileView: UIView {
         $0.onShouldReturn = { textField in
             textField.resignFirstResponder()
         }
-        $0.validator = RequiredValidator(PhoneValidator(normalizer: RussianPhoneNumberNormalizer()))
+        $0.validator = RequiredValidator(RussianPhoneValidator())
         return $0
     }(DValidatableTextField())
 
