@@ -105,7 +105,8 @@
 "Sort.Default" = "По умолчанию";
 "Sort.PriceAscending" = "Дешевле";
 "Sort.PriceDescending" = "Дороже";
-"Sort.Recent" = "По дате";
+"Sort.Newest" = "Сначала новые";
+"Sort.Oldest" = "Сначала старые";
 
 // MARK: - Home
 

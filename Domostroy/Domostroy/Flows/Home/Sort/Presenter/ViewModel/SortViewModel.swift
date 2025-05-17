@@ -9,7 +9,8 @@ public enum SortViewModel: CaseIterable {
     case `default`
     case priceAscending
     case priceDescending
-    case recent
+    case newest
+    case oldest
 
     var description: String {
         switch self {
@@ -19,8 +20,10 @@ public enum SortViewModel: CaseIterable {
             return L10n.Localizable.Sort.priceAscending
         case .priceDescending:
             return L10n.Localizable.Sort.priceDescending
-        case .recent:
-            return L10n.Localizable.Sort.recent
+        case .newest:
+            return L10n.Localizable.Sort.newest
+        case .oldest:
+            return L10n.Localizable.Sort.oldest
         }
     }
 
@@ -32,8 +35,10 @@ public enum SortViewModel: CaseIterable {
             return .init(property: .price, direction: .ascending)
         case .priceDescending:
             return .init(property: .price, direction: .descending)
-        case .recent:
+        case .newest:
             return .init(property: .date, direction: .descending)
+        case .oldest:
+            return .init(property: .date, direction: .ascending)
         }
     }
 }

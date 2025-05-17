@@ -538,14 +538,16 @@ internal enum L10n {
     internal enum Sort {
       /// Default
       internal static let `default` = L10n.tr("Localizable", "Sort.Default", fallback: "Default")
+      /// Newest first
+      internal static let newest = L10n.tr("Localizable", "Sort.Newest", fallback: "Newest first")
+      /// Oldest first
+      internal static let oldest = L10n.tr("Localizable", "Sort.Oldest", fallback: "Oldest first")
       /// Sort
       internal static let placeholder = L10n.tr("Localizable", "Sort.Placeholder", fallback: "Sort")
       /// Price ascending
       internal static let priceAscending = L10n.tr("Localizable", "Sort.PriceAscending", fallback: "Price ascending")
       /// Price descending
       internal static let priceDescending = L10n.tr("Localizable", "Sort.PriceDescending", fallback: "Price descending")
-      /// Most recent
-      internal static let recent = L10n.tr("Localizable", "Sort.Recent", fallback: "Most recent")
       /// Sort
       internal static let title = L10n.tr("Localizable", "Sort.Title", fallback: "Sort")
       internal enum Button {

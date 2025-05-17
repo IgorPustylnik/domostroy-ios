@@ -105,7 +105,8 @@
 "Sort.Default" = "Default";
 "Sort.PriceAscending" = "Price ascending";
 "Sort.PriceDescending" = "Price descending";
-"Sort.Recent" = "Most recent";
+"Sort.Newest" = "Newest first";
+"Sort.Oldest" = "Oldest first";
 
 // MARK: - Home
 
