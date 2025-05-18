@@ -110,7 +110,7 @@
 
 // MARK: - Home
 
-"Home.Section.Recommended.title" = "Recommended";
+"Home.Section.Feed.title" = "Лента";
 "Home.Empty.message" = "Nothing found";
 
 // MARK: - Search

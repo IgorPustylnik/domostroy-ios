@@ -137,7 +137,7 @@ private extension OutgoingRequestsPresenter {
             title: request.offer.title,
             price: LocalizationHelper.pricePerDay(for: request.offer.price),
             dates: "\(L10n.Localizable.Requests.Info.dates): \(request.dates.formattedDateRanges())",
-            leaser: "\(L10n.Localizable.Requests.Info.lessor): \(request.user.name)",
+            lessor: "\(L10n.Localizable.Requests.Info.lessor): \(request.user.name)",
             location: request.offer.city,
             status: request.status,
             actions: actions
@@ -187,6 +187,7 @@ private extension OutgoingRequestsPresenter {
         paginationSnapshot = .now
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
+        view?.setEmptyState(false)
         isFirstPageLoading = true
 
         fetchRequests { [weak self] in

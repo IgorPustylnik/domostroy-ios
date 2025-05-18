@@ -25,6 +25,7 @@ final class HomePresenter: HomeModuleOutput {
 
     var onOpenOffer: ((Int) -> Void)?
     var onSearch: ((String?) -> Void)?
+    var onSearchFilters: ((FiltersViewModel) -> Void)?
 
     // MARK: - Properties
 
@@ -33,7 +34,10 @@ final class HomePresenter: HomeModuleOutput {
 
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
+    private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
+
+    private var categories: [CategoryEntity] = []
 
     private var isFirstPageLoading = false
     private var pagesCount = 0
@@ -73,6 +77,12 @@ extension HomePresenter: HomeViewOutput {
         onOpenOffer?(id)
     }
 
+    func selectCategory(id: Int) {
+        let category = categories.first { $0.id == id }
+        let filters = FiltersViewModel(categoryFilter: .init(all: categories, selected: category))
+        onSearchFilters?(filters)
+    }
+
 }
 
 // MARK: - RefreshableOutput
@@ -110,11 +120,11 @@ extension HomePresenter: PaginatableOutput {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
-                self.updatePagination()
-                self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
-                self.view?.setEmptyState(page.data.isEmpty)
-                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+                pagesCount = page.pagination.totalPages
+                updatePagination()
+                paginatableInput?.updatePagination(canIterate: canLoadNext())
+                view?.setEmptyState(page.data.isEmpty)
+                view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }
@@ -163,6 +173,12 @@ private extension HomePresenter {
         )
         return viewModel
     }
+
+    func makeCategoryViewModel(
+        from category: CategoryEntity
+    ) -> CategoryCollectionViewCell.ViewModel {
+        .init(id: category.id, title: category.name)
+    }
 }
 
 // MARK: - Network requests
@@ -191,10 +207,9 @@ private extension HomePresenter {
             .store(in: &cancellables)
     }
 
-    func loadFirstPage(completion: (() -> Void)? = nil) {
+    func loadFirstPage(completion: EmptyClosure? = nil) {
         currentPage = 0
         paginationSnapshot = .now
-        view?.fillFirstPage(with: [])
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
@@ -208,15 +223,39 @@ private extension HomePresenter {
                 guard let self else {
                     return
                 }
-                DispatchQueue.main.async {
-                    self.pagesCount = page.pagination.totalPages
-                    self.updatePagination()
-                    self.paginatableInput?.updatePagination(canIterate: self.canLoadNext())
-                    self.view?.setEmptyState(page.data.isEmpty)
-                    self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
+                if !page.data.isEmpty {
+                    loadCategories()
+                } else {
+                    view?.setCategories(with: [])
                 }
+                pagesCount = page.pagination.totalPages
+                updatePagination()
+                paginatableInput?.updatePagination(canIterate: canLoadNext())
+                view?.setEmptyState(page.data.isEmpty)
+                view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
+            }
+        }
+    }
+
+    func loadCategories(completion: EmptyClosure? = nil) {
+        if categories.isEmpty {
+            view?.setCategories(with: [])
+        }
+        fetchCategories {
+            completion?()
+        } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let categories):
+                self.categories = categories.categories
+                view?.setCategories(with: categories.categories.map { self.makeCategoryViewModel(from: $0) })
+            case .failure:
+                self.categories = []
+                view?.setCategories(with: [])
             }
         }
     }
@@ -244,6 +283,22 @@ private extension HomePresenter {
                 }
             )
             .store(in: &cancellables)
+    }
+
+    func fetchCategories(
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<CategoriesEntity>) -> Void)?
+    ) {
+        categoryService?.getCategories(
+        ).sink(
+            receiveCompletion: { _ in
+                completion?()
+            },
+            receiveValue: { result in
+                handleResult?(result)
+            }
+        )
+        .store(in: &cancellables)
     }
 
     func canLoadNext() -> Bool {

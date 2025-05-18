@@ -26,7 +26,7 @@ final class SearchPresenter: SearchModuleOutput {
     weak var view: SearchViewInput?
     private weak var paginatableInput: PaginatableInput?
 
-    private let basicStorage: BasicUserDefaultsStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
 
@@ -45,6 +45,8 @@ final class SearchPresenter: SearchModuleOutput {
         priceFilter: (nil, nil)
     )
 
+    private var hasLoadedInitially = false
+
 }
 
 // MARK: - SearchModuleInput
@@ -54,25 +56,36 @@ extension SearchPresenter: SearchModuleInput {
     func setQuery(_ query: String?) {
         self.query = query
         view?.setQuery(self.query)
-        loadFirstPage()
+        if hasLoadedInitially {
+            loadFirstPage()
+        }
     }
 
     func setCity(_ city: CityEntity?) {
         self.city = city
         view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
-        loadFirstPage()
+        if let city {
+            try? basicStorage?.set(city.toDTO(), for: .defaultCity)
+        }
+        if hasLoadedInitially {
+            loadFirstPage()
+        }
     }
 
     func setSort(_ sort: SortViewModel) {
         self.sort = sort
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
-        loadFirstPage()
+        if hasLoadedInitially {
+            loadFirstPage()
+        }
     }
 
     func setFilters(_ filters: FiltersViewModel) {
         self.filters = filters
         view?.setHasFilters(filters.isNotEmpty)
-        loadFirstPage()
+        if hasLoadedInitially {
+            loadFirstPage()
+        }
     }
 }
 
@@ -162,10 +175,10 @@ extension SearchPresenter: PaginatableOutput {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
-                self.updatePagination()
-                self.view?.setEmptyState(page.data.isEmpty)
-                self.view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
+                pagesCount = page.pagination.totalPages
+                updatePagination()
+                view?.setEmptyState(page.data.isEmpty)
+                view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }
@@ -245,7 +258,6 @@ private extension SearchPresenter {
     func loadFirstPage(completion: (() -> Void)? = nil) {
         currentPage = 0
         paginationSnapshot = .now
-        view?.fillFirstPage(with: [])
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
@@ -259,10 +271,11 @@ private extension SearchPresenter {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
-                self.updatePagination()
-                self.view?.setEmptyState(page.data.isEmpty)
-                self.view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
+                pagesCount = page.pagination.totalPages
+                updatePagination()
+                view?.setEmptyState(page.data.isEmpty)
+                view?.fillFirstPage(with: page.data.compactMap { self.makeOfferViewModel(from: $0) })
+                hasLoadedInitially = true
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }

@@ -42,6 +42,9 @@ private extension HomeCoordinator {
         output.onSearch = { [weak self] query in
             self?.showSearch(query: query)
         }
+        output.onSearchFilters = { [weak self] filters in
+            self?.showSearch(query: nil, filters: filters)
+        }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
@@ -57,9 +60,12 @@ private extension HomeCoordinator {
         coordinator.start(with: id)
     }
 
-    func showSearch(query: String?) {
+    func showSearch(query: String?, filters: FiltersViewModel? = nil) {
         let (view, output, input) = SearchModuleConfigurator().configure()
         input.setQuery(query)
+        if let filters {
+            input.setFilters(filters)
+        }
         output.onOpenOffer = { [weak self] id in
             self?.runOfferDetailsFlow(id)
         }

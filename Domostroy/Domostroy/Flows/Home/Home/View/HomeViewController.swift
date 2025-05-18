@@ -16,8 +16,10 @@ final class HomeViewController: BaseViewController {
 
     private enum Constants {
         static let progressViewHeight: CGFloat = 80
-        static let sectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
-        static let intergroupSpacing: CGFloat = 10
+        static let offerSectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        static let categorySectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        static let offerIntergroupSpacing: CGFloat = 10
+        static let categoryIntergroupSpacing: CGFloat = 8
         static let interitemSpacing: CGFloat = 10
         static let animationDuration: Double = 0.3
     }
@@ -46,9 +48,11 @@ final class HomeViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var adapter: BaseCollectionManager?
 
+    typealias CategoryCellGenerator = DiffableCollectionCellGenerator<CategoryCollectionViewCell>
     typealias OfferCellGenerator = DiffableCollectionCellGenerator<OfferCollectionViewCell>
 
     private var offerGenerators: [OfferCellGenerator] = []
+    private var categoryGenerators: [CategoryCellGenerator] = []
 
     private lazy var emptyView = HomeEmptyView()
 
@@ -128,13 +132,46 @@ private extension HomeViewController {
             guard let self else {
                 return nil
             }
-            return self.makeSectionLayout(for: sectionIndex)
+            switch sectionIndex {
+            case 0:
+                if !categoryGenerators.isEmpty {
+                    return makeCategorySectionLayout(for: sectionIndex)
+                } else {
+                    return makeOfferSectionLayout(for: sectionIndex)
+                }
+            case 1:
+                return makeOfferSectionLayout(for: sectionIndex)
+            default:
+                return makeOfferSectionLayout(for: sectionIndex)
+            }
         }
 
         return layout
     }
 
-    func makeSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+    func makeCategorySectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(1),
+            heightDimension: .estimated(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(1),
+            heightDimension: .estimated(1)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = .fixed(Constants.interitemSpacing)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = Constants.categorySectionContentInset
+        section.interGroupSpacing = Constants.categoryIntergroupSpacing
+
+        return section
+    }
+
+    func makeOfferSectionLayout(for sectionIndex: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.5),
             heightDimension: .estimated(1)
@@ -149,8 +186,8 @@ private extension HomeViewController {
         group.interItemSpacing = .fixed(Constants.interitemSpacing)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = Constants.sectionContentInset
-        section.interGroupSpacing = Constants.intergroupSpacing
+        section.contentInsets = Constants.offerSectionContentInset
+        section.interGroupSpacing = Constants.offerIntergroupSpacing
 
         let header = makeSectionHeader()
         section.boundarySupplementaryItems = [header]
@@ -205,10 +242,25 @@ extension HomeViewController: HomeViewInput {
         }
     }
 
+    func setCategories(with viewModels: [CategoryCollectionViewCell.ViewModel]) {
+        categoryGenerators = viewModels.map {
+            let generator = CategoryCellGenerator(
+                uniqueId: $0.id,
+                with: $0,
+                registerType: .class
+            )
+            generator.didSelectEvent += { [weak self, viewModel = $0] in
+                self?.output?.selectCategory(id: viewModel.id)
+            }
+            return generator
+        }
+        refillHeaders()
+    }
+
     func fillFirstPage(with viewModels: [OfferCollectionViewCell.ViewModel]) {
         offerGenerators = viewModels.map {
             let generator = OfferCellGenerator(
-                uniqueId: UUID(),
+                uniqueId: $0.id,
                 with: $0,
                 registerType: .class
             )
@@ -217,13 +269,13 @@ extension HomeViewController: HomeViewInput {
             }
             return generator
         }
-        refillAdapter()
+        refillHeaders()
     }
 
     func fillNextPage(with viewModels: [OfferCollectionViewCell.ViewModel]) {
         let newGenerators = viewModels.map {
             let generator = OfferCellGenerator(
-                uniqueId: UUID(),
+                uniqueId: $0.id,
                 with: $0,
                 registerType: .class
             )
@@ -236,7 +288,7 @@ extension HomeViewController: HomeViewInput {
         if let lastGenerator = adapter?.generators.last?.last {
             adapter?.insert(after: lastGenerator, new: newGenerators)
         } else {
-            refillAdapter()
+            refillHeaders()
         }
     }
 
@@ -245,13 +297,17 @@ extension HomeViewController: HomeViewInput {
 // MARK: - Private methods
 
 private extension HomeViewController {
-    func refillAdapter() {
+    func refillHeaders() {
         adapter?.clearCellGenerators()
         adapter?.clearHeaderGenerators()
         adapter?.clearFooterGenerators()
+        if !categoryGenerators.isEmpty {
+            adapter?.addSectionHeaderGenerator(EmptyCollectionHeaderGenerator())
+        }
+        adapter?.addCellGenerators(categoryGenerators)
         if !offerGenerators.isEmpty {
             adapter?.addSectionHeaderGenerator(
-                TitleCollectionHeaderGenerator(title: L10n.Localizable.Home.Section.Recommended.title)
+                TitleCollectionHeaderGenerator(title: L10n.Localizable.Home.Section.Feed.title)
             )
         }
         adapter?.addCellGenerators(offerGenerators)

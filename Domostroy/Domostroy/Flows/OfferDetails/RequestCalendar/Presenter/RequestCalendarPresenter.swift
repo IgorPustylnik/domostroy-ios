@@ -161,7 +161,7 @@ private extension RequestCalendarPresenter {
             .filter { !$0.isBooked }
             .map { $0.date }
             .sorted()
-        let firstDate = availableDates.first ?? .now
+        let firstDate = Date.now
         let lastDate = calendar.date(
             bySetting: .day,
             value: calendar.range(of: .day, in: .month, for: availableDates.last ?? firstDate)?.last ?? 1,

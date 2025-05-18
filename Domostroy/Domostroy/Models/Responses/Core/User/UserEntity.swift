@@ -12,7 +12,7 @@ public struct UserEntity {
     public let id: Int
     public let firstName: String
     public let lastName: String?
-//    public let phoneNumber: String
+    public let phoneNumber: String
     public let offersAmount: Int
     public let registrationDate: Date
 
@@ -32,7 +32,7 @@ extension UserEntity: DTODecodable {
             id: model.userId,
             firstName: model.firstName,
             lastName: model.lastName,
-//            phoneNumber: model.phoneNumber,
+            phoneNumber: model.phoneNumber,
             offersAmount: model.numOfOffers,
             registrationDate: model.createdAt
         )

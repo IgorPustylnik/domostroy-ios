@@ -72,6 +72,7 @@ final class FilterViewController: UIViewController {
             self.output?.setPriceFrom(self.priceFromTextField.currentText())
         }
         $0.formatter = PrefixTextFieldFormatter(prefix: L10n.Localizable.Filter.RentCost.From.placeholder + " ")
+        $0.validator = OptionalValidator(PriceValidator())
         $0.setUnit("₽/\(L10n.Plurals.day(1))")
         return $0
     }(DValidatableTextField())
@@ -89,7 +90,7 @@ final class FilterViewController: UIViewController {
             self.output?.setPriceTo(self.priceToTextField.currentText())
         }
         $0.formatter = PrefixTextFieldFormatter(prefix: L10n.Localizable.Filter.RentCost.To.placeholder + " ")
-        $0.validator = PriceValidator()
+        $0.validator = OptionalValidator(PriceValidator())
         $0.setUnit("₽/\(L10n.Plurals.day(1))")
         return $0
     }(DValidatableTextField())
