@@ -12,13 +12,13 @@ final class MainTabBarItemView: UIView {
 
     // MARK: - UI Elements
 
-    private lazy var imageView = UIImageView(image: tab.image, highlightedImage: tab.selectedImage)
-
-    private lazy var contentView: UIView = {
-        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
-        $0.addSubview(imageView)
+    private lazy var button = {
+        $0.image = tab.image
+        $0.setAction { [weak self] in
+            self?.didSelect?()
+        }
         return $0
-    } (UIView())
+    }(DButton(type: .plainPrimary))
 
     // MARK: - Init
 
@@ -41,37 +41,22 @@ final class MainTabBarItemView: UIView {
     var isEnabled: Bool = true {
         didSet {
             alpha = isEnabled ? 1 : 0
-            contentView.isUserInteractionEnabled = isEnabled
+            button.isUserInteractionEnabled = isEnabled
         }
     }
 
     var isSelected: Bool = false {
         didSet {
-            imageView.isHighlighted = isSelected
+            button.image = isSelected ? tab.selectedImage : tab.image
         }
     }
 
     // MARK: - UI Setup
 
     private func setupUI() {
-        addSubview(contentView)
-        contentView.snp.makeConstraints { make in
+        addSubview(button)
+        button.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
-        }
     }
-
-}
-
-// MARK: - Selectors
-
-private extension MainTabBarItemView {
-
-    @objc
-    func tap() {
-        didSelect?()
-    }
-
 }

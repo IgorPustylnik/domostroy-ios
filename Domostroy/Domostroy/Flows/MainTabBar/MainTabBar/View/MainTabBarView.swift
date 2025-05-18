@@ -28,8 +28,8 @@ final class MainTabBarView: UIView {
 
     private lazy var buttonsHStackView: UIStackView = {
         $0.axis = .horizontal
-        $0.alignment = .center
-        $0.distribution = .equalSpacing
+        $0.alignment = .fill
+        $0.distribution = .fillEqually
         return $0
     }(UIStackView())
 
@@ -94,7 +94,7 @@ final class MainTabBarView: UIView {
 
         buttonsHStackView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().offset(-14)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(12)
         }
 
         blurView.snp.makeConstraints { make in
