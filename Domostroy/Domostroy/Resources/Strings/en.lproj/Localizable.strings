@@ -183,6 +183,11 @@
 "Profile.ChangePassword.Button.Save" = "Change password";
 "Profile.ChangePassword.Message.Success" = "Password has been changed";
 
+// MARK: - Settings
+
+"Settings.Title" = "Settings";
+"Settings.Notifications.Title" = "Email notifications";
+
 // MARK: - Requests
 
 "Requests.Title" = "Requests";

@@ -74,6 +74,7 @@ private extension ProfileCoordinator {
 
         }
         output.onSettings = { [weak self] in
+            self?.showSettings()
         }
         output.onLogout = { [weak self] in
             self?.onChangeAuthState?()
@@ -103,6 +104,8 @@ private extension ProfileCoordinator {
     }
 
     func showSettings() {
+        let (view, output) = SettingsModuleConfigurator().configure()
+        router.push(view)
     }
 
     func showUnauthorized() {

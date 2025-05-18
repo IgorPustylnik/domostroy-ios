@@ -541,6 +541,14 @@ internal enum L10n {
         internal static let apply = L10n.tr("Localizable", "SelectCity.Button.Apply", fallback: "Apply")
       }
     }
+    internal enum Settings {
+      /// Settings
+      internal static let title = L10n.tr("Localizable", "Settings.Title", fallback: "Settings")
+      internal enum Notifications {
+        /// Email notifications
+        internal static let title = L10n.tr("Localizable", "Settings.Notifications.Title", fallback: "Email notifications")
+      }
+    }
     internal enum Sort {
       /// Default
       internal static let `default` = L10n.tr("Localizable", "Sort.Default", fallback: "Default")
