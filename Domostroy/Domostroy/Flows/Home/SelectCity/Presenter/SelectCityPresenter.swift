@@ -52,18 +52,24 @@ extension SelectCityPresenter: SelectCityViewOutput {
     }
 
     func search(query: String?) {
+        view?.setLoading(true)
         cityService?.getCities(
             query: query
         )
-        .sink { [weak self] result in
-            switch result {
-            case .success(let cities):
-                self?.allCities = cities.cities
-                self?.updateView()
-            case .failure(let error):
-                DropsPresenter.shared.showError(error: error)
+        .sink(
+            receiveCompletion: { [weak self] _ in
+                self?.view?.setLoading(false)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success(let cities):
+                    self?.allCities = cities.cities
+                    self?.updateView()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
             }
-        }
+        )
         .store(in: &cancellables)
     }
 

@@ -88,7 +88,7 @@ final class SelectCityViewController: UIViewController {
                 .offset(-Constants.insets.bottom)
                 .priority(.required)
         }
-        view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { $0.center.equalToSuperview() }
     }
 
