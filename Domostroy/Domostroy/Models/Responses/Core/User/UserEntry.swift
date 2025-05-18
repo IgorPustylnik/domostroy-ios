@@ -12,7 +12,7 @@ public struct UserEntry {
     public let userId: Int
     public let firstName: String
     public let lastName: String?
-//    public let phoneNumber: String
+    public let phoneNumber: String
     public let numOfOffers: Int
     public let createdAt: Date
 }

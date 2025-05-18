@@ -28,7 +28,7 @@ extension MyUserEntity: DTODecodable {
 
     public static func from(dto model: DTO) throws -> Self {
         .init(
-            id: 300,
+            id: model.id,
             firstName: model.firstName,
             lastName: model.lastName,
             email: model.email,

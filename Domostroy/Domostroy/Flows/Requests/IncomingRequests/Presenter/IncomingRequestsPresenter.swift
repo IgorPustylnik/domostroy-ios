@@ -213,6 +213,7 @@ private extension IncomingRequestsPresenter {
         paginationSnapshot = .now
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
+        view?.setEmptyState(false)
         isFirstPageLoading = true
 
         fetchRequests { [weak self] in
