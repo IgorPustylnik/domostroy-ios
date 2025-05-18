@@ -55,6 +55,7 @@ extension FilterPresenter: FilterViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
+        updateCategoriesView()
         fetchCategories()
     }
 

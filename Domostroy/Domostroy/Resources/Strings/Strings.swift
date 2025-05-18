@@ -187,9 +187,9 @@ internal enum L10n {
         internal static let message = L10n.tr("Localizable", "Home.Empty.message", fallback: "Nothing found")
       }
       internal enum Section {
-        internal enum Recommended {
-          /// Recommended
-          internal static let title = L10n.tr("Localizable", "Home.Section.Recommended.title", fallback: "Recommended")
+        internal enum Feed {
+          /// Лента
+          internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Лента")
         }
       }
     }

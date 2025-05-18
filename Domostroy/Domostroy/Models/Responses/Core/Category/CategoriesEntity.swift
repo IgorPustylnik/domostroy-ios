@@ -16,6 +16,11 @@ extension CategoriesEntity: DTODecodable {
     public typealias DTO = CategoriesEntry
 
     public static func from(dto model: DTO) throws -> Self {
-        try .init(categories: model.categories.map { try .from(dto: $0) })
+        var categories = model.categories
+        if let first = categories.first {
+            categories.removeFirst()
+            categories.append(first)
+        }
+        return try .init(categories: categories.map { try .from(dto: $0) })
     }
 }
