@@ -16,7 +16,7 @@ class DNavigationBar: UIView {
         static let vSpacing: CGFloat = 8
         static let mainBarHeight: CGFloat = 34
         static let mainBarSpacing: CGFloat = 10
-        static let buttonHSpacing: CGFloat = 5
+        static let buttonHSpacing: CGFloat = 10
     }
 
     // MARK: - UI Elements
@@ -30,16 +30,24 @@ class DNavigationBar: UIView {
         return $0
     }(UIStackView())
 
-    private lazy var mainBar = {
-        $0.axis = .horizontal
-        $0.alignment = .center
-        $0.distribution = .equalCentering
-        $0.spacing = Constants.mainBarSpacing
-        $0.addArrangedSubview(leftMainBarHStack)
-        $0.addArrangedSubview(titleLabel)
-        $0.addArrangedSubview(rightMainBarHStack)
+    private(set) lazy var mainBar = {
+        $0.addSubview(leftMainBarHStack)
+        $0.addSubview(titleLabel)
+        $0.addSubview(rightMainBarHStack)
+
+        leftMainBarHStack.snp.makeConstraints { make in
+            make.verticalEdges.leading.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview().priority(.low)
+            make.leading.greaterThanOrEqualTo(leftMainBarHStack.snp.trailing).offset(Constants.mainBarSpacing)
+            make.trailing.lessThanOrEqualTo(rightMainBarHStack.snp.leading).offset(-Constants.mainBarSpacing)
+        }
+        rightMainBarHStack.snp.makeConstraints { make in
+            make.verticalEdges.trailing.equalToSuperview()
+        }
         return $0
-    }(UIStackView())
+    }(UIView())
 
     private lazy var leftMainBarHStack: UIStackView = {
         $0.axis = .horizontal
