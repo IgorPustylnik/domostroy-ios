@@ -158,6 +158,7 @@
 // MARK: - Profile
 
 "Profile.Title" = "Профиль";
+"Profile.NavigationBar.Button.Edit" = "Править";
 "Profile.Button.AdminPanel.Title" = "Панель администратора";
 "Profile.Button.Logout.Title" = "Выйти";
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
@@ -181,6 +182,11 @@
 "Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Повторите новый пароль";
 "Profile.ChangePassword.Button.Save" = "Изменить пароль";
 "Profile.ChangePassword.Message.Success" = "Пароль был изменён";
+
+// MARK: - Settings
+
+"Settings.Title" = "Настройки";
+"Settings.Notifications.Title" = "Email уведомления";
 
 // MARK: - Requests
 

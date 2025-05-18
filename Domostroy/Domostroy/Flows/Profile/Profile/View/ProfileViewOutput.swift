@@ -12,5 +12,6 @@ protocol ProfileViewOutput {
     func refresh()
     func edit()
     func adminPanel()
+    func settings()
     func logout()
 }

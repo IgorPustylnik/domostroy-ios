@@ -158,6 +158,7 @@
 // MARK: - Profile
 
 "Profile.Title" = "Profile";
+"Profile.NavigationBar.Button.Edit" = "Edit";
 "Profile.Button.AdminPanel.Title" = "Admin panel";
 "Profile.Button.Logout.Title" = "Logout";
 "Profile.Unauthorized.Message" = "Please login to access all features";
@@ -181,6 +182,11 @@
 "Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Repeat new password";
 "Profile.ChangePassword.Button.Save" = "Change password";
 "Profile.ChangePassword.Message.Success" = "Password has been changed";
+
+// MARK: - Settings
+
+"Settings.Title" = "Settings";
+"Settings.Notifications.Title" = "Email notifications";
 
 // MARK: - Requests
 

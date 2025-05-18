@@ -237,7 +237,7 @@ private extension OfferDetailsPresenter {
     func makePictureViewModel(url: URL) -> ImageCollectionViewCell.ViewModel {
         ImageCollectionViewCell.ViewModel(
             imageUrl: url
-        ) { url, imageView, completion in
+        ) { imageView, completion in
             DispatchQueue.main.async {
                 imageView.kf.setImage(with: url) { _ in
                     completion()

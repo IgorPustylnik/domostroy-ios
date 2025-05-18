@@ -255,12 +255,13 @@ private extension CreateOfferPresenter {
                 self?.deleteImage(uuid: imageItem.uuid)
             },
             url: imageItem.url,
-            loadImage: { imageView in
+            loadImage: { imageView, completion in
                 if let image = imageItem.image {
                     imageView.image = image
+                    completion()
                 } else {
                     DispatchQueue.main.async {
-                        imageView.kf.setImage(with: imageItem.url)
+                        imageView.kf.setImage(with: imageItem.url) { _ in completion() }
                     }
                 }
             }

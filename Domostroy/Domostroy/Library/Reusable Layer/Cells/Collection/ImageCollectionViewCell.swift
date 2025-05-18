@@ -9,13 +9,15 @@ import UIKit
 import SnapKit
 import ReactiveDataDisplayManager
 
+typealias LoadImageClosure = (UIImageView, @escaping () -> Void) -> Void
+
 final class ImageCollectionViewCell: UICollectionViewCell {
 
     // MARK: - ViewModel
 
     struct ViewModel {
         let imageUrl: URL?
-        let loadImage: (URL?, UIImageView, @escaping () -> Void) -> Void
+        let loadImage: LoadImageClosure
     }
 
     // MARK: - UI Elements
@@ -65,7 +67,7 @@ extension ImageCollectionViewCell: ConfigurableItem {
 
     func configure(with model: ViewModel) {
         spinner.isHidden = false
-        model.loadImage(model.imageUrl, imageView) { [weak self] in
+        model.loadImage(imageView) { [weak self] in
             self?.spinner.isHidden = true
         }
     }
