@@ -26,7 +26,7 @@ final class SearchPresenter: SearchModuleOutput {
     weak var view: SearchViewInput?
     private weak var paginatableInput: PaginatableInput?
 
-    private let basicStorage: BasicUserDefaultsStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
 
@@ -64,6 +64,9 @@ extension SearchPresenter: SearchModuleInput {
     func setCity(_ city: CityEntity?) {
         self.city = city
         view?.setCity(city?.name ?? L10n.Localizable.SelectCity.allCities)
+        if let city {
+            try? basicStorage?.set(city.toDTO(), for: .defaultCity)
+        }
         if hasLoadedInitially {
             loadFirstPage()
         }

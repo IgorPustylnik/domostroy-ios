@@ -13,7 +13,7 @@ public struct CityEntity: Equatable {
     public let name: String
 }
 
-extension CityEntity: DTODecodable {
+extension CityEntity: DTOConvertible {
     public typealias DTO = CityEntry
 
     public static func from(dto model: DTO) throws -> Self {
@@ -21,5 +21,9 @@ extension CityEntity: DTODecodable {
             id: model.id,
             name: model.name
         )
+    }
+
+    public func toDTO() throws -> CityEntry {
+        .init(id: id, name: name)
     }
 }

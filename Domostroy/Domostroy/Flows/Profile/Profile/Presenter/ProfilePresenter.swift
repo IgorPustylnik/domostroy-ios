@@ -29,6 +29,7 @@ final class ProfilePresenter: ProfileModuleOutput {
     private var cancellables: [AnyCancellable] = []
 
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
 
 }
 
@@ -70,6 +71,7 @@ extension ProfilePresenter: ProfileViewOutput {
 
     func logout() {
         secureStorage?.deleteToken()
+        basicStorage?.remove(for: .defaultCity)
         onLogout?()
     }
 }
