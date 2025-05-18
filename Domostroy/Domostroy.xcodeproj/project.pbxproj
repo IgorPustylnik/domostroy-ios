@@ -2120,6 +2120,30 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		55D8B04C2DD9DAFF0036A000 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
+				551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */,
+				551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */,
+				55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */,
+				559385A82DB028FB006F3C07 /* AddingImageCollectionViewCell.swift */,
+				559385AA2DB0554F006F3C07 /* AddImageButtonCollectionViewCell.swift */,
+				554F7CC52DBA2EFD008A2BB3 /* UserProfileInfoCollectionViewCell.swift */,
+				55FE25CE2DD0D86700B7B35F /* IncomingRequestCollectionViewCell.swift */,
+				55FE25D62DD1091700B7B35F /* OutgoingRequestCollectionViewCell.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		55D8B04D2DD9DB130036A000 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
 		55D9E6C02DA324430040846C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2131,16 +2155,8 @@
 		55DD9EF52DA413A8003F0CB3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */,
-				551FC3B62DBC364E00A8FE6B /* FavoriteOfferCollectionViewCell.swift */,
-				551FC3B82DBC44F300A8FE6B /* OwnOfferCollectionViewCell.swift */,
-				55ED67782DA7BCB300A3CA52 /* ImageCollectionViewCell.swift */,
-				559385A82DB028FB006F3C07 /* AddingImageCollectionViewCell.swift */,
-				559385AA2DB0554F006F3C07 /* AddImageButtonCollectionViewCell.swift */,
-				554F7CC52DBA2EFD008A2BB3 /* UserProfileInfoCollectionViewCell.swift */,
-				55F88CA52DC385B5003EA26E /* CityTableViewCell.swift */,
-				55FE25CE2DD0D86700B7B35F /* IncomingRequestCollectionViewCell.swift */,
-				55FE25D62DD1091700B7B35F /* OutgoingRequestCollectionViewCell.swift */,
+				55D8B04C2DD9DAFF0036A000 /* Collection */,
+				55D8B04D2DD9DB130036A000 /* Table */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

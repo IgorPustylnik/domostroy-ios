@@ -24,7 +24,7 @@ final class OutgoingRequestCollectionViewCell: UICollectionViewCell, Highlightab
         let title: String
         let price: String
         let dates: String
-        let leaser: String
+        let lessor: String
         let location: String
         let status: RequestStatus
         let actions: [Action]
@@ -198,7 +198,7 @@ extension OutgoingRequestCollectionViewCell: ConfigurableItem {
         priceLabel.text = viewModel.price
         datesLabel.text = viewModel.dates
         locationLabel.text = viewModel.location
-        leaserLabel.text = viewModel.leaser
+        leaserLabel.text = viewModel.lessor
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         switch viewModel.status {
         case .accepted:
@@ -251,7 +251,7 @@ extension OutgoingRequestCollectionViewCell.ViewModel: Equatable {
             lhs.imageUrl == rhs.imageUrl &&
             lhs.title == rhs.title &&
             lhs.price == rhs.price &&
-            lhs.leaser == rhs.leaser &&
+            lhs.lessor == rhs.lessor &&
             lhs.status == rhs.status &&
             lhs.actions == rhs.actions
     }

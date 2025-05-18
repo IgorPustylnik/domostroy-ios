@@ -18,7 +18,7 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
     struct ViewModel {
         let onDelete: EmptyClosure?
         let url: URL?
-        let loadImage: (UIImageView) -> Void
+        let loadImage: LoadImageClosure
     }
 
     // MARK: - Constants
@@ -39,6 +39,8 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
         $0.clipsToBounds = true
         return $0
     }(UIImageView())
+
+    private lazy var spinner = DLoadingIndicator()
 
     private lazy var deleteButton = {
         $0.cornerRadius = 6
@@ -76,12 +78,16 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
 
         addSubview(imageView)
         addSubview(deleteButton)
+        addSubview(spinner)
         imageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         deleteButton.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview().inset(Constants.buttonPadding)
             make.size.equalTo(Constants.buttonSize)
+        }
+        spinner.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
 
@@ -104,7 +110,9 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
 extension AddingImageCollectionViewCell: ConfigurableItem {
 
     func configure(with model: ViewModel) {
-        model.loadImage(imageView)
+        model.loadImage(imageView) { [weak self] in
+//            self?.spinner.isHidden = true
+        }
         deleteButton.setAction {
             model.onDelete?()
         }
