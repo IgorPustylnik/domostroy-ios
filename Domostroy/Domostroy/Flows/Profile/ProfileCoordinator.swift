@@ -73,6 +73,8 @@ private extension ProfileCoordinator {
         output.onAdminPanel = { [weak self] in
 
         }
+        output.onSettings = { [weak self] in
+        }
         output.onLogout = { [weak self] in
             self?.onChangeAuthState?()
         }
@@ -98,6 +100,9 @@ private extension ProfileCoordinator {
             self?.router.popModule()
         }
         router.push(view)
+    }
+
+    func showSettings() {
     }
 
     func showUnauthorized() {

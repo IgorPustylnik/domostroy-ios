@@ -158,6 +158,7 @@
 // MARK: - Profile
 
 "Profile.Title" = "Profile";
+"Profile.NavigationBar.Button.Edit" = "Edit";
 "Profile.Button.AdminPanel.Title" = "Admin panel";
 "Profile.Button.Logout.Title" = "Logout";
 "Profile.Unauthorized.Message" = "Please login to access all features";

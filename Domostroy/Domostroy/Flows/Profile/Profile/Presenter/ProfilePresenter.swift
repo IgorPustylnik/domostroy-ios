@@ -18,6 +18,7 @@ final class ProfilePresenter: ProfileModuleOutput {
 
     var onEdit: EmptyClosure?
     var onAdminPanel: EmptyClosure?
+    var onSettings: EmptyClosure?
     var onLogout: EmptyClosure?
 
     // MARK: - Properties
@@ -61,6 +62,10 @@ extension ProfilePresenter: ProfileViewOutput {
 
     func adminPanel() {
         onAdminPanel?()
+    }
+
+    func settings() {
+        onSettings?()
     }
 
     func logout() {

@@ -12,6 +12,25 @@ final class ProfileViewController: ScrollViewController {
 
     // MARK: - Properties
 
+    private lazy var editButton = {
+        $0.title = L10n.Localizable.Profile.NavigationBar.Button.edit
+        $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        $0.insets = .zero
+        $0.setAction { [weak self] in
+            self?.output?.edit()
+        }
+        return $0
+    }(DButton(type: .plainPrimary))
+
+    private lazy var settingsButton = {
+        $0.image = .Buttons.settings.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        $0.insets = .zero
+        $0.setAction { [weak self] in
+            self?.output?.settings()
+        }
+        return $0
+    }(DButton(type: .plainPrimary))
+
     private var profileView = ProfileView()
 
     private lazy var refreshControl = UIRefreshControl()
@@ -28,9 +47,6 @@ final class ProfileViewController: ScrollViewController {
     override func loadView() {
         super.loadView()
         contentView = profileView
-        profileView.onEdit = { [weak self] in
-            self?.output?.edit()
-        }
         profileView.onAdminPanel = { [weak self] in
             self?.output?.adminPanel()
         }
@@ -39,12 +55,6 @@ final class ProfileViewController: ScrollViewController {
         }
     }
 
-    // MARK: - Loadable
-
-    override func setLoading(_ isLoading: Bool) {
-        super.setLoading(isLoading)
-        profileView.isHidden = isLoading
-    }
 }
 
 // MARK: - ProfileViewInput
@@ -60,6 +70,7 @@ extension ProfileViewController: ProfileViewInput {
 
     func configure(with viewModel: ProfileView.ViewModel) {
         profileView.configure(with: viewModel)
+        navigationBar.rightItems = [editButton, settingsButton]
     }
 
     func endRefreshing() {

@@ -408,6 +408,12 @@ internal enum L10n {
           internal static let phoneNumber = L10n.tr("Localizable", "Profile.Edit.Placeholder.PhoneNumber", fallback: "Phone number")
         }
       }
+      internal enum NavigationBar {
+        internal enum Button {
+          /// Edit
+          internal static let edit = L10n.tr("Localizable", "Profile.NavigationBar.Button.Edit", fallback: "Edit")
+        }
+      }
       internal enum Unauthorized {
         /// Please login to access all features
         internal static let message = L10n.tr("Localizable", "Profile.Unauthorized.Message", fallback: "Please login to access all features")

@@ -28,7 +28,6 @@ final class ProfileView: UIView {
         static let insets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
         static let avatarSize: CGSize = .init(width: 100, height: 100)
         static let mainVStackSpacing: CGFloat = 16
-        static let nameHStackSpacing: CGFloat = 10
         static let infoVStackSpacing: CGFloat = 10
     }
 
@@ -50,6 +49,7 @@ final class ProfileView: UIView {
             make.verticalEdges.equalToSuperview()
             make.centerX.equalToSuperview()
         }
+        $0.isHidden = true
         return $0
     }(UIView())
 
@@ -67,17 +67,10 @@ final class ProfileView: UIView {
         $0.axis = .vertical
         $0.alignment = .center
         $0.spacing = Constants.infoVStackSpacing
-        $0.addArrangedSubview(nameHStackView)
+        $0.addArrangedSubview(nameLabel)
         $0.addArrangedSubview(phoneNumberLabel)
         $0.addArrangedSubview(emailLabel)
-        return $0
-    }(UIStackView())
-
-    private lazy var nameHStackView = {
-        $0.axis = .horizontal
-        $0.spacing = Constants.nameHStackSpacing
-        $0.addArrangedSubview(nameLabel)
-        $0.addArrangedSubview(editButton)
+        $0.isHidden = true
         return $0
     }(UIStackView())
 
@@ -85,15 +78,6 @@ final class ProfileView: UIView {
         $0.font = .systemFont(ofSize: 24, weight: .semibold)
         return $0
     }(UILabel())
-
-    private lazy var editButton = {
-        $0.image = .Buttons.edit.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
-        $0.insets = .zero
-        $0.setAction { [weak self] in
-            self?.onEdit?()
-        }
-        return $0
-    }(DButton(type: .plainPrimary))
 
     private lazy var phoneNumberLabel = {
         $0.font = .systemFont(ofSize: 16, weight: .light)
@@ -110,6 +94,7 @@ final class ProfileView: UIView {
         $0.setAction { [weak self] in
             self?.onAdminPanel?()
         }
+        $0.isHidden = true
         return $0
     }(DButton(type: .filledSecondary))
 
@@ -123,7 +108,6 @@ final class ProfileView: UIView {
 
     // MARK: - Properties
 
-    var onEdit: EmptyClosure?
     var onAdminPanel: EmptyClosure?
     var onLogout: EmptyClosure?
 
@@ -142,6 +126,8 @@ final class ProfileView: UIView {
         phoneNumberLabel.text = viewModel.phoneNumber
         emailLabel.text = viewModel.email
         adminButton.isHidden = !viewModel.isAdmin
+        avatarContainerView.isHidden = false
+        infoVStackView.isHidden = false
     }
 
 }

@@ -158,6 +158,7 @@
 // MARK: - Profile
 
 "Profile.Title" = "Профиль";
+"Profile.NavigationBar.Button.Edit" = "Править";
 "Profile.Button.AdminPanel.Title" = "Панель администратора";
 "Profile.Button.Logout.Title" = "Выйти";
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
