@@ -79,15 +79,6 @@ final class DropsPresenter: InfoPresenter {
         image: UIImage? = UIImage(systemName: "xmark")
     ) {
         var subtitle: String?
-        if let httpError = error as? ResponseHttpErrorProcessorNodeError {
-            subtitle = httpError.fancyDescription()
-        } else if let parseError = error as? ResponseDataParserNodeError {
-            subtitle = L10n.Localizable.ParseError.cantDeserialize
-        } else if let baseTechnicalError = error as? BaseTechnicalError {
-            subtitle = baseTechnicalError.fancyDescription()
-        } else {
-            subtitle = error.localizedDescription
-        }
         showError(title: title, subtitle: subtitle, image: image)
     }
 
