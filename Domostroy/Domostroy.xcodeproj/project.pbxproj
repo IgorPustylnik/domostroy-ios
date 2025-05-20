@@ -88,6 +88,8 @@
 		53BE3F3B545312262D05BFE6 /* OutgoingRequestDetailsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F966FE07ADD4AF439CF52FC2 /* OutgoingRequestDetailsModuleConfigurator.swift */; };
 		53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */; };
 		546D593F772D055533D5C352 /* EditOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA27CB30079AFFE295E4A0 /* EditOfferView.swift */; };
+		55039F462DDA69C60029CFD9 /* RentalRequest1Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55039F452DDA69C60029CFD9 /* RentalRequest1Entry.swift */; };
+		55039F4A2DDB29250029CFD9 /* RentalRequest1Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55039F492DDB29250029CFD9 /* RentalRequest1Entity.swift */; };
 		550D4F252D9F29FB00B460CA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 550D4F242D9F29FB00B460CA /* SnapKit */; };
 		550D4F272D9F2CA200B460CA /* MainTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */; };
 		550D4F292D9FC20800B460CA /* DTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550D4F282D9FC20800B460CA /* DTextField.swift */; };
@@ -527,6 +529,8 @@
 		53B35DA066014BB637B4F71F /* CreateRequestModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestModuleConfigurator.swift; sourceTree = "<group>"; };
 		5421AC10D9FDFC1ECC217421 /* CreateRequestViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewController.swift; sourceTree = "<group>"; };
 		5501E5DFD951DF79BF98DA89 /* EditProfileModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditProfileModuleOutput.swift; sourceTree = "<group>"; };
+		55039F452DDA69C60029CFD9 /* RentalRequest1Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalRequest1Entry.swift; sourceTree = "<group>"; };
+		55039F492DDB29250029CFD9 /* RentalRequest1Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalRequest1Entity.swift; sourceTree = "<group>"; };
 		550D4F262D9F2CA200B460CA /* MainTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarItemView.swift; sourceTree = "<group>"; };
 		550D4F282D9FC20800B460CA /* DTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTextField.swift; sourceTree = "<group>"; };
 		550D4F2B2D9FC2AB00B460CA /* TextValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValidator.swift; sourceTree = "<group>"; };
@@ -2295,6 +2299,8 @@
 			children = (
 				55FE25D22DD0F0FB00B7B35F /* RentalRequestEntity.swift */,
 				55FE25D42DD0F10400B7B35F /* RentalRequestEntry.swift */,
+				55039F452DDA69C60029CFD9 /* RentalRequest1Entry.swift */,
+				55039F492DDB29250029CFD9 /* RentalRequest1Entity.swift */,
 			);
 			path = RentalRequest;
 			sourceTree = "<group>";
@@ -3286,6 +3292,7 @@
 				55AAA9EC2DBED1C70018952F /* CityEntry.swift in Sources */,
 				4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */,
 				335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */,
+				55039F462DDA69C60029CFD9 /* RentalRequest1Entry.swift in Sources */,
 				BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */,
 				849C431E81515B8DC9360CAB /* RequestsCoordinator.swift in Sources */,
 				55B1D2802DDCBD30007587D7 /* NodeKit+ext.swift in Sources */,
@@ -3564,6 +3571,7 @@
 				9367B72F78457B3038A0FB3B /* IncomingRequestDetailsViewController.swift in Sources */,
 				977CF0272C785FBF51DB4E85 /* IncomingRequestDetailsView.swift in Sources */,
 				55EDEC082DD894180001EFC7 /* PriceValidator.swift in Sources */,
+				55039F4A2DDB29250029CFD9 /* RentalRequest1Entity.swift in Sources */,
 				EA283FCD867F40055E07054C /* IncomingRequestDetailsViewInput.swift in Sources */,
 				FBC1CA59D265695EBB4FB424 /* IncomingRequestDetailsViewOutput.swift in Sources */,
 				53BE3F3B545312262D05BFE6 /* OutgoingRequestDetailsModuleConfigurator.swift in Sources */,

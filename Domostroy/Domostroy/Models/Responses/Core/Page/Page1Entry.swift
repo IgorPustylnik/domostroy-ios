@@ -18,9 +18,18 @@ extension Page1Entry: Decodable, RawDecodable {
     public typealias Raw = Json
 
     public static func from(raw: Raw) throws -> Self {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(.yyyymmdd)
-        let data = try JSONSerialization.data(withJSONObject: raw, options: .prettyPrinted)
-        return try decoder.decode(Self.self, from: data)
+        guard let totalElements = raw["totalElements"] as? Int,
+              let totalPages = raw["totalPages"] as? Int,
+              let contentRaw = raw["content"] as? [Entry.Raw] else {
+            throw NSError(domain: "Invalid format", code: 1)
+        }
+
+        let content = try contentRaw.map { try Entry.from(raw: $0) }
+
+        return Page1Entry(
+            totalElements: totalElements,
+            totalPages: totalPages,
+            content: content
+        )
     }
 }

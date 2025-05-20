@@ -25,7 +25,7 @@ final class OutgoingRequestDetailsPresenter: OutgoingRequestDetailsModuleOutput 
     weak var view: OutgoingRequestDetailsViewInput?
 
     private var requestId: Int?
-    private var requestEntity: RentalRequestEntity?
+    private var requestEntity: RentalRequest1Entity?
 
     private let rentService: RentService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
@@ -54,18 +54,18 @@ extension OutgoingRequestDetailsPresenter: OutgoingRequestDetailsViewOutput {
         guard let requestEntity else {
             return
         }
-        onOpenOffer?(requestEntity.offer.id)
+        onOpenOffer?(requestEntity.offerId)
     }
 
     func openUser() {
         guard let requestEntity else {
             return
         }
-        onOpenUser?(requestEntity.user.id)
+        onOpenUser?(requestEntity.userId)
     }
 
     func call() {
-        guard let phoneNumber = requestEntity?.user.phoneNumber else {
+        guard let phoneNumber = requestEntity?.phoneNumber else {
             return
         }
         if let url = URL(string: "tel://\(phoneNumber)"),
@@ -133,7 +133,7 @@ private extension OutgoingRequestDetailsPresenter {
         ).store(in: &cancellables)
     }
 
-    func makeViewModel(from entity: RentalRequestEntity) -> OutgoingRequestDetailsView.ViewModel {
+    func makeViewModel(from entity: RentalRequest1Entity) -> OutgoingRequestDetailsView.ViewModel {
         let statusViewModel: RequestStatusView.Status
         switch entity.status {
         case .accepted:
@@ -144,19 +144,19 @@ private extension OutgoingRequestDetailsPresenter {
             statusViewModel = .declined(entity.resolvedAt)
         }
         let offerViewModel = ConciseOfferView.ViewModel(
-            imageUrl: entity.offer.photoUrl,
+            imageUrl: entity.photoUrl,
             loadImage: { [weak self] url, imageView in
                 self?.loadImage(url: url, imageView: imageView)
             },
-            title: entity.offer.title,
-            price: LocalizationHelper.pricePerDay(for: entity.offer.price)
+            title: entity.title,
+            price: LocalizationHelper.pricePerDay(for: entity.price)
         )
         let userViewModel = OutgoingRequestDetailsView.ViewModel.User(
-            username: entity.user.name,
-            phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: entity.user.phoneNumber),
+            username: entity.name,
+            phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: entity.phoneNumber),
             imageUrl: nil,
             loadImage: { url, imageView in
-                imageView.loadAvatar(id: entity.user.id, name: entity.user.name, url: url)
+                imageView.loadAvatar(id: entity.userId, name: entity.name, url: url)
             }
         )
         var actions: [OutgoingRequestDetailsView.ViewModel.Action] = []
@@ -215,7 +215,7 @@ private extension OutgoingRequestDetailsPresenter {
         return actions
     }
 
-    func fetchRequest(completion: EmptyClosure?, handleResult: ((NodeResult<RentalRequestEntity>) -> Void)?) {
+    func fetchRequest(completion: EmptyClosure?, handleResult: ((NodeResult<RentalRequest1Entity>) -> Void)?) {
         guard let requestId else {
             return
         }
