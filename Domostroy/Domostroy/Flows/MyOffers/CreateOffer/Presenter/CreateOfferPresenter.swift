@@ -95,10 +95,10 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
     }
 
     func setSelectedCategory(index: Int) {
-        guard index < categoryPickerModel.all.count else {
+        guard index - 1 < categoryPickerModel.all.count else {
             return
         }
-        categoryPickerModel.selected = categoryPickerModel.all[index]
+        categoryPickerModel.selected = categoryPickerModel.all[index - 1]
     }
 
     func chooseFromLibrary() {
@@ -165,8 +165,7 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
             chooseFromLibrary()
             return
         }
-        guard let category = categoryPickerModel.selected,
-              let title,
+        guard let title,
               let offerDescription,
               let category = categoryPickerModel.selected,
               let price else {

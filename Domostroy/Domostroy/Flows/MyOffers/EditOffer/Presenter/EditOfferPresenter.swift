@@ -106,10 +106,10 @@ extension EditOfferPresenter: EditOfferViewOutput {
     }
 
     func setSelectedCategory(index: Int) {
-        guard index < categoryPickerModel.all.count else {
+        guard index - 1 < categoryPickerModel.all.count else {
             return
         }
-        categoryPickerModel.selected = categoryPickerModel.all[index]
+        categoryPickerModel.selected = categoryPickerModel.all[index - 1]
     }
 
     func showCities() {
