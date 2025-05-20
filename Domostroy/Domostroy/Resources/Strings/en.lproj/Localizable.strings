@@ -37,6 +37,7 @@
 "HttpError.Unauthorized" = "Unauthorized";
 "HttpError.forbidden" = "Forbidden";
 "HttpError.NotFound" = "Not found";
+"HttpError.Conflict" = "Conflict";
 "HttpError.InternalServerError" = "Internal server error";
 "ParseError.cantDeserialize" = "Unknown server response format";
 "BaseTechnicalError.NoInternet" = "No internet connection";

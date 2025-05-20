@@ -1,5 +1,5 @@
 //
-//  DURLServiceProvider.swift
+//  DURLServiceChainProvider.swift
 //  Domostroy
 //
 //  Created by Игорь Пустыльник on 29.04.2025.
@@ -20,6 +20,13 @@ final class DURLServiceChainProvider: URLServiceChainProvider {
         )
         let aborterNode = AborterNode(next: requestSenderNode, aborter: requestSenderNode)
         return FileMultipartRequestCreatorNode(next: aborterNode, providers: providers)
+    }
+
+    override func provideResponseJsonChain() -> any AsyncNode<NodeDataResponse, Json> {
+        let responseDataParserNode = ResponseDataParserNode()
+        let responseDataPreprocessorNode = ResponseDataPreprocessorNode(next: responseDataParserNode)
+        let responseHttpErrorProcessorNode = DResponseHttpErrorProcessorNode(next: responseDataPreprocessorNode)
+        return ResponseProcessorNode(next: responseHttpErrorProcessorNode)
     }
 }
 

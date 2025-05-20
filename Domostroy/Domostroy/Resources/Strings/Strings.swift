@@ -196,6 +196,8 @@ internal enum L10n {
     internal enum HttpError {
       /// Bad request
       internal static let badRequest = L10n.tr("Localizable", "HttpError.BadRequest", fallback: "Bad request")
+      /// Conflict
+      internal static let conflict = L10n.tr("Localizable", "HttpError.Conflict", fallback: "Conflict")
       /// Forbidden
       internal static let forbidden = L10n.tr("Localizable", "HttpError.forbidden", fallback: "Forbidden")
       /// Internal server error

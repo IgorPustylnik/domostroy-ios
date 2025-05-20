@@ -95,7 +95,7 @@ final class DropsPresenter: InfoPresenter {
 
 // MARK: - Errors descriptions extensions
 
-extension ResponseHttpErrorProcessorNodeError {
+extension DResponseHttpErrorProcessorNodeError {
     func fancyDescription() -> String {
         var description: String
         switch self {
@@ -107,6 +107,8 @@ extension ResponseHttpErrorProcessorNodeError {
             description = L10n.Localizable.HttpError.forbidden
         case .notFound:
             description = L10n.Localizable.HttpError.notFound
+        case .conflict:
+            description = L10n.Localizable.HttpError.conflict
         case .internalServerError:
             description = L10n.Localizable.HttpError.internalServerError
         }

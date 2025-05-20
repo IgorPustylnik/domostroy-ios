@@ -37,6 +37,7 @@
 "HttpError.Unauthorized" = "Неавторизован";
 "HttpError.forbidden" = "Доступ запрещён";
 "HttpError.NotFound" = "Не найдено";
+"HttpError.Conflict" = "Конфликт";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
 "BaseTechnicalError.NoInternet" = "Нет соединения с интернетом";
