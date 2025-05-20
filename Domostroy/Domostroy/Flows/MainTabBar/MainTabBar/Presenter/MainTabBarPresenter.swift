@@ -18,12 +18,16 @@ final class MainTabBarPresenter: MainTabBarModuleOutput {
     var onRequestsFlowSelect: TabSelectClosure?
     var onProfileFlowSelect: TabSelectClosure?
     var onTapCenterControl: EmptyClosure?
+    var onShowSelectServerHost: EmptyClosure?
 
     // MARK: - Properties
 
     weak var view: MainTabBarViewInput?
 
     private var isCenterControlEnabled: Bool = false
+
+    private var profileTapCount = 0
+    private var lastProfileTapTime: Date?
 }
 
 // MARK: - MainTabBarModuleInput
@@ -55,13 +59,29 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
         case .requests:
             onRequestsFlowSelect?(isInitial)
         case .profile:
-            onProfileFlowSelect?(isInitial)
+            handleProfileTap(isInitial: isInitial)
         }
         view?.setCenterControl(enabled: tab == .myOffers && isCenterControlEnabled)
     }
 
     func didTapCenter() {
         onTapCenterControl?()
+    }
+
+    private func handleProfileTap(isInitial: Bool) {
+        let now = Date()
+        if let lastTap = lastProfileTapTime, now.timeIntervalSince(lastTap) > 0.7 {
+            profileTapCount = 0
+        }
+        lastProfileTapTime = now
+        profileTapCount += 1
+
+        if profileTapCount >= 7 {
+            profileTapCount = 0
+            onShowSelectServerHost?()
+        }
+
+        onProfileFlowSelect?(isInitial)
     }
 }
 

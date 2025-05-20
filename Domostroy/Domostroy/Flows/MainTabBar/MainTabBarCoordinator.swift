@@ -82,6 +82,9 @@ private extension MainTabBarCoordinator {
         output.onTapCenterControl = { [weak self] in
             self?.onTapCenterControl?()
         }
+        output.onShowSelectServerHost = { [weak self] in
+            self?.showSelectServerHostAlert()
+        }
 
         router.setRootModule(view, animated: true)
         input.selectTab(initialTab)
@@ -163,6 +166,31 @@ private extension MainTabBarCoordinator {
         if let token = secureStorage?.loadToken() {
             tokenExpirationHandler.scheduleExpiration(for: token)
         }
+    }
+
+    func showSelectServerHostAlert() {
+        let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
+        let address = InfoPlist.serverHost
+        let alert = UIAlertController(title: "Server address", message: nil, preferredStyle: .alert)
+
+        alert.addTextField { textField in
+            textField.text = address
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let okAction = UIAlertAction(title: "Save", style: .default) { _ in
+            let inputText = alert.textFields?.first?.text
+            guard let inputText, !inputText.isEmpty else {
+                basicStorage?.remove(for: .serverHost)
+                return
+            }
+            basicStorage?.set(inputText, for: .serverHost)
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+
+        router.present(alert)
     }
 
 }
