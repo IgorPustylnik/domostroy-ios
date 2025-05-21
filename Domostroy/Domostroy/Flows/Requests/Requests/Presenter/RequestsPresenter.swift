@@ -8,10 +8,6 @@
 
 import Foundation
 import UIKit
-import Kingfisher
-import ReactiveDataDisplayManager
-import Combine
-import NodeKit
 
 final class RequestsPresenter: RequestsModuleOutput {
 

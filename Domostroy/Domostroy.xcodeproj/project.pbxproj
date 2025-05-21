@@ -43,6 +43,7 @@
 		1C05DABC40ACBB635D460E4F /* FavoritesModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B96431E1CB41F7BDC37FAA /* FavoritesModuleOutput.swift */; };
 		1D0E74636D07EEB53B406299 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D937E22121CF2C13008574A /* LoginViewController.swift */; };
 		1E371A19B9C19F0C3EF4A940 /* OutgoingRequestsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0971BA8DB3D339E788257B42 /* OutgoingRequestsViewOutput.swift */; };
+		1E4B6B8D50532BA221E2D505 /* AdminPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CDFCF751296E73C55F63 /* AdminPanelViewController.swift */; };
 		1EA5ECBDC0ED078F2050E1BC /* FavoritesModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46450E3DAC780BD9712AFF19 /* FavoritesModuleConfigurator.swift */; };
 		1F53718CD4AC134C6E4E782A /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A862C6C811E3A9BA79F86 /* OfferDetailsViewController.swift */; };
 		201C8F05A812E62A6875E782 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011C7CAD98FBD607D53C82 /* AuthCoordinator.swift */; };
@@ -61,6 +62,7 @@
 		335A8EBBF99B4831411F0C23 /* MyOffersViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FDB8E0A7FEB9D64605C8C /* MyOffersViewInput.swift */; };
 		33CC5812C8C997AD557659FB /* MainTabBarCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9797EF1B9254D9B9853D2F /* MainTabBarCoordinatorOutput.swift */; };
 		34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1995EECE57DD88711C5ABD /* HomeCoordinatorOutput.swift */; };
+		34D37D40C4786456AE341D71 /* AdminPanelModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5059BF2AB160239A0AC41D96 /* AdminPanelModuleConfigurator.swift */; };
 		36729EAAF33B1AF4E00ED5E1 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF267EE7C0DA7BE112DC96E1 /* SearchPresenter.swift */; };
 		3ABBA21E9E772FB2970CF3B8 /* MyOffersModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B157CBAFEC1035C9BCDFFD1 /* MyOffersModuleOutput.swift */; };
 		3B3C87E1E51A6FB26A3CAAF1 /* MyOffersModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A185D58AD56BDA02DF4330 /* MyOffersModuleConfigurator.swift */; };
@@ -238,6 +240,7 @@
 		55B4960C2D9E75EA00C6AB57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4960A2D9E75EA00C6AB57 /* Localizable.strings */; };
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
+		55B8C00E2DDF425600344244 /* AdminPanelPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */; };
 		55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */; };
 		55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */; };
 		55BB62C82DBABD7200BD992E /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB62C72DBABD7200BD992E /* String+ext.swift */; };
@@ -341,6 +344,7 @@
 		8755F9B1ECC5A3C3125ADD2C /* IncomingRequestsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F5917A34D741ED0AFE2569 /* IncomingRequestsViewInput.swift */; };
 		878026C1C4230791368A13ED /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25658698FEC4126E0455C643 /* LoginPresenter.swift */; };
 		8861611701765B4A8A3838BD /* OutgoingRequestsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24F6E1E1DF3E46E4B336A97 /* OutgoingRequestsModuleOutput.swift */; };
+		889CBA995C48A9556CF97125 /* AdminPanelViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D1DCDF15355BD68A994168 /* AdminPanelViewOutput.swift */; };
 		8B0455B0F78816B8BA4E1075 /* MyOfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CC0934FE03D48697967B80 /* MyOfferDetailsViewController.swift */; };
 		8EDB2D520D9212A35C9AC681 /* MainTabBarModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B9686D68E189A69701628 /* MainTabBarModuleOutput.swift */; };
 		8FD2444E0A5217AD9EDEB3C1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A29CA1C55CC59265EBB7C11 /* HomeCoordinator.swift */; };
@@ -377,6 +381,7 @@
 		AF1BDB73F808A624415C2689 /* CreateRequestViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F42B3AC43AD46854B8930F /* CreateRequestViewInput.swift */; };
 		B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B094812316555C8C108F5CF /* CodeConfirmationPresenter.swift */; };
 		B59F779846445247C6F96D38 /* RegisterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208886293679C418660D4AA6 /* RegisterViewOutput.swift */; };
+		B7250D0B1E3CF5A6404E3B91 /* AdminPanelViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7D82BF3C45A17D382A241 /* AdminPanelViewInput.swift */; };
 		B751BC5C5BB17408186D1C92 /* ProfileUnauthorizedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08E012C530C4197342AF10 /* ProfileUnauthorizedPresenter.swift */; };
 		BA03B9C8CB1080E7C0E2C54B /* IncomingRequestsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8360E8ADA8AABB290A8DEA80 /* IncomingRequestsModuleInput.swift */; };
 		BBE259FF61E2709367B5E543 /* MyOffersViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED130001250DCF3F32F1D78 /* MyOffersViewOutput.swift */; };
@@ -409,6 +414,7 @@
 		CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13C6AB792CD79F24770CB95 /* LoginViewOutput.swift */; };
 		CFC14D95FF06A6244B1CDAC7 /* CreateRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5421AC10D9FDFC1ECC217421 /* CreateRequestViewController.swift */; };
 		D0DA0A3F860BE4ABC53A89B1 /* SearchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200F5CF2F2BE8575E819E6C1 /* SearchViewOutput.swift */; };
+		D20B3B7AD9C2EF3820A09626 /* AdminPanelModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE232CD1977047D2D1B7A484 /* AdminPanelModuleOutput.swift */; };
 		D48FDE307178BAEECF82167F /* ChangePasswordViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353EC090C9E20D6A50C1B623 /* ChangePasswordViewOutput.swift */; };
 		D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A489474AAB2C2B7B3595B119 /* AuthCoordinatorOutput.swift */; };
 		D58E8F49F919DA47FCCE454F /* SelectCityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0A4292A8C3B8BBE7C9D2F /* SelectCityPresenter.swift */; };
@@ -434,6 +440,7 @@
 		ED3AE30DBE83D5D6018A477C /* OutgoingRequestsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2550006DCF4823003D24BE9D /* OutgoingRequestsViewInput.swift */; };
 		ED8E4419E50FB80B3A4D7259 /* MyOfferDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB980FE647C4A0F00E5FF02 /* MyOfferDetailsPresenter.swift */; };
 		EDA91CD40D82542B96B93901 /* MainTabBarViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533BB7A141CFD00F65D5589 /* MainTabBarViewInput.swift */; };
+		F055BD590D31370C7DFAEB53 /* AdminPanelModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E200E08E651FD77C54FEBF /* AdminPanelModuleInput.swift */; };
 		F119B304DBFB4EFF43A7D955 /* SelectCityModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0058FA0E101651775F20C0 /* SelectCityModuleInput.swift */; };
 		F15EC695DE83908603F9E4A8 /* ProfileUnauthorizedModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDA14184E9F12A7D48E6800 /* ProfileUnauthorizedModuleConfigurator.swift */; };
 		F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9D67353BACE0AD858B9145 /* HomeViewController.swift */; };
@@ -444,7 +451,9 @@
 		FA749726E9607136DDEADDC4 /* OutgoingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC6AF3F0243F9BD40DF44AF /* OutgoingRequestsViewController.swift */; };
 		FBC1CA59D265695EBB4FB424 /* IncomingRequestDetailsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E25F83AC07F0A681D5D74 /* IncomingRequestDetailsViewOutput.swift */; };
 		FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5997A88142A5BAC2819A93 /* CodeConfirmationModuleInput.swift */; };
+		FDDC9D6D3ED2E5763F176B8E /* AdminPanelPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF01C6D7F1228BB66C9B75 /* AdminPanelPresenter.swift */; };
 		FE44F5AEFB2A3FFF0589CB61 /* MyOffersCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */; };
+		FF0532A2ABB0E0208A67B356 /* AdminPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA761BD476D5386E64DBB409 /* AdminPanelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -524,6 +533,7 @@
 		4C57D204B71E497160361CC0 /* SelectCityViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SelectCityViewOutput.swift; sourceTree = "<group>"; };
 		4CF094B01277F29009CBC41B /* EditProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		501BF1AD03AC5B4173EBE034 /* IncomingRequestsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestsViewController.swift; sourceTree = "<group>"; };
+		5059BF2AB160239A0AC41D96 /* AdminPanelModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelModuleConfigurator.swift; sourceTree = "<group>"; };
 		51DED2031025435C99F93656 /* FavoritesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoritesViewOutput.swift; sourceTree = "<group>"; };
 		52DA04C9939CA41F1791F693 /* LessorCalendarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarModuleInput.swift; sourceTree = "<group>"; };
 		53B35DA066014BB637B4F71F /* CreateRequestModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -644,6 +654,7 @@
 		559610B12D9C8E1B00746358 /* DeepLinkOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkOption.swift; sourceTree = "<group>"; };
 		559610B42D9D8C3000746358 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		559610B62D9D8C4100746358 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55A1CDFCF751296E73C55F63 /* AdminPanelViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelViewController.swift; sourceTree = "<group>"; };
 		55AAA9C22DBE882F0018952F /* OfferNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferNetworkService.swift; sourceTree = "<group>"; };
 		55AAA9C42DBEB7430018952F /* OfferDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsEntity.swift; sourceTree = "<group>"; };
 		55AAA9C62DBEB7B60018952F /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
@@ -682,6 +693,7 @@
 		55B4960D2D9E75F100C6AB57 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPanelPresenterModel.swift; sourceTree = "<group>"; };
 		55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyView.swift; sourceTree = "<group>"; };
 		55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsView.swift; sourceTree = "<group>"; };
 		55BB62C72DBABD7200BD992E /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
@@ -738,6 +750,7 @@
 		55FE25D62DD1091700B7B35F /* OutgoingRequestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRequestCollectionViewCell.swift; sourceTree = "<group>"; };
 		55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		56A190CCE945D145492EFA24 /* EditProfileViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		56F7D82BF3C45A17D382A241 /* AdminPanelViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelViewInput.swift; sourceTree = "<group>"; };
 		5789E3AD46CCCE29E1C10E44 /* AuthModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleConfigurator.swift; sourceTree = "<group>"; };
 		5C4EF4D8DBBCC9F2A47F34B9 /* SortViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		5C526E44E58DE604DF2A8771 /* ChangePasswordView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
@@ -763,6 +776,7 @@
 		7266AD6C149AB337FC8229E4 /* IncomingRequestDetailsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestDetailsPresenter.swift; sourceTree = "<group>"; };
 		7394255A8A3DBFECEB051A11 /* CodeConfirmationModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationModuleOutput.swift; sourceTree = "<group>"; };
 		741E51A0B96662F6D822E4BB /* OfferDetailsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsModuleConfigurator.swift; sourceTree = "<group>"; };
+		74E200E08E651FD77C54FEBF /* AdminPanelModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelModuleInput.swift; sourceTree = "<group>"; };
 		75A0155AD45BE56948770D14 /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		773A0065DBFA6A05448E3D33 /* SortModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleInput.swift; sourceTree = "<group>"; };
 		79521706B2FD1D1BA0AC7164 /* SettingsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -831,6 +845,7 @@
 		BBD4A6922BCC3AFE12F36D71 /* LessorCalendarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewController.swift; sourceTree = "<group>"; };
 		BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewOutput.swift; sourceTree = "<group>"; };
 		BCC121D677A207467A1C1CC5 /* EditOfferModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditOfferModuleInput.swift; sourceTree = "<group>"; };
+		BE232CD1977047D2D1B7A484 /* AdminPanelModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelModuleOutput.swift; sourceTree = "<group>"; };
 		C079102E893B92AC9E2AECB0 /* CreateRequestViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewOutput.swift; sourceTree = "<group>"; };
 		C182C3A2E77BE219EF31D31F /* OutgoingRequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsModuleInput.swift; sourceTree = "<group>"; };
 		C35A95F9EB05EC0460BDC1A8 /* ProfileView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -855,6 +870,7 @@
 		D49D47613ABAF3DBC4E85DD8 /* CreateOfferViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferViewInput.swift; sourceTree = "<group>"; };
 		D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewInput.swift; sourceTree = "<group>"; };
 		D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewInput.swift; sourceTree = "<group>"; };
+		D9D1DCDF15355BD68A994168 /* AdminPanelViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelViewOutput.swift; sourceTree = "<group>"; };
 		DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleConfigurator.swift; sourceTree = "<group>"; };
 		DACE5ECBF9623641BF17499D /* CreateRequestPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestPresenter.swift; sourceTree = "<group>"; };
 		DAF5AAB534B309140CD2E113 /* IncomingRequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestsPresenter.swift; sourceTree = "<group>"; };
@@ -869,9 +885,11 @@
 		E75AB9EDCC6FD986674EA19F /* RequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsPresenter.swift; sourceTree = "<group>"; };
 		EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchModuleConfigurator.swift; sourceTree = "<group>"; };
 		EA0F682E5A383746815245D9 /* OutgoingRequestDetailsModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OutgoingRequestDetailsModuleOutput.swift; sourceTree = "<group>"; };
+		EA761BD476D5386E64DBB409 /* AdminPanelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelView.swift; sourceTree = "<group>"; };
 		EC6A862C6C811E3A9BA79F86 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		EC738BAE5F2C55B58C563018 /* OutgoingRequestDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OutgoingRequestDetailsModuleInput.swift; sourceTree = "<group>"; };
 		EDB35072FE1CB98A59B99AB5 /* MyOffersCoordinatorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorOutput.swift; sourceTree = "<group>"; };
+		EDBF01C6D7F1228BB66C9B75 /* AdminPanelPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelPresenter.swift; sourceTree = "<group>"; };
 		F10252FE79B3AFAB83870A4B /* MyOffersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyOffersViewController.swift; sourceTree = "<group>"; };
 		F15A01F4662147806CD087E4 /* SelectCityModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SelectCityModuleOutput.swift; sourceTree = "<group>"; };
 		F29BD5E3AABD81865E01B063 /* OutgoingRequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsPresenter.swift; sourceTree = "<group>"; };
@@ -2137,6 +2155,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		55B8C00C2DDF424800344244 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		55BA92FE2DB69968007F4240 /* OfferDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -2316,6 +2342,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5AB7CA294698B2B4E193AD1D /* AdminPanel */ = {
+			isa = PBXGroup;
+			children = (
+				773D0F7A3BC58618104E0FAB /* Configurator */,
+				B13AE3BEB0E43A66DBC5D772 /* Presenter */,
+				9E7314B755081FEA7DB7693A /* View */,
+			);
+			path = AdminPanel;
+			sourceTree = "<group>";
+		};
 		5B5E5F28DD0A0F0B0889F96A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2437,6 +2473,14 @@
 				C7413C4981CF338DA15687D6 /* IncomingRequestsModuleOutput.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		773D0F7A3BC58618104E0FAB /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				5059BF2AB160239A0AC41D96 /* AdminPanelModuleConfigurator.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 		777AE3F24A1BD802A73CF83F /* Presenter */ = {
@@ -2566,6 +2610,17 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
+		9E7314B755081FEA7DB7693A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55A1CDFCF751296E73C55F63 /* AdminPanelViewController.swift */,
+				EA761BD476D5386E64DBB409 /* AdminPanelView.swift */,
+				56F7D82BF3C45A17D382A241 /* AdminPanelViewInput.swift */,
+				D9D1DCDF15355BD68A994168 /* AdminPanelViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A1301E36B46F3CEFE45F5128 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2631,6 +2686,17 @@
 				55B496272D9E842B00C6AB57 /* Favorites */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		B13AE3BEB0E43A66DBC5D772 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				55B8C00C2DDF424800344244 /* Model */,
+				EDBF01C6D7F1228BB66C9B75 /* AdminPanelPresenter.swift */,
+				74E200E08E651FD77C54FEBF /* AdminPanelModuleInput.swift */,
+				BE232CD1977047D2D1B7A484 /* AdminPanelModuleOutput.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		B1D591F5EC1398A32F8F3668 /* SelectCity */ = {
@@ -3025,6 +3091,7 @@
 				13C73C39ADDD5B5A3A1B7BD6 /* EditProfile */,
 				B260BA3941B945E38A9E3E7D /* ChangePassword */,
 				1A9DF717DF29C64BA2B42A5C /* Settings */,
+				5AB7CA294698B2B4E193AD1D /* AdminPanel */,
 				3719528511F9589C0E19C353 /* ProfileUnauthorized */,
 			);
 			path = Profile;
@@ -3315,6 +3382,7 @@
 				2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */,
 				55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */,
 				E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */,
+				55B8C00E2DDF425600344244 /* AdminPanelPresenterModel.swift in Sources */,
 				551FC3BB2DBC466800A8FE6B /* HighlightableScaleView.swift in Sources */,
 				55D9E6BD2DA31BF70040846C /* ScrollViewController.swift in Sources */,
 				EC7F3E48CE6413A43ABB1F69 /* ProfileCoordinatorOutput.swift in Sources */,
@@ -3625,6 +3693,14 @@
 				04121746D4773E4D58CA9C81 /* SettingsViewController.swift in Sources */,
 				D7512EE7BD78B924A8CE4611 /* SettingsViewInput.swift in Sources */,
 				D8B81B49DBA677103F1E349B /* SettingsViewOutput.swift in Sources */,
+				34D37D40C4786456AE341D71 /* AdminPanelModuleConfigurator.swift in Sources */,
+				FDDC9D6D3ED2E5763F176B8E /* AdminPanelPresenter.swift in Sources */,
+				F055BD590D31370C7DFAEB53 /* AdminPanelModuleInput.swift in Sources */,
+				D20B3B7AD9C2EF3820A09626 /* AdminPanelModuleOutput.swift in Sources */,
+				1E4B6B8D50532BA221E2D505 /* AdminPanelViewController.swift in Sources */,
+				FF0532A2ABB0E0208A67B356 /* AdminPanelView.swift in Sources */,
+				B7250D0B1E3CF5A6404E3B91 /* AdminPanelViewInput.swift in Sources */,
+				889CBA995C48A9556CF97125 /* AdminPanelViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

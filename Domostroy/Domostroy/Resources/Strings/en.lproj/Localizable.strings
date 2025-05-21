@@ -189,6 +189,12 @@
 "Settings.Title" = "Settings";
 "Settings.Notifications.Title" = "Email notifications";
 
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Admin panel";
+"AdminPanel.Users.Title"="Users";
+"AdminPanel.BannedOffers.Title"="Banned offers";
+
 // MARK: - Requests
 
 "Requests.Title" = "Requests";

@@ -19,6 +19,18 @@ internal enum L10n {
     internal static let nsCameraUsageDescription = L10n.tr("InfoPlist", "NSCameraUsageDescription", fallback: "We need access to your camera to take photos.")
   }
   internal enum Localizable {
+    internal enum AdminPanel {
+      /// Admin panel
+      internal static let title = L10n.tr("Localizable", "AdminPanel.Title", fallback: "Admin panel")
+      internal enum BannedOffers {
+        /// Banned offers
+        internal static let title = L10n.tr("Localizable", "AdminPanel.BannedOffers.Title", fallback: "Banned offers")
+      }
+      internal enum Users {
+        /// Users
+        internal static let title = L10n.tr("Localizable", "AdminPanel.Users.Title", fallback: "Users")
+      }
+    }
     internal enum Auth {
       internal enum Button {
         /// Login

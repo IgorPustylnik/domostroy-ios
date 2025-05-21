@@ -187,7 +187,13 @@
 // MARK: - Settings
 
 "Settings.Title" = "Настройки";
-"Settings.Notifications.Title" = "Email уведомления";
+"Settings.Notifications.Title" = "Уведомления на почту";
+
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Панель администратора";
+"AdminPanel.Users.Title"="Пользователи";
+"AdminPanel.BannedOffers.Title"="Заблокированные объявления";
 
 // MARK: - Requests
 
