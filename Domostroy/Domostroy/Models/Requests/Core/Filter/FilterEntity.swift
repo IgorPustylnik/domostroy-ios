@@ -20,6 +20,7 @@ public struct FilterEntity {
         case cityId = "cityId"
         case categoryId = "categoryId"
         case userId = "userId"
+        case isBanned = "isBanned"
     }
 
     public enum FilterOperation: String {

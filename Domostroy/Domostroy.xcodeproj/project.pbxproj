@@ -694,6 +694,11 @@
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPanelPresenterModel.swift; sourceTree = "<group>"; };
+		55B8C0172DDF79DE00344244 /* UserDetailsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsEntry.swift; sourceTree = "<group>"; };
+		55B8C0192DDF79E800344244 /* UserDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsEntity.swift; sourceTree = "<group>"; };
+		55B8C01C2DDF83DD00344244 /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
+		55B8C01F2DDF861B00344244 /* AdminUrlRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUrlRoute.swift; sourceTree = "<group>"; };
+		55B8C0212DDF862200344244 /* AdminNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNetworkService.swift; sourceTree = "<group>"; };
 		55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesEmptyView.swift; sourceTree = "<group>"; };
 		55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesSettingsView.swift; sourceTree = "<group>"; };
 		55BB62C72DBABD7200BD992E /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
@@ -1559,6 +1564,7 @@
 				5589B74D2DC1706000DEA9CF /* UserDefaults */,
 				552402252DC2B4DC00AD83F1 /* TokenExpiration */,
 				5589B7502DC173EC00DEA9CF /* ServiceLocator */,
+				55B8C01C2DDF83DD00344244 /* AdminService.swift */,
 				5589B70D2DC0187F00DEA9CF /* AuthService.swift */,
 				55AAA9C62DBEB7B60018952F /* OfferService.swift */,
 				55190AEE2DD4DE7B00C33A57 /* RentService.swift */,
@@ -1827,6 +1833,7 @@
 				5589B7222DC01FF100DEA9CF /* Category */,
 				5589B7242DC0201A00DEA9CF /* City */,
 				5589B7272DC0205000DEA9CF /* User */,
+				55B8C0162DDF79C800344244 /* UserDetails */,
 				5589B7282DC0205F00DEA9CF /* MyUser */,
 			);
 			path = Core;
@@ -2161,6 +2168,24 @@
 				55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		55B8C0162DDF79C800344244 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				55B8C0192DDF79E800344244 /* UserDetailsEntity.swift */,
+				55B8C0172DDF79DE00344244 /* UserDetailsEntry.swift */,
+			);
+			path = UserDetails;
+			sourceTree = "<group>";
+		};
+		55B8C01E2DDF860C00344244 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				55B8C01F2DDF861B00344244 /* AdminUrlRoute.swift */,
+				55B8C0212DDF862200344244 /* AdminNetworkService.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		55BA92FE2DB69968007F4240 /* OfferDetails */ = {
@@ -3305,6 +3330,7 @@
 				554C0B522DA136AC00382FEE /* BaseViewController.swift in Sources */,
 				55B40ECE2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift in Sources */,
 				34195537127960711F027088 /* HomeCoordinatorOutput.swift in Sources */,
+				55B8C0202DDF861B00344244 /* AdminUrlRoute.swift in Sources */,
 				55FE25D12DD0D98900B7B35F /* RequestStatus.swift in Sources */,
 				5589B7362DC1557400DEA9CF /* SecureStorage.swift in Sources */,
 				5589B70E2DC0187F00DEA9CF /* AuthService.swift in Sources */,
@@ -3473,10 +3499,12 @@
 				B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */,
 				55AAAA0D2DBEE7300018952F /* OfferUrlRoute.swift in Sources */,
 				5589B74C2DC16B5D00DEA9CF /* BasicStorage.swift in Sources */,
+				55B8C01A2DDF79E800344244 /* UserDetailsEntity.swift in Sources */,
 				FC65055E31196263B8A8B8F4 /* CodeConfirmationModuleInput.swift in Sources */,
 				5517476B2DC78E7500AFAF24 /* CategoryNetworkService.swift in Sources */,
 				765B750C0B1E74EF0E46746C /* CodeConfirmationModuleOutput.swift in Sources */,
 				5589B7102DC0191500DEA9CF /* AuthTokenEntry.swift in Sources */,
+				55B8C0222DDF862200344244 /* AdminNetworkService.swift in Sources */,
 				2195F69B6CEE9C88A1507EF7 /* CodeConfirmationViewController.swift in Sources */,
 				79CDE9291635E02BEE9E21AC /* CodeConfirmationView.swift in Sources */,
 				55ED67772DA7AC9500A3CA52 /* TitleCollectionReusableView.swift in Sources */,
@@ -3623,6 +3651,7 @@
 				089A02DEBE50F962E1982F44 /* IncomingRequestsViewController.swift in Sources */,
 				8755F9B1ECC5A3C3125ADD2C /* IncomingRequestsViewInput.swift in Sources */,
 				16C1776025EFD1AD5DFE7D50 /* IncomingRequestsViewOutput.swift in Sources */,
+				55B8C01D2DDF83DE00344244 /* AdminService.swift in Sources */,
 				816B8B8F6CE96238B86BB610 /* OutgoingRequestsModuleConfigurator.swift in Sources */,
 				19D5CAB38B775EF75F554776 /* OutgoingRequestsPresenter.swift in Sources */,
 				845F35B8072E1FD8AD0FEF3E /* OutgoingRequestsModuleInput.swift in Sources */,
@@ -3688,6 +3717,7 @@
 				657D6E118B282AABF5C7C5E8 /* EditOfferViewOutput.swift in Sources */,
 				6A4F41B85DEBAC227F073FE4 /* SettingsModuleConfigurator.swift in Sources */,
 				325D2987A00B7B001DA1A698 /* SettingsPresenter.swift in Sources */,
+				55B8C0182DDF79DE00344244 /* UserDetailsEntry.swift in Sources */,
 				079C42B0566BF4C0199D9899 /* SettingsModuleInput.swift in Sources */,
 				63DF6BEAD535F1162CE7FC0F /* SettingsModuleOutput.swift in Sources */,
 				04121746D4773E4D58CA9C81 /* SettingsViewController.swift in Sources */,
