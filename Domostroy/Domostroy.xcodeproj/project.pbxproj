@@ -241,6 +241,14 @@
 		55B4962C2D9E88D300C6AB57 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962B2D9E88D300C6AB57 /* MainTab.swift */; };
 		55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */; };
 		55B8C00E2DDF425600344244 /* AdminPanelPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */; };
+		55B8C0122DDF5B2900344244 /* AdminPanelCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0102DDF5B2900344244 /* AdminPanelCoordinatorOutput.swift */; };
+		55B8C0132DDF5B2900344244 /* AdminPanelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0112DDF5B2900344244 /* AdminPanelCoordinator.swift */; };
+		55B8C0152DDF5DB000344244 /* UserAdminCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0142DDF5DB000344244 /* UserAdminCollectionViewCell.swift */; };
+		55B8C0182DDF79DE00344244 /* UserDetailsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0172DDF79DE00344244 /* UserDetailsEntry.swift */; };
+		55B8C01A2DDF79E800344244 /* UserDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0192DDF79E800344244 /* UserDetailsEntity.swift */; };
+		55B8C01D2DDF83DE00344244 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C01C2DDF83DD00344244 /* AdminService.swift */; };
+		55B8C0202DDF861B00344244 /* AdminUrlRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C01F2DDF861B00344244 /* AdminUrlRoute.swift */; };
+		55B8C0222DDF862200344244 /* AdminNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8C0212DDF862200344244 /* AdminNetworkService.swift */; };
 		55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92F62DB6774F007F4240 /* FavoritesEmptyView.swift */; };
 		55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BA92FA2DB69099007F4240 /* FavoritesSettingsView.swift */; };
 		55BB62C82DBABD7200BD992E /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB62C72DBABD7200BD992E /* String+ext.swift */; };
@@ -694,6 +702,8 @@
 		55B4962B2D9E88D300C6AB57 /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		55B4962D2D9E9F5700C6AB57 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
 		55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPanelPresenterModel.swift; sourceTree = "<group>"; };
+		55B8C0102DDF5B2900344244 /* AdminPanelCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPanelCoordinatorOutput.swift; sourceTree = "<group>"; };
+		55B8C0112DDF5B2900344244 /* AdminPanelCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPanelCoordinator.swift; sourceTree = "<group>"; };
 		55B8C0172DDF79DE00344244 /* UserDetailsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsEntry.swift; sourceTree = "<group>"; };
 		55B8C0192DDF79E800344244 /* UserDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsEntity.swift; sourceTree = "<group>"; };
 		55B8C01C2DDF83DD00344244 /* AdminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
@@ -1730,6 +1740,7 @@
 				FD09829050BBFB5E9A175408 /* Requests */,
 				FCD9BAD32728EB1364A5F206 /* Profile */,
 				FD896F80D15488BED83D7955 /* Auth */,
+				5AB7CA294698B2B4E193AD1D /* AdminPanel */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -2022,6 +2033,7 @@
 		55AAA9BE2DBE87540018952F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				55B8C01E2DDF860C00344244 /* Admin */,
 				5589B7512DC174FD00DEA9CF /* Auth */,
 				55AAAA0B2DBEE70A0018952F /* Offer */,
 				55190AF02DD4E18500C33A57 /* Rent */,
@@ -2168,6 +2180,16 @@
 				55B8C00D2DDF425600344244 /* AdminPanelPresenterModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		55B8C00F2DDF5AE000344244 /* AdminPanel */ = {
+			isa = PBXGroup;
+			children = (
+				773D0F7A3BC58618104E0FAB /* Configurator */,
+				B13AE3BEB0E43A66DBC5D772 /* Presenter */,
+				9E7314B755081FEA7DB7693A /* View */,
+			);
+			path = AdminPanel;
 			sourceTree = "<group>";
 		};
 		55B8C0162DDF79C800344244 /* UserDetails */ = {
@@ -2370,9 +2392,9 @@
 		5AB7CA294698B2B4E193AD1D /* AdminPanel */ = {
 			isa = PBXGroup;
 			children = (
-				773D0F7A3BC58618104E0FAB /* Configurator */,
-				B13AE3BEB0E43A66DBC5D772 /* Presenter */,
-				9E7314B755081FEA7DB7693A /* View */,
+				55B8C0112DDF5B2900344244 /* AdminPanelCoordinator.swift */,
+				55B8C0102DDF5B2900344244 /* AdminPanelCoordinatorOutput.swift */,
+				55B8C00F2DDF5AE000344244 /* AdminPanel */,
 			);
 			path = AdminPanel;
 			sourceTree = "<group>";
@@ -3116,7 +3138,6 @@
 				13C73C39ADDD5B5A3A1B7BD6 /* EditProfile */,
 				B260BA3941B945E38A9E3E7D /* ChangePassword */,
 				1A9DF717DF29C64BA2B42A5C /* Settings */,
-				5AB7CA294698B2B4E193AD1D /* AdminPanel */,
 				3719528511F9589C0E19C353 /* ProfileUnauthorized */,
 			);
 			path = Profile;
@@ -3401,6 +3422,7 @@
 				9C1F16163C03F9561D170305 /* RequestsViewController.swift in Sources */,
 				551747632DC78CA600AFAF24 /* CitiesEntry.swift in Sources */,
 				552886A42DC6A65F00CADD6C /* MyOfferEntity.swift in Sources */,
+				55B8C0122DDF5B2900344244 /* AdminPanelCoordinatorOutput.swift in Sources */,
 				55AAA9C32DBE882F0018952F /* OfferNetworkService.swift in Sources */,
 				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
 				55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */,
@@ -3706,6 +3728,7 @@
 				8B0455B0F78816B8BA4E1075 /* MyOfferDetailsViewController.swift in Sources */,
 				17CB51D19A33B170FDC748A4 /* MyOfferDetailsView.swift in Sources */,
 				99E6F96C6188FA5FB092FC59 /* MyOfferDetailsViewInput.swift in Sources */,
+				55B8C0132DDF5B2900344244 /* AdminPanelCoordinator.swift in Sources */,
 				7F99CCAE1F10829020E88471 /* MyOfferDetailsViewOutput.swift in Sources */,
 				BDA36AE3886191EDE8E86FBF /* EditOfferModuleConfigurator.swift in Sources */,
 				5162FE73223AFE87CE55174C /* EditOfferPresenter.swift in Sources */,

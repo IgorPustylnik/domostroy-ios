@@ -192,8 +192,8 @@
 // MARK: - Admin Panel
 
 "AdminPanel.Title"="Admin panel";
+
 "AdminPanel.Users.Title"="Users";
-"AdminPanel.BannedOffers.Title"="Banned offers";
 
 // MARK: - Requests
 

@@ -8,4 +8,5 @@
 
 protocol AdminPanelModuleOutput: AnyObject {
     var onPresentSegment: ((AdminPanelPresenterModel.Segment) -> Void)? { get set }
+    var onSearch: ((String?, AdminPanelPresenterModel.Segment) -> Void)? { get set }
 }
