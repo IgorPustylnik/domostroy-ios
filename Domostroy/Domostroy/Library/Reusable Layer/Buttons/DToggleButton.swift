@@ -13,23 +13,42 @@ final class DToggleButton: DButton {
 
     // MARK: - Properties
 
-    private var isOn: Bool = false
-    private var onImage: UIImage?
-    private var offImage: UIImage?
+    private(set) var isOn: Bool = false
+    var onImage: UIImage?
+    var offImage: UIImage?
+    var onColor: UIColor?
+    var offColor: UIColor?
+    var onTitleColor: UIColor?
+    var offTitleColor: UIColor?
+    var onTitle: String?
+    var offTitle: String?
     private var toggleAction: ToggleAction?
 
-    // MARK: - Configuration
+    // MARK: - Public methods
 
-    func configure(initialState: Bool, onImage: UIImage?, offImage: UIImage?, toggleAction: ToggleAction?) {
-        self.isOn = initialState
-        self.onImage = onImage
-        self.offImage = offImage
-        self.toggleAction = toggleAction
+    func setOn(_ isOn: Bool) {
+        self.isOn = isOn
+        updateAppearance()
+    }
+
+    func setToggleAction(_ action: ToggleAction?) {
+        toggleAction = action
         setAction { [weak self] in
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             self?.performToggleAction()
         }
-        updateIcon()
+    }
+
+    func updateAppearance() {
+        image = isOn ? onImage : offImage
+        if let onColor, isOn {
+            backgroundColor = onColor
+        }
+        if let offColor, !isOn {
+            backgroundColor = offColor
+        }
+        titleLabel?.textColor = isOn ? onTitleColor : offTitleColor
+        title = isOn ? onTitle : offTitle
     }
 
     // MARK: - Private methods
@@ -41,14 +60,11 @@ final class DToggleButton: DButton {
             self?.setLoading(false)
             if success {
                 self?.isOn.toggle()
-                self?.updateIcon()
+                self?.updateAppearance()
             } else {
                 UINotificationFeedbackGenerator().notificationOccurred(.error)
             }
         }
     }
 
-    private func updateIcon() {
-        image = isOn ? onImage : offImage
-    }
 }

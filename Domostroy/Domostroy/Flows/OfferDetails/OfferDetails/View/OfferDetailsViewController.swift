@@ -95,12 +95,10 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
     func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleAction?) {
         let toggle = DToggleButton(type: .plainPrimary)
         toggle.insets = .zero
-        toggle.configure(
-            initialState: initialState,
-            onImage: .Buttons.favoriteFilled,
-            offImage: .Buttons.favorite,
-            toggleAction: toggleAction
-        )
+        toggle.onImage = .Buttons.favoriteFilled
+        toggle.offImage = .Buttons.favorite
+        toggle.setToggleAction(toggleAction)
+        toggle.setOn(initialState)
         navigationBar.rightItems = [toggle]
     }
 
