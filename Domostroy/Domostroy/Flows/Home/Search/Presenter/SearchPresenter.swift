@@ -311,7 +311,7 @@ private extension SearchPresenter {
                 filtering.append(.init(filterKey: .title, operation: .contains, value: AnyEncodable(word)))
             }
         }
-        let searchOffersEntity = SearchOffersEntity(
+        let searchOffersEntity = SearchRequestEntity(
             pagination: .init(page: currentPage, size: CommonConstants.pageSize),
             sorting: sorting,
             searchCriteriaList: filtering,

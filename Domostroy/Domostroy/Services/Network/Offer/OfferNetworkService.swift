@@ -21,8 +21,6 @@ public final class OfferNetworkService: OfferService {
         self.secureStorage = secureStorage
     }
 
-    // MARK: - GET
-
     public func getOffer(id: Int) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never> {
         return makeBuilder()
             .route(.get, .one(id))
@@ -31,7 +29,7 @@ public final class OfferNetworkService: OfferService {
     }
 
     public func getOffers(
-        searchOffersEntity: SearchOffersEntity
+        searchOffersEntity: SearchRequestEntity
     ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never> {
         return makeBuilder()
             .route(.post, .search)
@@ -77,8 +75,6 @@ public final class OfferNetworkService: OfferService {
             .nodeResultPublisher()
     }
 
-    // MARK: - POST
-
     public func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never> {
         return makeBuilder()
             .route(.post, .base)
@@ -93,8 +89,6 @@ public final class OfferNetworkService: OfferService {
             .build()
             .nodeResultPublisher()
     }
-
-    // MARK: - DELETE
 
     public func deleteOffer(id: Int) -> AnyPublisher<NodeResult<Void>, Never> {
         return makeBuilder()

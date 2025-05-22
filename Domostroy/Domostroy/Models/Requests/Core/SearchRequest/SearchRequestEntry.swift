@@ -9,7 +9,7 @@ import Foundation
 import NodeKit
 import UIKit
 
-public struct SearchOffersEntry {
+public struct SearchRequestEntry {
     private let pas: PaginationAndSortingEntry
     public let searchCriteriaList: [FilterEntry]
 
@@ -25,7 +25,7 @@ public struct SearchOffersEntry {
     }
 }
 
-extension SearchOffersEntry: Encodable, RawEncodable {
+extension SearchRequestEntry: Encodable, RawEncodable {
     public typealias Raw = Json
 
     public func toRaw() throws -> Json {

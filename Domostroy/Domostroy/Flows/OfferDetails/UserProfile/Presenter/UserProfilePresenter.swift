@@ -256,7 +256,7 @@ private extension UserProfilePresenter {
         completion: EmptyClosure?,
         handleResult: ((NodeResult<PageEntity<BriefOfferEntity>>) -> Void)?
     ) {
-        let searchOffersEntity = SearchOffersEntity(
+        let searchOffersEntity = SearchRequestEntity(
             pagination: .init(page: currentPage, size: CommonConstants.pageSize),
             sorting: [.init(property: .date, direction: .descending)],
             searchCriteriaList: [.init(filterKey: .userId, operation: .equals, value: AnyEncodable(userId))],

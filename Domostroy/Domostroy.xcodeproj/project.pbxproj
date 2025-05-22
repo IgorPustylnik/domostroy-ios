@@ -184,8 +184,8 @@
 		5589B7342DC14C2800DEA9CF /* DURLServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7332DC14C2800DEA9CF /* DURLServiceProvider.swift */; };
 		5589B7362DC1557400DEA9CF /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7352DC1557400DEA9CF /* SecureStorage.swift */; };
 		5589B73C2DC156AE00DEA9CF /* SecureKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B73B2DC156AE00DEA9CF /* SecureKeychainStorage.swift */; };
-		5589B7402DC15C1600DEA9CF /* SearchOffersEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B73F2DC15C1600DEA9CF /* SearchOffersEntry.swift */; };
-		5589B7422DC15C1D00DEA9CF /* SearchOffersEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7412DC15C1D00DEA9CF /* SearchOffersEntity.swift */; };
+		5589B7402DC15C1600DEA9CF /* SearchRequestEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B73F2DC15C1600DEA9CF /* SearchRequestEntry.swift */; };
+		5589B7422DC15C1D00DEA9CF /* SearchRequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7412DC15C1D00DEA9CF /* SearchRequestEntity.swift */; };
 		5589B7442DC15D7700DEA9CF /* CreateOfferMetadataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7432DC15D7700DEA9CF /* CreateOfferMetadataEntry.swift */; };
 		5589B7492DC16ACA00DEA9CF /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B7482DC16ACA00DEA9CF /* ServiceLocator.swift */; };
 		5589B74C2DC16B5D00DEA9CF /* BasicStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589B74B2DC16B5D00DEA9CF /* BasicStorage.swift */; };
@@ -635,8 +635,8 @@
 		5589B7332DC14C2800DEA9CF /* DURLServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DURLServiceProvider.swift; sourceTree = "<group>"; };
 		5589B7352DC1557400DEA9CF /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		5589B73B2DC156AE00DEA9CF /* SecureKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureKeychainStorage.swift; sourceTree = "<group>"; };
-		5589B73F2DC15C1600DEA9CF /* SearchOffersEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersEntry.swift; sourceTree = "<group>"; };
-		5589B7412DC15C1D00DEA9CF /* SearchOffersEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOffersEntity.swift; sourceTree = "<group>"; };
+		5589B73F2DC15C1600DEA9CF /* SearchRequestEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestEntry.swift; sourceTree = "<group>"; };
+		5589B7412DC15C1D00DEA9CF /* SearchRequestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestEntity.swift; sourceTree = "<group>"; };
 		5589B7432DC15D7700DEA9CF /* CreateOfferMetadataEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOfferMetadataEntry.swift; sourceTree = "<group>"; };
 		5589B7482DC16ACA00DEA9CF /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		5589B74B2DC16B5D00DEA9CF /* BasicStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStorage.swift; sourceTree = "<group>"; };
@@ -1926,7 +1926,7 @@
 				55B126492DC670590030A6FC /* Pagination */,
 				55B126572DC67E090030A6FC /* Sort */,
 				55B126522DC675BD0030A6FC /* Filter */,
-				5589B73E2DC15C0400DEA9CF /* SearchOffers */,
+				5589B73E2DC15C0400DEA9CF /* SearchRequest */,
 				5589B72B2DC0B8E900DEA9CF /* CreateOffer */,
 				55190AF52DD4ED8300C33A57 /* CreateRequest */,
 			);
@@ -1960,13 +1960,13 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
-		5589B73E2DC15C0400DEA9CF /* SearchOffers */ = {
+		5589B73E2DC15C0400DEA9CF /* SearchRequest */ = {
 			isa = PBXGroup;
 			children = (
-				5589B7412DC15C1D00DEA9CF /* SearchOffersEntity.swift */,
-				5589B73F2DC15C1600DEA9CF /* SearchOffersEntry.swift */,
+				5589B7412DC15C1D00DEA9CF /* SearchRequestEntity.swift */,
+				5589B73F2DC15C1600DEA9CF /* SearchRequestEntry.swift */,
 			);
-			path = SearchOffers;
+			path = SearchRequest;
 			sourceTree = "<group>";
 		};
 		5589B74D2DC1706000DEA9CF /* UserDefaults */ = {
@@ -3271,7 +3271,7 @@
 				559610B02D9C8D7B00746358 /* AppCoordinator.swift in Sources */,
 				55AAA9EA2DBED1950018952F /* CityEntity.swift in Sources */,
 				55AAA9D62DBEC1300018952F /* OfferDetailsEntry.swift in Sources */,
-				5589B7402DC15C1600DEA9CF /* SearchOffersEntry.swift in Sources */,
+				5589B7402DC15C1600DEA9CF /* SearchRequestEntry.swift in Sources */,
 				559610B22D9C8E1B00746358 /* DeepLinkOption.swift in Sources */,
 				55631AD12D95FB3900FD6856 /* Coordinator.swift in Sources */,
 				55631AD52D95FB3900FD6856 /* Router.swift in Sources */,
@@ -3408,7 +3408,7 @@
 				55189C592DB6C9300079481A /* DRadioButton.swift in Sources */,
 				55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */,
 				D54B569788B17FA25A0E67E3 /* AuthCoordinatorOutput.swift in Sources */,
-				5589B7422DC15C1D00DEA9CF /* SearchOffersEntity.swift in Sources */,
+				5589B7422DC15C1D00DEA9CF /* SearchRequestEntity.swift in Sources */,
 				55190AFC2DD4F05A00C33A57 /* OfferCalendarEntity.swift in Sources */,
 				55C369612DD54A67002E31E5 /* CustomDayView.swift in Sources */,
 				C7918EDE7ACDEBEA26F1C9C9 /* AuthModuleConfigurator.swift in Sources */,

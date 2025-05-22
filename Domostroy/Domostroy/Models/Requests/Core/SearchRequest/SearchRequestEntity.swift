@@ -1,5 +1,5 @@
 //
-//  SearchOffersEntity.swift
+//  SearchRequestEntity.swift
 //  Domostroy
 //
 //  Created by Игорь Пустыльник on 29.04.2025.
@@ -8,7 +8,7 @@
 import Foundation
 import NodeKit
 
-public struct SearchOffersEntity {
+public struct SearchRequestEntity {
     public let pagination: PaginationRequestEntity
     public let sorting: [SortEntity]
     public let searchCriteriaList: [FilterEntity]
@@ -16,10 +16,10 @@ public struct SearchOffersEntity {
     public let seed: String?
 }
 
-extension SearchOffersEntity: DTOEncodable {
-    public typealias DTO = SearchOffersEntry
+extension SearchRequestEntity: DTOEncodable {
+    public typealias DTO = SearchRequestEntry
 
-    public func toDTO() throws -> SearchOffersEntry {
+    public func toDTO() throws -> SearchRequestEntry {
         try .init(
             pagination: pagination.toDTO(),
             sorting: sorting.toDTO(),

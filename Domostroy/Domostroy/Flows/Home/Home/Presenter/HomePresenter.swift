@@ -266,7 +266,7 @@ private extension HomePresenter {
     ) {
         var filtering: [FilterEntity] = []
         filtering.append(.init(filterKey: .cityId, operation: .greaterThan, value: AnyEncodable(0)))
-        let searchOffersEntity = SearchOffersEntity(
+        let searchOffersEntity = SearchRequestEntity(
             pagination: .init(page: currentPage, size: CommonConstants.pageSize),
             sorting: [],
             searchCriteriaList: filtering,
