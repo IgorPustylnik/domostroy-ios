@@ -10,7 +10,7 @@ protocol OffersAdminModuleInput: AnyObject {
     func search(_ query: String?)
     func setCity(_ city: CityEntity?)
     func setSort(_ sort: SortViewModel)
-    func setFilters(_ filters: FiltersViewModel)
+    func setFilters(_ filters: OfferAdminFilterViewModel)
     func setAdminPanelModuleInput(_ input: AdminPanelModuleInput?)
     func openCities()
     func openSort()

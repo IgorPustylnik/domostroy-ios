@@ -9,7 +9,7 @@
 protocol OffersAdminModuleOutput: AnyObject {
     var onOpenCity: ((CityEntity?) -> Void)? { get set }
     var onOpenSort: ((SortViewModel) -> Void)? { get set }
-    var onOpenFilters: ((FiltersViewModel) -> Void)? { get set }
+    var onOpenFilters: ((OfferAdminFilterViewModel) -> Void)? { get set }
     var onOpenOffer: ((Int) -> Void)? { get set }
     func getSearchQuery() -> String?
 }

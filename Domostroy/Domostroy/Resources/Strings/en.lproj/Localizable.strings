@@ -201,6 +201,10 @@
 "AdminPanel.Users.Button.Delete"="Delete";
 
 "AdminPanel.Offers.Title"="Offers";
+"AdminPanel.Offers.Filter.Status"="Status";
+"AdminPanel.Offers.Filter.Status.All"="All";
+"AdminPanel.Offers.Filter.Status.Active"="Active";
+"AdminPanel.Offers.Filter.Status.Banned"="Banned";
 
 // MARK: - Requests
 

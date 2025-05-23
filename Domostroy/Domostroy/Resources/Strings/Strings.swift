@@ -25,6 +25,18 @@ internal enum L10n {
       internal enum Offers {
         /// Offers
         internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Title", fallback: "Offers")
+        internal enum Filter {
+          /// Status
+          internal static let status = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status", fallback: "Status")
+          internal enum Status {
+            /// Active
+            internal static let active = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.Active", fallback: "Active")
+            /// All
+            internal static let all = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.All", fallback: "All")
+            /// Banned
+            internal static let banned = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.Banned", fallback: "Banned")
+          }
+        }
       }
       internal enum Users {
         /// Admin

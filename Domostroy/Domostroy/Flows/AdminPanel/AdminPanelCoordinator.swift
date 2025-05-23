@@ -111,8 +111,8 @@ private extension AdminPanelCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showFilters(filters: FiltersViewModel, offersInput: OffersAdminModuleInput?) {
-        let (view, output, input) = FilterModuleConfigurator().configure()
+    func showFilters(filters: OfferAdminFilterViewModel, offersInput: OffersAdminModuleInput?) {
+        let (view, output, input) = OfferAdminFilterModuleConfigurator().configure()
         input.setFilters(filters)
         output.onApply = { [weak offersInput] newFilter in
             offersInput?.setFilters(newFilter)

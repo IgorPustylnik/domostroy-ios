@@ -19,7 +19,7 @@ final class OffersAdminPresenter: OffersAdminModuleOutput {
     var onOpenOffer: ((Int) -> Void)?
     var onOpenCity: ((CityEntity?) -> Void)?
     var onOpenSort: ((SortViewModel) -> Void)?
-    var onOpenFilters: ((FiltersViewModel) -> Void)?
+    var onOpenFilters: ((OfferAdminFilterViewModel) -> Void)?
 
     func getSearchQuery() -> String? {
         query
@@ -47,9 +47,10 @@ final class OffersAdminPresenter: OffersAdminModuleOutput {
 
     private var city: CityEntity?
     private var sort: SortViewModel = .default
-    private var filters: FiltersViewModel = .init(
+    private var filters: OfferAdminFilterViewModel = .init(
         categoryFilter: .init(all: []),
-        priceFilter: (nil, nil)
+        priceFilter: (nil, nil),
+        statusFilter: .all
     )
 
     private var hasLoadedInitially = false
@@ -96,7 +97,7 @@ extension OffersAdminPresenter: OffersAdminModuleInput {
         }
     }
 
-    func setFilters(_ filters: FiltersViewModel) {
+    func setFilters(_ filters: OfferAdminFilterViewModel) {
         self.filters = filters
         adminPanelInput?.setOffersHasFilters(filters.isNotEmpty)
         if hasLoadedInitially {
@@ -301,6 +302,10 @@ private extension OffersAdminPresenter {
         if let toPrice = filters.priceFilter.to {
             filtering.append(.init(filterKey: .price, operation: .lessThanEqual, value: AnyEncodable(toPrice.value)))
         }
+        // TODO: Uncomment when server implements the feature
+//        if let status = filters.statusFilter.toFilterEntity {
+//            filtering.append(status)
+//        }
         if let query, !query.isEmpty {
             let words = query.split(separator: " ").map { String($0) }
             for word in words {

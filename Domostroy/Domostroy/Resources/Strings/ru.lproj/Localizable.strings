@@ -201,6 +201,10 @@
 "AdminPanel.Users.Button.Delete"="Удалить";
 
 "AdminPanel.Offers.Title"="Объявления";
+"AdminPanel.Offers.Filter.Status"="Статус";
+"AdminPanel.Offers.Filter.Status.All"="Все";
+"AdminPanel.Offers.Filter.Status.Active"="Активные";
+"AdminPanel.Offers.Filter.Status.Banned"="Заблокированные";
 
 // MARK: - Requests
 
