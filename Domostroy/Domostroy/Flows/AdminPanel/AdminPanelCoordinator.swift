@@ -33,11 +33,17 @@ final class AdminPanelCoordinator: BaseCoordinator, AdminPanelCoordinatorOutput 
 private extension AdminPanelCoordinator {
 
     func showAdminPanel() {
+        let (usersView, usersOutput, usersInput) = UsersAdminModuleConfigurator().configure()
         let (view, output, input) = AdminPanelModuleConfigurator().configure()
 
+        usersOutput.onOpenUser = { [weak self] id in
+            self?.showUser(id: id)
+        }
         output.onPresentSegment = { [weak input] segment in
             switch segment {
             case .users:
+                input?.present(usersView, as: segment, scrollView: usersView.collectionView)
+                input?.setSearchQuery(usersOutput.getSearchQuery())
             case .offers:
             }
         }

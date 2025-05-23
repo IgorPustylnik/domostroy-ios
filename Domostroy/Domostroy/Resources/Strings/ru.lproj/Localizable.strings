@@ -194,6 +194,13 @@
 "AdminPanel.Title"="Панель администратора";
 
 "AdminPanel.Users.Title"="Пользователи";
+"AdminPanel.Users.Admin"="Администратор";
+"AdminPanel.Users.RegistrationDate"="Дата регистрации: %@";
+"AdminPanel.Users.Button.Ban"="Заблокировать";
+"AdminPanel.Users.Button.Unban"="Разблокировать";
+"AdminPanel.Users.Button.Delete"="Удалить";
+
+"AdminPanel.Offers.Title"="Объявления";
 
 // MARK: - Requests
 

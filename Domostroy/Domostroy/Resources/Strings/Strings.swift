@@ -27,8 +27,22 @@ internal enum L10n {
         internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Title", fallback: "Offers")
       }
       internal enum Users {
+        /// Admin
+        internal static let admin = L10n.tr("Localizable", "AdminPanel.Users.Admin", fallback: "Admin")
+        /// Registration date: %@
+        internal static func registrationDate(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "AdminPanel.Users.RegistrationDate", String(describing: p1), fallback: "Registration date: %@")
+        }
         /// Users
         internal static let title = L10n.tr("Localizable", "AdminPanel.Users.Title", fallback: "Users")
+        internal enum Button {
+          /// Ban
+          internal static let ban = L10n.tr("Localizable", "AdminPanel.Users.Button.Ban", fallback: "Ban")
+          /// Delete
+          internal static let delete = L10n.tr("Localizable", "AdminPanel.Users.Button.Delete", fallback: "Delete")
+          /// Unban
+          internal static let unban = L10n.tr("Localizable", "AdminPanel.Users.Button.Unban", fallback: "Unban")
+        }
       }
     }
     internal enum Auth {

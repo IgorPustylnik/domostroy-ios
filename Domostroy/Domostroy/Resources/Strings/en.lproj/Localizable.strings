@@ -194,6 +194,13 @@
 "AdminPanel.Title"="Admin panel";
 
 "AdminPanel.Users.Title"="Users";
+"AdminPanel.Users.Admin"="Admin";
+"AdminPanel.Users.RegistrationDate"="Registration date: %@";
+"AdminPanel.Users.Button.Ban"="Ban";
+"AdminPanel.Users.Button.Unban"="Unban";
+"AdminPanel.Users.Button.Delete"="Delete";
+
+"AdminPanel.Offers.Title"="Offers";
 
 // MARK: - Requests
 
