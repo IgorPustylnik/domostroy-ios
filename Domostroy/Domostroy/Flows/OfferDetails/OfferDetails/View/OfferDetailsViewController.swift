@@ -92,7 +92,7 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
         offerDetailsView.setupInitialState()
     }
 
-    func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleAction?) {
+    func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleClosure?) {
         let toggle = DToggleButton(type: .plainPrimary)
         toggle.insets = .zero
         toggle.onImage = .Buttons.favoriteFilled

@@ -42,7 +42,7 @@ final class FavoriteOfferCollectionViewCell: UICollectionViewCell, Highlightable
             let initialState: Bool
             let onImage: UIImage
             let offImage: UIImage
-            let toggleAction: ToggleAction?
+            let toggleAction: ToggleClosure?
         }
     }
 

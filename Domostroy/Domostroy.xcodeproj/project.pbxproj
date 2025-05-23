@@ -139,6 +139,7 @@
 		551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */; };
 		551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */; };
 		551FC3C42DBD114500A8FE6B /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */; };
+		552185F12DE2280900E19BBE /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F02DE2280900E19BBE /* Typealiases.swift */; };
 		552402202DC185BC00AD83F1 /* CreateOfferResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */; };
 		552402222DC185C800AD83F1 /* CreateOfferResponseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */; };
 		552402272DC2B4F100AD83F1 /* TokenExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */; };
@@ -610,6 +611,7 @@
 		551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		551FC3C32DBD114500A8FE6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		551FC3C52DBD114F00A8FE6B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
+		552185F02DE2280900E19BBE /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntity.swift; sourceTree = "<group>"; };
 		552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntry.swift; sourceTree = "<group>"; };
 		552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExpirationHandler.swift; sourceTree = "<group>"; };
@@ -2369,6 +2371,7 @@
 				5587AEB72DB543A000669865 /* CalendarHelper.swift */,
 				551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */,
 				55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */,
+				552185F02DE2280900E19BBE /* Typealiases.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3477,6 +3480,7 @@
 				6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */,
 				55EDEBFC2DD893B60001EFC7 /* UsernameValidator.swift in Sources */,
 				550D4F2E2D9FCBE600B460CA /* DButton.swift in Sources */,
+				552185F12DE2280900E19BBE /* Typealiases.swift in Sources */,
 				019776A973A323EA2A89AA0F /* HomeModuleOutput.swift in Sources */,
 				F63157A82752EC011F74DD29 /* HomeViewController.swift in Sources */,
 				55EDEC122DD8A57C0001EFC7 /* PrefixTextFieldFormatter.swift in Sources */,

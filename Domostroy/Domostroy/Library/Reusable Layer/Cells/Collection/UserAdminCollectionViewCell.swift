@@ -27,8 +27,8 @@ final class UserAdminCollectionViewCell: UICollectionViewCell, HighlightableScal
         let offersAmount: String
         let isBanned: Bool
         let isAdmin: Bool
-        let banAction: ToggleAction?
-        let deleteAction: (_ handler: ((_ success: Bool) -> Void)?) -> Void?
+        let banAction: ToggleClosure?
+        let deleteAction: HandledClosure?
     }
 
     // MARK: - Constants
@@ -196,7 +196,7 @@ extension UserAdminCollectionViewCell: ConfigurableItem {
             banButton.setOn(!viewModel.isBanned)
             deleteButton.setAction { [weak self] in
                 self?.deleteButton.setLoading(true)
-                viewModel.deleteAction { success in
+                viewModel.deleteAction? { success in
                     self?.deleteButton.setLoading(false)
                 }
             }

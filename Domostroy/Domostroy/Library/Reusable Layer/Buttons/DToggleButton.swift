@@ -7,8 +7,6 @@
 
 import UIKit
 
-typealias ToggleAction = (Bool, _ handler: ((_ success: Bool) -> Void)?) -> Void
-
 final class DToggleButton: DButton {
 
     // MARK: - Properties
@@ -22,7 +20,7 @@ final class DToggleButton: DButton {
     var offTitleColor: UIColor?
     var onTitle: String?
     var offTitle: String?
-    private var toggleAction: ToggleAction?
+    private var toggleAction: ToggleClosure?
 
     // MARK: - Public methods
 
@@ -31,7 +29,7 @@ final class DToggleButton: DButton {
         updateAppearance()
     }
 
-    func setToggleAction(_ action: ToggleAction?) {
+    func setToggleAction(_ action: ToggleClosure?) {
         toggleAction = action
         setAction { [weak self] in
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()

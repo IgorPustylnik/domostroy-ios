@@ -36,7 +36,7 @@ final class OfferCollectionViewCell: UICollectionViewCell, HighlightableScaleVie
             let initialState: Bool
             let onImage: UIImage
             let offImage: UIImage
-            let toggleAction: ToggleAction?
+            let toggleAction: ToggleClosure?
         }
     }
 

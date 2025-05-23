@@ -24,8 +24,8 @@ final class OfferAdminCollectionViewCell: UICollectionViewCell, HighlightableSca
         let location: String
         let isBanned: Bool
         let banReason: String
-        let banAction: ToggleAction?
-        let deleteAction: (_ handler: ((_ success: Bool) -> Void)?) -> Void?
+        let banAction: ToggleClosure?
+        let deleteAction: HandledClosure?
     }
 
     // MARK: - Constants
@@ -197,7 +197,7 @@ extension OfferAdminCollectionViewCell: ConfigurableItem {
         banButton.setToggleAction(viewModel.banAction)
         deleteButton.setAction { [weak self] in
             self?.deleteButton.setLoading(true)
-            viewModel.deleteAction { success in
+            viewModel.deleteAction? { success in
                 self?.deleteButton.setLoading(false)
             }
         }
