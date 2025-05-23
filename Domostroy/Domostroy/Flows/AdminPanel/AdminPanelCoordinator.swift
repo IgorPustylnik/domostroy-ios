@@ -34,21 +34,95 @@ private extension AdminPanelCoordinator {
 
     func showAdminPanel() {
         let (usersView, usersOutput, usersInput) = UsersAdminModuleConfigurator().configure()
+        let (offersView, offersOutput, offersInput) = OffersAdminModuleConfigurator().configure()
         let (view, output, input) = AdminPanelModuleConfigurator().configure()
+
+        input.setOffersAdminModuleInput(offersInput)
+
+        offersInput.setAdminPanelModuleInput(input)
 
         usersOutput.onOpenUser = { [weak self] id in
             self?.showUser(id: id)
         }
+        output.onSearch = { [weak usersInput, weak offersInput] query, segment in
+            switch segment {
+            case .users:
+                usersInput?.search(query)
+            case .offers:
+                offersInput?.search(query)
+            }
+        }
+
         output.onPresentSegment = { [weak input] segment in
             switch segment {
             case .users:
                 input?.present(usersView, as: segment, scrollView: usersView.collectionView)
                 input?.setSearchQuery(usersOutput.getSearchQuery())
             case .offers:
+                input?.present(offersView, as: segment, scrollView: offersView.collectionView)
+                input?.setSearchQuery(offersOutput.getSearchQuery())
+                break
             }
         }
 
+        offersOutput.onOpenCity = { [weak self, weak offersInput] city in
+            self?.showCity(city: city, offersInput: offersInput)
+        }
+        offersOutput.onOpenSort = { [weak self, weak offersInput] sort in
+            self?.showSort(sort: sort, offersInput: offersInput)
+        }
+        offersOutput.onOpenFilters = { [weak self, weak offersInput] filters in
+            self?.showFilters(filters: filters, offersInput: offersInput)
+        }
+        offersOutput.onOpenOffer = { [weak self] id in
+            self?.runOfferDetailsFlow(id)
+        }
+
         router.push(view)
+    }
+
+    func showCity(city: CityEntity?, offersInput: OffersAdminModuleInput?) {
+        let (view, output, input) = SelectCityModuleConfigurator().configure()
+        input.setInitial(city: city)
+        input.setAllowAllCities(true)
+        output.onApply = { [weak self, weak offersInput] city in
+            offersInput?.setCity(city)
+            self?.router.dismissModule()
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
+    }
+
+    func showSort(sort: SortViewModel, offersInput: OffersAdminModuleInput?) {
+        let (view, output, input) = SortModuleConfigurator().configure()
+        input.setup(initialSort: sort)
+        output.onApply = { [weak offersInput] sort in
+            offersInput?.setSort(sort)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
+    }
+
+    func showFilters(filters: FiltersViewModel, offersInput: OffersAdminModuleInput?) {
+        let (view, output, input) = FilterModuleConfigurator().configure()
+        input.setFilters(filters)
+        output.onApply = { [weak offersInput] newFilter in
+            offersInput?.setFilters(newFilter)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .pageSheet
+        router.present(navigationControllerWrapper)
     }
 
     func showUser(id: Int) {
