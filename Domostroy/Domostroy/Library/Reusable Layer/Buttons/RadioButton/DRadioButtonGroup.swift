@@ -17,6 +17,7 @@ final class DRadioButtonGroup<Value: Hashable>: RadioButtonGroup {
 
     private var buttons: [Value: RadioButton] = [:]
     var selectedValue: Value?
+    var onDidSelect: ((Value) -> Void)?
 
     // MARK: - Public methods
 
@@ -31,6 +32,7 @@ final class DRadioButtonGroup<Value: Hashable>: RadioButtonGroup {
             b.setOn(shouldBeOn)
             if shouldBeOn {
                 selectedValue = v
+                onDidSelect?(v)
             }
         }
     }
