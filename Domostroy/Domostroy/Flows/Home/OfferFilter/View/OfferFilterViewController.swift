@@ -1,5 +1,5 @@
 //
-//  FilterViewController.swift
+//  OfferFilterViewController.swift
 //  Domostroy
 //
 //  Created by igorpustylnik on 23/04/2025.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class FilterViewController: UIViewController {
+final class OfferFilterViewController: UIViewController {
 
     // MARK: - Constants
 
@@ -105,7 +105,7 @@ final class FilterViewController: UIViewController {
 
     // MARK: - Properties
 
-    var output: FilterViewOutput?
+    var output: OfferFilterViewOutput?
 
     // MARK: - UIViewController
 
@@ -123,7 +123,7 @@ final class FilterViewController: UIViewController {
 
 // MARK: - Sheet presentation
 
-private extension FilterViewController {
+private extension OfferFilterViewController {
     func setupSheetPresentation() {
         if let sheet = sheetPresentationController {
             sheet.detents = [
@@ -147,9 +147,9 @@ private extension FilterViewController {
     }
 }
 
-// MARK: - FilterViewInput
+// MARK: - OfferFilterViewInput
 
-extension FilterViewController: FilterViewInput {
+extension OfferFilterViewController: OfferFilterViewInput {
 
     func setupInitialState() {
         title = L10n.Localizable.Filter.title
@@ -184,7 +184,7 @@ extension FilterViewController: FilterViewInput {
 // MARK: - Selectors
 
 @objc
-private extension FilterViewController {
+private extension OfferFilterViewController {
     func close() {
         output?.dismiss()
     }

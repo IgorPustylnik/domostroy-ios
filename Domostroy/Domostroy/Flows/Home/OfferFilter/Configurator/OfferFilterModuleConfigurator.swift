@@ -1,5 +1,5 @@
 //
-//  FilterModuleConfigurator.swift
+//  OfferFilterModuleConfigurator.swift
 //  Domostroy
 //
 //  Created by igorpustylnik on 23/04/2025.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-final class FilterModuleConfigurator {
+final class OfferFilterModuleConfigurator {
 
     // swiftlint:disable large_tuple
     func configure() -> (
-        FilterViewController,
-        FilterModuleOutput,
-        FilterModuleInput
+        OfferFilterViewController,
+        OfferFilterModuleOutput,
+        OfferFilterModuleInput
     ) {
-        let view = FilterViewController()
-        let presenter = FilterPresenter()
+        let view = OfferFilterViewController()
+        let presenter = OfferFilterPresenter()
 
         presenter.view = view
         view.output = presenter

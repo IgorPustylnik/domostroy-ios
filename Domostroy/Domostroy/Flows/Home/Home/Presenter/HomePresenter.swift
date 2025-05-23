@@ -25,7 +25,7 @@ final class HomePresenter: HomeModuleOutput {
 
     var onOpenOffer: ((Int) -> Void)?
     var onSearch: ((String?) -> Void)?
-    var onSearchFilters: ((FiltersViewModel) -> Void)?
+    var onSearchFilters: ((OfferFilterViewModel) -> Void)?
 
     // MARK: - Properties
 
@@ -79,7 +79,7 @@ extension HomePresenter: HomeViewOutput {
 
     func selectCategory(id: Int) {
         let category = categories.first { $0.id == id }
-        let filters = FiltersViewModel(categoryFilter: .init(all: categories, selected: category))
+        let filters = OfferFilterViewModel(categoryFilter: .init(all: categories, selected: category))
         onSearchFilters?(filters)
     }
 

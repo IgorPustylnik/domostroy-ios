@@ -1,5 +1,5 @@
 //
-//  FilterPresenter.swift
+//  OfferFilterPresenter.swift
 //  Domostroy
 //
 //  Created by igorpustylnik on 23/04/2025.
@@ -9,38 +9,27 @@
 import Foundation
 import Combine
 
-struct FiltersViewModel {
-    var categoryFilter: PickerModel<CategoryEntity>
-    var priceFilter: (from: PriceEntity?, to: PriceEntity?)
+final class OfferFilterPresenter: OfferFilterModuleOutput {
 
-    var isNotEmpty: Bool {
-        categoryFilter.selected != nil
-        || priceFilter.from != nil
-        || priceFilter.to != nil
-    }
-}
+    // MARK: - OfferFilterModuleOutput
 
-final class FilterPresenter: FilterModuleOutput {
-
-    // MARK: - FilterModuleOutput
-
-    var onApply: ((FiltersViewModel) -> Void)?
+    var onApply: ((OfferFilterViewModel) -> Void)?
     var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
-    weak var view: FilterViewInput?
+    weak var view: OfferFilterViewInput?
 
     private var categoryService: CategoryService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 
-    private var model: FiltersViewModel?
+    private var model: OfferFilterViewModel?
 }
 
-// MARK: - FilterModuleInput
+// MARK: - OfferFilterModuleInput
 
-extension FilterPresenter: FilterModuleInput {
-    func setFilters(_ model: FiltersViewModel) {
+extension OfferFilterPresenter: OfferFilterModuleInput {
+    func setFilters(_ model: OfferFilterViewModel) {
         self.model = model
         view?.setPriceFilter(
             from: model.priceFilter.from?.value.stringDroppingTrailingZero ?? "",
@@ -49,9 +38,9 @@ extension FilterPresenter: FilterModuleInput {
     }
 }
 
-// MARK: - FilterViewOutput
+// MARK: - OfferFilterViewOutput
 
-extension FilterPresenter: FilterViewOutput {
+extension OfferFilterPresenter: OfferFilterViewOutput {
 
     func viewLoaded() {
         view?.setupInitialState()
@@ -105,7 +94,7 @@ extension FilterPresenter: FilterViewOutput {
 
 // MARK: - Private methods
 
-private extension FilterPresenter {
+private extension OfferFilterPresenter {
     func fetchCategories() {
         categoryService?.getCategories(
         )

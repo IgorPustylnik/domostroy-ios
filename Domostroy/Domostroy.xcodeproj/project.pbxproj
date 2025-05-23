@@ -13,7 +13,7 @@
 		028718E0918C8429D3EE6F0E /* UsersAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3C3EED7543304007185B1 /* UsersAdminView.swift */; };
 		02E40F969F7A16094E3783B1 /* OfferDetailsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83265E917C7E935069288C7 /* OfferDetailsViewOutput.swift */; };
 		04121746D4773E4D58CA9C81 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BB3037D338A1F892980460 /* SettingsViewController.swift */; };
-		05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */; };
+		05450715911AD66F45DD7270 /* OfferFilterModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB09F263435F76CE8646BDB /* OfferFilterModuleOutput.swift */; };
 		05C0572D48F6CF241271A9B8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A190CCE945D145492EFA24 /* EditProfileViewController.swift */; };
 		062B62F82C018486586102ED /* FavoritesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DED2031025435C99F93656 /* FavoritesViewOutput.swift */; };
 		07240B96C7FD18E4CA645239 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2BAED35FEFC7A5501A9E9 /* MainTabBarViewController.swift */; };
@@ -80,20 +80,20 @@
 		42E9D7894A0356FB6387EF43 /* RequestsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878769E0FC6F9469FE8D363D /* RequestsModuleConfigurator.swift */; };
 		42EE0DD0F9B413ED97ABEC4C /* MyOfferDetailsModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D450AB4A0B094987E1C77DA /* MyOfferDetailsModuleOutput.swift */; };
 		43F79845013B97C0A54285B1 /* RequestsCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E2603003143C525701BC /* RequestsCoordinatorOutput.swift */; };
-		44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F84CA5864B1143319BF777 /* FilterViewController.swift */; };
+		44EC80AD6D004A90DD2F9907 /* OfferFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F84CA5864B1143319BF777 /* OfferFilterViewController.swift */; };
 		458D09E7A7554CB43ACE49E9 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF094B01277F29009CBC41B /* EditProfileView.swift */; };
 		46684D967F28B1D754A396A7 /* AuthModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F96F662B07F1B4C4724559 /* AuthModuleInput.swift */; };
 		487DADE2ED946BBD91A30B48 /* OfferDetailsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */; };
 		4B36364F2A0167A41333AB66 /* MyOffersEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC261E0698252AFBE37038FF /* MyOffersEmptyView.swift */; };
 		4B9261939FFFA3C0ABC81EF2 /* EditProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7C95397D71D754C8A7079 /* EditProfileViewOutput.swift */; };
 		4C8C01259C375686B6CAAA52 /* LessorCalendarModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA04C9939CA41F1791F693 /* LessorCalendarModuleInput.swift */; };
-		511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */; };
+		511C742D0BC671E79EF8192F /* OfferFilterViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2663476877EC5BA0BF8F8 /* OfferFilterViewOutput.swift */; };
 		5162FE73223AFE87CE55174C /* EditOfferPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2CA2E9DC9247646B8966F9 /* EditOfferPresenter.swift */; };
 		5176412973E400271343350A /* OfferDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2D0FFBF84EB88DC41044F /* OfferDetailsPresenter.swift */; };
 		52C1549839E44CC47731C4D9 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05B7EC7805A358EB761710 /* SearchModuleConfigurator.swift */; };
 		52EA661ED069E59736D14ACA /* IncomingRequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7266AD6C149AB337FC8229E4 /* IncomingRequestDetailsPresenter.swift */; };
 		53BE3F3B545312262D05BFE6 /* OutgoingRequestDetailsModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F966FE07ADD4AF439CF52FC2 /* OutgoingRequestDetailsModuleConfigurator.swift */; };
-		53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */; };
+		53D7F409E577CD2C3E84052C /* OfferFilterModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD9AA7E4A932E0EB07B64E /* OfferFilterModuleConfigurator.swift */; };
 		546D593F772D055533D5C352 /* EditOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA27CB30079AFFE295E4A0 /* EditOfferView.swift */; };
 		55039F462DDA69C60029CFD9 /* RentalRequest1Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55039F452DDA69C60029CFD9 /* RentalRequest1Entry.swift */; };
 		55039F4A2DDB29250029CFD9 /* RentalRequest1Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55039F492DDB29250029CFD9 /* RentalRequest1Entity.swift */; };
@@ -140,6 +140,7 @@
 		551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */; };
 		551FC3C42DBD114500A8FE6B /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */; };
 		552185F12DE2280900E19BBE /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F02DE2280900E19BBE /* Typealiases.swift */; };
+		552185F82DE2334600E19BBE /* OfferFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F72DE2334600E19BBE /* OfferFilterViewModel.swift */; };
 		552402202DC185BC00AD83F1 /* CreateOfferResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */; };
 		552402222DC185C800AD83F1 /* CreateOfferResponseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */; };
 		552402272DC2B4F100AD83F1 /* TokenExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */; };
@@ -317,7 +318,7 @@
 		55FFADAB2DB19908002A067D /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFADAA2DB19908002A067D /* DayRangeIndicatorView.swift */; };
 		581D0633C69AD5896134E003 /* AuthViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E615BF5F4AC9BCFB2E4ED6 /* AuthViewInput.swift */; };
 		5952F8FF3CC5F4C7DFB2E9BD /* CreateOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69BA71D8E3B8728ED8047D0 /* CreateOfferViewController.swift */; };
-		5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */; };
+		5C922563B7CA70C52F2B9C5D /* OfferFilterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7627823B9B2C5F61AE1801A /* OfferFilterViewInput.swift */; };
 		5F2141D94F86A4B84766F99C /* OutgoingRequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AFD228423313E99C1A436 /* OutgoingRequestDetailsPresenter.swift */; };
 		6181C1A6C6E6387992E8B5B6 /* HomeModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F76C13D56AE3A1F1B3194 /* HomeModuleInput.swift */; };
 		61849740343143784B6B2DF2 /* CodeConfirmationViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */; };
@@ -414,7 +415,7 @@
 		BD79D41D26D9E4DBA8969C46 /* CreateOfferViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA8146B0BA9630BF6F9CBD /* CreateOfferViewOutput.swift */; };
 		BDA36AE3886191EDE8E86FBF /* EditOfferModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FC01175279F11B770B5BAA /* EditOfferModuleConfigurator.swift */; };
 		BE09E7EB5BA9D1A98E517295 /* ProfileViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55F65B073FC94DFBF19ADE /* ProfileViewInput.swift */; };
-		BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */; };
+		BEC6C1C4DEBA178BDF759F04 /* OfferFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C7522875ACEA7F1376C60 /* OfferFilterPresenter.swift */; };
 		BEEB32EF22C13AC3375D74F1 /* RegisterViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAB4F7F0E93C9862D3D33E /* RegisterViewInput.swift */; };
 		BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF4D8DBBCC9F2A47F34B9 /* SortViewController.swift */; };
 		BFB0A125885DB5CD6B7DCAE8 /* MyOffersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562AD2E53B06FF71CBB5B76 /* MyOffersModuleInput.swift */; };
@@ -451,7 +452,7 @@
 		D8B81B49DBA677103F1E349B /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982D452E2F30D6E17ECAA024 /* SettingsViewOutput.swift */; };
 		D93A18CAB315F7F5D5D8FAEC /* EditOfferViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F43FB4F42AE4A2084809D50 /* EditOfferViewInput.swift */; };
 		DD45F9361F937B8AEE44F444 /* ChangePasswordModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D4A2F3D1F208509294678B /* ChangePasswordModuleConfigurator.swift */; };
-		DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */; };
+		DF976641BE32814D5C592B36 /* OfferFilterModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EA4723434A7BBBEF08BE56 /* OfferFilterModuleInput.swift */; };
 		E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86855E73D0855B252D23451E /* ProfileCoordinator.swift */; };
 		E2C4431AE3ED6636FB672784 /* LessorCalendarModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A97B274FC452F455AC98CC /* LessorCalendarModuleOutput.swift */; };
 		E41232A90ADA70D4F4AD0386 /* SortModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A0065DBFA6A05448E3D33 /* SortModuleInput.swift */; };
@@ -517,13 +518,13 @@
 		2220644AF7942AD009822866 /* CreateOfferModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferModuleInput.swift; sourceTree = "<group>"; };
 		2550006DCF4823003D24BE9D /* OutgoingRequestsViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsViewInput.swift; sourceTree = "<group>"; };
 		25658698FEC4126E0455C643 /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		26F84CA5864B1143319BF777 /* FilterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		26F84CA5864B1143319BF777 /* OfferFilterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterViewController.swift; sourceTree = "<group>"; };
 		273594135571405AB6EDBB1E /* OffersAdminView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OffersAdminView.swift; sourceTree = "<group>"; };
 		29663B6530289CCF715FAE92 /* OffersAdminPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OffersAdminPresenter.swift; sourceTree = "<group>"; };
 		297D705C5F0BCB964C992D8F /* EditOfferViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditOfferViewOutput.swift; sourceTree = "<group>"; };
 		2A833554CE2AE52D6E4F582B /* RegisterViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2A8FA1446039CA892BC72876 /* RequestCalendarViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestCalendarViewInput.swift; sourceTree = "<group>"; };
-		2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleOutput.swift; sourceTree = "<group>"; };
+		2CB09F263435F76CE8646BDB /* OfferFilterModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterModuleOutput.swift; sourceTree = "<group>"; };
 		2D8E25F83AC07F0A681D5D74 /* IncomingRequestDetailsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestDetailsViewOutput.swift; sourceTree = "<group>"; };
 		2DACE3FAE7D03342AB812DA8 /* SortModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleOutput.swift; sourceTree = "<group>"; };
 		2E0F77E967FA92F0B592B54B /* IncomingRequestsModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestsModuleConfigurator.swift; sourceTree = "<group>"; };
@@ -612,6 +613,7 @@
 		551FC3C32DBD114500A8FE6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		551FC3C52DBD114F00A8FE6B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		552185F02DE2280900E19BBE /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		552185F72DE2334600E19BBE /* OfferFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFilterViewModel.swift; sourceTree = "<group>"; };
 		5524021F2DC185BC00AD83F1 /* CreateOfferResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntity.swift; sourceTree = "<group>"; };
 		552402212DC185C800AD83F1 /* CreateOfferResponseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferResponseEntry.swift; sourceTree = "<group>"; };
 		552402262DC2B4F100AD83F1 /* TokenExpirationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExpirationHandler.swift; sourceTree = "<group>"; };
@@ -803,7 +805,7 @@
 		6282B02AD7B7D53A2EE59DA0 /* SortModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortModuleConfigurator.swift; sourceTree = "<group>"; };
 		64A97B274FC452F455AC98CC /* LessorCalendarModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarModuleOutput.swift; sourceTree = "<group>"; };
 		64C08C44C76280845E0D2F1D /* LessorCalendarPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarPresenter.swift; sourceTree = "<group>"; };
-		64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleInput.swift; sourceTree = "<group>"; };
+		64EA4723434A7BBBEF08BE56 /* OfferFilterModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterModuleInput.swift; sourceTree = "<group>"; };
 		65F013826D291D4217067463 /* OfferDetailsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferDetailsModuleInput.swift; sourceTree = "<group>"; };
 		674A1A083B2465C979786967 /* CodeConfirmationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewController.swift; sourceTree = "<group>"; };
 		686E2E628167A4950DE2D018 /* AuthViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -889,7 +891,7 @@
 		BAFCEC81A2FC09CE901B7617 /* LoginModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleConfigurator.swift; sourceTree = "<group>"; };
 		BB33C1E0254CD189D148A688 /* MainTabBarModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInput.swift; sourceTree = "<group>"; };
 		BBD4A6922BCC3AFE12F36D71 /* LessorCalendarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewController.swift; sourceTree = "<group>"; };
-		BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewOutput.swift; sourceTree = "<group>"; };
+		BBE2663476877EC5BA0BF8F8 /* OfferFilterViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterViewOutput.swift; sourceTree = "<group>"; };
 		BCC121D677A207467A1C1CC5 /* EditOfferModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditOfferModuleInput.swift; sourceTree = "<group>"; };
 		BE232CD1977047D2D1B7A484 /* AdminPanelModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelModuleOutput.swift; sourceTree = "<group>"; };
 		C079102E893B92AC9E2AECB0 /* CreateRequestViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestViewOutput.swift; sourceTree = "<group>"; };
@@ -915,17 +917,17 @@
 		D3615DE90CF1D28D1C614906 /* RequestsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsCoordinator.swift; sourceTree = "<group>"; };
 		D43DA5DE1F7AFAAEA5D31712 /* ProfileModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfileModuleConfigurator.swift; sourceTree = "<group>"; };
 		D49D47613ABAF3DBC4E85DD8 /* CreateOfferViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOfferViewInput.swift; sourceTree = "<group>"; };
-		D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterViewInput.swift; sourceTree = "<group>"; };
+		D7627823B9B2C5F61AE1801A /* OfferFilterViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterViewInput.swift; sourceTree = "<group>"; };
 		D84954CA6514CC357513F544 /* CodeConfirmationViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeConfirmationViewInput.swift; sourceTree = "<group>"; };
 		D9D1DCDF15355BD68A994168 /* AdminPanelViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelViewOutput.swift; sourceTree = "<group>"; };
-		DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterModuleConfigurator.swift; sourceTree = "<group>"; };
+		DABD9AA7E4A932E0EB07B64E /* OfferFilterModuleConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterModuleConfigurator.swift; sourceTree = "<group>"; };
 		DACE5ECBF9623641BF17499D /* CreateRequestPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateRequestPresenter.swift; sourceTree = "<group>"; };
 		DAF5AAB534B309140CD2E113 /* IncomingRequestsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IncomingRequestsPresenter.swift; sourceTree = "<group>"; };
 		DD7D1B42CDFD12442C973DE1 /* SortPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SortPresenter.swift; sourceTree = "<group>"; };
 		DDF7890D7AFE614A23462017 /* AuthModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthModuleOutput.swift; sourceTree = "<group>"; };
 		DF6277ECAE0AF4335ABAF454 /* LessorCalendarViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LessorCalendarViewOutput.swift; sourceTree = "<group>"; };
 		DF9EDC6751C4024AF8811A3B /* HomeViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewOutput.swift; sourceTree = "<group>"; };
-		E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
+		E11C7522875ACEA7F1376C60 /* OfferFilterPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfferFilterPresenter.swift; sourceTree = "<group>"; };
 		E3CA27CB30079AFFE295E4A0 /* EditOfferView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditOfferView.swift; sourceTree = "<group>"; };
 		E49C4A96B169CE999F255818 /* SelectCityViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SelectCityViewInput.swift; sourceTree = "<group>"; };
 		E658748DB86BFD8087B79DC0 /* RequestsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestsModuleInput.swift; sourceTree = "<group>"; };
@@ -1006,9 +1008,10 @@
 		0E7E1F637E4D677E0A43CCE6 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				E11C7522875ACEA7F1376C60 /* FilterPresenter.swift */,
-				64EA4723434A7BBBEF08BE56 /* FilterModuleInput.swift */,
-				2CB09F263435F76CE8646BDB /* FilterModuleOutput.swift */,
+				552185F62DE2324300E19BBE /* ViewModel */,
+				E11C7522875ACEA7F1376C60 /* OfferFilterPresenter.swift */,
+				64EA4723434A7BBBEF08BE56 /* OfferFilterModuleInput.swift */,
+				2CB09F263435F76CE8646BDB /* OfferFilterModuleOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1046,9 +1049,9 @@
 		14816D1524AFF374C3EE22A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				26F84CA5864B1143319BF777 /* FilterViewController.swift */,
-				D7627823B9B2C5F61AE1801A /* FilterViewInput.swift */,
-				BBE2663476877EC5BA0BF8F8 /* FilterViewOutput.swift */,
+				26F84CA5864B1143319BF777 /* OfferFilterViewController.swift */,
+				D7627823B9B2C5F61AE1801A /* OfferFilterViewInput.swift */,
+				BBE2663476877EC5BA0BF8F8 /* OfferFilterViewOutput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1265,7 +1268,7 @@
 		395C3F0B3C40C3C3B265DC95 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				DABD9AA7E4A932E0EB07B64E /* FilterModuleConfigurator.swift */,
+				DABD9AA7E4A932E0EB07B64E /* OfferFilterModuleConfigurator.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -1318,7 +1321,7 @@
 				42ADB419757D41987C7B5386 /* Search */,
 				B1D591F5EC1398A32F8F3668 /* SelectCity */,
 				A5DFCB7BE3B47B4290FC5F8B /* Sort */,
-				DBEAAA3944131F3AB66CB321 /* Filter */,
+				DBEAAA3944131F3AB66CB321 /* OfferFilter */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3070,14 +3073,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		DBEAAA3944131F3AB66CB321 /* Filter */ = {
+		DBEAAA3944131F3AB66CB321 /* OfferFilter */ = {
 			isa = PBXGroup;
 			children = (
 				395C3F0B3C40C3C3B265DC95 /* Configurator */,
 				0E7E1F637E4D677E0A43CCE6 /* Presenter */,
 				14816D1524AFF374C3EE22A5 /* View */,
 			);
-			path = Filter;
+			path = OfferFilter;
 			sourceTree = "<group>";
 		};
 		DED812F894DF4871B4B0BB11 /* View */ = {
@@ -3755,17 +3758,17 @@
 				867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */,
 				65C48F27871A9DFC981E641A /* SortViewOutput.swift in Sources */,
 				551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */,
-				53D7F409E577CD2C3E84052C /* FilterModuleConfigurator.swift in Sources */,
-				BEC6C1C4DEBA178BDF759F04 /* FilterPresenter.swift in Sources */,
-				DF976641BE32814D5C592B36 /* FilterModuleInput.swift in Sources */,
+				53D7F409E577CD2C3E84052C /* OfferFilterModuleConfigurator.swift in Sources */,
+				BEC6C1C4DEBA178BDF759F04 /* OfferFilterPresenter.swift in Sources */,
+				DF976641BE32814D5C592B36 /* OfferFilterModuleInput.swift in Sources */,
 				5517476F2DC78FE400AFAF24 /* EditUserInfoEntity.swift in Sources */,
-				05450715911AD66F45DD7270 /* FilterModuleOutput.swift in Sources */,
+				05450715911AD66F45DD7270 /* OfferFilterModuleOutput.swift in Sources */,
 				55B126562DC675DC0030A6FC /* FilterEntry.swift in Sources */,
 				55AAA9DA2DBEC34B0018952F /* PageEntry.swift in Sources */,
 				55F88C9E2DC3603E003EA26E /* DropsPresenter.swift in Sources */,
-				44EC80AD6D004A90DD2F9907 /* FilterViewController.swift in Sources */,
-				5C922563B7CA70C52F2B9C5D /* FilterViewInput.swift in Sources */,
-				511C742D0BC671E79EF8192F /* FilterViewOutput.swift in Sources */,
+				44EC80AD6D004A90DD2F9907 /* OfferFilterViewController.swift in Sources */,
+				5C922563B7CA70C52F2B9C5D /* OfferFilterViewInput.swift in Sources */,
+				511C742D0BC671E79EF8192F /* OfferFilterViewOutput.swift in Sources */,
 				82196459D55024D020B4A41E /* LessorCalendarModuleConfigurator.swift in Sources */,
 				E5C87AF00B7A25FDA6978A1E /* LessorCalendarPresenter.swift in Sources */,
 				4C8C01259C375686B6CAAA52 /* LessorCalendarModuleInput.swift in Sources */,
@@ -3862,6 +3865,7 @@
 				325D2987A00B7B001DA1A698 /* SettingsPresenter.swift in Sources */,
 				55B8C0182DDF79DE00344244 /* UserDetailsEntry.swift in Sources */,
 				079C42B0566BF4C0199D9899 /* SettingsModuleInput.swift in Sources */,
+				552185F82DE2334600E19BBE /* OfferFilterViewModel.swift in Sources */,
 				63DF6BEAD535F1162CE7FC0F /* SettingsModuleOutput.swift in Sources */,
 				04121746D4773E4D58CA9C81 /* SettingsViewController.swift in Sources */,
 				D7512EE7BD78B924A8CE4611 /* SettingsViewInput.swift in Sources */,
