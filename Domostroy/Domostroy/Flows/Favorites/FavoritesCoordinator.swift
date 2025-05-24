@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private enum LaunchInstructor {
     case favorites, auth
 

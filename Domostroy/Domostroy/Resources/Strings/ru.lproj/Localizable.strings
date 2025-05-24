@@ -37,6 +37,7 @@
 "HttpError.Unauthorized" = "Неавторизован";
 "HttpError.forbidden" = "Доступ запрещён";
 "HttpError.NotFound" = "Не найдено";
+"HttpError.Conflict" = "Конфликт";
 "HttpError.InternalServerError" = "Внутренняя ошибка сервера";
 "ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
 "BaseTechnicalError.NoInternet" = "Нет соединения с интернетом";
@@ -186,7 +187,24 @@
 // MARK: - Settings
 
 "Settings.Title" = "Настройки";
-"Settings.Notifications.Title" = "Email уведомления";
+"Settings.Notifications.Title" = "Уведомления на почту";
+
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Панель администратора";
+
+"AdminPanel.Users.Title"="Пользователи";
+"AdminPanel.Users.Admin"="Администратор";
+"AdminPanel.Users.RegistrationDate"="Дата регистрации: %@";
+"AdminPanel.Users.Button.Ban"="Заблокировать";
+"AdminPanel.Users.Button.Unban"="Разблокировать";
+"AdminPanel.Users.Button.Delete"="Удалить";
+
+"AdminPanel.Offers.Title"="Объявления";
+"AdminPanel.Offers.Filter.Status"="Статус";
+"AdminPanel.Offers.Filter.Status.All"="Все";
+"AdminPanel.Offers.Filter.Status.Active"="Активные";
+"AdminPanel.Offers.Filter.Status.Banned"="Заблокированные";
 
 // MARK: - Requests
 

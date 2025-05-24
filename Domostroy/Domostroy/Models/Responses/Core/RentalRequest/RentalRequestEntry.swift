@@ -20,6 +20,44 @@ public struct RentalRequestEntry {
 
 extension RentalRequestEntry: Decodable, RawDecodable {
     public typealias Raw = Json
+
+    public static func from(raw: Raw) throws -> Self {
+        guard let id = raw["id"] as? Int,
+              let statusRaw = raw["status"] as? String,
+              let status = RequestStatus(rawValue: statusRaw),
+              let datesRaw = raw["dates"] as? [String],
+              let createdAtStr = raw["createdAt"] as? String,
+              let offerRaw = raw["offer"] as? Json,
+              let userRaw = raw["user"] as? Json
+        else {
+            throw NSError(domain: "Invalid format", code: 1)
+        }
+        let resolvedAtRaw = raw["resolvedAt"] as? String
+        let dates: [Date] = try datesRaw.compactMap {
+            guard let date = DateFormatter.yyyymmdd.date(from: $0) else {
+                throw ResponseDataParserNodeError.cantDeserializeJson($0)
+            }
+            return date
+        }
+        guard let createdAt: Date = DateFormatter.iso8601WithMicroseconds.date(from: createdAtStr) else {
+            throw ResponseDataParserNodeError.cantDeserializeJson(createdAtStr)
+        }
+        var resolvedAt: Date?
+        if let resolvedAtRaw {
+            guard let resolvedAt = DateFormatter.iso8601WithMicroseconds.date(from: resolvedAtRaw) else {
+                throw ResponseDataParserNodeError.cantDeserializeJson(resolvedAtRaw)
+            }
+        }
+        return .init(
+            id: id,
+            status: status,
+            dates: dates,
+            createdAt: createdAt,
+            resolvedAt: resolvedAt,
+            offer: try .from(raw: offerRaw),
+            user: try .from(raw: userRaw)
+        )
+    }
 }
 
 public struct RentalRequestOfferEntry {

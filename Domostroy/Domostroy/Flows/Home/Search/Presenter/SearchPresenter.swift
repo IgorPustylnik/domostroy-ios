@@ -19,7 +19,7 @@ final class SearchPresenter: SearchModuleOutput {
     var onOpenOffer: ((Int) -> Void)?
     var onOpenCity: ((CityEntity?) -> Void)?
     var onOpenSort: ((SortViewModel) -> Void)?
-    var onOpenFilters: ((FiltersViewModel) -> Void)?
+    var onOpenFilters: ((OfferFilterViewModel) -> Void)?
 
     // MARK: - Properties
 
@@ -40,7 +40,7 @@ final class SearchPresenter: SearchModuleOutput {
 
     private var city: CityEntity?
     private var sort: SortViewModel = .default
-    private var filters: FiltersViewModel = .init(
+    private var filters: OfferFilterViewModel = .init(
         categoryFilter: .init(all: []),
         priceFilter: (nil, nil)
     )
@@ -80,7 +80,7 @@ extension SearchPresenter: SearchModuleInput {
         }
     }
 
-    func setFilters(_ filters: FiltersViewModel) {
+    func setFilters(_ filters: OfferFilterViewModel) {
         self.filters = filters
         view?.setHasFilters(filters.isNotEmpty)
         if hasLoadedInitially {
@@ -311,7 +311,7 @@ private extension SearchPresenter {
                 filtering.append(.init(filterKey: .title, operation: .contains, value: AnyEncodable(word)))
             }
         }
-        let searchOffersEntity = SearchOffersEntity(
+        let searchOffersEntity = SearchRequestEntity(
             pagination: .init(page: currentPage, size: CommonConstants.pageSize),
             sorting: sorting,
             searchCriteriaList: filtering,

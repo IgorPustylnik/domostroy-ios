@@ -37,6 +37,7 @@
 "HttpError.Unauthorized" = "Unauthorized";
 "HttpError.forbidden" = "Forbidden";
 "HttpError.NotFound" = "Not found";
+"HttpError.Conflict" = "Conflict";
 "HttpError.InternalServerError" = "Internal server error";
 "ParseError.cantDeserialize" = "Unknown server response format";
 "BaseTechnicalError.NoInternet" = "No internet connection";
@@ -187,6 +188,23 @@
 
 "Settings.Title" = "Settings";
 "Settings.Notifications.Title" = "Email notifications";
+
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Admin panel";
+
+"AdminPanel.Users.Title"="Users";
+"AdminPanel.Users.Admin"="Admin";
+"AdminPanel.Users.RegistrationDate"="Registration date: %@";
+"AdminPanel.Users.Button.Ban"="Ban";
+"AdminPanel.Users.Button.Unban"="Unban";
+"AdminPanel.Users.Button.Delete"="Delete";
+
+"AdminPanel.Offers.Title"="Offers";
+"AdminPanel.Offers.Filter.Status"="Status";
+"AdminPanel.Offers.Filter.Status.All"="All";
+"AdminPanel.Offers.Filter.Status.Active"="Active";
+"AdminPanel.Offers.Filter.Status.Banned"="Banned";
 
 // MARK: - Requests
 

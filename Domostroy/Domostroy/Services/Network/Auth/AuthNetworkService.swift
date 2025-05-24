@@ -11,23 +11,17 @@ import NodeKit
 
 public final class AuthNetworkService: AuthService {
 
-    // MARK: - Properties
-
-    private var builder: URLChainBuilder<AuthUrlRoute> {
-        .init()
-    }
-
     // MARK: - POST
 
     public func postLogin(loginEntity: LoginEntity) -> AnyPublisher<NodeResult<AuthTokenEntity>, Never> {
-        builder
+        makeBuilder()
             .route(.post, .login)
             .build()
             .nodeResultPublisher(for: loginEntity)
     }
 
     public func postRegister(registerEntity: RegisterEntity) -> AnyPublisher<NodeResult<Void>, Never> {
-        builder
+        makeBuilder()
             .route(.post, .register)
             .build()
             .nodeResultPublisher(for: registerEntity)
@@ -36,10 +30,20 @@ public final class AuthNetworkService: AuthService {
     public func postConfirmRegister(
         confirmRegisterEntity: ConfirmRegisterEntity
     ) -> AnyPublisher<NodeResult<Void>, Never> {
-        builder
+        makeBuilder()
             .route(.post, .confirmRegister)
             .build()
             .nodeResultPublisher(for: confirmRegisterEntity)
     }
 
+}
+
+// MARK: - Private methods
+
+private extension AuthNetworkService {
+    func makeBuilder() -> URLChainBuilder<AuthUrlRoute> {
+        var builder = URLChainBuilder<AuthUrlRoute>(serviceChainProvider: DURLServiceChainProvider())
+
+        return builder
+    }
 }

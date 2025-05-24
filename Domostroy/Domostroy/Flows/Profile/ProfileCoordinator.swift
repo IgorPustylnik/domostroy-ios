@@ -71,7 +71,7 @@ private extension ProfileCoordinator {
             self?.showEditProfile(profileModuleInput: input)
         }
         output.onAdminPanel = { [weak self] in
-
+            self?.runAdminPanelFlow()
         }
         output.onSettings = { [weak self] in
             self?.showSettings()
@@ -124,6 +124,12 @@ private extension ProfileCoordinator {
         coordinator.onSuccessfulAuth = { [weak self] in
             self?.onChangeAuthState?()
         }
+        addDependency(coordinator)
+        coordinator.start()
+    }
+
+    func runAdminPanelFlow() {
+        let coordinator = AdminPanelCoordinator(router: router)
         addDependency(coordinator)
         coordinator.start()
     }

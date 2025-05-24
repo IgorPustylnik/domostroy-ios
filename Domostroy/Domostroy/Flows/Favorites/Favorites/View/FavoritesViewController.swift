@@ -152,13 +152,10 @@ extension FavoritesViewController: FavoritesViewInput {
     func setSort(_ sort: String?) {
         if let sort {
             settingsView.set(sort: sort)
-            navigationBar.addArrangedSubview(settingsView)
+            self.navigationBar.addArrangedSubview(self.settingsView)
         } else {
-            settingsView.removeFromSuperview()
+            self.navigationBar.removeArrangedSubview(self.settingsView)
         }
-        navigationBar.setNeedsLayout()
-        navigationBar.layoutIfNeeded()
-        navigationBar.invalidateIntrinsicContentSize()
     }
 
     func setLoading(_ isLoading: Bool) {

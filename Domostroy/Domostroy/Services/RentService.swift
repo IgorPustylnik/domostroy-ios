@@ -21,9 +21,9 @@ public protocol RentService {
         paginationEntity: PaginationRequestEntity
     ) -> AnyPublisher<NodeResult<Page1Entity<RentalRequestEntity>>, Never>
 
-    func getOutgoingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequestEntity>, Never>
+    func getOutgoingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequest1Entity>, Never>
 
-    func getIncomingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequestEntity>, Never>
+    func getIncomingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequest1Entity>, Never>
 
     // MARK: - POST
 

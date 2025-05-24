@@ -15,4 +15,5 @@ protocol MainTabBarModuleOutput: AnyObject {
     var onRequestsFlowSelect: TabSelectClosure? { get set }
     var onProfileFlowSelect: TabSelectClosure? { get set }
     var onTapCenterControl: EmptyClosure? { get set }
+    var onShowSelectServerHost: EmptyClosure? { get set }
 }

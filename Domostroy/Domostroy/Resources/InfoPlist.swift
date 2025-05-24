@@ -8,5 +8,11 @@
 import Foundation
 
 enum InfoPlist {
-    static var serverHost = Bundle.main.infoDictionary?["SERVER_HOST"] as? String
+    static var serverHost: String? {
+        let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
+        if let host = basicStorage?.get(for: .serverHost) {
+            return host
+        }
+        return Bundle.main.infoDictionary?["SERVER_HOST"] as? String
+    }
 }

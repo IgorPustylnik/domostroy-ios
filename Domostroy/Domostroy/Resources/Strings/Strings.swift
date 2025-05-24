@@ -19,6 +19,44 @@ internal enum L10n {
     internal static let nsCameraUsageDescription = L10n.tr("InfoPlist", "NSCameraUsageDescription", fallback: "We need access to your camera to take photos.")
   }
   internal enum Localizable {
+    internal enum AdminPanel {
+      /// Admin panel
+      internal static let title = L10n.tr("Localizable", "AdminPanel.Title", fallback: "Admin panel")
+      internal enum Offers {
+        /// Offers
+        internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Title", fallback: "Offers")
+        internal enum Filter {
+          /// Status
+          internal static let status = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status", fallback: "Status")
+          internal enum Status {
+            /// Active
+            internal static let active = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.Active", fallback: "Active")
+            /// All
+            internal static let all = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.All", fallback: "All")
+            /// Banned
+            internal static let banned = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status.Banned", fallback: "Banned")
+          }
+        }
+      }
+      internal enum Users {
+        /// Admin
+        internal static let admin = L10n.tr("Localizable", "AdminPanel.Users.Admin", fallback: "Admin")
+        /// Registration date: %@
+        internal static func registrationDate(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "AdminPanel.Users.RegistrationDate", String(describing: p1), fallback: "Registration date: %@")
+        }
+        /// Users
+        internal static let title = L10n.tr("Localizable", "AdminPanel.Users.Title", fallback: "Users")
+        internal enum Button {
+          /// Ban
+          internal static let ban = L10n.tr("Localizable", "AdminPanel.Users.Button.Ban", fallback: "Ban")
+          /// Delete
+          internal static let delete = L10n.tr("Localizable", "AdminPanel.Users.Button.Delete", fallback: "Delete")
+          /// Unban
+          internal static let unban = L10n.tr("Localizable", "AdminPanel.Users.Button.Unban", fallback: "Unban")
+        }
+      }
+    }
     internal enum Auth {
       internal enum Button {
         /// Login
@@ -196,6 +234,8 @@ internal enum L10n {
     internal enum HttpError {
       /// Bad request
       internal static let badRequest = L10n.tr("Localizable", "HttpError.BadRequest", fallback: "Bad request")
+      /// Conflict
+      internal static let conflict = L10n.tr("Localizable", "HttpError.Conflict", fallback: "Conflict")
       /// Forbidden
       internal static let forbidden = L10n.tr("Localizable", "HttpError.forbidden", fallback: "Forbidden")
       /// Internal server error

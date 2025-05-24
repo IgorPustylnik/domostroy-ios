@@ -60,7 +60,7 @@ private extension HomeCoordinator {
         coordinator.start(with: id)
     }
 
-    func showSearch(query: String?, filters: FiltersViewModel? = nil) {
+    func showSearch(query: String?, filters: OfferFilterViewModel? = nil) {
         let (view, output, input) = SearchModuleConfigurator().configure()
         input.setQuery(query)
         if let filters {
@@ -111,8 +111,8 @@ private extension HomeCoordinator {
         router.present(navigationControllerWrapper)
     }
 
-    func showFilters(filters: FiltersViewModel, searchInput: SearchModuleInput?) {
-        let (view, output, input) = FilterModuleConfigurator().configure()
+    func showFilters(filters: OfferFilterViewModel, searchInput: SearchModuleInput?) {
+        let (view, output, input) = OfferFilterModuleConfigurator().configure()
         input.setFilters(filters)
         output.onApply = { [weak searchInput] newFilter in
             searchInput?.setFilters(newFilter)

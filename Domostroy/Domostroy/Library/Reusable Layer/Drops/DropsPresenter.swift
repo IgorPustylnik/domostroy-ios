@@ -79,15 +79,6 @@ final class DropsPresenter: InfoPresenter {
         image: UIImage? = UIImage(systemName: "xmark")
     ) {
         var subtitle: String?
-        if let httpError = error as? ResponseHttpErrorProcessorNodeError {
-            subtitle = httpError.fancyDescription()
-        } else if let parseError = error as? ResponseDataParserNodeError {
-            subtitle = L10n.Localizable.ParseError.cantDeserialize
-        } else if let baseTechnicalError = error as? BaseTechnicalError {
-            subtitle = baseTechnicalError.fancyDescription()
-        } else {
-            subtitle = error.localizedDescription
-        }
         showError(title: title, subtitle: subtitle, image: image)
     }
 
@@ -95,7 +86,7 @@ final class DropsPresenter: InfoPresenter {
 
 // MARK: - Errors descriptions extensions
 
-extension ResponseHttpErrorProcessorNodeError {
+extension DResponseHttpErrorProcessorNodeError {
     func fancyDescription() -> String {
         var description: String
         switch self {
@@ -107,6 +98,8 @@ extension ResponseHttpErrorProcessorNodeError {
             description = L10n.Localizable.HttpError.forbidden
         case .notFound:
             description = L10n.Localizable.HttpError.notFound
+        case .conflict:
+            description = L10n.Localizable.HttpError.conflict
         case .internalServerError:
             description = L10n.Localizable.HttpError.internalServerError
         }

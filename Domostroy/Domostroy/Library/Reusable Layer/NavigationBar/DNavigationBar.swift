@@ -17,6 +17,7 @@ class DNavigationBar: UIView {
         static let mainBarHeight: CGFloat = 34
         static let mainBarSpacing: CGFloat = 10
         static let buttonHSpacing: CGFloat = 10
+        static let horizontalInset: CGFloat = 16
     }
 
     // MARK: - UI Elements
@@ -77,12 +78,6 @@ class DNavigationBar: UIView {
 
     // MARK: - Properties
 
-    override var intrinsicContentSize: CGSize {
-        layoutIfNeeded()
-        let height = topInset + vStackView.frame.height + Constants.vSpacing
-        return CGSize(width: UIView.noIntrinsicMetric, height: height)
-    }
-
     var title: String? {
         get { titleLabel.text }
         set { titleLabel.text = newValue }
@@ -122,6 +117,7 @@ class DNavigationBar: UIView {
         }
     }
     private var topConstraint: Constraint?
+    private var bottomConstraint: Constraint?
 
     // MARK: - Init
 
@@ -137,16 +133,21 @@ class DNavigationBar: UIView {
     // MARK: - UI Setup
 
     private func setupUI() {
-        showsMainBar = true
+        clipsToBounds = true
         setScrollEdgeAppearance(progress: 0)
 
         addSubview(blurView)
         addSubview(vStackView)
         addSubview(bottomLine)
 
+        vStackView.insertArrangedSubview(mainBar, at: 0)
         vStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(16)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(Constants.horizontalInset)
             topConstraint = make.top.equalToSuperview().inset(topInset).constraint
+        }
+        mainBar.snp.makeConstraints { make in
+            make.height.equalTo(Constants.mainBarHeight)
+            make.horizontalEdges.equalToSuperview()
         }
         blurView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -155,8 +156,8 @@ class DNavigationBar: UIView {
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(vStackView.snp.bottom).offset(Constants.vSpacing)
             make.height.equalTo(1 / UIScreen.main.scale)
+            bottomConstraint = make.bottom.equalToSuperview().constraint
         }
-
     }
 
     // MARK: - Public methods
@@ -165,8 +166,13 @@ class DNavigationBar: UIView {
         vStackView.addArrangedSubview(view)
     }
 
+    func insertArrangedSubview(_ view: UIView, at index: Int) {
+        vStackView.insertArrangedSubview(view, at: index)
+    }
+
     func removeArrangedSubview(_ view: UIView) {
         vStackView.removeArrangedSubview(view)
+        view.removeFromSuperview()
     }
 
     func setScrollEdgeAppearance(progress: Double) {

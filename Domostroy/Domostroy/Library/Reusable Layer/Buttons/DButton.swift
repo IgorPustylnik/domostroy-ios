@@ -115,6 +115,15 @@ class DButton: UIButton {
         }
     }
 
+    override var backgroundColor: UIColor? {
+        get {
+            backgroundView.backgroundColor
+        }
+        set {
+            backgroundView.backgroundColor = newValue
+        }
+    }
+
     var borderColor: UIColor = .clear {
         didSet {
             backgroundView.layer.borderColor = borderColor.cgColor

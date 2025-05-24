@@ -41,14 +41,14 @@ public final class RentNetworkService: RentService {
             .nodeResultPublisher()
     }
 
-    public func getOutgoingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequestEntity>, Never> {
+    public func getOutgoingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequest1Entity>, Never> {
         makeBuilder()
             .route(.get, .outgoingRequest(id))
             .build()
             .nodeResultPublisher()
     }
 
-    public func getIncomingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequestEntity>, Never> {
+    public func getIncomingRequest(id: Int) -> AnyPublisher<NodeResult<RentalRequest1Entity>, Never> {
         makeBuilder()
             .route(.get, .incomingRequest(id))
             .build()

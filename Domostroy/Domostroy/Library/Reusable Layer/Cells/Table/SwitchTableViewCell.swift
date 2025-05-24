@@ -29,7 +29,7 @@ final class SwitchTableViewCell: UITableViewCell {
         let color: UIColor
         let image: UIImage?
         let title: String
-        let toggleAction: ToggleAction?
+        let toggleAction: ToggleClosure?
     }
 
     // MARK: - UI Elements
@@ -67,7 +67,7 @@ final class SwitchTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    private var switchHandler: ToggleAction?
+    private var switchHandler: ToggleClosure?
 
     // MARK: - Init
 

@@ -256,24 +256,13 @@ extension SearchViewController: SearchViewInput {
     }
 
     func setSearchOverlay(active: Bool) {
-        if active {
-            searchSettingsView.removeFromSuperview()
-        } else {
-            self.navigationBar.addArrangedSubview(searchSettingsView)
-        }
-        navigationBar.setNeedsLayout()
-        navigationBar.layoutIfNeeded()
-        navigationBar.invalidateIntrinsicContentSize()
         UIView.animate(withDuration: Constants.animationDuration) {
-            if active {
-                self.backButton.isHidden = true
-                self.backButton.alpha = 0
-                self.overlayView.alpha = 1
-            } else {
-                self.backButton.isHidden = false
-                self.backButton.alpha = 1
-                self.overlayView.alpha = 0
-            }
+            self.backButton.alpha = active ? 0 : 1
+            self.backButton.isHidden = active
+            self.searchSettingsView.alpha = active ? 0 : 1
+            self.searchSettingsView.isHidden = active
+            self.overlayView.alpha = active ? 1 : 0
+            self.navigationBar.layoutIfNeeded()
         }
     }
 

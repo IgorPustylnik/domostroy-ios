@@ -11,200 +11,76 @@ import NodeKit
 
 // swiftlint:disable force_unwrapping
 struct _Temporary_Mock_NetworkService {
-
-    func fetchCalendar(id: Int) async -> OfferCalendar {
-        let url = URL.applicationDirectory
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        return OfferCalendar(
-            startDate: Calendar.current.date(
-                from: .init(
-                    year: 2025,
-                    month: 4,
-                    day: 1
-                )
-            )!,
-            endDate: Calendar.current.date(
-                from: .init(
-                    year: 2026,
-                    month: 4,
-                    day: 1
-                )
-            )!,
-            forbiddenDates: [
-                Calendar.current.date(
-                    from: .init(
-                        year: 2025,
-                        month: 4,
-                        day: 13
+    func getUsers(
+        query: String?,
+        paginationEntity: PaginationRequestEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<UserDetailsEntity>>, Never> {
+        Just(.success(
+            PageEntity(
+                pagination: .init(totalElements: 5, totalPages: 1),
+                data: [
+                    UserDetailsEntity(
+                        id: 1,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: false,
+                        isAdmin: false,
+                        registrationDate: .now
+                    ),
+                    UserDetailsEntity(
+                        id: 2452,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: false,
+                        isAdmin: false,
+                        registrationDate: .now
+                    ),
+                    UserDetailsEntity(
+                        id: 2452,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: false,
+                        isAdmin: false,
+                        registrationDate: .now
+                    ),
+                    UserDetailsEntity(
+                        id: 2452,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: false,
+                        isAdmin: false,
+                        registrationDate: .now
+                    ),
+                    UserDetailsEntity(
+                        id: 1,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: true,
+                        isAdmin: false,
+                        registrationDate: .now
+                    ),
+                    UserDetailsEntity(
+                        id: 1,
+                        name: "test name",
+                        email: "email@mail.ru",
+                        phoneNumber: "79525510773",
+                        offersAmount: 4,
+                        isBanned: false,
+                        isAdmin: true,
+                        registrationDate: .now
                     )
-                )!,
-                Calendar.current.date(
-                    from: .init(
-                        year: 2025,
-                        month: 4,
-                        day: 15
-                    )
-                )!,
-                Calendar.current.date(
-                    from: .init(
-                        year: 2025,
-                        month: 4,
-                        day: 26
-                    )
-                )!
-            ]
-        )
-    }
-
-    enum RequestType {
-        case incoming
-        case outgoing
-    }
-
-    static var i = 0
-
-    func fetchRequests() async -> NodeResult<PageEntity<RentalRequestEntity>> {
-        _Temporary_Mock_NetworkService.i += 1
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        if _Temporary_Mock_NetworkService.i % 3 != 1 {
-            return .success(
-                .init(
-                    pagination: .init(totalElements: 10, totalPages: 2),
-                    data: [
-                        .init(
-                            id: 0,
-                            status: .accepted,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .pending,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .declined,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .declined,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .pending,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .accepted,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .pending,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        ),
-                        .init(
-                            id: 0,
-                            status: .accepted,
-                            dates: [.now],
-                            createdAt: .now,
-                            resolvedAt: nil,
-                            offer: makeRentalOffer(),
-                            user: makeRentalUser()
-                        )
-                    ]
-                )
+                ]
             )
-        } else {
-            return .success(.init(pagination: .init(totalElements: 0, totalPages: 0), data: []))
-        }
+        )).eraseToAnyPublisher()
     }
-
-    func fetchRentalRequest() async -> NodeResult<RentalRequestEntity> {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        _Temporary_Mock_NetworkService.i += 1
-        let status: RequestStatus
-        switch _Temporary_Mock_NetworkService.i % 3 {
-        case 0:
-            status = .accepted
-        case 1:
-            status = .pending
-        case 2:
-            status = .declined
-        default:
-            status = .pending
-        }
-        return .success(
-            .init(
-                id: 0,
-                status: status,
-                dates: [.now],
-                createdAt: .now,
-                resolvedAt: .now,
-                offer: .init(
-                    id: 0,
-                    title: "test offer test offer test offer test offer test offer test offer",
-                    photoUrl: .applicationDirectory,
-                    price: .init(value: 100, currency: .rub),
-                    city: "test city"
-                ),
-                user: .init(
-                    id: 0,
-                    name: "test name",
-                    phoneNumber: "test phone"
-                )
-            )
-        )
-    }
-
-    private func makeRentalOffer() -> RentalRequestOfferEntity {
-        .init(
-            id: 0,
-            title: "Test",
-            photoUrl: .applicationDirectory,
-            price: .init(value: 500, currency: .rub),
-            city: "City"
-        )
-    }
-
-    private func makeRentalUser() -> RentalRequestUserEntity {
-        .init(id: 0, name: "test name", phoneNumber: "+78005553535")
-    }
-}
-
-struct OfferCalendar: Codable {
-    let startDate: Date
-    let endDate: Date
-    let forbiddenDates: [Date]
 }

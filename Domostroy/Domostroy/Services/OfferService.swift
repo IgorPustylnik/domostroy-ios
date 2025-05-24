@@ -11,14 +11,12 @@ import NodeKit
 
 public protocol OfferService {
 
-    // MARK: - GET
-
     func getOffer(
         id: Int
     ) -> AnyPublisher<NodeResult<OfferDetailsEntity>, Never>
 
     func getOffers(
-        searchOffersEntity: SearchOffersEntity
+        searchOffersEntity: SearchRequestEntity
     ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferEntity>>, Never>
 
     func getMyOffers(
@@ -34,13 +32,9 @@ public protocol OfferService {
         offerId: Int
     ) -> AnyPublisher<NodeResult<OfferCalendarEntity>, Never>
 
-    // MARK: - POST
-
     func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>
 
     func setFavorite(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never>
-
-    // MARK: - DELETE
 
     func deleteOffer(id: Int) -> AnyPublisher<NodeResult<Void>, Never>
 

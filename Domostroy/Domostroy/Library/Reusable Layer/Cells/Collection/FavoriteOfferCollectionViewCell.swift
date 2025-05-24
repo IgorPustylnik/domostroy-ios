@@ -42,7 +42,7 @@ final class FavoriteOfferCollectionViewCell: UICollectionViewCell, Highlightable
             let initialState: Bool
             let onImage: UIImage
             let offImage: UIImage
-            let toggleAction: ToggleAction?
+            let toggleAction: ToggleClosure?
         }
     }
 
@@ -210,12 +210,10 @@ private extension FavoriteOfferCollectionViewCell {
 
     func createToggleButton(with toggle: ViewModel.ToggleButtonModel) -> DToggleButton {
         let button = DToggleButton(type: .plainPrimary)
-        button.configure(
-            initialState: toggle.initialState,
-            onImage: toggle.onImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            offImage: toggle.offImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal),
-            toggleAction: toggle.toggleAction
-        )
+        button.onImage = toggle.onImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        button.offImage = toggle.offImage.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        button.setToggleAction(toggle.toggleAction)
+        button.setOn(toggle.initialState)
         button.insets = .zero
         button.imageSize = Constants.actionSize
         return button
