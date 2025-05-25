@@ -104,7 +104,7 @@ private extension ProfileCoordinator {
     }
 
     func showSettings() {
-        let (view, output) = SettingsModuleConfigurator().configure()
+        let (view, _) = SettingsModuleConfigurator().configure()
         router.push(view)
     }
 

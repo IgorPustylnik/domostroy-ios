@@ -18,7 +18,7 @@ extension OfferIdEntity: DTODecodable {
     public typealias DTO = OfferIdEntry
 
     public static func from(dto model: DTO) throws -> Self {
-        try .init(
+        .init(
             offerId: model.offerId
         )
     }

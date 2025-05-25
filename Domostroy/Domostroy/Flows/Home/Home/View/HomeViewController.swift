@@ -16,8 +16,12 @@ final class HomeViewController: BaseViewController {
 
     private enum Constants {
         static let progressViewHeight: CGFloat = 80
-        static let offerSectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
-        static let categorySectionContentInset: NSDirectionalEdgeInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        static let offerSectionContentInset: NSDirectionalEdgeInsets = .init(
+            top: 16, leading: 16, bottom: 16, trailing: 16
+        )
+        static let categorySectionContentInset: NSDirectionalEdgeInsets = .init(
+            top: 16, leading: 16, bottom: 16, trailing: 16
+        )
         static let offerIntergroupSpacing: CGFloat = 10
         static let categoryIntergroupSpacing: CGFloat = 8
         static let interitemSpacing: CGFloat = 10

@@ -57,6 +57,8 @@ extension SearchPresenter: SearchModuleInput {
         self.query = query
         view?.setQuery(self.query)
         if hasLoadedInitially {
+            view?.setLoading(true)
+            view?.fillFirstPage(with: [])
             loadFirstPage()
         }
     }
@@ -68,6 +70,8 @@ extension SearchPresenter: SearchModuleInput {
             try? basicStorage?.set(city.toDTO(), for: .defaultCity)
         }
         if hasLoadedInitially {
+            view?.setLoading(true)
+            view?.fillFirstPage(with: [])
             loadFirstPage()
         }
     }
@@ -76,6 +80,8 @@ extension SearchPresenter: SearchModuleInput {
         self.sort = sort
         view?.setSort(sort == .default ? L10n.Localizable.Sort.placeholder : sort.description)
         if hasLoadedInitially {
+            view?.setLoading(true)
+            view?.fillFirstPage(with: [])
             loadFirstPage()
         }
     }
@@ -84,6 +90,8 @@ extension SearchPresenter: SearchModuleInput {
         self.filters = filters
         view?.setHasFilters(filters.isNotEmpty)
         if hasLoadedInitially {
+            view?.setLoading(true)
+            view?.fillFirstPage(with: [])
             loadFirstPage()
         }
     }

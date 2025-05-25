@@ -10,6 +10,7 @@ import UIKit
 
 final class OfferAdminFilterModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
        OfferAdminFilterViewController,
        OfferAdminFilterModuleOutput,

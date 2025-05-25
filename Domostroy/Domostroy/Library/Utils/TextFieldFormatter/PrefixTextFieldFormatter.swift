@@ -115,7 +115,9 @@ final class PrefixTextFieldFormatter: TextFieldFormatter {
     // MARK: - Private methods
 
     private func setCursorPosition(in textField: UITextField, at position: Int) {
-        guard let text = textField.text else { return }
+        guard let text = textField.text else {
+            return
+        }
 
         let newPosition = max(prefix.count, min(position, text.count))
 
