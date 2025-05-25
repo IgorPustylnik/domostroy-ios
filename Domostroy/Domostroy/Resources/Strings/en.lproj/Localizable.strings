@@ -251,6 +251,7 @@
 "OfferDetails.Info.Header" = "Information";
 "OfferDetails.Info.Category" = "Category";
 "OfferDetails.Description.Header" = "Description";
+"OfferDetails.PublishedAt"="Published: %@";
 
 "OfferDetails.My.Calendar.Header" = "Available dates";
 "OfferDetails.My.Calendar.Placeholder" = "Available dates";

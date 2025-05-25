@@ -219,6 +219,7 @@ private extension OfferDetailsPresenter {
                 })
             },
             description: offer.description,
+            publishedAt: L10n.Localizable.OfferDetails.publishedAt(offer.createdAt.toDMMYY()),
             user: .init(
                 url: try? UserUrlRoute.other(offer.userId).url(),
                 loadUser: { [weak self] url, userView in

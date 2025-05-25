@@ -19,6 +19,7 @@ final class MyOfferDetailsView: UIView {
         let loadCity: (UILabel) -> Void
         let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
         let description: String
+        let publishedAt: String
         let onCalendar: EmptyClosure?
     }
 
@@ -45,6 +46,7 @@ final class MyOfferDetailsView: UIView {
         $0.addArrangedSubview(calendarVStackView)
         $0.addArrangedSubview(infoVStackView)
         $0.addArrangedSubview(descriptionVStackView)
+        $0.addArrangedSubview(publishedAtLabel)
         return $0
     }(UIStackView())
 
@@ -156,6 +158,12 @@ final class MyOfferDetailsView: UIView {
         return $0
     }(UILabel())
 
+    private lazy var publishedAtLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.textColor = .secondaryLabel
+        return $0
+    }(UILabel())
+
     // MARK: - Initial state
 
     func setupInitialState() {
@@ -182,6 +190,7 @@ final class MyOfferDetailsView: UIView {
             }
         }
         descriptionLabel.text = viewModel.description
+        publishedAtLabel.text = viewModel.publishedAt
         onCalendar = viewModel.onCalendar
     }
 

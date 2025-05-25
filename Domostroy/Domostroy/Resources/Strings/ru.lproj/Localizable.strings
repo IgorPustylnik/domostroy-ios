@@ -251,6 +251,7 @@
 "OfferDetails.Info.Header" = "Информация";
 "OfferDetails.Info.Category" = "Категория";
 "OfferDetails.Description.Header" = "Описание";
+"OfferDetails.PublishedAt"="Дата публикации: %@";
 
 "OfferDetails.My.Calendar.Header" = "Доступные даты";
 "OfferDetails.My.Calendar.Placeholder" = "Доступные даты";

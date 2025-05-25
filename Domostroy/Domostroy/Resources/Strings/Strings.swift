@@ -268,6 +268,10 @@ internal enum L10n {
       }
     }
     internal enum OfferDetails {
+      /// Published: %@
+      internal static func publishedAt(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "OfferDetails.PublishedAt", String(describing: p1), fallback: "Published: %@")
+      }
       internal enum Button {
         /// Rent
         internal static let rent = L10n.tr("Localizable", "OfferDetails.Button.Rent", fallback: "Rent")
@@ -371,6 +375,10 @@ internal enum L10n {
           /// Save
           internal static let save = L10n.tr("Localizable", "Offers.Edit.Button.Save", fallback: "Save")
         }
+        internal enum Message {
+          /// Offer has been saved
+          internal static let saved = L10n.tr("Localizable", "Offers.Edit.Message.Saved", fallback: "Offer has been saved")
+        }
       }
       internal enum Favorites {
         /// Favorites
@@ -378,10 +386,6 @@ internal enum L10n {
         internal enum Empty {
           /// You have not saved any offers yet
           internal static let message = L10n.tr("Localizable", "Offers.Favorites.Empty.Message", fallback: "You have not saved any offers yet")
-        }
-        internal enum Message {
-          /// Offer has been saved
-          internal static let saved = L10n.tr("Localizable", "Offers.Edit.Message.Saved", fallback: "Offer has been saved")
         }
       }
       internal enum MyOffers {

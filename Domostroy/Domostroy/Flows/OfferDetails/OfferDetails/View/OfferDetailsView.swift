@@ -19,6 +19,7 @@ final class OfferDetailsView: UIView {
         let loadCity: (UILabel) -> Void
         let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
         let description: String
+        let publishedAt: String
         let user: User
         let onRent: EmptyClosure?
 
@@ -60,6 +61,7 @@ final class OfferDetailsView: UIView {
         $0.addArrangedSubview(infoVStack)
         $0.addArrangedSubview(descriptionVStack)
         $0.addArrangedSubview(userHStackView)
+        $0.addArrangedSubview(publishedAtLabel)
         return $0
     }(UIStackView())
 
@@ -192,6 +194,12 @@ final class OfferDetailsView: UIView {
         return $0
     }(UIImageView())
 
+    private lazy var publishedAtLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.textColor = .secondaryLabel
+        return $0
+    }(UILabel())
+
     // MARK: - Initial state
 
     func setupInitialState() {
@@ -220,6 +228,7 @@ final class OfferDetailsView: UIView {
             viewModel.user.url,
             .init(nameLabel: userNameLabel, infoLabel: userInfoLabel, avatarImageView: userAvatarImageView)
         )
+        publishedAtLabel.text = viewModel.publishedAt
         onOpenProfile = viewModel.user.onOpenProfile
         onRent = viewModel.onRent
     }
