@@ -184,12 +184,22 @@ private extension MyOffersCoordinator {
             reloadables.forEach { $0?.reload() }
         }
         output.onCalendar = { [weak self] offerId in
-            print("calendar offer \(offerId)")
+            self?.showEditLessorCalendar(offerId)
         }
         output.onDismiss = { [weak self] in
             self?.router.popModule()
         }
         router.push(view)
+    }
+
+    func showEditLessorCalendar(_ offerId: Int) {
+        let (view, output, input) = LessorCalendarModuleConfigurator().configure()
+        input.setOfferId(offerId)
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        router.present(navigationControllerWrapper)
     }
 
     func editOffer(id: Int, reloadables: [Reloadable?]) {

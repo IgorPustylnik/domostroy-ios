@@ -9,6 +9,8 @@
 import Foundation
 import HorizonCalendar
 import UIKit
+import Combine
+import NodeKit
 
 final class LessorCalendarPresenter: LessorCalendarModuleOutput {
 
@@ -21,7 +23,15 @@ final class LessorCalendarPresenter: LessorCalendarModuleOutput {
 
     weak var view: LessorCalendarViewInput?
 
+    private var offerId: Int?
+
+    private var offerService: OfferService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
+
     private var dates: ClosedRange<Date>?
+    private var availableDates: Set<Date> {
+        Set(selectedDayComponents.compactMap { calendar.date(from: $0.components) })
+    }
     private var forbiddenDates: [Date] = []
     private var price: Double?
 
@@ -61,6 +71,10 @@ extension LessorCalendarPresenter: LessorCalendarModuleInput {
             selectedDayComponents.insert(dayComponents)
         }
     }
+
+    func setOfferId(_ id: Int) {
+        offerId = id
+    }
 }
 
 // MARK: - LessorCalendarViewOutput
@@ -68,7 +82,10 @@ extension LessorCalendarPresenter: LessorCalendarModuleInput {
 extension LessorCalendarPresenter: LessorCalendarViewOutput {
 
     func viewLoaded() {
-        configureCalendar()
+        view?.setupInitialState()
+        loadCalendar { [weak self] in
+            self?.configureCalendar()
+        }
     }
 
     func dismiss() {
@@ -76,9 +93,25 @@ extension LessorCalendarPresenter: LessorCalendarViewOutput {
     }
 
     func apply() {
-        let dates = Set(selectedDayComponents.compactMap { calendar.date(from: $0.components) })
-        onApply?(dates)
-        onDismiss?()
+        onApply?(availableDates)
+        guard offerId != nil else {
+            onDismiss?()
+            return
+        }
+        view?.setApplyActivity(isLoading: true)
+        postDates(
+            completion: { [weak self] in
+                self?.view?.setApplyActivity(isLoading: true)
+            }
+        ) { [weak self] result in
+            switch result {
+            case .success:
+                DropsPresenter.shared.showSuccess(subtitle: L10n.Localizable.LessorCalendar.Message.calendarUpdated)
+                self?.onDismiss?()
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        }
     }
 
     func handleDaySelection(_ day: DayComponents) {
@@ -195,5 +228,68 @@ private extension LessorCalendarPresenter {
             })
         )
         view?.setupCalendar(config: config)
+    }
+
+    func loadCalendar(completion: EmptyClosure? = nil) {
+        view?.setLoading(true)
+        fetchCalendar(completion: { [weak self] in
+            self?.view?.setLoading(false)
+            completion?()
+        }) { [weak self] result in
+            switch result {
+            case .success(let calendar):
+                let startDate = Date.now
+                guard let endDate = Calendar.current.date(byAdding: .month, value: 6, to: startDate) else {
+                    return
+                }
+                let dates = startDate...endDate
+                self?.configure(
+                    with: .init(
+                        dates: dates,
+                        forbiddenDates: calendar.dates.filter {
+                            $0.isBooked
+                        }.map { $0.date },
+                        selectedDays: Set(calendar.dates.filter {
+                            !$0.isBooked
+                        }.map { $0.date })
+                    )
+                )
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+                self?.onDismiss?()
+            }
+        }
+    }
+}
+
+// MARK: - Network requests
+
+private extension LessorCalendarPresenter {
+    func fetchCalendar(completion: EmptyClosure?, handleResult: ((NodeResult<OfferCalendarEntity>) -> Void)?) {
+        guard let offerId else {
+            completion?()
+            return
+        }
+        offerService?.getOfferCalendar(
+            offerId: offerId
+        )
+        .sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        )
+        .store(in: &cancellables)
+    }
+
+    func postDates(completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        guard let offerId else {
+            completion?()
+            return
+        }
+        offerService?.editOfferCalendar(
+            editOfferCalendarEntity: .init(offerId: offerId, availableDates: Array(availableDates))
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 }

@@ -252,6 +252,10 @@ internal enum L10n {
         /// Apply
         internal static let apply = L10n.tr("Localizable", "LessorCalendar.Button.Apply", fallback: "Apply")
       }
+      internal enum Message {
+        /// Available dates have been updated
+        internal static let calendarUpdated = L10n.tr("Localizable", "LessorCalendar.Message.CalendarUpdated", fallback: "Available dates have been updated")
+      }
     }
     internal enum NoCameraPermission {
       /// Please enable camera access in Settings to use this feature.

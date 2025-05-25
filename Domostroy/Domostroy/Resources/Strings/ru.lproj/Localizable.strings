@@ -243,6 +243,7 @@
 
 "LessorCalendar.Title" = "Доступные даты";
 "LessorCalendar.Button.Apply" = "Применить";
+"LessorCalendar.Message.CalendarUpdated"="Доступные даты были изменены";
 
 // MARK: - Offer Details
 

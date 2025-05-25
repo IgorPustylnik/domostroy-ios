@@ -18,6 +18,8 @@ struct LessorCalendarViewConfig {
     let overlaidItemLocations: Set<OverlaidItemLocation>
 }
 
-protocol LessorCalendarViewInput: AnyObject {
+protocol LessorCalendarViewInput: AnyObject, Loadable {
+    func setupInitialState()
     func setupCalendar(config: LessorCalendarViewConfig)
+    func setApplyActivity(isLoading: Bool)
 }

@@ -243,6 +243,7 @@
 
 "LessorCalendar.Title" = "Dates";
 "LessorCalendar.Button.Apply" = "Apply";
+"LessorCalendar.Message.CalendarUpdated"="Available dates have been updated";
 
 // MARK: - Offer Details
 
