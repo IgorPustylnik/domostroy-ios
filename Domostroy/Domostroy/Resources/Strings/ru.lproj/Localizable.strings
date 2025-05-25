@@ -155,6 +155,7 @@
 "Offers.Edit.Title" = "Редактировать объявление";
 "Offers.Edit.Button.Delete" = "Удалить объявление";
 "Offers.Edit.Button.Save" = "Сохранить";
+"Offers.Edit.Message.Saved"="Объявление было сохранено";
 
 // MARK: - Profile
 

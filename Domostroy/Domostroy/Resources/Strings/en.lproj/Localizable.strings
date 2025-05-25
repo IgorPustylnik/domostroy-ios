@@ -111,7 +111,7 @@
 
 // MARK: - Home
 
-"Home.Section.Feed.title" = "Лента";
+"Home.Section.Feed.title" = "Feed";
 "Home.Empty.message" = "Nothing found";
 
 // MARK: - Search
@@ -155,6 +155,7 @@
 "Offers.Edit.Title" = "Edit offer";
 "Offers.Edit.Button.Delete" = "Delete offer";
 "Offers.Edit.Button.Save" = "Save";
+"Offers.Edit.Message.Saved"="Offer has been saved";
 
 // MARK: - Profile
 

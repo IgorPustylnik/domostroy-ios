@@ -211,12 +211,10 @@ private extension MyOffersCoordinator {
             self?.router.dismissModule()
         }
         output.onChanged = { [weak self] in
-            self?.router.popModule()
+            self?.router.dismissModule(animated: true) {
+                self?.showMyOfferDetails(id: id, reloadables: reloadables)
+            }
             reloadables.forEach { $0?.reload() }
-        }
-        output.onSuccess = { [weak self] offerId in
-            self?.start()
-            self?.showMyOfferDetails(id: offerId, reloadables: reloadables)
         }
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.modalPresentationStyle = .fullScreen

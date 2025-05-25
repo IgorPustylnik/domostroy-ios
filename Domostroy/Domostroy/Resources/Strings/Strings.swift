@@ -226,8 +226,8 @@ internal enum L10n {
       }
       internal enum Section {
         internal enum Feed {
-          /// Лента
-          internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Лента")
+          /// Feed
+          internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Feed")
         }
       }
     }
@@ -374,6 +374,10 @@ internal enum L10n {
         internal enum Empty {
           /// You have not saved any offers yet
           internal static let message = L10n.tr("Localizable", "Offers.Favorites.Empty.Message", fallback: "You have not saved any offers yet")
+        }
+        internal enum Message {
+          /// Offer has been saved
+          internal static let saved = L10n.tr("Localizable", "Offers.Edit.Message.Saved", fallback: "Offer has been saved")
         }
       }
       internal enum MyOffers {

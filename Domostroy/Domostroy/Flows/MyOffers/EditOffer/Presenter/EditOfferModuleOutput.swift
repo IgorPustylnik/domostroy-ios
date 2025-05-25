@@ -15,5 +15,4 @@ protocol EditOfferModuleOutput: AnyObject {
     var onShowCities: ((CityEntity?) -> Void)? { get set }
     var onClose: EmptyClosure? { get set }
     var onChanged: EmptyClosure? { get set }
-    var onSuccess: ((Int) -> Void)? { get set }
 }
