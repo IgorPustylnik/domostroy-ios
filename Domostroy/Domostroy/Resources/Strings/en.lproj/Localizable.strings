@@ -87,6 +87,7 @@
 "Common.Error" = "Error";
 "Common.ChooseFromLibrary" = "Choose from library";
 "Common.TakeAPhoto" = "Take a photo";
+"Common.NegotiablePrice" = "Negotiable price";
 
 // MARK: - Filter
 
@@ -146,6 +147,7 @@
 "Offers.Create.Placeholder.Category" = "Select category";
 "Offers.Create.Placeholder.Condition" = "Select condition";
 "Offers.Create.Placeholder.Price" = "Price";
+"Offers.Create.Checkmark.NegotiablePrice" = "Negotiable";
 "Offers.Create.Button.City.Placeholder" = "Select city";
 "Offers.Create.Button.AvailableDates.Placeholder" = "Select available dates";
 "Offers.Create.Button.AvailableDates.Selected" = "Available dates";

@@ -19,6 +19,7 @@ protocol CreateOfferViewDelegate: AnyObject {
     func showCalendar()
     func publishOffer()
     func didPickCategory(index: Int)
+    func isPriceNegotiableDidChange(_ isNegotiable: Bool)
     func priceDidChange(_ price: String)
 }
 
@@ -53,6 +54,7 @@ final class CreateOfferView: UIView {
             calendarLabel,
             calendarButton,
             priceLabel,
+            negitableCheckmark,
             priceTextField,
             publishButton
         ].forEach { stackView.addArrangedSubview($0) }
@@ -155,6 +157,19 @@ final class CreateOfferView: UIView {
 
     private lazy var priceLabel = createHeaderLabel(L10n.Localizable.Offers.Create.Label.price)
 
+    private lazy var priceCheckmarkGroup = {
+        $0.onDidToggle = { [weak self] _, isChecked in
+            self?.delegate?.isPriceNegotiableDidChange(isChecked)
+        }
+        return $0
+    }(DCheckmarkGroup<Int>())
+
+    private lazy var negitableCheckmark = {
+        $0.setTitle(L10n.Localizable.Offers.Create.Checkmark.negotiablePrice)
+        priceCheckmarkGroup.add(checkmark: $0, value: 0)
+        return $0
+    }(DCheckmark())
+
     private lazy var priceTextField: DValidatableTextField = {
         $0.configure(
             placeholder: L10n.Localizable.Offers.Create.Placeholder.price,
@@ -222,6 +237,15 @@ final class CreateOfferView: UIView {
         cityButton.title = title
     }
 
+    func setPriceInput(visible: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.priceTextField.isHidden = !visible
+            if !visible {
+                self.priceTextField.setError(text: "")
+            }
+        }
+    }
+
 }
 
 // MARK: - Private methods
@@ -239,13 +263,18 @@ private extension CreateOfferView {
     func publish() {
         endEditing(true)
         let validatables = mainVStackView.arrangedSubviews.compactMap { $0 as? Validatable & UIView }
-        if validatables.allSatisfy({
+        if validatables.filter({ $0 != priceTextField }).allSatisfy({
             let isValid = $0.isValid()
             if !isValid {
                 delegate?.scrollToInvalidView($0)
             }
             return isValid
         }) {
+            if !negitableCheckmark.isOn && !priceTextField.isValid() {
+                delegate?.scrollToInvalidView(priceTextField)
+                UINotificationFeedbackGenerator().notificationOccurred(.error)
+                return
+            }
             delegate?.publishOffer()
             return
         } else {

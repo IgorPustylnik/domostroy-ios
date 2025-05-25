@@ -19,6 +19,7 @@ protocol CreateOfferViewOutput {
     func deleteImage(uuid: UUID)
     func showCities()
     func showCalendar()
+    func isPriceNegotiableChanged(_ isNegotiable: Bool)
     func priceChanged(_ text: String)
     func create()
     func close()
