@@ -136,6 +136,8 @@ internal enum L10n {
       internal static let chooseFromLibrary = L10n.tr("Localizable", "Common.ChooseFromLibrary", fallback: "Choose from library")
       /// Error
       internal static let error = L10n.tr("Localizable", "Common.Error", fallback: "Error")
+      /// Negotiable price
+      internal static let negotiablePrice = L10n.tr("Localizable", "Common.NegotiablePrice", fallback: "Negotiable price")
       /// Success
       internal static let success = L10n.tr("Localizable", "Common.Success", fallback: "Success")
       /// Take a photo
@@ -326,6 +328,10 @@ internal enum L10n {
             /// Select city
             internal static let placeholder = L10n.tr("Localizable", "Offers.Create.Button.City.Placeholder", fallback: "Select city")
           }
+        }
+        internal enum Checkmark {
+          /// Negotiable
+          internal static let negotiablePrice = L10n.tr("Localizable", "Offers.Create.Checkmark.NegotiablePrice", fallback: "Negotiable")
         }
         internal enum Error {
           /// Failed to create

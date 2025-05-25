@@ -18,6 +18,7 @@ protocol EditOfferViewOutput {
     func chooseFromLibrary()
     func deleteImage(uuid: UUID)
     func showCities()
+    func isPriceNegotiableChanged(_ isNegotiable: Bool)
     func priceChanged(_ text: String)
     func save()
     func delete()

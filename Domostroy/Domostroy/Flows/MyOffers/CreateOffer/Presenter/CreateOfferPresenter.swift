@@ -58,6 +58,7 @@ final class CreateOfferPresenter: NSObject, CreateOfferModuleOutput {
     private var categoryPickerModel: PickerModel<CategoryEntity> = .init(all: [], selected: nil)
     private var selectedCity: CityEntity?
     private var selectedDates: Set<Date> = Set()
+    private var isPriceNegotiable: Bool = false
     private var price: PriceEntity?
 }
 
@@ -147,6 +148,11 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         onShowCalendar?(config)
     }
 
+    func isPriceNegotiableChanged(_ isNegotiable: Bool) {
+        self.isPriceNegotiable = isNegotiable
+        view?.setPriceInput(visible: !isNegotiable)
+    }
+
     func priceChanged(_ text: String) {
         let priceValue = (try? Double(text, format: .number)) ?? 0
         price = .init(value: priceValue, currency: .rub)
@@ -167,8 +173,12 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
         }
         guard let title,
               let offerDescription,
-              let category = categoryPickerModel.selected,
-              let price else {
+              let category = categoryPickerModel.selected
+        else {
+            DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
+            return
+        }
+        if !isPriceNegotiable && price == nil {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
@@ -179,7 +189,7 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
                 title: title,
                 description: offerDescription,
                 categoryId: category.id,
-                price: price,
+                price: isPriceNegotiable ? .init(value: -1, currency: .rub) : price ?? .init(value: -1, currency: .rub),
                 cityId: selectedCity.id,
                 rentDates: selectedDates,
                 photos: images.compactMap { $0.image }

@@ -61,6 +61,7 @@ final class EditOfferPresenter: NSObject, EditOfferModuleOutput {
     private var selectedCityId: Int?
     private var selectedCity: CityEntity?
 
+    private var isPriceNegotiable: Bool = false
     private var price: PriceEntity?
 }
 
@@ -116,6 +117,11 @@ extension EditOfferPresenter: EditOfferViewOutput {
         onShowCities?(selectedCity)
     }
 
+    func isPriceNegotiableChanged(_ isNegotiable: Bool) {
+        self.isPriceNegotiable = isNegotiable
+        view?.setPriceInput(visible: !isNegotiable)
+    }
+
     func deleteImage(uuid: UUID) {
         images.removeAll {
             $0.uuid == uuid
@@ -163,8 +169,12 @@ extension EditOfferPresenter: EditOfferViewOutput {
               let category = categoryPickerModel.selected,
               let title,
               let offerDescription,
-              let category = categoryPickerModel.selected,
-              let price else {
+              let category = categoryPickerModel.selected
+        else {
+            DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
+            return
+        }
+        if !isPriceNegotiable && price == nil {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
@@ -175,7 +185,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
                 title: title,
                 description: offerDescription,
                 categoryId: category.id,
-                price: price,
+                price: isPriceNegotiable ? .init(value: -1, currency: .rub) : price ?? .init(value: -1, currency: .rub),
                 cityId: selectedCity.id,
                 oldPhotosIds: images
                     .filter { $0.id != Constants.newImageId }
@@ -234,24 +244,28 @@ private extension EditOfferPresenter {
             self?.view?.setLoading(false)
             completion?()
         } handleResult: { [weak self] result in
+            guard let self else {
+                return
+            }
             switch result {
             case .success(let offer):
-                self?.view?.configure(
+                title = offer.title
+                offerDescription = offer.description
+                isPriceNegotiable = offer.price.value == -1
+                price = offer.price
+                images = offer.photos.map { .init(id: $0.id, image: nil, url: $0.url) }
+                selectedCategoryId = offer.categoryId
+                selectedCityId = offer.cityId
+                view?.configure(
                     with: .init(
                         title: offer.title,
                         description: offer.description,
-                        price: offer.price.value.stringDroppingTrailingZero
+                        price: isPriceNegotiable ? "" : offer.price.value.stringDroppingTrailingZero
                     )
                 )
-                self?.title = offer.title
-                self?.offerDescription = offer.description
-                self?.price = offer.price
-                self?.images = offer.photos.map { .init(id: $0.id, image: nil, url: $0.url) }
-                self?.selectedCategoryId = offer.categoryId
-                self?.selectedCityId = offer.cityId
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
-                self?.onClose?()
+                onClose?()
             }
         }
 

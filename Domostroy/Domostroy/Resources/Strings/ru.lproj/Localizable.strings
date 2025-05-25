@@ -87,6 +87,7 @@
 "Common.Error" = "Ошибка";
 "Common.ChooseFromLibrary" = "Выбрать из медиатеки";
 "Common.TakeAPhoto" = "Сделать фото";
+"Common.NegotiablePrice" = "Цена договорная";
 
 // MARK: - Filter
 
@@ -140,12 +141,13 @@
 "Offers.Create.Label.Pictures" = "Фотографии";
 "Offers.Create.Label.City" = "Город";
 "Offers.Create.Label.AvailableDates" = "Доступные даты аренды";
-"Offers.Create.Label.Price" = "Стоимость";
+"Offers.Create.Label.Price" = "Цена";
 "Offers.Create.Placeholder.Name" = "Название";
 "Offers.Create.Placeholder.Description" = "Описание";
 "Offers.Create.Placeholder.Category" = "Укажите категорию";
 "Offers.Create.Placeholder.Condition" = "Укажите состояние";
-"Offers.Create.Placeholder.Price" = "Стомость";
+"Offers.Create.Placeholder.Price" = "Цена";
+"Offers.Create.Checkmark.NegotiablePrice" = "Цена договорная";
 "Offers.Create.Button.City.Placeholder" = "Укажите город";
 "Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
 "Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";

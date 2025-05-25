@@ -189,7 +189,8 @@ private extension RequestCalendarPresenter {
                 OverlaidItemLocation.day(containingDate: $0)
             }),
             info: {
-                if let cost = CalendarHelper.calculateCost(for: selectedDayRange, pricePerDay: pricePerDay) {
+                if let pricePerDay, pricePerDay.value != -1,
+                   let cost = CalendarHelper.calculateCost(for: selectedDayRange, pricePerDay: pricePerDay) {
                     return L10n.Localizable.RequestCalendar.totalCost(
                         "\(cost.value.stringDroppingTrailingZero)\(cost.currency.description)"
                     )

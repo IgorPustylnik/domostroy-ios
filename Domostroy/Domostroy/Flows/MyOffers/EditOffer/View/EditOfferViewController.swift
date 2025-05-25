@@ -165,6 +165,9 @@ extension EditOfferViewController: EditOfferViewInput {
         editOfferView.nameTextField.setText(model.title)
         editOfferView.descriptionTextField.setText(model.description)
         editOfferView.priceTextField.setText(model.price)
+        let isPriceNegotiable = model.price.isEmpty
+        editOfferView.setIsPriceNegotiable(isPriceNegotiable)
+        editOfferView.setPriceInput(visible: !isPriceNegotiable)
     }
 
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int) {
@@ -186,6 +189,10 @@ extension EditOfferViewController: EditOfferViewInput {
 
     func setCity(title: String) {
         editOfferView.setCityButton(title: title)
+    }
+
+    func setPriceInput(visible: Bool) {
+        editOfferView.setPriceInput(visible: visible)
     }
 
     func setSavingActivity(isLoading: Bool) {
@@ -243,6 +250,10 @@ extension EditOfferViewController: EditOfferViewDelegate {
 
     func showCities() {
         output?.showCities()
+    }
+
+    func isPriceNegotiableDidChange(_ isNegotiable: Bool) {
+        output?.isPriceNegotiableChanged(isNegotiable)
     }
 
     func saveOffer() {

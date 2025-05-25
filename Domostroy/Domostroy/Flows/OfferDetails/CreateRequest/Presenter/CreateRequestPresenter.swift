@@ -62,7 +62,7 @@ extension CreateRequestPresenter: CreateRequestModuleInput {
                 with: "\(dateFormatter.string(from: startDate)) — \(dateFormatter.string(from: endDate))"
             )
         }
-        view?.configureTotalCost(with: calculateTotalCostText(pricePerDay: offer.price))
+        view?.configureTotalCost(with: offer.price.value != -1 ? calculateTotalCostText(pricePerDay: offer.price) : nil)
     }
 }
 

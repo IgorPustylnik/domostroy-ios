@@ -168,6 +168,10 @@ extension CreateOfferViewController: CreateOfferViewInput {
         createOfferView.setCityButton(title: title)
     }
 
+    func setPriceInput(visible: Bool) {
+        createOfferView.setPriceInput(visible: visible)
+    }
+
     func setActivity(isLoading: Bool) {
         createOfferView.publishButton.setLoading(isLoading)
     }
@@ -233,6 +237,10 @@ extension CreateOfferViewController: CreateOfferViewDelegate {
 
     func didPickCategory(index: Int) {
         output?.setSelectedCategory(index: index)
+    }
+
+    func isPriceNegotiableDidChange(_ isNegotiable: Bool) {
+        output?.isPriceNegotiableChanged(isNegotiable)
     }
 
     func priceDidChange(_ price: String) {

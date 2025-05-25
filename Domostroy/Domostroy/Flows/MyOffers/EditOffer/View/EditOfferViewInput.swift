@@ -16,6 +16,7 @@ protocol EditOfferViewInput: AnyObject, Loadable {
     func setCategories(_ items: [String], placeholder: String, initialIndex: Int)
     func setImages(_ images: [AddingImageCollectionViewCell.Model], canAddMore: Bool)
     func setCity(title: String)
+    func setPriceInput(visible: Bool)
     func setSavingActivity(isLoading: Bool)
     func setDeletingActivity(isLoading: Bool)
 }
