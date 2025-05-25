@@ -1,19 +1,19 @@
 //
-//  DRadioButton.swift
+//  DCheckmark.swift
 //  Domostroy
 //
-//  Created by Игорь Пустыльник on 21.04.2025.
+//  Created by Игорь Пустыльник on 25.05.2025.
 //
 
 import UIKit
 import SnapKit
 
-protocol RadioButton: AnyObject {
+protocol Checkmark: AnyObject {
     func setOn(_ newValue: Bool)
-    var group: RadioButtonGroup? { get set }
+    var group: CheckmarkGroup? { get set }
 }
 
-final class DRadioButton: UIControl, RadioButton {
+final class DCheckmark: UIControl, Checkmark {
 
     // MARK: - Constants
 
@@ -22,13 +22,14 @@ final class DRadioButton: UIControl, RadioButton {
         static let highlightedAlpha: CGFloat = 0.7
         static let disabledAlpha: CGFloat = 0.5
         static let highlightedScale: CGFloat = 0.96
-        static let circleSize: CGSize = .init(width: 24, height: 24)
-        static let innerCircleCoefficient: CGFloat = 0.4
-        static let disabledCircleColor: UIColor = .separator
-        static let disabledCircleBorderWidth: CGFloat = 2
+        static let checkboxSize: CGSize = .init(width: 24, height: 24)
+        static let cornerRadius: CGFloat = 6
+        static let disabledCheckboxColor: UIColor = .separator
+        static let disabledCheckboxBorderWidth: CGFloat = 2
         static let touchesInset: UIEdgeInsets = .init(top: -10, left: -10, bottom: -10, right: -10)
         static let margins: UIEdgeInsets = .init(top: 5, left: 0, bottom: 5, right: 0)
         static let animationDuration: CGFloat = 0.3
+        static let checkmarkImageSize: CGSize = .init(width: 16, height: 16)
     }
 
     // MARK: - UI Elements
@@ -39,33 +40,32 @@ final class DRadioButton: UIControl, RadioButton {
         return $0
     }(UIStackView())
 
-    private lazy var circleView = {
+    private lazy var checkboxView = {
         return $0
     }(UIView())
 
-    private lazy var disabledCircleView = {
-        $0.layer.borderColor = Constants.disabledCircleColor.cgColor
-        $0.layer.borderWidth = Constants.disabledCircleBorderWidth
-        $0.layer.cornerRadius = Constants.circleSize.width / 2
+    private lazy var disabledCheckboxView = {
+        $0.layer.borderColor = Constants.disabledCheckboxColor.cgColor
+        $0.layer.borderWidth = Constants.disabledCheckboxBorderWidth
+        $0.layer.cornerRadius = Constants.cornerRadius
         $0.isUserInteractionEnabled = false
         return $0
     }(UIView())
 
-    private lazy var enabledOuterCircleView = {
+    private lazy var enabledCheckboxView = {
         $0.backgroundColor = .Domostroy.primary
-        $0.layer.cornerRadius = Constants.circleSize.width / 2
+        $0.layer.cornerRadius = Constants.cornerRadius
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = false
         return $0
     }(UIView())
 
-    private lazy var enabledInnerCircleView = {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = Constants.circleSize.width * Constants.innerCircleCoefficient / 2
-        $0.layer.masksToBounds = true
+    private lazy var checkmarkImageView = {
+        $0.contentMode = .scaleAspectFit
         $0.isUserInteractionEnabled = false
+        $0.image = .Buttons.checkmark.withTintColor(.white, renderingMode: .alwaysOriginal)
         return $0
-    }(UIView())
+    }(UIImageView())
 
     private lazy var label = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
@@ -82,7 +82,7 @@ final class DRadioButton: UIControl, RadioButton {
 
     private var highlightAnimator: UIViewPropertyAnimator?
 
-    weak var group: RadioButtonGroup?
+    weak var group: CheckmarkGroup?
 
     // MARK: - Init
 
@@ -102,37 +102,36 @@ final class DRadioButton: UIControl, RadioButton {
 
     private func setupView() {
         addSubview(mainHStackView)
-        mainHStackView.addArrangedSubview(circleView)
+        mainHStackView.addArrangedSubview(checkboxView)
         mainHStackView.addArrangedSubview(label)
-        circleView.addSubview(disabledCircleView)
-        circleView.addSubview(enabledOuterCircleView)
-        circleView.addSubview(enabledInnerCircleView)
+        checkboxView.addSubview(disabledCheckboxView)
+        checkboxView.addSubview(enabledCheckboxView)
+        checkboxView.addSubview(checkmarkImageView)
 
         mainHStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(Constants.margins)
         }
-        circleView.snp.makeConstraints { make in
-            make.size.equalTo(Constants.circleSize)
+        checkboxView.snp.makeConstraints { make in
+            make.size.equalTo(Constants.checkboxSize)
         }
-        disabledCircleView.snp.makeConstraints { make in
+        disabledCheckboxView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        enabledOuterCircleView.snp.makeConstraints { make in
+        enabledCheckboxView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        enabledInnerCircleView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(
-                Constants.circleSize.width / 2 * (1 - Constants.innerCircleCoefficient)
-            )
+        checkmarkImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(Constants.checkmarkImageSize)
         }
 
         updateAppearance()
     }
 
     private func updateAppearance() {
-        disabledCircleView.isHidden = isOn
-        enabledOuterCircleView.isHidden = !isOn
-        enabledInnerCircleView.isHidden = !isOn
+        disabledCheckboxView.isHidden = isOn
+        enabledCheckboxView.isHidden = !isOn
+        checkmarkImageView.isHidden = !isOn
     }
 
     private func trackTraitChanges() {
@@ -144,7 +143,7 @@ final class DRadioButton: UIControl, RadioButton {
     }
 
     private func updateCGColors() {
-        disabledCircleView.layer.borderColor = Constants.disabledCircleColor.cgColor
+        disabledCheckboxView.layer.borderColor = Constants.disabledCheckboxColor.cgColor
     }
 
     // MARK: - Configuration
@@ -165,8 +164,8 @@ final class DRadioButton: UIControl, RadioButton {
             duration: Constants.animationDuration,
             dampingRatio: 0.8
         ) {
-            self.circleView.alpha = isEnding ? 1 : Constants.highlightedAlpha
-            self.circleView.transform = isEnding ? .identity : CGAffineTransform(
+            self.checkboxView.alpha = isEnding ? 1 : Constants.highlightedAlpha
+            self.checkboxView.transform = isEnding ? .identity : CGAffineTransform(
                 scaleX: Constants.highlightedScale,
                 y: Constants.highlightedScale
             )
@@ -209,7 +208,7 @@ final class DRadioButton: UIControl, RadioButton {
         }
         let touchLocation = touch.location(in: self)
         if self.bounds.inset(by: Constants.touchesInset).contains(touchLocation) {
-            group?.select(button: self)
+            group?.toggle(checkmark: self)
         }
     }
 
@@ -223,8 +222,8 @@ final class DRadioButton: UIControl, RadioButton {
 // MARK: - Selectors
 
 @objc
-private extension DRadioButton {
+private extension DCheckmark {
     func handleTap() {
-        group?.select(button: self)
+        group?.toggle(checkmark: self)
     }
 }

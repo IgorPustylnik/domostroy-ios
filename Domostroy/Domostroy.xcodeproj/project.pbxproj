@@ -277,6 +277,8 @@
 		55C369642DD551C9002E31E5 /* DayComponentsRange+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C369632DD551C9002E31E5 /* DayComponentsRange+ext.swift */; };
 		55CBC0802DE33FA2004B4E38 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC07F2DE33FA2004B4E38 /* PhotoEntity.swift */; };
 		55CBC0822DE33FA8004B4E38 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0812DE33FA8004B4E38 /* PhotoEntry.swift */; };
+		55CBC0842DE36081004B4E38 /* DCheckmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0832DE36080004B4E38 /* DCheckmark.swift */; };
+		55CBC0872DE36198004B4E38 /* DCheckmarkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
@@ -767,6 +769,8 @@
 		55C369632DD551C9002E31E5 /* DayComponentsRange+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayComponentsRange+ext.swift"; sourceTree = "<group>"; };
 		55CBC07F2DE33FA2004B4E38 /* PhotoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEntity.swift; sourceTree = "<group>"; };
 		55CBC0812DE33FA8004B4E38 /* PhotoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
+		55CBC0832DE36080004B4E38 /* DCheckmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCheckmark.swift; sourceTree = "<group>"; };
+		55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCheckmarkGroup.swift; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
@@ -2403,6 +2407,15 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		55CBC0852DE36182004B4E38 /* Checkmark */ = {
+			isa = PBXGroup;
+			children = (
+				55CBC0832DE36080004B4E38 /* DCheckmark.swift */,
+				55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */,
+			);
+			path = Checkmark;
+			sourceTree = "<group>";
+		};
 		55D17A382DA00E4700425A6B /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2504,6 +2517,7 @@
 			isa = PBXGroup;
 			children = (
 				55189C5A2DB6CAFC0079481A /* RadioButton */,
+				55CBC0852DE36182004B4E38 /* Checkmark */,
 				550D4F2D2D9FCBE600B460CA /* DButton.swift */,
 				55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */,
 			);
@@ -3876,6 +3890,7 @@
 				55AAA9F92DBED8880018952F /* RegisterEntity.swift in Sources */,
 				55F88CA62DC385B5003EA26E /* CityTableViewCell.swift in Sources */,
 				A700F9C9F1E75A9A3A502305 /* SortModuleConfigurator.swift in Sources */,
+				55CBC0872DE36198004B4E38 /* DCheckmarkGroup.swift in Sources */,
 				C303BDC10ECF85B00C1A04A8 /* SortPresenter.swift in Sources */,
 				5589B72F2DC0B8FB00DEA9CF /* CreateOfferEntity.swift in Sources */,
 				554F7CC42DBA276D008A2BB3 /* UserProfileViewOutput.swift in Sources */,
@@ -4022,6 +4037,7 @@
 				89F235CBE0CBB39C628FB306 /* OffersAdminView.swift in Sources */,
 				8F3CC42F606E8A0541B58205 /* OffersAdminViewInput.swift in Sources */,
 				7CAF1C513F751728E97DE0D0 /* OffersAdminViewOutput.swift in Sources */,
+				55CBC0842DE36081004B4E38 /* DCheckmark.swift in Sources */,
 				9337FDE2853C5660FBF3DC73 /* OfferAdminFilterModuleConfigurator.swift in Sources */,
 				09FFEFE06B4AC5516B872273 /* OfferAdminFilterPresenter.swift in Sources */,
 				40A2DBB36D0B87B1D7C309FE /* OfferAdminFilterModuleInput.swift in Sources */,
