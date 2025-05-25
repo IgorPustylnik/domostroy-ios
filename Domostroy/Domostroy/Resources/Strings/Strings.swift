@@ -226,8 +226,8 @@ internal enum L10n {
       }
       internal enum Section {
         internal enum Feed {
-          /// Лента
-          internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Лента")
+          /// Feed
+          internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Feed")
         }
       }
     }
@@ -252,6 +252,10 @@ internal enum L10n {
         /// Apply
         internal static let apply = L10n.tr("Localizable", "LessorCalendar.Button.Apply", fallback: "Apply")
       }
+      internal enum Message {
+        /// Available dates have been updated
+        internal static let calendarUpdated = L10n.tr("Localizable", "LessorCalendar.Message.CalendarUpdated", fallback: "Available dates have been updated")
+      }
     }
     internal enum NoCameraPermission {
       /// Please enable camera access in Settings to use this feature.
@@ -264,6 +268,10 @@ internal enum L10n {
       }
     }
     internal enum OfferDetails {
+      /// Published: %@
+      internal static func publishedAt(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "OfferDetails.PublishedAt", String(describing: p1), fallback: "Published: %@")
+      }
       internal enum Button {
         /// Rent
         internal static let rent = L10n.tr("Localizable", "OfferDetails.Button.Rent", fallback: "Rent")
@@ -366,6 +374,10 @@ internal enum L10n {
           internal static let delete = L10n.tr("Localizable", "Offers.Edit.Button.Delete", fallback: "Delete offer")
           /// Save
           internal static let save = L10n.tr("Localizable", "Offers.Edit.Button.Save", fallback: "Save")
+        }
+        internal enum Message {
+          /// Offer has been saved
+          internal static let saved = L10n.tr("Localizable", "Offers.Edit.Message.Saved", fallback: "Offer has been saved")
         }
       }
       internal enum Favorites {

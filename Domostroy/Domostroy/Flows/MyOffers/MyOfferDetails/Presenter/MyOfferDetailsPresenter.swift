@@ -85,7 +85,7 @@ private extension MyOfferDetailsPresenter {
                 self.offer = offer
                 self.view?.setupInitialState()
                 self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
-                self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
+                self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0.url) })
                 self.view?.setupMoreActions(self.makeMoreActions())
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -192,6 +192,7 @@ private extension MyOfferDetailsPresenter {
                 })
             },
             description: offer.description,
+            publishedAt: L10n.Localizable.OfferDetails.publishedAt(offer.createdAt.toDMMYY()),
             onCalendar: { [weak self] in
                 self?.showCalendar()
             }

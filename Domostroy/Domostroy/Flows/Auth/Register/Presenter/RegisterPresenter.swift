@@ -40,11 +40,11 @@ extension RegisterPresenter: RegisterViewOutput {
 
     func register(registerEntity: RegisterEntity) {
         let normalizedRegisterEntity = RegisterEntity(
-            firstName: registerEntity.firstName,
-            lastName: registerEntity.lastName,
-            phoneNumber: registerEntity.phoneNumber,
-            email: registerEntity.email.lowercased(),
-            password: registerEntity.password
+            firstName: registerEntity.firstName.trimmingCharacters(in: .whitespaces),
+            lastName: registerEntity.lastName?.trimmingCharacters(in: .whitespaces),
+            phoneNumber: registerEntity.phoneNumber.trimmingCharacters(in: .whitespaces),
+            email: registerEntity.email.lowercased().trimmingCharacters(in: .whitespaces),
+            password: registerEntity.password.trimmingCharacters(in: .whitespaces)
         )
         view?.setActivity(isLoading: true)
         authService?.postRegister(

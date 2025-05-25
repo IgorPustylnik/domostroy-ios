@@ -26,6 +26,8 @@ final class LessorCalendarViewController: UIViewController {
 
     private var calendarView: CalendarView?
 
+    private lazy var activityIndicator = DLoadingIndicator()
+
     private lazy var bottomLineView = {
         $0.backgroundColor = .separator
         return $0
@@ -50,24 +52,22 @@ final class LessorCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
-        title = L10n.Localizable.LessorCalendar.title
     }
+
+    // MARK: - UI Setup
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        guard let calendarView else {
-            return
-        }
-        view.addSubview(calendarView)
+        title = L10n.Localizable.LessorCalendar.title
+
+        view.addSubview(activityIndicator)
         view.addSubview(bottomLineView)
         view.addSubview(bottomView)
         bottomView.contentView.addSubview(applyButton)
 
-        calendarView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(bottomView.snp.top)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
-
         bottomLineView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(bottomView.snp.top)
@@ -84,6 +84,17 @@ final class LessorCalendarViewController: UIViewController {
         }
     }
 
+    private func setupCalendarView() {
+        guard let calendarView else {
+            return
+        }
+        view.insertSubview(calendarView, belowSubview: activityIndicator)
+        calendarView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top)
+        }
+    }
+
     private func setupCloseButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
@@ -96,6 +107,12 @@ final class LessorCalendarViewController: UIViewController {
 // MARK: - LessorCalendarViewInput
 
 extension LessorCalendarViewController: LessorCalendarViewInput {
+
+    func setupInitialState() {
+        setupUI()
+        setupCloseButton()
+    }
+
     func setupCalendar(config: LessorCalendarViewConfig) {
         guard let calendarView else {
             calendarView = CalendarView(initialContent: makeContent(config: config))
@@ -108,12 +125,22 @@ extension LessorCalendarViewController: LessorCalendarViewInput {
                 self?.output?.handleDragDaySelection(day, state)
             }
 
-            setupUI()
-            setupCloseButton()
+            setupCalendarView()
             return
         }
 
         calendarView.setContent(makeContent(config: config))
+    }
+
+    func setLoading(_ isLoading: Bool) {
+        calendarView?.isHidden = isLoading
+        bottomView.isHidden = isLoading
+        bottomLineView.isHidden = isLoading
+        activityIndicator.isHidden = !isLoading
+    }
+
+    func setApplyActivity(isLoading: Bool) {
+        applyButton.setLoading(isLoading)
     }
 }
 
@@ -177,7 +204,8 @@ private extension LessorCalendarViewController {
         let date = config.calendar.date(from: day.components)
         if let date, config.forbiddenDates.contains(date) {
             invariantViewProperties.interaction = .disabled
-            invariantViewProperties.textColor = .placeholderText
+            invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .systemRed
+            invariantViewProperties.textColor = .white
         }
 
         return DayView.calendarItemModel(

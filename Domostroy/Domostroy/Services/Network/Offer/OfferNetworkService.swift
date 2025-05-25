@@ -70,9 +70,18 @@ public final class OfferNetworkService: OfferService {
 
     public func getOfferCalendar(offerId: Int) -> AnyPublisher<NodeResult<OfferCalendarEntity>, Never> {
         makeBuilder()
-            .route(.get, .calendar(offerId))
+            .route(.get, .calendarById(offerId))
             .build()
             .nodeResultPublisher()
+    }
+
+    public func editOfferCalendar(
+        editOfferCalendarEntity: EditOfferCalendarEntity
+    ) -> AnyPublisher<NodeResult<Void>, Never> {
+        makeBuilder()
+            .route(.post, .calendar)
+            .build()
+            .nodeResultPublisher(for: editOfferCalendarEntity)
     }
 
     public func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never> {
@@ -80,6 +89,15 @@ public final class OfferNetworkService: OfferService {
             .route(.post, .base)
             .build()
             .nodeResultPublisher(for: createOfferEntity)
+    }
+
+    public func editOffer(
+        editOfferEntity: EditOfferEntity
+    ) -> AnyPublisher<NodeResult<NothingEntity>, Never> {
+        return makeBuilder()
+            .route(.put, .base)
+            .build()
+            .nodeResultPublisher(for: editOfferEntity)
     }
 
     public func setFavorite(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never> {

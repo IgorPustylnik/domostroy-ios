@@ -20,6 +20,7 @@ final class EditOfferPresenter: NSObject, EditOfferModuleOutput {
 
     private enum Constants {
         static let maxPicturesAmount = 5
+        static let newImageId = -1
     }
 
     // MARK: - EditOfferModuleOutput
@@ -30,7 +31,6 @@ final class EditOfferPresenter: NSObject, EditOfferModuleOutput {
     var onShowCities: ((CityEntity?) -> Void)?
     var onClose: EmptyClosure?
     var onChanged: EmptyClosure?
-    var onSuccess: ((Int) -> Void)?
 
     // MARK: - Properties
 
@@ -159,7 +159,8 @@ extension EditOfferPresenter: EditOfferViewOutput {
             chooseFromLibrary()
             return
         }
-        guard let category = categoryPickerModel.selected,
+        guard let offerId,
+              let category = categoryPickerModel.selected,
               let title,
               let offerDescription,
               let category = categoryPickerModel.selected,
@@ -167,7 +168,33 @@ extension EditOfferPresenter: EditOfferViewOutput {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
-        // TODO: Save
+        // TODO: Show loading overlay
+        putEdit(
+            editOfferEntity: .init(
+                id: offerId,
+                title: title,
+                description: offerDescription,
+                categoryId: category.id,
+                price: price,
+                cityId: selectedCity.id,
+                oldPhotosIds: images
+                    .filter { $0.id != Constants.newImageId }
+                    .map { $0.id },
+                photos: images
+                    .filter { $0.id == Constants.newImageId }
+                    .compactMap { $0.image }
+            )
+        ) {
+            // TODO: Hide loading overlay
+        } handleResult: { [weak self] result in
+            switch result {
+            case .success:
+                DropsPresenter.shared.showSuccess(subtitle: L10n.Localizable.Offers.Edit.Message.saved)
+                self?.onChanged?()
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+            }
+        }
     }
 
     func delete() {
@@ -219,8 +246,7 @@ private extension EditOfferPresenter {
                 self?.title = offer.title
                 self?.offerDescription = offer.description
                 self?.price = offer.price
-                // TODO: Add id to photos
-                self?.images = offer.photos.map { .init(id: -1, image: nil, url: $0) }
+                self?.images = offer.photos.map { .init(id: $0.id, image: nil, url: $0.url) }
                 self?.selectedCategoryId = offer.categoryId
                 self?.selectedCityId = offer.cityId
             case .failure(let error):
@@ -257,6 +283,19 @@ private extension EditOfferPresenter {
             }
         })
         .store(in: &cancellables)
+    }
+
+    func putEdit(
+        editOfferEntity: EditOfferEntity,
+        completion: EmptyClosure?,
+        handleResult: ((NodeResult<NothingEntity>) -> Void)?
+    ) {
+        offerService?.editOffer(
+            editOfferEntity: editOfferEntity
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 
     func loadSelectedCategory(completion: EmptyClosure? = nil) {
@@ -353,7 +392,7 @@ extension EditOfferPresenter: PHPickerViewControllerDelegate {
                 guard let self, let image = reading as? UIImage else {
                     return
                 }
-                self.images.append(ImageItem(id: -1, image: image, url: nil))
+                self.images.append(ImageItem(id: Constants.newImageId, image: image, url: nil))
             }
         }
 
@@ -376,7 +415,7 @@ extension EditOfferPresenter: UIImagePickerControllerDelegate, UINavigationContr
         picker.dismiss(animated: true)
 
         if let image = info[.originalImage] as? UIImage {
-            images.append(.init(id: -1, image: image, url: nil))
+            images.append(.init(id: Constants.newImageId, image: image, url: nil))
             updateImages()
         }
     }

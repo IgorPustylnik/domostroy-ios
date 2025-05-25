@@ -29,7 +29,6 @@ final class UsersAdminViewController: UIViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private(set) lazy var progressView = PaginatorView()
     private var activityIndicator = DLoadingIndicator()
-    // TODO: Add dedicated one
     private lazy var emptyView = HomeEmptyView()
 
     typealias UserCellGenerator = DiffableCollectionCellGenerator<UserAdminCollectionViewCell>

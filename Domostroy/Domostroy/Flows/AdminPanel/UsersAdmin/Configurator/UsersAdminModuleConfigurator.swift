@@ -11,6 +11,7 @@ import ReactiveDataDisplayManager
 
 final class UsersAdminModuleConfigurator {
 
+    // swiftlint:disable large_tuple
     func configure() -> (
        UsersAdminViewController,
        UsersAdminModuleOutput,

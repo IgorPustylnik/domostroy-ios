@@ -49,7 +49,9 @@ final class RussianPhoneTextFieldFormatter: TextFieldFormatter {
 
                 if firstDigitOffset < rawText.count {
                     let startIndex = rawText.index(rawText.startIndex, offsetBy: firstDigitOffset)
-                    let endIndex = rawText.index(startIndex, offsetBy: min(digitsToDelete, rawText.count - firstDigitOffset))
+                    let endIndex = rawText.index(
+                        startIndex, offsetBy: min(digitsToDelete, rawText.count - firstDigitOffset)
+                    )
                     rawText.removeSubrange(startIndex..<endIndex)
                 }
 

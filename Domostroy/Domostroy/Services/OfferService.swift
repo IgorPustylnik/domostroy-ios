@@ -32,7 +32,13 @@ public protocol OfferService {
         offerId: Int
     ) -> AnyPublisher<NodeResult<OfferCalendarEntity>, Never>
 
+    func editOfferCalendar(
+        editOfferCalendarEntity: EditOfferCalendarEntity
+    ) -> AnyPublisher<NodeResult<Void>, Never>
+
     func createOffer(createOfferEntity: CreateOfferEntity) -> AnyPublisher<NodeResult<OfferIdEntity>, Never>
+
+    func editOffer(editOfferEntity: EditOfferEntity) -> AnyPublisher<NodeResult<NothingEntity>, Never>
 
     func setFavorite(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never>
 

@@ -17,4 +17,5 @@ struct LessorCalendarConfig {
 
 protocol LessorCalendarModuleInput: AnyObject {
     func configure(with viewModel: LessorCalendarConfig)
+    func setOfferId(_ id: Int)
 }

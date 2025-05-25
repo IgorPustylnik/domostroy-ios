@@ -18,7 +18,7 @@ public struct OfferDetailsEntity {
     public let userId: Int
     public let cityId: Int
     public let isFavorite: Bool
-    public let photos: [URL]
+    public let photos: [PhotoEntity]
 }
 
 // MARK: - DTOConvertible
@@ -27,7 +27,7 @@ extension OfferDetailsEntity: DTODecodable {
     public typealias DTO = OfferDetailsEntry
 
     public static func from(dto model: DTO) throws -> Self {
-        .init(
+        return .init(
             id: model.id,
             title: model.title,
             description: model.description,
@@ -37,7 +37,12 @@ extension OfferDetailsEntity: DTODecodable {
             userId: model.userId,
             cityId: model.cityId,
             isFavorite: model.isFavourite,
-            photos: model.photos
+            // TODO: Load photos entities from server
+            photos: model.photos.map {
+                let digits = $0.absoluteString.compactMap { $0.isNumber ? Int(String($0)) : nil }
+                let id = Int(digits.map(String.init).joined()) ?? Int.random(in: 1...Int.max)
+                return .init(id: id, url: $0)
+            }
         )
     }
 }

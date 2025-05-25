@@ -37,7 +37,7 @@ final class SortViewController: UIViewController {
 
     // MARK: - Properties
 
-    var radioButtonGroup = DRadioButtonGroup<SortViewModel>()
+    private var radioButtonGroup = DRadioButtonGroup<SortViewModel>()
 
     var output: SortViewOutput?
 
