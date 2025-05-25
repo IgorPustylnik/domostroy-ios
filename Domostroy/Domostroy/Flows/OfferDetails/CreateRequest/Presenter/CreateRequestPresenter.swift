@@ -147,7 +147,7 @@ private extension CreateRequestPresenter {
     func makeViewModel(from offer: OfferDetailsEntity) -> CreateRequestView.ViewModel {
         .init(
             offer: .init(
-                imageUrl: offer.photos.first,
+                imageUrl: offer.photos.first?.url,
                 loadImage: { [weak self] url, imageView in
                     self?.loadImage(url: url, imageView: imageView)
                 },

@@ -85,7 +85,7 @@ private extension MyOfferDetailsPresenter {
                 self.offer = offer
                 self.view?.setupInitialState()
                 self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
-                self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
+                self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0.url) })
                 self.view?.setupMoreActions(self.makeMoreActions())
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)

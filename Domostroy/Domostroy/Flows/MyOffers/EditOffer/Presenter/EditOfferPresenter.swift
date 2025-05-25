@@ -219,8 +219,7 @@ private extension EditOfferPresenter {
                 self?.title = offer.title
                 self?.offerDescription = offer.description
                 self?.price = offer.price
-                // TODO: Add id to photos
-                self?.images = offer.photos.map { .init(id: -1, image: nil, url: $0) }
+                self?.images = offer.photos.map { .init(id: $0.id, image: nil, url: $0.url) }
                 self?.selectedCategoryId = offer.categoryId
                 self?.selectedCityId = offer.cityId
             case .failure(let error):

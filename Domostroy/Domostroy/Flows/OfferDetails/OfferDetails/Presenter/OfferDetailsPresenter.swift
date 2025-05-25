@@ -91,7 +91,7 @@ private extension OfferDetailsPresenter {
                     self.offer = offer
                     self.view?.setupInitialState()
                     self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
-                    self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0) })
+                    self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0.url) })
 
                     if self.secureStorage?.loadToken() != nil {
                         self.view?.setupFavoriteToggle(
