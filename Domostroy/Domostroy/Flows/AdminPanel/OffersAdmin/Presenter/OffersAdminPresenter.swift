@@ -208,7 +208,7 @@ extension OffersAdminPresenter: PaginatableOutput {
 private extension OffersAdminPresenter {
 
     func makeOfferViewModel(
-        from offer: BriefOfferEntity
+        from offer: BriefOfferAdminEntity
     ) -> OfferAdminCollectionViewCell.ViewModel {
         let viewModel = OfferAdminCollectionViewCell.ViewModel(
             id: offer.id,
@@ -244,10 +244,39 @@ private extension OffersAdminPresenter {
 
     func setOfferBan(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
         completion?(true)
+        if !value {
+            )
+        } else {
+            unbanOffer(id: id) {
+            } handleResult: { [weak self] result in
+                switch result {
+                case .success:
+                    completion?(true)
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+
+        }
     }
 
     func deleteOffer(id: Int, completion: ((Bool) -> Void)?) {
-        completion?(true)
+        adminService?.deleteOffer(
+            id: id
+        ).sink(
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    completion?(true)
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
     }
 
     func loadFirstPage(completion: (() -> Void)? = nil) {
@@ -279,7 +308,7 @@ private extension OffersAdminPresenter {
 
     func fetchOffers(
         completion: EmptyClosure?,
-        handleResult: ((NodeResult<PageEntity<BriefOfferEntity>>) -> Void)?
+        handleResult: ((NodeResult<PageEntity<BriefOfferAdminEntity>>) -> Void)?
     ) {
         var sorting: [SortEntity] = []
         if let sortEntity = sort.toSortEntity {
@@ -302,10 +331,9 @@ private extension OffersAdminPresenter {
         if let toPrice = filters.priceFilter.to {
             filtering.append(.init(filterKey: .price, operation: .lessThanEqual, value: AnyEncodable(toPrice.value)))
         }
-        // TODO: Uncomment when server implements the feature
-//        if let status = filters.statusFilter.toFilterEntity {
-//            filtering.append(status)
-//        }
+        if let status = filters.statusFilter.toFilterEntity {
+            filtering.append(status)
+        }
         if let query, !query.isEmpty {
             let words = query.split(separator: " ").map { String($0) }
             for word in words {
@@ -319,7 +347,7 @@ private extension OffersAdminPresenter {
             snapshot: paginationSnapshot,
             seed: sort == .default ? "seed" : nil
         )
-        offerService?.getOffers(searchOffersEntity: searchOffersEntity)
+        adminService?.getOffers(searchRequestEntity: searchOffersEntity)
             .sink(
                 receiveCompletion: { _ in
                     completion?()
@@ -329,6 +357,24 @@ private extension OffersAdminPresenter {
                 }
             )
             .store(in: &cancellables)
+    }
+
+    func banOffer(id: Int, reason: String?, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        adminService?.banOffer(
+            banOfferEntity: .init(offerId: id, banReason: reason)
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
+    }
+
+    func unbanOffer(id: Int, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        adminService?.unbanOffer(
+            id: id
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 
     func canLoadNext() -> Bool {

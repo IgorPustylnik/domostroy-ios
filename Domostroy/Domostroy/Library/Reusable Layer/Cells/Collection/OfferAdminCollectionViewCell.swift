@@ -23,7 +23,7 @@ final class OfferAdminCollectionViewCell: UICollectionViewCell, HighlightableSca
         let price: String
         let location: String
         let isBanned: Bool
-        let banReason: String
+        let banReason: String?
         let banAction: ToggleClosure?
         let deleteAction: HandledClosure?
     }

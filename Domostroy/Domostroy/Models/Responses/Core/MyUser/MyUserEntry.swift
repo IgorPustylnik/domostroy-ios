@@ -14,6 +14,8 @@ public struct MyUserEntry {
     public let lastName: String?
     public let email: String
     public let phoneNumber: String
+    public let isBanned: Bool
+    public let role: Role
 }
 
 extension MyUserEntry: Decodable, RawDecodable {

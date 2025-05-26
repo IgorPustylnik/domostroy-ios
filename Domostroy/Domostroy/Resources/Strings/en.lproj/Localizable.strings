@@ -80,6 +80,8 @@
 "Common.Button.AddPhoto" = "Add photo";
 "Common.Button.Done" = "Done";
 "Common.Button.Cancel" = "Cancel";
+"Common.Button.Yes" = "Yes";
+"Common.Button.Ok" = "OK";
 "Common.Button.Retry" = "Retry";
 "Common.Placeholder.Search" = "Search";
 "Common.Success" = "Success";
@@ -208,6 +210,9 @@
 "AdminPanel.Offers.Filter.Status.All"="All";
 "AdminPanel.Offers.Filter.Status.Active"="Active";
 "AdminPanel.Offers.Filter.Status.Banned"="Banned";
+
+"AdminPanel.Offers.Ban.Title" = "Ban offer";
+"AdminPanel.Offers.Ban.Reason.Placeholder" = "Reason";
 
 // MARK: - Requests
 

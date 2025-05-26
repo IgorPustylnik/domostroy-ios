@@ -19,7 +19,7 @@ public struct OfferDetailsEntry {
     public let userId: Int
     public let cityId: Int
     public let isFavourite: Bool
-    public let photos: [URL]
+    public let photos: [PhotoEntry]
 }
 
 extension OfferDetailsEntry: Decodable, RawDecodable {

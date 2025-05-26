@@ -10,7 +10,7 @@ import NodeKit
 
 public struct PhotoEntry {
     public let id: Int
-    public let url: URL
+    public let photoPath: URL
 }
 
 extension PhotoEntry: Decodable, RawDecodable {

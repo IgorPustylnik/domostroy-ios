@@ -117,7 +117,7 @@ private extension ProfilePresenter {
                 name: myUser.name,
                 phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: myUser.phoneNumber),
                 email: myUser.email,
-                isAdmin: myUser.isAdmin
+                isAdmin: myUser.role == .admin
             )
         )
     }

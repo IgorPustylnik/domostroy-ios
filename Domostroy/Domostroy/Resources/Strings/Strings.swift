@@ -25,6 +25,14 @@ internal enum L10n {
       internal enum Offers {
         /// Offers
         internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Title", fallback: "Offers")
+        internal enum Ban {
+          /// Ban offer
+          internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Ban.Title", fallback: "Ban offer")
+          internal enum Reason {
+            /// Reason
+            internal static let placeholder = L10n.tr("Localizable", "AdminPanel.Offers.Ban.Reason.Placeholder", fallback: "Reason")
+          }
+        }
         internal enum Filter {
           /// Status
           internal static let status = L10n.tr("Localizable", "AdminPanel.Offers.Filter.Status", fallback: "Status")
@@ -151,8 +159,12 @@ internal enum L10n {
         internal static let cancel = L10n.tr("Localizable", "Common.Button.Cancel", fallback: "Cancel")
         /// Done
         internal static let done = L10n.tr("Localizable", "Common.Button.Done", fallback: "Done")
+        /// OK
+        internal static let ok = L10n.tr("Localizable", "Common.Button.Ok", fallback: "OK")
         /// Retry
         internal static let retry = L10n.tr("Localizable", "Common.Button.Retry", fallback: "Retry")
+        /// Yes
+        internal static let yes = L10n.tr("Localizable", "Common.Button.Yes", fallback: "Yes")
       }
       internal enum Placeholder {
         /// Search

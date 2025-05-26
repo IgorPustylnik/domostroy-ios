@@ -10,9 +10,11 @@ import NodeKit
 
 enum AdminUrlRoute {
     case users
+    case offers
     case banOffer
+    case unbanOffer(Int)
     case offer(Int)
-    case banUser
+    case banUser(Int)
     case user(Int)
 }
 
@@ -24,13 +26,17 @@ extension AdminUrlRoute: URLRouteProvider {
         let base = URL(string: baseUrlString + "/core/admin")
         switch self {
         case .users:
-            return try base + "/users"
+            return try base + "/users/search"
+        case .offers:
+            return try base + "/offers/search"
         case .banOffer:
             return try base + "/offers/ban"
+        case .unbanOffer(let id):
+            return try base + "/offers/\(id)/unban"
         case .offer(let id):
             return try base + "/offers/\(id)"
-        case .banUser:
-            return try base + "/users/ban"
+        case .banUser(let id):
+            return try base + "/users/\(id)/ban"
         case .user(let id):
             return try base + "/users/\(id)"
         }

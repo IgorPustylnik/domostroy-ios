@@ -14,9 +14,9 @@ public struct UserDetailsEntry {
     public let email: String
     public let phoneNumber: String
     public let numOfOffers: Int
+    public let role: Role
     public let isBanned: Bool
     public let createdAt: Date
-    public let isAdmin: Bool
 }
 
 extension UserDetailsEntry: Decodable, RawDecodable {
