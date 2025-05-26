@@ -22,13 +22,13 @@ final class AdminNetworkService: AdminService {
     }
 
     func getUsers(
-        query: String?,
+        searchQuery: String?,
         paginationEntity: PaginationRequestEntity
-    ) -> AnyPublisher<NodeResult<PageEntity<UserDetailsEntity>>, Never> {
+    ) -> AnyPublisher<NodeResult<Page1Entity<UserDetailsEntity>>, Never> {
         var query: [String: Any] = [:]
         query["page"] = paginationEntity.page
         query["size"] = paginationEntity.size
-        query["query"] = query
+        query["query"] = searchQuery ?? ""
         return makeBuilder()
             .route(.get, .users)
             .set(query: query)
@@ -36,17 +36,25 @@ final class AdminNetworkService: AdminService {
             .nodeResultPublisher()
     }
 
-    func setOfferBan(id: Int, reason: String?, value: Bool) -> AnyPublisher<NodeResult<Void>, Never> {
-        var query: [String: Any] = [:]
-        query["id"] = id
-        if let reason {
-            query["reason"] = reason
-        }
-        query["banned"] = value
+    func getOffers(
+        searchRequestEntity: SearchRequestEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferAdminEntity>>, Never> {
+        makeBuilder()
+            .route(.post, .offers)
+            .build()
+            .nodeResultPublisher(for: searchRequestEntity)
+    }
+
+    func banOffer(banOfferEntity: BanOfferEntity) -> AnyPublisher<NodeResult<Void>, Never> {
         return makeBuilder()
-            .route(.get, .banOffer)
-            .set(query: query)
-            .encode(as: .json)
+            .route(.post, .banOffer)
+            .build()
+            .nodeResultPublisher(for: banOfferEntity)
+    }
+
+    func unbanOffer(id: Int) -> AnyPublisher<NodeResult<Void>, Never> {
+        makeBuilder()
+            .route(.post, .unbanOffer(id))
             .build()
             .nodeResultPublisher()
     }
@@ -60,10 +68,10 @@ final class AdminNetworkService: AdminService {
 
     func setUserBan(id: Int, value: Bool) -> AnyPublisher<NodeResult<Void>, Never> {
         var query: [String: Any] = [:]
-        query["id"] = id
-        query["banned"] = value
+        query["isBanned"] = value
         return makeBuilder()
-            .route(.post, .banUser)
+            .route(.post, .banUser(id))
+            .set(query: query)
             .build()
             .nodeResultPublisher()
     }

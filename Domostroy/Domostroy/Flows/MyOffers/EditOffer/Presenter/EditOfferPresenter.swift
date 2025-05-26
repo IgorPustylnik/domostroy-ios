@@ -179,6 +179,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
             return
         }
         // TODO: Show loading overlay
+        view?.setSavingActivity(isLoading: true)
         putEdit(
             editOfferEntity: .init(
                 id: offerId,
@@ -194,8 +195,9 @@ extension EditOfferPresenter: EditOfferViewOutput {
                     .filter { $0.id == Constants.newImageId }
                     .compactMap { $0.image }
             )
-        ) {
+        ) { [weak self] in
             // TODO: Hide loading overlay
+            self?.view?.setSavingActivity(isLoading: false)
         } handleResult: { [weak self] result in
             switch result {
             case .success:

@@ -80,6 +80,8 @@
 "Common.Button.AddPhoto" = "Добавить фото";
 "Common.Button.Done" = "Готово";
 "Common.Button.Cancel" = "Отменить";
+"Common.Button.Yes" = "Да";
+"Common.Button.Ok" = "Ок";
 "Common.Button.Retry" = "Повторить";
 "Common.Placeholder.Search" = "Поиск";
 "Common.Success" = "Успешно";
@@ -208,6 +210,10 @@
 "AdminPanel.Offers.Filter.Status.All"="Все";
 "AdminPanel.Offers.Filter.Status.Active"="Активные";
 "AdminPanel.Offers.Filter.Status.Banned"="Заблокированные";
+
+"AdminPanel.Offers.Ban.Title" = "Заблокировать объявление";
+"AdminPanel.Offers.Ban.Reason.Placeholder" = "Причина";
+"AdminPanel.Offers.BanReason" = "Причина блокировки: %@";
 
 // MARK: - Requests
 

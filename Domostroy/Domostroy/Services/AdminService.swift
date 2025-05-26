@@ -12,11 +12,17 @@ import NodeKit
 public protocol AdminService {
 
     func getUsers(
-        query: String?,
+        searchQuery: String?,
         paginationEntity: PaginationRequestEntity
-    ) -> AnyPublisher<NodeResult<PageEntity<UserDetailsEntity>>, Never>
+    ) -> AnyPublisher<NodeResult<Page1Entity<UserDetailsEntity>>, Never>
 
-    func setOfferBan(id: Int, reason: String?, value: Bool) -> AnyPublisher<NodeResult<Void>, Never>
+    func getOffers(
+        searchRequestEntity: SearchRequestEntity
+    ) -> AnyPublisher<NodeResult<PageEntity<BriefOfferAdminEntity>>, Never>
+
+    func unbanOffer(id: Int) -> AnyPublisher<NodeResult<Void>, Never>
+
+    func banOffer(banOfferEntity: BanOfferEntity) -> AnyPublisher<NodeResult<Void>, Never>
 
     func deleteOffer(id: Int) -> AnyPublisher<NodeResult<Void>, Never>
 

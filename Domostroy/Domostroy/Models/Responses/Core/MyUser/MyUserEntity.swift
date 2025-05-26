@@ -14,8 +14,8 @@ public struct MyUserEntity {
     public let lastName: String?
     public let email: String
     public let phoneNumber: String
+    public let role: Role
     public let isBanned: Bool
-    public let isAdmin: Bool
 
     public var name: String {
         if let lastName = lastName {
@@ -35,9 +35,8 @@ extension MyUserEntity: DTODecodable {
             lastName: model.lastName,
             email: model.email,
             phoneNumber: model.phoneNumber,
-            // TODO: Fetch from server
-            isBanned: false,
-            isAdmin: true
+            role: model.role,
+            isBanned: model.isBanned
         )
     }
 }

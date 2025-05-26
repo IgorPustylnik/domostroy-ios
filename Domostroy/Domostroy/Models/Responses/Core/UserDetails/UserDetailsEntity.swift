@@ -14,8 +14,8 @@ public struct UserDetailsEntity {
     public let email: String
     public let phoneNumber: String
     public let offersAmount: Int
+    public let role: Role
     public let isBanned: Bool
-    public let isAdmin: Bool
     public let registrationDate: Date
 }
 
@@ -29,8 +29,8 @@ extension UserDetailsEntity: DTODecodable {
             email: model.email,
             phoneNumber: model.phoneNumber,
             offersAmount: model.numOfOffers,
+            role: model.role,
             isBanned: model.isBanned,
-            isAdmin: model.isAdmin,
             registrationDate: model.createdAt
         )
     }

@@ -41,6 +41,8 @@ private extension AppDelegate {
         ServiceLocator.shared.register(service: RentNetworkService(secureStorage: secureStorage) as RentService)
         ServiceLocator.shared.register(service: CityNetworkService(secureStorage: secureStorage) as CityService)
         ServiceLocator.shared.register(service: CategoryNetworkService(secureStorage: secureStorage) as CategoryService)
-        ServiceLocator.shared.register(service: UserNetworkService(secureStorage: secureStorage) as UserService)
+        ServiceLocator.shared.register(
+            service: UserNetworkService(secureStorage: secureStorage, basicStorage: basicStorage) as UserService
+        )
     }
 }

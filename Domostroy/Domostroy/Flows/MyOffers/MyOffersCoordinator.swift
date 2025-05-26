@@ -221,9 +221,7 @@ private extension MyOffersCoordinator {
             self?.router.dismissModule()
         }
         output.onChanged = { [weak self] in
-            self?.router.dismissModule(animated: true) {
-                self?.showMyOfferDetails(id: id, reloadables: reloadables)
-            }
+            self?.router.dismissModule()
             reloadables.forEach { $0?.reload() }
         }
         let navigationController = UINavigationController(rootViewController: view)

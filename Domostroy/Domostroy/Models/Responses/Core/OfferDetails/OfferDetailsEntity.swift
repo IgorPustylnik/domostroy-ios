@@ -27,7 +27,7 @@ extension OfferDetailsEntity: DTODecodable {
     public typealias DTO = OfferDetailsEntry
 
     public static func from(dto model: DTO) throws -> Self {
-        return .init(
+        try .init(
             id: model.id,
             title: model.title,
             description: model.description,
@@ -37,12 +37,7 @@ extension OfferDetailsEntity: DTODecodable {
             userId: model.userId,
             cityId: model.cityId,
             isFavorite: model.isFavourite,
-            // TODO: Load photos entities from server
-            photos: model.photos.map {
-                let digits = $0.absoluteString.compactMap { $0.isNumber ? Int(String($0)) : nil }
-                let id = Int(digits.map(String.init).joined()) ?? Int.random(in: 1...Int.max)
-                return .init(id: id, url: $0)
-            }
+            photos: model.photos.map { try .from(dto: $0) }
         )
     }
 }

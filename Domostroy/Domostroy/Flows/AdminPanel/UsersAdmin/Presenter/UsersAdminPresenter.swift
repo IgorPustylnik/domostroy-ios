@@ -93,9 +93,9 @@ extension UsersAdminPresenter: PaginatableOutput {
                 guard let self else {
                     return
                 }
-                self.pagesCount = page.pagination.totalPages
+                self.pagesCount = page.totalPages
                 self.updatePagination()
-                self.view?.fillNextPage(with: page.data.map { self.makeUserViewModel(from: $0) })
+                self.view?.fillNextPage(with: page.content.map { self.makeUserViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
             }
@@ -120,7 +120,7 @@ private extension UsersAdminPresenter {
                 imageView.loadAvatar(id: user.id, name: user.name, url: nil)
                 completion()
             },
-            name: "\(user.name)\(user.isAdmin ? " (\(L10n.Localizable.AdminPanel.Users.admin))" : "")",
+            name: "\(user.name)\(user.role == .admin ? " (\(L10n.Localizable.AdminPanel.Users.admin))" : "")",
             email: user.email,
             phoneNumber: RussianPhoneTextFieldFormatter().format(text: user.phoneNumber),
             registrationDate: L10n.Localizable.AdminPanel.Users.registrationDate(
@@ -128,7 +128,7 @@ private extension UsersAdminPresenter {
             ),
             offersAmount: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
             isBanned: user.isBanned,
-            isAdmin: user.isAdmin,
+            isAdmin: user.role == .admin,
             banAction: { [weak self] newValue, completion in
                 self?.setBanned(userId: user.id, value: newValue) { completion?($0) }
             },
@@ -153,44 +153,40 @@ private extension UsersAdminPresenter {
     }
 
     func setBanned(userId: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.adminService?.setUserBan(
-                id: userId,
-                value: value
-            ).sink(
-                receiveCompletion: { _ in },
-                receiveValue: { result in
-                    switch result {
-                    case .success:
-                        completion?(true)
-                    case .failure(let error):
-                        completion?(false)
-                        DropsPresenter.shared.showError(error: error)
-                    }
+        self.adminService?.setUserBan(
+            id: userId,
+            value: value
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { result in
+                switch result {
+                case .success:
+                    completion?(true)
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
                 }
-            ).store(in: &self.cancellables)
-        }
+            }
+        ).store(in: &cancellables)
     }
 
     func delete(userId: Int, completion: ((Bool) -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.adminService?.deleteUser(
-                id: userId
-            ).sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] result in
-                    switch result {
-                    case .success:
-                        completion?(true)
-                        self?.view?.fillFirstPage(with: [])
-                        self?.loadFirstPage()
-                    case .failure(let error):
-                        completion?(false)
-                        DropsPresenter.shared.showError(error: error)
-                    }
+        self.adminService?.deleteUser(
+            id: userId
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    completion?(true)
+                    self?.view?.fillFirstPage(with: [])
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
                 }
-            ).store(in: &self.cancellables)
-        }
+            }
+        ).store(in: &cancellables)
     }
 
     func loadFirstPage(completion: (() -> Void)? = nil) {
@@ -213,11 +209,11 @@ private extension UsersAdminPresenter {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.pagesCount = page.pagination.totalPages
+                    self.pagesCount = page.totalPages
                     self.updatePagination()
-                    self.view?.setEmptyState(page.data.isEmpty)
+                    self.view?.setEmptyState(page.content.isEmpty)
                     self.view?.fillFirstPage(
-                        with: page.data.compactMap { self.makeUserViewModel(from: $0) }
+                        with: page.content.compactMap { self.makeUserViewModel(from: $0) }
                     )
                 }
             case .failure(let error):
@@ -228,11 +224,10 @@ private extension UsersAdminPresenter {
 
     func fetchUsers(
         completion: EmptyClosure?,
-        handleResult: ((NodeResult<PageEntity<UserDetailsEntity>>) -> Void)?
+        handleResult: ((NodeResult<Page1Entity<UserDetailsEntity>>) -> Void)?
     ) {
-        // TODO: Fetch from server
-        _Temporary_Mock_NetworkService().getUsers(
-            query: query,
+        adminService?.getUsers(
+            searchQuery: query,
             paginationEntity: .init(page: currentPage, size: CommonConstants.pageSize)
         ).sink(
             receiveCompletion: { _ in completion?() },

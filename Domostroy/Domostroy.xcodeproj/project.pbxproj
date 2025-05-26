@@ -246,6 +246,7 @@
 		55AAAA062DBEE4440018952F /* NodeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55AAAA052DBEE4440018952F /* NodeKit */; };
 		55AAAA082DBEE4440018952F /* NodeKitMock in Frameworks */ = {isa = PBXBuildFile; productRef = 55AAAA072DBEE4440018952F /* NodeKitMock */; };
 		55AAAA0D2DBEE7300018952F /* OfferUrlRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAAA0C2DBEE7300018952F /* OfferUrlRoute.swift */; };
+		55AF4CB02DE473B5007B1D7F /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AF4CAF2DE473B5007B1D7F /* AlertPresenter.swift */; };
 		55B1264B2DC670E50030A6FC /* PaginationRequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1264A2DC670E50030A6FC /* PaginationRequestEntity.swift */; };
 		55B1264D2DC670F40030A6FC /* SortEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1264C2DC670F40030A6FC /* SortEntry.swift */; };
 		55B1264F2DC672EC0030A6FC /* SortEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1264E2DC672EC0030A6FC /* SortEntity.swift */; };
@@ -254,6 +255,8 @@
 		55B126562DC675DC0030A6FC /* FilterEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B126552DC675DC0030A6FC /* FilterEntry.swift */; };
 		55B141DF2DD7337D00557C1D /* EditOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B141DE2DD7337D00557C1D /* EditOfferViewModel.swift */; };
 		55B1D2802DDCBD30007587D7 /* NodeKit+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1D27F2DDCBD30007587D7 /* NodeKit+ext.swift */; };
+		55B2141C2DE3CF4800A443A2 /* BanOfferEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2141B2DE3CF4800A443A2 /* BanOfferEntity.swift */; };
+		55B2141E2DE3CF5000A443A2 /* BanOfferEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */; };
 		55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */; };
 		55B40ECC2DD159DE0008C345 /* IncomingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */; };
 		55B40ECE2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */; };
@@ -279,6 +282,9 @@
 		55CBC0822DE33FA8004B4E38 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0812DE33FA8004B4E38 /* PhotoEntry.swift */; };
 		55CBC0842DE36081004B4E38 /* DCheckmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0832DE36080004B4E38 /* DCheckmark.swift */; };
 		55CBC0872DE36198004B4E38 /* DCheckmarkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */; };
+		55CBC0892DE39A2F004B4E38 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC0882DE39A2F004B4E38 /* Role.swift */; };
+		55CBC08C2DE3A70C004B4E38 /* BriefOfferAdminEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC08B2DE3A70C004B4E38 /* BriefOfferAdminEntity.swift */; };
+		55CBC08E2DE3A736004B4E38 /* BriefOfferAdminEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CBC08D2DE3A736004B4E38 /* BriefOfferAdminEntry.swift */; };
 		55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D17A362DA00D6500425A6B /* DNavigationBar.swift */; };
 		55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */; };
 		55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */; };
@@ -737,6 +743,7 @@
 		55AAA9FE2DBEDAD60018952F /* LoginEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntry.swift; sourceTree = "<group>"; };
 		55AAAA0C2DBEE7300018952F /* OfferUrlRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferUrlRoute.swift; sourceTree = "<group>"; };
 		55AAAA0E2DBF98BE0018952F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		55AF4CAF2DE473B5007B1D7F /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		55B1264A2DC670E50030A6FC /* PaginationRequestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationRequestEntity.swift; sourceTree = "<group>"; };
 		55B1264C2DC670F40030A6FC /* SortEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortEntry.swift; sourceTree = "<group>"; };
 		55B1264E2DC672EC0030A6FC /* SortEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortEntity.swift; sourceTree = "<group>"; };
@@ -745,6 +752,8 @@
 		55B126552DC675DC0030A6FC /* FilterEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEntry.swift; sourceTree = "<group>"; };
 		55B141DE2DD7337D00557C1D /* EditOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOfferViewModel.swift; sourceTree = "<group>"; };
 		55B1D27F2DDCBD30007587D7 /* NodeKit+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeKit+ext.swift"; sourceTree = "<group>"; };
+		55B2141B2DE3CF4800A443A2 /* BanOfferEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanOfferEntity.swift; sourceTree = "<group>"; };
+		55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanOfferEntry.swift; sourceTree = "<group>"; };
 		55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsPresenterModel.swift; sourceTree = "<group>"; };
 		55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestsEmptyView.swift; sourceTree = "<group>"; };
 		55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsEmptyView.swift; sourceTree = "<group>"; };
@@ -771,6 +780,9 @@
 		55CBC0812DE33FA8004B4E38 /* PhotoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
 		55CBC0832DE36080004B4E38 /* DCheckmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCheckmark.swift; sourceTree = "<group>"; };
 		55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCheckmarkGroup.swift; sourceTree = "<group>"; };
+		55CBC0882DE39A2F004B4E38 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		55CBC08B2DE3A70C004B4E38 /* BriefOfferAdminEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefOfferAdminEntity.swift; sourceTree = "<group>"; };
+		55CBC08D2DE3A736004B4E38 /* BriefOfferAdminEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefOfferAdminEntry.swift; sourceTree = "<group>"; };
 		55D17A362DA00D6500425A6B /* DNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNavigationBar.swift; sourceTree = "<group>"; };
 		55D267522DAAB23B0092EF8F /* SearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingsView.swift; sourceTree = "<group>"; };
 		55D6294B2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCoordinatorInput.swift; sourceTree = "<group>"; };
@@ -1828,6 +1840,7 @@
 		55631AAA2D95FB3900FD6856 /* Reusable Layer */ = {
 			isa = PBXGroup;
 			children = (
+				55AF4CAE2DE473A4007B1D7F /* Alert */,
 				55E0FF2D2DAFAF2E00D908A8 /* Picker */,
 				55DD9F0F2DA6CBD3003F0CB3 /* Buttons */,
 				55DD9EF52DA413A8003F0CB3 /* Cells */,
@@ -1984,6 +1997,7 @@
 				5589B71F2DC01F9A00DEA9CF /* OfferDetails */,
 				55CBC07E2DE33F97004B4E38 /* Photo */,
 				552886AC2DC6A95D00CADD6C /* BriefOffer */,
+				55CBC08A2DE3A6BE004B4E38 /* BriefOfferAdmin */,
 				552886A22DC6A64F00CADD6C /* MyOffer */,
 				552886B22DC6AC9D00CADD6C /* FavoriteOffer */,
 				552886B12DC6AA7600CADD6C /* OfferId */,
@@ -2096,6 +2110,7 @@
 				5589B73E2DC15C0400DEA9CF /* SearchRequest */,
 				5589B72B2DC0B8E900DEA9CF /* CreateOffer */,
 				559771D82DE2694B002FB104 /* EditOffer */,
+				55B2141A2DE3CF3100A443A2 /* BanOffer */,
 				559771DF2DE26DB2002FB104 /* EditOfferCalendar */,
 				55190AF52DD4ED8300C33A57 /* CreateRequest */,
 			);
@@ -2220,6 +2235,7 @@
 			children = (
 				55AAA9E12DBEC5AE0018952F /* Currency.swift */,
 				55FE25D02DD0D98900B7B35F /* RequestStatus.swift */,
+				55CBC0882DE39A2F004B4E38 /* Role.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -2231,6 +2247,14 @@
 				55AAA9C22DBE882F0018952F /* OfferNetworkService.swift */,
 			);
 			path = Offer;
+			sourceTree = "<group>";
+		};
+		55AF4CAE2DE473A4007B1D7F /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				55AF4CAF2DE473B5007B1D7F /* AlertPresenter.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		55B126492DC670590030A6FC /* Pagination */ = {
@@ -2274,6 +2298,15 @@
 				55B1D27F2DDCBD30007587D7 /* NodeKit+ext.swift */,
 			);
 			path = NodeKit;
+			sourceTree = "<group>";
+		};
+		55B2141A2DE3CF3100A443A2 /* BanOffer */ = {
+			isa = PBXGroup;
+			children = (
+				55B2141B2DE3CF4800A443A2 /* BanOfferEntity.swift */,
+				55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */,
+			);
+			path = BanOffer;
 			sourceTree = "<group>";
 		};
 		55B40EC82DD124620008C345 /* Model */ = {
@@ -2414,6 +2447,15 @@
 				55CBC0862DE36198004B4E38 /* DCheckmarkGroup.swift */,
 			);
 			path = Checkmark;
+			sourceTree = "<group>";
+		};
+		55CBC08A2DE3A6BE004B4E38 /* BriefOfferAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				55CBC08B2DE3A70C004B4E38 /* BriefOfferAdminEntity.swift */,
+				55CBC08D2DE3A736004B4E38 /* BriefOfferAdminEntry.swift */,
+			);
+			path = BriefOfferAdmin;
 			sourceTree = "<group>";
 		};
 		55D17A382DA00E4700425A6B /* NavigationBar */ = {
@@ -3631,6 +3673,7 @@
 				55D8B0552DD9DEA70036A000 /* SettingsViewModel.swift in Sources */,
 				55B8C0152DDF5DB000344244 /* UserAdminCollectionViewCell.swift in Sources */,
 				AAD0A7CD9BC8A631EF879737 /* FavoritesCoordinator.swift in Sources */,
+				55B2141C2DE3CF4800A443A2 /* BanOfferEntity.swift in Sources */,
 				55BA92F72DB6774F007F4240 /* FavoritesEmptyView.swift in Sources */,
 				55190AF22DD4E19E00C33A57 /* RentUrlRoute.swift in Sources */,
 				55D6294C2DAC16EA00E09764 /* MyOffersCoordinatorInput.swift in Sources */,
@@ -3686,6 +3729,7 @@
 				C1369377F47EEAABACA11A05 /* RequestsViewInput.swift in Sources */,
 				55BA92FB2DB69099007F4240 /* FavoritesSettingsView.swift in Sources */,
 				55D17A372DA00D6500425A6B /* DNavigationBar.swift in Sources */,
+				55CBC0892DE39A2F004B4E38 /* Role.swift in Sources */,
 				2C8C1C4546BFE980CF9FE847 /* RequestsViewOutput.swift in Sources */,
 				55DD9EF72DA41676003F0CB3 /* OfferCollectionViewCell.swift in Sources */,
 				E103A945E2EEF839CB913051 /* ProfileCoordinator.swift in Sources */,
@@ -3776,6 +3820,7 @@
 				551747622DC78CA600AFAF24 /* CitiesEntity.swift in Sources */,
 				1348F79D9DB83178C7ED1EA9 /* CodeConfirmationModuleConfigurator.swift in Sources */,
 				552402222DC185C800AD83F1 /* CreateOfferResponseEntry.swift in Sources */,
+				55CBC08E2DE3A736004B4E38 /* BriefOfferAdminEntry.swift in Sources */,
 				55AAA9CB2DBEB8AC0018952F /* PaginationEntity.swift in Sources */,
 				B42618CE73C7464EF4619570 /* CodeConfirmationPresenter.swift in Sources */,
 				55AAAA0D2DBEE7300018952F /* OfferUrlRoute.swift in Sources */,
@@ -3856,6 +3901,7 @@
 				AA4EF3ACEC94B5A091F5683D /* CreateRequestModuleOutput.swift in Sources */,
 				CFC14D95FF06A6244B1CDAC7 /* CreateRequestViewController.swift in Sources */,
 				5517476A2DC78E7500AFAF24 /* CategoryUrlRoute.swift in Sources */,
+				55CBC08C2DE3A70C004B4E38 /* BriefOfferAdminEntity.swift in Sources */,
 				C1510712FBCAFCB325C5EAB6 /* CreateRequestView.swift in Sources */,
 				AF1BDB73F808A624415C2689 /* CreateRequestViewInput.swift in Sources */,
 				3FC726130A1BD0E82ACCE454 /* CreateRequestViewOutput.swift in Sources */,
@@ -3898,6 +3944,7 @@
 				7149FD0B41262C91E8397A14 /* SortModuleOutput.swift in Sources */,
 				55A67EC02DE0A4A000157B9A /* OfferAdminCollectionViewCell.swift in Sources */,
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
+				55B2141E2DE3CF5000A443A2 /* BanOfferEntry.swift in Sources */,
 				867237BFF99CA46C91280F38 /* SortViewInput.swift in Sources */,
 				65C48F27871A9DFC981E641A /* SortViewOutput.swift in Sources */,
 				551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */,
@@ -4033,6 +4080,7 @@
 				2C66F66F70C1E69A90890FE8 /* OffersAdminPresenter.swift in Sources */,
 				35890C985ABF4141CF18CC2C /* OffersAdminModuleInput.swift in Sources */,
 				55A92234DE3C3F0C11115D7A /* OffersAdminModuleOutput.swift in Sources */,
+				55AF4CB02DE473B5007B1D7F /* AlertPresenter.swift in Sources */,
 				40A41AFC2C337DADA076C7DC /* OffersAdminViewController.swift in Sources */,
 				89F235CBE0CBB39C628FB306 /* OffersAdminView.swift in Sources */,
 				8F3CC42F606E8A0541B58205 /* OffersAdminViewInput.swift in Sources */,

@@ -17,6 +17,6 @@ extension PhotoEntity: DTODecodable {
     public typealias DTO = PhotoEntry
 
     public static func from(dto model: DTO) throws -> PhotoEntity {
-        .init(id: model.id, url: model.url)
+        .init(id: model.id, url: model.photoPath)
     }
 }
