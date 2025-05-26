@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class MainTabBarPresenter: MainTabBarModuleOutput {
 
@@ -23,6 +24,9 @@ final class MainTabBarPresenter: MainTabBarModuleOutput {
     // MARK: - Properties
 
     weak var view: MainTabBarViewInput?
+
+    private var userService: UserService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 
     private var isCenterControlEnabled: Bool = false
 
@@ -82,6 +86,11 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
         }
 
         onProfileFlowSelect?(isInitial)
+    }
+
+    func viewLoaded() {
+        // Fetch user role
+        userService?.getMyUser().sink(receiveValue: { _ in }).store(in: &cancellables)
     }
 }
 

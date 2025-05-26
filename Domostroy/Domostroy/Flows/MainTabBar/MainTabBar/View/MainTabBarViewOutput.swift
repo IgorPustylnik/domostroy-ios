@@ -13,4 +13,5 @@ protocol MainTabBarViewOutput {
     /// - Parameter isInitial: flag, indicating that controller was created before
     func selectTab(with tab: MainTab, isInitial: Bool)
     func didTapCenter()
+    func viewLoaded()
 }

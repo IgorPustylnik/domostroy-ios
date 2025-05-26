@@ -34,6 +34,7 @@ final class MainTabBarViewController: UITabBarController {
         self.tabBar.isHidden = true
         additionalSafeAreaInsets.bottom = Constants.tabBarHeight
         setupUI()
+        output?.viewLoaded()
     }
 
     // MARK: - UI Setup

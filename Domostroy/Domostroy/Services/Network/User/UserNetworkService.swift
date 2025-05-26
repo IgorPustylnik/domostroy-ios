@@ -14,11 +14,13 @@ public final class UserNetworkService: UserService {
     // MARK: - Properties
 
     private let secureStorage: SecureStorage
+    private let basicStorage: BasicStorage
 
     // MARK: - Init
 
-    init(secureStorage: SecureStorage) {
+    init(secureStorage: SecureStorage, basicStorage: BasicStorage) {
         self.secureStorage = secureStorage
+        self.basicStorage = basicStorage
     }
 
     // MARK: - GET
@@ -35,6 +37,16 @@ public final class UserNetworkService: UserService {
             .route(.get, .my)
             .build()
             .nodeResultPublisher()
+            .handleEvents(
+                receiveOutput: { [weak self] result in
+                    switch result {
+                    case .success(let user):
+                        self?.basicStorage.set(user.role, for: .myRole)
+                    case .failure:
+                        break
+                    }
+                }
+            ).eraseToAnyPublisher()
     }
 
     public func editInfo(editUserInfoEntity: EditUserInfoEntity) -> AnyPublisher<NodeResult<Void>, Never> {
