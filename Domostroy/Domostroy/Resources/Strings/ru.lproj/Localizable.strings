@@ -213,6 +213,7 @@
 
 "AdminPanel.Offers.Ban.Title" = "Заблокировать объявление";
 "AdminPanel.Offers.Ban.Reason.Placeholder" = "Причина";
+"AdminPanel.Offers.BanReason" = "Причина блокировки: %@";
 
 // MARK: - Requests
 

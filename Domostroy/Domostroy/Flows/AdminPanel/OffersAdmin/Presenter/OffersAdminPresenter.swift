@@ -210,6 +210,10 @@ private extension OffersAdminPresenter {
     func makeOfferViewModel(
         from offer: BriefOfferAdminEntity
     ) -> OfferAdminCollectionViewCell.ViewModel {
+        var banReason: String?
+        if let reason = offer.banReason {
+            banReason = L10n.Localizable.AdminPanel.Offers.banReason(reason)
+        }
         let viewModel = OfferAdminCollectionViewCell.ViewModel(
             id: offer.id,
             loadImage: { [weak self] imageView in
@@ -220,7 +224,7 @@ private extension OffersAdminPresenter {
             price: LocalizationHelper.pricePerDay(for: offer.price),
             location: offer.city,
             isBanned: offer.isBanned,
-            banReason: offer.banReason,
+            banReason: banReason,
             banAction: { [weak self] newValue, completion in
                 self?.setOfferBan(id: offer.id, value: newValue) { completion?($0) }
             },

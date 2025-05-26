@@ -23,6 +23,10 @@ internal enum L10n {
       /// Admin panel
       internal static let title = L10n.tr("Localizable", "AdminPanel.Title", fallback: "Admin panel")
       internal enum Offers {
+        /// Ban reason: %@
+        internal static func banReason(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "AdminPanel.Offers.BanReason", String(describing: p1), fallback: "Ban reason: %@")
+        }
         /// Offers
         internal static let title = L10n.tr("Localizable", "AdminPanel.Offers.Title", fallback: "Offers")
         internal enum Ban {

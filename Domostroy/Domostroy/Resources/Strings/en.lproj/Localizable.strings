@@ -213,6 +213,7 @@
 
 "AdminPanel.Offers.Ban.Title" = "Ban offer";
 "AdminPanel.Offers.Ban.Reason.Placeholder" = "Reason";
+"AdminPanel.Offers.BanReason" = "Ban reason: %@";
 
 // MARK: - Requests
 
