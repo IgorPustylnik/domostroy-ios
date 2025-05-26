@@ -243,8 +243,24 @@ private extension OffersAdminPresenter {
     }
 
     func setOfferBan(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        completion?(true)
         if !value {
+            AlertPresenter.enterText(
+                title: L10n.Localizable.AdminPanel.Offers.Ban.title,
+                message: nil,
+                placeholder: L10n.Localizable.AdminPanel.Offers.Ban.Reason.placeholder,
+                onConfirm: { [weak self] reason in
+                    self?.banOffer(id: id, reason: reason) {
+                    } handleResult: { [weak self] result in
+                        switch result {
+                        case .success:
+                            completion?(true)
+                            self?.loadFirstPage()
+                        case .failure(let error):
+                            completion?(false)
+                            DropsPresenter.shared.showError(error: error)
+                        }
+                    }
+                }, onCancel: { completion?(false) }
             )
         } else {
             unbanOffer(id: id) {
