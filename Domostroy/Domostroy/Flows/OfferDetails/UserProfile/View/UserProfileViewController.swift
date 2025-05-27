@@ -34,7 +34,7 @@ final class UserProfileViewController: BaseViewController {
     private var userGenerator: UserInfoCellGenerator = .init(
         uniqueId: UUID(),
         with: .init(
-            imageUrl: nil, loadImage: nil, username: nil, info1: nil, info2: nil
+            imageUrl: nil, loadImage: nil, username: nil, info1: nil, info2: nil, info3: nil
         ),
         registerType: .class
     )

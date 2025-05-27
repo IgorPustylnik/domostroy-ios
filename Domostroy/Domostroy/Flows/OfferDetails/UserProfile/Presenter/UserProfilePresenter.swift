@@ -131,7 +131,8 @@ private extension UserProfilePresenter {
             },
             username: user.name,
             info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
-            info2: L10n.Localizable.UserProfile.registrationDate(user.registrationDate.monthAndYearString())
+            info2: RussianPhoneTextFieldFormatter.format(phoneNumber: user.phoneNumber),
+            info3: L10n.Localizable.UserProfile.registrationDate(user.registrationDate.monthAndYearString())
         )
     }
 

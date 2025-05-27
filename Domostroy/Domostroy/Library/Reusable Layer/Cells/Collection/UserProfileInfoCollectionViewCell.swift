@@ -21,6 +21,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         let username: String?
         let info1: String?
         let info2: String?
+        let info3: String?
     }
 
     // MARK: - Constants
@@ -33,6 +34,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         static let usernameFont: UIFont = .systemFont(ofSize: 20, weight: .semibold)
         static let info1Font: UIFont = .systemFont(ofSize: 14, weight: .regular)
         static let info2Font: UIFont = .systemFont(ofSize: 14, weight: .regular)
+        static let info3Font: UIFont = .systemFont(ofSize: 14, weight: .regular)
     }
 
     // MARK: - UI Elements
@@ -52,6 +54,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         $0.addArrangedSubview(usernameLabel)
         $0.addArrangedSubview(info1Label)
         $0.addArrangedSubview(info2Label)
+        $0.addArrangedSubview(info3Label)
         return $0
     }(UIStackView())
 
@@ -68,6 +71,12 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
 
     private lazy var info2Label = {
         $0.font = Constants.info2Font
+        $0.numberOfLines = 0
+        return $0
+    }(UILabel())
+
+    private lazy var info3Label = {
+        $0.font = Constants.info3Font
         $0.numberOfLines = 0
         return $0
     }(UILabel())
@@ -132,6 +141,7 @@ extension UserProfileInfoCollectionViewCell: ConfigurableItem {
         usernameLabel.text = viewModel.username
         info1Label.text = viewModel.info1
         info2Label.text = viewModel.info2
+        info3Label.text = viewModel.info3
         viewModel.loadImage?(viewModel.imageUrl, avatarImageView)
     }
 
