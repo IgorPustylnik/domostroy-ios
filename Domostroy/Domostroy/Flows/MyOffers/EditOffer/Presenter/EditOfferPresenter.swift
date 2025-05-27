@@ -107,7 +107,10 @@ extension EditOfferPresenter: EditOfferViewOutput {
     }
 
     func setSelectedCategory(index: Int) {
-        guard index - 1 < categoryPickerModel.all.count else {
+        guard
+            index - 1 < categoryPickerModel.all.count,
+            !categoryPickerModel.all.isEmpty
+        else {
             return
         }
         categoryPickerModel.selected = categoryPickerModel.all[index - 1]
@@ -168,8 +171,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
         guard let offerId,
               let category = categoryPickerModel.selected,
               let title,
-              let offerDescription,
-              let category = categoryPickerModel.selected
+              let offerDescription
         else {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return

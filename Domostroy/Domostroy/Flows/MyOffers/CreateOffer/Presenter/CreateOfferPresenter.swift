@@ -96,7 +96,10 @@ extension CreateOfferPresenter: CreateOfferViewOutput {
     }
 
     func setSelectedCategory(index: Int) {
-        guard index - 1 < categoryPickerModel.all.count else {
+        guard
+            index - 1 < categoryPickerModel.all.count,
+            !categoryPickerModel.all.isEmpty
+        else {
             return
         }
         categoryPickerModel.selected = categoryPickerModel.all[index - 1]
