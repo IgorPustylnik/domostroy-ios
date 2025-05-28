@@ -10,10 +10,25 @@ import UIKit
 
 final class DLoadingIndicator: UIView {
 
+    // MARK: - Enums
+
+    enum Style {
+        case medium
+        case large
+
+        var size: CGSize {
+            switch self {
+            case .medium:
+                return .init(width: 20, height: 20)
+            case .large:
+                return .init(width: 30, height: 30)
+            }
+        }
+    }
+
     // MARK: - Constants
 
     private enum Constants {
-        static let size: CGSize = .init(width: 20, height: 20)
         static let lineWidthMultiplier: CGFloat = 0.1
         static let rotationSpeed: Double = 1
         static let defaultColor: UIColor = .label
@@ -25,9 +40,7 @@ final class DLoadingIndicator: UIView {
 
     // MARK: - Properties
 
-    override var intrinsicContentSize: CGSize {
-        return self.sizeThatFits(UIView.layoutFittingExpandedSize)
-    }
+    private var style: Style
 
     override var isHidden: Bool {
         didSet {
@@ -53,8 +66,9 @@ final class DLoadingIndicator: UIView {
 
     // MARK: - Init
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(style: Style = .medium) {
+        self.style = style
+        super.init(frame: .zero)
         setupUI()
     }
 
@@ -65,7 +79,7 @@ final class DLoadingIndicator: UIView {
     // MARK: - UI Setup
 
     private func setupUI() {
-        shapeLayer.lineWidth = Constants.size.width * Constants.lineWidthMultiplier
+        shapeLayer.lineWidth = style.size.width * Constants.lineWidthMultiplier
         shapeLayer.strokeColor = tintColor.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = .round
@@ -85,7 +99,7 @@ final class DLoadingIndicator: UIView {
     }
 
     private func updateShapePath() {
-        let radius = Constants.size.width / 2 - shapeLayer.lineWidth / 2
+        let radius = style.size.width / 2 - shapeLayer.lineWidth / 2
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         shapeLayer.path = UIBezierPath(
             arcCenter: center,
@@ -110,7 +124,7 @@ final class DLoadingIndicator: UIView {
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let preferredSize = Constants.size
+        let preferredSize = style.size
         return .init(
             width: min(preferredSize.width, size.width),
             height: min(preferredSize.height, size.height)

@@ -380,19 +380,29 @@ private extension OffersAdminPresenter {
     }
 
     func banOffer(id: Int, reason: String?, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         adminService?.banOffer(
             banOfferEntity: .init(offerId: id, banReason: reason)
         ).sink(
-            receiveCompletion: { _ in completion?() },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
             receiveValue: { handleResult?($0) }
         ).store(in: &cancellables)
     }
 
     func unbanOffer(id: Int, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         adminService?.unbanOffer(
             id: id
         ).sink(
-            receiveCompletion: { _ in completion?() },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
             receiveValue: { handleResult?($0) }
         ).store(in: &cancellables)
     }

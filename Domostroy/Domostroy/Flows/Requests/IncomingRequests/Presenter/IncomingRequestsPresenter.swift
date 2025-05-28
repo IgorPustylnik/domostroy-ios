@@ -171,12 +171,13 @@ private extension IncomingRequestsPresenter {
     }
 
     func acceptRequest(id: Int) {
-        // TODO: Show loading overlay
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         rentService?.changeRequestStatus(
             id: id, status: .accepted
         ).sink(
             receiveCompletion: { _ in
-                // TODO: Hide loading overlay
+                DLoadingOverlay.shared.hide(id: loading.id)
             },
             receiveValue: { [weak self] result in
                 switch result {
@@ -190,12 +191,13 @@ private extension IncomingRequestsPresenter {
     }
 
     func declineRequest(id: Int) {
-        // TODO: Show loading overlay
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         rentService?.changeRequestStatus(
             id: id, status: .declined
         ).sink(
             receiveCompletion: { _ in
-                // TODO: Hide loading overlay
+                DLoadingOverlay.shared.hide(id: loading.id)
             },
             receiveValue: { [weak self] result in
                 switch result {
