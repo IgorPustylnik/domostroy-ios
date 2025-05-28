@@ -13,6 +13,7 @@ final class TokenExpirationHandler {
 
     private var timer: Timer?
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
     var onExpire: (() -> Void)?
 
     // MARK: - Public methods
@@ -47,6 +48,7 @@ final class TokenExpirationHandler {
 
     private func expireNow() {
         secureStorage?.deleteToken()
+        basicStorage?.remove(for: .myRole)
         onExpire?()
     }
 }
