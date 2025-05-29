@@ -12,7 +12,8 @@ import UIKit
 protocol UserProfileViewInput: AnyObject, Loadable {
     /// Method for setup initial state of view
     func setupInitialState()
-    func fillUser(with viewModel: UserProfileInfoCollectionViewCell.ViewModel)
+    func fillUser(with viewModel: UserProfileInfoCollectionViewCell.ViewModel, isBanned: Bool)
     func fillFirstPage(with viewModels: [OfferCollectionViewCell.ViewModel])
     func fillNextPage(with viewModels: [OfferCollectionViewCell.ViewModel])
+    func setupMoreActions(_ actions: [UIAction])
 }

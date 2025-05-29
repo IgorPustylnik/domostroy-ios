@@ -15,6 +15,8 @@ public struct UserEntity {
     public let phoneNumber: String
     public let offersAmount: Int
     public let registrationDate: Date
+    public let role: Role
+    public let isBanned: Bool
 
     public var name: String {
         if let lastName = lastName {
@@ -34,7 +36,9 @@ extension UserEntity: DTODecodable {
             lastName: model.lastName,
             phoneNumber: model.phoneNumber,
             offersAmount: model.numOfOffers,
-            registrationDate: model.createdAt
+            registrationDate: model.createdAt,
+            role: model.role,
+            isBanned: model.isBanned
         )
     }
 }

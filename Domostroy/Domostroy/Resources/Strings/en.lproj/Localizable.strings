@@ -270,6 +270,9 @@
 
 "UserProfile.RegistrationDate" = "On Domostroy since %@";
 "UserProfile.Section.Offers.Empty" = "No offers";
+"UserProfile.IsBanned" = "User is banned";
+"UserProfile.MoreActions.Ban" = "Ban";
+"UserProfile.MoreActions.Unban" = "Unban";
 
 // MARK: - Select City
 

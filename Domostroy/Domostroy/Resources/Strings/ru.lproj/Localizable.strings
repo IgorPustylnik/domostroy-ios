@@ -270,6 +270,9 @@
 
 "UserProfile.RegistrationDate" = "На Домострое с %@";
 "UserProfile.Section.Offers.Empty" = "Нет объявлений";
+"UserProfile.IsBanned" = "Пользователь заблокирован";
+"UserProfile.MoreActions.Ban" = "Заблокировать";
+"UserProfile.MoreActions.Unban" = "Разблокировать";
 
 // MARK: - Select City
 

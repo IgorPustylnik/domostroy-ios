@@ -650,9 +650,17 @@ internal enum L10n {
       internal static let loggedOut = L10n.tr("Localizable", "TokenExpirationHandler.LoggedOut", fallback: "You have been logged out")
     }
     internal enum UserProfile {
+      /// User is banned
+      internal static let isBanned = L10n.tr("Localizable", "UserProfile.IsBanned", fallback: "User is banned")
       /// On Domostroy since %@
       internal static func registrationDate(_ p1: Any) -> String {
         return L10n.tr("Localizable", "UserProfile.RegistrationDate", String(describing: p1), fallback: "On Domostroy since %@")
+      }
+      internal enum MoreActions {
+        /// Ban
+        internal static let ban = L10n.tr("Localizable", "UserProfile.MoreActions.Ban", fallback: "Ban")
+        /// Unban
+        internal static let unban = L10n.tr("Localizable", "UserProfile.MoreActions.Unban", fallback: "Unban")
       }
       internal enum Section {
         internal enum Offers {
