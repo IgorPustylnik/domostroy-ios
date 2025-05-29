@@ -255,6 +255,8 @@
 
 // MARK: - Offer Details
 
+"OfferDetails.Banned" = "Offer is banned";
+"OfferDetails.BannedFor" = "Offer is banned. Reason: %@";
 "OfferDetails.Button.Rent" = "Rent";
 "OfferDetails.Info.Header" = "Information";
 "OfferDetails.Info.Category" = "Category";
@@ -265,6 +267,9 @@
 "OfferDetails.My.Calendar.Placeholder" = "Available dates";
 "OfferDetails.My.MoreActions.Edit" = "Edit";
 "OfferDetails.My.MoreActions.Delete" = "Delete";
+
+"OfferDetails.Admin.MoreActions.Ban" = "Ban";
+"OfferDetails.Admin.MoreActions.Unban" = "Unban";
 
 // MARK: - User Profile
 

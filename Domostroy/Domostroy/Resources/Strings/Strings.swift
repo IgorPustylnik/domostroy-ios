@@ -286,9 +286,23 @@ internal enum L10n {
       }
     }
     internal enum OfferDetails {
+      /// Offer is banned
+      internal static let banned = L10n.tr("Localizable", "OfferDetails.Banned", fallback: "Offer is banned")
+      /// Offer is banned. Reason: %@
+      internal static func bannedFor(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "OfferDetails.BannedFor", String(describing: p1), fallback: "Offer is banned. Reason: %@")
+      }
       /// Published: %@
       internal static func publishedAt(_ p1: Any) -> String {
         return L10n.tr("Localizable", "OfferDetails.PublishedAt", String(describing: p1), fallback: "Published: %@")
+      }
+      internal enum Admin {
+        internal enum MoreActions {
+          /// Ban
+          internal static let ban = L10n.tr("Localizable", "OfferDetails.Admin.MoreActions.Ban", fallback: "Ban")
+          /// Unban
+          internal static let unban = L10n.tr("Localizable", "OfferDetails.Admin.MoreActions.Unban", fallback: "Unban")
+        }
       }
       internal enum Button {
         /// Rent

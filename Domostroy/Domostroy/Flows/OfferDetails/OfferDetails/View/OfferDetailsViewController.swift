@@ -23,6 +23,22 @@ final class OfferDetailsViewController: ScrollViewController {
 
     // MARK: - Properties
 
+    private lazy var favoriteToggleButton = {
+        $0.insets = .zero
+        $0.onImage = .Buttons.favoriteFilled
+        $0.offImage = .Buttons.favorite
+        $0.isHidden = true
+        return $0
+    }(DToggleButton(type: .plainPrimary))
+
+    private lazy var moreButton = {
+        $0.image = .NavigationBar.moreOutline.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        $0.insets = .zero
+        $0.showsMenuAsPrimaryAction = true
+        $0.isHidden = true
+        return $0
+    }(DButton(type: .plainPrimary))
+
     private(set) var picturesCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
     )
@@ -59,6 +75,7 @@ final class OfferDetailsViewController: ScrollViewController {
             make.horizontalEdges.equalToSuperview().inset(Constants.detailsInsets)
         }
         scrollView.alwaysBounceVertical = true
+        navigationBar.rightItems = [favoriteToggleButton, moreButton]
 
         contentView.isHidden = true
     }
@@ -93,13 +110,9 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
     }
 
     func setupFavoriteToggle(initialState: Bool, toggleAction: ToggleClosure?) {
-        let toggle = DToggleButton(type: .plainPrimary)
-        toggle.insets = .zero
-        toggle.onImage = .Buttons.favoriteFilled
-        toggle.offImage = .Buttons.favorite
-        toggle.setToggleAction(toggleAction)
-        toggle.setOn(initialState)
-        navigationBar.rightItems = [toggle]
+        favoriteToggleButton.setToggleAction(toggleAction)
+        favoriteToggleButton.setOn(initialState)
+        favoriteToggleButton.isHidden = false
     }
 
     func configureOffer(viewModel: OfferDetailsView.ViewModel) {
@@ -112,6 +125,11 @@ extension OfferDetailsViewController: OfferDetailsViewInput {
             ImageCollectionViewCell.rddm.baseGenerator(with: $0, and: .class)
         }
         refillAdapter()
+    }
+
+    func setupMoreActions(_ actions: [UIAction]) {
+        moreButton.menu = .init(children: actions)
+        moreButton.isHidden = actions.isEmpty
     }
 
 }

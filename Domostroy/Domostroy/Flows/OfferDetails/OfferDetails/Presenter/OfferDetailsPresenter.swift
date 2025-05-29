@@ -30,10 +30,12 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     private var offer: OfferDetailsEntity?
 
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
     private let offerService: OfferService? = ServiceLocator.shared.resolve()
     private let cityService: CityService? = ServiceLocator.shared.resolve()
     private let categoryService: CategoryService? = ServiceLocator.shared.resolve()
     private let userService: UserService? = ServiceLocator.shared.resolve()
+    private let adminService: AdminService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 
     deinit {
@@ -77,8 +79,7 @@ private extension OfferDetailsPresenter {
         view?.setLoading(true)
         offerService?.getOffer(
             id: offerId
-        )
-        .sink(
+        ).sink(
             receiveCompletion: { [weak self] _ in
                 self?.view?.setLoading(false)
             },
@@ -89,15 +90,16 @@ private extension OfferDetailsPresenter {
                 switch result {
                 case .success(let offer):
                     self.offer = offer
-                    self.view?.setupInitialState()
-                    self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
-                    self.view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0.url) })
+                    view?.setupInitialState()
+                    view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))
+                    view?.setupMoreActions(makeMoreActions(for: offer))
+                    view?.configurePictures(with: offer.photos.map { self.makePictureViewModel(url: $0.url) })
 
-                    if self.secureStorage?.loadToken() != nil {
-                        self.view?.setupFavoriteToggle(
+                    if secureStorage?.loadToken() != nil {
+                        view?.setupFavoriteToggle(
                             initialState: offer.isFavorite,
-                            toggleAction: { newValue, handler in
-                                self.setFavorite(value: newValue) { success in
+                            toggleAction: { [weak self] newValue, handler in
+                                self?.setFavorite(value: newValue) { success in
                                     handler?(success)
                                 }
                             })
@@ -107,8 +109,7 @@ private extension OfferDetailsPresenter {
                     self.onDismiss?()
                 }
             }
-        )
-        .store(in: &cancellables)
+        ).store(in: &cancellables)
     }
 
     func setFavorite(value: Bool, completion: ((Bool) -> Void)?) {
@@ -229,6 +230,8 @@ private extension OfferDetailsPresenter {
                     self?.onOpenUser?(offer.userId)
                 }
             ),
+            isBanned: offer.isBanned,
+            banReason: offer.banReason,
             onRent: { [weak self] in
                 self?.onRent?()
             }
@@ -245,5 +248,93 @@ private extension OfferDetailsPresenter {
                 }
             }
         }
+    }
+
+    func banOffer(id: Int, reason: String?, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
+        adminService?.banOffer(
+            banOfferEntity: .init(offerId: id, banReason: reason)
+        ).sink(
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
+    }
+
+    func unbanOffer(id: Int, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
+        adminService?.unbanOffer(
+            id: id
+        ).sink(
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
+    }
+
+    func setOfferBan(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
+        if value {
+            AlertPresenter.enterText(
+                title: L10n.Localizable.AdminPanel.Offers.Ban.title,
+                message: nil,
+                placeholder: L10n.Localizable.AdminPanel.Offers.Ban.Reason.placeholder,
+                onConfirm: { [weak self] reason in
+                    self?.banOffer(id: id, reason: reason) {
+                    } handleResult: { result in
+                        switch result {
+                        case .success:
+                            completion?(true)
+                        case .failure(let error):
+                            completion?(false)
+                            DropsPresenter.shared.showError(error: error)
+                        }
+                    }
+                }, onCancel: { completion?(false) }
+            )
+        } else {
+            unbanOffer(id: id) {
+            } handleResult: { result in
+                switch result {
+                case .success:
+                    completion?(true)
+                case .failure(let error):
+                    completion?(false)
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+
+        }
+    }
+
+    func makeMoreActions(for offer: OfferDetailsEntity) -> [UIAction] {
+        guard
+            let role = basicStorage?.get(for: .myRole),
+            role == .admin
+        else {
+            return []
+        }
+        var actions: [UIAction] = []
+        actions.append(
+            .init(
+                title: offer.isBanned ?
+                    L10n.Localizable.OfferDetails.Admin.MoreActions.unban :
+                    L10n.Localizable.OfferDetails.Admin.MoreActions.ban,
+                image: UIImage(systemName: "nosign"),
+                handler: { [weak self] _ in
+                    self?.setOfferBan(id: offer.id, value: !offer.isBanned, completion: { success in
+                        if success {
+                            self?.fetchOffer()
+                        }
+                    })
+                }
+            )
+        )
+        return actions
     }
 }

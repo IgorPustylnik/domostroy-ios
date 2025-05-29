@@ -255,6 +255,8 @@
 
 // MARK: - Offer Details
 
+"OfferDetails.Banned" = "Объявление заблокировано";
+"OfferDetails.BannedFor" = "Объявление заблокировано. Причина: %@";
 "OfferDetails.Button.Rent" = "Арендовать";
 "OfferDetails.Info.Header" = "Информация";
 "OfferDetails.Info.Category" = "Категория";
@@ -265,6 +267,9 @@
 "OfferDetails.My.Calendar.Placeholder" = "Доступные даты";
 "OfferDetails.My.MoreActions.Edit" = "Редактировать";
 "OfferDetails.My.MoreActions.Delete" = "Удалить";
+
+"OfferDetails.Admin.MoreActions.Ban" = "Заблокировать";
+"OfferDetails.Admin.MoreActions.Unban" = "Разблокировать";
 
 // MARK: - User Profile
 
