@@ -22,6 +22,8 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
         let title: String
         let price: String
         let description: String
+        let isBanned: Bool
+        let banReason: String?
         let createdAt: String
         let actions: [ActionButtonModel]
 
@@ -73,6 +75,7 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
         $0.addArrangedSubview(titleLabel)
         $0.addArrangedSubview(priceLabel)
         $0.addArrangedSubview(descriptionLabel)
+        $0.addArrangedSubview(banLabel)
         $0.addArrangedSubview(createdAtLabel)
         return $0
     }(UIStackView())
@@ -91,6 +94,13 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
 
     private lazy var descriptionLabel: UILabel = {
         $0.font = .systemFont(ofSize: 12, weight: .regular)
+        $0.numberOfLines = 2
+        return $0
+    }(UILabel())
+
+    private lazy var banLabel = {
+        $0.font = .systemFont(ofSize: 12, weight: .semibold)
+        $0.textColor = .systemRed
         $0.numberOfLines = 2
         return $0
     }(UILabel())
@@ -128,6 +138,8 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
         titleLabel.text = nil
         priceLabel.text = nil
         descriptionLabel.text = nil
+        banLabel.text = nil
+        createdAtLabel.text = nil
         actionsVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
 
@@ -152,6 +164,13 @@ extension OwnOfferCollectionViewCell: ConfigurableItem {
         titleLabel.text = viewModel.title
         priceLabel.text = "\(viewModel.price)"
         descriptionLabel.text = viewModel.description
+        if viewModel.isBanned {
+            if let banReason = viewModel.banReason {
+                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
+            } else {
+                banLabel.text = L10n.Localizable.OfferDetails.banned
+            }
+        }
         createdAtLabel.text = viewModel.createdAt
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }
@@ -186,6 +205,8 @@ extension OwnOfferCollectionViewCell.ViewModel: Equatable {
                lhs.title == rhs.title &&
                lhs.price == rhs.price &&
                lhs.description == rhs.description &&
+               lhs.isBanned == rhs.isBanned &&
+               lhs.banReason == rhs.banReason &&
                lhs.createdAt == rhs.createdAt &&
                lhs.actions == rhs.actions
     }

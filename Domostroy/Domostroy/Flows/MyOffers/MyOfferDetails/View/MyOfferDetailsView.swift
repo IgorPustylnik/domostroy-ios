@@ -21,6 +21,8 @@ final class MyOfferDetailsView: UIView {
         let description: String
         let publishedAt: String
         let onCalendar: EmptyClosure?
+        let isBanned: Bool
+        let banReason: String?
     }
 
     // MARK: - Constants
@@ -57,6 +59,7 @@ final class MyOfferDetailsView: UIView {
         $0.spacing = Constants.topVStackSpacing
         $0.addArrangedSubview(titleVStackView)
         $0.addArrangedSubview(cityLabel)
+        $0.addArrangedSubview(banLabel)
         return $0
     }(UIStackView())
 
@@ -81,6 +84,13 @@ final class MyOfferDetailsView: UIView {
 
     private lazy var cityLabel = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.numberOfLines = 0
+        return $0
+    }(UILabel())
+
+    private lazy var banLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.textColor = .systemRed
         $0.numberOfLines = 0
         return $0
     }(UILabel())
@@ -183,10 +193,19 @@ final class MyOfferDetailsView: UIView {
             guard let self else {
                 return
             }
+            infoDetailsVStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
             info.forEach {
                 self.infoDetailsVStackView.addArrangedSubview(
                     self.createSpecLabel(title: $0.0, value: $0.1)
                 )
+            }
+        }
+        calendarVStackView.isHidden = viewModel.isBanned
+        if viewModel.isBanned {
+            if let banReason = viewModel.banReason {
+                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
+            } else {
+                banLabel.text = L10n.Localizable.OfferDetails.banned
             }
         }
         descriptionLabel.text = viewModel.description

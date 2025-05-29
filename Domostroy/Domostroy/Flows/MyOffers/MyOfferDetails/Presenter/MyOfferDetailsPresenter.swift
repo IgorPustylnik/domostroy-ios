@@ -195,7 +195,9 @@ private extension MyOfferDetailsPresenter {
             publishedAt: L10n.Localizable.OfferDetails.publishedAt(offer.createdAt.toDMMYY()),
             onCalendar: { [weak self] in
                 self?.showCalendar()
-            }
+            },
+            isBanned: offer.isBanned,
+            banReason: offer.banReason
         )
     }
 

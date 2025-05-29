@@ -15,6 +15,8 @@ public struct MyOfferEntity {
     public let price: PriceEntity
     public let createdAt: Date
     public let photoUrl: URL
+    public let isBanned: Bool
+    public let banReason: String?
 }
 
 // MARK: - DTOConvertible
@@ -29,7 +31,9 @@ extension MyOfferEntity: DTODecodable {
             description: model.description,
             price: .init(value: model.price, currency: .init(rawValue: model.currency)),
             createdAt: model.createdAt,
-            photoUrl: model.photoUrl
+            photoUrl: model.photoUrl,
+            isBanned: model.isBanned,
+            banReason: model.banReason
         )
     }
 }

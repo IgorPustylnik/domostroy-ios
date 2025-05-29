@@ -16,6 +16,8 @@ public struct MyOfferEntry {
     public let currency: String
     public let createdAt: Date
     public let photoUrl: URL
+    public let isBanned: Bool
+    public let banReason: String?
 }
 
 extension MyOfferEntry: Decodable, RawDecodable {

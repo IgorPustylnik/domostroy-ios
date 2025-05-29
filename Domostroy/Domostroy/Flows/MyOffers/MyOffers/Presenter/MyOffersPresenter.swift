@@ -155,6 +155,8 @@ private extension MyOffersPresenter {
             title: offer.title,
             price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
+            isBanned: offer.isBanned,
+            banReason: offer.banReason,
             createdAt: L10n.Localizable.Offers.publishedAt(offer.createdAt.toDMMYY()),
             actions: actions
         )
