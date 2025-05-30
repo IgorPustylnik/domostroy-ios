@@ -43,6 +43,8 @@ final class UsersAdminPresenter: UsersAdminModuleOutput {
 extension UsersAdminPresenter: UsersAdminModuleInput {
     func search(_ query: String?) {
         self.query = query
+        view?.setEmptyState(false)
+        loadFirstPage()
     }
 }
 
