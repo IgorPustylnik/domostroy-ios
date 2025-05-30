@@ -301,7 +301,6 @@
 		55DD9EFB2DA43446003F0CB3 /* PaginatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */; };
 		55DD9F022DA5090A003F0CB3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F012DA5090A003F0CB3 /* Kingfisher */; };
 		55DD9F052DA529B2003F0CB3 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */; };
-		55DD9F082DA52A12003F0CB3 /* _Temporary_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */; };
 		55DD9F0B2DA57097003F0CB3 /* ReactiveDataDisplayManager in Frameworks */ = {isa = PBXBuildFile; productRef = 55DD9F0A2DA57097003F0CB3 /* ReactiveDataDisplayManager */; };
 		55DD9F112DA6CBE6003F0CB3 /* DToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */; };
 		55E0FF2C2DAEDDAE00D908A8 /* DMultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E0FF2B2DAEDDAE00D908A8 /* DMultiLineTextField.swift */; };
@@ -799,7 +798,6 @@
 		55DD9EF62DA41676003F0CB3 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		55DD9EFA2DA43446003F0CB3 /* PaginatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorView.swift; sourceTree = "<group>"; };
 		55DD9F042DA529B2003F0CB3 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
-		55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Temporary_.swift; sourceTree = "<group>"; };
 		55DD9F102DA6CBE6003F0CB3 /* DToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DToggleButton.swift; sourceTree = "<group>"; };
 		55E0FF2B2DAEDDAE00D908A8 /* DMultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMultiLineTextField.swift; sourceTree = "<group>"; };
 		55E0FF2E2DAFAF3E00D908A8 /* DPickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPickerField.swift; sourceTree = "<group>"; };
@@ -2536,7 +2534,6 @@
 			isa = PBXGroup;
 			children = (
 				5587AEB42DB3EFDB00669865 /* DayRangeSelectionHelper.swift */,
-				55DD9F072DA52A12003F0CB3 /* _Temporary_.swift */,
 				5587AEB72DB543A000669865 /* CalendarHelper.swift */,
 				551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */,
 				55EDEBE92DD79C3D0001EFC7 /* PermissionHelper.swift */,
@@ -3628,7 +3625,6 @@
 				552886AE2DC6A9A700CADD6C /* BriefOfferEntity.swift in Sources */,
 				559610AE2D9C8D6600746358 /* SceneDelegate.swift in Sources */,
 				55631AC02D95FB3900FD6856 /* Strings.swift in Sources */,
-				55DD9F082DA52A12003F0CB3 /* _Temporary_.swift in Sources */,
 				55631AB62D95FB3900FD6856 /* AppDelegate.swift in Sources */,
 				5589B7442DC15D7700DEA9CF /* CreateOfferMetadataEntry.swift in Sources */,
 				55631AD72D95FB3900FD6856 /* MainRouter.swift in Sources */,

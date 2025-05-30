@@ -44,9 +44,10 @@ extension RentalRequestEntry: Decodable, RawDecodable {
         }
         var resolvedAt: Date?
         if let resolvedAtRaw {
-            guard let resolvedAt = DateFormatter.iso8601WithMicroseconds.date(from: resolvedAtRaw) else {
+            guard let resolvedAtParsed = DateFormatter.iso8601WithMicroseconds.date(from: resolvedAtRaw) else {
                 throw ResponseDataParserNodeError.cantDeserializeJson(resolvedAtRaw)
             }
+            resolvedAt = resolvedAtParsed
         }
         return .init(
             id: id,
