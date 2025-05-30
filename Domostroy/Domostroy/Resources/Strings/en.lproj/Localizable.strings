@@ -33,17 +33,11 @@
 
 // MARK: - Errors
 
-"HttpError.BadRequest" = "Bad request";
-"HttpError.Unauthorized" = "Unauthorized";
-"HttpError.forbidden" = "Forbidden";
-"HttpError.NotFound" = "Not found";
-"HttpError.Conflict" = "Conflict";
-"HttpError.InternalServerError" = "Internal server error";
-"ParseError.cantDeserialize" = "Unknown server response format";
-"BaseTechnicalError.NoInternet" = "No internet connection";
-"BaseTechnicalError.DataNotAllowed" = "Data not allowed";
-"BaseTechnicalError.Timeout" = "Request timeout";
-"BaseTechnicalError.CantConnectToHost" = "Server is unavailable";
+"UserFriendlyError.NotFound" = "Not found";
+"UserFriendlyError.SomethingWentWrong" = "Something went wrong";
+"UserFriendlyError.NoPermission" = "You don’t have permission to do this";
+"UserFriendlyError.NoInternet" = "No internet connection";
+"UserFriendlyError.ServerNotResponding" = "Server is not responding";
 
 // MARK: - Token Expiration Handler
 

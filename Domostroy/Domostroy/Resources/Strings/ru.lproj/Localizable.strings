@@ -33,17 +33,11 @@
 
 // MARK: - Errors
 
-"HttpError.BadRequest" = "Некорректный запрос";
-"HttpError.Unauthorized" = "Неавторизован";
-"HttpError.forbidden" = "Доступ запрещён";
-"HttpError.NotFound" = "Не найдено";
-"HttpError.Conflict" = "Конфликт";
-"HttpError.InternalServerError" = "Внутренняя ошибка сервера";
-"ParseError.cantDeserialize" = "Неизвестный формат ответа от сервера";
-"BaseTechnicalError.NoInternet" = "Нет соединения с интернетом";
-"BaseTechnicalError.DataNotAllowed" = "Передача данных запрещена";
-"BaseTechnicalError.Timeout" = "Время ожидания истекло";
-"BaseTechnicalError.CantConnectToHost" = "Сервер недоступен";
+"UserFriendlyError.NotFound" = "Не найдено";
+"UserFriendlyError.SomethingWentWrong" = "Что-то пошло не так";
+"UserFriendlyError.NoPermission" = "Недостаточно прав для действия";
+"UserFriendlyError.NoInternet" = "Нет соединения с интернетом";
+"UserFriendlyError.ServerNotResponding" = "Сервер не отвечает";
 
 // MARK: - Token Expiration Handler
 

@@ -78,48 +78,16 @@ final class DropsPresenter: InfoPresenter {
         error: Error,
         image: UIImage? = UIImage(systemName: "xmark")
     ) {
-        var subtitle: String?
-        showError(title: title, subtitle: subtitle, image: image)
-    }
-
-}
-
-// MARK: - Errors descriptions extensions
-
-extension DResponseHttpErrorProcessorNodeError {
-    func fancyDescription() -> String {
-        var description: String
-        switch self {
-        case .badRequest:
-            description = L10n.Localizable.HttpError.badRequest
-        case .unauthorized:
-            description = L10n.Localizable.HttpError.unauthorized
-        case .forbidden:
-            description = L10n.Localizable.HttpError.forbidden
-        case .notFound:
-            description = L10n.Localizable.HttpError.notFound
-        case .conflict:
-            description = L10n.Localizable.HttpError.conflict
-        case .internalServerError:
-            description = L10n.Localizable.HttpError.internalServerError
+        var title = title
+        if let httpError = error as? DResponseHttpErrorProcessorNodeError {
+            title = httpError.userFriendlyDescription()
+        } else if error is ResponseDataParserNodeError {
+            title = L10n.Localizable.UserFriendlyError.somethingWentWrong
+        } else if let baseTechnicalError = error as? BaseTechnicalError {
+            title = baseTechnicalError.userFriendlyDescription()
         }
-        return description
-    }
-}
 
-extension BaseTechnicalError {
-    func fancyDescription() -> String {
-        var description: String
-        switch self {
-        case .noInternetConnection:
-            description = L10n.Localizable.BaseTechnicalError.noInternet
-        case .dataNotAllowed:
-            description = L10n.Localizable.BaseTechnicalError.dataNotAllowed
-        case .timeout:
-            description = L10n.Localizable.BaseTechnicalError.timeout
-        case .cantConnectToHost:
-            description = L10n.Localizable.BaseTechnicalError.cantConnectToHost
-        }
-        return description
+        showError(title: title, subtitle: nil, image: image)
     }
+
 }

@@ -133,16 +133,6 @@ internal enum L10n {
         }
       }
     }
-    internal enum BaseTechnicalError {
-      /// Server is unavailable
-      internal static let cantConnectToHost = L10n.tr("Localizable", "BaseTechnicalError.CantConnectToHost", fallback: "Server is unavailable")
-      /// Data not allowed
-      internal static let dataNotAllowed = L10n.tr("Localizable", "BaseTechnicalError.DataNotAllowed", fallback: "Data not allowed")
-      /// No internet connection
-      internal static let noInternet = L10n.tr("Localizable", "BaseTechnicalError.NoInternet", fallback: "No internet connection")
-      /// Request timeout
-      internal static let timeout = L10n.tr("Localizable", "BaseTechnicalError.Timeout", fallback: "Request timeout")
-    }
     internal enum Common {
       /// Choose from library
       internal static let chooseFromLibrary = L10n.tr("Localizable", "Common.ChooseFromLibrary", fallback: "Choose from library")
@@ -248,20 +238,6 @@ internal enum L10n {
           internal static let title = L10n.tr("Localizable", "Home.Section.Feed.title", fallback: "Feed")
         }
       }
-    }
-    internal enum HttpError {
-      /// Bad request
-      internal static let badRequest = L10n.tr("Localizable", "HttpError.BadRequest", fallback: "Bad request")
-      /// Conflict
-      internal static let conflict = L10n.tr("Localizable", "HttpError.Conflict", fallback: "Conflict")
-      /// Forbidden
-      internal static let forbidden = L10n.tr("Localizable", "HttpError.forbidden", fallback: "Forbidden")
-      /// Internal server error
-      internal static let internalServerError = L10n.tr("Localizable", "HttpError.InternalServerError", fallback: "Internal server error")
-      /// Not found
-      internal static let notFound = L10n.tr("Localizable", "HttpError.NotFound", fallback: "Not found")
-      /// Unauthorized
-      internal static let unauthorized = L10n.tr("Localizable", "HttpError.Unauthorized", fallback: "Unauthorized")
     }
     internal enum LessorCalendar {
       /// Dates
@@ -432,10 +408,6 @@ internal enum L10n {
           internal static let message = L10n.tr("Localizable", "Offers.MyOffers.Empty.Message", fallback: "You have not posted any offers yet")
         }
       }
-    }
-    internal enum ParseError {
-      /// Unknown server response format
-      internal static let cantDeserialize = L10n.tr("Localizable", "ParseError.cantDeserialize", fallback: "Unknown server response format")
     }
     internal enum Profile {
       /// Profile
@@ -662,6 +634,18 @@ internal enum L10n {
       internal static let expired = L10n.tr("Localizable", "TokenExpirationHandler.Expired", fallback: "Token has expired")
       /// You have been logged out
       internal static let loggedOut = L10n.tr("Localizable", "TokenExpirationHandler.LoggedOut", fallback: "You have been logged out")
+    }
+    internal enum UserFriendlyError {
+      /// No internet connection
+      internal static let noInternet = L10n.tr("Localizable", "UserFriendlyError.NoInternet", fallback: "No internet connection")
+      /// You don’t have permission to do this
+      internal static let noPermission = L10n.tr("Localizable", "UserFriendlyError.NoPermission", fallback: "You don’t have permission to do this")
+      /// Not found
+      internal static let notFound = L10n.tr("Localizable", "UserFriendlyError.NotFound", fallback: "Not found")
+      /// Server is not responding
+      internal static let serverNotResponding = L10n.tr("Localizable", "UserFriendlyError.ServerNotResponding", fallback: "Server is not responding")
+      /// Something went wrong
+      internal static let somethingWentWrong = L10n.tr("Localizable", "UserFriendlyError.SomethingWentWrong", fallback: "Something went wrong")
     }
     internal enum UserProfile {
       /// User is banned
