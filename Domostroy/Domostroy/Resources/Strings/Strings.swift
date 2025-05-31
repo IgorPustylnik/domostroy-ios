@@ -409,6 +409,32 @@ internal enum L10n {
         }
       }
     }
+    internal enum Onboarding {
+      internal enum Button {
+        /// Explore
+        internal static let explore = L10n.tr("Localizable", "Onboarding.Button.Explore", fallback: "Explore")
+        /// Next
+        internal static let next = L10n.tr("Localizable", "Onboarding.Button.Next", fallback: "Next")
+      }
+      internal enum Page1 {
+        /// Find the gear you need in your city.
+        internal static let description = L10n.tr("Localizable", "Onboarding.Page1.Description", fallback: "Find the gear you need in your city.")
+        /// Rent tools and equipment
+        internal static let title = L10n.tr("Localizable", "Onboarding.Page1.Title", fallback: "Rent tools and equipment")
+      }
+      internal enum Page2 {
+        /// Pick what you need, negotiate with the lessor — and get to work.
+        internal static let description = L10n.tr("Localizable", "Onboarding.Page2.Description", fallback: "Pick what you need, negotiate with the lessor — and get to work.")
+        /// Fast, simple, no overpaying
+        internal static let title = L10n.tr("Localizable", "Onboarding.Page2.Title", fallback: "Fast, simple, no overpaying")
+      }
+      internal enum Page3 {
+        /// Book in advance — work when you feel like it.
+        internal static let description = L10n.tr("Localizable", "Onboarding.Page3.Description", fallback: "Book in advance — work when you feel like it.")
+        /// Rent for as long as you need
+        internal static let title = L10n.tr("Localizable", "Onboarding.Page3.Title", fallback: "Rent for as long as you need")
+      }
+    }
     internal enum Profile {
       /// Profile
       internal static let title = L10n.tr("Localizable", "Profile.Title", fallback: "Profile")
