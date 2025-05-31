@@ -43,6 +43,8 @@ final class UsersAdminPresenter: UsersAdminModuleOutput {
 extension UsersAdminPresenter: UsersAdminModuleInput {
     func search(_ query: String?) {
         self.query = query
+        view?.setEmptyState(false)
+        loadFirstPage()
     }
 }
 
@@ -153,11 +155,15 @@ private extension UsersAdminPresenter {
     }
 
     func setBanned(userId: Int, value: Bool, completion: ((Bool) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         self.adminService?.setUserBan(
             id: userId,
             value: value
         ).sink(
-            receiveCompletion: { _ in },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+            },
             receiveValue: { result in
                 switch result {
                 case .success:
@@ -171,10 +177,14 @@ private extension UsersAdminPresenter {
     }
 
     func delete(userId: Int, completion: ((Bool) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         self.adminService?.deleteUser(
             id: userId
         ).sink(
-            receiveCompletion: { _ in },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+            },
             receiveValue: { [weak self] result in
                 switch result {
                 case .success:

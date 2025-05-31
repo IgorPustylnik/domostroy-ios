@@ -39,6 +39,7 @@ final class UserProfileViewController: BaseViewController {
         registerType: .class
     )
     private var offerGenerators: [OfferCellGenerator] = []
+    private var offersHeader: String = ""
 
     // MARK: - Private Properties
 
@@ -189,12 +190,13 @@ extension UserProfileViewController: UserProfileViewInput {
         }
     }
 
-    func fillUser(with viewModel: UserProfileInfoCollectionViewCell.ViewModel) {
+    func fillUser(with viewModel: UserProfileInfoCollectionViewCell.ViewModel, isBanned: Bool) {
         userGenerator = UserInfoCellGenerator(
             uniqueId: UUID(),
             with: viewModel,
             registerType: .class
         )
+        offersHeader = isBanned ? L10n.Localizable.UserProfile.isBanned : ""
         refillAdapter()
     }
 
@@ -234,6 +236,15 @@ extension UserProfileViewController: UserProfileViewInput {
 
     }
 
+    func setupMoreActions(_ actions: [UIAction]) {
+        let moreButton = DButton(type: .plainPrimary)
+        moreButton.image = .NavigationBar.moreOutline.withTintColor(.Domostroy.primary, renderingMode: .alwaysOriginal)
+        moreButton.insets = .zero
+        moreButton.menu = .init(children: actions)
+        moreButton.showsMenuAsPrimaryAction = true
+        navigationBar.rightItems = actions.isEmpty ? [] : [moreButton]
+    }
+
 }
 
 // MARK: - Private methods
@@ -249,10 +260,14 @@ private extension UserProfileViewController {
 
         if offerGenerators.isEmpty {
             adapter?.addSectionHeaderGenerator(
-                TitleCollectionHeaderGenerator(title: L10n.Localizable.UserProfile.Section.Offers.empty)
+                TitleCollectionHeaderGenerator(
+                    title: offersHeader.isEmpty ? L10n.Localizable.UserProfile.Section.Offers.empty : offersHeader
+                )
             )
         } else {
-            adapter?.addSectionHeaderGenerator(EmptyCollectionHeaderGenerator())
+            adapter?.addSectionHeaderGenerator(
+                TitleCollectionHeaderGenerator(title: offersHeader)
+            )
             adapter?.addCellGenerators(offerGenerators)
         }
 

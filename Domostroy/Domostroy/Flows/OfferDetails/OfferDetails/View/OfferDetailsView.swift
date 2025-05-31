@@ -21,6 +21,8 @@ final class OfferDetailsView: UIView {
         let description: String
         let publishedAt: String
         let user: User
+        let isBanned: Bool
+        let banReason: String?
         let onRent: EmptyClosure?
 
         struct User {
@@ -72,6 +74,7 @@ final class OfferDetailsView: UIView {
         $0.spacing = Constants.topVStackSpacing
         $0.addArrangedSubview(titleVStackView)
         $0.addArrangedSubview(cityLabel)
+        $0.addArrangedSubview(banLabel)
         $0.addArrangedSubview(rentButton)
         return $0
     }(UIStackView())
@@ -98,6 +101,13 @@ final class OfferDetailsView: UIView {
     private lazy var cityLabel = {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.numberOfLines = 0
+        return $0
+    }(UILabel())
+
+    private lazy var banLabel = {
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.numberOfLines = 0
+        $0.textColor = .systemRed
         return $0
     }(UILabel())
 
@@ -219,10 +229,21 @@ final class OfferDetailsView: UIView {
             guard let self else {
                 return
             }
+            infoDetailsVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
             completion.forEach {
                 self.infoDetailsVStack.addArrangedSubview(self.createSpecLabel(title: $0.0, value: $0.1))
             }
         }
+        if viewModel.isBanned {
+            if let banReason = viewModel.banReason {
+                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
+            } else {
+                banLabel.text = L10n.Localizable.OfferDetails.banned
+            }
+        } else {
+            banLabel.text = nil
+        }
+        rentButton.isHidden = viewModel.isBanned
         descriptionLabel.text = viewModel.description
         viewModel.user.loadUser(
             viewModel.user.url,

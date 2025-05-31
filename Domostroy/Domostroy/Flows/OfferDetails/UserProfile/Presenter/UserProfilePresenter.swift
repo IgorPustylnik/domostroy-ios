@@ -31,7 +31,9 @@ final class UserProfilePresenter: UserProfileModuleOutput {
     private weak var paginatableInput: PaginatableInput?
 
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
     private var userService: UserService? = ServiceLocator.shared.resolve()
+    private let adminService: AdminService? = ServiceLocator.shared.resolve()
     private var offerService: OfferService? = ServiceLocator.shared.resolve()
     private var cancellables: Set<AnyCancellable> = .init()
 
@@ -199,22 +201,22 @@ private extension UserProfilePresenter {
         paginatableInput?.updatePagination(canIterate: false)
         paginatableInput?.updateProgress(isLoading: false)
 
+        fetchUser(completion: nil) { [weak self] result in
+            guard let self else {
+                return
+            }
+            switch result {
+            case .success(let user):
+                view?.fillUser(with: makeUserViewModel(from: user), isBanned: user.isBanned)
+                view?.setupMoreActions(makeMoreActions(for: user))
+            case .failure(let error):
+                self.onDismiss?()
+                DropsPresenter.shared.showError(error: error)
+            }
+        }
         fetchOffers { [weak self] in
             self?.view?.setLoading(false)
             self?.paginatableInput?.updateProgress(isLoading: false)
-
-            self?.fetchUser(completion: nil) { [weak self] result in
-                guard let self else {
-                    return
-                }
-                switch result {
-                case .success(let user):
-                    self.view?.fillUser(with: self.makeUserViewModel(from: user))
-                case .failure(let error):
-                    self.onDismiss?()
-                    DropsPresenter.shared.showError(error: error)
-                }
-            }
 
             completion?()
         } handleResult: { [weak self] result in
@@ -285,6 +287,55 @@ private extension UserProfilePresenter {
             return true
         }
         return false
+    }
+
+    func setUserBan(_ banned: Bool) {
+        guard let userId else {
+            return
+        }
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
+        adminService?.setUserBan(
+            id: userId,
+            value: banned
+        ).sink(
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+            },
+            receiveValue: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.view?.fillFirstPage(with: [])
+                    self?.view?.setLoading(true)
+                    self?.loadFirstPage()
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                }
+            }
+        ).store(in: &cancellables)
+    }
+
+    func makeMoreActions(for user: UserEntity) -> [UIAction] {
+        guard
+            let role = basicStorage?.get(for: .myRole),
+            role == .admin,
+            user.role == .user
+        else {
+            return []
+        }
+        var actions: [UIAction] = []
+        actions.append(
+            .init(
+                title: user.isBanned ?
+                    L10n.Localizable.UserProfile.MoreActions.unban :
+                    L10n.Localizable.UserProfile.MoreActions.ban,
+                image: UIImage(systemName: "nosign"),
+                handler: { [weak self] _ in
+                    self?.setUserBan(!user.isBanned)
+                }
+            )
+        )
+        return actions
     }
 
 }

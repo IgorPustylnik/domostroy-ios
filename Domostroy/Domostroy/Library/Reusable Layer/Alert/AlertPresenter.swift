@@ -44,7 +44,10 @@ enum AlertPresenter {
                 onCancel?()
             }
             let okAction = UIAlertAction(title: L10n.Localizable.Common.Button.ok, style: .default) { _ in
-                let inputText = alert.textFields?.first?.text
+                var inputText = alert.textFields?.first?.text
+                if let text = inputText {
+                    inputText = text.isEmpty ? nil : text
+                }
                 onConfirm(inputText)
             }
 

@@ -18,6 +18,8 @@ public struct OfferDetailsEntity {
     public let userId: Int
     public let cityId: Int
     public let isFavorite: Bool
+    public let isBanned: Bool
+    public let banReason: String?
     public let photos: [PhotoEntity]
 }
 
@@ -37,6 +39,8 @@ extension OfferDetailsEntity: DTODecodable {
             userId: model.userId,
             cityId: model.cityId,
             isFavorite: model.isFavourite,
+            isBanned: model.isBanned,
+            banReason: model.banReason,
             photos: model.photos.map { try .from(dto: $0) }
         )
     }

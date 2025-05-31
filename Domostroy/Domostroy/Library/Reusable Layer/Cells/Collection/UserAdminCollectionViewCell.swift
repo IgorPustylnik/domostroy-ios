@@ -123,12 +123,12 @@ final class UserAdminCollectionViewCell: UICollectionViewCell, HighlightableScal
     private lazy var banButton = {
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         $0.cornerRadius = Constants.buttonCornerRadius
-        $0.onColor = UIColor { $0.userInterfaceStyle == .dark ? .secondarySystemBackground : .black }
-        $0.offColor = .Domostroy.primary
+        $0.onColor = .Domostroy.primary
+        $0.offColor = UIColor { $0.userInterfaceStyle == .dark ? .secondarySystemBackground : .black }
         $0.onTitleColor = .white
         $0.offTitleColor = .white
-        $0.onTitle = L10n.Localizable.AdminPanel.Users.Button.ban
-        $0.offTitle = L10n.Localizable.AdminPanel.Users.Button.unban
+        $0.onTitle = L10n.Localizable.AdminPanel.Users.Button.unban
+        $0.offTitle = L10n.Localizable.AdminPanel.Users.Button.ban
         $0.snp.makeConstraints { make in
             make.height.equalTo(Constants.buttonHeight)
         }
@@ -193,7 +193,7 @@ extension UserAdminCollectionViewCell: ConfigurableItem {
         offersAmountLabel.text = viewModel.offersAmount
         if !viewModel.isAdmin {
             banButton.setToggleAction(viewModel.banAction)
-            banButton.setOn(!viewModel.isBanned)
+            banButton.setOn(viewModel.isBanned)
             deleteButton.setAction { [weak self] in
                 self?.deleteButton.setLoading(true)
                 viewModel.deleteAction? { success in

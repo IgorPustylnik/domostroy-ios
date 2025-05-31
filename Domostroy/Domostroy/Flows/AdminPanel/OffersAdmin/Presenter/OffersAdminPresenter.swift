@@ -226,7 +226,7 @@ private extension OffersAdminPresenter {
             isBanned: offer.isBanned,
             banReason: banReason,
             banAction: { [weak self] newValue, completion in
-                self?.setOfferBan(id: offer.id, value: newValue) { completion?($0) }
+                self?.setOfferBan(id: offer.id, value: !newValue) { completion?($0) }
             },
             deleteAction: { [weak self] handler in
                 self?.deleteOffer(id: offer.id) { handler?($0) }
@@ -247,7 +247,7 @@ private extension OffersAdminPresenter {
     }
 
     func setOfferBan(id: Int, value: Bool, completion: ((Bool) -> Void)?) {
-        if !value {
+        if value {
             AlertPresenter.enterText(
                 title: L10n.Localizable.AdminPanel.Offers.Ban.title,
                 message: nil,
@@ -365,7 +365,7 @@ private extension OffersAdminPresenter {
             sorting: sorting,
             searchCriteriaList: filtering,
             snapshot: paginationSnapshot,
-            seed: sort == .default ? "seed" : nil
+            seed: nil
         )
         adminService?.getOffers(searchRequestEntity: searchOffersEntity)
             .sink(
@@ -380,19 +380,29 @@ private extension OffersAdminPresenter {
     }
 
     func banOffer(id: Int, reason: String?, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         adminService?.banOffer(
             banOfferEntity: .init(offerId: id, banReason: reason)
         ).sink(
-            receiveCompletion: { _ in completion?() },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
             receiveValue: { handleResult?($0) }
         ).store(in: &cancellables)
     }
 
     func unbanOffer(id: Int, completion: EmptyClosure?, handleResult: ((NodeResult<Void>) -> Void)?) {
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         adminService?.unbanOffer(
             id: id
         ).sink(
-            receiveCompletion: { _ in completion?() },
+            receiveCompletion: { _ in
+                DLoadingOverlay.shared.hide(id: loading.id)
+                completion?()
+            },
             receiveValue: { handleResult?($0) }
         ).store(in: &cancellables)
     }

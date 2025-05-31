@@ -33,17 +33,11 @@
 
 // MARK: - Errors
 
-"HttpError.BadRequest" = "Bad request";
-"HttpError.Unauthorized" = "Unauthorized";
-"HttpError.forbidden" = "Forbidden";
-"HttpError.NotFound" = "Not found";
-"HttpError.Conflict" = "Conflict";
-"HttpError.InternalServerError" = "Internal server error";
-"ParseError.cantDeserialize" = "Unknown server response format";
-"BaseTechnicalError.NoInternet" = "No internet connection";
-"BaseTechnicalError.DataNotAllowed" = "Data not allowed";
-"BaseTechnicalError.Timeout" = "Request timeout";
-"BaseTechnicalError.CantConnectToHost" = "Server is unavailable";
+"UserFriendlyError.NotFound" = "Not found";
+"UserFriendlyError.SomethingWentWrong" = "Something went wrong";
+"UserFriendlyError.NoPermission" = "You don’t have permission to do this";
+"UserFriendlyError.NoInternet" = "No internet connection";
+"UserFriendlyError.ServerNotResponding" = "Server is not responding";
 
 // MARK: - Token Expiration Handler
 
@@ -255,6 +249,8 @@
 
 // MARK: - Offer Details
 
+"OfferDetails.Banned" = "Offer is banned";
+"OfferDetails.BannedFor" = "Offer is banned. Reason: %@";
 "OfferDetails.Button.Rent" = "Rent";
 "OfferDetails.Info.Header" = "Information";
 "OfferDetails.Info.Category" = "Category";
@@ -266,10 +262,16 @@
 "OfferDetails.My.MoreActions.Edit" = "Edit";
 "OfferDetails.My.MoreActions.Delete" = "Delete";
 
+"OfferDetails.Admin.MoreActions.Ban" = "Ban";
+"OfferDetails.Admin.MoreActions.Unban" = "Unban";
+
 // MARK: - User Profile
 
 "UserProfile.RegistrationDate" = "On Domostroy since %@";
 "UserProfile.Section.Offers.Empty" = "No offers";
+"UserProfile.IsBanned" = "User is banned";
+"UserProfile.MoreActions.Ban" = "Ban";
+"UserProfile.MoreActions.Unban" = "Unban";
 
 // MARK: - Select City
 

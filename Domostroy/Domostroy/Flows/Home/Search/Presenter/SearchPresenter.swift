@@ -308,7 +308,9 @@ private extension SearchPresenter {
             filtering.append(.init(filterKey: .categoryId, operation: .equals, value: AnyEncodable(category.id)))
         }
         if let fromPrice = filters.priceFilter.from {
-            filtering.append(.init(filterKey: .price, operation: .greaterThanEqual, value: AnyEncodable(fromPrice.value)))
+            filtering.append(
+                .init(filterKey: .price, operation: .greaterThanEqual, value: AnyEncodable(fromPrice.value))
+            )
         }
         if let toPrice = filters.priceFilter.to {
             filtering.append(.init(filterKey: .price, operation: .lessThanEqual, value: AnyEncodable(toPrice.value)))

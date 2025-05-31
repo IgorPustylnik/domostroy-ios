@@ -110,8 +110,9 @@ final class AddingImageCollectionViewCell: UICollectionViewCell, HighlightableSc
 extension AddingImageCollectionViewCell: ConfigurableItem {
 
     func configure(with model: ViewModel) {
+        spinner.isHidden = false
         model.loadImage(imageView) { [weak self] in
-//            self?.spinner.isHidden = true
+            self?.spinner.isHidden = true
         }
         deleteButton.setAction {
             model.onDelete?()

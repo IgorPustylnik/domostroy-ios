@@ -80,10 +80,13 @@ extension CreateRequestPresenter: CreateRequestViewOutput {
             presentCalendar()
             return
         }
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         view?.setSubmissionActivity(isLoading: true)
         createRequest(
             completion: { [weak self] in
                 self?.view?.setSubmissionActivity(isLoading: false)
+                DLoadingOverlay.shared.hide(id: loading.id)
             },
             handleResult: { [weak self] result in
                 switch result {

@@ -19,6 +19,8 @@ public struct OfferDetailsEntry {
     public let userId: Int
     public let cityId: Int
     public let isFavourite: Bool
+    public let isBanned: Bool
+    public let banReason: String?
     public let photos: [PhotoEntry]
 }
 

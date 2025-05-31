@@ -115,12 +115,13 @@ private extension OutgoingRequestDetailsPresenter {
         guard let requestId else {
             return
         }
-        // TODO: Show loading overlay
+        let loading = DLoadingOverlay.shared.show()
+        loading.cancellable.store(in: &cancellables)
         rentService?.deleteRentRequest(
             id: requestId
         ).sink(
             receiveCompletion: { _ in
-                // TODO: Hide loading overlay
+                DLoadingOverlay.shared.hide(id: loading.id)
             },
             receiveValue: { [weak self] result in
                 switch result {

@@ -71,7 +71,7 @@ extension ProfilePresenter: ProfileViewOutput {
 
     func logout() {
         secureStorage?.deleteToken()
-        basicStorage?.remove(for: .defaultCity)
+        basicStorage?.remove(for: .myRole)
         onLogout?()
     }
 }

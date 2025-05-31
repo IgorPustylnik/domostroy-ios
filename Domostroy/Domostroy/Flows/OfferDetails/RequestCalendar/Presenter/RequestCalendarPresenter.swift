@@ -162,10 +162,13 @@ private extension RequestCalendarPresenter {
             .map { $0.date }
             .sorted()
         let firstDate = Date.now
+        let lastAvailable = (
+            availableDates.last ?? firstDate > firstDate ? availableDates.last : firstDate
+        ) ?? firstDate
         let lastDate = calendar.date(
             bySetting: .day,
-            value: calendar.range(of: .day, in: .month, for: availableDates.last ?? firstDate)?.last ?? 1,
-            of: availableDates.last ?? firstDate
+            value: calendar.range(of: .day, in: .month, for: lastAvailable)?.last ?? 1,
+            of: lastAvailable
         ) ?? firstDate
         let allDates = firstDate...lastDate
 
