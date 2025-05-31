@@ -44,6 +44,20 @@
 "TokenExpirationHandler.LoggedOut"="Вы больше не авторизованы";
 "TokenExpirationHandler.Expired"="Срок действия токена истёк";
 
+// MARK: - Onboarding
+
+"Onboarding.Page1.Title" = "Инструменты и техника в аренду";
+"Onboarding.Page1.Description" = "Находите нужное оборудование в своем городе.";
+
+"Onboarding.Page2.Title" = "Быстро, удобно, без переплат";
+"Onboarding.Page2.Description" = "Выбирайте, договаривайтесь с арендодателем — и вперёд к ремонту.";
+
+"Onboarding.Page3.Title" = "Арендуйте на столько, на сколько вам нужно";
+"Onboarding.Page3.Description" = "Бронируйте заранее — стройте, когда удобно.";
+
+"Onboarding.Button.Next" = "Далее";
+"Onboarding.Button.Explore" = "Начать";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Войти";

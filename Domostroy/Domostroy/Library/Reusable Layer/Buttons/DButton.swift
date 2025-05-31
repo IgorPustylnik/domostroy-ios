@@ -180,6 +180,7 @@ class DButton: UIButton {
             backgroundView.backgroundColor = .white
             _titleLabel.textColor = .Domostroy.primary
             activityIndicator.tintColor = .Domostroy.primary
+            borderColor = .separator
         case .filledSecondary:
             backgroundView.backgroundColor = .secondarySystemBackground
             borderColor = .separator

@@ -28,11 +28,12 @@ final class AppCoordinator: BaseCoordinator {
     private var instructor: LaunchInstructor {
         let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
         guard let passed = basicStorage?.get(for: .passedOnboarding) else {
-            // TODO: Return false
-            return .configure(passedOnboarding: true)
+            return .configure(passedOnboarding: false)
         }
         return .configure(passedOnboarding: passed)
     }
+
+    private lazy var router = MainRouter()
 
     // MARK: - Coordinator
 
@@ -51,12 +52,17 @@ final class AppCoordinator: BaseCoordinator {
 
 private extension AppCoordinator {
 
-    // TODO: Implement
     func runOnboardingFlow() {
+        let coordinator = OnboardingCoordinator(router: router)
+        coordinator.onComplete = { [weak self, weak coordinator] in
+            self?.start()
+            self?.removeDependency(coordinator)
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
 
     func runMainFlow() {
-        let router = MainRouter()
         let coordinator = MainTabBarCoordinator(router: router)
         addDependency(coordinator)
         coordinator.start()

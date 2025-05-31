@@ -44,6 +44,20 @@
 "TokenExpirationHandler.LoggedOut"="You have been logged out";
 "TokenExpirationHandler.Expired"="Token has expired";
 
+// MARK: - Onboarding
+
+"Onboarding.Page1.Title" = "Rent tools and equipment";
+"Onboarding.Page1.Description" = "Find the gear you need in your city.";
+
+"Onboarding.Page2.Title" = "Fast, simple, no overpaying";
+"Onboarding.Page2.Description" = "Pick what you need, negotiate with the lessor — and get to work.";
+
+"Onboarding.Page3.Title" = "Rent for as long as you need";
+"Onboarding.Page3.Description" = "Book in advance — work when you feel like it.";
+
+"Onboarding.Button.Next" = "Next";
+"Onboarding.Button.Explore" = "Explore";
+
 // MARK: - Auth
 
 "Auth.Button.Login" = "Login";
