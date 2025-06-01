@@ -44,6 +44,11 @@
 "TokenExpirationHandler.LoggedOut"="Вы больше не авторизованы";
 "TokenExpirationHandler.Expired"="Срок действия токена истёк";
 
+// MARK: - No Internet
+
+"NoInternet.Title" = "Нет соединения с интернетом";
+"NoInternet.Button.Retry" = "Повторить попытку";
+
 // MARK: - Onboarding
 
 "Onboarding.Page1.Title" = "Инструменты и техника в аренду";

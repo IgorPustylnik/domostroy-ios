@@ -33,6 +33,8 @@ final class AppCoordinator: BaseCoordinator {
         return .configure(passedOnboarding: passed)
     }
 
+    private var networkMonitor: NetworkMonitor? = ServiceLocator.shared.resolve()
+
     private lazy var router = MainRouter()
 
     // MARK: - Coordinator
@@ -44,6 +46,8 @@ final class AppCoordinator: BaseCoordinator {
         case .main:
             runMainFlow()
         }
+
+        setupNetworkMonitor()
     }
 
 }
@@ -66,6 +70,35 @@ private extension AppCoordinator {
         let coordinator = MainTabBarCoordinator(router: router)
         addDependency(coordinator)
         coordinator.start()
+    }
+
+    func setupNetworkMonitor() {
+        networkMonitor?.onStatusChange = { [weak self] connected in
+            print(connected)
+            DispatchQueue.main.async {
+                guard !connected else {
+                    NoInternetOverlayPresenter.shared.hide()
+                    self?.networkMonitor?.start()
+                    return
+                }
+                self?.networkMonitor?.stop()
+                NoInternetOverlayPresenter.shared.show(
+                    onRetry: { [weak self] in
+                        NoInternetOverlayPresenter.shared.setLoading(true)
+
+                        self?.networkMonitor?.checkConnection {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                NoInternetOverlayPresenter.shared.setLoading(false)
+                            }
+                        }
+                    }
+                )
+            }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.networkMonitor?.start()
+        }
     }
 
 }

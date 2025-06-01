@@ -261,6 +261,14 @@ internal enum L10n {
         internal static let openSettins = L10n.tr("Localizable", "NoCameraPermission.Action.OpenSettins", fallback: "Open settings")
       }
     }
+    internal enum NoInternet {
+      /// No internet connection
+      internal static let title = L10n.tr("Localizable", "NoInternet.Title", fallback: "No internet connection")
+      internal enum Button {
+        /// Retry
+        internal static let retry = L10n.tr("Localizable", "NoInternet.Button.Retry", fallback: "Retry")
+      }
+    }
     internal enum OfferDetails {
       /// Offer is banned
       internal static let banned = L10n.tr("Localizable", "OfferDetails.Banned", fallback: "Offer is banned")
