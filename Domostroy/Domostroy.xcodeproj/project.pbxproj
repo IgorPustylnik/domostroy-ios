@@ -231,7 +231,7 @@
 		559771E12DE26DC8002FB104 /* EditOfferCalendarEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559771E02DE26DC8002FB104 /* EditOfferCalendarEntry.swift */; };
 		559771E32DE26DD2002FB104 /* EditOfferCalendarEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559771E22DE26DD2002FB104 /* EditOfferCalendarEntity.swift */; };
 		559771E52DE272A5002FB104 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559771E42DE272A5002FB104 /* Nothing.swift */; };
-		559771E72DE303BE002FB104 /* DLoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559771E62DE303BE002FB104 /* DLoadingOverlay.swift */; };
+		559771E72DE303BE002FB104 /* LoadingOverlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559771E62DE303BE002FB104 /* LoadingOverlayPresenter.swift */; };
 		55A67EC02DE0A4A000157B9A /* OfferAdminCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A67EBF2DE0A4A000157B9A /* OfferAdminCollectionViewCell.swift */; };
 		55A92234DE3C3F0C11115D7A /* OffersAdminModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31248AE134675EB0C559F4C /* OffersAdminModuleOutput.swift */; };
 		55AAA9C32DBE882F0018952F /* OfferNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAA9C22DBE882F0018952F /* OfferNetworkService.swift */; };
@@ -272,6 +272,7 @@
 		55B397502DEC593F00B12F6D /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3974F2DEC593F00B12F6D /* NetworkMonitor.swift */; };
 		55B397532DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397522DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift */; };
 		55B397552DEC68A100B12F6D /* RealNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397542DEC68A100B12F6D /* RealNetworkMonitor.swift */; };
+		55B397572DEC6C7C00B12F6D /* DLoadingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397562DEC6C7C00B12F6D /* DLoadingOverlayView.swift */; };
 		55B397592DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397582DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift */; };
 		55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */; };
 		55B40ECC2DD159DE0008C345 /* IncomingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */; };
@@ -745,7 +746,7 @@
 		559771E02DE26DC8002FB104 /* EditOfferCalendarEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOfferCalendarEntry.swift; sourceTree = "<group>"; };
 		559771E22DE26DD2002FB104 /* EditOfferCalendarEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOfferCalendarEntity.swift; sourceTree = "<group>"; };
 		559771E42DE272A5002FB104 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
-		559771E62DE303BE002FB104 /* DLoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLoadingOverlay.swift; sourceTree = "<group>"; };
+		559771E62DE303BE002FB104 /* LoadingOverlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayPresenter.swift; sourceTree = "<group>"; };
 		55A1CDFCF751296E73C55F63 /* AdminPanelViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AdminPanelViewController.swift; sourceTree = "<group>"; };
 		55A67EBF2DE0A4A000157B9A /* OfferAdminCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferAdminCollectionViewCell.swift; sourceTree = "<group>"; };
 		55AAA9C22DBE882F0018952F /* OfferNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferNetworkService.swift; sourceTree = "<group>"; };
@@ -785,6 +786,7 @@
 		55B3974F2DEC593F00B12F6D /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		55B397522DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetOverlayPresenter.swift; sourceTree = "<group>"; };
 		55B397542DEC68A100B12F6D /* RealNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealNetworkMonitor.swift; sourceTree = "<group>"; };
+		55B397562DEC6C7C00B12F6D /* DLoadingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLoadingOverlayView.swift; sourceTree = "<group>"; };
 		55B397582DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetOverlayViewController.swift; sourceTree = "<group>"; };
 		55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsPresenterModel.swift; sourceTree = "<group>"; };
 		55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestsEmptyView.swift; sourceTree = "<group>"; };
@@ -1624,7 +1626,8 @@
 			isa = PBXGroup;
 			children = (
 				5524022A2DC2CC2900AD83F1 /* DLoadingIndicator.swift */,
-				559771E62DE303BE002FB104 /* DLoadingOverlay.swift */,
+				559771E62DE303BE002FB104 /* LoadingOverlayPresenter.swift */,
+				55B397562DEC6C7C00B12F6D /* DLoadingOverlayView.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -3959,6 +3962,7 @@
 				55EDEC042DD893FF0001EFC7 /* OfferNameValidator.swift in Sources */,
 				55190AF72DD4ED9800C33A57 /* CreateRequestEntity.swift in Sources */,
 				55AAA9C72DBEB7B60018952F /* OfferService.swift in Sources */,
+				55B397572DEC6C7C00B12F6D /* DLoadingOverlayView.swift in Sources */,
 				3DFCD1492F9656405D1EF06C /* OfferDetailsViewInput.swift in Sources */,
 				55B1264D2DC670F40030A6FC /* SortEntry.swift in Sources */,
 				55190AFE2DD4F06400C33A57 /* OfferCalendarEntry.swift in Sources */,
@@ -4067,7 +4071,7 @@
 				BEC6C1C4DEBA178BDF759F04 /* OfferFilterPresenter.swift in Sources */,
 				DF976641BE32814D5C592B36 /* OfferFilterModuleInput.swift in Sources */,
 				5517476F2DC78FE400AFAF24 /* EditUserInfoEntity.swift in Sources */,
-				559771E72DE303BE002FB104 /* DLoadingOverlay.swift in Sources */,
+				559771E72DE303BE002FB104 /* LoadingOverlayPresenter.swift in Sources */,
 				05450715911AD66F45DD7270 /* OfferFilterModuleOutput.swift in Sources */,
 				55B126562DC675DC0030A6FC /* FilterEntry.swift in Sources */,
 				55AAA9DA2DBEC34B0018952F /* PageEntry.swift in Sources */,

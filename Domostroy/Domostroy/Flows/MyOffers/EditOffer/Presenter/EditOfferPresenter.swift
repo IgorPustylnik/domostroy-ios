@@ -180,7 +180,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return
         }
-        let loading = DLoadingOverlay.shared.show()
+        let loading = LoadingOverlayPresenter.shared.show()
         loading.cancellable.store(in: &cancellables)
         view?.setSavingActivity(isLoading: true)
         putEdit(
@@ -199,7 +199,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
                     .compactMap { $0.image }
             )
         ) { [weak self] in
-            DLoadingOverlay.shared.hide(id: loading.id)
+            LoadingOverlayPresenter.shared.hide(id: loading.id)
             self?.view?.setSavingActivity(isLoading: false)
         } handleResult: { [weak self] result in
             switch result {

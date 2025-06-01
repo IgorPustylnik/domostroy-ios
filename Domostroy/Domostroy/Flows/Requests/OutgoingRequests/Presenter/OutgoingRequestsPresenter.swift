@@ -164,13 +164,13 @@ private extension OutgoingRequestsPresenter {
     }
 
     func cancelRequest(id: Int) {
-        let loading = DLoadingOverlay.shared.show()
+        let loading = LoadingOverlayPresenter.shared.show()
         loading.cancellable.store(in: &cancellables)
         rentService?.deleteRentRequest(
             id: id
         ).sink(
             receiveCompletion: { _ in
-                DLoadingOverlay.shared.hide(id: loading.id)
+                LoadingOverlayPresenter.shared.hide(id: loading.id)
             },
             receiveValue: { [weak self] result in
                 switch result {
