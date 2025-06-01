@@ -269,6 +269,10 @@
 		55B1D2802DDCBD30007587D7 /* NodeKit+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B1D27F2DDCBD30007587D7 /* NodeKit+ext.swift */; };
 		55B2141C2DE3CF4800A443A2 /* BanOfferEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2141B2DE3CF4800A443A2 /* BanOfferEntity.swift */; };
 		55B2141E2DE3CF5000A443A2 /* BanOfferEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */; };
+		55B397502DEC593F00B12F6D /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3974F2DEC593F00B12F6D /* NetworkMonitor.swift */; };
+		55B397532DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397522DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift */; };
+		55B397552DEC68A100B12F6D /* RealNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397542DEC68A100B12F6D /* RealNetworkMonitor.swift */; };
+		55B397592DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B397582DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift */; };
 		55B40ECA2DD124700008C345 /* RequestsPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */; };
 		55B40ECC2DD159DE0008C345 /* IncomingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */; };
 		55B40ECE2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */; };
@@ -778,6 +782,10 @@
 		55B1D27F2DDCBD30007587D7 /* NodeKit+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NodeKit+ext.swift"; sourceTree = "<group>"; };
 		55B2141B2DE3CF4800A443A2 /* BanOfferEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanOfferEntity.swift; sourceTree = "<group>"; };
 		55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanOfferEntry.swift; sourceTree = "<group>"; };
+		55B3974F2DEC593F00B12F6D /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		55B397522DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetOverlayPresenter.swift; sourceTree = "<group>"; };
+		55B397542DEC68A100B12F6D /* RealNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealNetworkMonitor.swift; sourceTree = "<group>"; };
+		55B397582DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetOverlayViewController.swift; sourceTree = "<group>"; };
 		55B40EC92DD124700008C345 /* RequestsPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsPresenterModel.swift; sourceTree = "<group>"; };
 		55B40ECB2DD159DE0008C345 /* IncomingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingRequestsEmptyView.swift; sourceTree = "<group>"; };
 		55B40ECD2DD15AB80008C345 /* OutgoingRequestsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRequestsEmptyView.swift; sourceTree = "<group>"; };
@@ -1788,6 +1796,7 @@
 				5592A3872DBFB48E0082DB28 /* UserService.swift */,
 				5589B74B2DC16B5D00DEA9CF /* BasicStorage.swift */,
 				5589B7352DC1557400DEA9CF /* SecureStorage.swift */,
+				55B3974F2DEC593F00B12F6D /* NetworkMonitor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1896,6 +1905,7 @@
 				553EE9202DA1D7DC00304407 /* TextField */,
 				55D17A382DA00E4700425A6B /* NavigationBar */,
 				55D9E6C02DA324430040846C /* ViewController */,
+				55B397512DEC599700B12F6D /* NoInternet */,
 				55F88C9C2DC3601E003EA26E /* Drops */,
 			);
 			path = "Reusable Layer";
@@ -2274,6 +2284,7 @@
 				5517475A2DC78C0100AFAF24 /* Category */,
 				5592A38B2DBFB4A10082DB28 /* User */,
 				5589B7332DC14C2800DEA9CF /* DURLServiceProvider.swift */,
+				55B397542DEC68A100B12F6D /* RealNetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2355,6 +2366,15 @@
 				55B2141D2DE3CF5000A443A2 /* BanOfferEntry.swift */,
 			);
 			path = BanOffer;
+			sourceTree = "<group>";
+		};
+		55B397512DEC599700B12F6D /* NoInternet */ = {
+			isa = PBXGroup;
+			children = (
+				55B397522DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift */,
+				55B397582DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift */,
+			);
+			path = NoInternet;
 			sourceTree = "<group>";
 		};
 		55B40EC82DD124620008C345 /* Model */ = {
@@ -3891,6 +3911,7 @@
 				55AAA9D82DBEC2A60018952F /* PaginationEntry.swift in Sources */,
 				CEBD1253E553F7E558562E10 /* LoginViewOutput.swift in Sources */,
 				5587AEB52DB3EFDB00669865 /* DayRangeSelectionHelper.swift in Sources */,
+				55B397552DEC68A100B12F6D /* RealNetworkMonitor.swift in Sources */,
 				AD2886403BDDC3B42F088BF7 /* RegisterModuleConfigurator.swift in Sources */,
 				55D267532DAAB23B0092EF8F /* SearchSettingsView.swift in Sources */,
 				10EA7A085D56F8CC6075D43E /* RegisterPresenter.swift in Sources */,
@@ -3978,6 +3999,7 @@
 				552185F52DE2308A00E19BBE /* FilterAdminViewModel.swift in Sources */,
 				552886B42DC6ACB300CADD6C /* FavoriteOfferEntity.swift in Sources */,
 				BD79D41D26D9E4DBA8969C46 /* CreateOfferViewOutput.swift in Sources */,
+				55B397532DEC59AB00B12F6D /* NoInternetOverlayPresenter.swift in Sources */,
 				554F19472DEB5FC500B74931 /* OnboardingPresenterModel.swift in Sources */,
 				09E4C5333B4DCC20903323F0 /* CreateRequestModuleConfigurator.swift in Sources */,
 				5592A38D2DBFB4B40082DB28 /* UserUrlRoute.swift in Sources */,
@@ -4033,6 +4055,7 @@
 				554F19452DEB5FA100B74931 /* OnboardingPageModel.swift in Sources */,
 				554F7CC42DBA276D008A2BB3 /* UserProfileViewOutput.swift in Sources */,
 				E41232A90ADA70D4F4AD0386 /* SortModuleInput.swift in Sources */,
+				55B397592DEC6EFC00B12F6D /* NoInternetOverlayViewController.swift in Sources */,
 				7149FD0B41262C91E8397A14 /* SortModuleOutput.swift in Sources */,
 				55A67EC02DE0A4A000157B9A /* OfferAdminCollectionViewCell.swift in Sources */,
 				BFA0236D530B28CA9920791C /* SortViewController.swift in Sources */,
@@ -4091,6 +4114,7 @@
 				55EDEC002DD893E60001EFC7 /* RussianPhoneValidator.swift in Sources */,
 				78C650E81CB7AAE845C315F2 /* IncomingRequestDetailsModuleConfigurator.swift in Sources */,
 				52EA661ED069E59736D14ACA /* IncomingRequestDetailsPresenter.swift in Sources */,
+				55B397502DEC593F00B12F6D /* NetworkMonitor.swift in Sources */,
 				CB9B1773326E47A5340C5CF4 /* IncomingRequestDetailsModuleInput.swift in Sources */,
 				551503922DD30A63003E79FD /* RequestStatusView.swift in Sources */,
 				E4501583582AA754D90E318B /* IncomingRequestDetailsModuleOutput.swift in Sources */,

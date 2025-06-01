@@ -44,6 +44,11 @@
 "TokenExpirationHandler.LoggedOut"="You have been logged out";
 "TokenExpirationHandler.Expired"="Token has expired";
 
+// MARK: - No Internet
+
+"NoInternet.Title" = "No internet connection";
+"NoInternet.Button.Retry" = "Retry";
+
 // MARK: - Onboarding
 
 "Onboarding.Page1.Title" = "Rent tools and equipment";
