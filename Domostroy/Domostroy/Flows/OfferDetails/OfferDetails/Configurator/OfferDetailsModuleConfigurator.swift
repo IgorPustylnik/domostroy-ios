@@ -6,7 +6,6 @@
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
-import UIKit
 import ReactiveDataDisplayManager
 
 final class OfferDetailsModuleConfigurator {
@@ -22,6 +21,7 @@ final class OfferDetailsModuleConfigurator {
         let picturesAdapter = view.picturesCollectionView.rddm.baseBuilder
             .add(plugin: .accessibility())
             .add(plugin: .selectable())
+            .add(plugin: view.picturesCollectionDelegateProxy)
             .build()
 
         presenter.view = view

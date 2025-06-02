@@ -15,6 +15,7 @@ final class EditProfilePresenter: EditProfileModuleOutput {
 
     var onShowChangePassword: EmptyClosure?
     var onSave: EmptyClosure?
+    var onDismiss: EmptyClosure?
 
     // MARK: - Properties
 
@@ -96,6 +97,7 @@ private extension EditProfilePresenter {
                     self?.configure(with: myUser)
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
+                    self?.onDismiss?()
                 }
             }
         )

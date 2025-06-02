@@ -227,6 +227,12 @@ internal enum L10n {
         }
       }
     }
+    internal enum FullScreenImages {
+      /// %@ of %@
+      internal static func outOf(_ p1: Any, _ p2: Any) -> String {
+        return L10n.tr("Localizable", "FullScreenImages.OutOf", String(describing: p1), String(describing: p2), fallback: "%@ of %@")
+      }
+    }
     internal enum Home {
       internal enum Empty {
         /// Nothing found

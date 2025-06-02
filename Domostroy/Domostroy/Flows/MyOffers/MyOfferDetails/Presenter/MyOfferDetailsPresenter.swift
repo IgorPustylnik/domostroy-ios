@@ -16,6 +16,7 @@ final class MyOfferDetailsPresenter: MyOfferDetailsModuleOutput {
 
     // MARK: - OfferDetailsModuleOutput
 
+    var onOpenFullScreenImages: (([URL], Int) -> Void)?
     var onEdit: ((Int) -> Void)?
     var onDeleted: EmptyClosure?
     var onCalendar: ((Int) -> Void)?
@@ -49,6 +50,10 @@ extension MyOfferDetailsPresenter: MyOfferDetailsModuleInput {
         loadOffer()
     }
 
+    func setImage(index: Int) {
+        view?.scrollToImage(at: index)
+    }
+
 }
 
 // MARK: - MyOfferDetailsViewOutput
@@ -64,6 +69,13 @@ extension MyOfferDetailsPresenter: MyOfferDetailsViewOutput {
             return
         }
         onCalendar?(offerId)
+    }
+
+    func openFullScreenImages(initialIndex: Int) {
+        guard let offer else {
+            return
+        }
+        onOpenFullScreenImages?(offer.photos.map { $0.url }, initialIndex)
     }
 
 }

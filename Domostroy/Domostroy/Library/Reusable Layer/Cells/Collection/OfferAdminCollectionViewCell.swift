@@ -108,6 +108,7 @@ final class OfferAdminCollectionViewCell: UICollectionViewCell, HighlightableSca
     private lazy var banReasonLabel = {
         $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.numberOfLines = 0
+        $0.textColor = .systemRed
         return $0
     }(UILabel())
 

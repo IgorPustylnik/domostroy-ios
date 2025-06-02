@@ -21,6 +21,7 @@ final class MyOfferDetailsModuleConfigurator {
         let picturesAdapter = view.picturesCollectionView.rddm.baseBuilder
             .add(plugin: .accessibility())
             .add(plugin: .selectable())
+            .add(plugin: view.picturesCollectionDelegateProxy)
             .build()
 
         presenter.view = view

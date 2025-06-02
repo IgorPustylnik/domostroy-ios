@@ -46,6 +46,9 @@ private extension OfferDetailsCoordinator {
                 self?.showUser(id: id)
             }
         }
+        output.onOpenFullScreenImages = { [weak self, weak input] urls, initialIndex in
+            self?.showFullScreenImages(urls: urls, initialIndex: initialIndex, offerDetailsModuleInput: input)
+        }
         output.onRent = { [weak self] in
             guard let secureStorage = self?.secureStorage else {
                 return
@@ -107,6 +110,21 @@ private extension OfferDetailsCoordinator {
             self?.router.popModule()
         }
         router.push(view)
+    }
+
+    func showFullScreenImages(urls: [URL], initialIndex: Int, offerDetailsModuleInput: OfferDetailsModuleInput?) {
+        let (view, output, input) = FullScreenImagesModuleConfigurator().configure()
+        input.setImages(urls: urls, initialIndex: initialIndex)
+        output.onScrollTo = { [weak offerDetailsModuleInput] index in
+            offerDetailsModuleInput?.setImage(index: index)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .fullScreen
+        router.present(navigationControllerWrapper)
     }
 
     func runAuthFlow() {

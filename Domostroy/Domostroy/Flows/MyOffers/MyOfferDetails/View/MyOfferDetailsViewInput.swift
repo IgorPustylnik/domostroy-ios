@@ -15,5 +15,6 @@ protocol MyOfferDetailsViewInput: AnyObject {
     func setLoading(_ isLoading: Bool)
     func setupMoreActions(_ actions: [UIAction])
     func configureOffer(viewModel: MyOfferDetailsView.ViewModel)
+    func scrollToImage(at index: Int)
     func configurePictures(with viewModels: [ImageCollectionViewCell.ViewModel])
 }

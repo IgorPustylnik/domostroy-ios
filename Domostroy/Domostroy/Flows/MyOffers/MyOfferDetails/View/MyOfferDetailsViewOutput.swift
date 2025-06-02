@@ -9,5 +9,6 @@
 protocol MyOfferDetailsViewOutput {
     /// Notify presenter that view is ready
     func viewLoaded()
+    func openFullScreenImages(initialIndex: Int)
     func showCalendar()
 }

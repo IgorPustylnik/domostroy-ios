@@ -91,6 +91,9 @@ private extension ProfileCoordinator {
         output.onShowChangePassword = { [weak self] in
             self?.showChangePassword()
         }
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
         router.push(view)
     }
 

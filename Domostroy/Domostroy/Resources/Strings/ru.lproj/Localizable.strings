@@ -284,6 +284,10 @@
 "OfferDetails.Admin.MoreActions.Ban" = "Заблокировать";
 "OfferDetails.Admin.MoreActions.Unban" = "Разблокировать";
 
+// MARK: - Full Screen Images
+
+"FullScreenImages.OutOf" = "%@ из %@";
+
 // MARK: - User Profile
 
 "UserProfile.RegistrationDate" = "На Домострое с %@";

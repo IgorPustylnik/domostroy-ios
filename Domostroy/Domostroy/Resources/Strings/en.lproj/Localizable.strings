@@ -284,6 +284,10 @@
 "OfferDetails.Admin.MoreActions.Ban" = "Ban";
 "OfferDetails.Admin.MoreActions.Unban" = "Unban";
 
+// MARK: - Full Screen Images
+
+"FullScreenImages.OutOf" = "%@ of %@";
+
 // MARK: - User Profile
 
 "UserProfile.RegistrationDate" = "On Domostroy since %@";

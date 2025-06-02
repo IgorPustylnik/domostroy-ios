@@ -35,6 +35,7 @@ final class NoInternetOverlayPresenter {
         overlayWindow.backgroundColor = .clear
 
         let overlay = NoInternetOverlayViewController()
+        overlay.view.alpha = 0
         overlay.retryButton.setAction { onRetry?() }
 
         overlayWindow.rootViewController = overlay
@@ -42,6 +43,10 @@ final class NoInternetOverlayPresenter {
 
         self.window = overlayWindow
         self.overlayViewController = overlay
+
+        UIView.animate(withDuration: 0.5) {
+            overlay.view.alpha = 1
+        }
     }
 
     func setLoading(_ isLoading: Bool) {
@@ -49,8 +54,15 @@ final class NoInternetOverlayPresenter {
     }
 
     func hide() {
-        window?.isHidden = true
-        window = nil
-        overlayViewController = nil
+        UIView.animate(
+            withDuration: 0.5,
+            animations: {
+                self.overlayViewController?.view.alpha = 0
+            }, completion: { _ in
+                self.window?.isHidden = true
+                self.window = nil
+                self.overlayViewController = nil
+            }
+        )
     }
 }

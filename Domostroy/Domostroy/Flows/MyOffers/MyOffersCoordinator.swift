@@ -174,6 +174,9 @@ private extension MyOffersCoordinator {
     func showMyOfferDetails(id: Int, reloadables: [Reloadable?]) {
         let (view, output, input) = MyOfferDetailsModuleConfigurator().configure()
         input.set(offerId: id)
+        output.onOpenFullScreenImages = { [weak self, weak input] urls, initialIndex in
+            self?.showFullScreenImages(urls: urls, initialIndex: initialIndex, myOfferDetailsModuleInput: input)
+        }
         output.onEdit = { [weak self, weak input] id in
             var reloadables = reloadables
             reloadables.append(input)
@@ -190,6 +193,21 @@ private extension MyOffersCoordinator {
             self?.router.popModule()
         }
         router.push(view)
+    }
+
+    func showFullScreenImages(urls: [URL], initialIndex: Int, myOfferDetailsModuleInput: MyOfferDetailsModuleInput?) {
+        let (view, output, input) = FullScreenImagesModuleConfigurator().configure()
+        input.setImages(urls: urls, initialIndex: initialIndex)
+        output.onScrollTo = { [weak myOfferDetailsModuleInput] index in
+            myOfferDetailsModuleInput?.setImage(index: index)
+        }
+        output.onDismiss = { [weak self] in
+            self?.router.dismissModule()
+        }
+
+        let navigationControllerWrapper = UINavigationController(rootViewController: view)
+        navigationControllerWrapper.modalPresentationStyle = .fullScreen
+        router.present(navigationControllerWrapper)
     }
 
     func showEditLessorCalendar(_ offerId: Int) {

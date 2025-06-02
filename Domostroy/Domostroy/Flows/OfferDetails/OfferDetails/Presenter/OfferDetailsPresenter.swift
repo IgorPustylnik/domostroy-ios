@@ -18,6 +18,7 @@ final class OfferDetailsPresenter: OfferDetailsModuleOutput {
     // MARK: - OfferDetailsModuleOutput
 
     var onOpenUser: ((Int) -> Void)?
+    var onOpenFullScreenImages: (([URL], Int) -> Void)?
     var onRent: EmptyClosure?
     var onDeinit: EmptyClosure?
     var onDismiss: EmptyClosure?
@@ -52,6 +53,10 @@ extension OfferDetailsPresenter: OfferDetailsModuleInput {
         self.offerId = offerId
     }
 
+    func setImage(index: Int) {
+        view?.scrollToImage(at: index)
+    }
+
 }
 
 // MARK: - OfferDetailsViewOutput
@@ -64,6 +69,13 @@ extension OfferDetailsPresenter: OfferDetailsViewOutput {
 
     func rent() {
         onRent?()
+    }
+
+    func openFullScreenImages(initialIndex: Int) {
+        guard let offer else {
+            return
+        }
+        onOpenFullScreenImages?(offer.photos.map { $0.url }, initialIndex)
     }
 
 }
