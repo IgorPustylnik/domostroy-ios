@@ -156,7 +156,16 @@ private extension MyOffersPresenter {
             price: LocalizationHelper.pricePerDay(for: offer.price),
             description: offer.description,
             isBanned: offer.isBanned,
-            banReason: offer.banReason,
+            banReason: {
+                if offer.isBanned {
+                    if let banReason = offer.banReason {
+                        return L10n.Localizable.OfferDetails.bannedFor(banReason)
+                    } else {
+                        return L10n.Localizable.OfferDetails.banned
+                    }
+                }
+                return nil
+            }(),
             createdAt: L10n.Localizable.Offers.publishedAt(offer.createdAt.toDMMYY()),
             actions: actions
         )

@@ -18,7 +18,7 @@ final class OfferDetailsView: UIView {
         let title: String
         let loadCity: (UILabel) -> Void
         let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
-        let description: String
+        let description: String?
         let publishedAt: String
         let user: User
         let isBanned: Bool
@@ -60,8 +60,8 @@ final class OfferDetailsView: UIView {
         $0.axis = .vertical
         $0.spacing = Constants.mainVStackSpacing
         $0.addArrangedSubview(headerVStackView)
-        $0.addArrangedSubview(infoVStack)
-        $0.addArrangedSubview(descriptionVStack)
+        $0.addArrangedSubview(infoVStackView)
+        $0.addArrangedSubview(descriptionVStackView)
         $0.addArrangedSubview(userHStackView)
         $0.addArrangedSubview(publishedAtLabel)
         return $0
@@ -121,11 +121,11 @@ final class OfferDetailsView: UIView {
 
     // MARK: - Info
 
-    private lazy var infoVStack = {
+    private lazy var infoVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.stackHeaderBottomPadding
         $0.addArrangedSubview(infoHeaderLabel)
-        $0.addArrangedSubview(infoDetailsVStack)
+        $0.addArrangedSubview(infoDetailsVStackView)
         return $0
     }(UIStackView())
 
@@ -136,7 +136,7 @@ final class OfferDetailsView: UIView {
         return $0
     }(UILabel())
 
-    private lazy var infoDetailsVStack = {
+    private lazy var infoDetailsVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.infoDetailsVStackSpacing
         return $0
@@ -144,7 +144,7 @@ final class OfferDetailsView: UIView {
 
     // MARK: - Description
 
-    private lazy var descriptionVStack = {
+    private lazy var descriptionVStackView = {
         $0.axis = .vertical
         $0.spacing = Constants.stackHeaderBottomPadding
         $0.addArrangedSubview(descriptionHeaderLabel)
@@ -229,22 +229,16 @@ final class OfferDetailsView: UIView {
             guard let self else {
                 return
             }
-            infoDetailsVStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            infoDetailsVStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
             completion.forEach {
-                self.infoDetailsVStack.addArrangedSubview(self.createSpecLabel(title: $0.0, value: $0.1))
+                self.infoDetailsVStackView.addArrangedSubview(self.createSpecLabel(title: $0.0, value: $0.1))
             }
         }
-        if viewModel.isBanned {
-            if let banReason = viewModel.banReason {
-                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
-            } else {
-                banLabel.text = L10n.Localizable.OfferDetails.banned
-            }
-        } else {
-            banLabel.text = nil
-        }
+        banLabel.isHidden = !viewModel.isBanned
+        banLabel.text = viewModel.banReason
         rentButton.isHidden = viewModel.isBanned
         descriptionLabel.text = viewModel.description
+        descriptionVStackView.isHidden = viewModel.description == nil
         viewModel.user.loadUser(
             viewModel.user.url,
             .init(nameLabel: userNameLabel, infoLabel: userInfoLabel, avatarImageView: userAvatarImageView)

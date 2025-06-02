@@ -21,7 +21,7 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
         let price: String
-        let description: String
+        let description: String?
         let isBanned: Bool
         let banReason: String?
         let createdAt: String
@@ -40,8 +40,6 @@ final class OwnOfferCollectionViewCell: UICollectionViewCell, HighlightableScale
         static let imageViewSize: CGSize = .init(width: 100, height: 84)
         static let imageViewCornerRadius: CGFloat = 8
         static let infoVStackSpacing: CGFloat = 5
-        static let userHStackViewSpacing: CGFloat = 8
-        static let userImageViewSize: CGSize = .init(width: 20, height: 20)
         static let actionsVStackViewSpacing: CGFloat = 8
         static let actionSize: CGSize = .init(width: 22, height: 22)
     }
@@ -164,13 +162,9 @@ extension OwnOfferCollectionViewCell: ConfigurableItem {
         titleLabel.text = viewModel.title
         priceLabel.text = "\(viewModel.price)"
         descriptionLabel.text = viewModel.description
-        if viewModel.isBanned {
-            if let banReason = viewModel.banReason {
-                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
-            } else {
-                banLabel.text = L10n.Localizable.OfferDetails.banned
-            }
-        }
+        descriptionLabel.isHidden = viewModel.description == nil
+        banLabel.isHidden = !viewModel.isBanned
+        banLabel.text = viewModel.banReason
         createdAtLabel.text = viewModel.createdAt
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }

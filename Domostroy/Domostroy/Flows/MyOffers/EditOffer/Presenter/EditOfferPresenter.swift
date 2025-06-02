@@ -103,7 +103,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
     }
 
     func descriptionChanged(_ text: String) {
-        self.offerDescription = text
+        self.offerDescription = text.isEmpty ? nil : text
     }
 
     func setSelectedCategory(index: Int) {
@@ -170,8 +170,7 @@ extension EditOfferPresenter: EditOfferViewOutput {
         }
         guard let offerId,
               let category = categoryPickerModel.selected,
-              let title,
-              let offerDescription
+              let title
         else {
             DropsPresenter.shared.showError(title: L10n.Localizable.ValidationError.someRequiredMissing)
             return

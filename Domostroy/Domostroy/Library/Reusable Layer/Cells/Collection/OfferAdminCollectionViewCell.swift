@@ -19,7 +19,7 @@ final class OfferAdminCollectionViewCell: UICollectionViewCell, HighlightableSca
         let id: Int
         let loadImage: (UIImageView) -> Void
         let title: String
-        let description: String
+        let description: String?
         let price: String
         let location: String
         let isBanned: Bool
@@ -191,8 +191,10 @@ extension OfferAdminCollectionViewCell: ConfigurableItem {
         titleLabel.text = viewModel.title
         priceLabel.text = viewModel.price
         descriptionLabel.text = viewModel.description
+        descriptionLabel.isHidden = viewModel.description == nil
         cityLabel.text = viewModel.location
         banReasonLabel.text = viewModel.banReason
+        banReasonLabel.isHidden = !viewModel.isBanned
         banButton.setOn(!viewModel.isBanned)
         banButton.setToggleAction(viewModel.banAction)
         deleteButton.setAction { [weak self] in

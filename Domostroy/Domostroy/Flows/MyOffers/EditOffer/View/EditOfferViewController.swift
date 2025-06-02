@@ -163,7 +163,7 @@ extension EditOfferViewController: EditOfferViewInput {
 
     func configure(with model: EditOfferViewModel) {
         editOfferView.nameTextField.setText(model.title)
-        editOfferView.descriptionTextField.setText(model.description)
+        editOfferView.descriptionTextField.setText(model.description ?? "")
         editOfferView.priceTextField.setText(model.price)
         let isPriceNegotiable = model.price.isEmpty
         editOfferView.setIsPriceNegotiable(isPriceNegotiable)
