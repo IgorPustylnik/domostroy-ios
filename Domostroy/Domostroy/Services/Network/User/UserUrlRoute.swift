@@ -13,6 +13,7 @@ enum UserUrlRoute {
     case other(Int)
     case info
     case password
+    case notificationsEnabled
 }
 
 extension UserUrlRoute: URLRouteProvider {
@@ -33,6 +34,8 @@ extension UserUrlRoute: URLRouteProvider {
             return try base + "/userInfo"
         case .password:
             return try base + "/password"
+        case .notificationsEnabled:
+            return try base + "/notificationFlag"
         }
     }
 }

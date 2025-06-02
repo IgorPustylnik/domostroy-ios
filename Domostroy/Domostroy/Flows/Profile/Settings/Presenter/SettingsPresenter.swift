@@ -15,9 +15,14 @@ final class SettingsPresenter: SettingsModuleOutput {
 
     // MARK: - SettingsModuleOutput
 
+    var onDismiss: EmptyClosure?
+
     // MARK: - Properties
 
     weak var view: SettingsViewInput?
+
+    private let userService: UserService? = ServiceLocator.shared.resolve()
+    private var cancellables: Set<AnyCancellable> = .init()
 }
 
 // MARK: - SettingsModuleInput
@@ -40,32 +45,61 @@ extension SettingsPresenter: SettingsViewOutput {
 // MARK: - Private methods
 
 private extension SettingsPresenter {
-    // TODO: Load from backend
     func loadSettings() {
         view?.setLoading(true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+        fetchSettings { [weak self] in
             self?.view?.setLoading(false)
-            self?.view?.configure(
-                with: .init(
-                    notifications: .init(
-                        initialState: false,
-                        color: .systemRed,
-                        image: UIImage(systemName: "bell.badge.fill"),
-                        title: L10n.Localizable.Settings.Notifications.title,
-                        toggleAction: { [weak self] value, handler in
-                            self?.changeNotifications(enabled: value, completion: { success in
-                                handler?(success)
-                            })
-                        }
-                    )
-                )
-            )
+        } handleResult: { [weak self] result in
+            switch result {
+            case .success(let settings):
+                self?.setupWith(settings: settings)
+            case .failure(let error):
+                DropsPresenter.shared.showError(error: error)
+                self?.onDismiss?()
+            }
         }
     }
 
-    // TODO: Change on backend
+    func setupWith(settings: NotificationsSettingsEntity) {
+        view?.configure(
+            with: .init(
+                notifications: .init(
+                    initialState: settings.notificationsEnabled,
+                    color: .systemRed,
+                    image: UIImage(systemName: "bell.badge.fill"),
+                    title: L10n.Localizable.Settings.Notifications.title,
+                    toggleAction: { [weak self] value, handler in
+                        self?.changeNotifications(enabled: value, completion: { success in
+                            handler?(success)
+                        })
+                    }
+                )
+            )
+        )
+    }
+
     func changeNotifications(enabled: Bool, completion: ((Bool) -> Void)?) {
-        completion?(true)
+        userService?.setNotifications(
+            enabled: enabled
+        ).sink(
+            receiveValue: { result in
+                switch result {
+                case .success:
+                    completion?(true)
+                case .failure(let error):
+                    DropsPresenter.shared.showError(error: error)
+                    completion?(false)
+                }
+            }
+        ).store(in: &cancellables)
+    }
+
+    func fetchSettings(completion: EmptyClosure?, handleResult: ((NodeResult<NotificationsSettingsEntity>) -> Void)?) {
+        userService?.getNotificationsSettings(
+        ).sink(
+            receiveCompletion: { _ in completion?() },
+            receiveValue: { handleResult?($0) }
+        ).store(in: &cancellables)
     }
 
 }

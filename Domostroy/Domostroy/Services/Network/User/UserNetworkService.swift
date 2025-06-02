@@ -63,6 +63,21 @@ public final class UserNetworkService: UserService {
             .nodeResultPublisher(for: changePasswordEntity)
     }
 
+    public func getNotificationsSettings() -> AnyPublisher<NodeResult<NotificationsSettingsEntity>, Never> {
+        makeBuilder()
+            .route(.get, .notificationsEnabled)
+            .build()
+            .nodeResultPublisher()
+    }
+
+    public func setNotifications(enabled: Bool) -> AnyPublisher<NodeResult<Void>, Never> {
+        makeBuilder()
+            .route(.patch, .my)
+            .set(query: ["notificationsEnabled": enabled])
+            .build()
+            .nodeResultPublisher()
+    }
+
 }
 
 // MARK: - Private methods

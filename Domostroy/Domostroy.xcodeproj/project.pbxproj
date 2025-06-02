@@ -148,6 +148,8 @@
 		551FC3BD2DBCE9E000A8FE6B /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BC2DBCE9E000A8FE6B /* LocalizationHelper.swift */; };
 		551FC3BF2DBD0F0000A8FE6B /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */; };
 		551FC3C42DBD114500A8FE6B /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 551FC3C22DBD114500A8FE6B /* Plurals.stringsdict */; };
+		552009702DECFF4C004022CC /* NotificationsSettingsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5520096F2DECFF4C004022CC /* NotificationsSettingsEntry.swift */; };
+		552009722DECFF54004022CC /* NotificationsSettingsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552009712DECFF54004022CC /* NotificationsSettingsEntity.swift */; };
 		552185F12DE2280900E19BBE /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F02DE2280900E19BBE /* Typealiases.swift */; };
 		552185F52DE2308A00E19BBE /* FilterAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F42DE2308A00E19BBE /* FilterAdminViewModel.swift */; };
 		552185F82DE2334600E19BBE /* OfferFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552185F72DE2334600E19BBE /* OfferFilterViewModel.swift */; };
@@ -659,6 +661,8 @@
 		551FC3BE2DBD0F0000A8FE6B /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		551FC3C32DBD114500A8FE6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		551FC3C52DBD114F00A8FE6B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
+		5520096F2DECFF4C004022CC /* NotificationsSettingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsEntry.swift; sourceTree = "<group>"; };
+		552009712DECFF54004022CC /* NotificationsSettingsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsEntity.swift; sourceTree = "<group>"; };
 		552185F02DE2280900E19BBE /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		552185F42DE2308A00E19BBE /* FilterAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAdminViewModel.swift; sourceTree = "<group>"; };
 		552185F72DE2334600E19BBE /* OfferFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFilterViewModel.swift; sourceTree = "<group>"; };
@@ -1598,6 +1602,15 @@
 			path = OfferCalendar;
 			sourceTree = "<group>";
 		};
+		5520096E2DECFF2C004022CC /* NotificationsSettings */ = {
+			isa = PBXGroup;
+			children = (
+				552009712DECFF54004022CC /* NotificationsSettingsEntity.swift */,
+				5520096F2DECFF4C004022CC /* NotificationsSettingsEntry.swift */,
+			);
+			path = NotificationsSettings;
+			sourceTree = "<group>";
+		};
 		552185F32DE2307E00E19BBE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2052,6 +2065,7 @@
 		5589B71E2DC01F9200DEA9CF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5520096E2DECFF2C004022CC /* NotificationsSettings */,
 				55190AFA2DD4F03D00C33A57 /* OfferCalendar */,
 				55FE25CD2DD0D79000B7B35F /* RentalRequest */,
 				552886A72DC6A6C000CADD6C /* Price */,
@@ -3853,6 +3867,7 @@
 				6FB533B52AE96661FD0E1A9F /* ProfilePresenter.swift in Sources */,
 				559385AB2DB0554F006F3C07 /* AddImageButtonCollectionViewCell.swift in Sources */,
 				CDFEF63FE62A6D53E6FC4681 /* ProfileModuleInput.swift in Sources */,
+				552009702DECFF4C004022CC /* NotificationsSettingsEntry.swift in Sources */,
 				141078B26E93DA1374738DB6 /* ProfileModuleOutput.swift in Sources */,
 				55B4962E2D9E9F5700C6AB57 /* MainTabBarView.swift in Sources */,
 				0B451EFDA2066D7104AFD7F4 /* ProfileView.swift in Sources */,
@@ -4216,6 +4231,7 @@
 				CFE46729C297E306F2327AFF /* OfferAdminFilterViewOutput.swift in Sources */,
 				1F963608FF9414AD340A0476 /* OnboardingModuleConfigurator.swift in Sources */,
 				4B3A54C4CE42CA3C294951EE /* OnboardingPresenter.swift in Sources */,
+				552009722DECFF54004022CC /* NotificationsSettingsEntity.swift in Sources */,
 				D043F9490253CFCCC18D45E2 /* OnboardingModuleInput.swift in Sources */,
 				EDC0E22F4ECA7074EBBD92D1 /* OnboardingModuleOutput.swift in Sources */,
 				0EF7197B8A42179477DCC5B1 /* OnboardingViewController.swift in Sources */,

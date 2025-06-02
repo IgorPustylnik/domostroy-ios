@@ -7,4 +7,5 @@
 //
 
 protocol SettingsModuleOutput: AnyObject {
+    var onDismiss: EmptyClosure? { get set }
 }

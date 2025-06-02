@@ -104,7 +104,10 @@ private extension ProfileCoordinator {
     }
 
     func showSettings() {
-        let (view, _) = SettingsModuleConfigurator().configure()
+        let (view, output) = SettingsModuleConfigurator().configure()
+        output.onDismiss = { [weak self] in
+            self?.router.popModule()
+        }
         router.push(view)
     }
 
