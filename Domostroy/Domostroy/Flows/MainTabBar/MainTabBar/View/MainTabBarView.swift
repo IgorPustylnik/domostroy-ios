@@ -11,13 +11,35 @@ import SnapKit
 
 final class MainTabBarView: UIView {
 
+    // MARK: - Constants
+
+    private enum Constants {
+        static let cornerRadius: CGFloat = 25
+        static let internalCircleRadius: CGFloat = 40
+
+        static let shadowColor: UIColor = UIColor.label.withAlphaComponent(0.25)
+        static let shadowOpacity: Float = 0.25
+        static let shadowRadius: CGFloat = 6
+        static let shadowOffset: CGSize = .init(width: 0, height: -4)
+
+        static let centerButtonImageSize: CGSize = .init(width: 32, height: 32)
+        static let centerButtonSize: CGSize = .init(width: 56, height: 56)
+        static let centerButtonOffsetY: CGFloat = -30
+
+        static let buttonsHStackOffsetY: CGFloat = -14
+        static let buttonsHStackInsetX: CGFloat = 12
+    }
+
     // MARK: - UI Elements
 
     private lazy var centerButton: DButton = {
         $0.image = .MainTabBar.plus
-        $0.imageSize = .init(width: 32, height: 32)
-        $0.cornerRadius = 28
+        $0.imageSize = Constants.centerButtonImageSize
+        $0.cornerRadius = Constants.centerButtonSize.width / 2
         $0.insets = .zero
+        $0.snp.makeConstraints { make in
+            make.size.equalTo(Constants.centerButtonSize)
+        }
         $0.setAction { [weak self] in
             self?.didTapCenter?()
         }
@@ -51,6 +73,7 @@ final class MainTabBarView: UIView {
     init() {
         super.init(frame: .zero)
         setupUI()
+        trackTraitChanges()
     }
 
     required init?(coder: NSCoder) {
@@ -87,25 +110,35 @@ final class MainTabBarView: UIView {
         addSubview(centerButton)
         addSubview(buttonsHStackView)
 
-        layer.shadowColor = UIColor.label.withAlphaComponent(0.25).cgColor
-        layer.shadowOpacity = 0.25
-        layer.shadowOffset = CGSize(width: 0, height: -4)
-        layer.shadowRadius = 6
+        layer.shadowColor = Constants.shadowColor.cgColor
+        layer.shadowOpacity = Constants.shadowOpacity
+        layer.shadowOffset = Constants.shadowOffset
+        layer.shadowRadius = Constants.shadowRadius
 
         buttonsHStackView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().offset(-14)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(12)
+            make.verticalEdges.equalToSuperview().offset(Constants.buttonsHStackOffsetY)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(Constants.buttonsHStackInsetX)
         }
 
         blurView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         centerButton.snp.makeConstraints { make in
-            make.height.equalTo(56)
-            make.width.equalTo(56)
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(-30)
+            make.top.equalToSuperview().offset(Constants.centerButtonOffsetY)
         }
+    }
+
+    private func trackTraitChanges() {
+        registerForTraitChanges(
+            [UITraitUserInterfaceStyle.self]
+        ) { [weak self] (_: Self, _: UITraitCollection) in
+            self?.updateCGColors()
+        }
+    }
+
+    private func updateCGColors() {
+        layer.shadowColor = Constants.shadowColor.cgColor
     }
 
     // MARK: - Public methods
@@ -148,10 +181,10 @@ private extension MainTabBarView {
         let width = self.frame.width
         let height = self.frame.height
 
-        let cornerRadius: CGFloat = 25
+        let cornerRadius: CGFloat = Constants.cornerRadius
         let centerWidth = width / 2
-        let circleRadius: CGFloat = 40
-        let internalCornerRadius: CGFloat = 40
+        let circleRadius: CGFloat = Constants.internalCircleRadius
+        let internalCornerRadius: CGFloat = circleRadius
 
         path.move(to: CGPoint(x: 0, y: height))
         path.addLine(to: CGPoint(x: 0, y: cornerRadius))
@@ -202,7 +235,7 @@ private extension MainTabBarView {
 
         let width = self.frame.width
         let height = self.frame.height
-        let cornerRadius: CGFloat = 25
+        let cornerRadius: CGFloat = Constants.cornerRadius
 
         path.move(to: CGPoint(x: 0, y: height))
         path.addLine(to: CGPoint(x: 0, y: cornerRadius))
