@@ -8,4 +8,5 @@
 
 protocol MyOfferDetailsModuleInput: AnyObject, Reloadable {
     func set(offerId: Int)
+    func setImage(index: Int)
 }

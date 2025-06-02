@@ -18,6 +18,7 @@ final class MyOfferDetailsViewController: ScrollViewController {
         static let sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         static let imageHorizontalItemSpace: CGFloat = 0
         static let pictureCollectionViewHeight: CGFloat = 300
+        static let picturesPageControlBottomOffset: CGFloat = 8
         static let detailsInsets: UIEdgeInsets = .init(top: 16, left: 16, bottom: 16, right: 16)
     }
 
@@ -26,6 +27,13 @@ final class MyOfferDetailsViewController: ScrollViewController {
     private(set) var picturesCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()
     )
+    private lazy var picturesPageControl = {
+        $0.isUserInteractionEnabled = false
+        $0.hidesForSinglePage = true
+        return $0
+    }(UIPageControl())
+
+    private(set) lazy var picturesCollectionDelegateProxy = CollectionScrollViewDelegateProxyPlugin()
 
     var picturesAdapter: BaseCollectionManager?
     private var pictureGenerators: [CollectionCellGenerator] = []
@@ -48,10 +56,16 @@ final class MyOfferDetailsViewController: ScrollViewController {
 
     private func setupUI() {
         contentView.addSubview(picturesCollectionView)
+        contentView.addSubview(picturesPageControl)
         contentView.addSubview(myOfferDetailsView)
+
         picturesCollectionView.snp.makeConstraints { make in
             make.horizontalEdges.top.equalToSuperview()
             make.height.equalTo(Constants.pictureCollectionViewHeight)
+        }
+        picturesPageControl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(picturesCollectionView.snp.bottom)
         }
         myOfferDetailsView.snp.makeConstraints { make in
             make.top.equalTo(picturesCollectionView.snp.bottom).offset(Constants.detailsInsets.top)
@@ -80,6 +94,11 @@ final class MyOfferDetailsViewController: ScrollViewController {
         layout.minimumLineSpacing = Constants.imageHorizontalItemSpace
         layout.minimumInteritemSpacing = 0
         picturesCollectionView.setCollectionViewLayout(layout, animated: false)
+
+        picturesCollectionDelegateProxy.didEndDecelerating += { [weak self] scrollView in
+            let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+            self?.picturesPageControl.currentPage = index
+        }
     }
 
 }
@@ -107,10 +126,28 @@ extension MyOfferDetailsViewController: MyOfferDetailsViewInput {
     }
 
     func configurePictures(with viewModels: [ImageCollectionViewCell.ViewModel]) {
-        pictureGenerators = viewModels.map {
-            ImageCollectionViewCell.rddm.baseGenerator(with: $0, and: .class)
+        pictureGenerators = viewModels.enumerated().map { index, viewModel in
+            let generator = ImageCollectionViewCell.rddm.baseGenerator(with: viewModel, and: .class)
+            generator.didSelectEvent += { [weak self] in
+                self?.output?.openFullScreenImages(initialIndex: index)
+            }
+            return generator
         }
+        picturesPageControl.currentPage = 0
+        picturesPageControl.numberOfPages = viewModels.count
         refillAdapter()
+    }
+
+    func scrollToImage(at index: Int) {
+        guard index < pictureGenerators.count else {
+            return
+        }
+        picturesCollectionView.scrollToItem(
+            at: .init(row: index, section: 0),
+            at: .centeredHorizontally,
+            animated: true
+        )
+        picturesPageControl.currentPage = index
     }
 
 }
