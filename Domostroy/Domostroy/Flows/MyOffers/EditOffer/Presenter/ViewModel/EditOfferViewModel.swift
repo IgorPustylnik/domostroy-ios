@@ -9,6 +9,6 @@ import Foundation
 
 struct EditOfferViewModel {
     let title: String
-    let description: String
+    let description: String?
     let price: String
 }

@@ -11,7 +11,7 @@ import NodeKit
 public struct FavoriteOfferEntity {
     public let id: Int
     public let title: String
-    public let description: String
+    public let description: String?
     public let price: PriceEntity
     public let photoUrl: URL
     public let userId: Int

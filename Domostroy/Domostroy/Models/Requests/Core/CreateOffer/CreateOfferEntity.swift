@@ -11,7 +11,7 @@ import UIKit
 
 public struct CreateOfferEntity {
     public let title: String
-    public let description: String
+    public let description: String?
     public let categoryId: Int
     public let price: PriceEntity
     public let cityId: Int

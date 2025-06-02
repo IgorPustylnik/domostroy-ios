@@ -94,7 +94,7 @@ final class CreateOfferView: UIView {
             keyboardType: .default,
             autocapitalizationType: .sentences
         )
-        $0.validator = RequiredValidator(OfferDescriptionValidator())
+        $0.validator = OptionalValidator(OfferDescriptionValidator())
         $0.onBeginEditing = { [weak self] _ in
             self?.delegate?.scrollToActiveView(self?.descriptionTextField)
         }

@@ -18,7 +18,7 @@ final class MyOfferDetailsView: UIView {
         let title: String
         let loadCity: (UILabel) -> Void
         let loadInfo: (@escaping ([(String, String)]) -> Void) -> Void
-        let description: String
+        let description: String?
         let publishedAt: String
         let onCalendar: EmptyClosure?
         let isBanned: Bool
@@ -201,14 +201,10 @@ final class MyOfferDetailsView: UIView {
             }
         }
         calendarVStackView.isHidden = viewModel.isBanned
-        if viewModel.isBanned {
-            if let banReason = viewModel.banReason {
-                banLabel.text = L10n.Localizable.OfferDetails.bannedFor(banReason)
-            } else {
-                banLabel.text = L10n.Localizable.OfferDetails.banned
-            }
-        }
+        banLabel.isHidden = !viewModel.isBanned
+        banLabel.text = viewModel.banReason
         descriptionLabel.text = viewModel.description
+        descriptionVStackView.isHidden = viewModel.description == nil
         publishedAtLabel.text = viewModel.publishedAt
         onCalendar = viewModel.onCalendar
     }

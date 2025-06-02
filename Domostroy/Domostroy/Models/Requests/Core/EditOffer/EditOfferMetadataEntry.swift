@@ -11,7 +11,7 @@ import NodeKit
 public struct EditOfferMetadataEntry: Codable {
     public let id: Int
     public let title: String
-    public let description: String
+    public let description: String?
     public let categoryId: Int
     public let price: Double
     public let currency: String

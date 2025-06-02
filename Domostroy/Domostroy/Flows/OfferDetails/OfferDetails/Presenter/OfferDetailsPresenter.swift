@@ -231,7 +231,16 @@ private extension OfferDetailsPresenter {
                 }
             ),
             isBanned: offer.isBanned,
-            banReason: offer.banReason,
+            banReason: {
+                if offer.isBanned {
+                    if let banReason = offer.banReason {
+                        return L10n.Localizable.OfferDetails.bannedFor(banReason)
+                    } else {
+                        return L10n.Localizable.OfferDetails.banned
+                    }
+                }
+                return nil
+            }(),
             onRent: { [weak self] in
                 self?.onRent?()
             }

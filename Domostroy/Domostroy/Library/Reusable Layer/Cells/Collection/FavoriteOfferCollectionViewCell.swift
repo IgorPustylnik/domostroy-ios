@@ -23,7 +23,7 @@ final class FavoriteOfferCollectionViewCell: UICollectionViewCell, Highlightable
         let loadImage: (URL?, UIImageView) -> Void
         let title: String
         let price: String
-        let description: String
+        let description: String?
         let user: UserViewModel
         let actions: [ActionButtonModel]
         let toggleActions: [ToggleButtonModel]
@@ -186,6 +186,7 @@ extension FavoriteOfferCollectionViewCell: ConfigurableItem {
         titleLabel.text = viewModel.title
         priceLabel.text = "\(viewModel.price)"
         descriptionLabel.text = viewModel.description
+        descriptionLabel.isHidden = viewModel.description == nil
         viewModel.loadImage(viewModel.imageUrl, itemImageView)
         viewModel.user.loadUser(viewModel.user.id, userImageView, userNameLabel)
         viewModel.actions.map { createActionButton(with: $0) }.forEach { actionsVStack.addArrangedSubview($0) }

@@ -230,8 +230,8 @@ class DTextField: UIView {
         nextInput = nextResponder
     }
 
-    func setText(_ text: String) {
-        if let formatter {
+    func setText(_ text: String?) {
+        if let formatter, let text {
             textField.text = formatter.format(text: text)
         } else {
             textField.text = text

@@ -12,7 +12,7 @@ import UIKit
 public struct EditOfferEntity {
     public let id: Int
     public let title: String
-    public let description: String
+    public let description: String?
     public let categoryId: Int
     public let price: PriceEntity
     public let cityId: Int
