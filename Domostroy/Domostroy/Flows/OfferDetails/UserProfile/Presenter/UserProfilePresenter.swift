@@ -126,6 +126,10 @@ private extension UserProfilePresenter {
     func makeUserViewModel(
         from user: UserEntity
     ) -> UserProfileInfoCollectionViewCell.ViewModel {
+        var phoneString: String?
+        if let phoneNumber = user.phoneNumber {
+            phoneString = RussianPhoneTextFieldFormatter.format(phoneNumber: phoneNumber)
+        }
         return .init(
             imageUrl: nil,
             loadImage: { url, imageView in
@@ -133,7 +137,7 @@ private extension UserProfilePresenter {
             },
             username: user.name,
             info1: "\(user.offersAmount) \(L10n.Plurals.offer(user.offersAmount))",
-            info2: RussianPhoneTextFieldFormatter.format(phoneNumber: user.phoneNumber),
+            info2: phoneString,
             info3: L10n.Localizable.UserProfile.registrationDate(user.registrationDate.monthAndYearString())
         )
     }

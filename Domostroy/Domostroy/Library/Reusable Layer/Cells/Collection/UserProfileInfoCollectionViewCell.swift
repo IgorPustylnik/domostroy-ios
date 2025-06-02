@@ -112,6 +112,7 @@ final class UserProfileInfoCollectionViewCell: UICollectionViewCell {
         usernameLabel.text = nil
         info1Label.text = nil
         info2Label.text = nil
+        info3Label.text = nil
         avatarImageView.image = nil
         super.prepareForReuse()
     }
@@ -140,8 +141,11 @@ extension UserProfileInfoCollectionViewCell: ConfigurableItem {
     func configure(with viewModel: ViewModel) {
         usernameLabel.text = viewModel.username
         info1Label.text = viewModel.info1
+        info1Label.isHidden = viewModel.info1 == nil
         info2Label.text = viewModel.info2
+        info2Label.isHidden = viewModel.info2 == nil
         info3Label.text = viewModel.info3
+        info3Label.isHidden = viewModel.info3 == nil
         viewModel.loadImage?(viewModel.imageUrl, avatarImageView)
     }
 

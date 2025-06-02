@@ -9,4 +9,5 @@
 protocol EditProfileModuleOutput: AnyObject {
     var onShowChangePassword: EmptyClosure? { get set }
     var onSave: EmptyClosure? { get set }
+    var onDismiss: EmptyClosure? { get set }
 }

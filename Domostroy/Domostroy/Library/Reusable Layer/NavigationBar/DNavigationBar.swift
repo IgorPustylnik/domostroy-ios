@@ -23,7 +23,7 @@ class DNavigationBar: UIView {
     // MARK: - UI Elements
 
     private lazy var blurView = UIVisualEffectView(effect: blurEffect)
-    private lazy var blurEffect = UIBlurEffect(style: .systemMaterial)
+    private lazy var blurEffect = UIBlurEffect(style: .prominent)
 
     private var vStackView: UIStackView = {
         $0.axis = .vertical
