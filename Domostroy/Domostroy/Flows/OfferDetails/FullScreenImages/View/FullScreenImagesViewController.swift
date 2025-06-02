@@ -130,6 +130,9 @@ extension FullScreenImagesViewController: FullScreenImagesViewInput {
         }
     }
 
+    func setNavigationTitle(_ title: String?) {
+        self.title = title
+    }
 }
 
 // MARK: - Private methods

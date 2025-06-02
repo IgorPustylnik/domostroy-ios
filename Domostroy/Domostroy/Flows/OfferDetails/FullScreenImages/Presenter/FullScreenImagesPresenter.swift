@@ -46,6 +46,12 @@ extension FullScreenImagesPresenter: FullScreenImagesModuleInput {
             },
             initialIndex: currentIndex
         )
+        view?.setNavigationTitle(
+            L10n.Localizable.FullScreenImages.outOf(
+                currentIndex + 1,
+                imagesUrls.count
+            )
+        )
     }
 
 }
@@ -61,6 +67,12 @@ extension FullScreenImagesPresenter: FullScreenImagesViewOutput {
     func scrolledTo(index: Int) {
         currentIndex = index
         onScrollTo?(index)
+        view?.setNavigationTitle(
+            L10n.Localizable.FullScreenImages.outOf(
+                currentIndex + 1,
+                imagesUrls.count
+            )
+        )
     }
 
     func dismiss() {

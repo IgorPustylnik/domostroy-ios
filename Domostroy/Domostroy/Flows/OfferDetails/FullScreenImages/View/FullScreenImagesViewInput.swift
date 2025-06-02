@@ -13,4 +13,5 @@ protocol FullScreenImagesViewInput: AnyObject {
     /// Method for setup initial state of view
     func setupInitialState()
     func setup(with images: [FullScreenImageCollectionViewCell.ViewModel], initialIndex: Int)
+    func setNavigationTitle(_ title: String?)
 }
