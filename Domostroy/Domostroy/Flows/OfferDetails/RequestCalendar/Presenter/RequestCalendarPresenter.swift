@@ -140,11 +140,13 @@ private extension RequestCalendarPresenter {
     }
 
     func loadCalendar() {
+        let startTime = Date()
         fetchCalendar { [weak self] in
             self?.view?.setLoading(false)
         } handleResult: { [weak self] result in
             switch result {
             case .success(let calendar):
+                AnalyticsEvent.calendarLoaded(loadTime: Date().timeIntervalSince(startTime)).send()
                 guard let self else {
                     return
                 }

@@ -50,7 +50,7 @@ extension EditProfilePresenter: EditProfileViewOutput {
     }
 
     func lastNameChanged(_ text: String) {
-        self.lastName = text
+        self.lastName = text.isEmpty ? nil : text
     }
 
     func phoneNumberChanged(_ text: String) {

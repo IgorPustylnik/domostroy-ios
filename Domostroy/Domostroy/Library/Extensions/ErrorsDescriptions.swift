@@ -14,7 +14,7 @@ extension DResponseHttpErrorProcessorNodeError {
         case .badRequest:
             description = L10n.Localizable.UserFriendlyError.somethingWentWrong
         case .unauthorized:
-            description = L10n.Localizable.UserFriendlyError.noPermission
+            description = L10n.Localizable.UserFriendlyError.somethingWentWrong
         case .forbidden:
             description = L10n.Localizable.UserFriendlyError.somethingWentWrong
         case .notFound:

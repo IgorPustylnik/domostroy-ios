@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import AppMetricaCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupServices()
+        setupAppMetrica()
         return true
     }
 
@@ -45,5 +47,15 @@ private extension AppDelegate {
         ServiceLocator.shared.register(
             service: UserNetworkService(secureStorage: secureStorage, basicStorage: basicStorage) as UserService
         )
+    }
+
+    func setupAppMetrica() {
+        guard
+            let apiKey = InfoPlist.appMetricaAPIKey,
+            let configuration = AppMetricaConfiguration(apiKey: apiKey)
+        else {
+            return
+        }
+        AppMetrica.activate(with: configuration)
     }
 }

@@ -232,12 +232,14 @@ private extension LessorCalendarPresenter {
 
     func loadCalendar(completion: EmptyClosure? = nil) {
         view?.setLoading(true)
+        let startTime = Date()
         fetchCalendar(completion: { [weak self] in
             self?.view?.setLoading(false)
             completion?()
         }) { [weak self] result in
             switch result {
             case .success(let calendar):
+                AnalyticsEvent.calendarLoaded(loadTime: Date().timeIntervalSince(startTime)).send()
                 let startDate = Date.now
                 guard let endDate = Calendar.current.date(byAdding: .month, value: 6, to: startDate) else {
                     return

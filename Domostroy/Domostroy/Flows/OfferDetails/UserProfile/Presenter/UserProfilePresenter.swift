@@ -188,6 +188,9 @@ private extension UserProfilePresenter {
                 receiveValue: { result in
                     switch result {
                     case .success:
+                        if value {
+                            AnalyticsEvent.offerAddedToFavorites(offerId: id.description).send()
+                        }
                         completion?(true)
                     case .failure(let error):
                         completion?(false)

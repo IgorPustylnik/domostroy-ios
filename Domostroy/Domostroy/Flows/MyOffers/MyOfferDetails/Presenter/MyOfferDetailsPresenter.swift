@@ -94,6 +94,7 @@ private extension MyOfferDetailsPresenter {
             }
             switch result {
             case .success(let offer):
+                AnalyticsEvent.offerViewed(offerId: offer.id.description, source: "MyOfferDetails").send()
                 self.offer = offer
                 self.view?.setupInitialState()
                 self.view?.configureOffer(viewModel: self.makeOfferViewModel(offer: offer))

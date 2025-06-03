@@ -189,7 +189,6 @@ extension OffersAdminPresenter: PaginatableOutput {
                 }
                 pagesCount = page.pagination.totalPages
                 updatePagination()
-                view?.setEmptyState(page.data.isEmpty)
                 view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -372,6 +371,7 @@ private extension OffersAdminPresenter {
             snapshot: paginationSnapshot,
             seed: nil
         )
+        let startTime = Date()
         adminService?.getOffers(searchRequestEntity: searchOffersEntity)
             .sink(
                 receiveCompletion: { _ in
@@ -379,6 +379,9 @@ private extension OffersAdminPresenter {
                 },
                 receiveValue: { result in
                     handleResult?(result)
+                    AnalyticsEvent.offersLoaded(
+                        loadTime: Date().timeIntervalSince(startTime), source: "OffersAdmin"
+                    ).send()
                 }
             )
             .store(in: &cancellables)

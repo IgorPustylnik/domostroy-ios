@@ -33,4 +33,18 @@ extension UIApplication {
         return appVersion
     }
 
+    static func isDebuggerAttached() -> Bool {
+        var info = kinfo_proc()
+        var size = MemoryLayout<kinfo_proc>.size
+        var name: [Int32] = [
+            CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()
+        ]
+
+        let result = name.withUnsafeMutableBufferPointer { (namePointer) -> Bool in
+            return sysctl(namePointer.baseAddress, 4, &info, &size, nil, 0) == 0
+        }
+
+        return result && (info.kp_proc.p_flag & P_TRACED) != 0
+    }
+
 }
