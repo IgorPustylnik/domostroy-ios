@@ -35,13 +35,18 @@ extension RegisterPresenter: RegisterModuleInput {
 extension RegisterPresenter: RegisterViewOutput {
 
     func viewLoaded() {
+        AnalyticsEvent.openRegistration.send()
         view?.setupInitialState()
     }
 
     func register(registerEntity: RegisterEntity) {
+        var lastName: String?
+        if let lastNameNonNil = registerEntity.lastName {
+            lastName = lastNameNonNil.isEmpty ? nil : lastNameNonNil
+        }
         let normalizedRegisterEntity = RegisterEntity(
             firstName: registerEntity.firstName.trimmingCharacters(in: .whitespaces),
-            lastName: registerEntity.lastName?.trimmingCharacters(in: .whitespaces),
+            lastName: lastName?.trimmingCharacters(in: .whitespaces),
             phoneNumber: registerEntity.phoneNumber.trimmingCharacters(in: .whitespaces),
             email: registerEntity.email.lowercased().trimmingCharacters(in: .whitespaces),
             password: registerEntity.password.trimmingCharacters(in: .whitespaces)

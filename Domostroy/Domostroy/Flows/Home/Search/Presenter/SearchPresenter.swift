@@ -185,7 +185,6 @@ extension SearchPresenter: PaginatableOutput {
                 }
                 pagesCount = page.pagination.totalPages
                 updatePagination()
-                view?.setEmptyState(page.data.isEmpty)
                 view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -253,6 +252,9 @@ private extension SearchPresenter {
                 receiveValue: { result in
                     switch result {
                     case .success:
+                        if value {
+                            AnalyticsEvent.offerAddedToFavorites(offerId: id.description).send()
+                        }
                         completion?(true)
                     case .failure(let error):
                         completion?(false)
@@ -328,6 +330,7 @@ private extension SearchPresenter {
             snapshot: paginationSnapshot,
             seed: sort == .default ? "seed" : nil
         )
+        let startTime = Date()
         offerService?.getOffers(searchOffersEntity: searchOffersEntity)
             .sink(
                 receiveCompletion: { _ in
@@ -335,6 +338,7 @@ private extension SearchPresenter {
                 },
                 receiveValue: { result in
                     handleResult?(result)
+                    AnalyticsEvent.offersLoaded(loadTime: Date().timeIntervalSince(startTime), source: "Search").send()
                 }
             )
             .store(in: &cancellables)

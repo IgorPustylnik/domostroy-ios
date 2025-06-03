@@ -15,4 +15,8 @@ enum InfoPlist {
         }
         return Bundle.main.infoDictionary?["SERVER_HOST"] as? String
     }
+
+    static var appMetricaAPIKey: String? {
+        Bundle.main.infoDictionary?["APPMETRICA_API_KEY"] as? String
+    }
 }

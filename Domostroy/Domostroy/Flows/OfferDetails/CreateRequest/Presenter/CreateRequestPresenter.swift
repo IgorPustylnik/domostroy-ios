@@ -137,7 +137,10 @@ private extension CreateRequestPresenter {
         )
         .sink(
             receiveCompletion: { _ in completion?() },
-            receiveValue: { handleResult?($0) }
+            receiveValue: {
+                handleResult?($0)
+                AnalyticsEvent.rentRequestSubmitted(offerId: offer.id.description).send()
+            }
         )
         .store(in: &cancellables)
     }

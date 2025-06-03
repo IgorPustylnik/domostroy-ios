@@ -74,6 +74,7 @@ extension CodeConfirmationPresenter: CodeConfirmationViewOutput {
             }
             switch result {
             case .success(let token):
+                AnalyticsEvent.registrationCompleted.send()
                 secureStorage?.saveToken(token)
                 onCompleteRegistration?()
             case .failure(let error):

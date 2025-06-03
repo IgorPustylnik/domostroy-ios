@@ -88,6 +88,7 @@ private extension OfferDetailsPresenter {
         guard let offerId else {
             return
         }
+        AnalyticsEvent.offerViewed(offerId: offerId.description, source: "OfferDetails").send()
         view?.setLoading(true)
         offerService?.getOffer(
             id: offerId

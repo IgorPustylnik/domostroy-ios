@@ -200,6 +200,9 @@ private extension FavoritesPresenter {
         .sink(receiveValue: { result in
             switch result {
             case .success:
+                if value {
+                    AnalyticsEvent.offerAddedToFavorites(offerId: id.description).send()
+                }
                 completion?(true)
             case .failure(let error):
                 completion?(false)
@@ -250,6 +253,7 @@ private extension FavoritesPresenter {
         completion: EmptyClosure?,
         handleResult: ((NodeResult<Page1Entity<FavoriteOfferEntity>>) -> Void)?
     ) {
+        let startTime = Date()
         offerService?.getFavoriteOffers(
             paginationEntity: .init(
                 page: currentPage,
@@ -263,6 +267,7 @@ private extension FavoritesPresenter {
             },
             receiveValue: { result in
                 handleResult?(result)
+                AnalyticsEvent.offersLoaded(loadTime: Date().timeIntervalSince(startTime), source: "Favorites").send()
             }
         )
         .store(in: &cancellables)

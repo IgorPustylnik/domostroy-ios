@@ -60,6 +60,14 @@ extension HomePresenter: HomeModuleInput {
 extension HomePresenter: HomeViewOutput {
 
     func viewLoaded() {
+        AnalyticsEvent.appLaunch(
+            loadTime: LaunchTimeMeasurer().measureAppStartUpTime(),
+            authorized: secureStorage?.loadToken() != nil
+        ).send { error in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DropsPresenter.shared.showError(title: error.localizedDescription)
+            }
+        }
         view?.setupInitialState()
         view?.setLoading(true)
         loadFirstPage()
@@ -123,7 +131,6 @@ extension HomePresenter: PaginatableOutput {
                 pagesCount = page.pagination.totalPages
                 updatePagination()
                 paginatableInput?.updatePagination(canIterate: canLoadNext())
-                view?.setEmptyState(page.data.isEmpty)
                 view?.fillNextPage(with: page.data.map { self.makeOfferViewModel(from: $0) })
             case .failure(let error):
                 DropsPresenter.shared.showError(error: error)
@@ -197,6 +204,9 @@ private extension HomePresenter {
                 receiveValue: { result in
                     switch result {
                     case .success:
+                        if value {
+                            AnalyticsEvent.offerAddedToFavorites(offerId: id.description).send()
+                        }
                         completion?(true)
                     case .failure(let error):
                         completion?(false)
@@ -273,6 +283,7 @@ private extension HomePresenter {
             snapshot: paginationSnapshot,
             seed: seed
         )
+        let startTime = Date()
         offerService?.getOffers(searchOffersEntity: searchOffersEntity)
             .sink(
                 receiveCompletion: { _ in
@@ -280,6 +291,7 @@ private extension HomePresenter {
                 },
                 receiveValue: { result in
                     handleResult?(result)
+                    AnalyticsEvent.offersLoaded(loadTime: Date().timeIntervalSince(startTime), source: "Home").send()
                 }
             )
             .store(in: &cancellables)
