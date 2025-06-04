@@ -21,17 +21,10 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
     // MARK: - Private Properties
 
     private enum LaunchInstructor {
-        case profile, auth
-
-        static func configure(isAuthorized: Bool) -> LaunchInstructor {
-            switch isAuthorized {
-            case true:
-                return .profile
-            case false:
-                return .auth
-            }
-        }
+        case profile, auth, banned
     }
+
+    let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
 
     private let router: Router
 
@@ -46,9 +39,12 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
     private var instructor: LaunchInstructor {
         let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
         if secureStorage?.loadToken() != nil {
-            return .configure(isAuthorized: true)
+            if let banned = basicStorage?.get(for: .amBanned), banned {
+                return .banned
+            }
+            return .profile
         }
-        return .configure(isAuthorized: false)
+        return .auth
     }
 
     override func start() {
@@ -57,6 +53,8 @@ final class ProfileCoordinator: BaseCoordinator, ProfileCoordinatorOutput {
             showProfile()
         case .auth:
             showUnauthorized()
+        case .banned:
+            showBanned()
         }
     }
 }
@@ -75,6 +73,9 @@ private extension ProfileCoordinator {
         }
         output.onSettings = { [weak self] in
             self?.showSettings()
+        }
+        output.onShowBanned = { [weak self] in
+            self?.showBanned()
         }
         output.onLogout = { [weak self] in
             self?.onChangeAuthState?()
@@ -120,6 +121,9 @@ private extension ProfileCoordinator {
             self?.runAuthFlow()
         }
         router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
+    }
+
+    func showBanned() {
     }
 
     func runAuthFlow() {

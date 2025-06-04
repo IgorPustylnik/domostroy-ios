@@ -19,6 +19,7 @@ final class ProfilePresenter: ProfileModuleOutput {
     var onEdit: EmptyClosure?
     var onAdminPanel: EmptyClosure?
     var onSettings: EmptyClosure?
+    var onShowBanned: EmptyClosure?
     var onLogout: EmptyClosure?
 
     // MARK: - Properties
@@ -72,6 +73,7 @@ extension ProfilePresenter: ProfileViewOutput {
     func logout() {
         secureStorage?.deleteToken()
         basicStorage?.remove(for: .myRole)
+        basicStorage?.remove(for: .amBanned)
         onLogout?()
     }
 }
@@ -108,6 +110,10 @@ private extension ProfilePresenter {
     }
 
     func configure(with myUser: MyUserEntity) {
+        guard !myUser.isBanned else {
+            onShowBanned?()
+            return
+        }
         view?.configure(
             with: .init(
                 imageUrl: nil,

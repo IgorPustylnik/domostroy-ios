@@ -24,6 +24,7 @@ public struct BasicStorageKey<T: Codable> {
 public extension BasicStorageKey {
     static var serverHost: BasicStorageKey<String> { .init("serverHost") }
     static var myRole: BasicStorageKey<Role> { .init("myRole") }
+    static var amBanned: BasicStorageKey<Bool> { .init("amBanned") }
     static var passedOnboarding: BasicStorageKey<Bool> { .init("passedOnboarding") }
     static var defaultCity: BasicStorageKey<CityEntry> { .init("defaultCity") }
 }

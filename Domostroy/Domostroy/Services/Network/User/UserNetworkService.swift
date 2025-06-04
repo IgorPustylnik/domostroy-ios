@@ -42,6 +42,7 @@ public final class UserNetworkService: UserService {
                     switch result {
                     case .success(let user):
                         self?.basicStorage.set(user.role, for: .myRole)
+                        self?.basicStorage.set(user.isBanned, for: .amBanned)
                     case .failure:
                         break
                     }
