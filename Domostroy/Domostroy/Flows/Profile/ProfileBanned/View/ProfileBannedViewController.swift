@@ -38,6 +38,7 @@ final class ProfileBannedViewController: ScrollViewController {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
         $0.text = L10n.Localizable.Profile.Banned.title
         $0.textAlignment = .center
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
 
@@ -45,6 +46,7 @@ final class ProfileBannedViewController: ScrollViewController {
         $0.font = .systemFont(ofSize: 16, weight: .regular)
         $0.text = L10n.Localizable.Profile.Banned.message
         $0.textAlignment = .center
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
 
@@ -67,6 +69,13 @@ final class ProfileBannedViewController: ScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewLoaded()
+    }
+
+    // MARK: - Loadable
+
+    override func setLoading(_ isLoading: Bool) {
+        super.setLoading(isLoading)
+        mainVStackView.isHidden = isLoading
     }
 
 }
