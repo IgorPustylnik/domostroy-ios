@@ -11,7 +11,7 @@ import NodeKit
 public struct BriefOfferAdminEntry {
     public let id: Int
     public let title: String
-    public let description: String
+    public let description: String?
     public let price: Double
     public let currency: String
     public let city: String

@@ -1,8 +1,8 @@
 //
-//  ProfilePresenter.swift
+//  ProfileBannedPresenter.swift
 //  Domostroy
 //
-//  Created by igorpustylnik on 03/04/2025.
+//  Created by igorpustylnik on 04/06/2025.
 //  Copyright © 2025 Domostroy. All rights reserved.
 //
 
@@ -12,19 +12,16 @@ import Kingfisher
 import Combine
 import NodeKit
 
-final class ProfilePresenter: ProfileModuleOutput {
+final class ProfileBannedPresenter: ProfileBannedModuleOutput {
 
-    // MARK: - ProfileModuleOutput
+    // MARK: - ProfileBannedModuleOutput
 
-    var onEdit: EmptyClosure?
-    var onAdminPanel: EmptyClosure?
-    var onSettings: EmptyClosure?
-    var onShowBanned: EmptyClosure?
     var onLogout: EmptyClosure?
+    var onUnbanned: EmptyClosure?
 
     // MARK: - Properties
 
-    weak var view: ProfileViewInput?
+    weak var view: ProfileBannedViewInput?
 
     private let userService: UserService? = ServiceLocator.shared.resolve()
     private var cancellables: [AnyCancellable] = []
@@ -34,18 +31,14 @@ final class ProfilePresenter: ProfileModuleOutput {
 
 }
 
-// MARK: - ProfileModuleInput
+// MARK: - ProfileBannedModuleInput
 
-extension ProfilePresenter: ProfileModuleInput {
-    func reload() {
-        view?.setLoading(true)
-        loadUser()
-    }
+extension ProfileBannedPresenter: ProfileBannedModuleInput {
 }
 
-// MARK: - ProfileViewOutput
+// MARK: - ProfileBannedViewOutput
 
-extension ProfilePresenter: ProfileViewOutput {
+extension ProfileBannedPresenter: ProfileBannedViewOutput {
     func viewLoaded() {
         view?.setupInitialState()
         view?.setLoading(true)
@@ -58,18 +51,6 @@ extension ProfilePresenter: ProfileViewOutput {
         }
     }
 
-    func edit() {
-        onEdit?()
-    }
-
-    func adminPanel() {
-        onAdminPanel?()
-    }
-
-    func settings() {
-        onSettings?()
-    }
-
     func logout() {
         secureStorage?.deleteToken()
         basicStorage?.remove(for: .myRole)
@@ -80,7 +61,7 @@ extension ProfilePresenter: ProfileViewOutput {
 
 // MARK: - Private methods
 
-private extension ProfilePresenter {
+private extension ProfileBannedPresenter {
 
     func loadUser(completion: EmptyClosure? = nil) {
         fetchUser(
@@ -91,7 +72,7 @@ private extension ProfilePresenter {
             handleResult: { [weak self] result in
                 switch result {
                 case .success(let myUser):
-                    self?.configure(with: myUser)
+                    self?.handleUserInfo(user: myUser)
                 case .failure(let error):
                     DropsPresenter.shared.showError(error: error)
                 }
@@ -109,22 +90,9 @@ private extension ProfilePresenter {
             .store(in: &cancellables)
     }
 
-    func configure(with myUser: MyUserEntity) {
-        guard !myUser.isBanned else {
-            onShowBanned?()
-            return
+    func handleUserInfo(user: MyUserEntity) {
+        if !user.isBanned {
+            onUnbanned?()
         }
-        view?.configure(
-            with: .init(
-                imageUrl: nil,
-                loadImage: { url, imageView in
-                    imageView.loadAvatar(id: myUser.id, name: myUser.name, url: url)
-                },
-                name: myUser.name,
-                phoneNumber: RussianPhoneTextFieldFormatter.format(phoneNumber: myUser.phoneNumber),
-                email: myUser.email,
-                isAdmin: myUser.role == .admin
-            )
-        )
     }
 }

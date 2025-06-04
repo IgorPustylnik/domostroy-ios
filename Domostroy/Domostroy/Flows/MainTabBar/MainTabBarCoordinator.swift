@@ -21,6 +21,7 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
         return $0
     }(TokenExpirationHandler())
     private let secureStorage: SecureStorage? = ServiceLocator.shared.resolve()
+    private let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
 
     private var onTapCenterControl: EmptyClosure?
 
@@ -32,11 +33,25 @@ final class MainTabBarCoordinator: BaseCoordinator, MainTabBarCoordinatorOutput 
 
     override func start() {
         setupTokenExpirationHandler()
+
+        let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
+        if let banned = basicStorage?.get(for: .amBanned), banned {
+            showTabBar(initialTab: .profile)
+            return
+        }
+
         showTabBar()
     }
 
     override func start(with deepLinkOption: DeepLinkOption?) {
         setupTokenExpirationHandler()
+
+        let basicStorage: BasicStorage? = ServiceLocator.shared.resolve()
+        if let banned = basicStorage?.get(for: .amBanned), banned {
+            showTabBar(initialTab: .profile)
+            return
+        }
+
         guard let deepLinkOption else {
             start()
             return

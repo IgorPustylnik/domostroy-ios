@@ -452,6 +452,12 @@ internal enum L10n {
     internal enum Profile {
       /// Profile
       internal static let title = L10n.tr("Localizable", "Profile.Title", fallback: "Profile")
+      internal enum Banned {
+        /// We’d offer help… if we had a support team.
+        internal static let message = L10n.tr("Localizable", "Profile.Banned.Message", fallback: "We’d offer help… if we had a support team.")
+        /// Your account was banned
+        internal static let title = L10n.tr("Localizable", "Profile.Banned.Title", fallback: "Your account was banned")
+      }
       internal enum Button {
         internal enum AdminPanel {
           /// Admin panel

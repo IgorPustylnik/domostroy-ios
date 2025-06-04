@@ -88,7 +88,6 @@ private extension RequestsCoordinator {
         let (view, output, input) = IncomingRequestDetailsModuleConfigurator().configure()
         input.setRequestId(id)
         output.onOpenOffer = { [weak self] id in
-            self?.showOfferDetails(id: id)
         }
         output.onOpenUser = { [weak self] id in
             self?.showUser(id: id)

@@ -49,6 +49,7 @@ final class TokenExpirationHandler {
     private func expireNow() {
         secureStorage?.deleteToken()
         basicStorage?.remove(for: .myRole)
+        basicStorage?.remove(for: .amBanned)
         onExpire?()
     }
 }

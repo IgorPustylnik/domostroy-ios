@@ -183,6 +183,9 @@
 "Profile.Unauthorized.Message" = "Please login to access all features";
 "Profile.Unauthorized.Button.Authorize" = "Authorize";
 
+"Profile.Banned.Title" = "Your account was banned";
+"Profile.Banned.Message" = "We’d offer help… if we had a support team.";
+
 // MARK: - Edit Profile
 
 "Profile.Edit.Title" = "Edit profile";

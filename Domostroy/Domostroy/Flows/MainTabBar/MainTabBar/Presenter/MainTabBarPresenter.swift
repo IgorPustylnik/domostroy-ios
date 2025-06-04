@@ -90,7 +90,17 @@ extension MainTabBarPresenter: MainTabBarViewOutput {
 
     func viewLoaded() {
         // Fetch user role
-        userService?.getMyUser().sink(receiveValue: { _ in }).store(in: &cancellables)
+        userService?.getMyUser(
+        ).sink(receiveValue: { [weak self] result in
+            switch result {
+            case .success(let myUser):
+                if myUser.isBanned {
+                    self?.onProfileFlowSelect?(true)
+                }
+            case .failure:
+                break
+            }
+        }).store(in: &cancellables)
     }
 }
 

@@ -183,6 +183,9 @@
 "Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
 "Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
 
+"Profile.Banned.Title" = "Ваш аккаунт был заблокирован";
+"Profile.Banned.Message" = "Мы бы предложили помощь… если бы у нас была техподдержка.";
+
 // MARK: - Edit Profile
 
 "Profile.Edit.Title" = "Редактировать профиль";
