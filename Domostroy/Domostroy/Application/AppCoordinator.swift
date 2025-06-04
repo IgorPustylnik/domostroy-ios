@@ -74,7 +74,6 @@ private extension AppCoordinator {
 
     func setupNetworkMonitor() {
         networkMonitor?.onStatusChange = { [weak self] connected in
-            print(connected)
             DispatchQueue.main.async {
                 guard !connected else {
                     NoInternetOverlayPresenter.shared.hide()

@@ -11,7 +11,7 @@ import NodeKit
 public struct BriefOfferAdminEntity {
     public let id: Int
     public let title: String
-    public let description: String
+    public let description: String?
     public let price: PriceEntity
     public let city: String
     public let photoUrl: URL

@@ -30,6 +30,7 @@ final class FullScreenImageCollectionViewCell: UICollectionViewCell {
         $0.delegate = self
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
+        $0.scrollsToTop = false
         return $0
     }(UIScrollView())
 
