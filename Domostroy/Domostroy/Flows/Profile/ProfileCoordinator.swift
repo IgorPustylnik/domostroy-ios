@@ -124,6 +124,14 @@ private extension ProfileCoordinator {
     }
 
     func showBanned() {
+        let (view, output) = ProfileBannedModuleConfigurator().configure()
+        output.onUnbanned = { [weak self] in
+            self?.start()
+        }
+        output.onLogout = { [weak self] in
+            self?.onChangeAuthState?()
+        }
+        router.setNavigationControllerRootModule(view, animated: false, hideBar: false)
     }
 
     func runAuthFlow() {
