@@ -1,0 +1,78 @@
+{
+  "originHash" : "f8a3e9b0f4d212f05233dcac92299f71391814f896651407cb054c6f9750db7d",
+  "pins" : [
+    {
+      "identity" : "appmetrica-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/appmetrica/appmetrica-sdk-ios",
+      "state" : {
+        "revision" : "a0af656792f5c89e0809696419584a6a41e13790",
+        "version" : "5.11.0"
+      }
+    },
+    {
+      "identity" : "drops",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/omaralbeik/Drops",
+      "state" : {
+        "revision" : "a183ee6f79f21c940092a19c2cba756555422371",
+        "version" : "1.7.0"
+      }
+    },
+    {
+      "identity" : "horizoncalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/IgorPustylnik/HorizonCalendar",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3f7e438e241abdb0a6d09d30cc07b7ea05c12c40"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "4c6b067f96953ee19526e49e4189403a2be21fb3",
+        "version" : "8.3.1"
+      }
+    },
+    {
+      "identity" : "kscrash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kstenerud/KSCrash",
+      "state" : {
+        "revision" : "b87a3ef5b0b84e2a34a546b9836813756cd362a9",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "nodekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/surfstudio/NodeKit.git",
+      "state" : {
+        "revision" : "92be7d6c2128c9f681078b48fda84bdb8c4263ef",
+        "version" : "5.0.2"
+      }
+    },
+    {
+      "identity" : "reactivedatadisplaymanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/surfstudio/ReactiveDataDisplayManager",
+      "state" : {
+        "revision" : "a74ff3aa3c505a6b05fbc920b798a33ad97c4d14",
+        "version" : "7.4.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    }
+  ],
+  "version" : 3
+}

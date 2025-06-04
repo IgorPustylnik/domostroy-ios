@@ -1,0 +1,329 @@
+// MARK: - Validation
+
+"ValidationError.failed" = "Ошибка валидации";
+"ValidationError.required" = "Поле обязательно для заполнения";
+"ValidationError.SomeRequiredMissing" = "Не заполнены все обязательные поля";
+"ValidationError.invalid" = "Неверный формат";
+"ValidationError.Password.mismatch" = "Пароли не совпадают";
+"ValidationError.Username.short" = "Минимум 2 символа";
+"ValidationError.Username.long" = "Не должно быть длиннее 64 символов";
+"ValidationError.Username.ContainsSpaces"="Не должно содержать пробелы";
+"ValidationError.Email" = "Неверный email-адрес";
+"ValidationError.Phone" = "Неверный номер телефона";
+
+"ValidationError.Password.short" = "Пароль должен содержать минимум 8 символов";
+"ValidationError.Password.long" = "Пароль не должен быть длиннее 69 символов";
+"ValidationError.Password.noSpecialChar" = "Пароль должен содержать хотя бы один специальный символ";
+"ValidationError.Password.noDigit" = "Пароль должен содержать хотя бы одну цифру";
+"ValidationError.Password.noLetter" = "Пароль должен содержать хотя бы одну латинскую букву";
+"ValidationError.Password.invalidSymbols" = "Пароль содержит недопустимые символы";
+
+"ValidationError.Password.capitalletter" = "Пароль должен содержать хотя бы одну заглавную букву";
+"ValidationError.Password.nonumbers" = "Пароль должен содержать хотя бы одну цифру";
+"ValidationError.Password.mismatch" = "Пароли должны совпадать";
+
+"ValidationError.OfferName.empty" = "Название объявления не может быть пустым";
+"ValidationError.OfferName.long" = "Название объявления слишком длинное";
+
+"ValidationError.OfferDescription.long" = "Описание слишком длинное";
+
+"ValidationError.Price.invalidFormat" = "Неверный формат цены";
+"ValidationError.Price.negative" = "Цена должна быть положительной";
+"ValidationError.Price.tooHigh" = "Цена должна быть меньше %@";
+
+// MARK: - Errors
+
+"UserFriendlyError.NotFound" = "Не найдено";
+"UserFriendlyError.SomethingWentWrong" = "Что-то пошло не так";
+"UserFriendlyError.NoPermission" = "Недостаточно прав для действия";
+"UserFriendlyError.NoInternet" = "Нет соединения с интернетом";
+"UserFriendlyError.ServerNotResponding" = "Сервер не отвечает";
+
+// MARK: - Token Expiration Handler
+
+"TokenExpirationHandler.LoggedOut"="Вы больше не авторизованы";
+"TokenExpirationHandler.Expired"="Срок действия токена истёк";
+
+// MARK: - No Internet
+
+"NoInternet.Title" = "Нет соединения с интернетом";
+"NoInternet.Button.Retry" = "Повторить попытку";
+
+// MARK: - Onboarding
+
+"Onboarding.Page1.Title" = "Инструменты и техника в аренду";
+"Onboarding.Page1.Description" = "Находите нужное оборудование в своем городе.";
+
+"Onboarding.Page2.Title" = "Быстро, удобно, без переплат";
+"Onboarding.Page2.Description" = "Выбирайте, договаривайтесь с арендодателем — и вперёд к ремонту.";
+
+"Onboarding.Page3.Title" = "Арендуйте на столько, на сколько вам нужно";
+"Onboarding.Page3.Description" = "Бронируйте заранее — стройте, когда удобно.";
+
+"Onboarding.Button.Next" = "Далее";
+"Onboarding.Button.Explore" = "Начать";
+
+// MARK: - Auth
+
+"Auth.Button.Login" = "Войти";
+"Auth.Button.Register" = "Зарегистрироваться";
+
+"Auth.Login.Title" = "Вход";
+"Auth.Login.Button.Login" = "Войти";
+"Auth.Login.Placeholder.Email" = "Электронная почта";
+"Auth.Login.Placeholder.Password" = "Пароль";
+"Auth.Login.Error.Failed" = "Не удалось войти";
+
+"Auth.Register.Title" = "Регистрация";
+"Auth.Register.Button.Register" = "Зарегистрироваться";
+"Auth.Register.Placeholder.FirstName" = "Имя";
+"Auth.Register.Placeholder.LastName" = "Фамилия (необязательно)";
+"Auth.Register.Placeholder.PhoneNumber" = "Номер телефона";
+"Auth.Register.Placeholder.Email" = "Электронная почта";
+"Auth.Register.Placeholder.Password" = "Пароль";
+"Auth.Register.Placeholder.RepeatPassword" = "Повторите пароль";
+"Auth.Register.Error.Failed" = "Не удалось зарегистрироваться";
+
+"Auth.CodeConfirmation.SentToEmailMessage" = "Код был отправлен по адресу %@.";
+"Auth.CodeConfirmation.Title" = "Введите код подтверждения";
+"Auth.CodeConfirmation.Error.Failed" = "Не удалось подтвердить регистрацию";
+
+// MARK: - Common
+
+"Common.Button.AddPhoto" = "Добавить фото";
+"Common.Button.Done" = "Готово";
+"Common.Button.Cancel" = "Отменить";
+"Common.Button.Yes" = "Да";
+"Common.Button.Ok" = "Ок";
+"Common.Button.Retry" = "Повторить";
+"Common.Placeholder.Search" = "Поиск";
+"Common.Success" = "Успешно";
+"Common.Warning" = "Предупреждение";
+"Common.Error" = "Ошибка";
+"Common.ChooseFromLibrary" = "Выбрать из медиатеки";
+"Common.TakeAPhoto" = "Сделать фото";
+"Common.NegotiablePrice" = "Цена договорная";
+
+// MARK: - Filter
+
+"Filter.Title" = "Фильтры";
+"Filter.Button.Apply" = "Применить";
+"Filter.Placeholder.Category" = "Выберите категорию";
+"Filter.Category.Header" = "Категория";
+"Filter.RentCost.Header" = "Стоимость аренды";
+"Filter.RentCost.From.Placeholder" = "От";
+"Filter.RentCost.To.Placeholder" = "До";
+
+// MARK: - Sort
+
+"Sort.Title" = "Сортировка";
+"Sort.Button.Apply" = "Применить";
+"Sort.Placeholder" = "Сортировка";
+"Sort.Default" = "По умолчанию";
+"Sort.PriceAscending" = "Дешевле";
+"Sort.PriceDescending" = "Дороже";
+"Sort.Newest" = "Сначала новые";
+"Sort.Oldest" = "Сначала старые";
+
+// MARK: - Home
+
+"Home.Section.Feed.title" = "Лента";
+"Home.Empty.message" = "Ничего не найдено";
+
+// MARK: - Search
+
+"Search.TextField.Placeholder" = "Поиск";
+"Search.Empty.message" = "Ничего не найдено";
+
+// MARK: - Offers
+
+"Offers.PublishedAt" = "Опубликовано %@";
+
+"Offers.Condition.Used" = "Б/у";
+"Offers.Condition.New" = "Новое";
+
+"Offers.MyOffers.Title" = "Мои объявления";
+"Offers.MyOffers.Empty.Message" = "Вы ещё не опубликовали ни одного объявления";
+
+"Offers.Favorites.Title" = "Избранное";
+"Offers.Favorites.Empty.Message" = "Вы ещё не сохранили ни одного объявления";
+
+"Offers.Create.NewOffer.Title" = "Новое объявление";
+"Offers.Create.Label.Name" = "Название";
+"Offers.Create.Label.Description" = "Описание";
+"Offers.Create.Label.Category" = "Категория";
+"Offers.Create.Label.Condition" = "Состояние";
+"Offers.Create.Label.Pictures" = "Фотографии";
+"Offers.Create.Label.City" = "Город";
+"Offers.Create.Label.AvailableDates" = "Доступные даты аренды";
+"Offers.Create.Label.Price" = "Цена";
+"Offers.Create.Placeholder.Name" = "Название";
+"Offers.Create.Placeholder.Description" = "Описание";
+"Offers.Create.Placeholder.Category" = "Укажите категорию";
+"Offers.Create.Placeholder.Condition" = "Укажите состояние";
+"Offers.Create.Placeholder.Price" = "Цена";
+"Offers.Create.Checkmark.NegotiablePrice" = "Цена договорная";
+"Offers.Create.Button.City.Placeholder" = "Укажите город";
+"Offers.Create.Button.AvailableDates.Placeholder" = "Укажите доступные даты";
+"Offers.Create.Button.AvailableDates.Selected" = "Доступные даты аренды";
+"Offers.Create.Button.Publish" = "Опубликовать";
+"Offers.Create.Error.Failed" = "Не удалось создать";
+
+"Offers.Edit.Title" = "Редактировать объявление";
+"Offers.Edit.Button.Delete" = "Удалить объявление";
+"Offers.Edit.Button.Save" = "Сохранить";
+"Offers.Edit.Message.Saved"="Объявление было сохранено";
+
+// MARK: - Profile
+
+"Profile.Title" = "Профиль";
+"Profile.NavigationBar.Button.Edit" = "Править";
+"Profile.Button.AdminPanel.Title" = "Панель администратора";
+"Profile.Button.Logout.Title" = "Выйти";
+"Profile.Unauthorized.Message" = "Войдите, чтобы пользоваться всеми функциями Домостроя";
+"Profile.Unauthorized.Button.Authorize" = "Авторизоваться";
+
+"Profile.Banned.Title" = "Ваш аккаунт был заблокирован";
+"Profile.Banned.Message" = "Мы бы предложили помощь… если бы у нас была техподдержка.";
+
+// MARK: - Edit Profile
+
+"Profile.Edit.Title" = "Редактировать профиль";
+"Profile.Edit.Placeholder.FirstName" = "Имя";
+"Profile.Edit.Placeholder.LastName" = "Фамилия (необязательно)";
+"Profile.Edit.Placeholder.PhoneNumber" = "Номер телефона";
+"Profile.Edit.Button.ChangePassword" = "Изменить пароль";
+"Profile.Edit.NavigationBar.Button.Save" = "Сохранить";
+"Profile.Edit.Message.Success" = "Изменения были сохранены";
+
+// MARK: - Change Password
+
+"Profile.ChangePassword.Title" = "Изменить пароль";
+"Profile.ChangePassword.Placeholder.OldPassword" = "Старый пароль";
+"Profile.ChangePassword.Placeholder.NewPassword" = "Новый пароль";
+"Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Повторите новый пароль";
+"Profile.ChangePassword.Button.Save" = "Изменить пароль";
+"Profile.ChangePassword.Message.Success" = "Пароль был изменён";
+
+// MARK: - Settings
+
+"Settings.Title" = "Настройки";
+"Settings.Notifications.Title" = "Уведомления на почту";
+
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Панель администратора";
+
+"AdminPanel.Users.Title"="Пользователи";
+"AdminPanel.Users.Admin"="Администратор";
+"AdminPanel.Users.RegistrationDate"="Дата регистрации: %@";
+"AdminPanel.Users.Button.Ban"="Заблокировать";
+"AdminPanel.Users.Button.Unban"="Разблокировать";
+"AdminPanel.Users.Button.Delete"="Удалить";
+
+"AdminPanel.Offers.Title"="Объявления";
+"AdminPanel.Offers.Filter.Status"="Статус";
+"AdminPanel.Offers.Filter.Status.All"="Все";
+"AdminPanel.Offers.Filter.Status.Active"="Активные";
+"AdminPanel.Offers.Filter.Status.Banned"="Заблокированные";
+
+"AdminPanel.Offers.Ban.Title" = "Заблокировать объявление";
+"AdminPanel.Offers.Ban.Reason.Placeholder" = "Причина";
+"AdminPanel.Offers.BanReason" = "Причина блокировки: %@";
+
+// MARK: - Requests
+
+"Requests.Title" = "Заявки";
+"Requests.Archive.Title" = "Архив";
+"Requests.Incoming.Title" = "Входящие";
+"Requests.Outgoing.Title" = "Исходящие";
+"Requests.Incoming.Empty.Message" = "Входящие заявки не найдены";
+"Requests.Outgoing.Empty.Message" = "Вы ещё не оставляли заявки";
+
+"Requests.Action.Call" = "Позвонить";
+"Requests.Action.CancelRequest" = "Отменить заявку";
+"Requests.Action.Accept" = "Принять";
+"Requests.Action.Decline" = "Отклонить";
+"Requests.Info.Dates" = "Даты";
+"Requests.Info.Lessor" = "Арендодатель";
+"Requests.Info.Leaser" = "Арендатор";
+
+"RequestDetails.Incoming.Title" = "Входящая заявка";
+"RequestDetails.Outgoing.Title" = "Исходящая заявка";
+"RequestDetails.Status.AcceptedOn" = "Подтверждена";
+"RequestDetails.Status.Pending" = "Ожидает ответа";
+"RequestDetails.Status.DeclinedOn" = "Отклонена";
+"RequestDetails.Info.Title" = "Информация";
+"RequestDetails.Info.Dates" = "Даты";
+"RequestDetails.Info.RequestDate" = "Дата подачи заявки";
+"RequestDetails.Button.Call" = "Позвонить";
+"RequestDetails.Button.Cancel" = "Отменить";
+"RequestDetails.Button.Accept" = "Принять";
+"RequestDetails.Button.Decline" = "Отклонить";
+"RequestDetails.Menu.Button.CancelRent" = "Отменить аренду";
+"RequestDetails.Menu.Button.CancelRequest" = "Отменить заявку";
+
+// MARK: - Lessor Calendar
+
+"LessorCalendar.Title" = "Доступные даты";
+"LessorCalendar.Button.Apply" = "Применить";
+"LessorCalendar.Message.CalendarUpdated"="Доступные даты были изменены";
+
+// MARK: - Offer Details
+
+"OfferDetails.Banned" = "Объявление заблокировано";
+"OfferDetails.BannedFor" = "Объявление заблокировано. Причина: %@";
+"OfferDetails.Button.Rent" = "Арендовать";
+"OfferDetails.Info.Header" = "Информация";
+"OfferDetails.Info.Category" = "Категория";
+"OfferDetails.Description.Header" = "Описание";
+"OfferDetails.PublishedAt"="Дата публикации: %@";
+
+"OfferDetails.My.Calendar.Header" = "Доступные даты";
+"OfferDetails.My.Calendar.Placeholder" = "Доступные даты";
+"OfferDetails.My.MoreActions.Edit" = "Редактировать";
+"OfferDetails.My.MoreActions.Delete" = "Удалить";
+
+"OfferDetails.Admin.MoreActions.Ban" = "Заблокировать";
+"OfferDetails.Admin.MoreActions.Unban" = "Разблокировать";
+
+// MARK: - Full Screen Images
+
+"FullScreenImages.OutOf" = "%@ из %@";
+
+// MARK: - User Profile
+
+"UserProfile.RegistrationDate" = "На Домострое с %@";
+"UserProfile.Section.Offers.Empty" = "Нет объявлений";
+"UserProfile.IsBanned" = "Пользователь заблокирован";
+"UserProfile.MoreActions.Ban" = "Заблокировать";
+"UserProfile.MoreActions.Unban" = "Разблокировать";
+
+// MARK: - Select City
+
+"SelectCity.Title" = "Город";
+"SelectCity.AllCities" = "Все города";
+"SelectCity.Button.Apply" = "Применить";
+
+// MARK: - Create Request
+
+"CreateRequest.Title" = "Арендовать";
+"CreateRequest.Details.Header" = "Детали аренды";
+"CreateRequest.Placeholder.Calendar" = "Выберите даты";
+"CreateRequest.Info.Header" = "Общение с арендодателем";
+"CreateRequest.Info.AfterBooking" = "Сможете связаться с арендодателем после подтверждения аренды арендодателем.";
+"CreateRequest.Info.ContactData" = "Арендодатель получит контактные данные, указанные в вашем профиле.";
+"CreateRequest.TotalCost.Header" = "Стоимость аренды";
+"CreateRequest.TotalCost.Note" = "Сумма указана для справки. Оплата — по договорённости с арендодателем.";
+"CreateRequest.Button.Submit" = "Оформить аренду";
+"CreateRequest.Message.Created" = "Заявка была создана";
+
+"RequestCalendar.Title" = "Даты";
+"RequestCalendar.TotalCost" = "Стоимость аренды: %@";
+"RequestCalendar.Button.Apply" = "Применить";
+
+// MARK: - No Camera Permission
+
+"NoCameraPermission.Title" = "Нет доступа к камере";
+"NoCameraPermission.Message" = "Разрешите доступ к камере в настройках, чтобы использовать эту функцию.";
+"NoCameraPermission.Action.OpenSettins" = "Открыть настройки";

@@ -1,0 +1,329 @@
+// MARK: - Validation
+
+"ValidationError.failed" = "Validation failed";
+"ValidationError.required" = "Field is required";
+"ValidationError.SomeRequiredMissing" = "Every required field must be filled";
+"ValidationError.invalid" = "Incorrect format";
+"ValidationError.Password.mismatch" = "Passwords do not match";
+"ValidationError.Username.short"="Must be at least 2 characters long";
+"ValidationError.Username.long"="Mustn't be longer than 64 characters";
+"ValidationError.Username.ContainsSpaces"="Mustn't contain spaces";
+"ValidationError.Email"="Invalid email address";
+"ValidationError.Phone"="Invalid phone number";
+
+"ValidationError.Password.short"="Password must be at least 8 characters long";
+"ValidationError.Password.long"="Password mustn't be longer than 69 characters";
+"ValidationError.Password.noSpecialChar" = "Password must contain at least one special character";
+"ValidationError.Password.noDigit" = "Password must contain at least one digit";
+"ValidationError.Password.noLetter" = "Password must contain at least one Latin letter";
+"ValidationError.Password.invalidSymbols" = "Password contains invalid characters";
+
+"ValidationError.Password.capitalletter"="Password must contain at least one capital letter";
+"ValidationError.Password.nonumbers"="Password must contain at least one number";
+"ValidationError.Password.mismatch"="Passwords must match";
+
+"ValidationError.OfferName.empty" = "Offer name can't be empty";
+"ValidationError.OfferName.long" = "Offer name is too long";
+
+"ValidationError.OfferDescription.long" = "Description is too long";
+
+"ValidationError.Price.invalidFormat" = "Invalid price format";
+"ValidationError.Price.negative" = "Price must be a positive value";
+"ValidationError.Price.tooHigh" = "Price must be less than %@";
+
+// MARK: - Errors
+
+"UserFriendlyError.NotFound" = "Not found";
+"UserFriendlyError.SomethingWentWrong" = "Something went wrong";
+"UserFriendlyError.NoPermission" = "You don’t have permission to do this";
+"UserFriendlyError.NoInternet" = "No internet connection";
+"UserFriendlyError.ServerNotResponding" = "Server is not responding";
+
+// MARK: - Token Expiration Handler
+
+"TokenExpirationHandler.LoggedOut"="You have been logged out";
+"TokenExpirationHandler.Expired"="Token has expired";
+
+// MARK: - No Internet
+
+"NoInternet.Title" = "No internet connection";
+"NoInternet.Button.Retry" = "Retry";
+
+// MARK: - Onboarding
+
+"Onboarding.Page1.Title" = "Rent tools and equipment";
+"Onboarding.Page1.Description" = "Find the gear you need in your city.";
+
+"Onboarding.Page2.Title" = "Fast, simple, no overpaying";
+"Onboarding.Page2.Description" = "Pick what you need, negotiate with the lessor — and get to work.";
+
+"Onboarding.Page3.Title" = "Rent for as long as you need";
+"Onboarding.Page3.Description" = "Book in advance — work when you feel like it.";
+
+"Onboarding.Button.Next" = "Next";
+"Onboarding.Button.Explore" = "Explore";
+
+// MARK: - Auth
+
+"Auth.Button.Login" = "Login";
+"Auth.Button.Register" = "Register";
+
+"Auth.Login.Title" = "Login";
+"Auth.Login.Button.Login" = "Login";
+"Auth.Login.Placeholder.Email" = "Email";
+"Auth.Login.Placeholder.Password" = "Password";
+"Auth.Login.Error.Failed" = "Failed to login";
+
+"Auth.Register.Title" = "Register";
+"Auth.Register.Button.Register" = "Register";
+"Auth.Register.Placeholder.FirstName" = "First name";
+"Auth.Register.Placeholder.LastName" = "Last name (optional)";
+"Auth.Register.Placeholder.PhoneNumber" = "Phone number";
+"Auth.Register.Placeholder.Email" = "Email";
+"Auth.Register.Placeholder.Password" = "Password";
+"Auth.Register.Placeholder.RepeatPassword" = "Repeat password";
+"Auth.Register.Error.Failed" = "Failed to register";
+
+"Auth.CodeConfirmation.SentToEmailMessage" = "We sent the code to %@.";
+"Auth.CodeConfirmation.Title" = "Enter confirmation code";
+"Auth.CodeConfirmation.Error.Failed" = "Failed to confirm registration";
+
+// MARK: - Common
+
+"Common.Button.AddPhoto" = "Add photo";
+"Common.Button.Done" = "Done";
+"Common.Button.Cancel" = "Cancel";
+"Common.Button.Yes" = "Yes";
+"Common.Button.Ok" = "OK";
+"Common.Button.Retry" = "Retry";
+"Common.Placeholder.Search" = "Search";
+"Common.Success" = "Success";
+"Common.Warning" = "Warning";
+"Common.Error" = "Error";
+"Common.ChooseFromLibrary" = "Choose from library";
+"Common.TakeAPhoto" = "Take a photo";
+"Common.NegotiablePrice" = "Negotiable price";
+
+// MARK: - Filter
+
+"Filter.Title" = "Filters";
+"Filter.Button.Apply" = "Apply";
+"Filter.Placeholder.Category" = "Select a category";
+"Filter.Category.Header" = "Category";
+"Filter.RentCost.Header" = "Rent cost";
+"Filter.RentCost.From.Placeholder" = "From";
+"Filter.RentCost.To.Placeholder" = "To";
+
+// MARK: - Sort
+
+"Sort.Title" = "Sort";
+"Sort.Button.Apply" = "Apply";
+"Sort.Placeholder" = "Sort";
+"Sort.Default" = "Default";
+"Sort.PriceAscending" = "Price ascending";
+"Sort.PriceDescending" = "Price descending";
+"Sort.Newest" = "Newest first";
+"Sort.Oldest" = "Oldest first";
+
+// MARK: - Home
+
+"Home.Section.Feed.title" = "Feed";
+"Home.Empty.message" = "Nothing found";
+
+// MARK: - Search
+
+"Search.TextField.Placeholder" = "Search";
+"Search.Empty.message" = "Nothing found";
+
+// MARK: - Offers
+
+"Offers.PublishedAt" = "Published on %@";
+
+"Offers.Condition.Used" = "Used";
+"Offers.Condition.New" = "Brand new";
+
+"Offers.MyOffers.Title" = "My offers";
+"Offers.MyOffers.Empty.Message" = "You have not posted any offers yet";
+
+"Offers.Favorites.Title" = "Favorites";
+"Offers.Favorites.Empty.Message" = "You have not saved any offers yet";
+
+"Offers.Create.NewOffer.Title" = "New offer";
+"Offers.Create.Label.Name" = "Name";
+"Offers.Create.Label.Description" = "Description";
+"Offers.Create.Label.Category" = "Category";
+"Offers.Create.Label.Condition" = "Condition";
+"Offers.Create.Label.Pictures" = "Pictures";
+"Offers.Create.Label.City" = "City";
+"Offers.Create.Label.AvailableDates" = "Available dates";
+"Offers.Create.Label.Price" = "Price";
+"Offers.Create.Placeholder.Name" = "Name";
+"Offers.Create.Placeholder.Description" = "Description";
+"Offers.Create.Placeholder.Category" = "Select category";
+"Offers.Create.Placeholder.Condition" = "Select condition";
+"Offers.Create.Placeholder.Price" = "Price";
+"Offers.Create.Checkmark.NegotiablePrice" = "Negotiable";
+"Offers.Create.Button.City.Placeholder" = "Select city";
+"Offers.Create.Button.AvailableDates.Placeholder" = "Select available dates";
+"Offers.Create.Button.AvailableDates.Selected" = "Available dates";
+"Offers.Create.Button.Publish" = "Publish";
+"Offers.Create.Error.Failed" = "Failed to create";
+
+"Offers.Edit.Title" = "Edit offer";
+"Offers.Edit.Button.Delete" = "Delete offer";
+"Offers.Edit.Button.Save" = "Save";
+"Offers.Edit.Message.Saved"="Offer has been saved";
+
+// MARK: - Profile
+
+"Profile.Title" = "Profile";
+"Profile.NavigationBar.Button.Edit" = "Edit";
+"Profile.Button.AdminPanel.Title" = "Admin panel";
+"Profile.Button.Logout.Title" = "Logout";
+"Profile.Unauthorized.Message" = "Please login to access all features";
+"Profile.Unauthorized.Button.Authorize" = "Authorize";
+
+"Profile.Banned.Title" = "Your account was banned";
+"Profile.Banned.Message" = "We’d offer help… if we had a support team.";
+
+// MARK: - Edit Profile
+
+"Profile.Edit.Title" = "Edit profile";
+"Profile.Edit.Placeholder.FirstName" = "First name";
+"Profile.Edit.Placeholder.LastName" = "Last name (optional)";
+"Profile.Edit.Placeholder.PhoneNumber" = "Phone number";
+"Profile.Edit.Button.ChangePassword" = "Change password";
+"Profile.Edit.NavigationBar.Button.Save" = "Save";
+"Profile.Edit.Message.Success" = "Changes have been saved";
+
+// MARK: - Change Password
+
+"Profile.ChangePassword.Title" = "Change password";
+"Profile.ChangePassword.Placeholder.OldPassword" = "Old password";
+"Profile.ChangePassword.Placeholder.NewPassword" = "New password";
+"Profile.ChangePassword.Placeholder.RepeatNewPassword" = "Repeat new password";
+"Profile.ChangePassword.Button.Save" = "Change password";
+"Profile.ChangePassword.Message.Success" = "Password has been changed";
+
+// MARK: - Settings
+
+"Settings.Title" = "Settings";
+"Settings.Notifications.Title" = "Email notifications";
+
+// MARK: - Admin Panel
+
+"AdminPanel.Title"="Admin panel";
+
+"AdminPanel.Users.Title"="Users";
+"AdminPanel.Users.Admin"="Admin";
+"AdminPanel.Users.RegistrationDate"="Registration date: %@";
+"AdminPanel.Users.Button.Ban"="Ban";
+"AdminPanel.Users.Button.Unban"="Unban";
+"AdminPanel.Users.Button.Delete"="Delete";
+
+"AdminPanel.Offers.Title"="Offers";
+"AdminPanel.Offers.Filter.Status"="Status";
+"AdminPanel.Offers.Filter.Status.All"="All";
+"AdminPanel.Offers.Filter.Status.Active"="Active";
+"AdminPanel.Offers.Filter.Status.Banned"="Banned";
+
+"AdminPanel.Offers.Ban.Title" = "Ban offer";
+"AdminPanel.Offers.Ban.Reason.Placeholder" = "Reason";
+"AdminPanel.Offers.BanReason" = "Ban reason: %@";
+
+// MARK: - Requests
+
+"Requests.Title" = "Requests";
+"Requests.Archive.Title" = "Archive";
+"Requests.Incoming.Title" = "Incoming";
+"Requests.Outgoing.Title" = "Outgoing";
+"Requests.Incoming.Empty.Message" = "You have no incoming requests";
+"Requests.Outgoing.Empty.Message" = "You have not made any requests";
+
+"Requests.Action.Call" = "Call";
+"Requests.Action.CancelRequest" = "Cancel request";
+"Requests.Action.Accept" = "Accept";
+"Requests.Action.Decline" = "Decline";
+"Requests.Info.Dates" = "Dates";
+"Requests.Info.Lessor" = "Lessor";
+"Requests.Info.Leaser" = "Leaser";
+
+"RequestDetails.Incoming.Title" = "Incoming request";
+"RequestDetails.Outgoing.Title" = "Outgoing request";
+"RequestDetails.Status.AcceptedOn" = "Accepted on";
+"RequestDetails.Status.Pending" = "Awaiting a response";
+"RequestDetails.Status.DeclinedOn" = "Declined on";
+"RequestDetails.Info.Title" = "Information";
+"RequestDetails.Info.Dates" = "Dates";
+"RequestDetails.Info.RequestDate" = "Request submission date";
+"RequestDetails.Button.Call" = "Call";
+"RequestDetails.Button.Cancel" = "Cancel";
+"RequestDetails.Button.Accept" = "Accept";
+"RequestDetails.Button.Decline" = "Decline";
+"RequestDetails.Menu.Button.CancelRent" = "Cancel rent";
+"RequestDetails.Menu.Button.CancelRequest" = "Cancel request";
+
+// MARK: - Lessor Calendar
+
+"LessorCalendar.Title" = "Dates";
+"LessorCalendar.Button.Apply" = "Apply";
+"LessorCalendar.Message.CalendarUpdated"="Available dates have been updated";
+
+// MARK: - Offer Details
+
+"OfferDetails.Banned" = "Offer is banned";
+"OfferDetails.BannedFor" = "Offer is banned. Reason: %@";
+"OfferDetails.Button.Rent" = "Rent";
+"OfferDetails.Info.Header" = "Information";
+"OfferDetails.Info.Category" = "Category";
+"OfferDetails.Description.Header" = "Description";
+"OfferDetails.PublishedAt"="Published: %@";
+
+"OfferDetails.My.Calendar.Header" = "Available dates";
+"OfferDetails.My.Calendar.Placeholder" = "Available dates";
+"OfferDetails.My.MoreActions.Edit" = "Edit";
+"OfferDetails.My.MoreActions.Delete" = "Delete";
+
+"OfferDetails.Admin.MoreActions.Ban" = "Ban";
+"OfferDetails.Admin.MoreActions.Unban" = "Unban";
+
+// MARK: - Full Screen Images
+
+"FullScreenImages.OutOf" = "%@ of %@";
+
+// MARK: - User Profile
+
+"UserProfile.RegistrationDate" = "On Domostroy since %@";
+"UserProfile.Section.Offers.Empty" = "No offers";
+"UserProfile.IsBanned" = "User is banned";
+"UserProfile.MoreActions.Ban" = "Ban";
+"UserProfile.MoreActions.Unban" = "Unban";
+
+// MARK: - Select City
+
+"SelectCity.Title" = "City";
+"SelectCity.AllCities" = "All cities";
+"SelectCity.Button.Apply" = "Apply";
+
+// MARK: - Create Request
+
+"CreateRequest.Title" = "Request";
+"CreateRequest.Details.Header" = "Submit";
+"CreateRequest.Placeholder.Calendar" = "Select dates";
+"CreateRequest.Info.Header" = "Communication with lessor";
+"CreateRequest.Info.AfterBooking" = "You will be able to contact the lessor after creating a booking.";
+"CreateRequest.Info.ContactData" = "The lessor will receive your contact details specified in your profile.";
+"CreateRequest.TotalCost.Header" = "Rental cost";
+"CreateRequest.TotalCost.Note" = "The amount is indicative. Payment terms to be agreed with the lessor.";
+"CreateRequest.Button.Submit" = "Submit";
+"CreateRequest.Message.Created" = "Created a request";
+
+"RequestCalendar.Title" = "Dates";
+"RequestCalendar.TotalCost" = "Rental cost: %@";
+"RequestCalendar.Button.Apply" = "Apply";
+
+// MARK: - No Camera Permission
+
+"NoCameraPermission.Title" = "No camera access";
+"NoCameraPermission.Message" = "Please enable camera access in Settings to use this feature.";
+"NoCameraPermission.Action.OpenSettins" = "Open settings";
